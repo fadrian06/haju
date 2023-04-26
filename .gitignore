@@ -1,0 +1,5 @@
+haju.*
+.env
+vendor/
+node_modules/
+~*
