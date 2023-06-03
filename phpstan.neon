@@ -1,0 +1,8 @@
+parameters:
+	phpVersion: 80260
+	level: 0
+	paths:
+		- src
+		- tests
+	excludePaths:
+		- vendor

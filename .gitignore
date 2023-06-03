@@ -1,5 +1,8 @@
-haju.*
 .env
 vendor/
 node_modules/
 ~*
+*.cache
+*.log
+*.sublime*
+docs/*.jpg
