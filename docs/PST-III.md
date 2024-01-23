@@ -1,6 +1,6 @@
 <header style="display: grid; grid-template-columns: 1fr 1fr">
   <img style="height: 120px; justify-self: start" alt="Logo PNFI" src="imagenes/pnfi.png" />
-  <img style="height: 120px; justify-self: end" alt="Logo UPTM" src="imagenes/uptm.png" />
+  <img style="height: 120px; justify-self: end" alt="Logo UPTM" src="imagenes/UPTM.png" />
 </header>
 
 ## Implementar un Sistema Automatizado para el Registro y Control del Departamento de Estadistica de Salud del Hospital Antonio José Uzcátegui
