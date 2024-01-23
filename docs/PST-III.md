@@ -147,21 +147,3 @@ Con la implementación del sistema automatizado se puede tener un control sobre 
     </small>
   </figcaption>
 </figure>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
-
-<style>
-  h1, h2 {
-    text-align: center;
-  }
-
-  figure {
-    margin: 0
-  }
-
-  figcaption {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-  }
-</style>
