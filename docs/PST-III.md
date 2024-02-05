@@ -129,6 +129,65 @@ Con la implementación del sistema automatizado se puede tener un control sobre 
 
 ## Capítulo II
 ## Capítulo III
+
+Las metodologías aplicadas para el proyecto HAJU son la de “Marco Lógico” y “Proceso Racional Unificado”, las cuales son efectivas con el desarrollo del proyecto, ya que la realización del mismo consta de una duración de un año, son adaptables a las organizaciones o requisitos de los usuarios, permite detallar los problemas, objetivos y alternativas en las soluciones para el diseño del sistema automatizado. Con estos métodos, se realizó una planificación de un año, en la cual se estudió la problemática y en base a la misma se busco las soluciones y alternativas congruentes para el del departamento de estadísticas de HAJU, la cual consta el desarrollo de un sistema automatizado siguiendo las etapas de la metodología RUP. 
+	La metodología del marco lógico esta consta de 4 etapas y una matriz, de las cuales las actividades realizadas de cada etapa son el análisis de los involucrados los cuales refieren a: estudiantes de la UPTM, el director administrador del hospital, el análisis de los problemas ya se han determinado, el análisis de los objetivos en las cuales los mismos ya han sido establecidos y de igual manera el análisis de las alternativas para lograr una buena adaptación de la solución a la problemática presentada.
+Por otro lado, en la metodología consta de 4 etapas para el desarrollo del sistema automatizado, la primera “fase de inicio”, la segunda “fase de elaboración” y la tercera “fase de construcción”. Se han hecho el análisis de requisitos, los diagramas UML y análisis preliminares; la tercera “fase de elaboración” es la construcción del sistema automatizado.
+
+### Tipo y Diseño de Investigación
+
+La investigación sobre el departamento de estadísticas de HAJU se ha logrado abarcar bien empleando las metodologías RUP y el Marco lógico, dado que con la metodología del marco lógico se permite planificar, monitorear y evaluar el proyecto de desarrollo del sistema automatizado. Permite establecer los objetivos claramente tomando como referencia el diagnostico, el análisis, el diseño del sistema automatizado, la instrucción e implementación del mismo, establecer indicadores de logro y una estructura para la gestión eficaz del proyecto, asegurando su alineación con las necesidades y metas del departamento de estadísticas de HAJU.
+
+Por otro lado, la metodología RUP permite gestionar el ciclo de vida del software de manera eficiente, asegurando una implementación efectiva y una atención continua a los requisitos del usuario. Además, gracias al enfoque de RUP se permita adaptar a las necesidades cambiantes del entorno del hospital HAJU, lo que hace estructurar el sistema de manera mas eficiente, solidad y eficaz.
+Al combinar estas dos metodologías, se destaca un enfoque integral y estructurado en el abordaje del sistema automatizado lo cual es fundamental dada la importancia y la complejidad del entorno hospitalario.
+
+### Población Y Muestra
+
+La población y muestra seleccionada para el estudio, es la que trabaja en el departamento de estadísticas de HAJU, se encargan de recolectar información, organizarla, archivarla y enviarla cuando sea necesario, la comunidad cuenta con una administradora, tres secretarias y la directora que posee acceso a la información, de los cuales la administradora y la directora tendrán acceso completo a la información del sistema automatizado.
+ 
+•	Población.
+La Población: se refiere a un conjunto de individuos o de objetos sometidos a un estudio estadístico, en el que se considera una o más características. (Gran Diccionario Enciclopédico Visual P. 1285.)
+
+En este caso la población objeto en estudio, son los encargados del departamento de estadísticas en HAJU, ya que se relaciona directamente con la información manejada en el mencionado espacio de estudio, específicamente está constituido por la directora, la administradora y sus secretarias que recolectan la información necesaria sobre la atención brindada por el hospital.
+
+•	Muestra.
+La Muestra: es una parte de la población, o sea un número de individuos u objetos seleccionados científicamente cada uno de los cuales es un elemento del universo. (Balestrini, Miriam. 1998. P 216.)
+Debido a que la población es finita y pequeña se tomó la misma como muestra para la presente investigación, es decir la muestra es de tipo poblacional. Para este caso 5 personas.
+
+### Técnicas e Instrumentos de Recolección de Datos
+
+Para llevar a cabo el desarrollo de la investigación fue indispensable, poner en práctica procesos que facilitaron la recolección de datos. Arias (1999), menciona que “las técnicas de recolección de datos son las distintas formas de obtener información”. pág.53.
+      Las técnicas de recolección de datos que fueron utilizadas en la presente investigación son la observación directa y la entrevista.
+Según Hernández, Fernández y Baptista (1998), “la observación consiste en el registro sistemático, cálido y confiable de comportamientos o conductas manifiestas”.
+
+  La observación se realizó cuando se visitó el hospital HAJU, los objetos de estudio a fin de analizar fueron la metodología de registros, como llevan el manejo de la información y la administración del mismo. En la observación se pudo notar que no poseen un sistema automatizado de registro y control, ya que organizaban la información manualmente en hojas blancas, ficheros manuales y hojas de cálculo de Excel.
+En referencia a la entrevista, Márquez (1996), citado por Arias (1999), plantea: “El guion de entrevista es una técnica de recolección de información a partir de un formato previamente elaborado, el cual deberá ser respondido en forma escrita por el informante. 
+     Otras de las técnicas utilizadas para el desarrollo del proyecto fue la entrevista la cual se realizó en forma directa y personal, utilizando como herramienta para la encuesta hoja impresa y lapicero, la misma fue aplicada a 5 personas que fueron la administradora, la directora y las 3 secretarias de estadísticas”.
+
+
+
+
+### Estudio de la Factibilidad
+
+  El estudio de la factibilidad se refiere a la disponibilidad de los recursos necesarios para llevar a cabo los objetivos o metas señaladas.
+
+•	Factibilidad técnica
+
+  La factibilidad técnica consiste en determinar inicialmente si para desarrollar un proyecto se requiere de equipos, tecnología y conocimientos o experiencia en un área específica que, puede ser parte de un proceso fundamental o de apoyo como un programa de en específico. 
+
+El hospital HAJU cuenta con equipos informáticos y conexión a internet lo cual es necesario como requisitos para la instalación del sistema automatizado, además de que será adaptable para teléfonos, para un manejo cómodo y búsqueda rápida de la información.
+
+Es factible de manera técnica ya que se cuenta con los computadores y programas (Sublime text, rational case, entre otros) para la realización del sistema y los conocimientos necesarios para la elaboración del sistema de registro, para el departamento de estadísticas de HAJU.
+
+•	Factibilidad humana
+
+  Se refiere a que debe existir el personal capacitado requerido para llevar a cabo el proyecto y así mismo, deben existir usuarios finales dispuestos a emplear los productos o servicios generados por el proyecto o sistema desarrollado.
+
+Es factible de manera humana ya que existe el personal necesario para la creación del sistema de Registro y Control, además, hay usuarios finales dispuestos a emplear este sistema de registro y control para el mejoramiento en eficacia y eficiencia en lo que respecta al departamento de estadísticas de HAJU.
+
+Dado la inspección y análisis de la factibilidad técnica y humana el sistema de registro y control es factible por las siguientes razones: se cuenta con los programas necesarios para su realización; también se cuenta con la ayuda humana necesaria para la realización de este, junto con usuarios que requieren de este sistema.
+
+
 ## Capítulo IV
 
 ## Anexos
