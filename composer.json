@@ -9,6 +9,9 @@
     },
     "classmap": [
       "app/App.php"
+    ],
+    "files": [
+      "app/utils.php"
     ]
   },
   "scripts": {
