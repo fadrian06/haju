@@ -1,18 +1,113 @@
 <?php
 
-$showRegister = true;
+use App\Models\User;
 
-App::route('/ingresar', function () use ($showRegister): void {
-  App::render('pages/login', compact('showRegister'), 'content');
+$showRegister = App::userRepository()->getAll() === [];
+
+App::route('/', function (): void {
+  session_start();
+
+  if (!key_exists('userId', $_SESSION)) {
+    App::redirect('/ingresar');
+
+    return;
+  }
+});
+
+App::route('/salir', function (): void {
+  session_start();
+  session_destroy();
+
+  App::redirect('/ingresar');
+});
+
+App::route('GET /ingresar', function () use ($showRegister): void {
+  session_start();
+
+  $error = $_SESSION['error'] ?? null;
+  $message = $_SESSION['message'] ?? null;
+
+  unset($_SESSION['error']);
+  unset($_SESSION['message']);
+
+  App::render('pages/login', compact('showRegister', 'error', 'message'), 'content');
   App::render('layouts/base', ['title' => 'Ingreso']);
 });
 
-App::route('/registrate', function () use ($showRegister): void {
+App::route('POST /ingresar', function (): void {
+  $user = App::userRepository()->getByIdCard(App::request()->data['id_card']);
+
+  session_start();
+
+  if (!$user?->checkPassword(App::request()->data['password'])) {
+    $_SESSION = ['error' => 'Usuario o contraseña incorrecta'];
+
+    App::redirect('/ingresar');
+
+    return;
+  }
+
+  $_SESSION = ['userId' => $user->getId()];
+
+  App::redirect('/');
+});
+
+App::route('GET /registrate', function () use ($showRegister): void {
   App::render('pages/register', compact('showRegister'), 'content');
   App::render('layouts/base', ['title' => 'Regístrate']);
 });
 
-App::route('/recuperar', function () use ($showRegister): void {
-  App::render('pages/forgot-pass', compact('showRegister'), 'content');
-  App::render('layouts/base', ['title' => 'Recuperar contraseña']);
+App::route('POST /registrate', function (): void {
+  $user = new User(
+    App::request()->data['id_card'],
+    App::request()->data['password']
+  );
+
+  App::userRepository()->save($user);
+  session_start();
+
+  $_SESSION['message'] = 'Usuario registrado exitósamente';
+
+  App::redirect('/ingresar');
+});
+
+App::route('GET /recuperar', function () use ($showRegister): void {
+  session_start();
+
+  $error = $_SESSION['error'] ?? null;
+
+  unset($_SESSION['error']);
+
+  App::render('pages/forgot-pass', compact('showRegister', 'error'), 'content');
+  App::render('layouts/base', ['title' => 'Recuperar contraseña (1/2)']);
+});
+
+App::route('POST /recuperar', function () use ($showRegister): void {
+  session_start();
+
+  if (App::request()->data['id_card']) {
+    $user = App::userRepository()->getByIdCard((int) App::request()->data['id_card']);
+
+    if ($user) {
+      App::render('pages/change-pass', compact('showRegister', 'user'), 'content');
+      App::render('layouts/base', ['title' => 'Recuperar contraseña (2/2)']);
+
+      return;
+    }
+
+    $_SESSION['error'] = 'Cédula incorrecta';
+
+    App::redirect('/recuperar');
+
+    return;
+  }
+
+  $user = App::userRepository()->getById(App::request()->data['id'])
+    ->setPassword(App::request()->data['password']);
+
+  App::userRepository()->save($user);
+
+  $_SESSION['message'] = 'Contraseña actualizada exitósamente';
+
+  App::redirect('/ingresar');
 });

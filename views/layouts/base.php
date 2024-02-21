@@ -1,5 +1,6 @@
 <?php
-  /** @var bool $showRegister */
+
+/** @var bool $showRegister */
 ?>
 
 <!DOCTYPE html>
@@ -9,19 +10,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title><?= $title ?> - HAJU</title>
-  <link rel="icon" href="<?= asset('img/logo.png') ?>" type="image/png" />
+  <link rel="icon" href="<?= asset('img/favicon.png') ?>" type="image/png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,700&family=Rajdhani:wght@300;400;500;600;700&display=swap" />
   <link rel="stylesheet" href="<?= asset('css/bootstrap1.min.css') ?>" />
   <link rel="stylesheet" href="<?= asset('vendors/themefy_icon/themify-icons.css') ?>" />
   <link rel="stylesheet" href="<?= asset('css/style1.css') ?>" />
   <style>
-    .input-group > .form-control {
+    .input-group>.form-control {
       flex: 1;
     }
 
     input[type="number"] {
       -moz-appearance: textfield;
       appearance: textfield;
+    }
+
+    .header_iner {
+      justify-content: space-between !important;
     }
   </style>
 </head>
@@ -34,7 +39,7 @@
         <li>
           <a href="<?= route('/ingresar') ?>">Iniciar sesión</a>
         </li>
-        <?php if ($showRegister): ?>
+        <?php if ($showRegister) : ?>
           <li>
             <a href="<?= route('/registrate') ?>">Regístrate</a>
           </li>
@@ -61,6 +66,8 @@
       </p>
     </footer>
   </main>
+
+  <script src="<?= asset('js/bootstrap1.min.js') ?>"></script>
 </body>
 
 </html>
