@@ -26,8 +26,6 @@ class PDOUserRepositoryTest extends TestCase {
       )
     SQL);
 
-    $connection->instance()->query('DELETE FROM users');
-
     $this->repository = new PDOUserRepository;
     $this->repository->setConnection($connection);
   }
