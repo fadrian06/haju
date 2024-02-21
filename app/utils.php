@@ -1,9 +1,9 @@
 <?php
 
 function asset(string $filePath): string {
-  return App::request()->base . "/assets/$filePath";
+  return App::get('root') . "/assets/$filePath";
 }
 
 function route(string $name): string {
-  return App::request()->base . App::getUrl($name);
+  return App::get('root') . App::getUrl($name);
 }
