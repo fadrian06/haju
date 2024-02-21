@@ -2,6 +2,9 @@
 .DS_Store
 *.local
 *.log*
+.env.php
+*.db
+.phpunit.cache
 
 # Dist
 node_modules
