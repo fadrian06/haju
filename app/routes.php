@@ -35,12 +35,12 @@ App::route('GET /ingresar', function () use ($showRegister): void {
 });
 
 App::route('POST /ingresar', function (): void {
-  $user = App::userRepository()->getByIdCard(App::request()->data['id_card']);
+  $user = App::userRepository()->getByIdCard((int) App::request()->data['id_card']);
 
   session_start();
 
   if (!$user?->checkPassword(App::request()->data['password'])) {
-    $_SESSION = ['error' => 'Usuario o contraseña incorrecta'];
+    $_SESSION = ['error' => 'Cédula o contraseña incorrecta'];
 
     App::redirect('/ingresar');
 
