@@ -133,29 +133,32 @@ Con la implementación del sistema automatizado se puede tener un control sobre 
 
 Casella y Monteverde (2018). Sistema de información orientado a la web que centralice los datos de las sedes regionales en el departamento de Donaciones y Estadísticas. Caso: Fundación amigos del niño con Cáncer (Venezuela). Universidad Nueva Esparta. el objetivo que plantea la investigación mencionada es desarrollar un sistema automatizado que centralice la información en el departamento de donaciones y Estadísticas originada de las sedes Regionales de la Fundación, para dar solución a la problemática que le permita a la Fundación Amigos del Niño con Cáncer el control y acceso oportuno de las estadísticas que se generan. Utilizaron como herramienta el marco lógico con la finalidad de agilizar el proceso estadístico adaptándose a una investigación de tipo documental y de campo logrando resultados satisfactorios en la implementación del sistema.
 
-Esta investigación esta relacionado con este proyecto debido a que la solución de la problemática que se presenta es desarrollar un sistema que permita el control y acceso de las estadísticas que se generan, y así facilitar el proceso para el control de los servicios del departamento de estadísticas de salud del Hospital “José Antonio Uzcategui”
+Dicho antecedente aporta a la presente investigación una solución de la problemática que se presenta desarrollando un sistema que permita el control y acceso de las estadísticas que se generan, y así facilitar el proceso para el control de los servicios del departamento de estadísticas de salud del Hospital “José Antonio Uzcategui”.
 
-De Freitas (2020). “Desarrollo de una aplicación web para la gestión estadística (control de las actividades de los analistas) de la gerencia soporte de negocio”. Caso: Banesco, Banco Universal C.A. El objetivo de esta investigación en base al sistema de gestión de estadísticas y control de las actividades de los analistas, destacándose como problema principal, falla en los reportes estadísticos y respuestas tardías. De acuerdo a esta problemática se planteo desarrollar e implementar un sistema automatizado para la gestión estadística aplicando la metodología RUP (Rational Unified Process) y que se determina como proyecto factible este tipo de investigación, adaptándose a un tipo de diseño documental y de campo.
+<mark>De Freitas (2020). “Desarrollo de una aplicación web para la gestión estadística _(control de las actividades de los analistas)_ de la gerencia soporte de negocio”. Caso: Banesco, Banco Universal C.A. El objetivo de esta investigación en base al sistema de gestión de estadísticas y control de las actividades de los analistas, destacándose como problema principal, falla en los reportes estadísticos y respuestas tardías. De acuerdo a esta problemática se planteo desarrollar e implementar un sistema automatizado para la gestión estadística aplicando la metodología RUP (Rational Unified Process) y que se determina como proyecto factible este tipo de investigación, adaptándose a un tipo de diseño documental y de campo.</mark>
 
-La investigación antes mencionada, forma parte como base de conocimiento para el desarrollo de la investigación, ya que uno de los objetivos principales es automatizar las actividades para el control, gestión y estadísticas de los servicios del Departamento de Estadísticas de Salud del Hospital “José Antonio Uzcátegui”.
+La investigación antes mencionada, forma parte como base de conocimiento para el desarrollo de la investigación en curso, ya que uno de los objetivos principales es automatizar las actividades para el control, gestión y estadísticas de los servicios del Departamento de Estadísticas de Salud del Hospital “José Antonio Uzcátegui”.
 
-Torres (2020). “Sistema de información automatizado para el control de variables de la calidad del proceso productivo de la empresa laboratorios VALMOR C.A. Universidad Nacional Abierta. Mérida”. El objetivo de esta investigación es desarrollar un sistema para automatizar la información suministrada por la empresa Laboratorios VALMOR C.A con la finalidad de mantener el control de calidad en la elaboración de los medicamentos. Este sistema está orientado a la generación de reportes y estadísticas que suministra información rápida y veraz al departamento de Gerencia de Control de Calidad para que de esta manera se puedan observar los cambios y tendencias de cada una de las variables objeto de control y a la toma de decisiones. Se utilizo la metodología RUP facilitando y orientado el seguimiento de las pautas de dicha metodología, empleando el diseño de investigación documental a nivel exploratorio, descriptivo y explicativo obteniendo resultados exitosos en la realización de los procesos estadísticos con el sistema automatizado de la mencionada empresa.
+Torres (2020). “Sistema de información automatizado para el control de variables de la calidad del proceso productivo de la empresa laboratorios VALMOR C.A. Universidad Nacional Abierta. Mérida”. El objetivo de esta investigación es desarrollar un sistema para automatizar la información suministrada por la empresa Laboratorios VALMOR C.A con la finalidad de mantener el control de calidad en la elaboración de los medicamentos. Este sistema está orientado a la generación de reportes y estadísticas que suministra información rápida y veraz al departamento de Gerencia de Control de Calidad para que de esta manera se puedan observar los cambios y tendencias de cada una de las variables objeto de control y a la toma de decisiones. Se utilizo la metodología RUP facilitando y orientado el seguimiento de las pautas de dicha metodología, empleando el diseño de investigación documental a nivel exploratorio, descriptivo y explicativo, obteniendo resultados exitosos en la realización de los procesos estadísticos con el sistema automatizado de la mencionada empresa.
 
-Así mismo esta investigación está relacionada debido a que su desarrollo es la de optimizar los procesos de gestión de la información con la finalidad de disminuir y eliminar las dificultades y perdidas que puedan generar un sistema gestionado de forma manual. Como lo ha llevado hasta los momentos el personal del Hospital “José Antonio Uzcategui”.
+Así mismo esta investigación está relacionada debido a que su desarrollo optimiza los procesos de gestión de la información, con la finalidad de disminuir y eliminar las dificultades y pérdidas que puedan generar un sistema gestionado de forma manual. Como lo ha llevado hasta los momentos el personal del Hospital “José Antonio Uzcátegui”.
 
 ### Bases Teóricas
 
 #### Sistemas de información
 
 Según Laudon J (1995), en su libro de Administración de los Sistemas de Información definen un Sistema de Información de la siguiente manera:
-“Un Sistema de Información puede definirse técnicamente como un conjunto de componentes interrelacionados que permiten capturar, procesar, almacenar y distribuir la información para apoyar toma de decisiones y el control en una institución. Además, para apoyar la, la coordinación. Los Sistemas de Información pueden también ayudar a los administradores y al personal a analizar problemas, visualizar cuestiones complejas y Crear nuevos productos. (p.08).”
-Interfaz de usuario
+“Un Sistema de Información puede definirse técnicamente como un conjunto de componentes interrelacionados que permiten capturar, procesar, almacenar y distribuir la información para apoyar toma de decisiones y el control en una institución. Además, para apoyar la coordinación. Los Sistemas de Información pueden también ayudar a los administradores y al personal a analizar problemas, visualizar cuestiones complejas y crear nuevos productos. (p.08).”
 
-Es el medio con que el usuario puede comunicarse con una máquina, un equipo o una computadora, y comprende todos los puntos de contacto entre el usuario y el equipo, normalmente suelen ser fáciles de entender y fáciles de accionar.
-Organización
+#### Interfaz Gráfica de Usuario (GUI)
+
+Es el medio con que el usuario puede comunicarse con una máquina y comprende todos los puntos de contacto entre el usuario y el equipo, normalmente suelen ser fáciles de entender y fáciles de accionar.
+
+#### Organización
 
 Es un sistema de actividades conscientemente coordinadas formado por dos o más personas; la cooperación entre ellas es esencial para la existencia de la organización. De igual forma, Para Andrade S (1993), la organización es "la acción y el efecto de articular, disponer y hacer operativos un conjunto de medios, factores o elementos para la consecución de un fin concreto". En este sentido, Una organización solo existe cuando hay personas capaces de comunicarse y que están dispuestas a actuar conjuntamente para obtener un objetivo común.
-Seguridad
+
+#### Seguridad
 
 Puede entenderse como aquellas reglas técnicas y actividades destinadas a prevenir, proteger y resguardar lo que es considerado como susceptible de robo, pérdida o daño, ya sea de manera personal, grupal o empresarial. De igual forma, cotidianamente se puede referir a la ausencia de riesgo o a la confianza en algo o en alguien. En este sentido, según Wolfers (1962), define la seguridad como: “la ausencia de amenazas a los valores adquiridos; en el sentido subjetivo, la ausencia de miedo a que dichos valores pudieran destruirse”. Estar seguro sería, pues, encontrarse libre de miedos y, a la vez, libre de necesidades.  En tal sentido, es la información el elemento principal a proteger, resguardar y recuperar dentro de las redes empresariales. Garantizando que los recursos informáticos de una compañía estén disponibles para cumplir sus propósitos, es decir, que no estén dañados o alterados por circunstancias o factores externos.
 
@@ -166,11 +169,14 @@ Es la acción que se refiere a almacenar algo o a dejar constancia de ello en al
 #### RUP
 
 El proceso Unificado de Rational (RUP) define las 4 fases de un proyecto: principio, elaboración, construcción y transición. También se pueden utilizar fases de definición, diseño, desarrollo y entrega. Esto busca la realización de un ciclo de vida de un proyecto de software para poder garantizar su creación de manera correcta y eficiente.
-Según Canós, José H., y María Carmen Panadés Patricio Letelier. “Metodologías agiles de software” (2012).
+
+Según Canós, José H., y María Carmen Panadés Patricio Letelier. “Metodologías ágiles de software” (2012).
 
 #### EML
-  Es una herramienta analítica para la planificación de la gestión de proyectos orientas por objetivos. Esta mitología utiliza el análisis de los involucrados, análisis de los problemas, análisis de los objetivos, análisis de alternativas y matriz de marco lógico.
-  Según Ortegón et al. (2005), el marco lógico es una metodología que facilita los procesos de conceptualización, diseño y evaluación de proyectos; está centrada en la orientación por objetivos y orientada hacia grupos beneficiarios, para facilitar la participación y comunicación en tre las partes interesadas.
+
+Es una herramienta analítica para la planificación de la gestión de proyectos orientas por objetivos. Esta mitología utiliza el análisis de los involucrados, análisis de los problemas, análisis de los objetivos, análisis de alternativas y matriz de marco lógico.
+
+Según Ortegón et al. (2005), el marco lógico es una metodología que facilita los procesos de conceptualización, diseño y evaluación de proyectos; está centrada en la orientación por objetivos y grupos beneficiarios, para facilitar la participación y comunicación en tres partes interesadas.
 
 ### BASES TECNOLÓGICAS
 
@@ -182,27 +188,19 @@ Según Garrido (2006, p. 2) un computador “es una máquina diseñada para acep
 
 Según (Gómez, 2007, p. 18) una base de datos es un conjunto de datos que pertenecen al mismo contexto, almacenados sistemáticamente para su posterior uso, es una colección de datos estructurados según un modelo que refleje las relaciones y restricciones existentes en el mundo real.
 
-#### Sublime text
-
-Sublime Text es una herramienta para programar, que nos brinda varias opciones muy interesantes para trabajar en diversas plataformas, ya que cuenta con versiones para Microsoft Windows, Mac OS X y Linux.
-
-La primera versión fue publicada inicialmente en el año 2008. La versión 2 vio la luz en el año 2011 en release Alpha. El lanzamiento definitivo de Sublime Text 2 fue anunciada en el 2012 y con ella, este software logró mayor solidez y robustez, mejoras en la interfaz y también el soporte a las pantallas Retina de MacBook Pro.
-
-Autor: F. Manuel, https://www.genbeta.com/herramientas/sublime-text-un-sofisticado-editor-de-codigo-multiplataforma.
+#### Código fuente
 
 #### PHP
 
 (PHP Hypertext Pre-processor). Lenguaje de programación usado generalmente en la creación de contenidos para sitios web. Es un lenguaje interpretado especialmente usado para crear contenido dinámico web y aplicaciones para servidores, aunque también es posible crear aplicaciones gráficas utilizando la biblioteca GTK+.
 
-Generalmente los scripts en PHP se embeben en otros códigos como HTML, ampliando las posibilidades del diseñador de páginas web enormemente.
+Generalmente los scripts en PHP se incrustan en otros códigos como HTML, ampliando las posibilidades del diseñador de páginas web enormemente.
 
-La interpretación y ejecución de los scripts PHP se hacen en el servidor, el cliente (un navegador que pide una página web) sólo recibe el resultado de la ejecución y jamás ve el código PHP.
-Autor: ALEGSA -Definición de PHP.
+La interpretación y ejecución de los scripts PHP se hacen en el servidor. El cliente (un navegador que pide una página web) sólo recibe el resultado de la ejecución y jamás ve el código PHP.
 
 #### Lenguaje Unificado de Modelado (UML)
 
-El lenguaje de modelado unificado (UML) es un estándar para la representación visual de objetos, estados y procesos dentro de un sistema. Por un lado, el lenguaje de modelado puede servir de modelo para un proyecto y garantizar así una arquitectura de información estructurada; por el otro, ayuda a los desarrolladores a presentar la descripción del sistema de una manera que sea comprensible para quienes están fuera del campo. UML se utiliza principalmente en el desarrollo de software orientado a objetos. Al ampliar el estándar en la versión 2.0, también es adecuado para visualizar procesos empresariales.
-https://www.ionos.es/digitalguide/paginas-web/desarrollo-web/uml-lenguaje-unificado-de-modelado-orientado-a-objetos.
+El lenguaje de modelado unificado (UML) es un estándar para la representación visual de objetos, estados y procesos dentro de un sistema. Por un lado, el lenguaje de modelado puede servir de esquema para un proyecto y garantizar así una arquitectura de información estructurada; por otro lado, ayuda a los desarrolladores a presentar la descripción del sistema de una manera que sea comprensible para quienes están fuera del campo. UML se utiliza principalmente en el desarrollo de software orientado a objetos. Al ampliar el estándar en la versión 2.0, también es adecuado para visualizar procesos empresariales.
 
 #### MySQL
 
@@ -213,25 +211,18 @@ Este administrador relacional de bases de datos fue creado por la compañía MyS
 La base de datos de MySQL, por lo tanto, se distribuye de distintas maneras. Hay una versión con licencia pública general de GNU (la denominada Community Edition) y otras orientadas a empresas que brindan servicios y productos adicionales. Cabe destacar que Facebook, YouTube y Twitter, entre otros de los sitios web más visitados del mundo, trabajan con MySQL.
 
 GNU/Linux, Mac OS X, SunOS, Solaris y diferentes versiones de Windows (Windows 7, Windows 10, Windows Vista y otras), entre muchas plataformas más, permiten el funcionamiento de MySQL.
-Autores: Julián Pérez Porto y Ana Gardey.
-
-#### Typescript
-
-TypeScript es una extensión al lenguaje de programación JavaScript que se caracteriza por ampliar su sintaxis en el ámbito de los tipos. En este sentido, es un lenguaje de programación propio que se basa en JavaScript para darnos herramientas de desarrollo en cualquier escala de proyectos.
-Autor: https://keepcoding.io
 
 #### SQLite
 
-Cabe resaltar que SQLite se considera una biblioteca que se encuentra en constante proceso y que implementa un motor de base de datos SQL, el cual se caracteriza por ser transaccional, no contar con un servidor y no necesitar una instalación previa para poder usarlo.
-Autor: https://keepcoding.io
+Se considera una biblioteca que se encuentra en constante proceso y que implementa un motor de base de datos SQL, el cual se caracteriza por ser transaccional, no contar con un servidor y no necesitar una instalación previa para poder usarlo.
 
 ## Capítulo III
 
-Las metodologías aplicadas para el proyecto HAJU son la de “Marco Lógico” y “Proceso Racional Unificado”, las cuales son efectivas con el desarrollo del proyecto, ya que la realización del mismo consta de una duración de un año, son adaptables a las organizaciones o requisitos de los usuarios, permite detallar los problemas, objetivos y alternativas en las soluciones para el diseño del sistema automatizado. Con estos métodos, se realizó una planificación de un año, en la cual se estudió la problemática y en base a la misma se busco las soluciones y alternativas congruentes para el del departamento de estadísticas de HAJU, la cual consta el desarrollo de un sistema automatizado siguiendo las etapas de la metodología RUP.
+Las metodologías aplicadas para el proyecto HAJU son la de “Marco Lógico” y “Proceso Racional Unificado”, las cuales son efectivas con el desarrollo del proyecto, ya que la realización del mismo consta de una duración de un año, son adaptables a las organizaciones o requisitos de los usuarios, permite detallar los problemas, objetivos y alternativas en las soluciones para el diseño del sistema automatizado. Con estos métodos, se realizó una planificación de un año, en la cual se estudió la problemática y en base a la misma se busco las soluciones y alternativas congruentes para el departamento de estadísticas de HAJU, la cual consta del desarrollo de un sistema automatizado siguiendo las etapas de la metodología RUP.
 
-La metodología del marco lógico esta consta de 4 etapas y una matriz, de las cuales las actividades realizadas de cada etapa son el análisis de los involucrados los cuales refieren a: estudiantes de la UPTM, el director administrador del hospital, el análisis de los problemas ya se han determinado, el análisis de los objetivos en las cuales los mismos ya han sido establecidos y de igual manera el análisis de las alternativas para lograr una buena adaptación de la solución a la problemática presentada.
+La metodología del marco lógico consta de 4 etapas y una matriz, de las cuales las actividades realizadas de cada etapa son el análisis de los involucrados los cuales refieren a: estudiantes de la UPTM, el director administrador del hospital, el análisis de los problemas ya se han determinado, el análisis de los objetivos en las cuales los mismos ya han sido establecidos y de igual manera el análisis de las alternativas para lograr una buena adaptación de la solución a la problemática presentada.
 
-Por otro lado, en la metodología consta de 4 etapas para el desarrollo del sistema automatizado, la primera “fase de inicio”, la segunda “fase de elaboración” y la tercera “fase de construcción”. Se han hecho el análisis de requisitos, los diagramas UML y análisis preliminares; la tercera “fase de elaboración” es la construcción del sistema automatizado.
+Por otro lado, en la metodología RUP, cual consta de 4 etapas para el desarrollo del sistema automatizado, la primera “fase de inicio”, la segunda “fase de elaboración” y la tercera “fase de construcción”. Se han hecho el análisis de requisitos, los diagramas UML y análisis preliminares; la tercera “fase de elaboración” es la construcción del sistema automatizado.
 
 ### Tipo y Diseño de Investigación
 
@@ -243,11 +234,11 @@ Al combinar estas dos metodologías, se destaca un enfoque integral y estructura
 
 ### Población Y Muestra
 
-La población y muestra seleccionada para el estudio, es la que trabaja en el departamento de estadísticas de HAJU, se encargan de recolectar información, organizarla, archivarla y enviarla cuando sea necesario, la comunidad cuenta con una administradora, tres secretarias y la directora que posee acceso a la información, de los cuales la administradora y la directora tendrán acceso completo a la información del sistema automatizado.
- 
 - **Población**: se refiere a un conjunto de individuos o de objetos sometidos a un estudio estadístico, en el que se considera una o más características. (Gran Diccionario Enciclopédico Visual P. 1285.)
 
-En este caso la población objeto en estudio, son los encargados del departamento de estadísticas en HAJU, ya que se relaciona directamente con la información manejada en el mencionado espacio de estudio, específicamente está constituido por la directora, la administradora y sus secretarias que recolectan la información necesaria sobre la atención brindada por el hospital.
+La población y muestra seleccionada para el estudio, es la que trabaja en el departamento de estadísticas de HAJU, se encargan de recolectar información, organizarla, archivarla y enviarla cuando sea necesario, la comunidad cuenta con una administradora, tres (3) secretarias y la directora que posee acceso a la información, de los cuales la administradora y la directora tendrán acceso completo a la información del sistema automatizado.
+
+En este caso la población objeto de estudio son los encargados del departamento de estadísticas en HAJU, ya que se relaciona directamente con la información manejada en el mencionado espacio de estudio, específicamente está constituido por la directora, la administradora y sus secretarias que recolectan la información necesaria sobre la atención brindada por el hospital.
 
 - **Muestra**: es una parte de la población, o sea un número de individuos u objetos seleccionados científicamente cada uno de los cuales es un elemento del universo. (Balestrini, Miriam. 1998. P 216.)
 
