@@ -13,6 +13,14 @@ App::route('/', function (): void {
 
     return;
   }
+
+  $user = App::userRepository()->getById((int) $_SESSION['userId']);
+
+  if (!$user) {
+    App::redirect('/salir');
+
+    return;
+  }
 });
 
 App::route('/salir', function (): void {
@@ -25,6 +33,11 @@ App::route('/salir', function (): void {
 App::route('GET /ingresar', function () use ($showRegister): void {
   session_start();
 
+  if (key_exists('userId', $_SESSION)) {
+    App::redirect('/');
+
+    return;
+  }
   $error = $_SESSION['error'] ?? null;
   $message = $_SESSION['message'] ?? null;
 
