@@ -7,3 +7,7 @@ function asset(string $filePath): string {
 function route(string $name): string {
   return App::get('root') . App::getUrl($name);
 }
+
+function render(string $componentPath, array $params = []): void {
+  App::render($componentPath, $params);
+}
