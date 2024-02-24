@@ -21,6 +21,9 @@ App::route('/', function (): void {
 
     return;
   }
+
+  App::render('pages/home', [], 'content');
+  App::render('layouts/main', ['title' => 'Inicio', ...compact('user')]);
 });
 
 App::route('/salir', function (): void {
@@ -38,6 +41,7 @@ App::route('GET /ingresar', function () use ($showRegister): void {
 
     return;
   }
+
   $error = $_SESSION['error'] ?? null;
   $message = $_SESSION['message'] ?? null;
 
@@ -131,4 +135,13 @@ App::route('POST /recuperar', function () use ($showRegister): void {
   $_SESSION['message'] = '✔ Contraseña actualizada exitósamente';
 
   App::redirect('/ingresar');
+});
+
+App::route('/perfil', function (): void {
+});
+
+App::route('/configuracion', function (): void {
+});
+
+App::route('/notificaciones', function (): void {
 });
