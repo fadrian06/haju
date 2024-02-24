@@ -7,13 +7,13 @@ class User {
   private string $password;
 
   function __construct(
-    public string $firstName,
-    public string $lastName,
+    public readonly string $firstName,
+    public readonly string $lastName,
     public readonly string $speciality,
     public ?GenrePrefix $prefix,
     public readonly int $idCard,
     string $password,
-    public ?string $avatar = null
+    public readonly ?string $avatar = null
   ) {
     $this->setPassword($password);
   }

@@ -1,8 +1,10 @@
 <?php
 
+use App\Models\GenrePrefix;
 use App\Models\User;
 use App\Repositories\Exceptions\ConnectionException;
 use App\Repositories\Exceptions\DuplicatedIdCardException;
+use App\Repositories\Exceptions\DuplicatedNamesException;
 use App\Repositories\Infraestructure\PDO\Connection;
 use App\Repositories\Infraestructure\PDO\DBConnection;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
@@ -15,16 +17,26 @@ class PDOUserRepositoryTest extends TestCase {
 
   function setUp(): void {
     $this->testPassword = password_hash('test1234', PASSWORD_DEFAULT);
-    $this->testUser = new User(28072391, $this->testPassword);
+
+    $this->testUser = new User(
+      'Franyer',
+      'Sánchez',
+      'Developer',
+      GenrePrefix::Ing,
+      28072391,
+      $this->testPassword
+    );
+
     $connection = new Connection(DBConnection::SQLite, ':memory:');
 
-    $connection->instance()->query(<<<SQL
-      CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        id_card INTEGER NOT NULL UNIQUE,
-        password VARCHAR(255) NOT NULL
-      )
-    SQL);
+    $queries = explode(
+      ';',
+      file_get_contents(__DIR__ . '/../app/database/init.sqlite.sql')
+    );
+
+    foreach ($queries as $query) {
+      $connection->instance()->query($query);
+    }
 
     $this->repository = new PDOUserRepository;
     $this->repository->setConnection($connection);
@@ -48,7 +60,7 @@ class PDOUserRepositoryTest extends TestCase {
     $users = $this->repository->getAll();
     self::assertCount(1, $users);
     self::assertInstanceOf(User::class, $users[0]);
-    self::assertSame(28072391, $users[0]->idCard);
+    self::assertEquals($this->testUser, $users[0]);
   }
 
   function test_it_throws_an_exception_when_connection_is_not_provided(): void {
@@ -64,19 +76,27 @@ class PDOUserRepositoryTest extends TestCase {
 
     $user = $this->repository->getByIdCard(28072391);
     self::assertInstanceOf(User::class, $user);
-    self::assertSame(28072391, $user->idCard);
-    self::assertSame($this->testPassword, $user->getPassword());
+    self::assertEquals($this->testUser, $user);
   }
 
   function test_can_save_multiple_users(): void {
+    $user2 = new User(
+      'Franyer',
+      'Guillén',
+      'Developer',
+      GenrePrefix::Ing,
+      28072392,
+      'test1234'
+    );
+
     $this->repository->save($this->testUser);
-    $this->repository->save(new User(28072392, 'test1234'));
+    $this->repository->save($user2);
 
     $users = $this->repository->getAll();
 
     self::assertCount(2, $users);
-    self::assertSame($this->testUser->idCard, $users[0]->idCard);
-    self::assertSame(28072392, $users[1]->idCard);
+    self::assertEquals($this->testUser, $users[0]);
+    self::assertEquals($user2, $users[1]);
   }
 
   function test_cannot_save_multiple_users_with_the_same_id_card(): void {
@@ -84,7 +104,31 @@ class PDOUserRepositoryTest extends TestCase {
 
     self::expectException(DuplicatedIdCardException::class);
     self::expectExceptionMessage("ID card \"{$this->testUser->idCard}\" already exists");
-    $this->repository->save(new User($this->testUser->idCard, 'test1234'));
+
+    $this->repository->save(new User(
+      $this->testUser->firstName,
+      'Guillén',
+      $this->testUser->speciality,
+      $this->testUser->prefix,
+      $this->testUser->idCard,
+      'test1234'
+    ));
+  }
+
+  function test_cannot_save_multiple_users_with_the_same_names(): void {
+    $this->repository->save($this->testUser);
+
+    self::expectException(DuplicatedNamesException::class);
+    self::expectExceptionMessage("User \"{$this->testUser->getFullName()}\" already exists");
+
+    $this->repository->save(new User(
+      $this->testUser->firstName,
+      'Sánchez',
+      $this->testUser->speciality,
+      $this->testUser->prefix,
+      $this->testUser->idCard,
+      'test1234'
+    ));
   }
 
   function test_can_update_the_user_password(): void {

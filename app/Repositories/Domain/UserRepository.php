@@ -5,6 +5,7 @@ namespace App\Repositories\Domain;
 use App\Models\User;
 use App\Repositories\Exceptions\ConnectionException;
 use App\Repositories\Exceptions\DuplicatedIdCardException;
+use App\Repositories\Exceptions\DuplicatedNamesException;
 
 interface UserRepository {
   /**
@@ -22,6 +23,7 @@ interface UserRepository {
   /**
    * @throws ConnectionException
    * @throws DuplicatedIdCardException
+   * @throws DuplicatedNamesException
    */
   function save(User $user): void;
 }

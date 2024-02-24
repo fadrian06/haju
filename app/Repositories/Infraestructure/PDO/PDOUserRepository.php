@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Repositories\Domain\UserRepository;
 use App\Repositories\Exceptions\ConnectionException;
 use App\Repositories\Exceptions\DuplicatedIdCardException;
+use App\Repositories\Exceptions\DuplicatedNamesException;
 use PDO;
 use PDOException;
 
@@ -76,6 +77,10 @@ class PDOUserRepository implements UserRepository {
     } catch (PDOException $exception) {
       if (str_contains($exception, 'UNIQUE constraint failed: users.id_card')) {
         throw new DuplicatedIdCardException("ID card \"{$user->idCard}\" already exists");
+      }
+
+      if (str_contains($exception, 'UNIQUE constraint failed: users.first_name, users.last_name')) {
+        throw new DuplicatedNamesException("User \"{$user->getFullName()}\" already exists");
       }
 
       throw $exception;

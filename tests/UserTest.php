@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\GenrePrefix;
 use App\Models\User;
 use PHPUnit\Framework\TestCase;
 
@@ -8,14 +9,32 @@ class UserTest extends TestCase {
   private User $testUser;
 
   function setUp(): void {
-    $this->testUser = new User(28072391, 'test1234');
+    $this->testUser = new User(
+      'Franyer',
+      'Sánchez',
+      'Developer',
+      GenrePrefix::Ing,
+      28072391,
+      'test1234'
+    );
+  }
+
+  function test_can_get_the_user_full_name(): void {
+    self::assertSame('Franyer Sánchez', $this->testUser->getFullName());
   }
 
   function test_it_encrypts_the_password_when_invalid_hash_is_given(): void {
     $hash = password_hash(self::RAW_PASSWORD, PASSWORD_DEFAULT);
 
     self::assertNotSame(self::RAW_PASSWORD, $this->testUser->getPassword());
-    self::assertSame($hash, (new User(28072391, $hash))->getPassword());
+    self::assertSame($hash, (new User(
+      'Franyer',
+      'Sánchez',
+      'Developer',
+      null,
+      28072391,
+      $hash
+    ))->getPassword());
   }
 
   function test_ensure_id_is_readonly(): void {
