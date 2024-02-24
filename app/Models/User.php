@@ -7,8 +7,13 @@ class User {
   private string $password;
 
   function __construct(
+    public string $firstName,
+    public string $lastName,
+    public readonly string $speciality,
+    public ?GenrePrefix $prefix,
     public readonly int $idCard,
-    string $password
+    string $password,
+    public ?string $avatar = null
   ) {
     $this->setPassword($password);
   }
@@ -39,5 +44,9 @@ class User {
 
   function checkPassword(string $raw): bool {
     return password_verify($raw, $this->password);
+  }
+
+  function getFullName(): string {
+    return "{$this->firstName} {$this->lastName}";
   }
 }

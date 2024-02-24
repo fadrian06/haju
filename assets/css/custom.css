@@ -1,0 +1,40 @@
+.input-group>.form-control {
+  flex: 1;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.header_iner {
+  justify-content: space-between !important;
+}
+
+.sidebar_close_icon i {
+  position: unset;
+}
+
+.sidebar_icon {
+   position: unset;
+   top: 50%;
+   -webkit-transform: unset;
+   -moz-transform: unset;
+   -ms-transform: unset;
+   -o-transform: unset;
+   transform: unset;
+   right: auto;
+   left: 20px;
+   background: transparent;
+   border: none;
+}
+
+@media only screen and (min-width:992px) and (max-width:1200px) {
+  .sidebar {
+    width: 25%
+  }
+
+  .main_content {
+    padding-left: 25%
+  }
+}

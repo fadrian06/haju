@@ -15,20 +15,7 @@
   <link rel="stylesheet" href="<?= asset('css/bootstrap1.min.css') ?>" />
   <link rel="stylesheet" href="<?= asset('vendors/themefy_icon/themify-icons.css') ?>" />
   <link rel="stylesheet" href="<?= asset('css/style1.css') ?>" />
-  <style>
-    .input-group>.form-control {
-      flex: 1;
-    }
-
-    input[type="number"] {
-      -moz-appearance: textfield;
-      appearance: textfield;
-    }
-
-    .header_iner {
-      justify-content: space-between !important;
-    }
-  </style>
+  <link rel="stylesheet" href="<?= asset('css/custom.css') ?>" />
 </head>
 
 <body>
@@ -36,7 +23,7 @@
     <img src="<?= asset('img/logo.png') ?>" height="45" />
     <nav class="header_right d-flex align-items-center">
       <ul class="header_notification_warp mx-0 d-flex align-items-center">
-        <li>
+        <li class="d-sm-none">
           <a href="<?= route('/ingresar') ?>">Iniciar sesión</a>
         </li>
         <?php if ($showRegister) : ?>

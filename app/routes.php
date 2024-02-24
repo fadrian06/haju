@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\GenrePrefix;
 use App\Models\User;
 
 $showRegister = App::userRepository()->getAll() === [];
@@ -58,9 +59,16 @@ App::route('GET /registrate', function () use ($showRegister): void {
 });
 
 App::route('POST /registrate', function (): void {
+  $data = App::request()->data;
+
   $user = new User(
-    App::request()->data['id_card'],
-    App::request()->data['password']
+    $data['first_name'],
+    $data['last_name'],
+    $data['speciality'],
+    GenrePrefix::tryFrom($data['prefix'] ?? ''),
+    (int) $data['id_card'],
+    $data['password'],
+    $data['avatar']
   );
 
   App::userRepository()->save($user);

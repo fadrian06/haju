@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Infraestructure\PDO;
 
+use App\Models\GenrePrefix;
 use App\Models\User;
 use App\Repositories\Domain\UserRepository;
 use App\Repositories\Exceptions\ConnectionException;
@@ -11,6 +12,8 @@ use PDOException;
 
 class PDOUserRepository implements UserRepository {
   private ?Connection $connection = null;
+  private const FIELDS = 'id, first_name as firstName, last_name as lastName, speciality, prefix, id_card as idCard, password, avatar';
+  private const TABLE = 'users';
 
   function setConnection(Connection $connection): void {
     $this->connection = $connection;
@@ -18,13 +21,13 @@ class PDOUserRepository implements UserRepository {
 
   function getAll(): array {
     return $this->ensureIsConnected()
-      ->query('SELECT id, id_card as idCard, password FROM users')
+      ->query(sprintf('SELECT %s FROM %s', self::FIELDS, self::TABLE))
       ->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper']);
   }
 
   function getByIdCard(int $idCard): ?User {
     $stmt = $this->ensureIsConnected()
-      ->prepare('SELECT id, id_card as idCard, password FROM users WHERE id_card = ?');
+      ->prepare(sprintf('SELECT %s FROM %s WHERE id_card = ?', self::FIELDS, self::TABLE));
 
     $stmt->execute([$idCard]);
 
@@ -33,7 +36,7 @@ class PDOUserRepository implements UserRepository {
 
   function getById(int $id): ?User {
     $stmt = $this->ensureIsConnected()
-      ->prepare('SELECT id, id_card as idCard, password FROM users WHERE id = ?');
+      ->prepare(sprintf('SELECT %s FROM %s WHERE id = ?', self::FIELDS, self::TABLE));
 
     $stmt->execute([$id]);
 
@@ -43,16 +46,31 @@ class PDOUserRepository implements UserRepository {
   function save(User $user): void {
     if ($user->getId()) {
       $this->ensureIsConnected()
-        ->prepare('UPDATE users SET password = ? WHERE id = ?')
+        ->prepare(sprintf('UPDATE %s SET password = ? WHERE id = ?', self::TABLE))
         ->execute([$user->getPassword(), $user->getId()]);
 
       return;
     }
 
     try {
+      $query = sprintf(
+        <<<SQL
+          INSERT INTO %s (first_name, last_name, speciality, prefix, id_card, password, avatar)
+          VALUES (?, ?, ?, ?, ?, ?, ?)
+        SQL,
+        self::TABLE
+      );
+
       $this->ensureIsConnected()
-        ->prepare('INSERT INTO users (id_card, password) VALUES (?, ?)')
-        ->execute([$user->idCard, $user->getPassword()]);
+        ->prepare($query)
+        ->execute([
+          $user->firstName,
+          $user->lastName,
+          $user->speciality,
+          $user->prefix?->value,
+          $user->idCard, $user->getPassword(),
+          $user->avatar
+        ]);
 
       $user->setId($this->connection->instance()->lastInsertId());
     } catch (PDOException $exception) {
@@ -83,7 +101,24 @@ class PDOUserRepository implements UserRepository {
     return $this->connection->instance();
   }
 
-  private static function mapper(int $id, int $idCard, string $password): User {
-    return (new User($idCard, $password))->setId($id);
+  private static function mapper(
+    int $id,
+    string $firstName,
+    string $lastName,
+    string $speciality,
+    ?string $prefix,
+    int $idCard,
+    string $password,
+    ?string $avatar
+  ): User {
+    return (new User(
+      $firstName,
+      $lastName,
+      $speciality,
+      GenrePrefix::tryFrom($prefix ?? ''),
+      $idCard,
+      $password,
+      $avatar
+    ))->setId($id);
   }
 }
