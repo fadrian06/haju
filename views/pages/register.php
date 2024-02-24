@@ -1,5 +1,8 @@
 <?php
-  use App\Models\GenrePrefix as Prefix;
+
+use App\Models\GenrePrefix as Prefix;
+
+/** @var ?string $error */
 ?>
 
 <div class="col-lg-6">
@@ -8,6 +11,12 @@
       <h5 class="modal-title">Regístrate</h5>
     </header>
     <form class="modal-body" method="post">
+      <?php if ($error) : ?>
+        <div class="alert alert-danger alert-dismissible fade show">
+          <?= $error ?>
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      <?php endif ?>
       <label class="input-group mb-3">
         <i class="input-group-text ti-user fs-1"></i>
         <input required name="first_name" class="form-control mb-0 w-auto" placeholder="Nombre" />
@@ -24,7 +33,7 @@
         <i class="input-group-text ti-pencil-alt fs-1"></i>
         <select name="prefix" class="form-select mb-0 w-auto">
           <option selected disabled value="">Prefijo</option>
-          <?php foreach (Prefix::cases() as $prefix): ?>
+          <?php foreach (Prefix::cases() as $prefix) : ?>
             <option><?= $prefix->value ?></option>
           <?php endforeach ?>
           <option value="">Ninguno</option>
