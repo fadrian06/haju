@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title><?= $title ?> - HAJU</title>
   <link rel="icon" href="<?= asset('img/favicon.png') ?>" type="image/png" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,700&family=Rajdhani:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="<?= asset('fonts/fonts.css') ?>" />
   <link rel="stylesheet" href="<?= asset('css/metisMenu.css') ?>" />
   <link rel="stylesheet" href="<?= asset('css/bootstrap1.min.css') ?>" />
   <link rel="stylesheet" href="<?= asset('vendors/themefy_icon/themify-icons.css') ?>" />
@@ -22,7 +22,7 @@
 <body>
   <nav class="sidebar">
     <div class="logo p-4 m-0 d-flex justify-content-between align-items-center">
-      <img src="<?= asset('img/logo.png') ?>" />
+      <img src="<?= asset('img/logo.png') ?>" height="59" />
       <div class="sidebar_close_icon d-flex align-items-center d-lg-none">
         <i class="ti-close"></i>
       </div>
@@ -63,7 +63,7 @@
           </li>
         </ul> -->
         <div class="profile_info">
-          <img src="<?= $user->avatar ?? asset('img/client_img.png') ?>" height="69" />
+          <img src="<?= $user->avatar ?? asset('img/client_img.png') ?>" width="69" />
           <div class="profile_info_iner">
             <p><?= $user->speciality ?></p>
             <h5><?= "{$user->prefix?->value} {$user->getFullName()}" ?></h5>
