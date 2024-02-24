@@ -9,7 +9,7 @@
     <li class="side_menu_title">
       <span>Panel de Administración</span>
     </li>
-    <li class="mm-active">
+    <li class="<?= isActive('/') ? 'mm-active' : '' ?>">
       <a href="<?= route('/') ?>">
         <img src="<?= asset('img/menu-icon/1.svg') ?>" />
         <span>Inicio</span>

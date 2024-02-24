@@ -11,3 +11,7 @@ function route(string $name): string {
 function render(string $componentPath, array $params = []): void {
   App::render($componentPath, $params);
 }
+
+function isActive(string $url): bool {
+  return $url === App::request()->url;
+}
