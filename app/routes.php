@@ -54,7 +54,7 @@ App::route('POST /ingresar', function (): void {
   session_start();
 
   if (!$user?->checkPassword(App::request()->data['password'])) {
-    $_SESSION = ['error' => 'Cédula o contraseña incorrecta'];
+    $_SESSION = ['error' => '❌ Cédula o contraseña incorrecta'];
 
     App::redirect('/ingresar');
 
@@ -87,7 +87,7 @@ App::route('POST /registrate', function (): void {
   App::userRepository()->save($user);
   session_start();
 
-  $_SESSION['message'] = 'Usuario registrado exitósamente';
+  $_SESSION['message'] = '✔ Usuario registrado exitósamente';
 
   App::redirect('/ingresar');
 });
@@ -116,7 +116,7 @@ App::route('POST /recuperar', function () use ($showRegister): void {
       return;
     }
 
-    $_SESSION['error'] = 'Cédula incorrecta';
+    $_SESSION['error'] = '❌ Cédula incorrecta';
 
     App::redirect('/recuperar');
 
@@ -128,7 +128,7 @@ App::route('POST /recuperar', function () use ($showRegister): void {
 
   App::userRepository()->save($user);
 
-  $_SESSION['message'] = 'Contraseña actualizada exitósamente';
+  $_SESSION['message'] = '✔ Contraseña actualizada exitósamente';
 
   App::redirect('/ingresar');
 });
