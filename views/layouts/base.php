@@ -24,7 +24,7 @@
     <img src="<?= asset('img/logo.png') ?>" height="45" />
     <nav class="header_right d-flex align-items-center">
       <ul class="header_notification_warp mx-0 d-flex align-items-center">
-        <li class="d-sm-none">
+        <li class="d-none d-md-block">
           <a href="<?= route('/ingresar') ?>">Iniciar sesión</a>
         </li>
         <?php if ($showRegister) : ?>
