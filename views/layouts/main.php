@@ -92,13 +92,7 @@
         </div>
       </div>
     </div> -->
-    <footer class="footer_part px-0 position-relative mt-0">
-      <p class="footer_iner text-center py-3 mx-5">
-        <?= date('Y') ?> © UPTM - Intregrantes
-        <i class="ti-heart"></i>
-        Daniel Mancilla, Franyer Sánchez, Jénifer Lázaro
-      </p>
-    </footer>
+    <?php render('components/footer') ?>
   </section>
   <script src="<?= asset('js/jquery1-3.4.1.min.js') ?>"></script>
   <script src="<?= asset('js/metisMenu.js') ?>"></script>
