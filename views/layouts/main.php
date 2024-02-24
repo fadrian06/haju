@@ -10,6 +10,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title><?= $title ?> - HAJU</title>
+  <?php render('components/open-graph-metas') ?>
   <link rel="icon" href="<?= asset('img/favicon.png') ?>" type="image/png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,700&family=Rajdhani:wght@300;400;500;600;700&display=swap" />
   <link rel="stylesheet" href="<?= asset('css/metisMenu.css') ?>" />
@@ -92,13 +93,7 @@
         </div>
       </div>
     </div> -->
-    <footer class="footer_part px-0 position-relative mt-0">
-      <p class="footer_iner text-center py-3 mx-5">
-        <?= date('Y') ?> © UPTM - Intregrantes
-        <i class="ti-heart"></i>
-        Daniel Mancilla, Franyer Sánchez, Jénifer Lázaro
-      </p>
-    </footer>
+    <?php render('components/footer') ?>
   </section>
   <script src="<?= asset('js/jquery1-3.4.1.min.js') ?>"></script>
   <script src="<?= asset('js/metisMenu.js') ?>"></script>
