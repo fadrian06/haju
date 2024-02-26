@@ -20,35 +20,30 @@
 </head>
 
 <body>
-  <header class="header_iner d-flex justify-content-between align-items-center mb-4 py-1">
+  <header class="d-flex header_iner align-items-center py-0">
     <img src="<?= asset('img/logo.png') ?>" height="45" />
-    <nav class="header_right d-flex align-items-center">
-      <ul class="header_notification_warp mx-0 d-flex align-items-center">
+    <nav class="header_right">
+      <ul class="header_notification_warp d-flex align-items-center mx-0">
         <li class="d-none d-md-block">
           <a href="<?= route('/ingresar') ?>">Iniciar sesión</a>
         </li>
         <?php if ($showRegister) : ?>
-          <li>
+          <li class="d-none d-md-block">
             <a href="<?= route('/registrate') ?>">Regístrate</a>
           </li>
         <?php endif ?>
-        <ul>
-          <li>
-            <img src="<?= asset('img/client_img.png') ?>" height="69" />
-          </li>
-        </ul>
+        <li>
+          <img src="<?= asset('img/client_img.png') ?>" height="69" />
+        </li>
       </ul>
     </nav>
   </header>
-  <main class="main_content px-4 pb-0" style="min-height: unset">
-    <div class="main_content_iner mb-4" style="min-height: unset">
-      <div class="white_box p-4 row justify-content-center">
-        <?= $content ?>
-      </div>
+  <main class="main_content p-2 px-md-5">
+    <div class="main_content_iner mx-0 my-4 white_box row justify-content-center">
+      <?= $content ?>
     </div>
-    <?php render('components/footer') ?>
   </main>
-
+  <?php render('components/footer') ?>
   <script src="<?= asset('js/bootstrap1.min.js') ?>"></script>
 </body>
 

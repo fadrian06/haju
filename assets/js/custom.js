@@ -9,7 +9,7 @@ $('.close_icon').click(function () {
   $(this).parents('.hide_content').slideToggle('0')
 })
 
-var count = $('.counter')
+const count = $('.counter')
 
 if (count.length) {
   count.counterUp({ delay: 100, time: 5000 })
@@ -24,12 +24,12 @@ $('.default_sel').niceSelect()*/
   $('#end_datepicker').datepicker()
 })*/
 
-var delay = 500
+const delay = 500
 
 $('.progress-bar').each(function (i) {
   $(this)
     .delay(delay * i)
-    .animate({ width: $(this).attr('aria-valuenow') + '%' }, delay)
+    .animate({ width: `${$(this).attr('aria-valuenow')}%` }, delay)
   $(this)
     .prop('Counter', 0)
     .animate(
@@ -38,21 +38,21 @@ $('.progress-bar').each(function (i) {
         duration: delay,
         easing: 'swing',
         step: function (now) {
-          $(this).text(Math.ceil(now) + '%')
+          $(this).text(`${Math.ceil(now)}%`)
         }
       }
     )
 })
 
-$('.sidebar_icon').on('click', function () {
+$('.sidebar_icon').on('click', () => {
   $('.sidebar').toggleClass('active_sidebar')
 })
 
-$('.sidebar_close_icon i').on('click', function () {
+$('.sidebar_close_icon i').on('click', () => {
   $('.sidebar').removeClass('active_sidebar')
 })
 
-$('.troggle_icon').on('click', function () {
+$('.troggle_icon').on('click', () => {
   $('.setting_navbar_bar').toggleClass('active_menu')
 })
 
@@ -65,19 +65,19 @@ $('.custom_select').click(function () {
   }
 })
 
-$(document).click(function (event) {
+$(document).click(event => {
   if (!$(event.target).closest('.custom_select').length) {
     $('body').find('.custom_select').removeClass('active')
   }
 })
 
-$(document).click(function (event) {
+$(document).click(event => {
   if (!$(event.target).closest('.sidebar_icon, .sidebar').length) {
     $('body').find('.sidebar').removeClass('active_sidebar')
   }
 })
 
-$('#checkAll').click(function () {
+$('#checkAll').click(() => {
   $('input:checkbox').not(this).prop('checked', this.checked)
 })
 
@@ -96,12 +96,17 @@ $('#checkAll').click(function () {
 })*/
 
 $('.input-file').each(function () {
-  var $input = $(this),
-    $label = $input.next('.js-labelFile'),
-    labelVal = $label.html()
-  $input.on('change', function (element) {
-    var fileName = ''
-    if (element.target.value) fileName = element.target.value.split('\\').pop()
+  const $input = $(this)
+  const $label = $input.next('.js-labelFile')
+  const labelVal = $label.html()
+
+  $input.on('change', element => {
+    let fileName = ''
+
+    if (element.target.value) {
+      fileName = element.target.value.split('\\').pop()
+    }
+
     fileName
       ? $label.addClass('has-file').find('.js-fileName').html(fileName)
       : $label.removeClass('has-file').html(labelVal)
@@ -109,12 +114,17 @@ $('.input-file').each(function () {
 })
 
 $('.input-file2').each(function () {
-  var $input = $(this),
-    $label = $input.next('.js-labelFile1'),
-    labelVal = $label.html()
-  $input.on('change', function (element) {
-    var fileName = ''
-    if (element.target.value) fileName = element.target.value.split('\\').pop()
+  const $input = $(this)
+  const $label = $input.next('.js-labelFile1')
+  const labelVal = $label.html()
+
+  $input.on('change', element => {
+    let fileName = ''
+
+    if (element.target.value) {
+      fileName = element.target.value.split('\\').pop()
+    }
+
     fileName
       ? $label.addClass('has-file').find('.js-fileName1').html(fileName)
       : $label.removeClass('has-file').html(labelVal)
@@ -192,7 +202,7 @@ $('.layout_style').click(function () {
 $('#sidebar_menu').metisMenu()
 $('#admin_profile_active').metisMenu()
 
-$('.switcher_wrap li.Horizontal').click(function () {
+$('.switcher_wrap li.Horizontal').click(() => {
   $('.sidebar').addClass('hide_vertical_menu')
   $('.main_content ').addClass('main_content_padding_hide')
   $('.horizontal_menu').addClass('horizontal_menu_active')
@@ -200,7 +210,7 @@ $('.switcher_wrap li.Horizontal').click(function () {
   $('.footer_part').addClass('pl-0')
 })
 
-$('.switcher_wrap li.vertical').click(function () {
+$('.switcher_wrap li.vertical').click(() => {
   $('.sidebar').removeClass('hide_vertical_menu')
   $('.main_content ').removeClass('main_content_padding_hide')
   $('.horizontal_menu').removeClass('horizontal_menu_active')
@@ -218,15 +228,14 @@ $('.custom_lms_choose li').click(function () {
   $(this).addClass('selected_lang')
 })
 
-$('.spin_icon_clicker').on('click', function (e) {
+$('.spin_icon_clicker').on('click', (e) => {
   $('.switcher_slide_wrapper').toggleClass('swith_show')
   e.preventDefault()
 })
 
-$(document).ready(function () {
-  $(function () {
-    'use strict'
-    $('.pCard_add').click(function () {
+$(document).ready(() => {
+  $(() => {
+    $('.pCard_add').click(() => {
       $('.pCard_card').toggleClass('pCard_on')
       $('.pCard_add i').toggleClass('fa-minus')
     })
