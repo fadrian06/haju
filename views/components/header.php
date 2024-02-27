@@ -2,7 +2,7 @@
   /** @var App\Models\User $user */
 ?>
 
-<header class="header_iner d-flex align-items-center py-0">
+<header class="header_iner d-flex align-items-center py-1">
   <button class="sidebar_icon d-lg-none">
     <i class="ti-menu"></i>
   </button>

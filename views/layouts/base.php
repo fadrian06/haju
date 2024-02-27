@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="<?= asset('css/custom.css') ?>" />
 </head>
 
-<body>
+<body class="pb-4">
   <header class="d-flex header_iner align-items-center py-0">
     <img src="<?= asset('img/logo.png') ?>" height="45" />
     <nav class="header_right">
@@ -38,7 +38,7 @@
       </ul>
     </nav>
   </header>
-  <main class="main_content p-2 px-md-5">
+  <main class="main_content p-2 px-md-5 py-md-0">
     <div class="main_content_iner mx-0 my-4 white_box row justify-content-center">
       <?= $content ?>
     </div>
