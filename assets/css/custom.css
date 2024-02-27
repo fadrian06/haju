@@ -20,17 +20,17 @@ input[type="number"] {
 }
 
 .sidebar_icon {
-   position: unset;
-   top: 50%;
-   -webkit-transform: unset;
-   -moz-transform: unset;
-   -ms-transform: unset;
-   -o-transform: unset;
-   transform: unset;
-   right: auto;
-   left: 20px;
-   background: transparent;
-   border: none;
+  position: unset;
+  top: 50%;
+  -webkit-transform: unset;
+  -moz-transform: unset;
+  -ms-transform: unset;
+  -o-transform: unset;
+  transform: unset;
+  right: auto;
+  left: 20px;
+  background: transparent;
+  border: none;
 }
 
 .main_content {
@@ -52,7 +52,7 @@ input[type="number"] {
   padding-top: 100%;
 }
 
-.aspect-ratio-1 > img {
+.aspect-ratio-1>img {
   position: absolute;
   top: 0;
   width: 100%;

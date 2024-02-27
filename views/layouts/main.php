@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="<?= asset('vendors/metismenu/metisMenu.min.css') ?>" />
   <link rel="stylesheet" href="<?= asset('vendors/bootstrap/bootstrap.min.css') ?>" />
   <link rel="stylesheet" href="<?= asset('vendors/themefy_icon/themify-icons.css') ?>" />
-  <link rel="stylesheet" href="<?= asset('css/style1.css') ?>" />
+  <link rel="stylesheet" href="<?= asset('css/theme.css') ?>" />
   <link rel="stylesheet" href="<?= asset('css/custom.css') ?>" />
 </head>
 
