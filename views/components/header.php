@@ -25,9 +25,7 @@
       </li>
     </ul> -->
     <div class="profile_info">
-      <picture class="aspect-ratio-1 w-69">
-        <img src="<?= $user->avatar ?? asset('img/client_img.png') ?>" />
-      </picture>
+      <img src="<?= $user->avatar ?? asset('img/client_img.png') ?>" />
       <div class="profile_info_iner">
         <p><?= $user->speciality ?></p>
         <h5><?= "{$user->prefix?->value} {$user->getFullName()}" ?></h5>
