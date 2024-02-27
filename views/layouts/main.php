@@ -13,7 +13,7 @@
   <?php render('components/open-graph-metas') ?>
   <link rel="icon" href="<?= asset('img/favicon.png') ?>" type="image/png" />
   <link rel="stylesheet" href="<?= asset('fonts/fonts.css') ?>" />
-  <link rel="stylesheet" href="<?= asset('css/metisMenu.css') ?>" />
+  <link rel="stylesheet" href="<?= asset('vendors/metismenu/metisMenu.min.css') ?>" />
   <link rel="stylesheet" href="<?= asset('vendors/bootstrap/bootstrap.min.css') ?>" />
   <link rel="stylesheet" href="<?= asset('vendors/themefy_icon/themify-icons.css') ?>" />
   <link rel="stylesheet" href="<?= asset('css/style1.css') ?>" />
@@ -34,7 +34,7 @@
     <?php render('components/footer') ?>
   </section>
   <script src="<?= asset('js/jquery1-3.4.1.min.js') ?>"></script>
-  <script src="<?= asset('js/metisMenu.js') ?>"></script>
+  <script src="<?= asset('vendors/metismenu/metisMenu.min.js') ?>"></script>
   <script src="<?= asset('js/custom.js') ?>"></script>
 </body>
 
