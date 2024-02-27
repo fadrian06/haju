@@ -2,7 +2,7 @@
   /** @var App\Models\User $user */
 ?>
 
-<header class="header_iner d-flex justify-content-between align-items-center p-3">
+<header class="header_iner d-flex align-items-center py-0">
   <button class="sidebar_icon d-lg-none">
     <i class="ti-menu"></i>
   </button>
@@ -25,7 +25,9 @@
       </li>
     </ul> -->
     <div class="profile_info">
-      <img src="<?= $user->avatar ?? asset('img/client_img.png') ?>" width="69" />
+      <picture class="aspect-ratio-1 w-69">
+        <img src="<?= $user->avatar ?? asset('img/client_img.png') ?>" />
+      </picture>
       <div class="profile_info_iner">
         <p><?= $user->speciality ?></p>
         <h5><?= "{$user->prefix?->value} {$user->getFullName()}" ?></h5>

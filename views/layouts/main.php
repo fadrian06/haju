@@ -22,15 +22,15 @@
 
 <body>
   <?php render('components/sidebar') ?>
-  <section class="main_content dashboard_part">
+  <section class="main_content">
     <?php render('components/header') ?>
-    <!-- <div class="main_content_iner">
+    <div class="main_content_iner">
       <div class="container-fluid p-0">
         <div class="row justify-content-center">
-          <?= $content ?>
+          <?php $content ?>
         </div>
       </div>
-    </div> -->
+    </div>
     <?php render('components/footer') ?>
   </section>
   <script src="<?= asset('js/jquery1-3.4.1.min.js') ?>"></script>

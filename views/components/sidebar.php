@@ -1,10 +1,10 @@
-<nav class="sidebar">
-  <div class="logo p-4 m-0 d-flex justify-content-between align-items-center">
+<aside class="sidebar">
+  <header class="logo m-0 d-flex align-items-center justify-content-between">
     <img src="<?= asset('img/logo.png') ?>" height="59" />
     <div class="sidebar_close_icon d-flex align-items-center d-lg-none">
       <i class="ti-close"></i>
     </div>
-  </div>
+  </header>
   <menu class="m-0 p-0" id="sidebar_menu">
     <li class="side_menu_title">
       <span>Panel de Administración</span>
@@ -16,4 +16,4 @@
       </a>
     </li>
   </menu>
-</nav>
+</aside>
