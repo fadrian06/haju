@@ -33,7 +33,7 @@
     </div>
     <?php render('components/footer') ?>
   </section>
-  <script src="<?= asset('js/jquery1-3.4.1.min.js') ?>"></script>
+  <script src="<?= asset('vendors/jquery/jquery.min.js') ?>"></script>
   <script src="<?= asset('vendors/metismenu/metisMenu.min.js') ?>"></script>
   <script src="<?= asset('js/custom.js') ?>"></script>
 </body>
