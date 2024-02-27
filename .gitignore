@@ -10,6 +10,10 @@
 node_modules
 dist/
 vendor
+*.css
+*.js
+!*.min.css
+!*.min.js
 
 # IDE
 .vscode/*

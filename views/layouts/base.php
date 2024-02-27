@@ -13,7 +13,7 @@
   <?php render('components/open-graph-metas') ?>
   <link rel="icon" href="<?= asset('img/favicon.png') ?>" type="image/png" />
   <link rel="stylesheet" href="<?= asset('fonts/fonts.css') ?>" />
-  <link rel="stylesheet" href="<?= asset('css/bootstrap1.min.css') ?>" />
+  <link rel="stylesheet" href="<?= asset('vendors/bootstrap/bootstrap.min.css') ?>" />
   <link rel="stylesheet" href="<?= asset('vendors/themefy_icon/themify-icons.css') ?>" />
   <link rel="stylesheet" href="<?= asset('css/style1.css') ?>" />
   <link rel="stylesheet" href="<?= asset('css/custom.css') ?>" />
@@ -44,7 +44,7 @@
     </div>
   </main>
   <?php render('components/footer') ?>
-  <script src="<?= asset('js/bootstrap1.min.js') ?>"></script>
+  <script src="<?= asset('vendors/bootstrap/bootstrap.bundle.min.js') ?>"></script>
 </body>
 
 </html>

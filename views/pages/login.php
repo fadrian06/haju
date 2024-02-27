@@ -7,7 +7,7 @@
  */
 ?>
 
-<section class="px-0 modal-content cs_modal w-auto">
+<section class="px-0 modal modal-content cs_modal w-auto">
   <header class="modal-header py-3">
     <h5>Bienvenido</h5>
   </header>
