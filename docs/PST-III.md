@@ -19,7 +19,7 @@
   <tr>
     <td>Ing. Francisco Berrios</td>
     <td>Eliliana Marín</td>
-    <td>C.I. </td>
+    <td>C.I. 27.551.661</td>
   </tr>
   <tr>
     <td>Ing. Emerson Navarro</td>
@@ -29,7 +29,7 @@
   <tr>
     <td></td>
     <td>Jenifer Lázaro</td>
-    <td>C.I. </td>
+    <td>C.I. 29.794.519</td>
   </tr>
 </table>
 
