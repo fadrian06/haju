@@ -123,7 +123,7 @@ class PDOUserRepository implements UserRepository {
       GenrePrefix::tryFrom($prefix ?? ''),
       $idCard,
       $password,
-      $avatar
+      $avatar ?: null
     ))->setId($id);
   }
 }
