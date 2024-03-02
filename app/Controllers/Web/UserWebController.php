@@ -91,5 +91,42 @@ class UserWebController {
   }
 
   static function showProfile(): void {
+    session_start();
+
+    if (!key_exists('userId', $_SESSION)) {
+      App::redirect('/ingresar');
+
+      return;
+    }
+
+    $user = App::userRepository()->getById((int) $_SESSION['userId']);
+
+    if (!$user) {
+      App::redirect('/salir');
+
+      return;
+    }
+
+    App::renderPage('profile', 'Mi perfil', compact('user'), 'main');
+  }
+
+  static function showEditProfile(): void {
+    session_start();
+
+    if (!key_exists('userId', $_SESSION)) {
+      App::redirect('/ingresar');
+
+      return;
+    }
+
+    $user = App::userRepository()->getById((int) $_SESSION['userId']);
+
+    if (!$user) {
+      App::redirect('/salir');
+
+      return;
+    }
+
+    App::renderPage('edit-profile', 'Editar perfil', compact('user'), 'main');
   }
 }

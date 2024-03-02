@@ -30,10 +30,10 @@
         <p><?= $user->speciality ?></p>
         <h5><?= "{$user->prefix?->value} {$user->getFullName()}" ?></h5>
         <div class="profile_info_details">
-          <!-- <a href="<?= route('/perfil') ?>">
+          <a href="<?= route('/perfil') ?>">
             Mi perfil
             <i class="ti-user"></i>
-          </a> -->
+          </a>
           <!-- <a href="<?= route('/configuracion') ?>">
             Configuraciones
             <i class="ti-settings"></i>

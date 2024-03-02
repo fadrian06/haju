@@ -22,19 +22,16 @@
 
 <body>
   <?php render('components/sidebar') ?>
-  <section class="main_content">
+  <section class="main_content pb-4">
     <?php render('components/header') ?>
-    <div class="main_content_iner">
-      <div class="container-fluid p-0">
-        <div class="row justify-content-center">
-          <?php $content ?>
-        </div>
-      </div>
+    <div class="main_content_iner row justify-content-center m-0 p-4">
+      <?= $content ?>
     </div>
     <?php render('components/footer') ?>
   </section>
   <script src="<?= asset('vendors/jquery/jquery.min.js') ?>"></script>
   <script src="<?= asset('vendors/metismenu/metisMenu.min.js') ?>"></script>
+  <script src="<?= asset('vendors/bootstrap/bootstrap.min.js') ?>"></script>
   <script src="<?= asset('js/custom.js') ?>"></script>
 </body>
 

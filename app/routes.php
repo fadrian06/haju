@@ -17,6 +17,7 @@ App::route('POST /registrate', [UserWebController::class, 'handleRegister']);
 App::route('GET /recuperar', [UserWebController::class, 'showPasswordReset']);
 App::route('POST /recuperar', [UserWebController::class, 'handlePasswordReset']);
 App::route('/perfil', [UserWebController::class, 'showProfile']);
+App::route('/perfil/editar', [UserWebController::class, 'showEditProfile']);
 
 App::route('/configuracion', function (): void {
 });
