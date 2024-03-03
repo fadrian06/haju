@@ -16,10 +16,7 @@ use PharIo\Manifest\Url;
 
 class UserWebController {
   static function showRegister(): void {
-    session_start();
-
-    $error = $_SESSION['error'] ?? null;
-    unset($_SESSION['error']);
+    $error = App::session()->retrieve('error', null, true);
 
     App::render('pages/register', compact('error'), 'content');
     App::render('layouts/base', ['title' => 'Regístrate']);
@@ -43,37 +40,29 @@ class UserWebController {
       $data['avatar'] ? new Url($data['avatar']) : null
     );
 
-    session_start();
-
     try {
       App::userRepository()->save($user);
-      $_SESSION['message'] = '✔ Usuario registrado exitósamente';
+      App::session()->set('message', '✔ Usuario registrado exitósamente');
       App::redirect('/ingresar');
 
       return;
     } catch (DuplicatedNamesException) {
-      $_SESSION['error'] = "❌ Usuario \"{$user->getFullName()}\" ya existe";
+      App::session()->set('error', "❌ Usuario \"{$user->getFullName()}\" ya existe");
     } catch (DuplicatedIdCardException) {
-      $_SESSION['error'] = "❌ Cédula \"{$user->idCard}\" ya existe";
+      App::session()->set('error', "❌ Cédula \"{$user->idCard}\" ya existe");
     }
 
     App::redirect('/registrate');
   }
 
   static function showPasswordReset(): void {
-    session_start();
-
-    $error = $_SESSION['error'] ?? null;
-
-    unset($_SESSION['error']);
+    $error = App::session()->retrieve('error', null, true);
 
     App::render('pages/forgot-pass', compact('error'), 'content');
     App::render('layouts/base', ['title' => 'Recuperar contraseña (1/2)']);
   }
 
   static function handlePasswordReset(): void {
-    session_start();
-
     if (App::request()->data['id_card']) {
       $user = App::userRepository()->getByIdCard((int) App::request()->data['id_card']);
 
@@ -84,8 +73,7 @@ class UserWebController {
         return;
       }
 
-      $_SESSION['error'] = '❌ Cédula incorrecta';
-
+      App::session()->set('error', '❌ Cédula incorrecta');
       App::redirect('/recuperar');
 
       return;
@@ -95,24 +83,15 @@ class UserWebController {
       ->setPassword(App::request()->data['password']);
 
     App::userRepository()->save($user);
-
-    $_SESSION['message'] = '✔ Contraseña actualizada exitósamente';
-
+    App::session()->set('message', '✔ Contraseña actualizada exitósamente');
     App::redirect('/ingresar');
   }
 
   static function showProfile(): void {
-    session_start();
-
-    if (!key_exists('userId', $_SESSION)) {
-      App::redirect('/ingresar');
-
-      return;
-    }
-
-    $user = App::userRepository()->getById((int) $_SESSION['userId']);
-
-    if (!$user) {
+    if (
+      !App::session()->get('userId')
+      || !$user = App::userRepository()->getById((int) App::session()->get('userId'))
+    ) {
       App::redirect('/salir');
 
       return;
@@ -122,17 +101,10 @@ class UserWebController {
   }
 
   static function showEditProfile(): void {
-    session_start();
-
-    if (!key_exists('userId', $_SESSION)) {
-      App::redirect('/ingresar');
-
-      return;
-    }
-
-    $user = App::userRepository()->getById((int) $_SESSION['userId']);
-
-    if (!$user) {
+    if (
+      !App::session()->get('userId')
+      || !$user = App::userRepository()->getById((int) App::session()->get('userId'))
+    ) {
       App::redirect('/salir');
 
       return;
@@ -142,8 +114,6 @@ class UserWebController {
   }
 
   static function handleEditProfile(): void {
-    $data = App::request()->data;
-
-    App::json($data);
+    App::json(App::request()->data);
   }
 }
