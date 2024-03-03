@@ -46,10 +46,10 @@
   <ul class="nav nav-tabs row mx-0 px-0 mt-4">
     <li class="nav-item col px-0">
       <div class="row mx-0">
-        <button class="nav-link col-sm px-0 active" data-bs-toggle="tab" data-bs-target="#about-cont">
+        <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#about-cont">
           Acerca de
         </button>
-        <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#security-cont">
+        <button class="nav-link col-sm px-0 active" data-bs-toggle="tab" data-bs-target="#security-cont">
           Seguridad
         </button>
       </div>
@@ -57,7 +57,7 @@
   </ul>
 </article>
 <section class="tab-content mt-4 px-0">
-  <article class="tab-pane fade show active" id="about-cont">
+  <article class="tab-pane fade" id="about-cont">
     <div class="row mx-0">
       <article class="col-md px-0 pe-md-2">
         <div class="white_box">
@@ -92,10 +92,24 @@
       </article>
     </div>
   </article>
-  <article class="tab-pane fade" id="security-cont">
-    Content
-  </article>
-  <article class="tab-pane fade" id="edit-form">
-    Formulario de actualizar
-  </article>
+  <section class="tab-pane fade show active row px-2" id="security-cont">
+    <form method="post" class="col-md-6 white_box">
+      <h3 class="mb-4">Cambiar contraseña</h3>
+      <div class="form-floating mb-3">
+        <input type="password" name="old_password" id="old-password" required placeholder="Contraseña anterior" class="form-control" />
+        <label for="old-password">Contraseña anterior</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="password" name="new_password" id="new-password" required placeholder="Nueva contraseña" class="form-control" />
+        <label for="new-password">Nueva contraseña</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="password" name="confirm_password" id="confirm-password" required placeholder="Confirmar contraseña" class="form-control" />
+        <label for="confirm-password">Confirmar contraseña</label>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary rounded-pill">Actualizar</button>
+      </div>
+    </form>
+  </section>
 </section>
