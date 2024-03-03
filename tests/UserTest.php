@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Date;
 use App\Models\Exceptions\InvalidPhoneException;
 use App\Models\Gender;
 use App\Models\Phone;
@@ -21,6 +22,7 @@ class UserTest extends TestCase {
     $this->testUser = new User(
       'Franyer',
       'Sánchez',
+      new Date(6, 10, 2001),
       Gender::Male,
       Role::Director,
       ProfessionPrefix::Ing,
@@ -40,6 +42,7 @@ class UserTest extends TestCase {
     self::assertSame($hash, (new User(
       'Franyer',
       'Sánchez',
+      new Date(6, 10, 2001),
       Gender::Male,
       Role::Coordinator,
       null,
@@ -68,6 +71,7 @@ class UserTest extends TestCase {
     $user = new User(
       'Franyer',
       'Sánchez',
+      new Date(6, 10, 2001),
       Gender::Male,
       Role::Coordinator,
       ProfessionPrefix::Ing,
@@ -90,6 +94,7 @@ class UserTest extends TestCase {
     new User(
       'Franyer',
       'Sánchez',
+      new Date(6, 10, 2001),
       Gender::Male,
       Role::Coordinator,
       ProfessionPrefix::Ing,
@@ -105,6 +110,7 @@ class UserTest extends TestCase {
     new User(
       'Franyer',
       'Sánchez',
+      new Date(6, 10, 2001),
       Gender::Male,
       Role::Coordinator,
       ProfessionPrefix::Ing,
@@ -120,6 +126,7 @@ class UserTest extends TestCase {
     new User(
       'Franyer',
       'Sánchez',
+      new Date(6, 10, 2001),
       Gender::Male,
       Role::Coordinator,
       ProfessionPrefix::Ing,

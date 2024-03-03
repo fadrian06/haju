@@ -38,6 +38,10 @@
       <strong>Género:</strong>
       <span><?= $user->gender->value ?></span>
     </li>
+    <li>
+      <strong>Fecha de nacimiento:</strong>
+      <span><?= $user->birthDate ?></span>
+    </li>
   </ul>
   <ul class="nav nav-tabs row mx-0 px-0 mt-4">
     <li class="nav-item col px-0">

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Exceptions\InvalidDateException;
 use App\Models\Exceptions\InvalidPhoneException;
 use PharIo\Manifest\Email;
 use PharIo\Manifest\InvalidEmailException;
@@ -16,10 +17,12 @@ class User {
    * @throws InvalidPhoneException
    * @throws InvalidEmailException
    * @throws InvalidUrlException
+   * @throws InvalidDateException
    */
   function __construct(
     public readonly string $firstName,
     public readonly string $lastName,
+    public readonly Date $birthDate,
     public readonly Gender $gender,
     public readonly Role $role,
     public ?ProfessionPrefix $prefix,

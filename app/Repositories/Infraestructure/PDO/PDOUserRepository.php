@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Infraestructure\PDO;
 
+use App\Models\Date;
 use App\Models\Gender;
 use App\Models\Phone;
 use App\Models\ProfessionPrefix;
@@ -20,13 +21,15 @@ use PharIo\Manifest\Email;
 use PharIo\Manifest\Url;
 
 class PDOUserRepository implements UserRepository {
-  private ?Connection $connection = null;
   private const FIELDS = <<<SQL_FIELDS
-  id, first_name as firstName, last_name as lastName, gender, role, prefix,
-  id_card as idCard, password, phone, email, address, avatar
+  id, first_name as firstName, last_name as lastName,
+  birth_date as birthDateTimestamp, gender, role, prefix, id_card as idCard,
+  password, phone, email, address, avatar
   SQL_FIELDS;
 
   private const TABLE = 'users';
+
+  private ?Connection $connection = null;
 
   function setConnection(Connection $connection): void {
     $this->connection = $connection;
@@ -69,9 +72,9 @@ class PDOUserRepository implements UserRepository {
       $query = sprintf(
         <<<SQL
           INSERT INTO %s (
-            first_name, last_name, gender, role, prefix, id_card, password,
-            phone, email, address, avatar
-          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            first_name, last_name, birth_date, gender, role, prefix, id_card,
+            password, phone, email, address, avatar
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         SQL,
         self::TABLE
       );
@@ -81,6 +84,7 @@ class PDOUserRepository implements UserRepository {
         ->execute([
           $user->firstName,
           $user->lastName,
+          $user->birthDate->timestamp,
           $user->gender->value,
           $user->role->value,
           $user->prefix?->value,
@@ -141,6 +145,7 @@ class PDOUserRepository implements UserRepository {
     int $id,
     string $firstName,
     string $lastName,
+    int $birthDateTimestamp,
     string $gender,
     string $role,
     ?string $prefix,
@@ -154,6 +159,7 @@ class PDOUserRepository implements UserRepository {
     return (new User(
       $firstName,
       $lastName,
+      Date::fromTimestamp($birthDateTimestamp),
       Gender::from($gender),
       Role::from($role),
       ProfessionPrefix::tryFrom($prefix ?? ''),

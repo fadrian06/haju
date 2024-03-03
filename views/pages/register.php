@@ -27,6 +27,10 @@ use App\Models\Role;
       <input required name="last_name" class="form-control mb-0 w-auto h-100 py-0" placeholder="Apellido" />
     </label>
     <label class="input-group mb-3">
+      <i class="input-group-text ti-calendar fs-1"></i>
+      <input type="date" required name="birth_date" class="form-control mb-0 w-auto h-100 py-0" placeholder="Fecha de nacimiento" />
+    </label>
+    <label class="input-group mb-3">
       <i class="input-group-text ti-pencil-alt fs-1"></i>
       <select name="gender" class="form-select">
         <option selected disabled>Seleccione un género</option>

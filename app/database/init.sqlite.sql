@@ -3,6 +3,7 @@ CREATE TABLE users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   first_name VARCHAR(20) NOT NULL,
   last_name VARCHAR(20) NOT NULL,
+  birth_date DATE NOT NULL,
   gender VARCHAR(1) NOT NULL CHECK (gender IN ('Masculino', 'Femenino')),
   role VARCHAR(1) NOT NULL CHECK (role IN ('Director/a', 'Coordinador/a', 'Secretario/a')),
   prefix VARCHAR(20),

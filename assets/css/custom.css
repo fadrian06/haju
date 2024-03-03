@@ -82,7 +82,7 @@ input[type="number"] {
 }
 
 .timeline-item,
-.timeline-item > a {
+.timeline-item>a {
   position: relative;
   display: grid;
   gap: .25em;
@@ -100,8 +100,32 @@ input[type="number"] {
   content: '';
 }
 
+.fileupload.btn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: rgba(33, 33, 33, 0.5);
+  border-radius: 0;
+  padding: 3px 10px;
+  border: none;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.form-floating>label {
+  left: unset;
+  height: unset;
+}
+
 textarea {
   line-height: initial !important;
+  overflow-y: hidden;
+}
+
+.profile_info_iner {
+  pointer-events: painted;
 }
 
 @media only screen and (min-width:992px) and (max-width:1200px) {

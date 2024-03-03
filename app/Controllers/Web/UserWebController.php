@@ -3,6 +3,7 @@
 namespace App\Controllers\Web;
 
 use App;
+use App\Models\Date;
 use App\Models\Gender;
 use App\Models\Phone;
 use App\Models\ProfessionPrefix;
@@ -26,9 +27,11 @@ class UserWebController {
 
   static function handleRegister(): void {
     $data = App::request()->data;
+
     $user = new User(
       $data['first_name'],
       $data['last_name'],
+      Date::from($data['birth_date'], '-'),
       Gender::from($data['gender']),
       Role::from($data['role']),
       $data['prefix'] ? ProfessionPrefix::from($data['prefix']) : null,
@@ -136,5 +139,11 @@ class UserWebController {
     }
 
     App::renderPage('edit-profile', 'Editar perfil', compact('user'), 'main');
+  }
+
+  static function handleEditProfile(): void {
+    $data = App::request()->data;
+
+    App::json($data);
   }
 }

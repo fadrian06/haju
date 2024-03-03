@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Date;
 use App\Models\Gender;
 use App\Models\Phone;
 use App\Models\ProfessionPrefix;
@@ -29,6 +30,7 @@ class PDOUserRepositoryTest extends TestCase {
     $this->testUser = new User(
       'Franyer',
       'Sánchez',
+      new Date(6, 10, 2001),
       Gender::Male,
       Role::Coordinator,
       ProfessionPrefix::Ing,
@@ -96,6 +98,7 @@ class PDOUserRepositoryTest extends TestCase {
     $user2 = new User(
       'Franyer',
       'Guillén',
+      new Date(6, 10, 2001),
       Gender::Male,
       Role::Coordinator,
       ProfessionPrefix::Ing,
@@ -122,6 +125,7 @@ class PDOUserRepositoryTest extends TestCase {
     $this->repository->save(new User(
       $this->testUser->firstName,
       'Guillén',
+      $this->testUser->birthDate,
       $this->testUser->gender,
       $this->testUser->role,
       $this->testUser->prefix,
@@ -139,6 +143,7 @@ class PDOUserRepositoryTest extends TestCase {
     $this->repository->save(new User(
       $this->testUser->firstName,
       'Sánchez',
+      $this->testUser->birthDate,
       $this->testUser->gender,
       $this->testUser->role,
       $this->testUser->prefix,
@@ -156,6 +161,7 @@ class PDOUserRepositoryTest extends TestCase {
     $this->repository->save(new User(
       $this->testUser->firstName,
       'Guillén',
+      $this->testUser->birthDate,
       $this->testUser->gender,
       $this->testUser->role,
       $this->testUser->prefix,
@@ -174,6 +180,7 @@ class PDOUserRepositoryTest extends TestCase {
     $this->repository->save(new User(
       $this->testUser->firstName,
       'Guillén',
+      $this->testUser->birthDate,
       $this->testUser->gender,
       $this->testUser->role,
       $this->testUser->prefix,
@@ -192,6 +199,7 @@ class PDOUserRepositoryTest extends TestCase {
     $this->repository->save(new User(
       $this->testUser->firstName,
       'Guillén',
+      $this->testUser->birthDate,
       $this->testUser->gender,
       $this->testUser->role,
       $this->testUser->prefix,
