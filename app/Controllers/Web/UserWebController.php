@@ -16,9 +16,7 @@ use PharIo\Manifest\Url;
 
 class UserWebController {
   static function showRegister(): void {
-    $error = App::session()->retrieve('error', null, true);
-
-    App::render('pages/register', compact('error'), 'content');
+    App::render('pages/register', [], 'content');
     App::render('layouts/base', ['title' => 'Regístrate']);
   }
 
@@ -56,9 +54,7 @@ class UserWebController {
   }
 
   static function showPasswordReset(): void {
-    $error = App::session()->retrieve('error', null, true);
-
-    App::render('pages/forgot-pass', compact('error'), 'content');
+    App::render('pages/forgot-pass', [], 'content');
     App::render('layouts/base', ['title' => 'Recuperar contraseña (1/2)']);
   }
 
