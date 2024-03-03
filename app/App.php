@@ -2,9 +2,11 @@
 
 use App\Repositories\Domain\UserRepository;
 use flight\net\Route;
+use Leaf\Http\Session;
 
 /**
  * @method static UserRepository userRepository()
+ * @method static Session session()
  */
 class App extends Flight {
   static function route(

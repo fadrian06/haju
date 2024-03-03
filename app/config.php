@@ -2,6 +2,7 @@
 
 use App\Repositories\Infraestructure\PDO\Connection;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
+use Leaf\Http\Session;
 
 $_ENV += require_once __DIR__ . '/../.env.php';
 
@@ -24,3 +25,5 @@ App::register(
     $repository->setConnection(App::db());
   }
 );
+
+App::register('session', Session::class);

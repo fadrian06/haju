@@ -6,17 +6,10 @@ use App;
 
 class HomeWebController {
   static function index(): void {
-    session_start();
-
-    if (!key_exists('userId', $_SESSION)) {
-      App::redirect('/ingresar');
-
-      return;
-    }
-
-    $user = App::userRepository()->getById((int) $_SESSION['userId']);
-
-    if (!$user) {
+    if (
+      !App::session()->get('userId')
+      || !$user = App::userRepository()->getById((int) App::session()->get('userId'))
+    ) {
       App::redirect('/salir');
 
       return;
