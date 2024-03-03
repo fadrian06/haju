@@ -88,29 +88,11 @@ class UserWebController {
   }
 
   static function showProfile(): void {
-    if (
-      !App::session()->get('userId')
-      || !$user = App::userRepository()->getById((int) App::session()->get('userId'))
-    ) {
-      App::redirect('/salir');
-
-      return;
-    }
-
-    App::renderPage('profile', 'Mi perfil', compact('user'), 'main');
+    App::renderPage('profile', 'Mi perfil', [], 'main');
   }
 
   static function showEditProfile(): void {
-    if (
-      !App::session()->get('userId')
-      || !$user = App::userRepository()->getById((int) App::session()->get('userId'))
-    ) {
-      App::redirect('/salir');
-
-      return;
-    }
-
-    App::renderPage('edit-profile', 'Editar perfil', compact('user'), 'main');
+    App::renderPage('edit-profile', 'Editar perfil', [], 'main');
   }
 
   static function handleEditProfile(): void {
