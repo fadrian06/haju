@@ -25,9 +25,9 @@
       </li>
     </ul> -->
     <div class="profile_info">
-      <img src="<?= $user->avatar ?? asset('img/client_img.png') ?>" />
+      <img src="<?= $user->avatar?->asString() ?? asset('img/client_img.png') ?>" />
       <div class="profile_info_iner">
-        <p><?= $user->speciality ?></p>
+        <p><?= $user->getParsedRole() ?></p>
         <h5><?= "{$user->prefix?->value} {$user->getFullName()}" ?></h5>
         <div class="profile_info_details">
           <a href="<?= route('/perfil') ?>">

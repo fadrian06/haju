@@ -1,8 +1,5 @@
 html {
   scroll-behavior: smooth;
-}
-
-body {
   overflow-y: scroll;
 }
 
@@ -101,6 +98,10 @@ input[type="number"] {
   height: 1em;
   width: 1em;
   content: '';
+}
+
+textarea {
+  line-height: initial !important;
 }
 
 @media only screen and (min-width:992px) and (max-width:1200px) {

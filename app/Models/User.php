@@ -2,18 +2,33 @@
 
 namespace App\Models;
 
+use App\Models\Exceptions\InvalidPhoneException;
+use PharIo\Manifest\Email;
+use PharIo\Manifest\InvalidEmailException;
+use PharIo\Manifest\InvalidUrlException;
+use PharIo\Manifest\Url;
+
 class User {
   private ?int $id = null;
   private string $password;
 
+  /**
+   * @throws InvalidPhoneException
+   * @throws InvalidEmailException
+   * @throws InvalidUrlException
+   */
   function __construct(
     public readonly string $firstName,
     public readonly string $lastName,
-    public readonly string $speciality,
-    public ?GenrePrefix $prefix,
+    public readonly Gender $gender,
+    public readonly Role $role,
+    public ?ProfessionPrefix $prefix,
     public readonly int $idCard,
     string $password,
-    public readonly ?string $avatar = null
+    public readonly ?Phone $phone = null,
+    public readonly ?Email $email = null,
+    public readonly ?string $address = null,
+    public readonly ?Url $avatar = null
   ) {
     $this->setPassword($password);
   }
@@ -48,5 +63,9 @@ class User {
 
   function getFullName(): string {
     return "{$this->firstName} {$this->lastName}";
+  }
+
+  function getParsedRole(): string {
+    return $this->role->getParsed($this->gender);
   }
 }

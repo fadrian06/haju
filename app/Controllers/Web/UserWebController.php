@@ -3,10 +3,15 @@
 namespace App\Controllers\Web;
 
 use App;
-use App\Models\GenrePrefix;
+use App\Models\Gender;
+use App\Models\Phone;
+use App\Models\ProfessionPrefix;
+use App\Models\Role;
 use App\Models\User;
 use App\Repositories\Exceptions\DuplicatedIdCardException;
 use App\Repositories\Exceptions\DuplicatedNamesException;
+use PharIo\Manifest\Email;
+use PharIo\Manifest\Url;
 
 class UserWebController {
   static function showRegister(): void {
@@ -21,15 +26,18 @@ class UserWebController {
 
   static function handleRegister(): void {
     $data = App::request()->data;
-
     $user = new User(
       $data['first_name'],
       $data['last_name'],
-      $data['speciality'],
-      GenrePrefix::tryFrom($data['prefix'] ?? ''),
+      Gender::from($data['gender']),
+      Role::from($data['role']),
+      $data['prefix'] ? ProfessionPrefix::from($data['prefix']) : null,
       (int) $data['id_card'],
       $data['password'],
-      $data['avatar']
+      $data['phone'] ? new Phone($data['phone']) : null,
+      $data['email'] ? new Email($data['email']) : null,
+      $data['address'],
+      $data['avatar'] ? new Url($data['avatar']) : null
     );
 
     session_start();

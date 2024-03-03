@@ -12,31 +12,31 @@
 </section>
 <article class="white_box px-0 pb-0 row align-items-center">
   <picture class="col-md-3 d-flex align-items-center justify-content-center mb-2 mb-md-0">
-    <img style="max-width: 150px" class="img-fluid rounded-circle" src="<?= $user->avatar ?? asset('img/client_img.png') ?>" />
+    <img class="img-fluid rounded-circle" src="<?= $user->avatar?->asString() ?? asset('img/client_img.png') ?>" />
   </picture>
   <div class="profile-info col-md align-items-center">
     <header class="profile-info__main py-2 py-md-0 my-2 my-md-0 d-flex flex-column">
       <h4 class="h3"><?= $user->getFullName() ?></h4>
-      <small class="text-muted"><?= $user->speciality ?></small>
+      <small class="text-muted"><?= $user->getParsedRole() ?></small>
       <strong>ID: DR-<?= str_pad($user->getId(), 4, '0', STR_PAD_LEFT) ?></strong>
     </header>
   </div>
   <ul class="profile-info__secondary col-md-6">
     <li>
       <strong>Teléfono:</strong>
-      <a href="tel:<?= /*$user->phone*/ '' ?>"><?= /*$user->phone*/ '770-889-6484' ?></a>
+      <a href="tel:+<?= $user->phone->toValidPhoneLink() ?>"><?= $user->phone ?></a>
     </li>
     <li>
       <strong>Correo:</strong>
-      <a href="maito:<?= /*$user->email*/ '' ?>"><?= /*$user->email*/ 'cristinagroves@example.com' ?></a>
+      <a href="mailto:<?= $user->email->asString() ?>"><?= $user->email->asString() ?></a>
     </li>
     <li>
       <strong>Dirección:</strong>
-      <span><?= /*$user->address*/ '714 Burwell Heights Road, Bridge City, TX, 77611' ?></span>
+      <span><?= $user->address ?></span>
     </li>
     <li>
       <strong>Género:</strong>
-      <span><?= /*$user->gender->value*/ 'Masculino' ?></span>
+      <span><?= $user->gender->value ?></span>
     </li>
   </ul>
   <ul class="nav nav-tabs row mx-0 px-0 mt-4">

@@ -1,6 +1,8 @@
 <?php
 
-use App\Models\GenrePrefix as Prefix;
+use App\Models\Gender;
+use App\Models\ProfessionPrefix as Prefix;
+use App\Models\Role;
 
 /** @var ?string $error */
 ?>
@@ -25,15 +27,29 @@ use App\Models\GenrePrefix as Prefix;
       <input required name="last_name" class="form-control mb-0 w-auto h-100 py-0" placeholder="Apellido" />
     </label>
     <label class="input-group mb-3">
-      <i class="input-group-text ti-cup fs-1"></i>
-      <input required name="speciality" class="form-control mb-0 w-auto h-100 py-0" placeholder="Especialidad" />
+      <i class="input-group-text ti-pencil-alt fs-1"></i>
+      <select name="gender" class="form-select">
+        <option selected disabled>Seleccione un género</option>
+        <?php foreach (Gender::cases() as $gender) : ?>
+          <option><?= $gender->value ?></option>
+        <?php endforeach ?>
+      </select>
+    </label>
+    <label class="input-group mb-3">
+      <i class="input-group-text ti-pencil-alt fs-1"></i>
+      <select required name="role" class="form-select">
+        <option selected disabled>Seleccione un rol</option>
+        <?php foreach (Role::cases() as $role) : ?>
+          <option><?= $role->value ?></option>
+        <?php endforeach ?>
+      </select>
     </label>
     <label class="input-group mb-3">
       <i class="input-group-text ti-pencil-alt fs-1"></i>
       <select name="prefix" class="form-select">
-        <option selected disabled value="">Prefijo</option>
+        <option selected disabled>Seleccione un prefijo</option>
         <?php foreach (Prefix::cases() as $prefix) : ?>
-          <option><?= $prefix->value ?></option>
+          <option value="<?= $prefix->value ?>"><?= $prefix->getLongValue() ?></option>
         <?php endforeach ?>
         <option value="">Ninguno</option>
       </select>
@@ -45,6 +61,18 @@ use App\Models\GenrePrefix as Prefix;
     <label class="input-group mb-3">
       <i class="input-group-text ti-key fs-1"></i>
       <input required type="password" name="password" class="form-control mb-0 w-auto h-100 py-0" placeholder="Contraseña" />
+    </label>
+    <label class="input-group mb-3">
+      <i class="input-group-text ti-tablet fs-1"></i>
+      <input type="tel" name="phone" class="form-control mb-0 w-auto h-100 py-0" placeholder="Teléfono" />
+    </label>
+    <label class="input-group mb-3">
+      <i class="input-group-text ti-email fs-1"></i>
+      <input type="email" name="email" class="form-control mb-0 w-auto h-100 py-0" placeholder="Correo electrónico" />
+    </label>
+    <label class="input-group mb-3">
+      <i class="input-group-text ti-pin2 fs-1"></i>
+      <textarea name="address" class="form-control mb-0 w-auto h-100 py-2" rows="1" placeholder="Dirección"></textarea>
     </label>
     <label class="input-group mb-3">
       <i class="input-group-text ti-camera fs-1"></i>
