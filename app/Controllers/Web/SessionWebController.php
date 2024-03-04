@@ -17,10 +17,7 @@ class SessionWebController {
       return;
     }
 
-    $error = App::session()->retrieve('error', null, true);
-    $message = App::session()->retrieve('message', null, true);
-
-    App::render('pages/login', compact('error', 'message'), 'content');
+    App::render('pages/login', [], 'content');
     App::render('layouts/base', ['title' => 'Ingreso']);
   }
 
