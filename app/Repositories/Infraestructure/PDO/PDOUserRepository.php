@@ -9,19 +9,17 @@ use App\Models\ProfessionPrefix;
 use App\Models\Role;
 use App\Models\User;
 use App\Repositories\Domain\UserRepository;
-use App\Repositories\Exceptions\ConnectionException;
 use App\Repositories\Exceptions\DuplicatedAvatarsException;
 use App\Repositories\Exceptions\DuplicatedEmailsException;
 use App\Repositories\Exceptions\DuplicatedIdCardException;
 use App\Repositories\Exceptions\DuplicatedNamesException;
 use App\Repositories\Exceptions\DuplicatedPhonesException;
-use DateTime;
 use PDO;
 use PDOException;
 use PharIo\Manifest\Email;
 use PharIo\Manifest\Url;
 
-class PDOUserRepository implements UserRepository {
+class PDOUserRepository extends PDORepository implements UserRepository {
   private const FIELDS = <<<SQL_FIELDS
   id, first_name as firstName, last_name as lastName,
   birth_date as birthDateTimestamp, gender, role, prefix, id_card as idCard,
@@ -29,12 +27,6 @@ class PDOUserRepository implements UserRepository {
   SQL_FIELDS;
 
   private const TABLE = 'users';
-
-  private ?Connection $connection = null;
-
-  function setConnection(Connection $connection): void {
-    $this->connection = $connection;
-  }
 
   function getAll(): array {
     return $this->ensureIsConnected()
@@ -123,25 +115,6 @@ class PDOUserRepository implements UserRepository {
     }
   }
 
-  /** @throws ConnectionException */
-  private function ensureIsConnected(): PDO {
-    if (!$this->connection) {
-      throw new ConnectionException('DB is not connected');
-    }
-
-    try {
-      $this->connection->instance()->query('SELECT * FROM users');
-    } catch (PDOException $exception) {
-      if (str_contains($exception->getMessage(), 'no such table: users')) {
-        throw new ConnectionException('DB is not installed correctly');
-      }
-
-      throw $exception;
-    }
-
-    return $this->connection->instance();
-  }
-
   private static function mapper(
     int $id,
     string $firstName,
@@ -171,7 +144,7 @@ class PDOUserRepository implements UserRepository {
       $email ? new Email($email) : null,
       $address ?: null,
       $avatar ? new Url($avatar) : null,
-      DateTime::createFromFormat('Y-m-d H:i:s', $registered)
+      self::parseDateTime($registered)
     ))->setId($id);
   }
 }
