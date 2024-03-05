@@ -10,9 +10,7 @@ class AuthenticationMiddleware {
       !App::session()->get('userId')
       || !$user = App::userRepository()->getById((int) App::session()->get('userId'))
     ) {
-      App::redirect('/salir');
-
-      return;
+      exit(App::redirect('/salir'));
     }
 
     App::view()->set('user', $user);
