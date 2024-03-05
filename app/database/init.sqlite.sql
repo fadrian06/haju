@@ -17,3 +17,17 @@ CREATE TABLE users (
 
   UNIQUE(first_name, last_name)
 );
+
+DROP TABLE IF EXISTS departments;
+CREATE TABLE departments (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name VARCHAR(30) NOT NULL UNIQUE,
+  registered DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+DROP TABLE IF EXISTS department_asignations;
+CREATE TABLE department_asignations (
+  user_id INTEGER NOT NULL,
+  department_id INTEGER NOT NULL,
+  registered DATETIME DEFAULT CURRENT_TIMESTAMP
+);
