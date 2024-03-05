@@ -103,4 +103,6 @@ class UserWebController {
   static function handleEditProfile(): void {
     App::json(App::request()->data);
   }
+
+  static function showUsers(): void {}
 }

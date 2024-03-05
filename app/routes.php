@@ -4,7 +4,9 @@ use App\Controllers\Web\HomeWebController;
 use App\Controllers\Web\SessionWebController;
 use App\Controllers\Web\UserWebController;
 use App\Middlewares\AuthenticationMiddleware;
+use App\Middlewares\AuthorizationMiddleware;
 use App\Middlewares\MessagesMiddleware;
+use App\Models\Role;
 
 $showRegister = App::userRepository()->getAll() === [];
 App::view()->set(compact('showRegister'));
@@ -26,9 +28,17 @@ App::group('', function (): void {
   App::route('GET /perfil/editar', [UserWebController::class, 'showEditProfile']);
   App::route('POST /perfil/editar', [UserWebController::class, 'handleEditProfile']);
 
-  App::route('/configuracion', function (): void {
-  });
-
   App::route('/notificaciones', function (): void {
   });
+
+  App::group('', function (): void {
+    App::route('/usuarios', [UserWebController::class, 'showUsers']);
+
+    App::route('/departamentos', function (): void {
+
+    });
+
+    App::route('/configuracion', function (): void {
+    });
+  }, [new AuthorizationMiddleware(Role::Director)]);
 }, [AuthenticationMiddleware::class, MessagesMiddleware::class]);
