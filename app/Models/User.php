@@ -10,8 +10,7 @@ use PharIo\Manifest\InvalidEmailException;
 use PharIo\Manifest\InvalidUrlException;
 use PharIo\Manifest\Url;
 
-class User {
-  private ?int $id = null;
+class User extends Model {
   private string $password;
 
   /**
@@ -36,18 +35,6 @@ class User {
     public readonly ?DateTime $registered = null
   ) {
     $this->setPassword($password);
-  }
-
-  function setId(int $id): self {
-    if ($this->id === null) {
-      $this->id = $id;
-    }
-
-    return $this;
-  }
-
-  function getId(): ?int {
-    return $this->id;
   }
 
   function getPassword(): string {
