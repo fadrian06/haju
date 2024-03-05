@@ -4,6 +4,7 @@ namespace App\Controllers\Web;
 
 use App;
 use App\Models\Date;
+use App\Models\Exceptions\InvalidPhoneException;
 use App\Models\Gender;
 use App\Models\Phone;
 use App\Models\ProfessionPrefix;
@@ -12,6 +13,8 @@ use App\Models\User;
 use App\Repositories\Exceptions\DuplicatedIdCardException;
 use App\Repositories\Exceptions\DuplicatedNamesException;
 use PharIo\Manifest\Email;
+use PharIo\Manifest\InvalidEmailException;
+use PharIo\Manifest\InvalidUrlException;
 use PharIo\Manifest\Url;
 
 class UserWebController {
@@ -28,7 +31,7 @@ class UserWebController {
       $data['last_name'],
       Date::from($data['birth_date'], '-'),
       Gender::from($data['gender']),
-      Role::from($data['role']),
+      Role::Director,
       $data['prefix'] ? ProfessionPrefix::from($data['prefix']) : null,
       (int) $data['id_card'],
       $data['password'],
@@ -48,6 +51,12 @@ class UserWebController {
       App::session()->set('error', "❌ Usuario \"{$user->getFullName()}\" ya existe");
     } catch (DuplicatedIdCardException) {
       App::session()->set('error', "❌ Cédula \"{$user->idCard}\" ya existe");
+    } catch (InvalidPhoneException) {
+      App::session()->set('error', "❌ Teléfono inválido \"{$data['phone']}\"");
+    } catch (InvalidEmailException) {
+      App::session()->set('error', "❌ Correo inválido \"{$data['email']}\"");
+    } catch (InvalidUrlException) {
+      App::session()->set('error', "❌ URL inválida \"{$data['avatar']}\"");
     }
 
     App::redirect('/registrate');

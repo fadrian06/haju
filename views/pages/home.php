@@ -1,28 +1,37 @@
-<div class="col-lg-12">
-  <div class="single_element">
-    <div class="quick_activity">
-      <div class="row">
-        <div class="col-12">
-          <div class="quick_activity_wrap">
-            <div class="single_quick_activity d-flex">
-              <div class="icon">
-                <img src="<?= asset('img/icon/man.svg') ?>" />
+<?php
+
+/** @var App\Models\User $user */
+
+use App\Models\Role;
+
+?>
+
+<?php if ($user->role === Role::Director) : ?>
+  <div class="col-lg-12">
+    <div class="single_element">
+      <div class="quick_activity">
+        <div class="row">
+          <div class="col-12">
+            <div class="quick_activity_wrap">
+              <div class="single_quick_activity d-flex">
+                <div class="icon">
+                  <img src="<?= asset('img/icon/man.svg') ?>" />
+                </div>
+                <div class="count_content">
+                  <h3><span class="counter"><?= $usersNumber ?></span></h3>
+                  <p>Usuario<?= $usersNumber > 1 ? 's' : '' ?></p>
+                </div>
               </div>
-              <div class="count_content">
-                <h3><span class="counter">520</span> </h3>
-                <p>Doctors</p>
+              <div class="single_quick_activity d-flex">
+                <div class="icon">
+                  <img src="<?= asset('img/icon/cap.svg') ?>" />
+                </div>
+                <div class="count_content">
+                  <h3><span class="counter">6969</span> </h3>
+                  <p>Departamentos</p>
+                </div>
               </div>
-            </div>
-            <div class="single_quick_activity d-flex">
-              <div class="icon">
-                <img src="<?= asset('img/icon/cap.svg') ?>" />
-              </div>
-              <div class="count_content">
-                <h3><span class="counter">6969</span> </h3>
-                <p>Nurses</p>
-              </div>
-            </div>
-            <div class="single_quick_activity d-flex">
+              <!-- <div class="single_quick_activity d-flex">
               <div class="icon">
                 <img src="<?= asset('img/icon/wheel.svg') ?>" />
               </div>
@@ -30,8 +39,8 @@
                 <h3><span class="counter">7510</span> </h3>
                 <p>Patients</p>
               </div>
-            </div>
-            <div class="single_quick_activity d-flex">
+            </div> -->
+              <!-- <div class="single_quick_activity d-flex">
               <div class="icon">
                 <img src="<?= asset('img/icon/pharma.svg') ?>" />
               </div>
@@ -39,14 +48,15 @@
                 <h3><span class="counter">2110</span> </h3>
                 <p>Pharmacusts</p>
               </div>
+            </div> -->
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<div class="col-lg-12 col-xl-12">
+<?php endif ?>
+<!-- <div class="col-lg-12 col-xl-12">
   <div class="white_box mb_30 ">
     <div class="box_header border_bottom_1px  ">
       <div class="main-title">
@@ -83,8 +93,8 @@
     </div>
     <div id="bar_wev"></div>
   </div>
-</div>
-<div class="col-xl-7">
+</div> -->
+<!-- <div class="col-xl-7">
   <div class="white_box QA_section card_height_100">
     <div class="white_box_tittle list_header m-0 align-items-center">
       <div class="main-title mb-sm-15">
@@ -317,8 +327,8 @@
       </table>
     </div>
   </div>
-</div>
-<div class="col-xl-5 ">
+</div> -->
+<!-- <div class="col-xl-5 ">
   <div class="white_box card_height_50 mb_30">
     <div class="box_header border_bottom_1px  ">
       <div class="main-title">
@@ -355,8 +365,8 @@
       </div>
     </div>
   </div>
-</div>
-<div class="col-xl-12">
+</div> -->
+<!-- <div class="col-xl-12">
   <div class="white_box card_height_100">
     <div class="box_header border_bottom_1px  ">
       <div class="main-title">
@@ -430,8 +440,8 @@
       </div>
     </div>
   </div>
-</div>
-<div class="col-xl-6">
+</div> -->
+<!-- <div class="col-xl-6">
   <div class="white_box card_height_100">
     <div class="box_header border_bottom_1px  ">
       <div class="main-title">
@@ -475,8 +485,8 @@
       </ul>
     </div>
   </div>
-</div>
-<div class="col-xl-6">
+</div> -->
+<!-- <div class="col-xl-6">
   <div class="white_box mb_30">
     <div class="box_header border_bottom_1px  ">
       <div class="main-title">
@@ -522,4 +532,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

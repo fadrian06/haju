@@ -19,6 +19,7 @@
       <h4 class="h3"><?= $user->getFullName() ?></h4>
       <small class="text-muted"><?= $user->getParsedRole() ?></small>
       <strong>ID: DR-<?= str_pad($user->getId(), 4, '0', STR_PAD_LEFT) ?></strong>
+      <small class="text-muted">Registrado: <?= $user->registered->format('d/m/Y') ?></small>
     </header>
   </div>
   <ul class="profile-info__secondary col-md-6">

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Exceptions\InvalidDateException;
 use App\Models\Exceptions\InvalidPhoneException;
+use DateTime;
 use PharIo\Manifest\Email;
 use PharIo\Manifest\InvalidEmailException;
 use PharIo\Manifest\InvalidUrlException;
@@ -31,7 +32,8 @@ class User {
     public readonly ?Phone $phone = null,
     public readonly ?Email $email = null,
     public readonly ?string $address = null,
-    public readonly ?Url $avatar = null
+    public readonly ?Url $avatar = null,
+    public readonly ?DateTime $registered = null
   ) {
     $this->setPassword($password);
   }

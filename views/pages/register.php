@@ -41,15 +41,6 @@ use App\Models\Role;
     </label>
     <label class="input-group mb-3">
       <i class="input-group-text ti-pencil-alt fs-1"></i>
-      <select required name="role" class="form-select">
-        <option selected disabled>Seleccione un rol</option>
-        <?php foreach (Role::cases() as $role) : ?>
-          <option><?= $role->value ?></option>
-        <?php endforeach ?>
-      </select>
-    </label>
-    <label class="input-group mb-3">
-      <i class="input-group-text ti-pencil-alt fs-1"></i>
       <select name="prefix" class="form-select">
         <option selected disabled>Seleccione un prefijo</option>
         <?php foreach (Prefix::cases() as $prefix) : ?>

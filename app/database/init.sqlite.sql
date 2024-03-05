@@ -13,6 +13,7 @@ CREATE TABLE users (
   email VARCHAR(255) UNIQUE,
   address TEXT,
   avatar VARCHAR(255) UNIQUE,
+  registered DATETIME DEFAULT CURRENT_TIMESTAMP,
 
   UNIQUE(first_name, last_name)
 );

@@ -15,6 +15,7 @@ use App\Repositories\Exceptions\DuplicatedEmailsException;
 use App\Repositories\Exceptions\DuplicatedIdCardException;
 use App\Repositories\Exceptions\DuplicatedNamesException;
 use App\Repositories\Exceptions\DuplicatedPhonesException;
+use DateTime;
 use PDO;
 use PDOException;
 use PharIo\Manifest\Email;
@@ -24,7 +25,7 @@ class PDOUserRepository implements UserRepository {
   private const FIELDS = <<<SQL_FIELDS
   id, first_name as firstName, last_name as lastName,
   birth_date as birthDateTimestamp, gender, role, prefix, id_card as idCard,
-  password, phone, email, address, avatar
+  password, phone, email, address, avatar, registered
   SQL_FIELDS;
 
   private const TABLE = 'users';
@@ -154,7 +155,8 @@ class PDOUserRepository implements UserRepository {
     ?string $phone,
     ?string $email,
     ?string $address,
-    ?string $avatar
+    ?string $avatar,
+    ?string $registered
   ): User {
     return (new User(
       $firstName,
@@ -168,7 +170,8 @@ class PDOUserRepository implements UserRepository {
       $phone ? new Phone($phone) : null,
       $email ? new Email($email) : null,
       $address ?: null,
-      $avatar ? new Url($avatar) : null
+      $avatar ? new Url($avatar) : null,
+      DateTime::createFromFormat('Y-m-d H:i:s', $registered)
     ))->setId($id);
   }
 }
