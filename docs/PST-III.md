@@ -283,7 +283,7 @@ Dado la inspección y análisis de la factibilidad técnica y humana el sistema 
 <figure>
   <img
     alt="Árbol del problema"
-    src="imagenes/arbol-problema.png"
+    src="https://github.com/fadrian06/haju/blob/docs/docs/Arbol%20del%20problema.jpg?raw=true"
   />
   <figcaption>
     <b>
@@ -291,6 +291,20 @@ Dado la inspección y análisis de la factibilidad técnica y humana el sistema 
     </b>
     <small>
       Fuente: Sánchez, Mancilla, Marín y Lázaro (2023).
+    </small>
+  </figcaption>
+</figure>
+<figure>
+  <img
+    alt="Árbol de los Objetivos"
+    src="https://github.com/fadrian06/haju/blob/docs/docs/Dibujo2.jpg?raw=true"
+  />
+  <figcaption>
+    <b>
+      Figura n. Árbol de los Objetivos
+    </b>
+    <small>
+      Fuente: Sánchez, Mancilla y Lázaro (2023).
     </small>
   </figcaption>
 </figure>
