@@ -1,11 +1,13 @@
 <?php
 
+use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Domain\UserRepository;
 use flight\net\Route;
 use Leaf\Http\Session;
 
 /**
  * @method static UserRepository userRepository()
+ * @method static DepartmentRepository departmentRepository()
  * @method static Session session()
  */
 class App extends Flight {

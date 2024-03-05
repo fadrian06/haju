@@ -1,6 +1,7 @@
 <?php
 
 use App\Repositories\Infraestructure\PDO\Connection;
+use App\Repositories\Infraestructure\PDO\PDODepartmentRepository;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
 use Leaf\Http\Session;
 
@@ -22,6 +23,15 @@ App::register(
   PDOUserRepository::class,
   [],
   function (PDOUserRepository $repository): void {
+    $repository->setConnection(App::db());
+  }
+);
+
+App::register(
+  'departmentRepository',
+  PDODepartmentRepository::class,
+  [],
+  function (PDODepartmentRepository $repository): void {
     $repository->setConnection(App::db());
   }
 );
