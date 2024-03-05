@@ -81,11 +81,11 @@ Estado Mérida, Municipio Caracciolo Parra y Olmedo, Parroquia Tucaní, Sector A
 
 ### Misión
 
-Actualmente no la han desarrollado.
+El Departamento de Registros y Estadísticas de Salud, tiene el propósito de asegurar, mantener, producir, interpretar, preservar y garantizar la información de los registros asistenciales derivados de la atención prestada al usuario a través  del análisis cuantitativo y cualitativo de los problemas de la salud de la comunidad.
 
 ### Visión
 
-Actualmente no la han desarrollado.
+Garantizar en forma idónea el sistema de información estadísticas optimalizada el procesamiento de los registros asistenciales que puedan permitir el estudio cuantitativo y cualitativo de los problemas de la comunidad.
 
 ### Planteamiento del problema
 
