@@ -6,7 +6,10 @@ use App;
 
 class HomeWebController {
   static function index(): void {
-    App::render('pages/home', [], 'content');
+    $usersNumber = count(App::userRepository()->getAll());
+    $departmentsNumber = count(App::departmentRepository()->getAll());
+
+    App::render('pages/home', compact('usersNumber', 'departmentsNumber'), 'content');
     App::render('layouts/main', ['title' => 'Inicio']);
   }
 }

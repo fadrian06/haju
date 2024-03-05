@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\Web\DepartmentWebController;
 use App\Controllers\Web\HomeWebController;
 use App\Controllers\Web\SessionWebController;
 use App\Controllers\Web\UserWebController;
@@ -34,9 +35,7 @@ App::group('', function (): void {
   App::group('', function (): void {
     App::route('/usuarios', [UserWebController::class, 'showUsers']);
 
-    App::route('/departamentos', function (): void {
-
-    });
+    App::route('/departamentos', [DepartmentWebController::class, 'showDepartments']);
 
     App::route('/configuracion', function (): void {
     });

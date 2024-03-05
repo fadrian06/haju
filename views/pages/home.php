@@ -13,24 +13,24 @@ use App\Models\Role;
         <div class="row">
           <div class="col-12">
             <div class="quick_activity_wrap">
-              <div class="single_quick_activity d-flex">
+              <a href="<?= route('/usuarios') ?>" class="single_quick_activity d-flex">
                 <div class="icon">
                   <img src="<?= asset('img/icon/man.svg') ?>" />
                 </div>
                 <div class="count_content">
                   <h3><span class="counter"><?= $usersNumber ?></span></h3>
-                  <p>Usuario<?= $usersNumber > 1 ? 's' : '' ?></p>
+                  <p>Usuario<?= $usersNumber !== 1 ? 's' : '' ?></p>
                 </div>
-              </div>
-              <div class="single_quick_activity d-flex">
+              </a>
+              <a href="<?= route('/departamentos') ?>" class="single_quick_activity d-flex">
                 <div class="icon">
                   <img src="<?= asset('img/icon/cap.svg') ?>" />
                 </div>
                 <div class="count_content">
-                  <h3><span class="counter">6969</span> </h3>
-                  <p>Departamentos</p>
+                  <h3><span class="counter"><?= $departmentsNumber ?></span></h3>
+                  <p>Departamento<?= $departmentsNumber !== 1 ? 's' : '' ?></p>
                 </div>
-              </div>
+              </a>
               <!-- <div class="single_quick_activity d-flex">
               <div class="icon">
                 <img src="<?= asset('img/icon/wheel.svg') ?>" />
