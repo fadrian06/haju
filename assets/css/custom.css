@@ -128,6 +128,19 @@ textarea {
   pointer-events: painted;
 }
 
+.single_quick_activity {
+  transition: 250ms transform, 250ms box-shadow;
+}
+
+.single_quick_activity:hover {
+  transform: scale(1.025) rotate(1deg);
+  box-shadow: var(--bs-box-shadow-sm);
+}
+
+.single_quick_activity:nth-child(even):hover {
+  transform: scale(1.025) rotate(-1deg);
+}
+
 @media only screen and (min-width:992px) and (max-width:1200px) {
   .profile-info__main {
     border-bottom: unset;
