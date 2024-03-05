@@ -290,7 +290,7 @@ Dado la inspección y análisis de la factibilidad técnica y humana el sistema 
       Figura n. Árbol del Problema
     </b>
     <small>
-      Fuente: Sánchez, Mancilla, Marín y Lázaro (2023).
+      Fuente: Sánchez, Mancilla y Lázaro (2023).
     </small>
   </figcaption>
 </figure>
