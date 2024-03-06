@@ -178,9 +178,7 @@ textarea {
   border-radius: 0 var(--bs-border-radius-pill) var(--bs-border-radius-pill) 0;
 }
 
-
-
-@media only screen and (min-width:992px) and (max-width:1200px) {
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
   .profile-info__main {
     border-bottom: unset;
     text-align: initial;
