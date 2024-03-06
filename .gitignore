@@ -11,6 +11,11 @@ node_modules
 dist/
 vendor
 *.tar
+*.css
+*.js
+!*.min.css
+!*.min.js
+!assets/css/theme.css
 
 # IDE
 .vscode/*

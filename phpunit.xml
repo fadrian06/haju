@@ -6,6 +6,7 @@
   executionOrder="depends,defects"
   beStrictAboutCoverageMetadata="true"
   beStrictAboutOutputDuringTests="true"
+  displayDetailsOnTestsThatTriggerWarnings="true"
   failOnRisky="true"
   failOnWarning="true">
   <testsuites>

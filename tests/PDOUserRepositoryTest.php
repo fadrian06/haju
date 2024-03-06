@@ -1,13 +1,22 @@
 <?php
 
-use App\Models\GenrePrefix;
+use App\Models\Date;
+use App\Models\Gender;
+use App\Models\Phone;
+use App\Models\ProfessionPrefix;
+use App\Models\Role;
 use App\Models\User;
 use App\Repositories\Exceptions\ConnectionException;
+use App\Repositories\Exceptions\DuplicatedAvatarsException;
+use App\Repositories\Exceptions\DuplicatedEmailsException;
 use App\Repositories\Exceptions\DuplicatedIdCardException;
 use App\Repositories\Exceptions\DuplicatedNamesException;
+use App\Repositories\Exceptions\DuplicatedPhonesException;
 use App\Repositories\Infraestructure\PDO\Connection;
 use App\Repositories\Infraestructure\PDO\DBConnection;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
+use PharIo\Manifest\Email;
+use PharIo\Manifest\Url;
 use PHPUnit\Framework\TestCase;
 
 class PDOUserRepositoryTest extends TestCase {
@@ -21,10 +30,16 @@ class PDOUserRepositoryTest extends TestCase {
     $this->testUser = new User(
       'Franyer',
       'Sánchez',
-      'Developer',
-      GenrePrefix::Ing,
+      new Date(6, 10, 2001),
+      Gender::Male,
+      Role::Coordinator,
+      ProfessionPrefix::Ing,
       28072391,
-      $this->testPassword
+      $this->testPassword,
+      new Phone('+584165335826'),
+      new Email('franyeradriansanchez@gmail.com'),
+      'El Pinar, Estado Mérida',
+      new Url('https://github.com/fadrian06.png')
     );
 
     $connection = new Connection(DBConnection::SQLite, ':memory:');
@@ -83,8 +98,10 @@ class PDOUserRepositoryTest extends TestCase {
     $user2 = new User(
       'Franyer',
       'Guillén',
-      'Developer',
-      GenrePrefix::Ing,
+      new Date(6, 10, 2001),
+      Gender::Male,
+      Role::Coordinator,
+      ProfessionPrefix::Ing,
       28072392,
       'test1234'
     );
@@ -108,7 +125,9 @@ class PDOUserRepositoryTest extends TestCase {
     $this->repository->save(new User(
       $this->testUser->firstName,
       'Guillén',
-      $this->testUser->speciality,
+      $this->testUser->birthDate,
+      $this->testUser->gender,
+      $this->testUser->role,
       $this->testUser->prefix,
       $this->testUser->idCard,
       'test1234'
@@ -124,10 +143,69 @@ class PDOUserRepositoryTest extends TestCase {
     $this->repository->save(new User(
       $this->testUser->firstName,
       'Sánchez',
-      $this->testUser->speciality,
+      $this->testUser->birthDate,
+      $this->testUser->gender,
+      $this->testUser->role,
       $this->testUser->prefix,
       $this->testUser->idCard,
       'test1234'
+    ));
+  }
+
+  function test_cannot_save_multiple_users_with_the_same_phones(): void {
+    $this->repository->save($this->testUser);
+
+    self::expectException(DuplicatedPhonesException::class);
+    self::expectExceptionMessage("Phone \"{$this->testUser->phone}\" already exists");
+
+    $this->repository->save(new User(
+      $this->testUser->firstName,
+      'Guillén',
+      $this->testUser->birthDate,
+      $this->testUser->gender,
+      $this->testUser->role,
+      $this->testUser->prefix,
+      $this->testUser->idCard,
+      'test1234',
+      $this->testUser->phone
+    ));
+  }
+
+  function test_cannot_save_multiple_users_with_the_same_emails(): void {
+    $this->repository->save($this->testUser);
+
+    self::expectException(DuplicatedEmailsException::class);
+    self::expectExceptionMessage("Email \"{$this->testUser->email->asString()}\" already exists");
+
+    $this->repository->save(new User(
+      $this->testUser->firstName,
+      'Guillén',
+      $this->testUser->birthDate,
+      $this->testUser->gender,
+      $this->testUser->role,
+      $this->testUser->prefix,
+      $this->testUser->idCard,
+      'test1234',
+      email: $this->testUser->email
+    ));
+  }
+
+  function test_cannot_save_multiple_users_with_the_same_avatars(): void {
+    $this->repository->save($this->testUser);
+
+    self::expectException(DuplicatedAvatarsException::class);
+    self::expectExceptionMessage("Avatar \"{$this->testUser->avatar->asString()}\" already exists");
+
+    $this->repository->save(new User(
+      $this->testUser->firstName,
+      'Guillén',
+      $this->testUser->birthDate,
+      $this->testUser->gender,
+      $this->testUser->role,
+      $this->testUser->prefix,
+      $this->testUser->idCard,
+      'test1234',
+      avatar: $this->testUser->avatar
     ));
   }
 

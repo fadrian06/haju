@@ -2,32 +2,39 @@
 
 namespace App\Models;
 
-class User {
-  private ?int $id = null;
+use App\Models\Exceptions\InvalidDateException;
+use App\Models\Exceptions\InvalidPhoneException;
+use DateTime;
+use PharIo\Manifest\Email;
+use PharIo\Manifest\InvalidEmailException;
+use PharIo\Manifest\InvalidUrlException;
+use PharIo\Manifest\Url;
+
+class User extends Model {
   private string $password;
 
+  /**
+   * @throws InvalidPhoneException
+   * @throws InvalidEmailException
+   * @throws InvalidUrlException
+   * @throws InvalidDateException
+   */
   function __construct(
     public readonly string $firstName,
     public readonly string $lastName,
-    public readonly string $speciality,
-    public ?GenrePrefix $prefix,
+    public readonly Date $birthDate,
+    public readonly Gender $gender,
+    public readonly Role $role,
+    public ?ProfessionPrefix $prefix,
     public readonly int $idCard,
     string $password,
-    public readonly ?string $avatar = null
+    public readonly ?Phone $phone = null,
+    public readonly ?Email $email = null,
+    public readonly ?string $address = null,
+    public readonly ?Url $avatar = null,
+    public bool $isActive = true
   ) {
     $this->setPassword($password);
-  }
-
-  function setId(int $id): self {
-    if ($this->id === null) {
-      $this->id = $id;
-    }
-
-    return $this;
-  }
-
-  function getId(): ?int {
-    return $this->id;
   }
 
   function getPassword(): string {
@@ -48,5 +55,9 @@ class User {
 
   function getFullName(): string {
     return "{$this->firstName} {$this->lastName}";
+  }
+
+  function getParsedRole(): string {
+    return $this->role->getParsed($this->gender);
   }
 }

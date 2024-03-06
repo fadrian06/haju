@@ -2,28 +2,44 @@
 
 namespace App\Repositories\Infraestructure\PDO;
 
-use App\Models\GenrePrefix;
+use App\Models\Date;
+use App\Models\Gender;
+use App\Models\Phone;
+use App\Models\ProfessionPrefix;
+use App\Models\Role;
 use App\Models\User;
 use App\Repositories\Domain\UserRepository;
-use App\Repositories\Exceptions\ConnectionException;
+use App\Repositories\Exceptions\DuplicatedAvatarsException;
+use App\Repositories\Exceptions\DuplicatedEmailsException;
 use App\Repositories\Exceptions\DuplicatedIdCardException;
 use App\Repositories\Exceptions\DuplicatedNamesException;
+use App\Repositories\Exceptions\DuplicatedPhonesException;
 use PDO;
 use PDOException;
+use PharIo\Manifest\Email;
+use PharIo\Manifest\Url;
 
-class PDOUserRepository implements UserRepository {
-  private ?Connection $connection = null;
-  private const FIELDS = 'id, first_name as firstName, last_name as lastName, speciality, prefix, id_card as idCard, password, avatar';
+class PDOUserRepository extends PDORepository implements UserRepository {
+  private const FIELDS = <<<SQL_FIELDS
+  id, first_name as firstName, last_name as lastName,
+  birth_date as birthDateTimestamp, gender, role, prefix, id_card as idCard,
+  password, phone, email, address, avatar, registered, is_active as isActive
+  SQL_FIELDS;
+
   private const TABLE = 'users';
 
-  function setConnection(Connection $connection): void {
-    $this->connection = $connection;
-  }
+  function getAll(User ...$exclude): array {
+    $ids = array_map(fn (User $user): int => $user->getId(), $exclude);
 
-  function getAll(): array {
     return $this->ensureIsConnected()
-      ->query(sprintf('SELECT %s FROM %s', self::FIELDS, self::TABLE))
-      ->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper']);
+      ->query(sprintf(
+        'SELECT %s FROM %s %s',
+        self::FIELDS,
+        self::TABLE,
+        $ids !== []
+          ? sprintf('WHERE id NOT IN (%s)', join(', ', $ids))
+          : ''
+      ))->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper']);
   }
 
   function getByIdCard(int $idCard): ?User {
@@ -45,35 +61,47 @@ class PDOUserRepository implements UserRepository {
   }
 
   function save(User $user): void {
-    if ($user->getId()) {
-      $this->ensureIsConnected()
-        ->prepare(sprintf('UPDATE %s SET password = ? WHERE id = ?', self::TABLE))
-        ->execute([$user->getPassword(), $user->getId()]);
-
-      return;
-    }
-
     try {
+      if ($user->getId()) {
+        $this->ensureIsConnected()
+          ->prepare(sprintf('UPDATE %s SET password = ?, is_active = ? WHERE id = ?', self::TABLE))
+          ->execute([$user->getPassword(), $user->isActive, $user->getId()]);
+
+        return;
+      }
+
       $query = sprintf(
         <<<SQL
-          INSERT INTO %s (first_name, last_name, speciality, prefix, id_card, password, avatar)
-          VALUES (?, ?, ?, ?, ?, ?, ?)
+          INSERT INTO %s (
+            first_name, last_name, birth_date, gender, role, prefix, id_card,
+            password, phone, email, address, avatar, registered
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         SQL,
         self::TABLE
       );
+
+      $datetime = date('Y-m-d H:i:s');
 
       $this->ensureIsConnected()
         ->prepare($query)
         ->execute([
           $user->firstName,
           $user->lastName,
-          $user->speciality,
+          $user->birthDate->timestamp,
+          $user->gender->value,
+          $user->role->value,
           $user->prefix?->value,
-          $user->idCard, $user->getPassword(),
-          $user->avatar
+          $user->idCard,
+          $user->getPassword(),
+          $user->phone,
+          $user->email?->asString(),
+          $user->address,
+          $user->avatar?->asString(),
+          $datetime
         ]);
 
-      $user->setId($this->connection->instance()->lastInsertId());
+      $user->setId($this->connection->instance()->lastInsertId())
+        ->setRegistered(self::parseDateTime($datetime));
     } catch (PDOException $exception) {
       if (str_contains($exception, 'UNIQUE constraint failed: users.id_card')) {
         throw new DuplicatedIdCardException("ID card \"{$user->idCard}\" already exists");
@@ -83,47 +111,57 @@ class PDOUserRepository implements UserRepository {
         throw new DuplicatedNamesException("User \"{$user->getFullName()}\" already exists");
       }
 
-      throw $exception;
-    }
-  }
+      if (str_contains($exception, 'UNIQUE constraint failed: users.phone')) {
+        throw new DuplicatedPhonesException("Phone \"{$user->phone}\" already exists");
+      }
 
-  /** @throws ConnectionException */
-  private function ensureIsConnected(): PDO {
-    if (!$this->connection) {
-      throw new ConnectionException('DB is not connected');
-    }
+      if (str_contains($exception, 'UNIQUE constraint failed: users.email')) {
+        throw new DuplicatedEmailsException("Email \"{$user->email->asString()}\" already exists");
+      }
 
-    try {
-      $this->connection->instance()->query('SELECT * FROM users');
-    } catch (PDOException $exception) {
-      if (str_contains($exception->getMessage(), 'no such table: users')) {
-        throw new ConnectionException('DB is not installed correctly');
+      if (str_contains($exception, 'UNIQUE constraint failed: users.avatar')) {
+        throw new DuplicatedAvatarsException("Avatar \"{$user->avatar->asString()}\" already exists");
       }
 
       throw $exception;
     }
-
-    return $this->connection->instance();
   }
 
   private static function mapper(
     int $id,
     string $firstName,
     string $lastName,
-    string $speciality,
+    int $birthDateTimestamp,
+    string $gender,
+    string $role,
     ?string $prefix,
     int $idCard,
     string $password,
-    ?string $avatar
+    ?string $phone,
+    ?string $email,
+    ?string $address,
+    ?string $avatar,
+    string $registered,
+    bool $isActive
   ): User {
-    return (new User(
+    $user = new User(
       $firstName,
       $lastName,
-      $speciality,
-      GenrePrefix::tryFrom($prefix ?? ''),
+      Date::fromTimestamp($birthDateTimestamp),
+      Gender::from($gender),
+      Role::from($role),
+      ProfessionPrefix::tryFrom($prefix ?? ''),
       $idCard,
       $password,
-      $avatar
-    ))->setId($id);
+      $phone ? new Phone($phone) : null,
+      $email ? new Email($email) : null,
+      $address ?: null,
+      $avatar ? new Url($avatar) : null,
+      $isActive
+    );
+
+    $user->setId($id)->setRegistered(self::parseDateTime($registered));
+
+    return $user;
   }
 }
