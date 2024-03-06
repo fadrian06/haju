@@ -10,7 +10,7 @@ use App\Models\User;
 
 ?>
 
-<section class="mb-4 d-flex px-0 align-items-center justify-content-between">
+<section class="mb-4 d-md-flex px-0 align-items-center justify-content-between">
   <h2>Departamentos</h2>
   <a href="<?= route('/departamentos/registrar') ?>" class="btn btn-primary rounded-pill d-flex align-items-center">
     <i class="px-2 ti-plus"></i>
@@ -43,7 +43,7 @@ use App\Models\User;
           <tr>
             <td><?= $department->getId() ?></td>
             <td><?= $department->name ?></td>
-            <td><?= $department->registered->format('d/m/Y') ?></td>
+            <td><?= $department->getRegisteredDate() ?></td>
             <td>
               <?php if (/*$department->isActive*/rand(0, 1)) : ?>
                 <span class="custom-badge status-green">Activo</span>

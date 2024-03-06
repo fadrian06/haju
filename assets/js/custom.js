@@ -5,15 +5,9 @@
   $('#bar4').barfiller({ barColor: '#dc3545 ', duration: 3000 })
 })*/
 
-$('.close_icon').click(function () {
-  $(this).parents('.hide_content').slideToggle('0')
+$('.close_icon').on('click', function () {
+  $(this).parents('.hide_content')
 })
-
-const count = $('.counter')
-
-if (count.length) {
-  count.counterUp({ delay: 100, time: 5000 })
-}
 
 /*$('.nice_Select').niceSelect()
 $('.nice_Select2').niceSelect()

@@ -28,10 +28,24 @@ use App\Models\Role;
     </li>
     <?php if ($user->role === Role::Director): ?>
     <li class="<?= isActive('/departamentos') ? 'mm-active' : '' ?>">
-      <a href="<?= route('/departamentos') ?>">
+      <a href="#" class="has-arrow">
         <img src="<?= asset('img/icons/hospital.svg') ?>" />
         <span>Departamentos</span>
       </a>
+      <ul>
+        <li>
+          <a href="<?= route('/departamentos') ?>">
+            <i class="ti-list"></i>
+            Listado
+          </a>
+        </li>
+        <li>
+          <a href="<?= route('/departamentos/registrar') ?>">
+            <i class="ti-plus"></i>
+            Registrar
+          </a>
+        </li>
+      </ul>
     </li>
     <?php endif ?>
   </menu>

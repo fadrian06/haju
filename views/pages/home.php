@@ -7,54 +7,24 @@ use App\Models\Role;
 ?>
 
 <?php if ($user->role === Role::Director) : ?>
-  <div class="col-lg-12">
-    <div class="single_element">
-      <div class="quick_activity">
-        <div class="row">
-          <div class="col-12">
-            <div class="quick_activity_wrap">
-              <a href="<?= route('/usuarios') ?>" class="single_quick_activity d-flex">
-                <div class="icon">
-                  <img src="<?= asset('img/icons/man.svg') ?>" />
-                </div>
-                <div class="count_content">
-                  <h3><span class="counter"><?= $usersNumber ?></span></h3>
-                  <p>Usuario<?= $usersNumber !== 1 ? 's' : '' ?></p>
-                </div>
-              </a>
-              <a href="<?= route('/departamentos') ?>" class="single_quick_activity d-flex">
-                <div class="icon">
-                  <img src="<?= asset('img/icons/cap.svg') ?>" />
-                </div>
-                <div class="count_content">
-                  <h3><span class="counter"><?= $departmentsNumber ?></span></h3>
-                  <p>Departamento<?= $departmentsNumber !== 1 ? 's' : '' ?></p>
-                </div>
-              </a>
-              <!-- <div class="single_quick_activity d-flex">
-              <div class="icon">
-                <img src="<?= asset('img/icon/wheel.svg') ?>" />
-              </div>
-              <div class="count_content">
-                <h3><span class="counter">7510</span> </h3>
-                <p>Patients</p>
-              </div>
-            </div> -->
-              <!-- <div class="single_quick_activity d-flex">
-              <div class="icon">
-                <img src="<?= asset('img/icon/pharma.svg') ?>" />
-              </div>
-              <div class="count_content">
-                <h3><span class="counter">2110</span> </h3>
-                <p>Pharmacusts</p>
-              </div>
-            </div> -->
-            </div>
-          </div>
+  <section class="single_element">
+    <div class="quick_activity_wrap">
+      <a href="<?= route('/usuarios') ?>" class="single_quick_activity d-flex">
+        <img class="icon" src="<?= asset('img/icons/man.svg') ?>" />
+        <div class="count_content">
+          <h3><?= $usersNumber ?></h3>
+          <p>Usuario<?= $usersNumber !== 1 ? 's' : '' ?></p>
         </div>
-      </div>
+      </a>
+      <a href="<?= route('/departamentos') ?>" class="single_quick_activity d-flex">
+        <img class="icon" src="<?= asset('img/icons/cap.svg') ?>" />
+        <div class="count_content">
+          <h3><?= $departmentsNumber ?></h3>
+          <p>Departamento<?= $departmentsNumber !== 1 ? 's' : '' ?></p>
+        </div>
+      </a>
     </div>
-  </div>
+  </section>
 <?php endif ?>
 <!-- <div class="col-lg-12 col-xl-12">
   <div class="white_box mb_30 ">
