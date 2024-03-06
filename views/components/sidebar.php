@@ -11,8 +11,14 @@
     </li>
     <li class="<?= isActive('/') ? 'mm-active' : '' ?>">
       <a href="<?= route('/') ?>">
-        <img src="<?= asset('img/menu-icon/1.svg') ?>" />
+        <img src="<?= asset('img/icons/house.svg') ?>" />
         <span>Inicio</span>
+      </a>
+    </li>
+    <li class="<?= isActive('/departamentos') ? 'mm-active' : '' ?>">
+      <a href="<?= route('/departamentos') ?>">
+        <img src="<?= asset('img/icons/hospital.svg') ?>" />
+        <span>Departamentos</span>
       </a>
     </li>
   </menu>

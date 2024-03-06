@@ -15,7 +15,7 @@ use App\Models\Role;
             <div class="quick_activity_wrap">
               <a href="<?= route('/usuarios') ?>" class="single_quick_activity d-flex">
                 <div class="icon">
-                  <img src="<?= asset('img/icon/man.svg') ?>" />
+                  <img src="<?= asset('img/icons/man.svg') ?>" />
                 </div>
                 <div class="count_content">
                   <h3><span class="counter"><?= $usersNumber ?></span></h3>
@@ -24,7 +24,7 @@ use App\Models\Role;
               </a>
               <a href="<?= route('/departamentos') ?>" class="single_quick_activity d-flex">
                 <div class="icon">
-                  <img src="<?= asset('img/icon/cap.svg') ?>" />
+                  <img src="<?= asset('img/icons/cap.svg') ?>" />
                 </div>
                 <div class="count_content">
                   <h3><span class="counter"><?= $departmentsNumber ?></span></h3>
