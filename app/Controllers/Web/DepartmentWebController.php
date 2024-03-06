@@ -9,8 +9,9 @@ use App\Repositories\Exceptions\DuplicatedNamesException;
 class DepartmentWebController {
   static function showDepartments(): void {
     $departments = App::departmentRepository()->getAll();
+    $departmentsNumber = count($departments);
 
-    App::renderPage('departments', 'Departamentos', compact('departments'), 'main');
+    App::renderPage('departments', "Departamentos ($departmentsNumber)", compact('departments'), 'main');
   }
 
   static function handleRegister(): void {
