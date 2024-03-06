@@ -10,5 +10,6 @@ return [
   'DB_PORT' => 3306,
   'DB_DATABASE' => '',
   'DB_USERNAME' => '',
-  'DB_PASSWORD' => ''
+  'DB_PASSWORD' => '',
+  'TIMEZONE' => 'UTC'
 ];

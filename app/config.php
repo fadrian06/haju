@@ -7,6 +7,7 @@ use Leaf\Http\Session;
 
 $_ENV += require_once __DIR__ . '/../.env.php';
 
+date_default_timezone_set($_ENV['TIMEZONE']);
 App::set('root', str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']));
 
 App::register('db', Connection::class, [
