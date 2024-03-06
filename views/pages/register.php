@@ -2,9 +2,9 @@
 
 use App\Models\Gender;
 use App\Models\ProfessionPrefix as Prefix;
-use App\Models\Role;
 
 /** @var ?string $error */
+
 ?>
 
 <section class="px-0 modal modal-content cs_modal w-auto">

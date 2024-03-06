@@ -47,6 +47,26 @@ use App\Models\Role;
           </li>
         </ul>
       </li>
+      <li class="<?= isActive('/usuarios') ? 'mm-active' : '' ?>">
+        <a href="#" class="has-arrow">
+          <img src="<?= asset('img/icons/users.svg') ?>" />
+          <span>Usuarios</span>
+        </a>
+        <ul>
+          <li>
+            <a href="<?= route('/usuarios') ?>">
+              <i class="ti-list"></i>
+              Listado
+            </a>
+          </li>
+          <li>
+            <a href="<?= route('/usuarios') ?>#registrar" <?= isActive('/usuarios') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
+              <i class="ti-plus"></i>
+              Registrar
+            </a>
+          </li>
+        </ul>
+      </li>
     <?php endif ?>
   </menu>
 </aside>

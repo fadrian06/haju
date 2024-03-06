@@ -20,67 +20,69 @@ use App\Models\User;
   </a>
 </section>
 
-<section class="white_box QA_section">
-  <!-- <header class="list_header serach_field-area2 w-100">
-    <form class="search_inner w-100">
-      <input type="search" placeholder="Buscar por nombre...">
-      <button>
-        <i class="ti-search fs-2"></i>
-      </button>
-    </form>
-  </header> -->
-  <?php if ($error) : ?>
-    <div class="alert alert-danger alert-dismissible fade show">
-      <?= $error ?>
-      <button class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-  <?php elseif ($message) : ?>
-    <div class="alert alert-info alert-dismissible fade show">
-      <?= $message ?>
-      <button class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-  <?php endif ?>
-  <div class="QA_table table-responsive">
-    <table class="table text-center">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Nombre del departamento</th>
-          <th>Fecha de registro</th>
-          <th>Estado</th>
-          <th>Acción</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($departments as $department) : ?>
+<?php if ($departments !== []): ?>
+  <section class="white_box QA_section">
+    <!-- <header class="list_header serach_field-area2 w-100">
+      <form class="search_inner w-100">
+        <input type="search" placeholder="Buscar por nombre...">
+        <button>
+          <i class="ti-search fs-2"></i>
+        </button>
+      </form>
+    </header> -->
+    <?php if ($error) : ?>
+      <div class="alert alert-danger alert-dismissible fade show">
+        <?= $error ?>
+        <button class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    <?php elseif ($message) : ?>
+      <div class="alert alert-info alert-dismissible fade show">
+        <?= $message ?>
+        <button class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    <?php endif ?>
+    <div class="QA_table table-responsive">
+      <table class="table text-center">
+        <thead>
           <tr>
-            <form method="post" action="<?= route('/departamentos/@id', ['id' => $department->getId()]) ?>">
-              <td><?= $department->getId() ?></td>
-              <td class="p-0">
-                <input placeholder="Nombre del departamento" class="form-control" required name="name" value="<?= $department->name ?>" />
-              </td>
-              <td><?= $department->getRegisteredDate() ?></td>
-              <td>
-                <?php if ($department->isActive) : ?>
-                  <a href="<?= route('/departamentos/@id/desactivar', ['id' => $department->getId()]) ?>" class="custom-badge status-green">
-                    Activo
-                  </a>
-                <?php else : ?>
-                  <a href="<?= route('/departamentos/@id/activar', ['id' => $department->getId()]) ?>" class="custom-badge status-red">
-                    Inactivo
-                  </a>
-                <?php endif ?>
-              </td>
-              <td>
-                <button class="btn btn-primary text-white">Editar</button>
-              </td>
-            </form>
+            <th>#</th>
+            <th>Nombre del departamento</th>
+            <th>Fecha de registro</th>
+            <th>Estado</th>
+            <th>Acción</th>
           </tr>
-        <?php endforeach ?>
-      </tbody>
-    </table>
-  </div>
-</section>
+        </thead>
+        <tbody>
+          <?php foreach ($departments as $department) : ?>
+            <tr>
+              <form method="post" action="<?= route('/departamentos/@id', ['id' => $department->getId()]) ?>">
+                <td><?= $department->getId() ?></td>
+                <td class="p-0">
+                  <input placeholder="Nombre del departamento" class="form-control" required name="name" value="<?= $department->name ?>" />
+                </td>
+                <td><?= $department->getRegisteredDate() ?></td>
+                <td>
+                  <?php if ($department->isActive) : ?>
+                    <a href="<?= route('/departamentos/@id/desactivar', ['id' => $department->getId()]) ?>" class="custom-badge status-green">
+                      Activo
+                    </a>
+                  <?php else : ?>
+                    <a href="<?= route('/departamentos/@id/activar', ['id' => $department->getId()]) ?>" class="custom-badge status-red">
+                      Inactivo
+                    </a>
+                  <?php endif ?>
+                </td>
+                <td>
+                  <button class="btn btn-primary text-white">Editar</button>
+                </td>
+              </form>
+            </tr>
+          <?php endforeach ?>
+        </tbody>
+      </table>
+    </div>
+  </section>
+<?php endif ?>
 
 <div class="modal fade" id="registrar">
   <div class="modal-dialog">
