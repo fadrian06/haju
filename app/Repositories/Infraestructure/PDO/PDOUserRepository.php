@@ -28,10 +28,18 @@ class PDOUserRepository extends PDORepository implements UserRepository {
 
   private const TABLE = 'users';
 
-  function getAll(): array {
+  function getAll(User ...$exclude): array {
+    $ids = array_map(fn (User $user): int => $user->getId(), $exclude);
+
     return $this->ensureIsConnected()
-      ->query(sprintf('SELECT %s FROM %s', self::FIELDS, self::TABLE))
-      ->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper']);
+      ->query(sprintf(
+        'SELECT %s FROM %s %s',
+        self::FIELDS,
+        self::TABLE,
+        $ids !== []
+          ? sprintf('WHERE id NOT IN (%s)', join(', ', $ids))
+          : ''
+      ))->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper']);
   }
 
   function getByIdCard(int $idCard): ?User {
@@ -53,15 +61,15 @@ class PDOUserRepository extends PDORepository implements UserRepository {
   }
 
   function save(User $user): void {
-    if ($user->getId()) {
-      $this->ensureIsConnected()
-        ->prepare(sprintf('UPDATE %s SET password = ? WHERE id = ?', self::TABLE))
-        ->execute([$user->getPassword(), $user->getId()]);
-
-      return;
-    }
-
     try {
+      if ($user->getId()) {
+        $this->ensureIsConnected()
+          ->prepare(sprintf('UPDATE %s SET password = ?, is_active = ? WHERE id = ?', self::TABLE))
+          ->execute([$user->getPassword(), $user->isActive, $user->getId()]);
+
+        return;
+      }
+
       $query = sprintf(
         <<<SQL
           INSERT INTO %s (

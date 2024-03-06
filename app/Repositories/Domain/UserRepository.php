@@ -15,7 +15,7 @@ interface UserRepository {
    * @return array<int, User>
    * @throws ConnectionException
    */
-  function getAll(): array;
+  function getAll(User ...$exclude): array;
 
   /** @throws ConnectionException */
   function getByIdCard(int $idCard): ?User;

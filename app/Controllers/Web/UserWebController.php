@@ -104,5 +104,18 @@ class UserWebController {
     App::json(App::request()->data);
   }
 
-  static function showUsers(): void {}
+  static function showUsers(): void {
+    $users = App::userRepository()->getAll(App::view()->get('user'));
+    $usersNumber = count($users);
+
+    App::renderPage('users', "Usuarios ($usersNumber)", compact('users'), 'main');
+  }
+
+  static function handleToggleStatus(string $id): void {
+    $user = App::userRepository()->getById((int) $id);
+    $user->isActive = !$user->isActive;
+
+    App::userRepository()->save($user);
+    App::redirect('/usuarios');
+  }
 }

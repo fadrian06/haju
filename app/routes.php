@@ -34,6 +34,8 @@ App::group('', function (): void {
 
   App::group('', function (): void {
     App::route('/usuarios', [UserWebController::class, 'showUsers']);
+    App::route('/usuarios/@id/activar', [UserWebController::class, 'handleToggleStatus']);
+    App::route('/usuarios/@id/desactivar', [UserWebController::class, 'handleToggleStatus']);
 
     App::route('GET /departamentos', [DepartmentWebController::class, 'showDepartments']);
     App::route('POST /departamentos', [DepartmentWebController::class, 'handleRegister']);
