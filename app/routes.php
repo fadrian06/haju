@@ -35,9 +35,11 @@ App::group('', function (): void {
   App::group('', function (): void {
     App::route('/usuarios', [UserWebController::class, 'showUsers']);
 
-    App::route('/departamentos', [DepartmentWebController::class, 'showDepartments']);
-    App::route('/departamentos/@id/editar', [DepartmentWebController::class, 'showEditDepartment']);
-    App::route('/departamentos/registrar', [DepartmentWebController::class, 'showRegister']);
+    App::route('GET /departamentos', [DepartmentWebController::class, 'showDepartments']);
+    App::route('POST /departamentos', [DepartmentWebController::class, 'handleRegister']);
+    App::route('POST /departamentos/@id', [DepartmentWebController::class, 'handleDepartmentEdition']);
+    App::route('/departamentos/@id/activar', [DepartmentWebController::class, 'handleToggleStatus']);
+    App::route('/departamentos/@id/desactivar', [DepartmentWebController::class, 'handleToggleStatus']);
 
     App::route('/configuracion', function (): void {
     });

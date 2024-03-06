@@ -8,6 +8,8 @@ use PDO;
 use PDOException;
 
 abstract class PDORepository {
+  private const DATETIME_FORMAT = 'Y-m-d H:i:s';
+
   protected ?Connection $connection = null;
 
   function setConnection(Connection $connection): void {
@@ -34,6 +36,10 @@ abstract class PDORepository {
   }
 
   protected static function parseDateTime(string $raw): DateTime {
-    return DateTime::createFromFormat('Y-m-d H:i:s', $raw);
+    return DateTime::createFromFormat(self::DATETIME_FORMAT, $raw);
+  }
+
+  protected static function getCurrentDatetime(): string {
+    return date(self::DATETIME_FORMAT);
   }
 }

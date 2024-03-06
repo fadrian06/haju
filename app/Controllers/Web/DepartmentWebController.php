@@ -3,6 +3,8 @@
 namespace App\Controllers\Web;
 
 use App;
+use App\Models\Department;
+use App\Repositories\Exceptions\DuplicatedNamesException;
 
 class DepartmentWebController {
   static function showDepartments(): void {
@@ -11,15 +13,33 @@ class DepartmentWebController {
     App::renderPage('departments', 'Departamentos', compact('departments'), 'main');
   }
 
-  static function showRegister(): void {}
+  static function handleRegister(): void {
+    $data = App::request()->data;
+    $department = new Department($data['name'], $data['is_active'] ?? false);
 
-  static function handleRegister(): void {}
+    App::departmentRepository()->save($department);
+    self::showDepartments();
+  }
 
-  static function activateDepartment(string $id): void {}
+  static function handleToggleStatus(string $id): void {
+    $department = App::departmentRepository()->getById((int) $id);
+    $department->isActive = !$department->isActive;
 
-  static function disactivateDepartment(string $id): void {}
+    App::departmentRepository()->save($department);
+    App::redirect('/departamentos');
+  }
 
-  static function showEditDepartment(string $id): void {}
+  static function handleDepartmentEdition(string $id): void {
+    $departament = App::departmentRepository()->getById((int) $id);
+    $departament->name = App::request()->data['name'];
 
-  static function handleDepartmentEdition(string $id): void {}
+    try {
+      App::departmentRepository()->save($departament);
+      App::session()->set('message', '✔ Departamento actualizado exitósamente');
+    } catch (DuplicatedNamesException) {
+      App::session()->set('error', "❌ Departamento \"{$departament->name}\" ya existe");
+    }
+
+    App::redirect('/departamentos');
+  }
 }

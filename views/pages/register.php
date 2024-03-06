@@ -15,7 +15,7 @@ use App\Models\Role;
     <?php if ($error) : ?>
       <div class="alert alert-danger alert-dismissible fade show">
         <?= $error ?>
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <button class="btn-close" data-bs-dismiss="alert"></button>
       </div>
     <?php endif ?>
     <label class="input-group mb-3">

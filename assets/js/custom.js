@@ -193,9 +193,6 @@ $('.layout_style').click(function () {
   }
 })
 
-$('#sidebar_menu').metisMenu()
-$('#admin_profile_active').metisMenu()
-
 $('.switcher_wrap li.Horizontal').click(() => {
   $('.sidebar').addClass('hide_vertical_menu')
   $('.main_content ').addClass('main_content_padding_hide')

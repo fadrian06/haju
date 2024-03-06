@@ -9,7 +9,7 @@ use PDO;
 use PDOException;
 
 class PDODepartmentRepository extends PDORepository implements DepartmentRepository {
-  private const FIELDS = 'id, name, registered';
+  private const FIELDS = 'id, name, registered, is_active as isActive';
   private const TABLE = 'departments';
 
   function getAll(): array {
@@ -29,13 +29,28 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
 
   function save(Department $department): void {
     try {
-      $query = sprintf('INSERT INTO %s (name) VALUES (?)');
+      if ($department->getId()) {
+        $this->ensureIsConnected()
+          ->prepare(sprintf('UPDATE %s SET name = ?, is_active = ? WHERE id = ?', self::TABLE))
+          ->execute([$department->name, $department->isActive, $department->getId()]);
+
+        return;
+      }
+
+      $query = sprintf(
+        'INSERT INTO %s (name, registered, is_active) VALUES (?, ?, ?)',
+        self::TABLE
+      );
+
+      $date = self::getCurrentDatetime();
 
       $this->ensureIsConnected()
         ->prepare($query)
-        ->execute([$department->name]);
+        ->execute([$department->name, $date, $department->isActive]);
 
-      $department->setId($this->connection->instance()->lastInsertId());
+      $department
+        ->setId($this->connection->instance()->lastInsertId())
+        ->setRegistered(self::parseDateTime($date));
     } catch (PDOException $exception) {
       if (str_contains($exception, 'UNIQUE constraint failed: departments.name')) {
         throw new DuplicatedNamesException("Department \"{$department->name}\" already exists");
@@ -48,11 +63,16 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
   private static function mapper(
     int $id,
     string $name,
-    string $registered
+    string $registered,
+    bool $isActive
   ): Department {
-    return (new Department(
+    $department = new Department(
       $name,
-      self::parseDateTime($registered)
-    ))->setId($id);
+      $isActive
+    );
+
+    $department->setId($id)->setRegistered(self::parseDateTime($registered));
+
+    return $department;
   }
 }
