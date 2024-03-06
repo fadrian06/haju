@@ -166,6 +166,20 @@ textarea {
   border-bottom: initial !important;
 }
 
+.QA_section .QA_table tbody td {
+  border-bottom: initial;
+}
+
+.table-hover > tbody > tr:hover > *:first-child {
+  border-radius: var(--bs-border-radius-pill) 0 0 var(--bs-border-radius-pill);
+}
+
+.table-hover > tbody > tr:hover > *:last-child {
+  border-radius: 0 var(--bs-border-radius-pill) var(--bs-border-radius-pill) 0;
+}
+
+
+
 @media only screen and (min-width:992px) and (max-width:1200px) {
   .profile-info__main {
     border-bottom: unset;

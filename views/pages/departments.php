@@ -28,7 +28,7 @@ use App\Models\User;
     </form>
   </header>
   <div class="QA_table table-responsive">
-    <table class="table text-center">
+    <table class="table text-center table-hover">
       <thead>
         <tr>
           <th>#</th>

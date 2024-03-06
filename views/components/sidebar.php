@@ -1,3 +1,12 @@
+<?php
+
+use App\Models\User;
+use App\Models\Role;
+
+/** @var User $user */
+
+?>
+
 <aside class="sidebar">
   <header class="logo m-0 d-flex align-items-center justify-content-between">
     <img src="<?= asset('img/logo.png') ?>" height="59" />
@@ -15,11 +24,13 @@
         <span>Inicio</span>
       </a>
     </li>
+    <?php if ($user->role === Role::Director): ?>
     <li class="<?= isActive('/departamentos') ? 'mm-active' : '' ?>">
       <a href="<?= route('/departamentos') ?>">
         <img src="<?= asset('img/icons/hospital.svg') ?>" />
         <span>Departamentos</span>
       </a>
     </li>
+    <?php endif ?>
   </menu>
 </aside>
