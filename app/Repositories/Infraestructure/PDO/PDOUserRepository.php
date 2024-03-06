@@ -23,7 +23,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
   private const FIELDS = <<<SQL_FIELDS
   id, first_name as firstName, last_name as lastName,
   birth_date as birthDateTimestamp, gender, role, prefix, id_card as idCard,
-  password, phone, email, address, avatar, registered
+  password, phone, email, address, avatar, registered, is_active as isActive
   SQL_FIELDS;
 
   private const TABLE = 'users';
@@ -66,11 +66,13 @@ class PDOUserRepository extends PDORepository implements UserRepository {
         <<<SQL
           INSERT INTO %s (
             first_name, last_name, birth_date, gender, role, prefix, id_card,
-            password, phone, email, address, avatar
-          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            password, phone, email, address, avatar, registered
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         SQL,
         self::TABLE
       );
+
+      $datetime = date('Y-m-d H:i:s');
 
       $this->ensureIsConnected()
         ->prepare($query)
@@ -86,10 +88,12 @@ class PDOUserRepository extends PDORepository implements UserRepository {
           $user->phone,
           $user->email?->asString(),
           $user->address,
-          $user->avatar?->asString()
+          $user->avatar?->asString(),
+          $datetime
         ]);
 
-      $user->setId($this->connection->instance()->lastInsertId());
+      $user->setId($this->connection->instance()->lastInsertId())
+        ->setRegistered(self::parseDateTime($datetime));
     } catch (PDOException $exception) {
       if (str_contains($exception, 'UNIQUE constraint failed: users.id_card')) {
         throw new DuplicatedIdCardException("ID card \"{$user->idCard}\" already exists");
@@ -129,9 +133,10 @@ class PDOUserRepository extends PDORepository implements UserRepository {
     ?string $email,
     ?string $address,
     ?string $avatar,
-    ?string $registered
+    string $registered,
+    bool $isActive
   ): User {
-    return (new User(
+    $user = new User(
       $firstName,
       $lastName,
       Date::fromTimestamp($birthDateTimestamp),
@@ -144,7 +149,11 @@ class PDOUserRepository extends PDORepository implements UserRepository {
       $email ? new Email($email) : null,
       $address ?: null,
       $avatar ? new Url($avatar) : null,
-      self::parseDateTime($registered)
-    ))->setId($id);
+      $isActive
+    );
+
+    $user->setId($id)->setRegistered(self::parseDateTime($registered));
+
+    return $user;
   }
 }

@@ -32,7 +32,7 @@ class User extends Model {
     public readonly ?Email $email = null,
     public readonly ?string $address = null,
     public readonly ?Url $avatar = null,
-    public readonly ?DateTime $registered = null
+    public readonly bool $isActive = true
   ) {
     $this->setPassword($password);
   }

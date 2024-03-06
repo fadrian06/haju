@@ -14,6 +14,7 @@ CREATE TABLE users (
   address TEXT,
   avatar VARCHAR(255) UNIQUE,
   registered DATETIME DEFAULT CURRENT_TIMESTAMP,
+  is_active BOOL DEFAULT true,
 
   UNIQUE(first_name, last_name)
 );
@@ -22,7 +23,8 @@ DROP TABLE IF EXISTS departments;
 CREATE TABLE departments (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name VARCHAR(30) NOT NULL UNIQUE,
-  registered DATETIME DEFAULT CURRENT_TIMESTAMP
+  registered DATETIME DEFAULT CURRENT_TIMESTAMP,
+  is_active BOOL DEFAULT true
 );
 
 DROP TABLE IF EXISTS department_asignations;

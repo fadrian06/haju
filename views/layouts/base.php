@@ -44,7 +44,7 @@
     </div>
   </main>
   <?php render('components/footer') ?>
-  <script src="<?= asset('vendors/bootstrap/bootstrap.min.js') ?>"></script>
+  <script src="<?= asset('vendors/bootstrap/bootstrap.bundle.min.js') ?>"></script>
 </body>
 
 </html>
