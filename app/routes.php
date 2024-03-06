@@ -36,6 +36,8 @@ App::group('', function (): void {
     App::route('/usuarios', [UserWebController::class, 'showUsers']);
 
     App::route('/departamentos', [DepartmentWebController::class, 'showDepartments']);
+    App::route('/departamentos/@id/editar', [DepartmentWebController::class, 'showEditDepartment']);
+    App::route('/departamentos/registrar', [DepartmentWebController::class, 'showRegister']);
 
     App::route('/configuracion', function (): void {
     });

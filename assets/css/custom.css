@@ -141,6 +141,31 @@ textarea {
   transform: scale(1.025) rotate(-1deg);
 }
 
+.custom-badge {
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 12px;
+  min-width: 95px;
+  padding: 1px 10px;
+  text-align: center;
+}
+
+.status-green, .status-green {
+  background-color: #e5faf3;
+  border: 1px solid #00ce7c;
+  color: #00ce7c;
+}
+
+.status-red, .status-red {
+  background-color: #ffe5e6;
+  border: 1px solid #fe0000;
+  color: #fe0000;
+}
+
+.QA_section .QA_table thead th {
+  border-bottom: initial !important;
+}
+
 @media only screen and (min-width:992px) and (max-width:1200px) {
   .profile-info__main {
     border-bottom: unset;

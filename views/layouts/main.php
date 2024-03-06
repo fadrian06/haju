@@ -33,7 +33,7 @@
   <script src="<?= asset('vendors/count_up/jquery.counterup.min.js') ?>"></script>
   <script src="<?= asset('vendors/count_up/jquery.waypoints.min.js') ?>"></script>
   <script src="<?= asset('vendors/metismenu/metisMenu.min.js') ?>"></script>
-  <script src="<?= asset('vendors/bootstrap/bootstrap.min.js') ?>"></script>
+  <script src="<?= asset('vendors/bootstrap/bootstrap.bundle.min.js') ?>"></script>
   <script src="<?= asset('js/custom.js') ?>"></script>
 </body>
 

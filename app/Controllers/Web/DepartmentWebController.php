@@ -15,11 +15,11 @@ class DepartmentWebController {
 
   static function handleRegister(): void {}
 
-  static function activateDepartment(): void {}
+  static function activateDepartment(string $id): void {}
 
-  static function disactivateDepartment(): void {}
+  static function disactivateDepartment(string $id): void {}
 
-  static function showEditDepartment(): void {}
+  static function showEditDepartment(string $id): void {}
 
-  static function handleDepartmentEdition(): void {}
+  static function handleDepartmentEdition(string $id): void {}
 }

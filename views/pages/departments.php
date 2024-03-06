@@ -1,30 +1,64 @@
 <?php
-  /** @var array<int, App\Models\Department> $departments */
+
+use App\Models\Department;
+use App\Models\User;
+
+/**
+ * @var array<int, Department> $departments
+ * @var User $user
+ */
+
 ?>
 
-<table class="table table-bordered table-striped">
-  <caption align="top" class="h3">Departamentos</caption>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nombre</th>
-      <th>Fecha de registro</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($departments as $department): ?>
-      <tr>
-        <td><?= $department->getId() ?></td>
-        <td><?= $department->name ?></td>
-        <td><?= $department->registered->format('Y/m/d') ?></td>
-        <td class="d-flex align-items-center">
-          <a href="#" class="ti-pencil-alt fs-4" title="Editar"></a>
-          <div class="form-check form-switch fs-4 ms-2">
-            <input type="checkbox" class="form-check-input" />
-          </div>
-        </td>
-      </tr>
-    <?php endforeach ?>
-  </tbody>
+<section class="mb-4 d-flex px-0 align-items-center justify-content-between">
+  <h2>Departamentos</h2>
+  <a href="<?= route('/departamentos/registrar') ?>" class="btn btn-primary rounded-pill d-flex align-items-center">
+    <i class="px-2 ti-plus"></i>
+    <span class="px-2">Añadir departamento</span>
+  </a>
+</section>
 
-</table>
+<section class="white_box QA_section">
+  <header class="list_header serach_field-area2 w-100">
+    <form class="search_inner w-100">
+      <input type="search" placeholder="Buscar por nombre...">
+      <button>
+        <i class="ti-search fs-2"></i>
+      </button>
+    </form>
+  </header>
+  <div class="QA_table table-responsive">
+    <table class="table text-center">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre del departamento</th>
+          <th>Fecha de registro</th>
+          <th>Estado</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($departments as $department) : ?>
+          <tr>
+            <td><?= $department->getId() ?></td>
+            <td><?= $department->name ?></td>
+            <td><?= $department->registered->format('d/m/Y') ?></td>
+            <td>
+              <?php if (/*$department->isActive*/rand(0, 1)) : ?>
+                <span class="custom-badge status-green">Activo</span>
+              <?php else : ?>
+                <span class="custom-badge status-red">Inactivo</span>
+              <?php endif ?>
+            </td>
+            <td>
+              <a class="btn btn-primary text-white" href="<?= route('/departamentos/@id/editar', ['id' => $department->getId()]) ?>">
+                Editar
+              </a>
+            </td>
+          </tr>
+        <?php endforeach ?>
+      </tbody>
+    </table>
+  </div>
+</section>
