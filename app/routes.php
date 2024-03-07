@@ -33,7 +33,8 @@ App::group('', function (): void {
   });
 
   App::group('', function (): void {
-    App::route('/usuarios', [UserWebController::class, 'showUsers']);
+    App::route('GET /usuarios', [UserWebController::class, 'showUsers']);
+    App::route('POST /usuarios', [UserWebController::class, 'handleRegister']);
     App::route('/usuarios/@id/activar', [UserWebController::class, 'handleToggleStatus']);
     App::route('/usuarios/@id/desactivar', [UserWebController::class, 'handleToggleStatus']);
 

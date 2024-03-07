@@ -26,12 +26,22 @@ class UserWebController {
   static function handleRegister(): void {
     $data = App::request()->data;
 
+    $loggedUser = App::view()->get('user');
+
+    assert($loggedUser === null || $loggedUser instanceof User);
+
+    [$role, $urlToRedirect, $urlWhenFail] = match (true) {
+      !$loggedUser => [Role::Director, '/ingresar', '/registrate'],
+      $loggedUser->role === Role::Director => [Role::Coordinator, '/usuarios', '/usuarios'],
+      $loggedUser->role === Role::Coordinator => [Role::Secretary, '/usuarios', '/usuarios']
+    };
+
     $user = new User(
       $data['first_name'],
       $data['last_name'],
       Date::from($data['birth_date'], '-'),
       Gender::from($data['gender']),
-      Role::Director,
+      $role,
       $data['prefix'] ? ProfessionPrefix::from($data['prefix']) : null,
       (int) $data['id_card'],
       $data['password'],
@@ -44,7 +54,7 @@ class UserWebController {
     try {
       App::userRepository()->save($user);
       App::session()->set('message', '✔ Usuario registrado exitósamente');
-      App::redirect('/ingresar');
+      App::redirect($urlToRedirect);
 
       return;
     } catch (DuplicatedNamesException) {
@@ -59,7 +69,7 @@ class UserWebController {
       App::session()->set('error', "❌ URL inválida \"{$data['avatar']}\"");
     }
 
-    App::redirect('/registrate');
+    App::redirect($urlWhenFail);
   }
 
   static function showPasswordReset(): void {

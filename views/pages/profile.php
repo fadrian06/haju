@@ -25,15 +25,27 @@
   <ul class="profile-info__secondary col-md-6">
     <li>
       <strong>Teléfono:</strong>
-      <a href="tel:+<?= $user->phone->toValidPhoneLink() ?>"><?= $user->phone ?></a>
+      <?php if ($user->phone) : ?>
+        <a href="tel:+<?= $user->phone?->toValidPhoneLink() ?>"><?= $user->phone ?></a>
+      <?php else : ?>
+        <mark class="text-danger">No registrado</mark>
+      <?php endif ?>
     </li>
     <li>
       <strong>Correo:</strong>
-      <a href="mailto:<?= $user->email->asString() ?>"><?= $user->email->asString() ?></a>
+      <?php if ($user->email) : ?>
+        <a href="mailto:<?= $user->email?->asString() ?>"><?= $user->email?->asString() ?></a>
+      <?php else : ?>
+        <mark class="text-danger">No registrado</mark>
+      <?php endif ?>
     </li>
     <li>
       <strong>Dirección:</strong>
-      <span><?= $user->address ?></span>
+      <?php if ($user->address) : ?>
+        <span><?= $user->address ?></span>
+      <?php else : ?>
+        <mark class="text-danger">No registrado</mark>
+      <?php endif ?>
     </li>
     <li>
       <strong>Género:</strong>
