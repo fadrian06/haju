@@ -7,6 +7,10 @@ body.modal-open {
   padding-right: 0 !important;
 }
 
+.input-group {
+  height: 52.5px;
+}
+
 .input-group>.form-control {
   flex: 1;
 }
