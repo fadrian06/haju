@@ -20,7 +20,7 @@
     "dev:win": "start php -S localhost:80",
     "db:install": "php app/commands/db-install.php",
     "test": "phpunit",
-    "deploy": "composer install --no-dev & composer archive",
+    "deploy": "composer install --no-dev -o & composer archive",
     "post-install-cmd": [
       "php -r \"if (!file_exists('.env.php')) copy('.env.dist.php', '.env.php');\""
     ]
@@ -40,7 +40,13 @@
       "haju.sublime-*",
       "phpunit.xml",
       "README.md",
-      "composer.*"
+      "composer.*",
+      "node_modules",
+      "biome.json",
+      "package.json",
+      "pnpm-*",
+      "*.db",
+      "*.sqlite"
     ]
   }
 }

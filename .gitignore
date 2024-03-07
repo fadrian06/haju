@@ -16,6 +16,7 @@ vendor
 !*.min.css
 !*.min.js
 !assets/css/theme.css
+HAJU-*
 
 # IDE
 .vscode/*
