@@ -59,9 +59,9 @@
   <ul class="nav nav-tabs row mx-0 px-0 mt-4">
     <li class="nav-item col px-0">
       <div class="row mx-0">
-        <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#about-cont">
+        <!-- <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#about-cont">
           Acerca de
-        </button>
+        </button> -->
         <button class="nav-link col-sm px-0 active" data-bs-toggle="tab" data-bs-target="#security-cont">
           Seguridad
         </button>
@@ -70,7 +70,7 @@
   </ul>
 </article>
 <section class="tab-content mt-4 px-0">
-  <article class="tab-pane fade" id="about-cont">
+  <!-- <article class="tab-pane fade" id="about-cont">
     <div class="row mx-0">
       <article class="col-md px-0 pe-md-2">
         <div class="white_box">
@@ -104,7 +104,7 @@
         </div>
       </article>
     </div>
-  </article>
+  </article> -->
   <section class="tab-pane fade show active row px-2" id="security-cont">
     <form method="post" class="col-md-6 white_box">
       <h3 class="mb-4">Cambiar contraseña</h3>

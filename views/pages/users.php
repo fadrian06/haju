@@ -34,7 +34,9 @@ use App\Models\User;
             </a>
           </div>
         </div>
-        <img class="img-fluid p-3 rounded-circle" src="<?= $user->avatar?->asString() ?? asset('img/user.jpg') ?>" />
+        <picture class="p-3">
+          <img class="img-fluid rounded-circle" src="<?= $user->avatar?->asString() ?? asset('img/user.jpg') ?>" />
+        </picture>
         <span class="custom-badge status-<?= $user->isActive ? 'green' : 'red' ?> mx-4 mb-2">
           <?= $user->isActive ? 'Activo' : 'Inactivo' ?>
         </span>
@@ -42,7 +44,7 @@ use App\Models\User;
         <span><?= $user->role->value ?></span>
         <small class="text-muted">
           <i class="ti-pin2"></i>
-          <?= $user->address ?>
+          <?= $user->address ?? '<mark class="text-danger">Dirección no proporcionada</mark>' ?>
         </small>
       </article>
     </li>
