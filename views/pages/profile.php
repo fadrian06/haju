@@ -4,7 +4,7 @@
 ?>
 
 <section class="mb-4 d-flex px-0 align-items-center justify-content-between">
-  <h2>Mi perfil</h2>
+  <h2 class="m-0">Mi perfil</h2>
   <a href="<?= route('/perfil/editar') ?>" class="btn btn-primary rounded-pill d-flex align-items-center">
     <i class="px-2 ti-plus"></i>
     <span class="px-2">Editar perfil</span>
@@ -12,7 +12,7 @@
 </section>
 <article class="white_box px-0 pb-0 row align-items-center">
   <picture class="col-md-3 d-flex align-items-center justify-content-center mb-2 mb-md-0">
-    <img class="img-fluid rounded-circle" src="<?= $user->avatar?->asString() ?? asset('img/client_img.png') ?>" />
+    <img style="max-height: 150px" class="img-fluid rounded-circle" src="<?= $user->avatar?->asString() ?? asset('img/client_img.png') ?>" />
   </picture>
   <div class="profile-info col-md align-items-center">
     <header class="profile-info__main py-2 py-md-0 my-2 my-md-0 d-flex flex-column">

@@ -26,27 +26,29 @@ use App\Models\Role;
         <span>Inicio</span>
       </a>
     </li>
-    <?php if ($user->role === Role::Director) : ?>
-      <li class="<?= isActive('/departamentos') ? 'mm-active' : '' ?>">
-        <a href="#" class="has-arrow">
-          <img src="<?= asset('img/icons/hospital.svg') ?>" />
-          <span>Departamentos</span>
-        </a>
-        <ul>
-          <li>
-            <a href="<?= route('/departamentos') ?>">
-              <i class="ti-list"></i>
-              Listado
-            </a>
-          </li>
-          <li>
-            <a href="<?= route('/departamentos') ?>#registrar" <?= isActive('/departamentos') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
-              <i class="ti-plus"></i>
-              Registrar
-            </a>
-          </li>
-        </ul>
-      </li>
+    <?php if ($user->role->isHigherThan(Role::Coordinator)) : ?>
+      <?php if ($user->role === Role::Director) : ?>
+        <li class="<?= isActive('/departamentos') ? 'mm-active' : '' ?>">
+          <a href="#" class="has-arrow">
+            <img src="<?= asset('img/icons/hospital.svg') ?>" />
+            <span>Departamentos</span>
+          </a>
+          <ul>
+            <li>
+              <a href="<?= route('/departamentos') ?>">
+                <i class="ti-list"></i>
+                Listado
+              </a>
+            </li>
+            <li>
+              <a href="<?= route('/departamentos') ?>#registrar" <?= isActive('/departamentos') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
+                <i class="ti-plus"></i>
+                Registrar
+              </a>
+            </li>
+          </ul>
+        </li>
+      <?php endif ?>
       <li class="<?= isActive('/usuarios') ? 'mm-active' : '' ?>">
         <a href="#" class="has-arrow">
           <img src="<?= asset('img/icons/users.svg') ?>" />

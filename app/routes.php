@@ -41,13 +41,15 @@ App::group('', function (): void {
     App::route('/usuarios/@id/activar', [UserWebController::class, 'handleToggleStatus']);
     App::route('/usuarios/@id/desactivar', [UserWebController::class, 'handleToggleStatus']);
 
-    App::route('GET /departamentos', [DepartmentWebController::class, 'showDepartments']);
-    App::route('POST /departamentos', [DepartmentWebController::class, 'handleRegister']);
-    App::route('POST /departamentos/@id', [DepartmentWebController::class, 'handleDepartmentEdition']);
-    App::route('/departamentos/@id/activar', [DepartmentWebController::class, 'handleToggleStatus']);
-    App::route('/departamentos/@id/desactivar', [DepartmentWebController::class, 'handleToggleStatus']);
+    App::group('', function (): void {
+      App::route('GET /departamentos', [DepartmentWebController::class, 'showDepartments']);
+      App::route('POST /departamentos', [DepartmentWebController::class, 'handleRegister']);
+      App::route('POST /departamentos/@id', [DepartmentWebController::class, 'handleDepartmentEdition']);
+      App::route('/departamentos/@id/activar', [DepartmentWebController::class, 'handleToggleStatus']);
+      App::route('/departamentos/@id/desactivar', [DepartmentWebController::class, 'handleToggleStatus']);
 
-    App::route('/configuracion', function (): void {
-    });
-  }, [new AuthorizationMiddleware(Role::Director)]);
+      App::route('/configuracion', function (): void {
+      });
+    }, [new AuthorizationMiddleware(Role::Director)]);
+  }, [new AuthorizationMiddleware(Role::Coordinator)]);
 }, [AuthenticationMiddleware::class, MessagesMiddleware::class]);

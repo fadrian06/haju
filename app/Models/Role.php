@@ -14,4 +14,16 @@ enum Role: string {
       $gender === Gender::Female ? 'a' : ''
     );
   }
+
+  function isHigherThan(Role $role): bool {
+    return $this->getLevel() >= $role->getLevel();
+  }
+
+  function getLevel(): int {
+    return match ($this) {
+      self::Director => 3,
+      self::Coordinator => 2,
+      self::Secretary => 1
+    };
+  }
 }

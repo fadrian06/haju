@@ -115,10 +115,18 @@ class UserWebController {
   }
 
   static function showUsers(): void {
-    $users = App::userRepository()->getAll(App::view()->get('user'));
-    $usersNumber = count($users);
+    $loggedUser = App::view()->get('user');
+    $users = App::userRepository()->getAll($loggedUser);
 
-    App::renderPage('users', "Usuarios ($usersNumber)", compact('users'), 'main');
+    assert($loggedUser instanceof User);
+
+    $filteredUsers = array_filter($users, function (User $user) use ($loggedUser): bool {
+      return $user->role->getLevel() <= $loggedUser->role->getLevel();
+    });
+
+    $usersNumber = count($filteredUsers);
+
+    App::renderPage('users', "Usuarios ($usersNumber)", ['users' => $filteredUsers], 'main');
   }
 
   static function handleToggleStatus(string $id): void {
