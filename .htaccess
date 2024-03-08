@@ -1,4 +1,43 @@
+Options All -Indexes
+
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php [QSA,L]
+
+ErrorDocument 403 /proyectos/haju/
+
+<Files .*>
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+<Files *.json>
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+<Files *.lock>
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+<Files *.sublime-*>
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+<Files *.xml>
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+<Files *.yaml>
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+<Files *.db>
+  Order Allow,Deny
+  Deny from all
+</Files>
