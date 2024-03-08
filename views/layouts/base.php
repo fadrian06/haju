@@ -25,9 +25,11 @@
     <img src="<?= asset('img/logo.png') ?>" height="45" />
     <nav class="header_right">
       <ul class="header_notification_warp d-flex align-items-center mx-0">
-        <li class="d-none d-md-block">
-          <a href="<?= route('/ingresar') ?>">Iniciar sesión</a>
-        </li>
+        <?php if (!isActive('/ingresar')) : ?>
+          <li class="d-none d-md-block">
+            <a href="<?= route('/ingresar') ?>">Iniciar sesión</a>
+          </li>
+        <?php endif ?>
         <?php if ($showRegister) : ?>
           <li class="d-none d-md-block">
             <a href="<?= route('/registrate') ?>">Regístrate</a>
