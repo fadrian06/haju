@@ -3,8 +3,9 @@
 namespace App\Controllers\Web;
 
 use App;
+use Error;
 
-class SessionWebController {
+class SessionWebController extends Controller {
   static function logOut(): void {
     App::session()->destroy();
     App::redirect('/ingresar');
@@ -24,14 +25,23 @@ class SessionWebController {
   static function handleLogin(): void {
     $user = App::userRepository()->getByIdCard((int) App::request()->data['id_card']);
 
-    if (!$user?->checkPassword(App::request()->data['password'])) {
-      App::session()->set('error', '❌ Cédula o contraseña incorrecta');
-      App::redirect('/ingresar');
+    try {
+      if (!$user?->checkPassword(App::request()->data['password'])) {
+        throw new Error('Cédula o contraseña incorrecta');
+      }
+
+      if (!$user->isActive) {
+        throw new Error('Este usuario se encuentra desactivado');
+      }
+
+      App::session()->set('userId', $user->getId());
+      App::redirect('/');
 
       return;
+    } catch (Error $error) {
+      self::setError($error->getMessage());
     }
 
-    App::session()->set('userId', $user->getId());
-    App::redirect('/');
+    App::redirect('/ingresar');
   }
 }
