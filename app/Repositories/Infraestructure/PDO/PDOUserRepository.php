@@ -64,8 +64,25 @@ class PDOUserRepository extends PDORepository implements UserRepository {
     try {
       if ($user->getId()) {
         $this->ensureIsConnected()
-          ->prepare(sprintf('UPDATE %s SET password = ?, is_active = ? WHERE id = ?', self::TABLE))
-          ->execute([$user->getPassword(), $user->isActive, $user->getId()]);
+          ->prepare(sprintf(
+            <<<SQL
+              UPDATE %s SET first_name = ?, last_name = ?, birth_date = ?,
+              gender = ?, phone = ?, email = ?, address = ?, password = ?,
+              is_active = ? WHERE id = ?
+            SQL,
+            self::TABLE
+          ))
+          ->execute([
+            $user->firstName,
+            $user->lastName,
+            $user->birthDate->timestamp,
+            $user->gender->value,
+            $user->phone,
+            $user->email?->asString(),
+            $user->address,
+            $user->getPassword(),
+            $user->isActive, $user->getId()
+          ]);
 
         return;
       }

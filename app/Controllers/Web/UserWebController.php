@@ -12,12 +12,13 @@ use App\Models\Role;
 use App\Models\User;
 use App\Repositories\Exceptions\DuplicatedIdCardException;
 use App\Repositories\Exceptions\DuplicatedNamesException;
+use Error;
 use PharIo\Manifest\Email;
 use PharIo\Manifest\InvalidEmailException;
 use PharIo\Manifest\InvalidUrlException;
 use PharIo\Manifest\Url;
 
-class UserWebController {
+class UserWebController extends Controller {
   static function showRegister(): void {
     App::render('pages/register', [], 'content');
     App::render('layouts/base', ['title' => 'Regístrate']);
@@ -111,7 +112,22 @@ class UserWebController {
   }
 
   static function handleEditProfile(): void {
-    App::json(App::request()->data);
+    $loggedUser = App::view()->get('user');
+    $data = App::request()->data;
+
+    assert($loggedUser instanceof User);
+
+    $loggedUser->firstName = $data['first_name'];
+    $loggedUser->lastName = $data['last_name'];
+    $loggedUser->address = $data['address'];
+    $loggedUser->birthDate = Date::from($data['birth_date'], '-');
+    $loggedUser->gender = Gender::from($data['gender']);
+    $loggedUser->email = $data['email'] ? new Email($data['email']) : null;
+    $loggedUser->phone = $data['phone'] ? new Phone($data['phone']) : null;
+
+    App::userRepository()->save($loggedUser);
+    self::setMessage('Perfil actualizado exitósamente');
+    App::redirect('/perfil/editar');
   }
 
   static function showUsers(): void {
@@ -135,5 +151,34 @@ class UserWebController {
 
     App::userRepository()->save($user);
     App::redirect('/usuarios');
+  }
+
+  static function handlePasswordChange(): void {
+    $loggedUser = App::view()->get('user');
+    $data = App::request()->data;
+
+    assert($loggedUser instanceof User);
+
+    try {
+      if (!$loggedUser->checkPassword($data['old_password'])) {
+        throw new Error('La contraseña anterior es incorrecta');
+      }
+
+      if ($data['new_password'] !== $data['confirm_password']) {
+        throw new Error('La nueva contraseña y su confirmación no coinciden');
+      }
+
+      if ($data['new_password'] === $data['old_password']) {
+        throw new Error('La nueva contraseña no puede ser igual a la anterior');
+      }
+
+      $loggedUser->setPassword($data['new_password']);
+      App::userRepository()->save($loggedUser);
+      self::setMessage('Contraseña actualizada exitósamente');
+    } catch (Error $error) {
+      self::setError($error->getMessage());
+    }
+
+    App::redirect('/perfil');
   }
 }

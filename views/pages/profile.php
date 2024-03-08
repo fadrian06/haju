@@ -1,6 +1,13 @@
 <?php
 
-/** @var App\Models\User $user */
+use App\Models\User;
+
+/**
+ * @var User $user
+ * @var ?string $error
+ * @var ?string $message
+ */
+
 ?>
 
 <section class="mb-4 d-flex px-0 align-items-center justify-content-between">
@@ -62,7 +69,7 @@
         <!-- <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#about-cont">
           Acerca de
         </button> -->
-        <button class="nav-link col-sm px-0 active" data-bs-toggle="tab" data-bs-target="#security-cont">
+        <button class="nav-link col-sm px-0 active" data-bs-toggle="tab" data-bs-target="#seguridad">
           Seguridad
         </button>
       </div>
@@ -105,20 +112,22 @@
       </article>
     </div>
   </article> -->
-  <section class="tab-pane fade show active row px-2" id="security-cont">
-    <form method="post" class="col-md-6 white_box">
+  <section class="tab-pane fade show active row px-2" id="seguridad">
+    <form method="post" action="<?= route('/perfil') ?>#seguridad" class="col-md-6 white_box">
       <h3 class="mb-4">Cambiar contraseña</h3>
+      <?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
+      <?php $error && render('components/notification', ['type' => 'error', 'text' => $error]) ?>
       <div class="form-floating mb-3">
-        <input type="password" name="old_password" id="old-password" required placeholder="Contraseña anterior" class="form-control" />
-        <label for="old-password">Contraseña anterior</label>
+        <input type="password" name="old_password" id="old_password" required placeholder="Contraseña anterior" class="form-control" />
+        <label for="old_password">Contraseña anterior</label>
       </div>
       <div class="form-floating mb-3">
-        <input type="password" name="new_password" id="new-password" required placeholder="Nueva contraseña" class="form-control" />
-        <label for="new-password">Nueva contraseña</label>
+        <input type="password" name="new_password" id="new_password" required placeholder="Nueva contraseña" class="form-control" />
+        <label for="new_password">Nueva contraseña</label>
       </div>
       <div class="form-floating mb-3">
-        <input type="password" name="confirm_password" id="confirm-password" required placeholder="Confirmar contraseña" class="form-control" />
-        <label for="confirm-password">Confirmar contraseña</label>
+        <input type="password" name="confirm_password" id="confirm_password" required placeholder="Confirmar contraseña" class="form-control" />
+        <label for="confirm_password">Confirmar contraseña</label>
       </div>
       <div class="text-center">
         <button class="btn btn-primary rounded-pill">Actualizar</button>

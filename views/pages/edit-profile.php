@@ -3,7 +3,11 @@
 use App\Models\Gender;
 use App\Models\User;
 
-/** @var User $user */
+/**
+ * @var User $user
+ * @var ?string $error
+ * @var ?string $message
+ */
 
 ?>
 
@@ -16,6 +20,8 @@ use App\Models\User;
 </section>
 <form method="post" enctype="multipart/form-data" class="d-flex px-0 flex-column align-items-center">
   <section class="white_box">
+    <?php $error && render('components/notification', ['type' => 'error', 'text' => $error]) ?>
+    <?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
     <h3>Información básica</h3>
     <div class="row mt-4">
       <!-- <label class="col-md-3 pe-0 position-relative pointer">

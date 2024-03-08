@@ -28,7 +28,8 @@ App::group('', function (): void {
 
 App::group('', function (): void {
   App::route('/', [HomeWebController::class, 'index']);
-  App::route('/perfil', [UserWebController::class, 'showProfile']);
+  App::route('GET /perfil', [UserWebController::class, 'showProfile']);
+  App::route('POST /perfil', [UserWebController::class, 'handlePasswordChange']);
   App::route('GET /perfil/editar', [UserWebController::class, 'showEditProfile']);
   App::route('POST /perfil/editar', [UserWebController::class, 'handleEditProfile']);
 

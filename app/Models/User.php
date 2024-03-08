@@ -20,18 +20,18 @@ class User extends Model {
    * @throws InvalidDateException
    */
   function __construct(
-    public readonly string $firstName,
-    public readonly string $lastName,
-    public readonly Date $birthDate,
-    public readonly Gender $gender,
+    public string $firstName,
+    public string $lastName,
+    public Date $birthDate,
+    public Gender $gender,
     public readonly Role $role,
     public ?ProfessionPrefix $prefix,
-    public readonly int $idCard,
+    public int $idCard,
     string $password,
-    public readonly ?Phone $phone = null,
-    public readonly ?Email $email = null,
-    public readonly ?string $address = null,
-    public readonly ?Url $avatar = null,
+    public ?Phone $phone = null,
+    public ?Email $email = null,
+    public ?string $address = null,
+    public ?Url $avatar = null,
     public bool $isActive = true
   ) {
     $this->setPassword($password);
