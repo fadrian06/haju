@@ -6,6 +6,7 @@ use App\Controllers\Web\SessionWebController;
 use App\Controllers\Web\UserWebController;
 use App\Middlewares\AuthenticationMiddleware;
 use App\Middlewares\AuthorizationMiddleware;
+use App\Middlewares\EnsureOnlyAcceptOneDirector;
 use App\Middlewares\MessagesMiddleware;
 use App\Models\Role;
 
@@ -16,11 +17,13 @@ App::group('', function (): void {
   App::route('/salir', [SessionWebController::class, 'logOut']);
   App::route('GET /ingresar', [SessionWebController::class, 'showLogin']);
   App::route('POST /ingresar', [SessionWebController::class, 'handleLogin']);
-
-  App::route('GET /registrate', [UserWebController::class, 'showRegister']);
-  App::route('POST /registrate', [UserWebController::class, 'handleRegister']);
   App::route('GET /recuperar', [UserWebController::class, 'showPasswordReset']);
   App::route('POST /recuperar', [UserWebController::class, 'handlePasswordReset']);
+
+  App::group('', function (): void {
+    App::route('GET /registrate', [UserWebController::class, 'showRegister']);
+    App::route('POST /registrate', [UserWebController::class, 'handleRegister']);
+  }, [EnsureOnlyAcceptOneDirector::class]);
 }, [MessagesMiddleware::class]);
 
 App::group('', function (): void {
