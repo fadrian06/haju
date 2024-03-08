@@ -23,7 +23,7 @@
 
 <body>
   <?php render('components/sidebar') ?>
-  <section class="main_content pb-4">
+  <section class="main_content pb-4" style="min-height: 100vh !important; display: grid; grid-template-rows: auto 1fr auto">
     <?php render('components/header') ?>
     <div class="main_content_iner row justify-content-center m-0 p-4">
       <?= $content ?>
