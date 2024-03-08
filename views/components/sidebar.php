@@ -9,7 +9,7 @@ use App\Models\Role;
 
 <aside class="sidebar">
   <header class="logo m-0 d-flex align-items-center justify-content-between">
-    <picture>
+    <picture class="p-2">
       <img class="img-fluid" src="<?= asset('img/logo.png') ?>" />
     </picture>
     <div class="sidebar_close_icon d-flex align-items-center d-lg-none">

@@ -1,6 +1,7 @@
 <?php
 
 /** @var App\Models\User $user */
+
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title><?= $title ?> - HAJU</title>
   <?php render('components/open-graph-metas') ?>
-  <link rel="icon" href="<?= asset('img/favicon.png') ?>" type="image/png" />
+  <link rel="icon" href="<?= asset('img/logo-mini.png') ?>" />
   <link rel="stylesheet" href="<?= asset('fonts/fonts.css') ?>" />
   <link rel="stylesheet" href="<?= asset('vendors/metismenu/metisMenu.min.css') ?>" />
   <link rel="stylesheet" href="<?= asset('vendors/bootstrap/bootstrap.min.css') ?>" />
