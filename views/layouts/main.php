@@ -19,11 +19,20 @@
   <link rel="stylesheet" href="<?= asset('vendors/themefy_icon/themify-icons.css') ?>" />
   <link rel="stylesheet" href="<?= asset('css/theme.css') ?>" />
   <link rel="stylesheet" href="<?= asset('css/custom.css') ?>" />
+  <style>
+    .main_content {
+      min-height: 100vh !important;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      grid-template-columns: 100%;
+      align-items: start;
+    }
+  </style>
 </head>
 
 <body>
   <?php render('components/sidebar') ?>
-  <section class="main_content pb-4" style="min-height: 100vh !important; display: grid; grid-template-rows: auto 1fr auto">
+  <section class="main_content pb-4">
     <?php render('components/header') ?>
     <div class="main_content_iner row justify-content-center m-0 p-4">
       <?= $content ?>
