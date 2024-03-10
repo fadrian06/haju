@@ -218,19 +218,104 @@ Se considera una biblioteca que se encuentra en constante proceso y que implemen
 
 ## Capítulo III
 
-Las metodologías aplicadas para el proyecto HAJU son la de “Marco Lógico” y “Proceso Racional Unificado”, las cuales son efectivas con el desarrollo del proyecto, ya que la realización del mismo consta de una duración de un año, son adaptables a las organizaciones o requisitos de los usuarios, permite detallar los problemas, objetivos y alternativas en las soluciones para el diseño del sistema automatizado. Con estos métodos, se realizó una planificación de un año, en la cual se estudió la problemática y en base a la misma se busco las soluciones y alternativas congruentes para el departamento de estadísticas de HAJU, la cual consta del desarrollo de un sistema automatizado siguiendo las etapas de la metodología RUP.
+La investigación sobre el departamento de estadísticas de HAJU se ha logrado abarcar bien empleando las metodologías RUP y el Marco lógico, dado que con la metodología del marco lógico se permite planificar, monitorear y evaluar el proyecto de desarrollo del sistema automatizado. Permite establecer los objetivos claramente tomando como referencia el diagnostico, el análisis, el diseño del sistema automatizado, la instrucción e implementación de este, establecer indicadores de logro y una estructura para la gestión eficaz del proyecto, asegurando su alineación con las necesidades y metas del departamento de estadísticas de HAJU.
 
-La metodología del marco lógico consta de 4 etapas y una matriz, de las cuales las actividades realizadas de cada etapa son el análisis de los involucrados los cuales refieren a: estudiantes de la UPTM, el director administrador del hospital, el análisis de los problemas ya se han determinado, el análisis de los objetivos en las cuales los mismos ya han sido establecidos y de igual manera el análisis de las alternativas para lograr una buena adaptación de la solución a la problemática presentada.
+Por otro lado, la metodología RUP permite gestionar el ciclo de vida del software de manera eficiente, asegurando una implementación efectiva y una atención continua a los requisitos del usuario. Además, gracias al enfoque de RUP se permita adaptar a las necesidades cambiantes del entorno del hospital HAJU, lo que hace estructurar el sistema de manera más eficiente, solidad y eficaz.
 
-Por otro lado, en la metodología RUP, cual consta de 4 etapas para el desarrollo del sistema automatizado, la primera “fase de inicio”, la segunda “fase de elaboración” y la tercera “fase de construcción”. Se han hecho el análisis de requisitos, los diagramas UML y análisis preliminares; la tercera “fase de elaboración” es la construcción del sistema automatizado.
+Al combinar estas dos metodologías, se destaca un enfoque integral y estructurado en el abordaje del sistema automatizado lo cual es fundamental dada la importancia y la complejidad del entorno hospitalario.
+
+Por consiguiente, en la metodología del marco lógico se ejecutaron las 4 etapas y una matriz, de las cuales las actividades realizadas de cada etapa son el análisis de los involucrados el análisis de los problemas, el análisis de los objetivos y de igual manera el análisis de las alternativas.
+ 
+-	Etapa 1: Análisis de involucrados: 
+Se identifican los grupos de actores que son tocados por el proyecto.
+Tabla#1. Análisis de los involucrados.
+Involucrados	Interés	Problema	Solución
+Directora, Administradora y secretarias del Departamento de Estadísticas	Ofrecer atención a los estudiantes en el proceso de desarrollo del proyecto en busca de una solución a la problemática de Estadísticas	Registro y control de la información del departamento de estadísticas de HAJU, ficheros manuales y hojas de calculo	Desarrollar maniobras que solucionen la problemática
+Estudiantes	Desarrollar el Proyecto Socio tecnológico
+Para solventar la problemática de HAJU	Sistema de registro y control manual de múltiples informaciones 	Automatizar los procesos registros y búsquedas de información del departamento de estadísticas
+
+-	Etapa 2: Análisis de problemas.
+La comunidad HAJU presentan problemas en el registro y control de la información para el registro de los pacientes y enfermedades, debido a los procesos y cálculos manuales en ficheros y hojas de Excel; lo que genera poca seguridad en la información, ineficiencia en la búsqueda y consultas de la información y el aumento en gastos de material de oficina.
+
+-	Etapa 3: Análisis de objetivos.
+Ofrecer como solución a HAJU un sistema gratuito creado específicamente para ellos, que el realice registro de manera sencilla y ordenada, acceso a la información deseada de manera rápida y concisa además de la seguridad de información que va a ofrecer, y la reducción de gastos en material para los registros ya que todo se hará de manera digital.
+
+-	Etapa 4: Análisis de alternativas. 
+El grupo investigador empleó las metodologías del Marco lógico y la metodología para desarrollo de software “RUP” como alternativas, combinadas estas metodologías se da solución al departamento de estadísticas en cuanto al sistema de registro y control actual, el cual va a ser sustituido por un sistema automatizado de registro y control HAJU que es más eficiente y seguro, cumpliendo con las normas y reglamentos de la metodología RUP, para así satisfacer las necesidades del usuario final.
+
+-	Etapa 5: Matriz de Marco Lógico.
+En base a la información recolectada se estableció la siguiente matriz de manera explícita para alcanzar los logros y fines deseados.
+Tabla #2. Matriz de Marco lógico.
+Fuente: Mancilla D.  Sánchez F.  Lázaro J. Año: 2023
+Resumen de los Objetos	Indicadores Verificables Objetivamente	Medios de Verificación	Supuesto
+Fin:
+Establecer un sistema automatizado para el registro y control para el departamento de Estadísticas de HAJU	100% de Operatividad del Sistema	Por medio de Reportes y consultas originados por el Sistema	Apoyo por parte de los miembros de la Comunidad
+Propósito:
+Llevar a cabo de manera ágil y ordenada el registro y control del Departamento de Estadísticas	Menos recursos invertidos: Humanos, materiales, tiempo	Entrega de reportes diarios y mensuales.
+Lista de pacientes, enfermedades y datos de estadísticas	Gestión de documentación mediante el sistema.
+Componentes:
+1. Diseño de Interfaz.
+2. Diseño de la Base de Datos.
+3. Prototipo del Sistema Automatizado.
+4. Manuales de usuarios y del sistema.	100% de desarrollo de base de datos, interfaz y manuales de usuario y sistema.	Prueba de interfaz y base de datos.	Aprobación de la estrategia planteada para solucionar el Problema.
+Actividades:
+1. Elaborar la Base de Datos.
+1.1 Normalizar las tablas de la Base de Datos.
+1.2 Realizar Modelo Entidad Relación.
+2. Instalación del programa PHP y XAMPP
+2.1 Diseñar la interfaz gráfica del sistema “botones, menú, tablas etc.”
+3. Entrega de manual de usuario.	
+-Computador
+-php y mysqli
+-XAMPP
+
+-Diseñadores Programadores	-Diccionario de datos
+
+-Control y registro de actividades
+
+-Prueba de interfaz
+
+-Prueba de módulos
+
+-Revisión de manuales	Se provee al grupo de los recursos necesarios.
+
+Se cumplen las actividades según lo planificado.
+
+Por otro lado, la metodología RUP sigue una filosofía muy importante para el desarrollo de del software, la cual es adaptar el proceso a las necesidades del cliente, equilibrar las propiedades para satisfacer los deseos de los usuarios, demostrar estabilidad, calidad y refinamiento del producto, así como sus riesgos involucrados.
+
+1)	Fase de inicio.
+	El grupo investigador junto a los usuarios del departamento de HAJU acordaron los alcances y fines del sistema automatizado, se realizaron entrevistas para los detalles del sistema, se analizó la problemática del departamento de estadísticas de HAJU y se plantearon las soluciones y requisitos que deben de cumplir el sistema automatizado de registro y control de múltiples informaciones HAJU.
+
+2)	Fase de elaboración.
+Se elaboraron los diagramas UML tomando en cuenta las necesidades que deben cumplir el sistema como solvencia a la problemática, el diagrama de entidad relación y el diccionario de base de datos para una mejor percepción de lo que deberá realizar el sistema automatizado.
+
+3)	Fase de construcción.
+Tomando en cuenta los diagramas ya establecidos se elabora la base de datos, el sistema totalmente operativo mediante lenguajes de programación como PHP, JavaScript, entre otros. La redacción del manual de usuario, la arquitectura y los planes de prueba, para que los usuarios puedan hacer una evaluación de este y así realizar mejoras, para después entregar el sistema al departamento de estadísticas de HAJU.
+
+4)	Fase de Transición
+	 Por último, se realizará la instalación del sistema de registro y control desarrollado para el departamento de estadísticas de HAJU, realizando las pruebas de aceptación en la instalación del sistema, posteriormente se dará capacitación al personal del lugar y se dará garantía de proveer el soporte necesario al sistema y equipos de HAJU, concluyendo así la transición del producto.
+
+Cuadro operativo de fases de RUP
+Tabla #3. Fases de RUP. Fuente: Mancilla D.  Sánchez F.  Lázaro J. Año: {2022}.
+Cuadro operativo 	Fase 	Actividades 
+Entrevistar a las personas que encargadas y que trabajan en el Departamento de Estadísticas de HAJU	
+I: Inicio	Saber 	la problemática existente e identificar las necesidades que se presentan.
+Analizar la información que se recolectó para iniciar al diseño del sistema automatizado	
+II Elaboración	Recolectar 	la información existente para así diseñar la estructura que tendrá el presente sistema
+Se programarán los módulos que estarán presente el sistema y así también tomar en cuenta los requerimientos funcionales y no funcionales al ser diseñados.	
+III Construcción	Se realizarán las pruebas de caja negra y caja blanca para detectar cualquier falla existente ya sea interna o   externa
+Se realizará la instalación del sistema automatizado al Departamento de Estadísticas de HAJU dejándolo en funcionamiento, el mismo de igual manera garantizar que el sistema cumpla con las presentes necesidades	
+IV Transacción	Realizar una explicación del funcionamiento del sistema automatizado a las personas que utilizarán el sistema directamente y verificar que los módulos están funcionando correctamente.
 
 ### Tipo y Diseño de Investigación
 
-La investigación sobre el departamento de estadísticas de HAJU se ha logrado abarcar bien empleando las metodologías RUP y el Marco lógico, dado que con la metodología del marco lógico se permite planificar, monitorear y evaluar el proyecto de desarrollo del sistema automatizado. Permite establecer los objetivos claramente tomando como referencia el diagnostico, el análisis, el diseño del sistema automatizado, la instrucción e implementación del mismo, establecer indicadores de logro y una estructura para la gestión eficaz del proyecto, asegurando su alineación con las necesidades y metas del departamento de estadísticas de HAJU.
+Se empleó el tipo y diseño de investigación de campo para la ejecución del proyecto, ya que permite recolectar la información de manera directa con los usuarios del departamento de estadísticas HAJU, este método será de carácter exploratorio, ya que se busca comprender y familiarizarse con el entorno hospitalario y las necesidades específicas del personal y los pacientes.
 
-Por otro lado, la metodología RUP permite gestionar el ciclo de vida del software de manera eficiente, asegurando una implementación efectiva y una atención continua a los requisitos del usuario. Además, gracias al enfoque de RUP se permita adaptar a las necesidades cambiantes del entorno del hospital HAJU, lo que hace estructurar el sistema de manera mas eficiente, solidad y eficaz.
+El diseño de la investigación estará orientado hacia un enfoque descriptivo, con el propósito de recopilar información detallada sobre los procesos actuales de registro y control en el departamento de estadísticas, así como las posibles áreas a emplear el sistema
+Además, se contempla la realización de entrevistas, observaciones directas y encuestas a fin de recopilar datos cualitativos y cuantitativos que permitan fundamentar el desarrollo del sistema automatizado.
 
-Al combinar estas dos metodologías, se destaca un enfoque integral y estructurado en el abordaje del sistema automatizado lo cual es fundamental dada la importancia y la complejidad del entorno hospitalario.
+Este enfoque permitirá obtener una visión integral de las necesidades y requerimientos del departamento de estadísticas de HAJU, lo que servirá como base para el diseño e implementación efectiva del nuevo sistema automatizado.
+
 
 ### Población Y Muestra
 
@@ -258,6 +343,11 @@ En referencia a la entrevista, Márquez (1996), citado por Arias (1999), plantea
 
 Otras de las técnicas utilizadas para el desarrollo del proyecto fue la entrevista la cual se realizó en forma directa y personal, utilizando como herramienta para la encuesta hoja impresa y lapicero, la misma fue aplicada a 5 personas que fueron la administradora, la directora y las 3 secretarias de estadísticas”.
 
+También Arias (2006, p. 72), define encuesta como una técnica que pretende obtener información que suministra un grupo o muestra de sujetos acerca de sí mismo, o en relación con un tema particular.
+
+Se realizaron encuestas para obtener la información sobre la funcionalidad actual del departamento de estadísticas y sugerencias que tuvieran en el sistema automatizado a desarrollar.
+
+
 ### Estudio de la Factibilidad
 
 El estudio de la factibilidad se refiere a la disponibilidad de los recursos necesarios para llevar a cabo los objetivos o metas señaladas.
@@ -275,6 +365,15 @@ Se refiere a que debe existir el personal capacitado requerido para llevar a cab
 Es factible de manera humana ya que existe el personal necesario para la creación del sistema de Registro y Control, además, hay usuarios finales dispuestos a emplear este sistema de registro y control para el mejoramiento en eficacia y eficiencia en lo que respecta al departamento de estadísticas de HAJU.
 
 Dado la inspección y análisis de la factibilidad técnica y humana el sistema de registro y control es factible por las siguientes razones: se cuenta con los programas necesarios para su realización; también se cuenta con la ayuda humana necesaria para la realización de este, junto con usuarios que requieren de este sistema.
+
+•	Factibilidad Económica:
+
+La factibilidad económica es el análisis de los costos e ingresos de un proyecto para determinar si es viable y rentable.
+
+En el departamento de estadísticas tienen costos de impresión, gastos en ficheros manuales y hojas blancas u oficio.
+
+Los gastos para el sistema son nulos ya que se realizará de manera gratuita para que la comunidad le sea accesible el poseer un sistema automatizado.
+
 
 ## Capítulo IV
 
