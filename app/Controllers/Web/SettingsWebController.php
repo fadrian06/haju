@@ -25,10 +25,15 @@ class SettingsWebController extends Controller {
 
   static function handlePermissionAssignment(string $id): void {
     $userRequested = App::userRepository()->getById((int) $id);
+    $userRequested->assignDepartments();
+    $departments = [];
 
     foreach (array_keys(App::request()->data->getData()) as $departmentID) {
-      $department = App::departmentRepository()->getById((int) $departmentID);
-      $userRequested->assignDepartments($department);
+      $departments[] = App::departmentRepository()->getById((int) $departmentID);
+    }
+
+    if ($departments) {
+      $userRequested->assignDepartments(...$departments);
     }
 
     App::userRepository()->save($userRequested);
