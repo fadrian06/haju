@@ -30,6 +30,11 @@ input[type="number"] {
   appearance: textfield;
 }
 
+.mm-collapse,
+.mm-collapsing {
+  padding-left: 45px !important;
+}
+
 .header_iner {
   justify-content: space-between !important;
 }

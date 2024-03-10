@@ -4,13 +4,16 @@ namespace App\Models;
 
 use App\Models\Exceptions\InvalidDateException;
 use App\Models\Exceptions\InvalidPhoneException;
-use DateTime;
+use Generator;
 use PharIo\Manifest\Email;
 use PharIo\Manifest\InvalidEmailException;
 use PharIo\Manifest\InvalidUrlException;
 use PharIo\Manifest\Url;
 
 class User extends Model {
+  /** @var array<int, Department> */
+  private array $departments = [];
+
   private string $password;
 
   /**
@@ -59,5 +62,26 @@ class User extends Model {
 
   function getParsedRole(): string {
     return $this->role->getParsed($this->gender);
+  }
+
+  function assignDepartments(Department ...$departments): self {
+    $this->departments = $departments;
+
+    return $this;
+  }
+
+  function hasDepartments(): bool {
+    return $this->departments !== [];
+  }
+
+  function hasDepartment(Department $department): bool {
+    return array_search($department, $this->departments) !== false;
+  }
+
+  /** @return Generator<int, Department> */
+  function getDepartment(): Generator {
+    foreach ($this->departments as $index => $department) {
+      yield $index => $department;
+    }
   }
 }

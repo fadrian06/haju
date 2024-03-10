@@ -27,9 +27,11 @@ CREATE TABLE departments (
   is_active BOOL DEFAULT true
 );
 
-DROP TABLE IF EXISTS department_asignations;
-CREATE TABLE department_asignations (
+DROP TABLE IF EXISTS department_assignments;
+CREATE TABLE department_assignments (
   user_id INTEGER NOT NULL,
   department_id INTEGER NOT NULL,
-  registered DATETIME DEFAULT CURRENT_TIMESTAMP
+  registered DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+  UNIQUE (user_id, department_id)
 );

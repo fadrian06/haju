@@ -27,6 +27,13 @@ class PDOUserRepository extends PDORepository implements UserRepository {
   SQL_FIELDS;
 
   private const TABLE = 'users';
+  private ?PDODepartmentRepository $departmentRepository = null;
+
+  function setDepartmentRepository(PDODepartmentRepository $repository): self {
+    $this->departmentRepository = $repository;
+
+    return $this;
+  }
 
   function getAll(User ...$exclude): array {
     $ids = array_map(fn (User $user): int => $user->getId(), $exclude);
@@ -39,7 +46,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
         $ids !== []
           ? sprintf('WHERE id NOT IN (%s)', join(', ', $ids))
           : ''
-      ))->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper']);
+      ))->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper']);
   }
 
   function getByIdCard(int $idCard): ?User {
@@ -48,7 +55,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
 
     $stmt->execute([$idCard]);
 
-    return $stmt->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper'])[0] ?? null;
+    return $stmt->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper'])[0] ?? null;
   }
 
   function getById(int $id): ?User {
@@ -57,32 +64,15 @@ class PDOUserRepository extends PDORepository implements UserRepository {
 
     $stmt->execute([$id]);
 
-    return $stmt->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper'])[0] ?? null;
+    return $stmt->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper'])[0] ?? null;
   }
 
   function save(User $user): void {
     try {
+      $this->assignDepartments($user);
+
       if ($user->getId()) {
-        $this->ensureIsConnected()
-          ->prepare(sprintf(
-            <<<SQL
-              UPDATE %s SET first_name = ?, last_name = ?, birth_date = ?,
-              gender = ?, phone = ?, email = ?, address = ?, password = ?,
-              is_active = ? WHERE id = ?
-            SQL,
-            self::TABLE
-          ))
-          ->execute([
-            $user->firstName,
-            $user->lastName,
-            $user->birthDate->timestamp,
-            $user->gender->value,
-            $user->phone,
-            $user->email?->asString(),
-            $user->address,
-            $user->getPassword(),
-            $user->isActive, $user->getId()
-          ]);
+        $this->update($user);
 
         return;
       }
@@ -144,7 +134,81 @@ class PDOUserRepository extends PDORepository implements UserRepository {
     }
   }
 
-  private static function mapper(
+  private function assignDepartments(User $user): void {
+    $this->ensureIsConnected()
+      ->prepare('DELETE FROM department_assignments WHERE user_id = ?')
+      ->execute([$user->getId()]);
+
+    $values = [];
+
+
+    foreach ($user->getDepartment() as $department) {
+      $values[] = "({$user->getId()}, {$department->getId()})";
+    }
+
+    if ($values) {
+      $sql = sprintf(
+        'INSERT INTO department_assignments (user_id, department_id) VALUES %s',
+        join(', ', $values)
+      );
+
+      $this->ensureIsConnected()
+        ->query($sql);
+    }
+  }
+
+  private function update(User $user): void {
+    $sql = sprintf(
+      <<<SQL
+        UPDATE %s SET first_name = ?, last_name = ?, birth_date = ?,
+        gender = ?, phone = ?, email = ?, address = ?, password = ?,
+        is_active = ? WHERE id = ?
+      SQL,
+      self::TABLE
+    );
+
+    $this->ensureIsConnected()
+      ->prepare($sql)
+      ->execute([
+        $user->firstName,
+        $user->lastName,
+        $user->birthDate->timestamp,
+        $user->gender->value,
+        $user->phone,
+        $user->email?->asString(),
+        $user->address,
+        $user->getPassword(),
+        $user->isActive, $user->getId()
+      ]);
+  }
+
+  private function setDepartments(User $user): void {
+    if ($user->role === Role::Director) {
+      $user->assignDepartments(...$this->departmentRepository->getAll());
+
+      return;
+    }
+
+    $join = <<<SQL
+      SELECT id, name, d.registered as registered, is_active as isActive
+      FROM department_assignments a
+      JOIN departments d
+      ON a.department_id = d.id
+      WHERE user_id = ?
+    SQL;
+
+    $stmt = $this->ensureIsConnected()->prepare($join);
+    $stmt->execute([$user->getId()]);
+
+    $departments = $stmt->fetchAll(
+      PDO::FETCH_FUNC,
+      [$this->departmentRepository, 'mapper']
+    );
+
+    $user->assignDepartments(...$departments);
+  }
+
+  private function mapper(
     int $id,
     string $firstName,
     string $lastName,
@@ -178,6 +242,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
     );
 
     $user->setId($id)->setRegistered(self::parseDateTime($registered));
+    $this->setDepartments($user);
 
     return $user;
   }

@@ -15,8 +15,15 @@ enum Role: string {
     );
   }
 
-  function isHigherThan(Role $role): bool {
+  function isHigherThan(self $role): bool {
     return $this->getLevel() >= $role->getLevel();
+  }
+
+  /** @return array<int, self> */
+  static function getLowersThan(self $role): array {
+    return array_filter(self::cases(), function (self $case) use ($role): bool {
+      return $case->getLevel() < $role->getLevel();
+    });
   }
 
   function getLevel(): int {

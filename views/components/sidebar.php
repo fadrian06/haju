@@ -16,7 +16,7 @@ use App\Models\Role;
       <i class="ti-close"></i>
     </div>
   </header>
-  <menu class="m-0 p-0" id="sidebar_menu">
+  <menu class="m-0 p-0 pb-5" id="sidebar_menu">
     <li class="side_menu_title">
       <span>Panel de Administración</span>
     </li>
@@ -27,6 +27,26 @@ use App\Models\Role;
       </a>
     </li>
     <?php if ($user->role->isHigherThan(Role::Coordinator)) : ?>
+      <li class="<?= isActive('/usuarios') ? 'mm-active' : '' ?>">
+        <a href="#" class="has-arrow">
+          <img src="<?= asset('img/icons/users.svg') ?>" />
+          <span>Usuarios</span>
+        </a>
+        <ul>
+          <li>
+            <a href="<?= route('/usuarios') ?>">
+              <i class="ti-list"></i>
+              Listado
+            </a>
+          </li>
+          <li>
+            <a href="<?= route('/usuarios') ?>#registrar" <?= isActive('/usuarios') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
+              <i class="ti-plus"></i>
+              Registrar
+            </a>
+          </li>
+        </ul>
+      </li>
       <?php if ($user->role === Role::Director) : ?>
         <li class="<?= isActive('/departamentos') ? 'mm-active' : '' ?>">
           <a href="#" class="has-arrow">
@@ -48,27 +68,33 @@ use App\Models\Role;
             </li>
           </ul>
         </li>
+        <li class="<?= isActive('/configuracion') ? 'mm-active' : '' ?>">
+          <a href="#" class="has-arrow">
+            <img src="<?= asset('img/icons/gears.svg') ?>" />
+            <span>Configuraciones</span>
+          </a>
+          <ul>
+            <!-- <li>
+              <a href="<?= route('/configuracion') ?>">
+                <i class="ti-bookmark-alt"></i>
+                Institución
+              </a>
+            </li> -->
+            <li>
+              <a href="<?= route('/configuracion') ?>#roles-y-permisos">
+                <i class="ti-key"></i>
+                Roles y permisos
+              </a>
+            </li>
+            <!-- <li>
+              <a href="<?= route('/configuracion') ?>#respaldo-y-restauracion">
+                <i class="ti-import"></i>
+                Respaldo y restauración
+              </a>
+            </li> -->
+          </ul>
+        </li>
       <?php endif ?>
-      <li class="<?= isActive('/usuarios') ? 'mm-active' : '' ?>">
-        <a href="#" class="has-arrow">
-          <img src="<?= asset('img/icons/users.svg') ?>" />
-          <span>Usuarios</span>
-        </a>
-        <ul>
-          <li>
-            <a href="<?= route('/usuarios') ?>">
-              <i class="ti-list"></i>
-              Listado
-            </a>
-          </li>
-          <li>
-            <a href="<?= route('/usuarios') ?>#registrar" <?= isActive('/usuarios') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
-              <i class="ti-plus"></i>
-              Registrar
-            </a>
-          </li>
-        </ul>
-      </li>
     <?php endif ?>
   </menu>
 </aside>

@@ -12,8 +12,10 @@ abstract class PDORepository {
 
   protected ?Connection $connection = null;
 
-  function setConnection(Connection $connection): void {
+  function setConnection(Connection $connection): static {
     $this->connection = $connection;
+
+    return $this;
   }
 
   /** @throws ConnectionException */

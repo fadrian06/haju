@@ -3,6 +3,7 @@
 use App\Controllers\Web\DepartmentWebController;
 use App\Controllers\Web\HomeWebController;
 use App\Controllers\Web\SessionWebController;
+use App\Controllers\Web\SettingsWebController;
 use App\Controllers\Web\UserWebController;
 use App\Middlewares\AuthenticationMiddleware;
 use App\Middlewares\AuthorizationMiddleware;
@@ -49,8 +50,8 @@ App::group('', function (): void {
       App::route('/departamentos/@id/activar', [DepartmentWebController::class, 'handleToggleStatus']);
       App::route('/departamentos/@id/desactivar', [DepartmentWebController::class, 'handleToggleStatus']);
 
-      App::route('/configuracion', function (): void {
-      });
+      App::route('GET /configuracion', [SettingsWebController::class, 'showConfigs']);
+      App::route('POST /configuracion/@id/permisos', [SettingsWebController::class, 'handlePermissionAssignment']);
     }, [new AuthorizationMiddleware(Role::Director)]);
   }, [new AuthorizationMiddleware(Role::Coordinator)]);
 }, [AuthenticationMiddleware::class, MessagesMiddleware::class]);

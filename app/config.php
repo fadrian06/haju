@@ -20,20 +20,22 @@ App::register('db', Connection::class, [
 ]);
 
 App::register(
-  'userRepository',
-  PDOUserRepository::class,
-  [],
-  function (PDOUserRepository $repository): void {
-    $repository->setConnection(App::db());
-  }
-);
-
-App::register(
   'departmentRepository',
   PDODepartmentRepository::class,
   [],
   function (PDODepartmentRepository $repository): void {
     $repository->setConnection(App::db());
+  }
+);
+
+App::register(
+  'userRepository',
+  PDOUserRepository::class,
+  [],
+  function (PDOUserRepository $repository): void {
+    $repository
+      ->setDepartmentRepository(App::departmentRepository())
+      ->setConnection(App::db());
   }
 );
 

@@ -1,5 +1,10 @@
 <?php
-  /** @var App\Models\User $user */
+
+use App\Models\Role;
+use App\Models\User;
+
+/** @var User $user */
+
 ?>
 
 <header class="header_iner d-flex align-items-center py-1">
@@ -34,10 +39,12 @@
             Mi perfil
             <i class="ti-user"></i>
           </a>
-          <!-- <a href="<?= route('/configuracion') ?>">
-            Configuraciones
-            <i class="ti-settings"></i>
-          </a> -->
+          <?php if ($user->role === Role::Director) : ?>
+            <a href="<?= route('/configuracion') ?>">
+              Configuración
+              <i class="ti-settings"></i>
+            </a>
+          <?php endif ?>
           <a href="<?= route('/salir') ?>">
             Cerrar sesión
             <i class="ti-shift-left"></i>

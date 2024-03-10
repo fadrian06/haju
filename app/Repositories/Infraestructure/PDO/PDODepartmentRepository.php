@@ -60,7 +60,7 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
     }
   }
 
-  private static function mapper(
+  static function mapper(
     int $id,
     string $name,
     string $registered,
