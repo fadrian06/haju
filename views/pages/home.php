@@ -6,7 +6,7 @@ use App\Models\Role;
 
 ?>
 
-<?php if ($user->role === Role::Director) : ?>
+<?php if ($user->role->isHigherThan(Role::Coordinator)) : ?>
   <section class="single_element">
     <div class="quick_activity_wrap">
       <a href="<?= route('/usuarios') ?>" class="single_quick_activity d-flex">
@@ -16,13 +16,15 @@ use App\Models\Role;
           <p>Usuario<?= $usersNumber !== 1 ? 's' : '' ?></p>
         </div>
       </a>
-      <a href="<?= route('/departamentos') ?>" class="single_quick_activity d-flex">
-        <img class="icon" src="<?= asset('img/icons/cap.svg') ?>" />
-        <div class="count_content">
-          <h3><?= $departmentsNumber ?></h3>
-          <p>Departamento<?= $departmentsNumber !== 1 ? 's' : '' ?></p>
-        </div>
-      </a>
+      <?php if ($user->role === Role::Director) : ?>
+        <a href="<?= route('/departamentos') ?>" class="single_quick_activity d-flex">
+          <img class="icon" src="<?= asset('img/icons/cap.svg') ?>" />
+          <div class="count_content">
+            <h3><?= $departmentsNumber ?></h3>
+            <p>Departamento<?= $departmentsNumber !== 1 ? 's' : '' ?></p>
+          </div>
+        </a>
+      <?php endif ?>
     </div>
   </section>
 <?php endif ?>

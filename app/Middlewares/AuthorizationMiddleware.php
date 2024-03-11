@@ -7,16 +7,14 @@ use App\Models\Role;
 use App\Models\User;
 
 class AuthorizationMiddleware {
-  private static Role $permitted;
-
-  function __construct(Role $permitted) {
-    self::$permitted = $permitted;
+  function __construct(private readonly Role $permitted) {
   }
 
-  static function before(): void {
+  function before(): void {
+    /** @var ?User */
     $user = App::view()->get('user');
 
-    if (!$user instanceof User || $user->role !== self::$permitted) {
+    if (!$user?->role->isHigherThan($this->permitted)) {
       exit(App::redirect('/'));
     }
   }

@@ -1,6 +1,7 @@
 <?php
 
 /** @var App\Models\User $user */
+
 ?>
 
 <!DOCTYPE html>
@@ -11,13 +12,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title><?= $title ?> - HAJU</title>
   <?php render('components/open-graph-metas') ?>
-  <link rel="icon" href="<?= asset('img/favicon.png') ?>" type="image/png" />
+  <link rel="icon" href="<?= asset('img/logo-mini.png') ?>" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,700&family=Rajdhani:wght@300;400;500;600;700&display=swap" />
   <link rel="stylesheet" href="https://unpkg.com/metismenu/dist/metisMenu.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="<?= asset('vendors/themefy_icon/themify-icons.css') ?>" />
   <link rel="stylesheet" href="<?= asset('css/theme.css') ?>" />
   <link rel="stylesheet" href="<?= asset('css/custom.css') ?>" />
+  <style>
+    .main_content {
+      min-height: 100vh !important;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      grid-template-columns: 100%;
+      align-items: start;
+    }
+  </style>
 </head>
 
 <body>

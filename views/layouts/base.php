@@ -1,6 +1,7 @@
 <?php
 
 /** @var bool $showRegister */
+
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title><?= $title ?> - HAJU</title>
   <?php render('components/open-graph-metas') ?>
-  <link rel="icon" href="<?= asset('img/favicon.png') ?>" type="image/png" />
+  <link rel="icon" href="<?= asset('img/logo-mini.png') ?>" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,700&family=Rajdhani:wght@300;400;500;600;700&display=swap" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="<?= asset('vendors/themefy_icon/themify-icons.css') ?>" />
@@ -24,9 +25,11 @@
     <img src="<?= asset('img/logo.png') ?>" height="45" />
     <nav class="header_right">
       <ul class="header_notification_warp d-flex align-items-center mx-0">
-        <li class="d-none d-md-block">
-          <a href="<?= route('/ingresar') ?>">Iniciar sesión</a>
-        </li>
+        <?php if (!isActive('/ingresar')) : ?>
+          <li class="d-none d-md-block">
+            <a href="<?= route('/ingresar') ?>">Iniciar sesión</a>
+          </li>
+        <?php endif ?>
         <?php if ($showRegister) : ?>
           <li class="d-none d-md-block">
             <a href="<?= route('/registrate') ?>">Regístrate</a>

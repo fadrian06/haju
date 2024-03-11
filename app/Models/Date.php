@@ -45,8 +45,6 @@ readonly class Date implements Stringable {
     $regexp = "/^(?<year>\d{4})$separator(?<month>\d{2})$separator(?<day>\d{2})$/";
 
     if (preg_match($regexp, $raw, $matches)) {
-      print_r($matches);
-
       return new self($matches['day'], $matches['month'], $matches['year']);
     }
 

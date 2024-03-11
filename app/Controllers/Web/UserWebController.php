@@ -12,12 +12,13 @@ use App\Models\Role;
 use App\Models\User;
 use App\Repositories\Exceptions\DuplicatedIdCardException;
 use App\Repositories\Exceptions\DuplicatedNamesException;
+use Error;
 use PharIo\Manifest\Email;
 use PharIo\Manifest\InvalidEmailException;
 use PharIo\Manifest\InvalidUrlException;
 use PharIo\Manifest\Url;
 
-class UserWebController {
+class UserWebController extends Controller {
   static function showRegister(): void {
     App::render('pages/register', [], 'content');
     App::render('layouts/base', ['title' => 'Regístrate']);
@@ -26,12 +27,22 @@ class UserWebController {
   static function handleRegister(): void {
     $data = App::request()->data;
 
+    $loggedUser = App::view()->get('user');
+
+    assert($loggedUser === null || $loggedUser instanceof User);
+
+    [$role, $urlToRedirect, $urlWhenFail] = match (true) {
+      !$loggedUser => [Role::Director, '/ingresar', '/registrate'],
+      $loggedUser->role === Role::Director => [Role::Coordinator, '/usuarios', '/usuarios'],
+      $loggedUser->role === Role::Coordinator => [Role::Secretary, '/usuarios', '/usuarios']
+    };
+
     $user = new User(
       $data['first_name'],
       $data['last_name'],
       Date::from($data['birth_date'], '-'),
       Gender::from($data['gender']),
-      Role::Director,
+      $role,
       $data['prefix'] ? ProfessionPrefix::from($data['prefix']) : null,
       (int) $data['id_card'],
       $data['password'],
@@ -41,25 +52,35 @@ class UserWebController {
       $data['avatar'] ? new Url($data['avatar']) : null
     );
 
+    $departments = [];
+
+    foreach ($data['departments'] ?? [] as $departmentID) {
+      $departments[] = App::departmentRepository()->getById((int) $departmentID);
+    }
+
+    if ($departments) {
+      $user->assignDepartments(...$departments);
+    }
+
     try {
       App::userRepository()->save($user);
-      App::session()->set('message', '✔ Usuario registrado exitósamente');
-      App::redirect('/ingresar');
+      self::setMessage('Usuario registrado exitósamente');
+      App::redirect($urlToRedirect);
 
       return;
     } catch (DuplicatedNamesException) {
-      App::session()->set('error', "❌ Usuario \"{$user->getFullName()}\" ya existe");
+      self::setError("Usuario \"{$user->getFullName()}\" ya existe");
     } catch (DuplicatedIdCardException) {
-      App::session()->set('error', "❌ Cédula \"{$user->idCard}\" ya existe");
+      self::setError("Cédula \"{$user->idCard}\" ya existe");
     } catch (InvalidPhoneException) {
-      App::session()->set('error', "❌ Teléfono inválido \"{$data['phone']}\"");
+      self::setError("Teléfono inválido \"{$data['phone']}\"");
     } catch (InvalidEmailException) {
-      App::session()->set('error', "❌ Correo inválido \"{$data['email']}\"");
+      self::setError("Correo inválido \"{$data['email']}\"");
     } catch (InvalidUrlException) {
-      App::session()->set('error', "❌ URL inválida \"{$data['avatar']}\"");
+      self::setError("URL inválida \"{$data['avatar']}\"");
     }
 
-    App::redirect('/registrate');
+    App::redirect($urlWhenFail);
   }
 
   static function showPasswordReset(): void {
@@ -101,14 +122,44 @@ class UserWebController {
   }
 
   static function handleEditProfile(): void {
-    App::json(App::request()->data);
+    $loggedUser = App::view()->get('user');
+    $data = App::request()->data;
+
+    assert($loggedUser instanceof User);
+
+    $loggedUser->firstName = $data['first_name'];
+    $loggedUser->lastName = $data['last_name'];
+    $loggedUser->address = $data['address'];
+    $loggedUser->birthDate = Date::from($data['birth_date'], '-');
+    $loggedUser->gender = Gender::from($data['gender']);
+    $loggedUser->email = $data['email'] ? new Email($data['email']) : null;
+    $loggedUser->phone = $data['phone'] ? new Phone($data['phone']) : null;
+
+    App::userRepository()->save($loggedUser);
+    self::setMessage('Perfil actualizado exitósamente');
+    App::redirect('/perfil/editar');
   }
 
   static function showUsers(): void {
-    $users = App::userRepository()->getAll(App::view()->get('user'));
-    $usersNumber = count($users);
+    $loggedUser = App::view()->get('user');
 
-    App::renderPage('users', "Usuarios ($usersNumber)", compact('users'), 'main');
+    assert($loggedUser instanceof User);
+
+    $users = App::userRepository()->getAll($loggedUser);
+    $departments = $loggedUser->role === Role::Director ? App::departmentRepository()->getAll() : [];
+
+    $filteredUsers = array_filter($users, function (User $user) use ($loggedUser): bool {
+      return $user->role->getLevel() <= $loggedUser->role->getLevel();
+    });
+
+    $usersNumber = count($filteredUsers);
+
+    App::renderPage(
+      'users',
+      "Usuarios ($usersNumber)",
+      ['users' => $filteredUsers, 'departments' => $departments],
+      'main'
+    );
   }
 
   static function handleToggleStatus(string $id): void {
@@ -117,5 +168,34 @@ class UserWebController {
 
     App::userRepository()->save($user);
     App::redirect('/usuarios');
+  }
+
+  static function handlePasswordChange(): void {
+    $loggedUser = App::view()->get('user');
+    $data = App::request()->data;
+
+    assert($loggedUser instanceof User);
+
+    try {
+      if (!$loggedUser->checkPassword($data['old_password'])) {
+        throw new Error('La contraseña anterior es incorrecta');
+      }
+
+      if ($data['new_password'] !== $data['confirm_password']) {
+        throw new Error('La nueva contraseña y su confirmación no coinciden');
+      }
+
+      if ($data['new_password'] === $data['old_password']) {
+        throw new Error('La nueva contraseña no puede ser igual a la anterior');
+      }
+
+      $loggedUser->setPassword($data['new_password']);
+      App::userRepository()->save($loggedUser);
+      self::setMessage('Contraseña actualizada exitósamente');
+    } catch (Error $error) {
+      self::setError($error->getMessage());
+    }
+
+    App::redirect('/perfil');
   }
 }

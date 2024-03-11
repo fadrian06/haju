@@ -4,13 +4,16 @@ namespace App\Models;
 
 use App\Models\Exceptions\InvalidDateException;
 use App\Models\Exceptions\InvalidPhoneException;
-use DateTime;
+use Generator;
 use PharIo\Manifest\Email;
 use PharIo\Manifest\InvalidEmailException;
 use PharIo\Manifest\InvalidUrlException;
 use PharIo\Manifest\Url;
 
 class User extends Model {
+  /** @var array<int, Department> */
+  private array $departments = [];
+
   private string $password;
 
   /**
@@ -20,18 +23,18 @@ class User extends Model {
    * @throws InvalidDateException
    */
   function __construct(
-    public readonly string $firstName,
-    public readonly string $lastName,
-    public readonly Date $birthDate,
-    public readonly Gender $gender,
+    public string $firstName,
+    public string $lastName,
+    public Date $birthDate,
+    public Gender $gender,
     public readonly Role $role,
     public ?ProfessionPrefix $prefix,
-    public readonly int $idCard,
+    public int $idCard,
     string $password,
-    public readonly ?Phone $phone = null,
-    public readonly ?Email $email = null,
-    public readonly ?string $address = null,
-    public readonly ?Url $avatar = null,
+    public ?Phone $phone = null,
+    public ?Email $email = null,
+    public ?string $address = null,
+    public ?Url $avatar = null,
     public bool $isActive = true
   ) {
     $this->setPassword($password);
@@ -59,5 +62,26 @@ class User extends Model {
 
   function getParsedRole(): string {
     return $this->role->getParsed($this->gender);
+  }
+
+  function assignDepartments(Department ...$departments): self {
+    $this->departments = $departments;
+
+    return $this;
+  }
+
+  function hasDepartments(): bool {
+    return $this->departments !== [];
+  }
+
+  function hasDepartment(Department $department): bool {
+    return array_search($department, $this->departments) !== false;
+  }
+
+  /** @return Generator<int, Department> */
+  function getDepartment(): Generator {
+    foreach ($this->departments as $index => $department) {
+      yield $index => $department;
+    }
   }
 }
