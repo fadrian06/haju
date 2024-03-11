@@ -1,13 +1,17 @@
 <?php
 
+use App\Models\Department;
 use App\Models\Gender;
 use App\Models\ProfessionPrefix;
+use App\Models\Role;
 use App\Models\User;
 
 /**
+ * @var array<int, Department> $departments
  * @var array<int, User> $users
  * @var ?string $error
  * @var ?string $message
+ * @var User $user
  */
 
 ?>
@@ -20,7 +24,7 @@ use App\Models\User;
   </a>
 </section>
 <ul class="list-unstyled row row-cols-sm-2 row-cols-md-3">
-  <?php foreach ($users as $user) : ?>
+  <?php foreach ($users as $member) : ?>
     <li class="mb-4">
       <article class="card card-body text-center">
         <div class="dropdown position-relative">
@@ -28,23 +32,23 @@ use App\Models\User;
             <i class="ti-more"></i>
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="<?= route('/usuarios/@id/' . ($user->isActive ? 'desactivar' : 'activar'), ['id' => $user->getId()]) ?>">
-              <i class="ti-<?= $user->isActive ? 'un' : '' ?>lock"></i>
-              <?= $user->isActive ? 'Desactivar' : 'Activar' ?>
+            <a class="dropdown-item" href="<?= route('/usuarios/@id/' . ($member->isActive ? 'desactivar' : 'activar'), ['id' => $member->getId()]) ?>">
+              <i class="ti-<?= $member->isActive ? 'un' : '' ?>lock"></i>
+              <?= $member->isActive ? 'Desactivar' : 'Activar' ?>
             </a>
           </div>
         </div>
         <picture class="p-3">
-          <img class="img-fluid rounded-circle" src="<?= $user->avatar?->asString() ?? asset('img/user.jpg') ?>" />
+          <img class="img-fluid rounded-circle" src="<?= $member->avatar?->asString() ?? asset('img/user.jpg') ?>" />
         </picture>
-        <span class="custom-badge status-<?= $user->isActive ? 'green' : 'red' ?> mx-4 mb-2">
-          <?= $user->isActive ? 'Activo' : 'Inactivo' ?>
+        <span class="custom-badge status-<?= $member->isActive ? 'green' : 'red' ?> mx-4 mb-2">
+          <?= $member->isActive ? 'Activo' : 'Inactivo' ?>
         </span>
-        <h4><?= $user->getFullName() ?></h4>
-        <span><?= $user->role->value ?></span>
+        <h4><?= $member->getFullName() ?></h4>
+        <span><?= $member->role->value ?></span>
         <small class="text-muted">
           <i class="ti-pin2"></i>
-          <?= $user->address ?? '<mark class="text-danger">Dirección no proporcionada</mark>' ?>
+          <?= $member->address ?? '<mark class="text-danger">Dirección no proporcionada</mark>' ?>
         </small>
       </article>
     </li>
@@ -82,7 +86,7 @@ use App\Models\User;
           <div class="col-md-6 form-floating mb-4">
             <select class="form-select" name="gender" required id="gender" placeholder="Género">
               <option selected disabled>Seleccione un género</option>
-              <?php foreach (Gender::cases() as $gender): ?>
+              <?php foreach (Gender::cases() as $gender) : ?>
                 <option><?= $gender->value ?></option>
               <?php endforeach ?>
             </select>
@@ -91,7 +95,7 @@ use App\Models\User;
           <div class="col-md-6 form-floating mb-4">
             <select class="form-select" name="Prefijo" id="Prefijo" placeholder="Prefijo">
               <option value="">Seleccione un prefijo</option>
-              <?php foreach (ProfessionPrefix::cases() as $prefix): ?>
+              <?php foreach (ProfessionPrefix::cases() as $prefix) : ?>
                 <option value="<?= $prefix->value ?>"><?= $prefix->getLongValue() ?></option>
               <?php endforeach ?>
               <option value="">Ninguno</option>
@@ -109,6 +113,18 @@ use App\Models\User;
             <input type="password" class="form-control" name="confirm_password" required id="confirm_password" placeholder="Confirmar contraseña" />
             <label for="confirm_password">Confirmar contraseña</label>
           </div>
+          <?php if ($user->role === Role::Director) : ?>
+            <div class="col-md-12 mb-4">
+              <label for="departments">Departamentos asignados</label>
+              <select name="departments[]" id="departments" required multiple class="form-control">
+                <?php foreach ($departments as $department) : ?>
+                  <option value="<?= $department->getId() ?>">
+                    <?= $department->name ?>
+                  </option>
+                <?php endforeach ?>
+              </select>
+            </div>
+          <?php endif ?>
         </fieldset>
         <fieldset class="row">
           <summary class="fs-6 mb-2">Datos de contacto</summary>

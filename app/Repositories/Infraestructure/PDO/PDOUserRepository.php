@@ -69,9 +69,8 @@ class PDOUserRepository extends PDORepository implements UserRepository {
 
   function save(User $user): void {
     try {
-      $this->assignDepartments($user);
-
       if ($user->getId()) {
+        $this->assignDepartments($user);
         $this->update($user);
 
         return;
@@ -109,6 +108,8 @@ class PDOUserRepository extends PDORepository implements UserRepository {
 
       $user->setId($this->connection->instance()->lastInsertId())
         ->setRegistered(self::parseDateTime($datetime));
+
+      $this->assignDepartments($user);
     } catch (PDOException $exception) {
       if (str_contains($exception, 'UNIQUE constraint failed: users.id_card')) {
         throw new DuplicatedIdCardException("ID card \"{$user->idCard}\" already exists");
@@ -140,7 +141,6 @@ class PDOUserRepository extends PDORepository implements UserRepository {
       ->execute([$user->getId()]);
 
     $values = [];
-
 
     foreach ($user->getDepartment() as $department) {
       $values[] = "({$user->getId()}, {$department->getId()})";

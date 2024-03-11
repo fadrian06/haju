@@ -6,6 +6,8 @@ use App\Models\User;
 /**
  * @var array<int, Department> $departments
  * @var array<int, User> $users
+ * @var ?string $error
+ * @var ?string $message
  */
 
 ?>
@@ -27,10 +29,11 @@ use App\Models\User;
   </ul>
 </section>
 <section class="col-sm">
-  <h4 class="mb-4">Departamentos asignados</h4>
+  <?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
   <div class="tab-content">
     <?php foreach ($users as $user) : ?>
       <form action="<?= route('/configuracion/@id/permisos', ['id' => $user->getId()]) ?>" method="post" class="tab-pane fade text-center" id="<?= $user->idCard ?>">
+        <h4 class="mb-4">Departamentos asignados</h4>
         <div class="list-group">
           <?php foreach ($departments as $department) : ?>
             <label style="cursor: <?= $department->isActive ? 'pointer' : '' ?>" class="<?= !$department->isActive ? 'disabled' : '' ?> list-group-item d-flex justify-content-between align-items-center" for="<?= $user->idCard . $department->getId() . $department->name ?>">

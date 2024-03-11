@@ -37,6 +37,7 @@ class SettingsWebController extends Controller {
     }
 
     App::userRepository()->save($userRequested);
+    self::setMessage('Asignaciones actualizadas exitósamente');
     App::redirect('/configuracion');
   }
 }

@@ -52,22 +52,32 @@ class UserWebController extends Controller {
       $data['avatar'] ? new Url($data['avatar']) : null
     );
 
+    $departments = [];
+
+    foreach ($data['departments'] ?? [] as $departmentID) {
+      $departments[] = App::departmentRepository()->getById((int) $departmentID);
+    }
+
+    if ($departments) {
+      $user->assignDepartments(...$departments);
+    }
+
     try {
       App::userRepository()->save($user);
-      App::session()->set('message', '✔ Usuario registrado exitósamente');
+      self::setMessage('Usuario registrado exitósamente');
       App::redirect($urlToRedirect);
 
       return;
     } catch (DuplicatedNamesException) {
-      App::session()->set('error', "❌ Usuario \"{$user->getFullName()}\" ya existe");
+      self::setError("Usuario \"{$user->getFullName()}\" ya existe");
     } catch (DuplicatedIdCardException) {
-      App::session()->set('error', "❌ Cédula \"{$user->idCard}\" ya existe");
+      self::setError("Cédula \"{$user->idCard}\" ya existe");
     } catch (InvalidPhoneException) {
-      App::session()->set('error', "❌ Teléfono inválido \"{$data['phone']}\"");
+      self::setError("Teléfono inválido \"{$data['phone']}\"");
     } catch (InvalidEmailException) {
-      App::session()->set('error', "❌ Correo inválido \"{$data['email']}\"");
+      self::setError("Correo inválido \"{$data['email']}\"");
     } catch (InvalidUrlException) {
-      App::session()->set('error', "❌ URL inválida \"{$data['avatar']}\"");
+      self::setError("URL inválida \"{$data['avatar']}\"");
     }
 
     App::redirect($urlWhenFail);
@@ -132,9 +142,11 @@ class UserWebController extends Controller {
 
   static function showUsers(): void {
     $loggedUser = App::view()->get('user');
-    $users = App::userRepository()->getAll($loggedUser);
 
     assert($loggedUser instanceof User);
+
+    $users = App::userRepository()->getAll($loggedUser);
+    $departments = $loggedUser->role === Role::Director ? App::departmentRepository()->getAll() : [];
 
     $filteredUsers = array_filter($users, function (User $user) use ($loggedUser): bool {
       return $user->role->getLevel() <= $loggedUser->role->getLevel();
@@ -142,7 +154,12 @@ class UserWebController extends Controller {
 
     $usersNumber = count($filteredUsers);
 
-    App::renderPage('users', "Usuarios ($usersNumber)", ['users' => $filteredUsers], 'main');
+    App::renderPage(
+      'users',
+      "Usuarios ($usersNumber)",
+      ['users' => $filteredUsers, 'departments' => $departments],
+      'main'
+    );
   }
 
   static function handleToggleStatus(string $id): void {
