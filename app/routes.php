@@ -7,7 +7,9 @@ use App\Controllers\Web\SettingsWebController;
 use App\Controllers\Web\UserWebController;
 use App\Middlewares\AuthenticationMiddleware;
 use App\Middlewares\AuthorizationMiddleware;
+use App\Middlewares\EnsureOneSelectedDepartment;
 use App\Middlewares\EnsureOnlyAcceptOneDirector;
+use App\Middlewares\EnsureUserIsNotAuthenticated;
 use App\Middlewares\MessagesMiddleware;
 use App\Models\Role;
 
@@ -25,35 +27,38 @@ App::group('', function (): void {
     App::route('GET /registrate', [UserWebController::class, 'showRegister']);
     App::route('POST /registrate', [UserWebController::class, 'handleRegister']);
   }, [EnsureOnlyAcceptOneDirector::class]);
-}, [MessagesMiddleware::class]);
+}, [EnsureUserIsNotAuthenticated::class, MessagesMiddleware::class]);
 
 App::group('', function (): void {
   App::route('/departamento/seleccionar', [SessionWebController::class, 'showDepartments']);
   App::route('/departamento/seleccionar/@id', [SessionWebController::class, 'saveChoice']);
-  App::route('/', [HomeWebController::class, 'index']);
-  App::route('GET /perfil', [UserWebController::class, 'showProfile']);
-  App::route('POST /perfil', [UserWebController::class, 'handlePasswordChange']);
-  App::route('GET /perfil/editar', [UserWebController::class, 'showEditProfile']);
-  App::route('POST /perfil/editar', [UserWebController::class, 'handleEditProfile']);
-
-  App::route('/notificaciones', function (): void {
-  });
 
   App::group('', function (): void {
-    App::route('GET /usuarios', [UserWebController::class, 'showUsers']);
-    App::route('POST /usuarios', [UserWebController::class, 'handleRegister']);
-    App::route('/usuarios/@id/activar', [UserWebController::class, 'handleToggleStatus']);
-    App::route('/usuarios/@id/desactivar', [UserWebController::class, 'handleToggleStatus']);
+    App::route('/', [HomeWebController::class, 'index']);
+    App::route('GET /perfil', [UserWebController::class, 'showProfile']);
+    App::route('POST /perfil', [UserWebController::class, 'handlePasswordChange']);
+    App::route('GET /perfil/editar', [UserWebController::class, 'showEditProfile']);
+    App::route('POST /perfil/editar', [UserWebController::class, 'handleEditProfile']);
+
+    App::route('/notificaciones', function (): void {
+    });
 
     App::group('', function (): void {
-      App::route('GET /departamentos', [DepartmentWebController::class, 'showDepartments']);
-      App::route('POST /departamentos', [DepartmentWebController::class, 'handleRegister']);
-      App::route('POST /departamentos/@id', [DepartmentWebController::class, 'handleDepartmentEdition']);
-      App::route('/departamentos/@id/activar', [DepartmentWebController::class, 'handleToggleStatus']);
-      App::route('/departamentos/@id/desactivar', [DepartmentWebController::class, 'handleToggleStatus']);
+      App::route('GET /usuarios', [UserWebController::class, 'showUsers']);
+      App::route('POST /usuarios', [UserWebController::class, 'handleRegister']);
+      App::route('/usuarios/@id/activar', [UserWebController::class, 'handleToggleStatus']);
+      App::route('/usuarios/@id/desactivar', [UserWebController::class, 'handleToggleStatus']);
 
-      App::route('GET /configuracion', [SettingsWebController::class, 'showConfigs']);
-      App::route('POST /configuracion/@id/permisos', [SettingsWebController::class, 'handlePermissionAssignment']);
-    }, [new AuthorizationMiddleware(Role::Director)]);
-  }, [new AuthorizationMiddleware(Role::Coordinator)]);
+      App::group('', function (): void {
+        App::route('GET /departamentos', [DepartmentWebController::class, 'showDepartments']);
+        App::route('POST /departamentos', [DepartmentWebController::class, 'handleRegister']);
+        App::route('POST /departamentos/@id', [DepartmentWebController::class, 'handleDepartmentEdition']);
+        App::route('/departamentos/@id/activar', [DepartmentWebController::class, 'handleToggleStatus']);
+        App::route('/departamentos/@id/desactivar', [DepartmentWebController::class, 'handleToggleStatus']);
+
+        App::route('GET /configuracion', [SettingsWebController::class, 'showConfigs']);
+        App::route('POST /configuracion/@id/permisos', [SettingsWebController::class, 'handlePermissionAssignment']);
+      }, [new AuthorizationMiddleware(Role::Director)]);
+    }, [new AuthorizationMiddleware(Role::Coordinator)]);
+  }, [EnsureOneSelectedDepartment::class]);
 }, [AuthenticationMiddleware::class, MessagesMiddleware::class]);

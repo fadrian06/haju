@@ -12,12 +12,6 @@ class SessionWebController extends Controller {
   }
 
   static function showLogin(): void {
-    if (App::session()->get('userId')) {
-      App::redirect('/');
-
-      return;
-    }
-
     App::render('pages/login', [], 'content');
     App::render('layouts/base', ['title' => 'Ingreso']);
   }
