@@ -7,6 +7,7 @@ use App\Models\User;
 /**
  * @var User $user
  * @var Department $department
+ * @var bool $canChangeDepartment
  */
 
 ?>
@@ -18,9 +19,11 @@ use App\Models\User;
   <h2 class="m-0 d-flex align-items-center">
     <span class="d-none d-sm-block h3 m-0">Departamento de <?= $department->name ?></span>
     <span class="d-block d-sm-none h6 m-0">Departamento de <?= $department->name ?></span>
-    <a href="<?= route('/departamento/seleccionar') ?>" class="ms-4 btn btn-outline-primary btn-sm">
-      Cambiar
-    </a>
+    <?php if ($canChangeDepartment) : ?>
+      <a href="<?= route('/departamento/seleccionar') ?>" class="ms-4 btn btn-outline-primary btn-sm">
+        Cambiar
+      </a>
+    <?php endif ?>
   </h2>
   <div class="serach_field-area m-0">
     <!-- <form class="search_inner">

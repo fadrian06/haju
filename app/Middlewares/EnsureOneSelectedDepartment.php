@@ -12,6 +12,7 @@ class EnsureOneSelectedDepartment {
       $department = App::departmentRepository()->getById((int) $departmentId);
     }
 
+    App::view()->set('canChangeDepartment', (bool) App::session()->get('canChangeDepartment'));
     App::view()->set('department', $department);
   }
 }

@@ -3,6 +3,7 @@
 namespace App\Controllers\Web;
 
 use App;
+use App\Models\User;
 use Error;
 
 class SessionWebController extends Controller {
@@ -12,8 +13,7 @@ class SessionWebController extends Controller {
   }
 
   static function showLogin(): void {
-    App::render('pages/login', [], 'content');
-    App::render('layouts/base', ['title' => 'Ingreso']);
+    App::renderPage('login', 'Ingreso (1/2)');
   }
 
   static function handleLogin(): void {
@@ -40,6 +40,23 @@ class SessionWebController extends Controller {
   }
 
   static function showDepartments(): void {
+    $loggedUser = App::view()->get('user');
+    $departments = [];
+
+    assert($loggedUser instanceof User);
+
+    foreach ($loggedUser->getDepartment() as $department) {
+      $departments[] = $department;
+    }
+
+    App::session()->set('canChangeDepartment', count($departments) !== 1);
+
+    if (count($departments) === 1) {
+      App::redirect("/departamento/seleccionar/{$departments[0]->getId()}");
+
+      return;
+    }
+
     App::renderPage('select-department', 'Ingresar (2/2)');
   }
 
