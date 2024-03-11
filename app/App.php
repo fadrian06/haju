@@ -25,7 +25,7 @@ class App extends Flight {
   static function renderPage(
     string $page,
     string $title,
-    array $params,
+    array $params = [],
     string $layout = 'base'
   ): void {
     App::render("pages/$page", $params, 'content');

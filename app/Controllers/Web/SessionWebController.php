@@ -35,7 +35,7 @@ class SessionWebController extends Controller {
       }
 
       App::session()->set('userId', $user->getId());
-      App::redirect('/');
+      App::redirect('/departamento/seleccionar');
 
       return;
     } catch (Error $error) {
@@ -43,5 +43,14 @@ class SessionWebController extends Controller {
     }
 
     App::redirect('/ingresar');
+  }
+
+  static function showDepartments(): void {
+    App::renderPage('select-department', 'Ingresar (2/2)');
+  }
+
+  static function saveChoice(string $id): void {
+    App::session()->set('departmentId', $id);
+    App::redirect('/');
   }
 }

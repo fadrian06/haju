@@ -28,6 +28,8 @@ App::group('', function (): void {
 }, [MessagesMiddleware::class]);
 
 App::group('', function (): void {
+  App::route('/departamento/seleccionar', [SessionWebController::class, 'showDepartments']);
+  App::route('/departamento/seleccionar/@id', [SessionWebController::class, 'saveChoice']);
   App::route('/', [HomeWebController::class, 'index']);
   App::route('GET /perfil', [UserWebController::class, 'showProfile']);
   App::route('POST /perfil', [UserWebController::class, 'handlePasswordChange']);
