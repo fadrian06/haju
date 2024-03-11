@@ -35,6 +35,11 @@
             <a href="<?= route('/registrate') ?>">Regístrate</a>
           </li>
         <?php endif ?>
+        <?php if (isActive('/departamento/seleccionar')): ?>
+          <li class="d-none d-md-block">
+            <a href="<?= route('/salir') ?>">Cerrar sesión</a>
+          </li>
+        <?php endif ?>
         <li>
           <img src="<?= asset('img/client_img.png') ?>" height="69" />
         </li>
