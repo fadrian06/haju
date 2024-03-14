@@ -7,7 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 
 class SettingsWebController extends Controller {
-  static function showConfigs(): void {
+  static function showPermissions(): void {
     $departments = App::departmentRepository()->getAll();
     $users = App::userRepository()->getAll(App::view()->get('user'));
 
@@ -16,7 +16,7 @@ class SettingsWebController extends Controller {
     });
 
     App::renderPage(
-      'settings',
+      'settings/permissions',
       'Configuración',
       ['departments' => $departments, 'users' => $filteredUsers],
       'main'
@@ -38,6 +38,30 @@ class SettingsWebController extends Controller {
 
     App::userRepository()->save($userRequested);
     self::setMessage('Asignaciones actualizadas exitósamente');
-    App::redirect('/configuracion');
+    App::redirect('/configuracion/permisos');
+  }
+
+  static function showBackups(): void {
+    App::renderPage(
+      'settings/backups',
+      'Respaldo y restauración',
+      ['showRestore' => App::settingsRepository()->backupExists()],
+      'main'
+    );
+  }
+
+  static function showGeneralConfigs(): void {
+  }
+
+  static function handleCreateBackup(): void {
+    App::settingsRepository()->backup();
+    self::setMessage('Base de datos respaldada exitósamente');
+    App::redirect('/configuracion/respaldo-restauracion');
+  }
+
+  static function handleRestoreBackup(): void {
+    App::settingsRepository()->restore();
+    self::setMessage('Base de datos restaurada exitósamente');
+    App::redirect('/salir');
   }
 }

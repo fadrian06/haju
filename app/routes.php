@@ -56,7 +56,11 @@ App::group('', function (): void {
         App::route('/departamentos/@id/activar', [DepartmentWebController::class, 'handleToggleStatus']);
         App::route('/departamentos/@id/desactivar', [DepartmentWebController::class, 'handleToggleStatus']);
 
-        App::route('GET /configuracion', [SettingsWebController::class, 'showConfigs']);
+        App::route('/configuracion/permisos', [SettingsWebController::class, 'showPermissions']);
+        App::route('/configuracion/respaldo-restauracion', [SettingsWebController::class, 'showBackups']);
+        App::route('/configuracion/respaldar', [SettingsWebController::class, 'handleCreateBackup']);
+        App::route('/configuracion/restaurar', [SettingsWebController::class, 'handleRestoreBackup']);
+        App::route('GET /configuracion/general', [SettingsWebController::class, 'showGeneralConfigs']);
         App::route('POST /configuracion/@id/permisos', [SettingsWebController::class, 'handlePermissionAssignment']);
       }, [new AuthorizationMiddleware(Role::Director)]);
     }, [new AuthorizationMiddleware(Role::Coordinator)]);

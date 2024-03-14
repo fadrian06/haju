@@ -68,30 +68,30 @@ use App\Models\Role;
             </li>
           </ul>
         </li>
-        <li class="<?= isActive('/configuracion') ? 'mm-active' : '' ?>">
+        <li class="<?= isActive('/configuracion/general', '/configuracion/permisos', '/configuracion/respaldo-restauracion') ? 'mm-active' : '' ?>">
           <a href="#" class="has-arrow">
             <img src="<?= asset('img/icons/gears.svg') ?>" />
             <span>Configuraciones</span>
           </a>
           <ul>
             <!-- <li>
-              <a href="<?= route('/configuracion') ?>">
+              <a href="<?= route('/configuracion/general') ?>">
                 <i class="ti-bookmark-alt"></i>
                 Institución
               </a>
             </li> -->
             <li>
-              <a href="<?= route('/configuracion') ?>#roles-y-permisos">
+              <a href="<?= route('/configuracion/permisos') ?>">
                 <i class="ti-key"></i>
                 Roles y permisos
               </a>
             </li>
-            <!-- <li>
-              <a href="<?= route('/configuracion') ?>#respaldo-y-restauracion">
+            <li>
+              <a href="<?= route('/configuracion/respaldo-restauracion') ?>">
                 <i class="ti-import"></i>
                 Respaldo y restauración
               </a>
-            </li> -->
+            </li>
           </ul>
         </li>
       <?php endif ?>

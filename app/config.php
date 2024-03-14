@@ -2,6 +2,7 @@
 
 use App\Repositories\Infraestructure\PDO\Connection;
 use App\Repositories\Infraestructure\PDO\PDODepartmentRepository;
+use App\Repositories\Infraestructure\PDO\PDOSettingsRepository;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
 use Leaf\Http\Session;
 
@@ -36,6 +37,15 @@ App::register(
     $repository
       ->setDepartmentRepository(App::departmentRepository())
       ->setConnection(App::db());
+  }
+);
+
+App::register(
+  'settingsRepository',
+  PDOSettingsRepository::class,
+  [],
+  function (PDOSettingsRepository $repository) {
+    $repository->setConnection(App::db());
   }
 );
 

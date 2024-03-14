@@ -54,7 +54,7 @@ use App\Models\User;
             <i class="ti-user"></i>
           </a>
           <?php if ($user->role === Role::Director) : ?>
-            <a href="<?= route('/configuracion') ?>">
+            <a href="<?= route('/configuracion/general') ?>">
               Configuración
               <i class="ti-settings"></i>
             </a>
