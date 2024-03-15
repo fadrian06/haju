@@ -59,7 +59,10 @@ use App\Models\User;
   <div class="modal-dialog">
     <form class="modal-content" method="post">
       <header class="modal-header">
-        <h3 class="modal-title fs-5">Registrar coordinador/a</h3>
+        <h3 class="modal-title fs-5">
+          Registrar
+          <?= $user->role === Role::Director ? 'coordinador/a' : 'secretario/a' ?>
+        </h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </header>
       <section class="modal-body">
