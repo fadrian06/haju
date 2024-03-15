@@ -11,6 +11,7 @@ use App\Middlewares\EnsureOneSelectedDepartment;
 use App\Middlewares\EnsureOnlyAcceptOneDirector;
 use App\Middlewares\EnsureUserIsNotAuthenticated;
 use App\Middlewares\MessagesMiddleware;
+use App\Middlewares\ShowRegisterIfThereIsNoUsers;
 use App\Models\Role;
 
 $showRegister = App::userRepository()->getAll() === [];
@@ -18,10 +19,12 @@ App::view()->set(compact('showRegister'));
 
 App::group('', function (): void {
   App::route('/salir', [SessionWebController::class, 'logOut']);
-  App::route('GET /ingresar', [SessionWebController::class, 'showLogin']);
-  App::route('POST /ingresar', [SessionWebController::class, 'handleLogin']);
-  App::route('GET /recuperar', [UserWebController::class, 'showPasswordReset']);
-  App::route('POST /recuperar', [UserWebController::class, 'handlePasswordReset']);
+  App::group('', function (): void {
+    App::route('GET /ingresar', [SessionWebController::class, 'showLogin']);
+    App::route('POST /ingresar', [SessionWebController::class, 'handleLogin']);
+    App::route('GET /recuperar', [UserWebController::class, 'showPasswordReset']);
+    App::route('POST /recuperar', [UserWebController::class, 'handlePasswordReset']);
+  }, [ShowRegisterIfThereIsNoUsers::class]);
 
   App::group('', function (): void {
     App::route('GET /registrate', [UserWebController::class, 'showRegister']);
