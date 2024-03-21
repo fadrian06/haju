@@ -61,15 +61,15 @@ use App\Models\User;
     <h3>Información de contacto</h3>
     <fieldset class="row mt-4">
       <div class="col-12 mb-md-4 form-floating">
-        <textarea name="address" id="address" placeholder="Dirección" rows="1" class="form-control"><?= $user->address ?></textarea>
+        <textarea name="address" id="address" required placeholder="Dirección" rows="1" class="form-control"><?= $user->address ?></textarea>
         <label for="address">Dirección</label>
       </div>
       <div class="col-md mt-3 mt-md-0 form-floating">
-        <input type="tel" value="<?= $user->phone ?>" name="phone" id="phone" placeholder="Teléfono" class="form-control" />
+        <input type="tel" required value="<?= $user->phone ?>" name="phone" id="phone" placeholder="Teléfono" class="form-control" />
         <label for="phone">Teléfono</label>
       </div>
       <div class="col-md mt-3 mt-md-0 form-floating">
-        <input type="email" value="<?= $user->email?->asString() ?>" name="email" id="email" placeholder="Correo electrónico" class="form-control" />
+        <input type="email" required value="<?= $user->email?->asString() ?>" name="email" id="email" placeholder="Correo electrónico" class="form-control" />
         <label for="email">Correo electrónico</label>
       </div>
     </fieldset>

@@ -96,7 +96,7 @@ use App\Models\User;
             <label for="gender">Género</label>
           </div>
           <div class="col-md-6 form-floating mb-4">
-            <select class="form-select" name="Prefijo" id="Prefijo" placeholder="Prefijo">
+            <select required class="form-select" name="Prefijo" id="Prefijo" placeholder="Prefijo">
               <option value="">Seleccione un prefijo</option>
               <?php foreach (ProfessionPrefix::cases() as $prefix) : ?>
                 <option value="<?= $prefix->value ?>"><?= $prefix->getLongValue() ?></option>
@@ -132,19 +132,19 @@ use App\Models\User;
         <fieldset class="row">
           <summary class="fs-6 mb-2">Datos de contacto</summary>
           <div class="col-md-6 form-floating mb-4">
-            <input type="tel" class="form-control" name="phone" id="phone" placeholder="Teléfono" />
+            <input type="tel" class="form-control" required name="phone" id="phone" placeholder="Teléfono" />
             <label for="phone">Teléfono</label>
           </div>
           <div class="col-md-6 form-floating mb-4">
-            <input type="email" class="form-control" name="email" id="email" placeholder="Correo electrónico" />
+            <input type="email" class="form-control" required name="email" id="email" placeholder="Correo electrónico" />
             <label for="email">Correo electrónico</label>
           </div>
           <div class="col-md-6 form-floating mb-4">
-            <textarea class="form-control" name="address" id="address" placeholder="Dirección"></textarea>
+            <textarea class="form-control" required name="address" id="address" placeholder="Dirección"></textarea>
             <label for="address">Dirección</label>
           </div>
           <div class="col-md-6 form-floating mb-4">
-            <input type="url" class="form-control" name="avatar" id="avatar" placeholder="Avatar URL" />
+            <input type="url" class="form-control" required name="avatar" id="avatar" placeholder="Avatar URL" />
             <label for="avatar">Avatar URL</label>
           </div>
         </fieldset>

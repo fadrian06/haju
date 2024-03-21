@@ -27,8 +27,8 @@
       <p>¿Necesitas una cuenta?
         <a href="<?= route('/registrate') ?>">Regístrate</a>
       </p>
-    <?php else : ?>
-      <a href="<?= route('/recuperar') ?>" class="pass_forget_btn">¿Olvidó su contraseña?</a>
+    <?php // else : ?>
+      <!-- <a href="<?= route('/recuperar') ?>" class="pass_forget_btn">¿Olvidó su contraseña?</a> -->
     <?php endif ?>
   </form>
 </section>
