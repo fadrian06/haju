@@ -3,7 +3,8 @@
     "php": "^8.2",
     "flightphp/core": "^3.6",
     "phar-io/manifest": "^2.0",
-    "leafs/session": "^2.0"
+    "leafs/session": "^2.0",
+    "leafs/form": "^2.1"
   },
   "autoload": {
     "psr-4": {

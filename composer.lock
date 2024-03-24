@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "17a865d814da8c1dbc431e22873828cc",
+  "content-hash": "83c84b5f1c83f131f3c57658a68b4314",
   "packages": [
     {
       "name": "flightphp/core",
@@ -135,6 +135,73 @@
         }
       ],
       "time": "2023-07-09T00:51:55+00:00"
+    },
+    {
+      "name": "leafs/form",
+      "version": "v2.1",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/leafsphp/form.git",
+        "reference": "86ecc5c1799b1a26b16cfcff3dbb451f8611ad1e"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/leafsphp/form/zipball/86ecc5c1799b1a26b16cfcff3dbb451f8611ad1e",
+        "reference": "86ecc5c1799b1a26b16cfcff3dbb451f8611ad1e",
+        "shasum": ""
+      },
+      "require": {
+        "ext-json": "*"
+      },
+      "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "pestphp/pest": "^1.22"
+      },
+      "type": "library",
+      "autoload": {
+        "files": [
+          "src/functions.php"
+        ],
+        "psr-4": {
+          "Leaf\\": "src"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Michael Darko",
+          "email": "mickdd22@gmail.com",
+          "homepage": "https://mychi.netlify.app",
+          "role": "Developer"
+        }
+      ],
+      "description": "Simple straightup data validation",
+      "homepage": "https://leafphp.dev/modules/forms/",
+      "keywords": [
+        "form",
+        "framework",
+        "leaf",
+        "php",
+        "validation"
+      ],
+      "support": {
+        "issues": "https://github.com/leafsphp/form/issues",
+        "source": "https://github.com/leafsphp/form/tree/v2.1"
+      },
+      "funding": [
+        {
+          "url": "https://github.com/leafsphp",
+          "type": "github"
+        },
+        {
+          "url": "https://opencollective.com/leaf",
+          "type": "open_collective"
+        }
+      ],
+      "time": "2023-11-12T21:51:53+00:00"
     },
     {
       "name": "leafs/session",
