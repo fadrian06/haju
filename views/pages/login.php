@@ -13,14 +13,19 @@
   <form class="modal-body text-center" method="post">
     <?php $error && render('components/notification', ['type' => 'error', 'text' => $error]) ?>
     <?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
-    <label class="input-group mb-3">
-      <i class="input-group-text ti-id-badge fs-1"></i>
-      <input type="number" required name="id_card" class="form-control mb-0 w-auto h-100 py-0" placeholder="Cédula" />
-    </label>
-    <label class="input-group mb-3">
-      <i class="input-group-text ti-key fs-1"></i>
-      <input type="password" required name="password" class="form-control mb-0 w-auto h-100 py-0" placeholder="Contraseña" />
-    </label>
+    <?php
+      echo render('components/input-group', [
+        'type' => 'number',
+        'name' => 'id_card',
+        'placeholder' => 'Cédula'
+      ]);
+
+      echo render('components/input-group', [
+        'type' => 'password',
+        'name' => 'password',
+        'placeholder' => 'Contraseña'
+      ]);
+    ?>
     <button class="btn_1">Ingresar</button>
     <!-- <a href="./recuperar" class="pass_forget_btn">¿Olvidó su contraseña?</a> -->
   </form>
