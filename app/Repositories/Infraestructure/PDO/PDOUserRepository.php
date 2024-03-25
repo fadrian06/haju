@@ -30,12 +30,12 @@ class PDOUserRepository extends PDORepository implements UserRepository {
   SQL_FIELDS;
 
   private const TABLE = 'users';
-  private ?PDODepartmentRepository $departmentRepository = null;
 
-  function setDepartmentRepository(PDODepartmentRepository $repository): self {
-    $this->departmentRepository = $repository;
-
-    return $this;
+  function __construct(
+    Connection $connection,
+    readonly private PDODepartmentRepository $departmentRepository
+  ) {
+    parent::__construct($connection);
   }
 
   function getAll(User ...$exclude): array {

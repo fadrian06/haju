@@ -10,12 +10,7 @@ use PDOException;
 abstract class PDORepository {
   private const DATETIME_FORMAT = 'Y-m-d H:i:s';
 
-  protected ?Connection $connection = null;
-
-  function setConnection(Connection $connection): static {
-    $this->connection = $connection;
-
-    return $this;
+  function __construct(protected Connection $connection) {
   }
 
   /** @throws ConnectionException */

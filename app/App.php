@@ -3,6 +3,7 @@
 use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Domain\SettingsRepository;
 use App\Repositories\Domain\UserRepository;
+use App\Repositories\Infraestructure\PDO\Connection;
 use flight\net\Route;
 use Leaf\Http\Session;
 
@@ -11,6 +12,7 @@ use Leaf\Http\Session;
  * @method static DepartmentRepository departmentRepository()
  * @method static SettingsRepository settingsRepository()
  * @method static Session session()
+ * @method static Connection db()
  */
 class App extends Flight {
   static function route(

@@ -4,6 +4,7 @@ use App\Repositories\Infraestructure\PDO\Connection;
 use App\Repositories\Infraestructure\PDO\PDODepartmentRepository;
 use App\Repositories\Infraestructure\PDO\PDOSettingsRepository;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
+use Leaf\Form;
 use Leaf\Http\Session;
 
 $_ENV += require_once __DIR__ . '/../.env.php';
@@ -23,30 +24,20 @@ App::register('db', Connection::class, [
 App::register(
   'departmentRepository',
   PDODepartmentRepository::class,
-  [],
-  function (PDODepartmentRepository $repository): void {
-    $repository->setConnection(App::db());
-  }
+  [App::db()]
 );
 
 App::register(
   'userRepository',
   PDOUserRepository::class,
-  [],
-  function (PDOUserRepository $repository): void {
-    $repository
-      ->setDepartmentRepository(App::departmentRepository())
-      ->setConnection(App::db());
-  }
+  [App::db(), App::departmentRepository()]
 );
 
 App::register(
   'settingsRepository',
   PDOSettingsRepository::class,
-  [],
-  function (PDOSettingsRepository $repository) {
-    $repository->setConnection(App::db());
-  }
+  [App::db()]
 );
 
 App::register('session', Session::class);
+App::register('form', Form::class);
