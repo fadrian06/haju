@@ -2,11 +2,11 @@
 
 namespace App\Repositories\Infraestructure\PDO;
 
+use App\Models\Appointment;
 use App\Models\Date;
 use App\Models\Gender;
+use App\Models\InstructionLevel;
 use App\Models\Phone;
-use App\Models\ProfessionPrefix;
-use App\Models\Role;
 use App\Models\User;
 use App\Repositories\Domain\UserRepository;
 use App\Repositories\Exceptions\DuplicatedAvatarsException;
@@ -21,9 +21,12 @@ use PharIo\Manifest\Url;
 
 class PDOUserRepository extends PDORepository implements UserRepository {
   private const FIELDS = <<<SQL_FIELDS
-  id, first_name as firstName, last_name as lastName,
-  birth_date as birthDateTimestamp, gender, role, prefix, id_card as idCard,
-  password, phone, email, address, avatar, registered, is_active as isActive
+  users.id as id, first_name as firstName, second_name as secondName,
+  first_last_name as firstLastName, second_last_name as secondLastName,
+  birth_date as birthDateTimestamp, gender, appointments.name as appointment,
+  instruction_levels.abbreviation as instructionAbbreviation, id_card as idCard,
+  password, phone, email, address, profile_image_path as profileImagePath,
+  users.registered_date as registeredDateTime, is_active as isActive
   SQL_FIELDS;
 
   private const TABLE = 'users';
@@ -36,11 +39,15 @@ class PDOUserRepository extends PDORepository implements UserRepository {
   }
 
   function getAll(User ...$exclude): array {
-    $ids = array_map(fn (User $user): int => $user->getId(), $exclude);
+    $ids = array_map(function (User $user): int {
+      return $user->getId();
+    }, $exclude);
 
     return $this->ensureIsConnected()
       ->query(sprintf(
-        'SELECT %s FROM %s %s',
+        'SELECT %s FROM %s JOIN appointments JOIN instruction_levels
+        ON users.appointment_id = appointments.id
+        AND users.instruction_level_id = instruction_levels.id %s',
         self::FIELDS,
         self::TABLE,
         $ids !== []
@@ -79,9 +86,10 @@ class PDOUserRepository extends PDORepository implements UserRepository {
       $query = sprintf(
         <<<SQL
           INSERT INTO %s (
-            first_name, last_name, birth_date, gender, role, prefix, id_card,
-            password, phone, email, address, avatar, registered
-          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            first_name, second_name, first_last_name, second_last_name,
+            birth_date, gender, appointment_id, instruction_level_id, id_card,
+            password, phone, email, address, profile_image_path, registered_date
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         SQL,
         self::TABLE
       );
@@ -92,22 +100,24 @@ class PDOUserRepository extends PDORepository implements UserRepository {
         ->prepare($query)
         ->execute([
           $user->firstName,
-          $user->lastName,
+          $user->secondName,
+          $user->firstLastName,
+          $user->secondLastName,
           $user->birthDate->timestamp,
           $user->gender->value,
-          $user->role->value,
-          $user->prefix?->value,
+          $user->appointment->getId(),
+          $user->instructionLevel->getId(),
           $user->idCard,
           $user->getPassword(),
           $user->phone,
-          $user->email?->asString(),
+          $user->email->asString(),
           $user->address,
-          $user->avatar?->asString(),
+          $user->profileImagePath->asString(),
           $datetime
         ]);
 
       $user->setId($this->connection->instance()->lastInsertId())
-        ->setRegistered(self::parseDateTime($datetime));
+        ->setRegisteredDate(self::parseDateTime($datetime));
 
       $this->assignDepartments($user);
     } catch (PDOException $exception) {
@@ -128,7 +138,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
       }
 
       if (str_contains($exception, 'UNIQUE constraint failed: users.avatar')) {
-        throw new DuplicatedAvatarsException("Avatar \"{$user->avatar->asString()}\" already exists");
+        throw new DuplicatedAvatarsException("Avatar \"{$user->profileImagePath->asString()}\" already exists");
       }
 
       throw $exception;
@@ -160,8 +170,9 @@ class PDOUserRepository extends PDORepository implements UserRepository {
   private function update(User $user): void {
     $sql = sprintf(
       <<<SQL
-        UPDATE %s SET first_name = ?, last_name = ?, birth_date = ?,
-        gender = ?, phone = ?, email = ?, address = ?, password = ?,
+        UPDATE %s SET first_name = ?, second_name = ?, first_last_name = ?,
+        second_last_name = ?, birth_date = ?, gender = ?,
+        phone = ?, email = ?, address = ?, password = ?,
         is_active = ? WHERE id = ?
       SQL,
       self::TABLE
@@ -171,19 +182,22 @@ class PDOUserRepository extends PDORepository implements UserRepository {
       ->prepare($sql)
       ->execute([
         $user->firstName,
-        $user->lastName,
+        $user->secondName,
+        $user->firstLastName,
+        $user->secondLastName,
         $user->birthDate->timestamp,
         $user->gender->value,
         $user->phone,
-        $user->email?->asString(),
+        $user->email->asString(),
         $user->address,
         $user->getPassword(),
-        $user->isActive, $user->getId()
+        $user->isActive,
+        $user->getId()
       ]);
   }
 
   private function setDepartments(User $user): void {
-    if ($user->role === Role::Director) {
+    if ($user->appointment === Appointment::Director) {
       $user->assignDepartments(...$this->departmentRepository->getAll());
 
       return;
@@ -211,37 +225,41 @@ class PDOUserRepository extends PDORepository implements UserRepository {
   private function mapper(
     int $id,
     string $firstName,
-    string $lastName,
-    int $birthDateTimestamp,
+    string $secondName,
+    string $firstLastName,
+    string $secondLastName,
+    string $birthDateTimestamp,
     string $gender,
-    string $role,
-    ?string $prefix,
+    string $appointment,
+    string $instructionAbbreviation,
     int $idCard,
     string $password,
-    ?string $phone,
-    ?string $email,
-    ?string $address,
-    ?string $avatar,
-    string $registered,
+    string $phone,
+    string $email,
+    string $address,
+    string $profileImagePath,
+    string $registeredDateTime,
     bool $isActive
   ): User {
     $user = new User(
       $firstName,
-      $lastName,
+      $secondName,
+      $firstLastName,
+      $secondLastName,
       Date::fromTimestamp($birthDateTimestamp),
       Gender::from($gender),
-      Role::from($role),
-      ProfessionPrefix::tryFrom($prefix ?? ''),
+      Appointment::from($appointment),
+      InstructionLevel::from($instructionAbbreviation),
       $idCard,
       $password,
-      $phone ? new Phone($phone) : null,
-      $email ? new Email($email) : null,
-      $address ?: null,
-      $avatar ? new Url($avatar) : null,
+      new Phone($phone),
+      new Email($email),
+      $address,
+      new Url($profileImagePath),
       $isActive
     );
 
-    $user->setId($id)->setRegistered(self::parseDateTime($registered));
+    $user->setId($id)->setRegisteredDate(self::parseDateTime($registeredDateTime));
     $this->setDepartments($user);
 
     return $user;

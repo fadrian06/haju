@@ -12,7 +12,7 @@ use App\Middlewares\EnsureOnlyAcceptOneDirector;
 use App\Middlewares\EnsureUserIsNotAuthenticated;
 use App\Middlewares\MessagesMiddleware;
 use App\Middlewares\ShowRegisterIfThereIsNoUsers;
-use App\Models\Role;
+use App\Models\Appointment;
 
 $showRegister = App::userRepository()->getAll() === [];
 App::view()->set(compact('showRegister'));
@@ -65,7 +65,7 @@ App::group('', function (): void {
         App::route('/configuracion/restaurar', [SettingsWebController::class, 'handleRestoreBackup']);
         App::route('GET /configuracion/general', [SettingsWebController::class, 'showGeneralConfigs']);
         App::route('POST /configuracion/@id/permisos', [SettingsWebController::class, 'handlePermissionAssignment']);
-      }, [new AuthorizationMiddleware(Role::Director)]);
-    }, [new AuthorizationMiddleware(Role::Coordinator)]);
+      }, [new AuthorizationMiddleware(Appointment::Director)]);
+    }, [new AuthorizationMiddleware(Appointment::Coordinator)]);
   }, [EnsureOneSelectedDepartment::class]);
 }, [AuthenticationMiddleware::class, MessagesMiddleware::class]);

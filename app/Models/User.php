@@ -24,17 +24,19 @@ class User extends Model {
    */
   function __construct(
     public string $firstName,
-    public string $lastName,
+    public string $secondName,
+    public string $firstLastName,
+    public string $secondLastName,
     public Date $birthDate,
     public Gender $gender,
-    public readonly Role $role,
-    public ?ProfessionPrefix $prefix,
+    public readonly Appointment $appointment,
+    public InstructionLevel $instructionLevel,
     public int $idCard,
     string $password,
-    public ?Phone $phone = null,
-    public ?Email $email = null,
-    public ?string $address = null,
-    public ?Url $avatar = null,
+    public Phone $phone,
+    public Email $email,
+    public string $address,
+    public Url $profileImagePath,
     public bool $isActive = true
   ) {
     $this->setPassword($password);

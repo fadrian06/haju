@@ -3,12 +3,12 @@
 namespace App\Controllers\Web;
 
 use App;
+use App\Models\Appointment;
 use App\Models\Date;
 use App\Models\Exceptions\InvalidPhoneException;
 use App\Models\Gender;
+use App\Models\InstructionLevel;
 use App\Models\Phone;
-use App\Models\ProfessionPrefix;
-use App\Models\Role;
 use App\Models\User;
 use App\Repositories\Exceptions\DuplicatedIdCardException;
 use App\Repositories\Exceptions\DuplicatedNamesException;
@@ -26,30 +26,40 @@ class UserWebController extends Controller {
 
   static function handleRegister(): void {
     $data = App::request()->data;
+    $files = App::request()->files;
 
     $loggedUser = App::view()->get('user');
 
     assert($loggedUser === null || $loggedUser instanceof User);
 
-    [$role, $urlToRedirect, $urlWhenFail] = match (true) {
-      !$loggedUser => [Role::Director, '/ingresar', '/registrate'],
-      $loggedUser->role === Role::Director => [Role::Coordinator, '/usuarios', '/usuarios'],
-      $loggedUser->role === Role::Coordinator => [Role::Secretary, '/usuarios', '/usuarios']
+    [$appointment, $urlToRedirect, $urlWhenFail] = match (true) {
+      !$loggedUser => [Appointment::Director, '/ingresar', '/registrate'],
+      $loggedUser->appointment === Appointment::Director => [Appointment::Coordinator, '/usuarios', '/usuarios'],
+      $loggedUser->appointment === Appointment::Coordinator => [Appointment::Secretary, '/usuarios', '/usuarios']
     };
+
+    $temporalProfileImagePath = $files['profile_image']['tmp_name'];
+    $profileImageName = $files['profile_image']['name'];
+    $profileImagePath = dirname(__DIR__, 3) . "/assets/img/avatars/{$profileImageName}";
+    $profileImageUrlPath = App::request()->scheme . '://' . App::request()->host . App::get('root') . "/assets/img/avatars/{$profileImageName}";
+
+    copy($temporalProfileImagePath, $profileImagePath);
 
     $user = new User(
       $data['first_name'],
-      $data['last_name'],
+      $data['second_name'],
+      $data['first_last_name'],
+      $data['second_last_name'],
       Date::from($data['birth_date'], '-'),
       Gender::from($data['gender']),
-      $role,
-      $data['prefix'] ? ProfessionPrefix::from($data['prefix']) : null,
+      $appointment,
+      InstructionLevel::from($data['instruction_level']),
       (int) $data['id_card'],
       $data['password'],
-      $data['phone'] ? new Phone($data['phone']) : null,
-      $data['email'] ? new Email($data['email']) : null,
+      new Phone($data['phone']),
+      new Email($data['email']),
       $data['address'],
-      $data['avatar'] ? new Url($data['avatar']) : null
+      new Url($profileImageUrlPath)
     );
 
     $departments = [];

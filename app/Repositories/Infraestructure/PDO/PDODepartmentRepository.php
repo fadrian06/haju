@@ -9,7 +9,7 @@ use PDO;
 use PDOException;
 
 class PDODepartmentRepository extends PDORepository implements DepartmentRepository {
-  private const FIELDS = 'id, name, registered, is_active as isActive';
+  private const FIELDS = 'id, name, registered_date, is_active as isActive';
   private const TABLE = 'departments';
 
   function getAll(): array {
@@ -50,7 +50,7 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
 
       $department
         ->setId($this->connection->instance()->lastInsertId())
-        ->setRegistered(self::parseDateTime($date));
+        ->setRegisteredDate(self::parseDateTime($date));
     } catch (PDOException $exception) {
       if (str_contains($exception, 'UNIQUE constraint failed: departments.name')) {
         throw new DuplicatedNamesException("Department \"{$department->name}\" already exists");
@@ -71,7 +71,7 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
       $isActive
     );
 
-    $department->setId($id)->setRegistered(self::parseDateTime($registered));
+    $department->setId($id)->setRegisteredDate(self::parseDateTime($registered));
 
     return $department;
   }

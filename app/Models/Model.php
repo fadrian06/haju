@@ -6,7 +6,7 @@ use DateTime;
 
 abstract class Model {
   private ?int $id = null;
-  private ?DateTime $registered = null;
+  private ?DateTime $registeredDateTime = null;
 
   function setId(int $id): static {
     if ($this->id === null) {
@@ -20,15 +20,15 @@ abstract class Model {
     return $this->id;
   }
 
-  function setRegistered(DateTime $datetime): static {
-    if ($this->registered === null) {
-      $this->registered = $datetime;
+  function setRegisteredDate(DateTime $datetime): static {
+    if ($this->registeredDateTime === null) {
+      $this->registeredDateTime = $datetime;
     }
 
     return $this;
   }
 
   function getRegisteredDate(): string {
-    return $this->registered->format('d/m/Y');
+    return $this->registeredDateTime->format('d/m/Y');
   }
 }
