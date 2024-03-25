@@ -1,7 +1,6 @@
 <?php
 
 /**
- * @var bool $showRegister
  * @var ?string $error
  * @var ?string $message
  */
@@ -23,12 +22,6 @@
       <input type="password" required name="password" class="form-control mb-0 w-auto h-100 py-0" placeholder="Contraseña" />
     </label>
     <button class="btn_1">Ingresar</button>
-    <?php if ($showRegister) : ?>
-      <p>¿Necesitas una cuenta?
-        <a href="<?= route('/registrate') ?>">Regístrate</a>
-      </p>
-    <?php // else : ?>
-      <!-- <a href="<?= route('/recuperar') ?>" class="pass_forget_btn">¿Olvidó su contraseña?</a> -->
-    <?php endif ?>
+    <!-- <a href="./recuperar" class="pass_forget_btn">¿Olvidó su contraseña?</a> -->
   </form>
 </section>

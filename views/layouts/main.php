@@ -1,6 +1,13 @@
 <?php
 
-/** @var App\Models\User $user */
+use App\Models\User;
+
+/**
+ * @var string $root
+ * @var string $title
+ * @var string $content
+ * @var User $user
+ */
 
 ?>
 
@@ -12,13 +19,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title><?= $title ?> - HAJU</title>
   <?php render('components/open-graph-metas') ?>
-  <link rel="icon" href="<?= asset('img/logo-mini.png') ?>" />
-  <link rel="stylesheet" href="<?= asset('fonts/fonts.css') ?>" />
-  <link rel="stylesheet" href="<?= asset('vendors/metismenu/metisMenu.min.css') ?>" />
-  <link rel="stylesheet" href="<?= asset('vendors/bootstrap/bootstrap.min.css') ?>" />
-  <link rel="stylesheet" href="<?= asset('vendors/themefy_icon/themify-icons.css') ?>" />
-  <link rel="stylesheet" href="<?= asset('css/theme.css') ?>" />
-  <link rel="stylesheet" href="<?= asset('css/custom.css') ?>" />
+  <base href="<?= $root ?>" />
+  <link rel="icon" href="./assets/img/logo-mini.png" />
+  <link rel="stylesheet" href="./assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="./assets/vendors/metismenu/metisMenu.min.css" />
+  <link rel="stylesheet" href="./assets/vendors/bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" href="./assets/vendors/themefy_icon/themify-icons.css" />
+  <link rel="stylesheet" href="./assets/css/theme.css" />
+  <link rel="stylesheet" href="./assets/css/custom.css" />
   <style>
     .main_content {
       min-height: 100vh !important;
@@ -39,10 +47,10 @@
     </div>
     <?php render('components/footer') ?>
   </section>
-  <script src="<?= asset('vendors/jquery/jquery.min.js') ?>"></script>
-  <script src="<?= asset('vendors/metismenu/metisMenu.min.js') ?>"></script>
-  <script src="<?= asset('vendors/bootstrap/bootstrap.bundle.min.js') ?>"></script>
-  <script src="<?= asset('js/custom.js') ?>"></script>
+  <script src="./assets/vendors/jquery/jquery.min.js')"></script>
+  <script src="./assets/vendors/metismenu/metisMenu.min.js')"></script>
+  <script src="./assets/vendors/bootstrap/bootstrap.bundle.min.js')"></script>
+  <script src="./assets/js/custom.js')"></script>
 </body>
 
 </html>

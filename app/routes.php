@@ -14,11 +14,9 @@ use App\Middlewares\MessagesMiddleware;
 use App\Middlewares\ShowRegisterIfThereIsNoUsers;
 use App\Models\Appointment;
 
-$showRegister = App::userRepository()->getAll() === [];
-App::view()->set(compact('showRegister'));
-
 App::group('', function (): void {
   App::route('/salir', [SessionWebController::class, 'logOut']);
+
   App::group('', function (): void {
     App::route('GET /ingresar', [SessionWebController::class, 'showLogin']);
     App::route('POST /ingresar', [SessionWebController::class, 'handleLogin']);

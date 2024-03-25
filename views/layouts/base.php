@@ -1,6 +1,13 @@
 <?php
 
-/** @var bool $showRegister */
+use App\Models\User;
+
+/**
+ * @var string $root
+ * @var string $title
+ * @var string $content
+ * @var ?User $user
+ */
 
 ?>
 
@@ -12,36 +19,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title><?= $title ?> - HAJU</title>
   <?php render('components/open-graph-metas') ?>
-  <link rel="icon" href="<?= asset('img/logo-mini.png') ?>" />
-  <link rel="stylesheet" href="<?= asset('fonts/fonts.css') ?>" />
-  <link rel="stylesheet" href="<?= asset('vendors/bootstrap/bootstrap.min.css') ?>" />
-  <link rel="stylesheet" href="<?= asset('vendors/themefy_icon/themify-icons.css') ?>" />
-  <link rel="stylesheet" href="<?= asset('css/theme.css') ?>" />
-  <link rel="stylesheet" href="<?= asset('css/custom.css') ?>" />
+  <base href="<?= $root ?>/" />
+  <link rel="icon" href="./assets/img/logo-mini.png" />
+  <link rel="stylesheet" href="./assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="./assets/vendors/bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" href="./assets/vendors/themefy_icon/themify-icons.css" />
+  <link rel="stylesheet" href="./assets/css/theme.css" />
+  <link rel="stylesheet" href="./assets/css/custom.css" />
 </head>
 
 <body class="pb-4">
   <header class="d-flex header_iner align-items-center py-0">
-    <img src="<?= asset('img/logo.png') ?>" height="45" />
+    <img src="./assets/img/logo.png" height="45" />
     <nav class="header_right">
       <ul class="header_notification_warp d-flex align-items-center mx-0">
         <?php if (!isActive('/ingresar') && !isActive('/departamento/seleccionar')) : ?>
           <li class="d-none d-md-block">
-            <a href="<?= route('/ingresar') ?>">Iniciar sesión</a>
-          </li>
-        <?php endif ?>
-        <?php if ($showRegister) : ?>
-          <li class="d-none d-md-block">
-            <a href="<?= route('/registrate') ?>">Regístrate</a>
+            <a href="./ingresar">Iniciar sesión</a>
           </li>
         <?php endif ?>
         <?php if (isActive('/departamento/seleccionar')): ?>
           <li class="d-none d-md-block">
-            <a href="<?= route('/salir') ?>">Cerrar sesión</a>
+            <a href="./salir">Cerrar sesión</a>
           </li>
         <?php endif ?>
         <li>
-          <img src="<?= asset('img/client_img.png') ?>" height="69" />
+          <img src="<?= $user?->profileImagePath->asString() ?? './assets/img/client_img.png' ?>" height="69" />
         </li>
       </ul>
     </nav>
@@ -52,7 +55,7 @@
     </div>
   </main>
   <?php render('components/footer') ?>
-  <script src="<?= asset('vendors/bootstrap/bootstrap.bundle.min.js') ?>"></script>
+  <script src="./assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

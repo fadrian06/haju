@@ -3,7 +3,7 @@
 namespace App\Middlewares;
 
 use App;
-use App\Models\Role;
+use App\Models\Appointment;
 use App\Models\User;
 
 class EnsureOnlyAcceptOneDirector {
@@ -11,7 +11,7 @@ class EnsureOnlyAcceptOneDirector {
     $users = App::userRepository()->getAll();
 
     $directors = array_filter($users, function (User $user): bool {
-      return $user->role === Role::Director;
+      return $user->appointment === Appointment::Director;
     });
 
     if ($directors !== []) {
