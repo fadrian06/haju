@@ -1,11 +1,11 @@
 <?php
 
-use App\Repositories\Infraestructure\PDO\DBConnection;
+use App\Repositories\Infraestructure\PDO\DBDriver;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
 return [
-  'DB_CONNECTION' => DBConnection::MySQL,
+  'DB_CONNECTION' => DBDriver::MySQL,
   'DB_HOST' => 'localhost',
   'DB_PORT' => 3306,
   'DB_DATABASE' => '',

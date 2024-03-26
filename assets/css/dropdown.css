@@ -1,0 +1,77 @@
+.dropdown .dropdown-toggle.lms_drop_1 {
+  background: white;
+  padding: 4px 15px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 300;
+  text-transform: capitalize;
+  text-align: left;
+  color: #7e7172;
+  display: inline-block;
+  width: 102px;
+  border: 1px solid #eee1e2;
+  position: relative;
+  transition: .3s;
+  box-sizing: border-box;
+}
+
+.dropdown .dropdown-toggle.lms_drop_1::after {
+  content: "\f0d7";
+  font-family: "font awesome 5 free";
+  position: absolute;
+  color: #cec1c2;
+  font-size: 12px;
+  font-weight: 900;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 14px
+}
+
+.dropdown .dropdown-toggle.lms_drop_1.lms_drop_2 {
+  min-width: 140px
+}
+
+.dropdown.show .dropdown-toggle.lms_drop_1 {
+  background: #2daab8;
+  padding: 4px 15px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 300;
+  text-transform: capitalize;
+  text-align: left;
+  display: inline-block;
+  width: 102px;
+  color: white;
+  border: 1px solid #2daab8;
+  box-sizing: border-box;
+}
+
+.dropdown.show .dropdown-toggle.lms_drop_1::after {
+  content: "\f0d8"
+}
+
+.dropdown .dropdown-menu {
+  border: 1px solid #eee1e2;
+  padding: 12px 0 20px;
+  margin: 0;
+  border-radius: 0;
+}
+
+.dropdown .dropdown-menu .dropdown-item {
+  font-size: 12px;
+  font-weight: 300;
+  padding: 4px 20px;
+  color: #7f7778
+}
+
+.dropdown .dropdown-menu .dropdown-item:hover {
+  color: #2daab8;
+  background: 0 0
+}
+
+.dropdown .dropdown-menu.dropdown-menu-w140 {
+  min-width: 140px
+}

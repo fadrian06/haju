@@ -29,9 +29,8 @@ class SessionWebController extends Controller {
       }
 
       App::session()->set('userId', $user->getId());
-      App::redirect('/departamento/seleccionar');
 
-      return;
+      exit(App::redirect('/departamento/seleccionar'));
     } catch (Error $error) {
       self::setError($error->getMessage());
     }

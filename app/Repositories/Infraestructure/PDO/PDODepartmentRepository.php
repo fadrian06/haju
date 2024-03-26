@@ -7,9 +7,14 @@ use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Exceptions\DuplicatedNamesException;
 use PDO;
 use PDOException;
+use PharIo\Manifest\Url;
 
 class PDODepartmentRepository extends PDORepository implements DepartmentRepository {
-  private const FIELDS = 'id, name, registered_date, is_active as isActive';
+  private const FIELDS = <<<SQL_FIELDS
+    id, name, registered_date as registeredDateTime,
+    belongs_to_external_consultation as belongsToExternalConsultation,
+    icon_file_path as iconFilePath, is_active as isActive
+  SQL_FIELDS;
   private const TABLE = 'departments';
 
   function getAll(): array {
@@ -38,7 +43,8 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
       }
 
       $query = sprintf(
-        'INSERT INTO %s (name, registered, is_active) VALUES (?, ?, ?)',
+        'INSERT INTO %s (name, registered_date, belongs_to_external_consultation, is_active)
+        VALUES (?, ?, ?, ?)',
         self::TABLE
       );
 
@@ -46,7 +52,12 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
 
       $this->ensureIsConnected()
         ->prepare($query)
-        ->execute([$department->name, $date, $department->isActive]);
+        ->execute([
+          $department->name,
+          $date,
+          $department->belongsToExternalConsultation,
+          $department->isActive
+        ]);
 
       $department
         ->setId($this->connection->instance()->lastInsertId())
@@ -60,18 +71,22 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
     }
   }
 
-  static function mapper(
+  function mapper(
     int $id,
     string $name,
-    string $registered,
+    string $registeredDateTime,
+    bool $belongsToExternalConsultation,
+    string $iconFilePath,
     bool $isActive
   ): Department {
     $department = new Department(
       $name,
+      new Url("{$this->baseUrl}/$iconFilePath"),
+      $belongsToExternalConsultation,
       $isActive
     );
 
-    $department->setId($id)->setRegisteredDate(self::parseDateTime($registered));
+    $department->setId($id)->setRegisteredDate(self::parseDateTime($registeredDateTime));
 
     return $department;
   }

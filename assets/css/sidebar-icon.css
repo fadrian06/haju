@@ -1,0 +1,25 @@
+.sidebar_icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: auto;
+  left: 20px
+}
+
+@media(max-width: 575.98px) {
+  .sidebar_icon {
+    right: auto;
+    left: 20px
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .sidebar_icon {
+    right: auto;
+    left: 20px
+  }
+}
+
+.sidebar_icon i {
+  font-size: 20px
+}

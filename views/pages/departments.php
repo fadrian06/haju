@@ -12,7 +12,7 @@ use App\Models\User;
 
 ?>
 
-<section class="mb-4 d-md-flex px-0 align-items-center justify-content-between">
+<section class="mb-4 d-sm-flex px-0 align-items-center justify-content-between">
   <h2>Departamentos</h2>
   <a data-bs-toggle="modal" href="#registrar" class="btn btn-primary rounded-pill d-flex align-items-center">
     <i class="px-2 ti-plus"></i>
@@ -47,6 +47,7 @@ use App\Models\User;
           <tr>
             <th>#</th>
             <th>Nombre del departamento</th>
+            <th>Pertenece a consulta externa</th>
             <th>Fecha de registro</th>
             <th>Estado</th>
             <th>Acción</th>
@@ -55,19 +56,26 @@ use App\Models\User;
         <tbody>
           <?php foreach ($departments as $department) : ?>
             <tr>
-              <form method="post" action="<?= route('/departamentos/@id', ['id' => $department->getId()]) ?>">
+              <form method="post" action="./departamentos/<?= $department->getId() ?>">
                 <td><?= $department->getId() ?></td>
                 <td class="p-0">
                   <input placeholder="Nombre del departamento" class="form-control" required name="name" value="<?= $department->name ?>" />
                 </td>
+                <td>
+                  <?php if ($department->belongsToExternalConsultation): ?>
+                    <span class="custom-badge status-green">Sí</span>
+                  <?php else: ?>
+                    <span class="custom-badge status-red">No</span>
+                  <?php endif ?>
+                </td>
                 <td><?= $department->getRegisteredDate() ?></td>
                 <td>
                   <?php if ($department->isActive) : ?>
-                    <a href="<?= route('/departamentos/@id/desactivar', ['id' => $department->getId()]) ?>" class="custom-badge status-green">
+                    <a href="./departamentos/<?= $department->getId() ?>/desactivar" class="custom-badge status-green">
                       Activo
                     </a>
                   <?php else : ?>
-                    <a href="<?= route('/departamentos/@id/activar', ['id' => $department->getId()]) ?>" class="custom-badge status-red">
+                    <a href="./departamentos/<?= $department->getId() ?>/activar" class="custom-badge status-red">
                       Inactivo
                     </a>
                   <?php endif ?>
@@ -86,22 +94,38 @@ use App\Models\User;
 
 <div class="modal fade" id="registrar">
   <div class="modal-dialog">
-    <form class="modal-content" method="post">
+    <form enctype="multipart/form-data" class="modal-content" method="post">
       <header class="modal-header">
         <h3 class="modal-title fs-5">Añadir departamento</h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </header>
       <section class="modal-body">
-        <div class="form-floating mb-4">
-          <input class="form-control" name="name" required id="name" placeholder="Nombre del departamento" />
-          <label for="name">Nombre del departamento</label>
-        </div>
-        <div class="form-check form-switch fs-6">
-          <input class="form-check-input" name="is_active" type="checkbox" id="is_active" checked />
-          <label class="form-check-label" for="is_active">
-            Estado <small>(activo/inactivo)</small>
-          </label>
-        </div>
+        <?php
+          render('components/input-group', [
+            'name' => 'name',
+            'placeholder' => 'Nombre del departamento',
+            'cols' => 12
+          ]);
+
+          render('components/input-group', [
+            'variant' => 'file',
+            'name' => 'department_icon',
+            'placeholder' => 'Icono'
+          ]);
+
+          render('components/input-group', [
+            'variant' => 'checkbox',
+            'name' => 'belongs_to_external_consultation',
+            'placeholder' => 'Pertenece a Consulta Externa'
+          ]);
+
+          render('components/input-group', [
+            'variant' => 'checkbox',
+            'name' => 'is_active',
+            'placeholder' => 'Estado <small>(activo/inactivo)</small>',
+            'checked' => true
+          ]);
+        ?>
       </section>
       <footer class="modal-footer">
         <button class="btn btn-primary">Añadir</button>

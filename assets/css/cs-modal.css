@@ -1,0 +1,232 @@
+.cs_modal .modal-content {
+  background-color: #fef1f2;
+  padding: 0 30px
+}
+
+@media(max-width:575.98px) {
+  .cs_modal .modal-content {
+    padding: 0 20px
+  }
+}
+
+.cs_modal .modal-header {
+  padding: 34px 0 30px 0;
+  align-items: center;
+  border-bottom: 0 solid transparent
+}
+
+.cs_modal .modal-header h5 {
+  margin-bottom: 0;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 25px
+}
+
+.cs_modal .modal-header .close {
+  padding: 0;
+  margin: 0;
+  opacity: 1
+}
+
+.cs_modal .modal-header .close i {
+  font-size: 14px;
+  color: #707070
+}
+
+.cs_modal .modal-body {
+  padding: 35px 30px;
+  background: white;
+  border-radius: 5px
+}
+
+@media (max-width: 575.98px) {
+  .cs_modal .modal-body {
+    padding: 25px 20px;
+  }
+}
+
+.cs_modal .modal-body .chose_thumb_title {
+  font-size: 12px;
+  font-weight: 300;
+  color: #222;
+  text-align: left;
+  margin: 0;
+  display: block;
+  margin-bottom: 8px
+}
+
+.cs_modal .modal-body .input_wrap label {
+  font-size: 12px;
+  font-weight: 300;
+  color: #222;
+  text-align: left;
+  margin: 0;
+  display: block;
+  margin-bottom: 8px
+}
+
+.cs_modal .modal-body .input_wrap textarea {
+  height: 100px;
+  line-height: 28px;
+  padding: 13px 25px;
+  box-sizing: border-box;
+}
+
+.cs_modal .modal-body .nice_Select,
+.cs_modal .modal-body input,
+.cs_modal .modal-body textarea {
+  height: 50px;
+  line-height: 50px;
+  background-color: white;
+  border: 1px solid #eee1e2;
+  padding: 10px 25px;
+  color: #7e7172;
+  font-size: 13px;
+  width: 100%;
+  display: block;
+  margin-bottom: 21px;
+  font-weight: 300;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.cs_modal .modal-body .nice_Select {
+  line-height: 30px
+}
+
+.cs_modal .modal-body .nice_Select :after {
+  left: 22px
+}
+
+.cs_modal .modal_btn {
+  display: flex;
+  justify-content: start;
+  align-items: center
+}
+
+.cs_modal .modal_btn .btn_1 {
+  padding: 16px 26px;
+  margin: 0 5px;
+  text-align: center
+}
+
+.cs_modal .modal-footer {
+  border-top: 0 solid transparent;
+  padding: 30px 0 40px
+}
+
+.cs_modal {
+  background-color: #fef1f2
+}
+
+.cs_modal .modal-header {
+  background-color: #f7faff;
+  padding: 23px 30px;
+  border-bottom: 0 solid transparent
+}
+
+.cs_modal .modal-header h5 {
+  font-size: 22px;
+  font-weight: 600
+}
+
+.cs_modal .modal-header span {
+  font-size: 14px;
+  color: #707070;
+  opacity: 1
+}
+
+.cs_modal .modal-body {
+  padding: 35px 30px
+}
+
+.cs_modal .modal-body input,
+.cs_modal .modal-body .nice_Select {
+  height: 50px;
+  line-height: 50px;
+  padding: 10px 20px;
+  border: 1px solid #f1f3f5;
+  color: #707070;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: white;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.cs_modal .modal-body .nice_Select {
+  line-height: 29px
+}
+
+.cs_modal .modal-body .nice_Select:after {
+  right: 22px
+}
+
+.cs_modal .modal-body .nice_Select .list {
+  width: 100%
+}
+
+.cs_modal .modal-body .form-group {
+  margin-bottom: 12px
+}
+
+.cs_modal .modal-body textarea {
+  height: 168px;
+  padding: 15px 20px;
+  border: 1px solid #f1f3f5;
+  color: #707070;
+  font-size: 14px;
+  font-weight: 500;
+  box-sizing: border-box;
+}
+
+.cs_modal .modal-body p {
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 25px;
+  color: #707070;
+  text-align: center
+}
+
+.cs_modal .modal-body p a {
+  color: #2e4765
+}
+
+.cs_modal .modal-body .btn_1 {
+  width: 100%;
+  display: block;
+  margin-top: 20px
+}
+
+.cs_modal .modal-body .social_login_btn .btn_1 {
+  color: white;
+  background-color: #3b5998;
+  border: 1px solid #3b5998;
+  margin-top: 0
+}
+
+.cs_modal .modal-body .social_login_btn .btn_1:hover {
+  color: white;
+}
+
+.cs_modal .modal-body .social_login_btn .btn_1 i {
+  margin-right: 10px
+}
+
+.cs_modal .modal-body .social_login_btn .form-group:last-child .btn_1 {
+  background-color: #4285f4;
+  border: 1px solid #4285f4
+}
+
+.cs_modal .modal-body .pass_forget_btn {
+  color: #707070;
+  margin-top: 20px;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 500;
+  display: inline-block
+}
+
+.cs_modal .modal-body .pass_forget_btn:hover {
+  color: #2e4765
+}

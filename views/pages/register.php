@@ -9,10 +9,10 @@ use App\Models\InstructionLevel;
 
 <div class="col-md-8 mx-auto">
   <section class="px-0 modal modal-content cs_modal">
-    <header class="modal-header py-3">
+    <header class="modal-header px-4 py-3">
       <h5>Regístrate</h5>
     </header>
-    <form enctype="multipart/form-data" class="modal-body" method="post">
+    <form novalidate enctype="multipart/form-data" class="modal-body" method="post">
       <?= $error &&  render('components/notification', ['type' => 'error', 'text' => $error]) ?>
       <fieldset class="row">
         <summary class="fs-6 mb-2">Datos personales</summary>
@@ -72,12 +72,14 @@ use App\Models\InstructionLevel;
         <summary class="fs-6 mb-2">Credenciales</summary>
         <?php
           echo render('components/input-group', [
+            'variant' => 'input',
             'type' => 'password',
             'name' => 'password',
             'placeholder' => 'Contraseña'
           ]);
 
           echo render('components/input-group', [
+            'variant' => 'input',
             'type' => 'password',
             'name' => 'confirm_password',
             'placeholder' => 'Confirmar contraseña'

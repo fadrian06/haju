@@ -9,7 +9,7 @@ class Connection {
 
   /** @param string|'memory' $dbName */
   function __construct(
-    public readonly DBConnection $driver,
+    public readonly DBDriver $driver,
     public readonly string $dbName,
     ?string $host = null,
     ?int $port = null,
@@ -17,7 +17,7 @@ class Connection {
     ?string $password = null
   ) {
     $this->instance = new PDO(
-      $driver === DBConnection::MySQL
+      $driver === DBDriver::MySQL
         ? "mysql:host=$host; dbname=$dbName; charset=utf8; port=$port"
         : "sqlite:$dbName",
       $user,

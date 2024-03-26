@@ -13,13 +13,12 @@ class HomeWebController {
     assert($loggedUser instanceof User);
 
     $filteredUsers = array_filter($users, function (User $user) use ($loggedUser): bool {
-      return $user->role->getLevel() <= $loggedUser->role->getLevel();
+      return $user->appointment->getLevel() <= $loggedUser->appointment->getLevel();
     });
 
     $usersNumber = count($filteredUsers);
     $departmentsNumber = count(App::departmentRepository()->getAll());
 
-    App::render('pages/home', compact('usersNumber', 'departmentsNumber'), 'content');
-    App::render('layouts/main', ['title' => 'Inicio']);
+    App::renderPage('home', 'Inicio', compact('usersNumber', 'departmentsNumber'), 'main');
   }
 }

@@ -1,0 +1,54 @@
+.cs_check_box {
+  display: flex;
+  margin-top: 20px
+}
+
+.cs_check_box input,
+.cs_check_box label {
+  line-height: 20px;
+  height: auto;
+  width: auto;
+  max-width: auto
+}
+
+.cs_check_box .common_checkbox {
+  display: none
+}
+
+.cs_check_box label {
+  position: relative;
+  padding-left: 34px;
+  margin-bottom: 0
+}
+
+.cs_check_box .common_checkbox+label {
+  display: block;
+  cursor: pointer;
+  color: #7e7172
+}
+
+.cs_check_box .common_checkbox+label:after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 20px;
+  width: 20px;
+  border: 1px solid #7e7172;
+  border-radius: 5px;
+  content: '';
+  box-sizing: border-box;
+}
+
+.cs_check_box .common_checkbox:checked+label:after {
+  content: '\f00c';
+  font-family: 'font awesome\ 5 free';
+  font-weight: 900;
+  padding: 2px;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center
+}
+
+.cs_check_box .common_checkbox {
+  display: none;
+}

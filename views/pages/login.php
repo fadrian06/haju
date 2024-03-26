@@ -10,20 +10,22 @@
   <header class="modal-header py-3">
     <h5>Bienvenido</h5>
   </header>
-  <form class="modal-body text-center" method="post">
+  <form class="modal-body" method="post">
     <?php $error && render('components/notification', ['type' => 'error', 'text' => $error]) ?>
     <?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
     <?php
-      echo render('components/input-group', [
+      render('components/input-group', [
         'type' => 'number',
         'name' => 'id_card',
-        'placeholder' => 'Cédula'
+        'placeholder' => 'Cédula',
+        'cols' => 12
       ]);
 
-      echo render('components/input-group', [
+      render('components/input-group', [
         'type' => 'password',
         'name' => 'password',
-        'placeholder' => 'Contraseña'
+        'placeholder' => 'Contraseña',
+        'cols' => 12
       ]);
     ?>
     <button class="btn_1">Ingresar</button>

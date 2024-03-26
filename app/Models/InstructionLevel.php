@@ -25,4 +25,10 @@ enum InstructionLevel: string {
       self::Graduate => 4
     };
   }
+
+  static function values(): array {
+    return array_map(function (self $instruction): string {
+      return $instruction->value;
+    }, self::cases());
+  }
 }

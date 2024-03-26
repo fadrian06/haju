@@ -1,0 +1,44 @@
+.radial_footer .radial_footer_inner .left_footer {
+  padding-left: 10px;
+  margin-bottom: 20px
+}
+
+.radial_footer .radial_footer_inner .left_footer h5 {
+  font-size: 13px;
+  color: #43425d;
+  font-weight: 500;
+  margin-bottom: 0;
+  position: relative
+}
+
+.radial_footer .radial_footer_inner .left_footer h5 span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #a4a1fb;
+  display: inline-block;
+  position: absolute;
+  left: -15px;
+  top: 6px
+}
+
+.radial_footer .radial_footer_inner .left_footer p {
+  font-size: 12px;
+  color: #4d4f5c;
+  opacity: .5;
+  font-weight: 400;
+  margin-bottom: 0
+}
+
+.radial_footer .radial_bottom {
+  border-top: 1px solid #efefef;
+  text-align: center;
+  padding-top: 15px;
+  margin-top: 4px
+}
+
+.radial_footer .radial_bottom p a {
+  font-size: 12px;
+  color: #3b86ff;
+  font-weight: 600
+}

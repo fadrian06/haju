@@ -4,4 +4,4 @@ namespace App\Repositories\Exceptions;
 
 use Exception;
 
-class DuplicatedAvatarsException extends Exception {}
+class DuplicatedProfileImagesException extends Exception {}

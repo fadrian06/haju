@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Infraestructure\PDO;
 
-enum DBConnection: string {
+enum DBDriver: string {
   case MySQL = 'mysql';
   case SQLite = 'sqlite';
 }

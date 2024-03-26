@@ -10,23 +10,18 @@ use App\Models\Gender;
 use App\Models\InstructionLevel;
 use App\Models\Phone;
 use App\Models\User;
-use App\Repositories\Exceptions\DuplicatedIdCardException;
-use App\Repositories\Exceptions\DuplicatedNamesException;
 use Error;
 use PharIo\Manifest\Email;
 use PharIo\Manifest\InvalidEmailException;
-use PharIo\Manifest\InvalidUrlException;
-use PharIo\Manifest\Url;
+use Throwable;
 
 class UserWebController extends Controller {
   static function showRegister(): void {
-    App::render('pages/register', [], 'content');
-    App::render('layouts/base', ['title' => 'Regístrate']);
+    App::renderPage('register', 'Regístrate');
   }
 
   static function handleRegister(): void {
     $data = App::request()->data;
-    $files = App::request()->files;
 
     $loggedUser = App::view()->get('user');
 
@@ -38,64 +33,97 @@ class UserWebController extends Controller {
       $loggedUser->appointment === Appointment::Coordinator => [Appointment::Secretary, '/usuarios', '/usuarios']
     };
 
-    $temporalProfileImagePath = $files['profile_image']['tmp_name'];
-    $profileImageName = $files['profile_image']['name'];
-    $profileImagePath = dirname(__DIR__, 3) . "/assets/img/avatars/{$profileImageName}";
-    $profileImageUrlPath = App::request()->scheme . '://' . App::request()->host . App::get('root') . "/assets/img/avatars/{$profileImageName}";
-
-    copy($temporalProfileImagePath, $profileImagePath);
-
-    $user = new User(
-      $data['first_name'],
-      $data['second_name'],
-      $data['first_last_name'],
-      $data['second_last_name'],
-      Date::from($data['birth_date'], '-'),
-      Gender::from($data['gender']),
-      $appointment,
-      InstructionLevel::from($data['instruction_level']),
-      (int) $data['id_card'],
-      $data['password'],
-      new Phone($data['phone']),
-      new Email($data['email']),
-      $data['address'],
-      new Url($profileImageUrlPath)
-    );
-
-    $departments = [];
-
-    foreach ($data['departments'] ?? [] as $departmentID) {
-      $departments[] = App::departmentRepository()->getById((int) $departmentID);
-    }
-
-    if ($departments) {
-      $user->assignDepartments(...$departments);
-    }
-
     try {
+      if ($data['password'] !== $data['confirm_password']) {
+        throw new Error('La contraseña y su confirmación no coinciden');
+      }
+
+      App::form()->validate(App::request()->files->getData(), [
+        'profile_image.name' => 'required'
+      ]);
+
+      App::form()->validate($data->getData(), [
+        'birth_date' => 'date',
+        'first_name' => 'textonly',
+        'second_name' => 'optional|textonly',
+        'first_last_name' => 'textonly',
+        'second_last_name' => 'optional|textonly',
+        'id_card' => 'between:[1, 40000000]',
+        'address' => 'required'
+      ]);
+
+      if (!in_array($data['gender'], Gender::values())) {
+        throw new Error(sprintf('El género es requerido y válido (%s)', join(', ', Gender::values())));
+      }
+
+      if (!in_array($data['instruction_level'], InstructionLevel::values())) {
+        throw new Error(sprintf('El nivel de instrucción es requerido y válido (%s)', join(', ', InstructionLevel::values())));
+      }
+
+      $errors = App::form()->errors();
+
+      if ($errors) {
+        foreach ($errors as $field => $errors) {
+          $error = match ($field) {
+            'profile_image.name' => 'La foto de perfil es requerida',
+            'birth_date' => 'La fecha de nacimiento es requerida y válida',
+            'first_name' => ''
+          };
+
+          throw new Error($error);
+        }
+
+        if (isset($errors['first_name'])) {
+          throw new Error($errors['']);
+        }
+      }
+
+      $profileImageUrlPath = self::uploadFile('profile_image', 'avatars');
+
+      $user = new User(
+        $data['first_name'],
+        $data['second_name'],
+        $data['first_last_name'],
+        $data['second_last_name'],
+        Date::from($data['birth_date'], '-'),
+        Gender::from($data['gender']),
+        $appointment,
+        InstructionLevel::from($data['instruction_level']),
+        (int) $data['id_card'],
+        $data['password'],
+        new Phone($data['phone']),
+        new Email($data['email']),
+        $data['address'],
+        $profileImageUrlPath
+      );
+
+      $departments = [];
+
+      foreach ($data['departments'] ?? [] as $departmentID) {
+        $departments[] = App::departmentRepository()->getById((int) $departmentID);
+      }
+
+      if ($departments) {
+        $user->assignDepartments(...$departments);
+      }
+
       App::userRepository()->save($user);
       self::setMessage('Usuario registrado exitósamente');
-      App::redirect($urlToRedirect);
 
-      return;
-    } catch (DuplicatedNamesException) {
-      self::setError("Usuario \"{$user->getFullName()}\" ya existe");
-    } catch (DuplicatedIdCardException) {
-      self::setError("Cédula \"{$user->idCard}\" ya existe");
-    } catch (InvalidPhoneException) {
-      self::setError("Teléfono inválido \"{$data['phone']}\"");
-    } catch (InvalidEmailException) {
-      self::setError("Correo inválido \"{$data['email']}\"");
-    } catch (InvalidUrlException) {
-      self::setError("URL inválida \"{$data['avatar']}\"");
+      exit(App::redirect($urlToRedirect));
+    } catch (InvalidPhoneException $error) {
+      self::setError('El teléfono es requerido y válido');
+    } catch (InvalidEmailException $error) {
+      self::setError('El correo es requerido y válido');
+    } catch (Throwable $error) {
+      self::setError($error->getMessage());
     }
 
     App::redirect($urlWhenFail);
   }
 
   static function showPasswordReset(): void {
-    App::render('pages/forgot-pass', [], 'content');
-    App::render('layouts/base', ['title' => 'Recuperar contraseña (1/2)']);
+    App::renderPage('forgot-pass', 'Recuperar contraseña (1/2)');
   }
 
   static function handlePasswordReset(): void {
@@ -103,23 +131,19 @@ class UserWebController extends Controller {
       $user = App::userRepository()->getByIdCard((int) App::request()->data['id_card']);
 
       if ($user) {
-        App::render('pages/change-pass', compact('user'), 'content');
-        App::render('layouts/base', ['title' => 'Recuperar contraseña (2/2)']);
-
-        return;
+        exit(App::renderPage('change-pass', 'Recuperar contraseña (2/2)', compact('user')));
       }
 
-      App::session()->set('error', '❌ Cédula incorrecta');
-      App::redirect('/recuperar');
+      self::setError('Cédula incorrecta');
 
-      return;
+      exit(App::redirect('/recuperar'));
     }
 
     $user = App::userRepository()->getById(App::request()->data['id'])
       ->setPassword(App::request()->data['password']);
 
     App::userRepository()->save($user);
-    App::session()->set('message', '✔ Contraseña actualizada exitósamente');
+    self::setMessage('Contraseña actualizada exitósamente');
     App::redirect('/ingresar');
   }
 
@@ -137,13 +161,17 @@ class UserWebController extends Controller {
 
     assert($loggedUser instanceof User);
 
+    $loggedUser->idCard = $data['id_card'];
+    $loggedUser->instructionLevel = InstructionLevel::from($data['instruction_level']);
     $loggedUser->firstName = $data['first_name'];
-    $loggedUser->lastName = $data['last_name'];
+    $loggedUser->secondName = $data['second_name'];
+    $loggedUser->firstLastName = $data['first_last_name'];
+    $loggedUser->secondLastName = $data['second_last_name'];
     $loggedUser->address = $data['address'];
     $loggedUser->birthDate = Date::from($data['birth_date'], '-');
     $loggedUser->gender = Gender::from($data['gender']);
-    $loggedUser->email = $data['email'] ? new Email($data['email']) : null;
-    $loggedUser->phone = $data['phone'] ? new Phone($data['phone']) : null;
+    $loggedUser->email = new Email($data['email']);
+    $loggedUser->phone = new Phone($data['phone']);
 
     App::userRepository()->save($loggedUser);
     self::setMessage('Perfil actualizado exitósamente');
@@ -156,10 +184,12 @@ class UserWebController extends Controller {
     assert($loggedUser instanceof User);
 
     $users = App::userRepository()->getAll($loggedUser);
-    $departments = $loggedUser->role === Role::Director ? App::departmentRepository()->getAll() : [];
+    $departments = $loggedUser->appointment === Appointment::Director
+      ? App::departmentRepository()->getAll()
+      : [];
 
     $filteredUsers = array_filter($users, function (User $user) use ($loggedUser): bool {
-      return $user->role->getLevel() <= $loggedUser->role->getLevel();
+      return $user->appointment->getLevel() <= $loggedUser->appointment->getLevel();
     });
 
     $usersNumber = count($filteredUsers);

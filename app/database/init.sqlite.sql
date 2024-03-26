@@ -22,7 +22,7 @@ CREATE TABLE departments (
   name VARCHAR(20) NOT NULL UNIQUE,
   belongs_to_external_consultation BOOL DEFAULT false,
   is_active BOOL DEFAULT true,
-  icon_file_path VARCHAR(255) UNIQUE,
+  icon_file_path VARCHAR(255) NOT NULL UNIQUE,
   registered_date DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -80,8 +80,8 @@ INSERT INTO instruction_levels (id, name, abbreviation) VALUES
 (3, 'Técnico Superior Universitario', 'TSU'),
 (4, 'Licenciado/a', 'Licdo');
 
-INSERT INTO departments (id, name, belongs_to_external_consultation)
-VALUES (1, 'Pediatría', true),
+INSERT INTO departments (id, name, belongs_to_external_consultation, icon_file_path)
+VALUES /*(1, 'Pediatría', true),
 (2, 'Ginecología', true),
 (3, 'Alto Riesgo', true),
 (4, 'Cirugía General', true),
@@ -101,6 +101,6 @@ VALUES (1, 'Pediatría', true),
 (18, 'Quirófano', false),
 (19, 'Rayos X', false),
 (20, 'Banco de Sangre', false),
-(21, 'Emergencia', false),
-(22, 'Estadística', false),
-(23, 'Hospitalización', false);
+(21, 'Emergencia', false),*/
+(22, 'Estadística', false, 'assets/img/departments/web01-obs_turismo-SIT.svg')/*,
+(23, 'Hospitalización', false)*/;

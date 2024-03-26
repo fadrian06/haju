@@ -1,7 +1,7 @@
 <?php
 
+use App\Models\Appointment;
 use App\Models\User;
-use App\Models\Role;
 
 /** @var User $user */
 
@@ -10,7 +10,7 @@ use App\Models\Role;
 <aside class="sidebar">
   <header class="logo m-0 d-flex align-items-center justify-content-between">
     <picture class="p-2">
-      <img class="img-fluid" src="<?= asset('img/logo.png') ?>" />
+      <img class="img-fluid" src="./assets/img/logo.png" />
     </picture>
     <div class="sidebar_close_icon d-flex align-items-center d-lg-none">
       <i class="ti-close"></i>
@@ -21,47 +21,47 @@ use App\Models\Role;
       <span>Panel de Administración</span>
     </li>
     <li class="<?= isActive('/') ? 'mm-active' : '' ?>">
-      <a href="<?= route('/') ?>">
-        <img src="<?= asset('img/icons/house.svg') ?>" />
+      <a href="./">
+        <img src="./assets/img/icons/house.svg" />
         <span>Inicio</span>
       </a>
     </li>
-    <?php if ($user->role->isHigherThan(Role::Coordinator)) : ?>
+    <?php if ($user->appointment->isHigherThan(Appointment::Coordinator)) : ?>
       <li class="<?= isActive('/usuarios') ? 'mm-active' : '' ?>">
         <a href="#" class="has-arrow">
-          <img src="<?= asset('img/icons/users.svg') ?>" />
+          <img src="./assets/img/icons/users.svg" />
           <span>Usuarios</span>
         </a>
         <ul>
           <li>
-            <a href="<?= route('/usuarios') ?>">
+            <a href="./usuarios">
               <i class="ti-list"></i>
               Listado
             </a>
           </li>
           <li>
-            <a href="<?= route('/usuarios') ?>#registrar" <?= isActive('/usuarios') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
+            <a href="./usuarios#registrar" <?= isActive('/usuarios') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
               <i class="ti-plus"></i>
               Registrar
             </a>
           </li>
         </ul>
       </li>
-      <?php if ($user->role === Role::Director) : ?>
+      <?php if ($user->appointment === Appointment::Director) : ?>
         <li class="<?= isActive('/departamentos') ? 'mm-active' : '' ?>">
           <a href="#" class="has-arrow">
-            <img src="<?= asset('img/icons/hospital.svg') ?>" />
+            <img src="./assets/img/icons/hospital.svg" />
             <span>Departamentos</span>
           </a>
           <ul>
             <li>
-              <a href="<?= route('/departamentos') ?>">
+              <a href="./departamentos">
                 <i class="ti-list"></i>
                 Listado
               </a>
             </li>
             <li>
-              <a href="<?= route('/departamentos') ?>#registrar" <?= isActive('/departamentos') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
+              <a href="./departamentos#registrar" <?= isActive('/departamentos') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
                 <i class="ti-plus"></i>
                 Registrar
               </a>
@@ -70,24 +70,24 @@ use App\Models\Role;
         </li>
         <li class="<?= isActive('/configuracion/general', '/configuracion/permisos', '/configuracion/respaldo-restauracion') ? 'mm-active' : '' ?>">
           <a href="#" class="has-arrow">
-            <img src="<?= asset('img/icons/gears.svg') ?>" />
+            <img src="./assets/img/icons/gears.svg" />
             <span>Configuraciones</span>
           </a>
           <ul>
             <!-- <li>
-              <a href="<?= route('/configuracion/general') ?>">
+              <a href="./configuracion/general">
                 <i class="ti-bookmark-alt"></i>
                 Institución
               </a>
             </li> -->
             <li>
-              <a href="<?= route('/configuracion/permisos') ?>">
+              <a href="./configuracion/permisos">
                 <i class="ti-key"></i>
                 Roles y permisos
               </a>
             </li>
             <li>
-              <a href="<?= route('/configuracion/respaldo-restauracion') ?>">
+              <a href="./configuracion/respaldo-restauracion">
                 <i class="ti-import"></i>
                 Respaldo y restauración
               </a>

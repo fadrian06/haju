@@ -9,11 +9,11 @@ use App\Models\InstructionLevel;
 use App\Models\Phone;
 use App\Models\User;
 use App\Repositories\Domain\UserRepository;
-use App\Repositories\Exceptions\DuplicatedAvatarsException;
 use App\Repositories\Exceptions\DuplicatedEmailsException;
 use App\Repositories\Exceptions\DuplicatedIdCardException;
 use App\Repositories\Exceptions\DuplicatedNamesException;
 use App\Repositories\Exceptions\DuplicatedPhonesException;
+use App\Repositories\Exceptions\DuplicatedProfileImagesException;
 use PDO;
 use PDOException;
 use PharIo\Manifest\Email;
@@ -31,11 +31,18 @@ class PDOUserRepository extends PDORepository implements UserRepository {
 
   private const TABLE = 'users';
 
+  private const JOINS = <<<SQL_JOINS
+    JOIN appointments JOIN instruction_levels
+    ON users.appointment_id = appointments.id
+    AND users.instruction_level_id = instruction_levels.id
+  SQL_JOINS;
+
   function __construct(
     Connection $connection,
-    readonly private PDODepartmentRepository $departmentRepository
+    string $baseUrl,
+    private readonly PDODepartmentRepository $departmentRepository
   ) {
-    parent::__construct($connection);
+    parent::__construct($connection, $baseUrl);
   }
 
   function getAll(User ...$exclude): array {
@@ -45,20 +52,24 @@ class PDOUserRepository extends PDORepository implements UserRepository {
 
     return $this->ensureIsConnected()
       ->query(sprintf(
-        'SELECT %s FROM %s JOIN appointments JOIN instruction_levels
-        ON users.appointment_id = appointments.id
-        AND users.instruction_level_id = instruction_levels.id %s',
+        'SELECT %s FROM %s %s %s',
         self::FIELDS,
         self::TABLE,
+        self::JOINS,
         $ids !== []
-          ? sprintf('WHERE id NOT IN (%s)', join(', ', $ids))
+          ? sprintf('WHERE users.id NOT IN (%s)', join(', ', $ids))
           : ''
       ))->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper']);
   }
 
   function getByIdCard(int $idCard): ?User {
     $stmt = $this->ensureIsConnected()
-      ->prepare(sprintf('SELECT %s FROM %s WHERE id_card = ?', self::FIELDS, self::TABLE));
+      ->prepare(sprintf(
+        'SELECT %s FROM %s %s WHERE id_card = ?',
+        self::FIELDS,
+        self::TABLE,
+        self::JOINS
+      ));
 
     $stmt->execute([$idCard]);
 
@@ -67,7 +78,12 @@ class PDOUserRepository extends PDORepository implements UserRepository {
 
   function getById(int $id): ?User {
     $stmt = $this->ensureIsConnected()
-      ->prepare(sprintf('SELECT %s FROM %s WHERE id = ?', self::FIELDS, self::TABLE));
+      ->prepare(sprintf(
+        'SELECT %s FROM %s %s WHERE users.id = ?',
+        self::FIELDS,
+        self::TABLE,
+        self::JOINS
+      ));
 
     $stmt->execute([$id]);
 
@@ -112,7 +128,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
           $user->phone,
           $user->email->asString(),
           $user->address,
-          $user->profileImagePath->asString(),
+          $user->profileImagePath,
           $datetime
         ]);
 
@@ -122,23 +138,23 @@ class PDOUserRepository extends PDORepository implements UserRepository {
       $this->assignDepartments($user);
     } catch (PDOException $exception) {
       if (str_contains($exception, 'UNIQUE constraint failed: users.id_card')) {
-        throw new DuplicatedIdCardException("ID card \"{$user->idCard}\" already exists");
+        throw new DuplicatedIdCardException("Cédula \"{$user->idCard}\" ya existe");
       }
 
       if (str_contains($exception, 'UNIQUE constraint failed: users.first_name, users.last_name')) {
-        throw new DuplicatedNamesException("User \"{$user->getFullName()}\" already exists");
+        throw new DuplicatedNamesException("Usuario \"{$user->getFullName()}\" ya existe");
       }
 
       if (str_contains($exception, 'UNIQUE constraint failed: users.phone')) {
-        throw new DuplicatedPhonesException("Phone \"{$user->phone}\" already exists");
+        throw new DuplicatedPhonesException("Teléfono \"{$user->phone}\" ya existe");
       }
 
       if (str_contains($exception, 'UNIQUE constraint failed: users.email')) {
-        throw new DuplicatedEmailsException("Email \"{$user->email->asString()}\" already exists");
+        throw new DuplicatedEmailsException("Correo \"{$user->email->asString()}\" ya existe");
       }
 
       if (str_contains($exception, 'UNIQUE constraint failed: users.avatar')) {
-        throw new DuplicatedAvatarsException("Avatar \"{$user->profileImagePath->asString()}\" already exists");
+        throw new DuplicatedProfileImagesException("Foto de perfil \"{$user->profileImagePath->asString()}\" ya existe");
       }
 
       throw $exception;
@@ -204,10 +220,10 @@ class PDOUserRepository extends PDORepository implements UserRepository {
     }
 
     $join = <<<SQL
-      SELECT id, name, d.registered as registered, is_active as isActive
-      FROM department_assignments a
-      JOIN departments d
-      ON a.department_id = d.id
+      SELECT id, name, departments.registered as registered, is_active as isActive
+      FROM department_assignments
+      JOIN departments
+      ON department_assignments.department_id = departments.id
       WHERE user_id = ?
     SQL;
 
@@ -228,7 +244,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
     string $secondName,
     string $firstLastName,
     string $secondLastName,
-    string $birthDateTimestamp,
+    int $birthDateTimestamp,
     string $gender,
     string $appointment,
     string $instructionAbbreviation,
@@ -255,7 +271,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
       new Phone($phone),
       new Email($email),
       $address,
-      new Url($profileImagePath),
+      new Url("{$this->baseUrl}/$profileImagePath"),
       $isActive
     );
 

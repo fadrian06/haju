@@ -1,0 +1,86 @@
+.admin_profile_Wrap {
+  margin-bottom: 30px
+}
+
+.admin_profile_Wrap ul li {
+  background: white7f8;
+  border-top: 1px solid #eee1e2;
+  border-bottom: 1px solid #eee1e2;
+  padding: 30px 0 30px 30px
+}
+
+@media only screen and (min-width:992px) and (max-width:1200px) {
+  .admin_profile_Wrap ul li {
+    padding: 30px 0 30px 20px
+  }
+}
+
+.admin_profile_Wrap ul li a {
+  display: block
+}
+
+.admin_profile_Wrap ul li a .admin_profile_inner .thumb img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%
+}
+
+.admin_profile_Wrap ul li a .admin_profile_inner .welcome_rext {
+  margin-left: 15px
+}
+
+.admin_profile_Wrap ul li a .admin_profile_inner .welcome_rext h5 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 1px;
+  white-space: nowrap
+}
+
+@media only screen and (min-width:992px) and (max-width:1200px) {
+  .admin_profile_Wrap ul li a .admin_profile_inner .welcome_rext h5 {
+    font-size: 12px
+  }
+}
+
+.admin_profile_Wrap ul li a .admin_profile_inner .welcome_rext span {
+  display: block;
+  font-size: 12px;
+  color: #7e7172;
+  font-weight: 300;
+  white-space: nowrap
+}
+
+@media only screen and (min-width:992px) and (max-width:1200px) {
+  .admin_profile_Wrap ul li a .admin_profile_inner .welcome_rext span {
+    font-size: 11px
+  }
+}
+
+.admin_profile_Wrap ul li ul {
+  padding-left: 70px
+}
+
+.admin_profile_Wrap ul li ul li {
+  padding: 0;
+  border: 0
+}
+
+.admin_profile_Wrap ul li ul li a {
+  font-size: 13px;
+  color: #7e7172;
+  font-weight: 400;
+  padding-bottom: 17px
+}
+
+.admin_profile_Wrap ul li ul li:last-child a {
+  padding-bottom: 0
+}
+
+.admin_profile_Wrap ul li ul li:first-child a {
+  margin-top: 29px
+}
+
+.admin_profile_Wrap .metismenu .has-arrow::after {
+  top: 38%
+}

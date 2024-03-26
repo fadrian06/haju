@@ -5,20 +5,35 @@ namespace App\Controllers\Web;
 use App;
 use App\Models\Department;
 use App\Repositories\Exceptions\DuplicatedNamesException;
+use PharIo\Manifest\Url;
 
-class DepartmentWebController {
+class DepartmentWebController extends Controller {
   static function showDepartments(): void {
     $departments = App::departmentRepository()->getAll();
     $departmentsNumber = count($departments);
 
-    App::renderPage('departments', "Departamentos ($departmentsNumber)", compact('departments'), 'main');
+    App::renderPage(
+      'departments',
+      "Departamentos ($departmentsNumber)",
+      compact('departments'),
+      'main'
+    );
   }
 
   static function handleRegister(): void {
     $data = App::request()->data;
-    $department = new Department($data['name'], $data['is_active'] ?? false);
+
+    $iconUrlPath = self::uploadFile('department_icon', 'departments');
+
+    $department = new Department(
+      $data['name'],
+      new Url($iconUrlPath),
+      $data['belongs_to_external_consultation'] ?? false,
+      $data['is_active'] ?? false
+    );
 
     App::departmentRepository()->save($department);
+    self::setMessage('Departamento registrado exitósamente');
     self::showDepartments();
   }
 
@@ -36,9 +51,9 @@ class DepartmentWebController {
 
     try {
       App::departmentRepository()->save($departament);
-      App::session()->set('message', '✔ Departamento actualizado exitósamente');
+      self::setMessage('Departamento actualizado exitósamente');
     } catch (DuplicatedNamesException) {
-      App::session()->set('error', "❌ Departamento \"{$departament->name}\" ya existe");
+      self::setError("Departamento \"{$departament->name}\" ya existe");
     }
 
     App::redirect('/departamentos');

@@ -36,7 +36,7 @@ class User extends Model {
     public Phone $phone,
     public Email $email,
     public string $address,
-    public Url $profileImagePath,
+    public string|Url $profileImagePath,
     public bool $isActive = true
   ) {
     $this->setPassword($password);
@@ -59,11 +59,11 @@ class User extends Model {
   }
 
   function getFullName(): string {
-    return "{$this->firstName} {$this->lastName}";
+    return "{$this->firstName} {$this->firstLastName}";
   }
 
   function getParsedRole(): string {
-    return $this->role->getParsed($this->gender);
+    return $this->appointment->getParsed($this->gender);
   }
 
   function assignDepartments(Department ...$departments): self {

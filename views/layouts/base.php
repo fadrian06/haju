@@ -24,7 +24,12 @@ use App\Models\User;
   <link rel="stylesheet" href="./assets/fonts/fonts.css" />
   <link rel="stylesheet" href="./assets/vendors/bootstrap/bootstrap.min.css" />
   <link rel="stylesheet" href="./assets/vendors/themefy_icon/themify-icons.css" />
+  <link rel="stylesheet" href="./assets/css/reset.css" />
+  <link rel="stylesheet" href="./assets/css/utils.css" />
   <link rel="stylesheet" href="./assets/css/theme.css" />
+  <link rel="stylesheet" href="./assets/css/header-inner.css" />
+  <link rel="stylesheet" href="./assets/css/cs-modal.css" />
+  <link rel="stylesheet" href="./assets/css/btn.css" />
   <link rel="stylesheet" href="./assets/css/custom.css" />
 </head>
 

@@ -1,0 +1,32 @@
+table.dataTable tbody th,
+table.dataTable tbody td {
+  vertical-align: middle
+}
+
+table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>td:first-child::before,
+table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>th:first-child::before {
+  z-index: 9;
+  top: 50%;
+  transform: translateY(-50%);
+  content: "\e61a";
+  font-family: themify;
+  font-size: 8px;
+  line-height: 14px;
+  font-weight: 600;
+  background-color: #fef1f2;
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, .08), -6px -6px 12px white
+}
+
+table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td:first-child::before,
+table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child::before {
+  content: "\e622";
+  box-shadow: inset 6px 6px 12px rgba(0, 0, 0, .08), inset -6px -6px 12px white
+}
+
+table.dataTable {
+  width: 100%;
+  margin: 0 auto;
+  clear: both;
+  border-collapse: separate;
+  border-spacing: 0
+}
