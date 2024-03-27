@@ -4,16 +4,23 @@ use App\Repositories\Infraestructure\PDO\Connection;
 use App\Repositories\Infraestructure\PDO\PDODepartmentRepository;
 use App\Repositories\Infraestructure\PDO\PDOSettingsRepository;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
-use Leaf\Form;
 use Leaf\Http\Session;
+use Whoops\Handler\PrettyPageHandler;
+use Whoops\Run;
 
-$_ENV += require_once __DIR__ . '/../.env.php';
+$_ENV += require __DIR__ . '/../.env.php';
 
 date_default_timezone_set($_ENV['TIMEZONE']);
+
+if ($_ENV['DEBUG']) {
+  $whoops = new Run();
+  $whoops->pushHandler(new PrettyPageHandler);
+  $whoops->register();
+}
+
 App::set('root', str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']));
 App::set('fullRoot', App::request()->scheme . '://' . App::request()->host . App::get('root'));
 App::view()->set('root', App::get('root'));
-
 App::view()->set('user', null);
 
 App::register('db', Connection::class, [
