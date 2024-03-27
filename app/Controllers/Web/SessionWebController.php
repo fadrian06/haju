@@ -33,7 +33,7 @@ class SessionWebController extends Controller {
         throw new Error('Cédula o contraseña incorrecta');
       }
 
-      $user->ensureThatIsActive();
+      $user->ensureThatIsActive()->ensureHasActiveDepartments();
 
       App::session()->set('userId', $user->getId());
 
@@ -58,9 +58,7 @@ class SessionWebController extends Controller {
     App::session()->set('canChangeDepartment', count($departments) !== 1);
 
     if (count($departments) === 1) {
-      App::redirect("/departamento/seleccionar/{$departments[0]->getId()}");
-
-      return;
+      exit(App::redirect("/departamento/seleccionar/{$departments[0]->getId()}"));
     }
 
     App::renderPage('select-department', 'Ingresar (2/2)');

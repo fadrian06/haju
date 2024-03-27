@@ -8,11 +8,17 @@ use App\Models\User;
 
 class SettingsWebController extends Controller {
   static function showPermissions(): void {
-    $departments = App::departmentRepository()->getAll();
-    $users = App::userRepository()->getAll(App::view()->get('user'));
+    $loggedUser = App::view()->get('user');
 
-    $filteredUsers = array_filter($users, function (User $user): bool {
-      return $user->appointment === Appointment::Coordinator;
+    assert($loggedUser instanceof User);
+
+    $departments = App::departmentRepository()->getAll();
+    $users = App::userRepository()->getAll($loggedUser);
+
+    $filteredUsers = array_filter($users, function (User $user) use ($loggedUser): bool {
+      return $loggedUser->appointment === Appointment::Director
+        ? $user->appointment === Appointment::Coordinator
+        : $user->appointment === Appointment::Secretary;
     });
 
     App::renderPage(

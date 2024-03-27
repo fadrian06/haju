@@ -179,6 +179,16 @@ class User extends Model {
     return $this;
   }
 
+  function ensureHasActiveDepartments(): static {
+    foreach ($this->departments as $department) {
+      if ($department->getActiveStatus()) {
+        return $this;
+      }
+    }
+
+    throw new Error('Este usuario no tiene departamentos asignados, o están inhabilitados');
+  }
+
   /** @deprecated */
   function getParsedRole(): string {
     return $this->getParsedAppointment();
@@ -199,7 +209,13 @@ class User extends Model {
   }
 
   function hasDepartment(Department $department): bool {
-    return array_search($department, $this->departments) !== false;
+    foreach ($this->departments as $userDepartment) {
+      if ($userDepartment->getName() === $department->getName()) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   /** @return Generator<int, Department> */
