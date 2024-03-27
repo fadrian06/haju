@@ -179,7 +179,12 @@ class User extends Model {
     return $this;
   }
 
+  /** @deprecated */
   function getParsedRole(): string {
+    return $this->getParsedAppointment();
+  }
+
+  function getParsedAppointment(): string {
     return $this->appointment->getParsed($this->gender);
   }
 

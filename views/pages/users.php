@@ -1,13 +1,11 @@
 <?php
 
 use App\Models\Appointment;
-use App\Models\Department;
 use App\Models\Gender;
 use App\Models\InstructionLevel;
 use App\Models\User;
 
 /**
- * @var array<int, Department> $departments
  * @var array<int, User> $users
  * @var ?string $error
  * @var ?string $message
@@ -16,7 +14,7 @@ use App\Models\User;
 
 ?>
 
-<section class="mb-4 d-md-flex px-0 align-items-center justify-content-between">
+<section class="mb-4 d-inline-flex px-0 align-items-center justify-content-between">
   <h2>Usuarios</h2>
   <a data-bs-toggle="modal" href="#registrar" class="btn btn-primary rounded-pill d-flex align-items-center">
     <i class="px-2 ti-plus"></i>
@@ -45,7 +43,7 @@ use App\Models\User;
           <?= $member->getActiveStatus() ? 'Activo' : 'Inactivo' ?>
         </span>
         <h4><?= $member->getFullName() ?></h4>
-        <span><?= $member->appointment->value ?></span>
+        <span><?= $member->getParsedAppointment() ?></span>
         <small class="text-muted">
           <i class="ti-pin2"></i>
           <?= $member->getAddress() ?>
@@ -142,11 +140,11 @@ use App\Models\User;
             ]);
           ?>
         </fieldset>
-        <?php if ($user->appointment === Appointment::Director) : ?>
+        <?php if ($user->appointment->isHigherThan(Appointment::Coordinator)) : ?>
           <div class="col-md-12 mb-4">
             <label for="departments">Departamentos asignados</label>
             <select name="departments[]" id="departments" required multiple class="form-control">
-              <?php foreach ($departments as $department) : ?>
+              <?php foreach ($user->getDepartment() as $department) : ?>
                 <option value="<?= $department->getId() ?>">
                   <?= $department->getName() ?>
                 </option>

@@ -16,11 +16,10 @@ enum Appointment: string {
   }
 
   function getParsed(Gender $gender): string {
-    return sprintf(
-      '%s%s',
-      substr($this->value, 0, strlen($this->value) - 2),
-      $gender === Gender::Female ? 'a' : ''
-    );
+    $step1 = str_replace($gender === Gender::Male ? '/a' : '/', '', $this->value);
+    $step2 = str_replace('oa', 'a', $step1);
+
+    return $step2;
   }
 
   function isHigherThan(self $role): bool {

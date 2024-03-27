@@ -222,7 +222,9 @@ class PDOUserRepository extends PDORepository implements UserRepository {
     }
 
     $join = <<<SQL
-      SELECT id, name, departments.registered as registered, is_active as isActive
+      SELECT departments.id, name, departments.registered_date as registeredDateTime,
+      is_active as isActive, belongs_to_external_consultation as belongsToExternalConsultation,
+      icon_file_path as iconFilePath
       FROM department_assignments
       JOIN departments
       ON department_assignments.department_id = departments.id
@@ -273,7 +275,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
       new Phone($phone),
       new Email($email),
       $address,
-      new Url("{$this->baseUrl}/" . urlencode($profileImagePath)),
+      new Url("{$this->baseUrl}/" . $profileImagePath),
       $isActive
     );
 
