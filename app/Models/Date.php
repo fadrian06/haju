@@ -48,7 +48,7 @@ readonly class Date implements Stringable {
       return new self($matches['day'], $matches['month'], $matches['year']);
     }
 
-    throw new InvalidDateException("Invalid date \"$raw\"");
+    throw new InvalidDateException("Fecha inválida \"$raw\"");
   }
 
   static function fromTimestamp(int $timestamp): self {

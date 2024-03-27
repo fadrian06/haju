@@ -31,7 +31,7 @@ readonly class Phone implements Stringable {
       return;
     }
 
-    throw new InvalidPhoneException("Invalid phone \"$phone\"");
+    throw new InvalidPhoneException("Teléfono inválido \"$phone\"");
   }
 
   function __toString(): string {

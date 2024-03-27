@@ -59,7 +59,13 @@ use App\Models\User;
               <form method="post" action="./departamentos/<?= $department->getId() ?>">
                 <td><?= $department->getId() ?></td>
                 <td class="p-0">
-                  <input placeholder="Nombre del departamento" class="form-control" required name="name" value="<?= $department->name ?>" />
+                  <input
+                    placeholder="Nombre del departamento"
+                    class="form-control"
+                    required
+                    name="name"
+                    value="<?= $department->getName() ?>"
+                  />
                 </td>
                 <td>
                   <?php if ($department->belongsToExternalConsultation): ?>
@@ -70,12 +76,16 @@ use App\Models\User;
                 </td>
                 <td><?= $department->getRegisteredDate() ?></td>
                 <td>
-                  <?php if ($department->isActive) : ?>
-                    <a href="./departamentos/<?= $department->getId() ?>/desactivar" class="custom-badge status-green">
+                  <?php if ($department->getActiveStatus()) : ?>
+                    <a
+                      href="./departamentos/<?= $department->getId() ?>/desactivar"
+                      class="custom-badge status-green">
                       Activo
                     </a>
                   <?php else : ?>
-                    <a href="./departamentos/<?= $department->getId() ?>/activar" class="custom-badge status-red">
+                    <a
+                      href="./departamentos/<?= $department->getId() ?>/activar"
+                      class="custom-badge status-red">
                       Inactivo
                     </a>
                   <?php endif ?>
@@ -94,13 +104,16 @@ use App\Models\User;
 
 <div class="modal fade" id="registrar">
   <div class="modal-dialog">
-    <form enctype="multipart/form-data" class="modal-content" method="post">
+    <form action="./departamentos#registrar" enctype="multipart/form-data" class="modal-content" method="post">
       <header class="modal-header">
         <h3 class="modal-title fs-5">Añadir departamento</h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </header>
       <section class="modal-body">
         <?php
+          $error && render('components/notification', ['type' => 'error', 'text' => $error]);
+          $message && render('components/notification', ['type' => 'message', 'text' => $message]);
+
           render('components/input-group', [
             'name' => 'name',
             'placeholder' => 'Nombre del departamento',

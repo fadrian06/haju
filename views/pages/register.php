@@ -12,44 +12,46 @@ use App\Models\InstructionLevel;
     <header class="modal-header px-4 py-3">
       <h5>Regístrate</h5>
     </header>
-    <form novalidate enctype="multipart/form-data" class="modal-body" method="post">
+    <form enctype="multipart/form-data" class="modal-body" method="post">
       <?= $error &&  render('components/notification', ['type' => 'error', 'text' => $error]) ?>
       <fieldset class="row">
         <summary class="fs-6 mb-2">Datos personales</summary>
         <?php
-          echo render('components/input-group', [
+          render('components/input-group', [
             'name' => 'first_name',
             'placeholder' => 'Primer nombre'
           ]);
 
-          echo render('components/input-group', [
+          render('components/input-group', [
             'name' => 'second_name',
-            'placeholder' => 'Segundo nombre'
+            'placeholder' => 'Segundo nombre',
+            'required' => false
           ]);
 
-          echo render('components/input-group', [
+          render('components/input-group', [
             'name' => 'first_last_name',
             'placeholder' => 'Primer apellido'
           ]);
 
-          echo render('components/input-group', [
+          render('components/input-group', [
             'name' => 'second_last_name',
-            'placeholder' => 'Segundo apellido'
+            'placeholder' => 'Segundo apellido',
+            'required' => false
           ]);
 
-          echo render('components/input-group', [
+          render('components/input-group', [
             'type' => 'number',
             'name' => 'id_card',
             'placeholder' => 'Cédula'
           ]);
 
-          echo render('components/input-group', [
+          render('components/input-group', [
             'type' => 'date',
             'name' => 'birth_date',
             'placeholder' => 'Fecha de nacimiento'
           ]);
 
-          echo render('components/input-group', [
+          render('components/input-group', [
             'variant' => 'select',
             'name' => 'gender',
             'placeholder' => 'Género',
@@ -58,7 +60,7 @@ use App\Models\InstructionLevel;
             }, Gender::cases())
           ]);
 
-          echo render('components/input-group', [
+          render('components/input-group', [
             'variant' => 'select',
             'name' => 'instruction_level',
             'placeholder' => 'Nivel de instrucción',
@@ -71,14 +73,14 @@ use App\Models\InstructionLevel;
       <fieldset class="row">
         <summary class="fs-6 mb-2">Credenciales</summary>
         <?php
-          echo render('components/input-group', [
+          render('components/input-group', [
             'variant' => 'input',
             'type' => 'password',
             'name' => 'password',
             'placeholder' => 'Contraseña'
           ]);
 
-          echo render('components/input-group', [
+          render('components/input-group', [
             'variant' => 'input',
             'type' => 'password',
             'name' => 'confirm_password',
@@ -89,19 +91,19 @@ use App\Models\InstructionLevel;
       <fieldset class="row">
         <summary class="fs-6 mb-2">Datos de contacto</summary>
         <?php
-          echo render('components/input-group', [
+          render('components/input-group', [
             'type' => 'tel',
             'name' => 'phone',
             'placeholder' => 'Teléfono'
           ]);
 
-          echo render('components/input-group', [
+          render('components/input-group', [
             'type' => 'email',
             'name' => 'email',
             'placeholder' => 'Correo electrónico'
           ]);
 
-          echo render('components/input-group', [
+          render('components/input-group', [
             'variant' => 'textarea',
             'name' => 'address',
             'placeholder' => 'Dirección',
@@ -109,7 +111,7 @@ use App\Models\InstructionLevel;
           ]);
         ?>
       </fieldset>
-      <?= render('components/input-group', [
+      <?php render('components/input-group', [
         'variant' => 'file',
         'name' => 'profile_image',
         'placeholder' => 'Foto de perfil'

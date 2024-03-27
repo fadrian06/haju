@@ -10,6 +10,7 @@
  * @var ?string $value
  * @var ?bool $checked
  * @var array<int, array{value: string, text: string, selected?: bool}> $options
+ * @var ?bool $multiple
  */
 
 $id = $name . rand();
@@ -19,6 +20,7 @@ $min ??= 0;
 $type ??= 'text';
 $value ??= '';
 $checked ??= false;
+$multiple ??= false;
 
 ?>
 
@@ -72,7 +74,8 @@ $checked ??= false;
         class="form-select"
         name="<?= $name ?>"
         id="<?= $id ?>"
-        placeholder="<?= $placeholder ?>">
+        placeholder="<?= $placeholder ?>"
+        <?= $multiple ? 'multiple' : '' ?>>
         <option <?= !$value ? 'selected' : '' ?> disabled>Seleccione una opción</option>
         <?php foreach ($options as $option) : ?>
           <option

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 enum InstructionLevel: string {
+  use BackedEnum;
+
   case Doctor = 'Dr';
   case Engineer = 'Ing';
   case TSU = 'TSU';
@@ -24,11 +26,5 @@ enum InstructionLevel: string {
       self::TSU => 3,
       self::Graduate => 4
     };
-  }
-
-  static function values(): array {
-    return array_map(function (self $instruction): string {
-      return $instruction->value;
-    }, self::cases());
   }
 }

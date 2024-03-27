@@ -3,9 +3,16 @@
 namespace App\Controllers\Web;
 
 use App;
+use Throwable;
 
 abstract class Controller {
-  final protected static function setError(string $error): void {
+  final protected static function setError(Throwable|string $error): void {
+    if ($error instanceof Throwable) {
+      if (!$_ENV['DEBUG']) {
+        $error = $error->getMessage();
+      }
+    }
+
     App::session()->set('error', "❌ $error");
   }
 

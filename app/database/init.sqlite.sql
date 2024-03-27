@@ -33,9 +33,9 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   first_name VARCHAR(20) NOT NULL,
-  second_name VARCHAR(20) NOT NULL,
+  second_name VARCHAR(20),
   first_last_name VARCHAR(20) NOT NULL,
-  second_last_name VARCHAR(20) NOT NULL,
+  second_last_name VARCHAR(20),
   birth_date DATE NOT NULL,
   gender VARCHAR(20) NOT NULL CHECK (gender IN ('Masculino', 'Femenino')),
   id_card INTEGER NOT NULL UNIQUE,

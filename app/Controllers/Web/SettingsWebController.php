@@ -3,7 +3,7 @@
 namespace App\Controllers\Web;
 
 use App;
-use App\Models\Role;
+use App\Models\Appointment;
 use App\Models\User;
 
 class SettingsWebController extends Controller {
@@ -12,7 +12,7 @@ class SettingsWebController extends Controller {
     $users = App::userRepository()->getAll(App::view()->get('user'));
 
     $filteredUsers = array_filter($users, function (User $user): bool {
-      return $user->role === Role::Coordinator;
+      return $user->appointment === Appointment::Coordinator;
     });
 
     App::renderPage(

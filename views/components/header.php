@@ -17,8 +17,8 @@ use App\Models\User;
     <i class="ti-menu"></i>
   </button>
   <h2 class="m-0 d-flex align-items-center">
-    <span class="d-none d-sm-block h3 m-0">Departamento de <?= $department->name ?></span>
-    <span class="d-block d-sm-none h6 m-0">Departamento de <?= $department->name ?></span>
+    <span class="d-none d-sm-block h3 m-0">Departamento de <?= $department->getName() ?></span>
+    <span class="d-block d-sm-none h6 m-0">Departamento de <?= $department->getName() ?></span>
     <?php if ($canChangeDepartment) : ?>
       <a href="./departamento/seleccionar" class="ms-4 btn btn-outline-primary btn-sm">
         Cambiar
@@ -44,7 +44,7 @@ use App\Models\User;
       </li>
     </ul> -->
     <div class="profile_info">
-      <img src="<?= $user->profileImagePath->asString() ?>" />
+      <img src="<?= urldecode($user->profileImagePath->asString()) ?>" />
       <div class="profile_info_iner">
         <p><?= $user->getParsedRole() ?></p>
         <h5><?= "{$user->instructionLevel->value}. {$user->getFullName()}" ?></h5>
@@ -54,7 +54,7 @@ use App\Models\User;
             <i class="ti-user"></i>
           </a>
           <?php if ($user->appointment === Appointment::Director) : ?>
-            <a href="./configuracion/general">
+            <a href="./configuracion/permisos">
               Configuración
               <i class="ti-settings"></i>
             </a>

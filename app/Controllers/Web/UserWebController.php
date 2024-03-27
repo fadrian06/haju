@@ -5,6 +5,7 @@ namespace App\Controllers\Web;
 use App;
 use App\Models\Appointment;
 use App\Models\Date;
+use App\Models\Exceptions\InvalidDateException;
 use App\Models\Exceptions\InvalidPhoneException;
 use App\Models\Gender;
 use App\Models\InstructionLevel;
@@ -38,20 +39,6 @@ class UserWebController extends Controller {
         throw new Error('La contraseña y su confirmación no coinciden');
       }
 
-      App::form()->validate(App::request()->files->getData(), [
-        'profile_image.name' => 'required'
-      ]);
-
-      App::form()->validate($data->getData(), [
-        'birth_date' => 'date',
-        'first_name' => 'textonly',
-        'second_name' => 'optional|textonly',
-        'first_last_name' => 'textonly',
-        'second_last_name' => 'optional|textonly',
-        'id_card' => 'between:[1, 40000000]',
-        'address' => 'required'
-      ]);
-
       if (!in_array($data['gender'], Gender::values())) {
         throw new Error(sprintf('El género es requerido y válido (%s)', join(', ', Gender::values())));
       }
@@ -60,22 +47,12 @@ class UserWebController extends Controller {
         throw new Error(sprintf('El nivel de instrucción es requerido y válido (%s)', join(', ', InstructionLevel::values())));
       }
 
-      $errors = App::form()->errors();
+      if (!App::request()->files['profile_image']['size']) {
+        throw new Error('La foto de perfil es requerida');
+      }
 
-      if ($errors) {
-        foreach ($errors as $field => $errors) {
-          $error = match ($field) {
-            'profile_image.name' => 'La foto de perfil es requerida',
-            'birth_date' => 'La fecha de nacimiento es requerida y válida',
-            'first_name' => ''
-          };
-
-          throw new Error($error);
-        }
-
-        if (isset($errors['first_name'])) {
-          throw new Error($errors['']);
-        }
+      if ($loggedUser && $loggedUser->appointment === Appointment::Director && !$data['departments']) {
+        throw new Error('Debe asignar al menos 1 departamento');
       }
 
       $profileImageUrlPath = self::uploadFile('profile_image', 'avatars');
@@ -111,12 +88,14 @@ class UserWebController extends Controller {
       self::setMessage('Usuario registrado exitósamente');
 
       exit(App::redirect($urlToRedirect));
-    } catch (InvalidPhoneException $error) {
+    } catch (InvalidDateException) {
+      self::setError('La fecha de nacimiento es requerida y válida');
+    } catch (InvalidPhoneException) {
       self::setError('El teléfono es requerido y válido');
-    } catch (InvalidEmailException $error) {
+    } catch (InvalidEmailException) {
       self::setError('El correo es requerido y válido');
     } catch (Throwable $error) {
-      self::setError($error->getMessage());
+      self::setError($error);
     }
 
     App::redirect($urlWhenFail);
@@ -161,20 +140,35 @@ class UserWebController extends Controller {
 
     assert($loggedUser instanceof User);
 
-    $loggedUser->idCard = $data['id_card'];
-    $loggedUser->instructionLevel = InstructionLevel::from($data['instruction_level']);
-    $loggedUser->firstName = $data['first_name'];
-    $loggedUser->secondName = $data['second_name'];
-    $loggedUser->firstLastName = $data['first_last_name'];
-    $loggedUser->secondLastName = $data['second_last_name'];
-    $loggedUser->address = $data['address'];
-    $loggedUser->birthDate = Date::from($data['birth_date'], '-');
-    $loggedUser->gender = Gender::from($data['gender']);
-    $loggedUser->email = new Email($data['email']);
-    $loggedUser->phone = new Phone($data['phone']);
+    try {
+      $profileImageUrlPath = '';
 
-    App::userRepository()->save($loggedUser);
-    self::setMessage('Perfil actualizado exitósamente');
+      if (App::request()->files['profile_image']['size']) {
+        $profileImageUrlPath = self::uploadFile('profile_image', 'avatars');
+      }
+
+      $loggedUser->setIdCard($data['id_card']);
+      $loggedUser->instructionLevel = InstructionLevel::from($data['instruction_level']);
+      $loggedUser->setFirstName($data['first_name']);
+      $data['second_name'] && $loggedUser->setSecondName($data['second_name']);
+      $loggedUser->setFirstLastName($data['first_last_name']);
+      $data['second_last_name'] && $loggedUser->setSecondLastName($data['second_last_name']);
+      $loggedUser->setAddress($data['address']);
+      $loggedUser->birthDate = Date::from($data['birth_date'], '-');
+      $loggedUser->gender = Gender::from($data['gender']);
+      $loggedUser->email = new Email($data['email']);
+      $loggedUser->phone = new Phone($data['phone']);
+
+      if ($profileImageUrlPath) {
+        $loggedUser->profileImagePath = $profileImageUrlPath;
+      }
+
+      App::userRepository()->save($loggedUser);
+      self::setMessage('Perfil actualizado exitósamente');
+    } catch (Throwable $error) {
+      self::setError($error);
+    }
+
     App::redirect('/perfil/editar');
   }
 
@@ -204,10 +198,10 @@ class UserWebController extends Controller {
 
   static function handleToggleStatus(string $id): void {
     $user = App::userRepository()->getById((int) $id);
-    $user->isActive = !$user->isActive;
+    $user->toggleActiveStatus();
 
     App::userRepository()->save($user);
-    App::redirect('/usuarios');
+    App::redirect($user->appointment === Appointment::Director ? '/salir' : '/usuarios');
   }
 
   static function handlePasswordChange(): void {
@@ -232,8 +226,8 @@ class UserWebController extends Controller {
       $loggedUser->setPassword($data['new_password']);
       App::userRepository()->save($loggedUser);
       self::setMessage('Contraseña actualizada exitósamente');
-    } catch (Error $error) {
-      self::setError($error->getMessage());
+    } catch (Throwable $error) {
+      self::setError($error);
     }
 
     App::redirect('/perfil');

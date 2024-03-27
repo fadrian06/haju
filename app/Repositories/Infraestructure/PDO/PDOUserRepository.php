@@ -115,19 +115,19 @@ class PDOUserRepository extends PDORepository implements UserRepository {
       $this->ensureIsConnected()
         ->prepare($query)
         ->execute([
-          $user->firstName,
-          $user->secondName,
-          $user->firstLastName,
-          $user->secondLastName,
+          $user->getFirstName(),
+          $user->getSecondName(),
+          $user->getFirstLastName(),
+          $user->getSecondLastName(),
           $user->birthDate->timestamp,
           $user->gender->value,
           $user->appointment->getId(),
           $user->instructionLevel->getId(),
-          $user->idCard,
+          $user->getIdCard(),
           $user->getPassword(),
           $user->phone,
           $user->email->asString(),
-          $user->address,
+          $user->getAddress(),
           $user->profileImagePath,
           $datetime
         ]);
@@ -138,7 +138,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
       $this->assignDepartments($user);
     } catch (PDOException $exception) {
       if (str_contains($exception, 'UNIQUE constraint failed: users.id_card')) {
-        throw new DuplicatedIdCardException("Cédula \"{$user->idCard}\" ya existe");
+        throw new DuplicatedIdCardException("Cédula \"{$user->getIdCard()}\" ya existe");
       }
 
       if (str_contains($exception, 'UNIQUE constraint failed: users.first_name, users.last_name')) {
@@ -189,7 +189,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
         UPDATE %s SET first_name = ?, second_name = ?, first_last_name = ?,
         second_last_name = ?, birth_date = ?, gender = ?,
         phone = ?, email = ?, address = ?, password = ?,
-        is_active = ? WHERE id = ?
+        is_active = ?, id_card = ?, profile_image_path = ? WHERE id = ?
       SQL,
       self::TABLE
     );
@@ -197,17 +197,19 @@ class PDOUserRepository extends PDORepository implements UserRepository {
     $this->ensureIsConnected()
       ->prepare($sql)
       ->execute([
-        $user->firstName,
-        $user->secondName,
-        $user->firstLastName,
-        $user->secondLastName,
+        $user->getFirstName(),
+        $user->getSecondName(),
+        $user->getFirstLastName(),
+        $user->getSecondLastName(),
         $user->birthDate->timestamp,
         $user->gender->value,
         $user->phone,
         $user->email->asString(),
-        $user->address,
+        $user->getAddress(),
         $user->getPassword(),
-        $user->isActive,
+        $user->getActiveStatus(),
+        $user->getIdCard(),
+        is_string($user->profileImagePath) ? $user->profileImagePath : $user->getProfileImageRelPath(),
         $user->getId()
       ]);
   }
@@ -241,9 +243,9 @@ class PDOUserRepository extends PDORepository implements UserRepository {
   private function mapper(
     int $id,
     string $firstName,
-    string $secondName,
+    ?string $secondName,
     string $firstLastName,
-    string $secondLastName,
+    ?string $secondLastName,
     int $birthDateTimestamp,
     string $gender,
     string $appointment,
@@ -271,7 +273,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
       new Phone($phone),
       new Email($email),
       $address,
-      new Url("{$this->baseUrl}/$profileImagePath"),
+      new Url("{$this->baseUrl}/" . urlencode($profileImagePath)),
       $isActive
     );
 

@@ -37,14 +37,14 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
       if ($department->getId()) {
         $this->ensureIsConnected()
           ->prepare(sprintf('UPDATE %s SET name = ?, is_active = ? WHERE id = ?', self::TABLE))
-          ->execute([$department->name, $department->isActive, $department->getId()]);
+          ->execute([$department->getName(), $department->getActiveStatus(), $department->getId()]);
 
         return;
       }
 
       $query = sprintf(
-        'INSERT INTO %s (name, registered_date, belongs_to_external_consultation, is_active)
-        VALUES (?, ?, ?, ?)',
+        'INSERT INTO %s (name, registered_date, icon_file_path, belongs_to_external_consultation, is_active)
+        VALUES (?, ?, ?, ?, ?)',
         self::TABLE
       );
 
@@ -53,10 +53,11 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
       $this->ensureIsConnected()
         ->prepare($query)
         ->execute([
-          $department->name,
+          $department->getName(),
           $date,
+          $department->iconFilePath,
           $department->belongsToExternalConsultation,
-          $department->isActive
+          $department->getActiveStatus()
         ]);
 
       $department
@@ -64,7 +65,7 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
         ->setRegisteredDate(self::parseDateTime($date));
     } catch (PDOException $exception) {
       if (str_contains($exception, 'UNIQUE constraint failed: departments.name')) {
-        throw new DuplicatedNamesException("Department \"{$department->name}\" already exists");
+        throw new DuplicatedNamesException("Departamento \"{$department->getName()}\" ya existe");
       }
 
       throw $exception;
@@ -81,7 +82,7 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
   ): Department {
     $department = new Department(
       $name,
-      new Url("{$this->baseUrl}/$iconFilePath"),
+      new Url("{$this->baseUrl}/" . urlencode($iconFilePath)),
       $belongsToExternalConsultation,
       $isActive
     );

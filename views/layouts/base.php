@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use PharIo\Manifest\Url;
 
 /**
  * @var string $root
@@ -8,6 +9,10 @@ use App\Models\User;
  * @var string $content
  * @var ?User $user
  */
+
+if (isset($user)) {
+  $user->profileImagePath = new Url(urldecode($user->profileImagePath->asString()));
+}
 
 ?>
 
@@ -49,7 +54,7 @@ use App\Models\User;
           </li>
         <?php endif ?>
         <li>
-          <img src="<?= $user?->profileImagePath->asString() ?? './assets/img/client_img.png' ?>" height="69" />
+          <img class="rounded-circle" src="<?= $user?->profileImagePath->asString() ?? './assets/img/client_img.png' ?>" height="69" />
         </li>
       </ul>
     </nav>

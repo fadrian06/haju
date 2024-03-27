@@ -19,7 +19,7 @@ use App\Models\User;
     <i class="px-2 ti-back-left"></i>
   </a>
 </section>
-<form enctype="multipart/form-data" method="post" enctype="multipart/form-data" class="d-flex px-0 flex-column align-items-center">
+<form novalidate enctype="multipart/form-data" method="post" enctype="multipart/form-data" class="d-flex px-0 flex-column align-items-center">
   <section class="white_box">
     <?php $error && render('components/notification', ['type' => 'error', 'text' => $error]) ?>
     <?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
@@ -31,12 +31,12 @@ use App\Models\User;
             'variant' => 'input',
             'type' => 'number',
             'name' => 'id_card',
-            'value' => $user->idCard,
+            'value' => $user->getIdCard(),
             'placeholder' => 'Cédula'
           ]);
 
           render('components/input-group', [
-            'value' => $user->firstName,
+            'value' => $user->getFirstName(),
             'name' => 'first_name',
             'placeholder' => 'Primer nombre',
             'type' => 'text',
@@ -44,19 +44,19 @@ use App\Models\User;
           ]);
 
           render('components/input-group', [
-            'value' => $user->secondName,
+            'value' => $user->getSecondName(),
             'name' => 'second_name',
             'placeholder' => 'Segundo nombre'
           ]);
 
           render('components/input-group', [
-            'value' => $user->firstLastName,
+            'value' => $user->getFirstLastName(),
             'name' => 'first_last_name',
             'placeholder' => 'Primer apellido'
           ]);
 
           render('components/input-group', [
-            'value' => $user->secondLastName,
+            'value' => $user->getSecondLastName(),
             'name' => 'second_last_name',
             'placeholder' => 'Segundo apellido'
           ]);
@@ -114,7 +114,7 @@ use App\Models\User;
           'name' => 'address',
           'placeholder' => 'Dirección',
           'cols' => 12,
-          'value' => $user->address
+          'value' => $user->getAddress()
         ]);
 
         render('components/input-group', [

@@ -44,8 +44,3 @@ App::register(
 );
 
 App::register('session', Session::class);
-App::register('form', Form::class);
-
-App::form()->addRule('textonly', '/^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]{2,}$/', 'El {Field} debe tener letras con inicial en mayúscula');
-App::form()->addMessage('required', '{Field} es requerido');
-App::form()->addMessage('date', '{Field} debe ser una fecha válida');

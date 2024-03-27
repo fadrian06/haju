@@ -17,22 +17,29 @@ class SessionWebController extends Controller {
   }
 
   static function handleLogin(): void {
-    $user = App::userRepository()->getByIdCard((int) App::request()->data['id_card']);
+    $data = App::request()->data;
+    $user = App::userRepository()->getByIdCard((int) $data['id_card']);
 
     try {
+      if (!$data['id_card']) {
+        throw new Error('La cédula es requerida');
+      }
+
+      if (!$data['password']) {
+        throw new Error('La contraseña es requerida');
+      }
+
       if (!$user?->checkPassword(App::request()->data['password'])) {
         throw new Error('Cédula o contraseña incorrecta');
       }
 
-      if (!$user->isActive) {
-        throw new Error('Este usuario se encuentra desactivado');
-      }
+      $user->ensureThatIsActive();
 
       App::session()->set('userId', $user->getId());
 
       exit(App::redirect('/departamento/seleccionar'));
     } catch (Error $error) {
-      self::setError($error->getMessage());
+      self::setError($error);
     }
 
     App::redirect('/ingresar');
