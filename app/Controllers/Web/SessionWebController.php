@@ -3,39 +3,48 @@
 namespace App\Controllers\Web;
 
 use App;
-use App\Models\User;
+use App\Repositories\Domain\UserRepository;
 use Error;
+use Leaf\Http\Session;
 
-class SessionWebController extends Controller {
-  static function logOut(): void {
-    App::session()->destroy();
+final class SessionWebController extends Controller {
+  private readonly Session $session;
+  private readonly UserRepository $repository;
+
+  function __construct() {
+    parent::__construct();
+
+    $this->session = App::session();
+    $this->repository = App::userRepository();
+  }
+
+  function logOut(): void {
+    $this->session->destroy();
     App::redirect('/ingresar');
   }
 
-  static function showLogin(): void {
+  function showLogin(): void {
     App::renderPage('login', 'Ingreso (1/2)');
   }
 
-  static function handleLogin(): void {
-    $data = App::request()->data;
-    $user = App::userRepository()->getByIdCard((int) $data['id_card']);
+  function handleLogin(): void {
+    $user = $this->repository->getByIdCard($this->data['id_card']);
 
     try {
-      if (!$data['id_card']) {
+      if (!$this->data['id_card']) {
         throw new Error('La cédula es requerida');
       }
 
-      if (!$data['password']) {
+      if (!$this->data['password']) {
         throw new Error('La contraseña es requerida');
       }
 
-      if (!$user?->checkPassword(App::request()->data['password'])) {
+      if (!$user?->checkPassword($this->data['password'])) {
         throw new Error('Cédula o contraseña incorrecta');
       }
 
       $user->ensureThatIsActive()->ensureHasActiveDepartments();
-
-      App::session()->set('userId', $user->getId());
+      $this->session->set('userId', $user->getId());
 
       exit(App::redirect('/departamento/seleccionar'));
     } catch (Error $error) {
@@ -45,17 +54,14 @@ class SessionWebController extends Controller {
     App::redirect('/ingresar');
   }
 
-  static function showDepartments(): void {
-    $loggedUser = App::view()->get('user');
+  function showDepartments(): void {
     $departments = [];
 
-    assert($loggedUser instanceof User);
-
-    foreach ($loggedUser->getDepartment() as $department) {
+    foreach ($this->loggedUser->getDepartment() as $department) {
       $departments[] = $department;
     }
 
-    App::session()->set('canChangeDepartment', count($departments) !== 1);
+    $this->session->set('canChangeDepartment', count($departments) !== 1);
 
     if (count($departments) === 1) {
       exit(App::redirect("/departamento/seleccionar/{$departments[0]->getId()}"));
@@ -64,8 +70,8 @@ class SessionWebController extends Controller {
     App::renderPage('select-department', 'Ingresar (2/2)');
   }
 
-  static function saveChoice(string $id): void {
-    App::session()->set('departmentId', $id);
+  function saveChoice(int $id): void {
+    $this->session->set('departmentId', $id);
     App::redirect('/');
   }
 }

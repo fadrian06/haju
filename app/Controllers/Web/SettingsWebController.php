@@ -5,18 +5,29 @@ namespace App\Controllers\Web;
 use App;
 use App\Models\Appointment;
 use App\Models\User;
+use App\Repositories\Domain\DepartmentRepository;
+use App\Repositories\Domain\SettingsRepository;
+use App\Repositories\Domain\UserRepository;
 
-class SettingsWebController extends Controller {
-  static function showPermissions(): void {
-    $loggedUser = App::view()->get('user');
+final class SettingsWebController extends Controller {
+  private readonly UserRepository $userRepository;
+  private readonly DepartmentRepository $departmentRepository;
+  private readonly SettingsRepository $settingsRepository;
 
-    assert($loggedUser instanceof User);
+  function __construct() {
+    parent::__construct();
 
-    $departments = App::departmentRepository()->getAll();
-    $users = App::userRepository()->getAll($loggedUser);
+    $this->departmentRepository = App::departmentRepository();
+    $this->userRepository = App::userRepository();
+    $this->settingsRepository = App::settingsRepository();
+  }
 
-    $filteredUsers = array_filter($users, function (User $user) use ($loggedUser): bool {
-      return $loggedUser->appointment === Appointment::Director
+  function showPermissions(): void {
+    $departments = $this->departmentRepository->getAll();
+    $users = $this->userRepository->getAll($this->loggedUser);
+
+    $filteredUsers = array_filter($users, function (User $user): bool {
+      return $this->loggedUser->appointment === Appointment::Director
         ? $user->appointment === Appointment::Coordinator
         : $user->appointment === Appointment::Secretary;
     });
@@ -24,30 +35,30 @@ class SettingsWebController extends Controller {
     App::renderPage(
       'settings/permissions',
       'Configuración',
-      ['departments' => $departments, 'users' => $filteredUsers],
+      ['users' => $filteredUsers, ...compact('departments')],
       'main'
     );
   }
 
-  static function handlePermissionAssignment(string $id): void {
-    $userRequested = App::userRepository()->getById((int) $id);
+  function handlePermissionAssignment(int $id): void {
+    $userRequested = $this->userRepository->getById($id);
     $userRequested->assignDepartments();
     $departments = [];
 
-    foreach (array_keys(App::request()->data->getData()) as $departmentID) {
-      $departments[] = App::departmentRepository()->getById((int) $departmentID);
+    foreach (array_keys($this->data->getData()) as $departmentID) {
+      $departments[] = $this->departmentRepository->getById($departmentID);
     }
 
     if ($departments) {
       $userRequested->assignDepartments(...$departments);
     }
 
-    App::userRepository()->save($userRequested);
+    $this->userRepository->save($userRequested);
     self::setMessage('Asignaciones actualizadas exitósamente');
     App::redirect('/configuracion/permisos');
   }
 
-  static function showBackups(): void {
+  function showBackups(): void {
     App::renderPage(
       'settings/backups',
       'Respaldo y restauración',
@@ -56,17 +67,17 @@ class SettingsWebController extends Controller {
     );
   }
 
-  static function showGeneralConfigs(): void {
+  function showGeneralConfigs(): void {
   }
 
-  static function handleCreateBackup(): void {
-    App::settingsRepository()->backup();
+  function handleCreateBackup(): void {
+    $this->settingsRepository->backup();
     self::setMessage('Base de datos respaldada exitósamente');
     App::redirect('/configuracion/respaldo-restauracion');
   }
 
-  static function handleRestoreBackup(): void {
-    App::settingsRepository()->restore();
+  function handleRestoreBackup(): void {
+    $this->settingsRepository->restore();
     self::setMessage('Base de datos restaurada exitósamente');
     App::redirect('/salir');
   }

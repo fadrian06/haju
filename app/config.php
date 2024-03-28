@@ -18,6 +18,7 @@ if ($_ENV['DEBUG']) {
   $whoops->register();
 }
 
+App::set('flight.handle_errors', false);
 App::set('root', str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']));
 App::set('fullRoot', App::request()->scheme . '://' . App::request()->host . App::get('root'));
 App::view()->set('root', App::get('root'));

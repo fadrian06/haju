@@ -35,7 +35,7 @@ App::group('', function (): void {
   App::route('/departamento/seleccionar/@id', [SessionWebController::class, 'saveChoice']);
 
   App::group('', function (): void {
-    App::route('/', [HomeWebController::class, 'index']);
+    App::route('/', [HomeWebController::class, 'showIndex']);
     App::route('GET /perfil', [UserWebController::class, 'showProfile']);
     App::route('POST /perfil', [UserWebController::class, 'handlePasswordChange']);
     App::route('GET /perfil/editar', [UserWebController::class, 'showEditProfile']);

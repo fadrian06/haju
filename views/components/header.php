@@ -46,7 +46,7 @@ use App\Models\User;
     <div class="profile_info">
       <img src="<?= urldecode($user->profileImagePath->asString()) ?>" />
       <div class="profile_info_iner">
-        <p><?= $user->getParsedRole() ?></p>
+        <p><?= $user->getParsedAppointment() ?></p>
         <h5><?= "{$user->instructionLevel->value}. {$user->getFullName()}" ?></h5>
         <div class="profile_info_details">
           <a href="./perfil">

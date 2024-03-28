@@ -17,7 +17,7 @@ use Leaf\Http\Session;
 class App extends Flight {
   static function route(
     string $pattern,
-    callable $callback,
+    $callback,
     bool $pass_route = false,
     string $alias = ''
   ): Route {

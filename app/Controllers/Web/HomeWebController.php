@@ -4,21 +4,35 @@ namespace App\Controllers\Web;
 
 use App;
 use App\Models\User;
+use App\Repositories\Domain\DepartmentRepository;
+use App\Repositories\Domain\UserRepository;
 
-class HomeWebController {
-  static function index(): void {
-    $loggedUser = App::view()->get('user');
-    $users = App::userRepository()->getAll($loggedUser);
+final class HomeWebController extends Controller {
+  private readonly UserRepository $userRepository;
+  private readonly DepartmentRepository $departmentRepository;
 
-    assert($loggedUser instanceof User);
+  function __construct() {
+    parent::__construct();
 
-    $filteredUsers = array_filter($users, function (User $user) use ($loggedUser): bool {
-      return $user->appointment->getLevel() <= $loggedUser->appointment->getLevel();
+    $this->userRepository = App::userRepository();
+    $this->departmentRepository = App::departmentRepository();
+  }
+
+  function showIndex(): void {
+    $users = $this->userRepository->getAll($this->loggedUser);
+
+    $filteredUsers = array_filter($users, function (User $user): bool {
+      return $user->appointment->isLowerOrEqualThan($this->loggedUser->appointment);
     });
 
     $usersNumber = count($filteredUsers);
-    $departmentsNumber = count(App::departmentRepository()->getAll());
+    $departmentsNumber = count($this->departmentRepository->getAll());
 
-    App::renderPage('home', 'Inicio', compact('usersNumber', 'departmentsNumber'), 'main');
+    App::renderPage(
+      'home',
+      'Inicio',
+      compact('usersNumber', 'departmentsNumber'),
+      'main'
+    );
   }
 }

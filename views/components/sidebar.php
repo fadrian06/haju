@@ -7,7 +7,7 @@ use App\Models\User;
 
 ?>
 
-<aside class="sidebar">
+<aside class="sidebar" style="overflow-y: scroll">
   <header class="logo m-0 d-flex align-items-center justify-content-between">
     <picture class="p-2">
       <img class="img-fluid" src="./assets/img/logo.png" />

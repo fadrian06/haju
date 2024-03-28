@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\ValueObjects\Exceptions\InvalidNameException;
 use App\ValueObjects\LongName;
 use PharIo\Manifest\Url;
 
 class Department extends Model {
   private LongName $name;
 
+  /** @throws InvalidNameException */
   function __construct(
     string $name,
     public readonly string|Url $iconFilePath,
@@ -17,6 +19,7 @@ class Department extends Model {
     $this->setName($name);
   }
 
+  /** @throws InvalidNameException */
   function setName(string $name): static {
     $this->name = new LongName($name, 'Nombre del departamento');
 
@@ -39,5 +42,9 @@ class Department extends Model {
 
   function getName(): string {
     return $this->name;
+  }
+
+  function isEqualTo(self $department): bool {
+    return $this->getId() === $department->getId();
   }
 }

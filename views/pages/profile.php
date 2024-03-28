@@ -27,7 +27,7 @@ use App\Models\User;
   <div class="profile-info col-md align-items-center">
     <header class="profile-info__main py-2 py-md-0 my-2 my-md-0 d-flex flex-column">
       <h4 class="h3"><?= $user->getFullName() ?></h4>
-      <small class="text-muted"><?= $user->getParsedRole() ?></small>
+      <small class="text-muted"><?= $user->getParsedAppointment() ?></small>
       <strong>Cédula: V-<?= $user->getIdCard() ?></strong>
       <small class="text-muted">Registrado el: <?= $user->getRegisteredDate() ?></small>
     </header>

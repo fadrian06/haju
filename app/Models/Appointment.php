@@ -26,6 +26,10 @@ enum Appointment: string {
     return $this->getLevel() >= $role->getLevel();
   }
 
+  function isLowerOrEqualThan(self $appointment): bool {
+    return $this->getLevel() <= $appointment->getLevel();
+  }
+
   /** @return array<int, self> */
   static function getLowersThan(self $role): array {
     return array_filter(self::cases(), function (self $case) use ($role): bool {
