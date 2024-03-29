@@ -6,6 +6,7 @@
 *.tmp
 *.bkp
 *.dtmp
+~*.xlsx
 
 # Dist
 node_modules
