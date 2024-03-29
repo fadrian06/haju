@@ -5,6 +5,7 @@
 *~*.docx
 *.tmp
 *.bkp
+*.dtmp
 
 # Dist
 node_modules
