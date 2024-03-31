@@ -61,7 +61,8 @@ App::group('', function (): void {
         App::route('/configuracion/respaldo-restauracion', [SettingsWebController::class, 'showBackups']);
         App::route('/configuracion/respaldar', [SettingsWebController::class, 'handleCreateBackup']);
         App::route('/configuracion/restaurar', [SettingsWebController::class, 'handleRestoreBackup']);
-        App::route('GET /configuracion/general', [SettingsWebController::class, 'showGeneralConfigs']);
+        App::route('GET /configuracion/institucion', [SettingsWebController::class, 'showInstitutionConfigs']);
+        App::route('POST /configuracion/institucion', [SettingsWebController::class, 'handleInstitutionUpdate']);
       }, [new AuthorizationMiddleware(Appointment::Director)]);
     }, [new AuthorizationMiddleware(Appointment::Coordinator)]);
   }, [EnsureOneSelectedDepartment::class]);

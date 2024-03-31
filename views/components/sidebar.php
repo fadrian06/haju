@@ -69,26 +69,28 @@ use App\Models\User;
           </ul>
         </li>
       <?php endif ?>
-      <?php if ($user->appointment->isHigherThan(Appointment::Coordinator)): ?>
+      <?php if ($user->appointment->isHigherThan(Appointment::Coordinator)) : ?>
         <li class="<?= isActive('/configuracion/general', '/configuracion/permisos', '/configuracion/respaldo-restauracion') ? 'mm-active' : '' ?>">
           <a href="#" class="has-arrow">
             <img src="./assets/img/icons/gears.svg" />
             <span>Configuraciones</span>
           </a>
           <ul>
-            <!-- <li>
-              <a href="./configuracion/general">
-                <i class="ti-bookmark-alt"></i>
-                Institución
-              </a>
-            </li> -->
+            <?php if ($user->appointment === Appointment::Director) : ?>
+              <li>
+                <a href="./configuracion/institucion">
+                  <i class="ti-bookmark-alt"></i>
+                  Institución
+                </a>
+              </li>
+            <?php endif ?>
             <li>
               <a href="./configuracion/permisos">
                 <i class="ti-key"></i>
                 Roles y permisos
               </a>
             </li>
-            <?php if ($user->appointment === Appointment::Director): ?>
+            <?php if ($user->appointment === Appointment::Director) : ?>
               <li>
                 <a href="./configuracion/respaldo-restauracion">
                   <i class="ti-import"></i>

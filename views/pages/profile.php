@@ -22,7 +22,7 @@ use App\Models\User;
 </section>
 <article class="white_box px-0 pb-0 row align-items-center">
   <picture class="col-md-2 d-flex align-items-center justify-content-center mb-2 mb-md-0">
-    <img style="max-height: 150px" class="img-fluid rounded-circle" src="<?= $user->profileImagePath->asString() ?>" />
+    <img style="max-height: 150px" class="img-fluid rounded-circle" src="<?= urldecode($user->profileImagePath->asString()) ?>" />
   </picture>
   <div class="profile-info col-md align-items-center">
     <header class="profile-info__main py-2 py-md-0 my-2 my-md-0 d-flex flex-column">

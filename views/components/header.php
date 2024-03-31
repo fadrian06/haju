@@ -54,7 +54,7 @@ use App\Models\User;
             <i class="ti-user"></i>
           </a>
           <?php if ($user->appointment === Appointment::Director) : ?>
-            <a href="./configuracion/permisos">
+            <a href="./configuracion/institucion">
               Configuración
               <i class="ti-settings"></i>
             </a>

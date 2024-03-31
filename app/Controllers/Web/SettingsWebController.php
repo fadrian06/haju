@@ -34,7 +34,7 @@ final class SettingsWebController extends Controller {
 
     App::renderPage(
       'settings/permissions',
-      'Configuración',
+      'Roles y permisos',
       ['users' => $filteredUsers, ...compact('departments')],
       'main'
     );
@@ -62,12 +62,15 @@ final class SettingsWebController extends Controller {
     App::renderPage(
       'settings/backups',
       'Respaldo y restauración',
-      ['showRestore' => App::settingsRepository()->backupExists()],
+      ['showRestore' => $this->settingsRepository->backupExists()],
       'main'
     );
   }
 
-  function showGeneralConfigs(): void {
+  function showInstitutionConfigs(): void {
+    App::renderPage('settings/institution', 'Institución', [
+      'hospital' => $this->settingsRepository->getHospital()
+    ], 'main');
   }
 
   function handleCreateBackup(): void {
@@ -80,5 +83,23 @@ final class SettingsWebController extends Controller {
     $this->settingsRepository->restore();
     self::setMessage('Base de datos restaurada exitósamente');
     App::redirect('/salir');
+  }
+
+  function handleInstitutionUpdate(): void {
+    $hospital = $this->settingsRepository->getHospital();
+
+    $hospital->setAsic($this->data['asic'])
+      ->setHealthDepartment($this->data['health_department'])
+      ->setMunicipality($this->data['municipality'])
+      ->setName($this->data['name'])
+      ->setParish($this->data['parish'])
+      ->setPlace($this->data['place'])
+      ->setRegion($this->data['region'])
+      ->setType($this->data['type']);
+
+    $this->settingsRepository->save($hospital);
+
+    self::setMessage('Institución actualizada exitósamente');
+    App::redirect('/configuracion/institucion');
   }
 }

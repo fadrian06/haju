@@ -19,7 +19,7 @@ use App\Models\User;
     <i class="px-2 ti-back-left"></i>
   </a>
 </section>
-<form novalidate enctype="multipart/form-data" method="post" enctype="multipart/form-data" class="d-flex px-0 flex-column align-items-center">
+<form enctype="multipart/form-data" method="post" class="d-flex px-0 flex-column align-items-center">
   <section class="white_box">
     <?php $error && render('components/notification', ['type' => 'error', 'text' => $error]) ?>
     <?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
