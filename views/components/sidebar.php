@@ -90,7 +90,7 @@ use App\Models\User;
                 Roles y permisos
               </a>
             </li>
-            <?php if ($user->appointment === Appointment::Director) : ?>
+            <?php if ($user->appointment === Appointment::Director || $user->hasDepartment('Estadística')) : ?>
               <li>
                 <a href="./configuracion/respaldo-restauracion">
                   <i class="ti-import"></i>

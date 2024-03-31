@@ -203,7 +203,17 @@ class User extends Model {
     return $this->departments !== [];
   }
 
-  function hasDepartment(Department $department): bool {
+  function hasDepartment(string|Department $department): bool {
+    if (is_string($department)) {
+      foreach ($this->departments as $savedDepartment) {
+        if ($savedDepartment->getName() === $department) {
+          return true;
+        }
+      }
+
+      return false;
+    }
+
     foreach ($this->departments as $userDepartment) {
       if ($userDepartment->getName() === $department->getName()) {
         return true;

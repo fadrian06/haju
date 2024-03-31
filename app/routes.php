@@ -52,15 +52,16 @@ App::group('', function (): void {
       App::route('/configuracion/permisos', [SettingsWebController::class, 'showPermissions']);
       App::route('POST /configuracion/@id/permisos', [SettingsWebController::class, 'handlePermissionAssignment']);
 
+      App::route('/configuracion/respaldo-restauracion', [SettingsWebController::class, 'showBackups']);
+      App::route('/configuracion/respaldar', [SettingsWebController::class, 'handleCreateBackup']);
+      App::route('/configuracion/restaurar', [SettingsWebController::class, 'handleRestoreBackup']);
+
       App::group('', function (): void {
         App::route('GET /departamentos', [DepartmentWebController::class, 'showDepartments']);
         App::route('POST /departamentos', [DepartmentWebController::class, 'handleRegister']);
         App::route('POST /departamentos/@id', [DepartmentWebController::class, 'handleDepartmentEdition']);
         App::route('/departamentos/@id/activar', [DepartmentWebController::class, 'handleToggleStatus']);
         App::route('/departamentos/@id/desactivar', [DepartmentWebController::class, 'handleToggleStatus']);
-        App::route('/configuracion/respaldo-restauracion', [SettingsWebController::class, 'showBackups']);
-        App::route('/configuracion/respaldar', [SettingsWebController::class, 'handleCreateBackup']);
-        App::route('/configuracion/restaurar', [SettingsWebController::class, 'handleRestoreBackup']);
         App::route('GET /configuracion/institucion', [SettingsWebController::class, 'showInstitutionConfigs']);
         App::route('POST /configuracion/institucion', [SettingsWebController::class, 'handleInstitutionUpdate']);
       }, [new AuthorizationMiddleware(Appointment::Director)]);

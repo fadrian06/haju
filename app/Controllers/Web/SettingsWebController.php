@@ -59,6 +59,8 @@ final class SettingsWebController extends Controller {
   }
 
   function showBackups(): void {
+    $this->ensureUserIsAuthorized();
+
     App::renderPage(
       'settings/backups',
       'Respaldo y restauración',
@@ -74,13 +76,13 @@ final class SettingsWebController extends Controller {
   }
 
   function handleCreateBackup(): void {
-    $this->settingsRepository->backup();
+    $this->ensureUserIsAuthorized()->settingsRepository->backup();
     self::setMessage('Base de datos respaldada exitósamente');
     App::redirect('/configuracion/respaldo-restauracion');
   }
 
   function handleRestoreBackup(): void {
-    $this->settingsRepository->restore();
+    $this->ensureUserIsAuthorized()->settingsRepository->restore();
     self::setMessage('Base de datos restaurada exitósamente');
     App::redirect('/salir');
   }
@@ -101,5 +103,16 @@ final class SettingsWebController extends Controller {
 
     self::setMessage('Institución actualizada exitósamente');
     App::redirect('/configuracion/institucion');
+  }
+
+  private function ensureUserIsAuthorized(): static {
+    if (
+      !$this->loggedUser->appointment->isHigherThan(Appointment::Coordinator)
+      || !$this->loggedUser->hasDepartment('Estadística')
+    ) {
+      App::redirect('/');
+    }
+
+    return $this;
   }
 }
