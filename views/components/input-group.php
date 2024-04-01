@@ -87,7 +87,7 @@ $multiple ??= false;
       </select>
     <?php endif ?>
     <label for="<?= $id ?>">
-      <?= $placeholder . (!$required ?: '<sub class="text-danger" style="font-size: 2em">*</sub>') ?>
+      <?= $placeholder . ($required ? '<sub class="text-danger ms-2" style="font-size: 2em">*</sub>' : '') ?>
     </label>
   </div>
 <?php endif ?>

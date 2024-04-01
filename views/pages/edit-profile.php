@@ -114,7 +114,8 @@ use App\Models\User;
           'name' => 'address',
           'placeholder' => 'Dirección',
           'cols' => 12,
-          'value' => $user->getAddress()
+          'value' => $user->getAddress(),
+          'required' => true
         ]);
 
         render('components/input-group', [

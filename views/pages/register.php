@@ -30,7 +30,8 @@ use App\Models\InstructionLevel;
 
           render('components/input-group', [
             'name' => 'first_last_name',
-            'placeholder' => 'Primer apellido'
+            'placeholder' => 'Primer apellido',
+            'required' => true
           ]);
 
           render('components/input-group', [
@@ -42,7 +43,8 @@ use App\Models\InstructionLevel;
           render('components/input-group', [
             'type' => 'number',
             'name' => 'id_card',
-            'placeholder' => 'Cédula'
+            'placeholder' => 'Cédula',
+            'required' => true
           ]);
 
           render('components/input-group', [

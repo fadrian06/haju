@@ -14,8 +14,14 @@ class EnsureOnlyAcceptOneDirector {
       return $user->appointment === Appointment::Director;
     });
 
-    if ($directors !== []) {
-      exit(App::redirect('/ingresar'));
+    $activeDirectors = array_filter($directors, function (User $director): bool {
+      return $director->getActiveStatus();
+    });
+
+    if (!$directors || !$activeDirectors) {
+      return;
     }
+
+    exit(App::redirect('/ingresar'));
   }
 }
