@@ -146,12 +146,32 @@ use App\Models\User;
     <form class="col-md"></form>
     <?php if ($user->appointment === Appointment::Director): ?>
       <div class="col-md-12 text-end">
-        <a
-          href="./usuarios/<?= $user->getId() ?>/desactivar"
-          class="mt-4 btn btn-danger rounded-pill">
+        <button
+          class="mt-4 btn btn-danger rounded-pill"
+          data-bs-toggle="modal"
+          data-bs-target="#disactivate-director-modal">
           <i class="ti-lock me-2"></i> Inhabilitar cuenta
-        </a>
+        </button>
       </div>
     <?php endif ?>
   </section>
 </section>
+
+<div class="modal fade" id="disactivate-director-modal">
+  <div class="modal-dialog">
+    <form action="./usuarios/<?= $user->getId() ?>/desactivar" method="post" class="modal-content">
+      <header class="modal-header">
+        <h3 class="modal-title fs-5">
+          ¿Estás seguro que deseas inhabilitar tu cuenta?
+        </h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </header>
+      <footer class="modal-footer">
+        <button class="btn btn-danger">Confirmar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+      </footer>
+    </form>
+  </div>
+</div>

@@ -55,7 +55,7 @@ use App\Models\User;
 
 <div class="modal fade" id="registrar">
   <div class="modal-dialog">
-    <form enctype="multipart/form-data" novalidate action="./usuarios#registrar" class="modal-content" method="post">
+    <form enctype="multipart/form-data" action="./usuarios#registrar" class="modal-content" method="post">
       <header class="modal-header">
         <h3 class="modal-title fs-5">
           Registrar
