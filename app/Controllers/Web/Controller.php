@@ -6,15 +6,18 @@ use App;
 use App\Models\User;
 use Error;
 use flight\util\Collection;
+use Leaf\Http\Session;
 use Throwable;
 
 abstract class Controller {
   protected readonly ?User $loggedUser;
   protected readonly Collection $data;
+  protected readonly Session $session;
 
   function __construct() {
     $this->loggedUser = App::view()->get('user');
     $this->data = App::request()->data;
+    $this->session = App::session();
   }
 
   final protected static function setError(Throwable|string $error): void {

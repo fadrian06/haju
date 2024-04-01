@@ -5,6 +5,7 @@
  * @var null|'input'|'textarea'|'select'|'file'|'checkbox' $variant
  * @var ?string $type
  * @var ?bool $required
+ * @var ?bool $readonly
  * @var string $name
  * @var string $placeholder
  * @var ?string $value
@@ -21,6 +22,7 @@ $type ??= 'text';
 $value ??= '';
 $checked ??= false;
 $multiple ??= false;
+$readonly ??= false;
 
 ?>
 
@@ -34,7 +36,7 @@ $multiple ??= false;
       <?= $checked ? 'checked' : '' ?>
     />
     <label class="form-check-label" for="<?= $id ?>">
-      <?= $placeholder . (!$required ?: '<sup class="text-red">*</sup>') ?>
+      <?= $placeholder ?>
     </label>
   </div>
 <?php else: ?>
@@ -43,13 +45,14 @@ $multiple ??= false;
       <input
         <?= $type === 'date' ? 'style="height: auto"' : '' ?>
         type="<?= $type ?>"
-        class="form-control"
+        class="form-control <?= $readonly ? 'opacity-25' : '' ?>"
         <?= $required ? 'required' : '' ?>
         name="<?= $name ?>"
         id="<?= $id ?>"
         min="<?= $min ?>"
         placeholder="<?= $placeholder ?>"
         value="<?= $value ?>"
+        <?= $readonly ? 'readonly' : '' ?>
       />
     <?php elseif ($variant === 'textarea') : ?>
       <textarea

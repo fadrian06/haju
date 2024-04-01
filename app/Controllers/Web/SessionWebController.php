@@ -5,16 +5,14 @@ namespace App\Controllers\Web;
 use App;
 use App\Repositories\Domain\UserRepository;
 use Error;
-use Leaf\Http\Session;
 
 final class SessionWebController extends Controller {
-  private readonly Session $session;
   private readonly UserRepository $repository;
+  private const DEFAULT_PASSWORD = '1234';
 
   function __construct() {
     parent::__construct();
 
-    $this->session = App::session();
     $this->repository = App::userRepository();
   }
 
@@ -37,6 +35,8 @@ final class SessionWebController extends Controller {
 
       if (!$this->data['password']) {
         throw new Error('La contraseña es requerida');
+      } elseif ($this->data['password'] === self::DEFAULT_PASSWORD) {
+        $this->session->set('mustChangePassword', true);
       }
 
       if (!$user?->checkPassword($this->data['password'])) {

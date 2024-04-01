@@ -81,7 +81,8 @@ use App\Models\User;
 
             render('components/input-group', [
               'name' => 'first_last_name',
-              'placeholder' => 'Primer apellido'
+              'placeholder' => 'Primer apellido',
+              'required' => true
             ]);
 
             render('components/input-group', [
@@ -127,22 +128,29 @@ use App\Models\User;
           <?php
             render('components/input-group', [
               'variant' => 'input',
-              'type' => 'password',
+              'type' => 'text',
               'name' => 'password',
-              'placeholder' => 'Contraseña'
+              'placeholder' => 'Contraseña',
+              'readonly' => true,
+              'value' => '1234'
             ]);
 
             render('components/input-group', [
               'variant' => 'input',
-              'type' => 'password',
+              'type' => 'text',
               'name' => 'confirm_password',
-              'placeholder' => 'Confirmar contraseña'
+              'placeholder' => 'Confirmar contraseña',
+              'readonly' => true,
+              'value' => '1234'
             ]);
           ?>
         </fieldset>
         <?php if ($user->appointment->isHigherThan(Appointment::Coordinator)) : ?>
           <div class="col-md-12 mb-4">
-            <label for="departments">Departamentos asignados</label>
+            <label for="departments" class="mb-2">
+              Departamentos asignados
+              <sub class="text-danger ms-2" style="font-size: 2em">*</sub>
+            </label>
             <select name="departments[]" id="departments" required multiple class="form-control">
               <?php foreach ($user->getDepartment() as $department) : ?>
                 <option value="<?= $department->getId() ?>">
@@ -158,7 +166,9 @@ use App\Models\User;
             render('components/input-group', [
               'type' => 'tel',
               'name' => 'phone',
-              'placeholder' => 'Teléfono'
+              'placeholder' => 'Teléfono',
+              'readonly' => false,
+              'value' => ''
             ]);
 
             render('components/input-group', [

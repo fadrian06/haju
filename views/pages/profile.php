@@ -157,21 +157,9 @@ use App\Models\User;
   </section>
 </section>
 
-<div class="modal fade" id="disactivate-director-modal">
-  <div class="modal-dialog">
-    <form action="./usuarios/<?= $user->getId() ?>/desactivar" method="post" class="modal-content">
-      <header class="modal-header">
-        <h3 class="modal-title fs-5">
-          ¿Estás seguro que deseas inhabilitar tu cuenta?
-        </h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </header>
-      <footer class="modal-footer">
-        <button class="btn btn-danger">Confirmar</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Cancelar
-        </button>
-      </footer>
-    </form>
-  </div>
-</div>
+<?php render('components/confirmation', [
+  'show' => false,
+  'id' => 'disactivate-director-modal',
+  'action' => "./usuarios/{$user->getId()}/desactivar",
+  'title' => 'Estás seguro que deseas inhabilitar tu cuenta',
+]) ?>

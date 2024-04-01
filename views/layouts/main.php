@@ -7,7 +7,10 @@ use App\Models\User;
  * @var string $title
  * @var string $content
  * @var User $user
+ * @var bool $mustChangePassword
  */
+
+$showPasswordChangeModal ??= $mustChangePassword;
 
 ?>
 
@@ -55,6 +58,14 @@ use App\Models\User;
     </div>
     <?php render('components/footer') ?>
   </section>
+  <?php $mustChangePassword && $showPasswordChangeModal && render('components/confirmation', [
+    'show' => true,
+    'id' => 'change-password-confirmation',
+    'action' => './perfil#seguridad',
+    'title' => 'Se recomienda cambiar inmediatamente la contraseña',
+    'confirmText' => 'Quiero cambiarla',
+    'denyText' => 'Ignorar'
+  ]); ?>
   <script src="./assets/vendors/jquery/jquery.min.js"></script>
   <script src="./assets/vendors/metismenu/metisMenu.min.js"></script>
   <script src="./assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>

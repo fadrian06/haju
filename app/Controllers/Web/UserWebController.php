@@ -142,7 +142,9 @@ class UserWebController extends Controller {
   }
 
   function showProfile(): void {
-    App::renderPage('profile', 'Mi perfil', [], 'main');
+    App::renderPage('profile', 'Mi perfil', [
+      'showPasswordChangeModal' => false
+    ], 'main');
   }
 
   function showEditProfile(): void {
@@ -234,6 +236,7 @@ class UserWebController extends Controller {
       $this->loggedUser->setPassword($this->data['new_password']);
       $this->userRepository->save($this->loggedUser);
       self::setMessage('Contraseña actualizada exitósamente');
+      $this->session->set('mustChangePassword', false);
     } catch (Throwable $error) {
       self::setError($error);
     }
