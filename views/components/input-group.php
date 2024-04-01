@@ -34,7 +34,7 @@ $multiple ??= false;
       <?= $checked ? 'checked' : '' ?>
     />
     <label class="form-check-label" for="<?= $id ?>">
-      <?= $placeholder ?>
+      <?= $placeholder . (!$required ?: '<sup class="text-red">*</sup>') ?>
     </label>
   </div>
 <?php else: ?>
@@ -86,6 +86,8 @@ $multiple ??= false;
         <?php endforeach ?>
       </select>
     <?php endif ?>
-    <label for="<?= $id ?>"><?= $placeholder ?></label>
+    <label for="<?= $id ?>">
+      <?= $placeholder . (!$required ?: '<sub class="text-danger" style="font-size: 2em">*</sub>') ?>
+    </label>
   </div>
 <?php endif ?>
