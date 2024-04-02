@@ -3,17 +3,20 @@
 namespace App\Controllers\Web;
 
 use App;
+use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Domain\UserRepository;
 use Error;
 
 final class SessionWebController extends Controller {
-  private readonly UserRepository $repository;
+  private readonly UserRepository $userRepository;
+  private readonly DepartmentRepository $departmentRepository;
   private const DEFAULT_PASSWORD = '1234';
 
   function __construct() {
     parent::__construct();
 
-    $this->repository = App::userRepository();
+    $this->userRepository = App::userRepository();
+    $this->departmentRepository = App::departmentRepository();
   }
 
   function logOut(): void {
@@ -26,7 +29,7 @@ final class SessionWebController extends Controller {
   }
 
   function handleLogin(): void {
-    $user = $this->repository->getByIdCard($this->data['id_card']);
+    $user = $this->userRepository->getByIdCard($this->data['id_card']);
 
     try {
       if (!$this->data['id_card']) {
@@ -44,7 +47,7 @@ final class SessionWebController extends Controller {
       }
 
       $user->ensureThatIsActive()->ensureHasActiveDepartments();
-      $this->session->set('userId', $user->getId());
+      $this->session->set('userId', $user->id);
 
       exit(App::redirect('/departamento/seleccionar'));
     } catch (Error $error) {
@@ -64,13 +67,22 @@ final class SessionWebController extends Controller {
     $this->session->set('canChangeDepartment', count($departments) !== 1);
 
     if (count($departments) === 1) {
-      exit(App::redirect("/departamento/seleccionar/{$departments[0]->getId()}"));
+      exit(App::redirect("/departamento/seleccionar/{$departments[0]->id}"));
     }
 
     App::renderPage('select-department', 'Ingresar (2/2)');
   }
 
   function saveChoice(int $id): void {
+    $department = $this->departmentRepository->getById($id);
+
+    if (!$department || $department->isInactive()) {
+      self::setError('No tiene departamentos activos para acceder');
+      App::redirect('/salir');
+
+      return;
+    }
+
     $this->session->set('departmentId', $id);
     App::redirect('/');
   }

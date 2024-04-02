@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Models;
+namespace App\ValueObjects;
 
-/** @deprecated Use `App\ValueObjects\Appointment` */
 enum Appointment: string {
   case Director = 'Director/a';
   case Coordinator = 'Coordinador/a';

@@ -1,10 +1,7 @@
 <?php
 
-namespace App\Models;
+namespace App\ValueObjects;
 
-use App\ValueObjects\BackedEnum;
-
-/** @deprecated Use `App\ValueObjects\InstructionLevel` */
 enum InstructionLevel: string {
   use BackedEnum;
 

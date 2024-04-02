@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\ValueObjects;
 
 use App\Models\Exceptions\InvalidDateException;
 use DateTime;
 use Stringable;
 
-/** @deprecated Use `App\ValueObjects\Date` */
 readonly class Date implements Stringable {
   private const FORMAT = 'd-m-Y';
 

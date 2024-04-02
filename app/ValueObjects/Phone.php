@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\ValueObjects;
 
 use App\Models\Exceptions\InvalidPhoneException;
 use Stringable;
 
-/** @deprecated Use `App\ValueObjects\Phone` */
 readonly class Phone implements Stringable {
   private string $countryCode;
   private string $simPrefix;

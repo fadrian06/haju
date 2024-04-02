@@ -54,6 +54,23 @@ CREATE TABLE users (
   FOREIGN KEY (instruction_level_id) REFERENCES instruction_levels (id)
 );
 
+DROP TABLE IF EXISTS patients;
+CREATE TABLE patients (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  first_name VARCHAR(20) NOT NULL,
+  second_name VARCHAR(20),
+  first_last_name VARCHAR(20) NOT NULL,
+  second_last_name VARCHAR(20),
+  birth_date DATE NOT NULL,
+  gender VARCHAR(20) NOT NULL CHECK (gender IN ('Masculino', 'Femenino')),
+  id_card INTEGER NOT NULL UNIQUE,
+  registered_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+  user_id INTEGER NOT NULL,
+
+  UNIQUE (first_name, second_name, first_last_name, second_last_name),
+  FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
 /*======================================
 =            PIVOT ENTITIES            =
 ======================================*/

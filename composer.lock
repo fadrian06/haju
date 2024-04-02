@@ -8,16 +8,16 @@
   "packages": [
     {
       "name": "flightphp/core",
-      "version": "v3.7.1",
+      "version": "v3.7.2",
       "source": {
         "type": "git",
         "url": "https://github.com/flightphp/core.git",
-        "reference": "4fe54ea6def722f5597c2a3b288b27cbeb15e161"
+        "reference": "fe2ad0c05e14d1649a9f13299b0b3ad580a0ed0b"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/flightphp/core/zipball/4fe54ea6def722f5597c2a3b288b27cbeb15e161",
-        "reference": "4fe54ea6def722f5597c2a3b288b27cbeb15e161",
+        "url": "https://api.github.com/repos/flightphp/core/zipball/fe2ad0c05e14d1649a9f13299b0b3ad580a0ed0b",
+        "reference": "fe2ad0c05e14d1649a9f13299b0b3ad580a0ed0b",
         "shasum": ""
       },
       "require": {
@@ -75,9 +75,9 @@
       "homepage": "http://flightphp.com",
       "support": {
         "issues": "https://github.com/flightphp/core/issues",
-        "source": "https://github.com/flightphp/core/tree/v3.7.1"
+        "source": "https://github.com/flightphp/core/tree/v3.7.2"
       },
-      "time": "2024-03-23T15:54:51+00:00"
+      "time": "2024-03-30T13:37:34+00:00"
     },
     {
       "name": "leafs/anchor",
@@ -839,16 +839,16 @@
     },
     {
       "name": "phpunit/phpunit",
-      "version": "11.0.8",
+      "version": "11.0.9",
       "source": {
         "type": "git",
         "url": "https://github.com/sebastianbergmann/phpunit.git",
-        "reference": "48ea58408879a9aad630022186398364051482fc"
+        "reference": "591bbfe416400385527d5086b346b92c06de404b"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/48ea58408879a9aad630022186398364051482fc",
-        "reference": "48ea58408879a9aad630022186398364051482fc",
+        "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/591bbfe416400385527d5086b346b92c06de404b",
+        "reference": "591bbfe416400385527d5086b346b92c06de404b",
         "shasum": ""
       },
       "require": {
@@ -919,7 +919,7 @@
       "support": {
         "issues": "https://github.com/sebastianbergmann/phpunit/issues",
         "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-        "source": "https://github.com/sebastianbergmann/phpunit/tree/11.0.8"
+        "source": "https://github.com/sebastianbergmann/phpunit/tree/11.0.9"
       },
       "funding": [
         {
@@ -935,7 +935,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2024-03-22T04:21:01+00:00"
+      "time": "2024-03-28T10:09:42+00:00"
     },
     {
       "name": "psr/log",

@@ -15,7 +15,7 @@ use App\Models\Hospital;
 </section>
 <?php $error && render('components/notification', ['type' => 'error', 'text' => $error]) ?>
 <?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
-<form novalidate method="post" class="white_box d-flex flex-column align-items-center">
+<form method="post" class="white_box d-flex flex-column align-items-center">
   <fieldset class="row w-100">
     <?php
       render('components/input-group', [

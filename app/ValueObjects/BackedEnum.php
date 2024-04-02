@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\ValueObjects;
 
 trait BackedEnum {
   static function values(): array {

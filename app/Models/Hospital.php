@@ -4,7 +4,17 @@ namespace App\Models;
 
 use App\ValueObjects\LongName;
 
-class Hospital {
+/**
+ * @property-read string $name
+ * @property-read string $asic,
+ * @property-read string $type,
+ * @property-read string $place
+ * @property-read string $parish
+ * @property-read string $municipality
+ * @property-read string $healthDepartment
+ * @property-read string $region
+ */
+final class Hospital {
   private LongName $name;
 
   function __construct(
@@ -20,6 +30,7 @@ class Hospital {
     $this->setName($name);
   }
 
+  /** @deprecated */
   function getName(): string {
     return $this->name;
   }
@@ -30,30 +41,37 @@ class Hospital {
     return $this;
   }
 
+  /** @deprecated */
   function getAsic(): string {
     return $this->asic;
   }
 
+  /** @deprecated */
   function getType(): string{
     return $this->type;
   }
 
+  /** @deprecated */
   function getPlace(): string {
     return $this->place;
   }
 
+  /** @deprecated */
   function getParish(): string {
     return $this->parish;
   }
 
+  /** @deprecated */
   function getMunicipality(): string {
     return $this->municipality;
   }
 
+  /** @deprecated */
   function getHealthDepartment(): string {
     return $this->healthDepartment;
   }
 
+  /** @deprecated */
   function getRegion(): string {
     return $this->region;
   }
@@ -98,5 +116,19 @@ class Hospital {
     $this->region = $region;
 
     return $this;;
+  }
+
+  function __get(string $property): null|string {
+    return match ($property) {
+      'name' => $this->name,
+      'asic' => $this->asic,
+      'type' => $this->type,
+      'place' => $this->place,
+      'parish' => $this->parish,
+      'municipality' => $this->municipality,
+      'healthDepartment' => $this->healthDepartment,
+      'region' => $this->region,
+      default => null
+    };
   }
 }

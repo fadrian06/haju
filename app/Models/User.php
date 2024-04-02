@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Contracts\Activable;
+use App\Models\Contracts\Person;
 use App\Models\Exceptions\InvalidDateException;
 use App\Models\Exceptions\InvalidPhoneException;
-use App\ValueObjects\Name;
+use App\Models\Helpers\HasActiveStatus;
 use Error;
 use Generator;
 use InvalidArgumentException;
@@ -13,16 +15,16 @@ use PharIo\Manifest\InvalidEmailException;
 use PharIo\Manifest\InvalidUrlException;
 use PharIo\Manifest\Url;
 
-class User extends Model {
+/**
+ * @property-read string $password
+ * @property-read string $address
+ */
+final class User extends Person implements Activable {
+  use HasActiveStatus;
+
   /** @var array<int, Department> */
   private array $departments = [];
-
-  private Name $firstName;
-  private ?Name $secondName = null;
-  private Name $firstLastName;
-  private ?Name $secondLastName = null;
   private string $password;
-  private int $idCard;
   private string $address;
 
   /**
@@ -36,60 +38,30 @@ class User extends Model {
     ?string $secondName,
     string $firstLastName,
     ?string $secondLastName,
-    public Date $birthDate,
-    public Gender $gender,
-    public readonly Appointment $appointment,
-    public InstructionLevel $instructionLevel,
+    Date|\App\ValueObjects\Date $birthDate,
+    Gender|\App\ValueObjects\Gender $gender,
+    public readonly Appointment|\App\ValueObjects\Appointment $appointment,
+    public InstructionLevel|\App\ValueObjects\InstructionLevel $instructionLevel,
     int $idCard,
     string $password,
-    public Phone $phone,
+    public Phone|\App\ValueObjects\Phone $phone,
     public Email $email,
     string $address,
     public string|Url $profileImagePath,
-    private bool $isActive = true
+    bool $isActive = true
   ) {
-    $this->setFirstName($firstName)
-      ->setFirstLastName($firstLastName)
-      ->setIdCard($idCard)
-      ->setPassword($password)
-      ->setAddress($address);
+    parent::__construct(
+      $firstName,
+      $secondName,
+      $firstLastName,
+      $secondLastName,
+      $birthDate,
+      $gender,
+      $idCard
+    );
 
-    $secondName && $this->setSecondName($secondName);
-    $secondLastName && $this->setSecondLastName($secondLastName);
-  }
-
-  function setFirstName(string $firstName): static {
-    $this->firstName = new Name($firstName, 'Primer nombre');
-
-    return $this;
-  }
-
-  function setSecondName(string $secondName): static {
-    $this->secondName = new Name($secondName, 'Segundo nombre');
-
-    return $this;
-  }
-
-  function setFirstLastName(string $firstLastName): static {
-    $this->firstLastName = new Name($firstLastName, 'Primer apellido');
-
-    return $this;
-  }
-
-  function setSecondLastName(string $secondLastName): static {
-    $this->secondLastName = new Name($secondLastName, 'Segundo apellido');
-
-    return $this;
-  }
-
-  function setIdCard(int $idCard): static {
-    if ($idCard < 1) {
-      throw new InvalidArgumentException("La cédula es requerida y válida");
-    }
-
-    $this->idCard = $idCard;
-
-    return $this;
+    $this->isActive = $isActive;
+    $this->setPassword($password)->setAddress($address);
   }
 
   function setPassword(string $password): static {
@@ -114,61 +86,18 @@ class User extends Model {
     return $this;
   }
 
-  function getFirstName(): string {
-    return $this->firstName;
-  }
-
-  function getSecondName(): ?string {
-    return $this->secondName;
-  }
-
-  function getFirstLastName(): string {
-    return $this->firstLastName;
-  }
-
-  function getSecondLastName(): ?string {
-    return $this->secondLastName;
-  }
-
+  /** @deprecated */
   function getPassword(): string {
     return $this->password;
   }
 
-  function getIdCard(): int {
-    return $this->idCard;
-  }
-
+  /** @deprecated */
   function getAddress(): string {
     return $this->address;
   }
 
   function checkPassword(string $raw): bool {
     return password_verify($raw, $this->password);
-  }
-
-  function toggleActiveStatus(): static {
-    $this->isActive = !$this->isActive;
-
-    return $this;
-  }
-
-  function getFullName(): string {
-    $fullName = $this->firstName;
-    $fullName .= $this->secondName ? " {$this->secondName}" : '';
-    $fullName .= " $this->firstLastName";
-    $fullName .= $this->secondLastName ? " {$this->secondLastName}" : '';
-
-    return $fullName;
-  }
-
-  function getActiveStatus(): bool {
-    return $this->isActive;
-  }
-
-  function getProfileImageRelPath(): string {
-    return $this->profileImagePath instanceof Url
-      ? mb_substr($this->profileImagePath->asString(), strpos($this->profileImagePath->asString(), 'assets'))
-      : $this->profileImagePath;
   }
 
   function ensureThatIsActive(): static {
@@ -179,9 +108,22 @@ class User extends Model {
     return $this;
   }
 
+  /** @deprecated Use `$user->toggleStatus()` */
+  function toggleActiveStatus(): static {
+    $this->isActive = !$this->isActive;
+
+    return $this;
+  }
+
+  function getProfileImageRelPath(): string {
+    return $this->profileImagePath instanceof Url
+      ? mb_substr($this->profileImagePath->asString(), strpos($this->profileImagePath->asString(), 'assets'))
+      : $this->profileImagePath;
+  }
+
   function ensureHasActiveDepartments(): static {
     foreach ($this->departments as $department) {
-      if ($department->getActiveStatus()) {
+      if ($department->isActive()) {
         return $this;
       }
     }
@@ -228,5 +170,13 @@ class User extends Model {
     foreach ($this->departments as $index => $department) {
       yield $index => $department;
     }
+  }
+
+  function __get(string $property): null|int|string {
+    return match ($property) {
+      'password' => $this->password,
+      'address' => $this->address,
+      default => parent::__get($property)
+    };
   }
 }
