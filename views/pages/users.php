@@ -23,7 +23,7 @@ use App\ValueObjects\InstructionLevel;
 </section>
 <ul class="list-unstyled row row-cols-sm-2 row-cols-md-3">
   <?php foreach ($users as $member) : ?>
-    <li class="mb-4">
+    <li class="mb-4 d-flex align-items-stretch">
       <article class="card card-body text-center">
         <div class="dropdown position-relative">
           <button style="right: 0" class="bg-transparent border-0 position-absolute" data-bs-toggle="dropdown">
@@ -37,19 +37,26 @@ use App\ValueObjects\InstructionLevel;
           </div>
         </div>
         <picture class="p-3">
-          <img class="img-fluid rounded-circle" src="<?= urldecode($member->profileImagePath->asString()) ?>" />
+          <img
+            class="img-fluid rounded-circle"
+            src="<?= urldecode($member->profileImagePath->asString()) ?>"
+            style="height: 130px"
+            title="<?= $member->getFullName() ?>"
+          />
         </picture>
         <span class="custom-badge status-<?= $member->isActive() ? 'green' : 'red' ?> mx-4 mb-2">
           <?= $member->isActive() ? 'Activo' : 'Inactivo' ?>
         </span>
-        <h4><?= $member->getFullName() ?></h4>
+        <h4 title="<?= $member->getFullName() ?>">
+          <?= "{$member->firstName} {$member->firstLastName}" ?>
+        </h4>
         <span><?= $member->getParsedAppointment() ?></span>
         <small class="text-muted">
           <i class="ti-pin2"></i>
           <?= $member->address ?>
         </small>
-        <small class="text-muted">
-          Registrado por <?= $member->registeredBy->getFullName() ?>
+        <small class="text-muted" title="<?= $member->registeredBy->getFullName() ?>">
+          Registrado por: <?= $member->registeredBy->firstName ?>
         </small>
       </article>
     </li>
