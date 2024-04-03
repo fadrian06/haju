@@ -201,6 +201,17 @@ class UserWebController extends Controller {
       return $user->appointment->isLowerOrEqualThan($this->loggedUser->appointment);
     });
 
+    if ($this->loggedUser->appointment === Appointment::Coordinator) {
+      $filteredUsers = array_filter($filteredUsers, function (User $user): bool {
+        return (
+          $user->appointment->isHigherThan($this->loggedUser->appointment) || (
+            $user->appointment === Appointment::Secretary
+            && $user->registeredBy->isEqualTo($this->loggedUser)
+          )
+        );
+      });
+    }
+
     $usersNumber = count($filteredUsers);
 
     App::renderPage(

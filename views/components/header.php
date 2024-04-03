@@ -12,7 +12,7 @@ use App\ValueObjects\Appointment;
 
 ?>
 
-<header class="header_iner d-flex align-items-center py-1">
+<header class="header_iner d-flex align-items-center py-1" style="height: 65px">
   <button class="sidebar_icon d-lg-none me-2">
     <i class="ti-menu"></i>
   </button>
@@ -44,7 +44,7 @@ use App\ValueObjects\Appointment;
       </li>
     </ul> -->
     <div class="profile_info">
-      <img src="<?= urldecode($user->profileImagePath->asString()) ?>" />
+      <img class="p-2" style="max-width: unset" src="<?= urldecode($user->profileImagePath->asString()) ?>" />
       <div class="profile_info_iner">
         <p><?= $user->getParsedAppointment() ?></p>
         <h5><?= "{$user->instructionLevel->value}. {$user->getFullName()}" ?></h5>

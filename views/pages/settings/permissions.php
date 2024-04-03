@@ -60,7 +60,7 @@ use App\Models\User;
             </label>
           <?php endforeach ?>
         </div>
-        <button class="btn btn-primary mt-3">Guardar cambios</button>
+        <button class="btn btn-secondary mt-3">Guardar cambios</button>
       </form>
     <?php endforeach ?>
   </div>
