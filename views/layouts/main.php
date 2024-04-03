@@ -30,13 +30,16 @@ $showPasswordChangeModal ??= $mustChangePassword;
   <link rel="stylesheet" href="./assets/vendors/themefy_icon/themify-icons.css" />
   <link rel="stylesheet" href="./assets/css/reset.css" />
   <link rel="stylesheet" href="./assets/css/utils.css" />
-  <link rel="stylesheet" href="./assets/css/theme.css" />
-  <link rel="stylesheet" href="./assets/css/btn.css" />
-  <link rel="stylesheet" href="./assets/css/sidebar.css" />
-  <link rel="stylesheet" href="./assets/css/main-content.css" />
-  <link rel="stylesheet" href="./assets/css/header-inner.css" />
-  <link rel="stylesheet" href="./assets/css/sidebar-icon.css" />
-  <link rel="stylesheet" href="./assets/css/profile-info.css" />
+  <link rel="stylesheet" href="./assets/css/components/btn.css" />
+  <link rel="stylesheet" href="./assets/css/components/sidebar.css" />
+  <link rel="stylesheet" href="./assets/css/components/main.css" />
+  <link rel="stylesheet" href="./assets/css/components/header.css" />
+  <link rel="stylesheet" href="./assets/css/components/sidebar.css" />
+  <link rel="stylesheet" href="./assets/css/components/profile.css" />
+  <link rel="stylesheet" href="./assets/css/components/footer.css" />
+  <link rel="stylesheet" href="./assets/css/components/single-element.css" />
+  <link rel="stylesheet" href="./assets/css/components/box.css" />
+  <link rel="stylesheet" href="./assets/css/components/section.css" />
   <link rel="stylesheet" href="./assets/css/custom.css" />
   <style>
     .main_content {

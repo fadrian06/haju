@@ -99,3 +99,17 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar {
   width: 8px
 }
+
+.table td,
+.table th {
+  padding: .75rem;
+  vertical-align: top;
+  border-top: 0
+}
+
+/*span {
+  font-size: 13px;
+  font-weight: 300;
+  color: #7e7172;
+  text-transform: capitalize
+}*/

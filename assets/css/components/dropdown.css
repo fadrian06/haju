@@ -1,0 +1,225 @@
+.dropdown .dropdown-toggle.lms_drop_1 {
+  background: white;
+  padding: 4px 15px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 300;
+  text-transform: capitalize;
+  text-align: left;
+  color: #7e7172;
+  display: inline-block;
+  width: 102px;
+  border: 1px solid #eee1e2;
+  position: relative;
+  transition: .3s;
+  box-sizing: border-box;
+}
+
+.dropdown .dropdown-toggle.lms_drop_1::after {
+  content: "\f0d7";
+  font-family: "font awesome 5 free";
+  position: absolute;
+  color: #cec1c2;
+  font-size: 12px;
+  font-weight: 900;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 14px
+}
+
+.dropdown .dropdown-toggle.lms_drop_1.lms_drop_2 {
+  min-width: 140px
+}
+
+.dropdown.show .dropdown-toggle.lms_drop_1 {
+  background: #2daab8;
+  padding: 4px 15px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 300;
+  text-transform: capitalize;
+  text-align: left;
+  display: inline-block;
+  width: 102px;
+  color: white;
+  border: 1px solid #2daab8;
+  box-sizing: border-box;
+}
+
+.dropdown.show .dropdown-toggle.lms_drop_1::after {
+  content: "\f0d8"
+}
+
+.dropdown .dropdown-menu {
+  border: 1px solid #eee1e2;
+  padding: 12px 0 20px;
+  margin: 0;
+  border-radius: 0;
+}
+
+.dropdown .dropdown-menu .dropdown-item {
+  font-size: 12px;
+  font-weight: 300;
+  padding: 4px 20px;
+  color: #7f7778
+}
+
+.dropdown .dropdown-menu .dropdown-item:hover {
+  color: #2daab8;
+  background: 0 0
+}
+
+.dropdown .dropdown-menu.dropdown-menu-w140 {
+  min-width: 140px
+}
+
+.CRM_dropdown.dropdown .dropdown-toggle {
+  background: 0 0;
+  color: #415094;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid #7c32ff;
+  border-radius: 32px;
+  padding: 5px 20px;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .3s
+}
+
+.CRM_dropdown.dropdown .dropdown-toggle:after {
+  content: "\e62a";
+  font-family: themify;
+  border: none;
+  border-top-color: currentcolor;
+  border-top-style: none;
+  border-top-width: medium;
+  border-top: 0;
+  font-size: 10px;
+  position: relative;
+  top: 3px;
+  left: 0;
+  font-weight: 600;
+  transition: .3s
+}
+
+.CRM_dropdown.dropdown .dropdown-toggle:hover,
+.CRM_dropdown.dropdown .dropdown-toggle:focus {
+  color: white;
+  border: 1px solid transparent;
+  box-shadow: none
+}
+
+.CRM_dropdown.dropdown .dropdown-menu {
+  border-radius: 5px 5px 10px 10px;
+  border: 0;
+  padding: 15px 0;
+  box-shadow: 0 10px 20px rgba(108, 39, 255, .3)
+}
+
+.CRM_dropdown.dropdown .dropdown-menu .dropdown-item {
+  color: #828bb2;
+  text-align: right;
+  font-size: 12px;
+  padding: 4px 1.5rem;
+  text-transform: uppercase;
+  cursor: pointer
+}
+
+.CRM_dropdown.dropdown .dropdown-menu .dropdown-item:hover {
+  color: #2e4765
+}
+
+.dropdown-menu.option_width_8 {
+  min-width: 150px
+}
+
+.CRM_dropdown.dropdown .dropdown-toggle:hover,
+.CRM_dropdown.dropdown .dropdown-toggle:focus {
+  background: linear-gradient(90deg, #7C32FF 0%, #A235EC 70%, #C738D8 100%)
+}
+
+.cu_dropdown .btn {
+  border: 1px solid #f1f2f3;
+  background-color: #fef1f2;
+  color: #7e7172;
+  font-size: 12px;
+  font-weight: 300;
+  padding: 5px 15px
+}
+
+.cu_dropdown .btn_1 {
+  padding: 11px 20px
+}
+
+.cu_dropdown .dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: 0;
+  content: "\e64b";
+  border-top: none;
+  font-family: themify;
+  font-size: 10px
+}
+
+.cu_dropdown .dropdown-menu {
+  background-color: #222;
+  min-width: 102px;
+  left: 0;
+  border-radius: 0 0 5px 5px;
+  top: -2px;
+  padding: 17px 0
+}
+
+.cu_dropdown .dropdown-menu .dropdown-item {
+  font-size: 12px;
+  font-weight: 300;
+  text-transform: capitalize;
+  padding: 7px 20px;
+  color: white
+}
+
+.cu_dropdown .left_arrow:hover {
+  background-color: transparent;
+  padding-left: 38px
+}
+
+.cu_dropdown .left_arrow:after {
+  left: 18px;
+  top: 11px
+}
+
+.menu_bropdown {
+  display: inline-block
+}
+
+.menu_bropdown .dropdown-menu {
+  min-width: 168px;
+  right: 0
+}
+
+.dropdown-menu.show .dropdown-toggle.lms_drop_1::after {
+  color: white !important
+}
+
+.dropdown-menu.option_width {
+  min-width: 102px
+}
+
+.dropdown.show .dropdown-toggle.lms_drop_1::after {
+  color: white
+}
+
+.hide_pils.dropdown-toggle::after {
+  display: inline-block;
+  margin-left: .255em;
+  vertical-align: .255em;
+  content: "";
+  border-top: .3em solid;
+  border-right: .3em solid transparent;
+  border-bottom: 0;
+  border-left: .3em solid transparent;
+  border: 0;
+}

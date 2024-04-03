@@ -230,3 +230,110 @@
 .cs_modal .modal-body .pass_forget_btn:hover {
   color: #2e4765
 }
+
+@media (min-width: 991px) {
+  .medium_modal_width .modal-dialog {
+    max-width: 780px
+  }
+}
+
+.result_modal_table_form .modal-body {
+  margin: 30px 0;
+  padding: 120px 100px 104px !important
+}
+
+@media(max-width:991px) {
+  .result_modal_table_form .modal-body {
+    padding: 30px !important
+  }
+}
+
+@media only screen and (min-width:992px) and (max-width:1200px) {
+  .result_modal_table_form .modal-body {
+    padding: 50px !important
+  }
+}
+
+.result_modal_table_form .table thead th {
+  border-bottom: 0 solid transparent;
+  background-color: #fef1f2;
+  padding: 17px 30px;
+  line-height: 16px;
+  border: 0 solid transparent;
+  border-top-color: transparent;
+  border-top-style: solid;
+  border-top-width: 0;
+  font-size: 12px;
+  font-weight: 400;
+  color: #222;
+  white-space: nowrap
+}
+
+.result_modal_table_form .table tbody th,
+.result_modal_table_form .table tbody td {
+  color: #7e7172;
+  font-size: 13px !important;
+  color: #7e7172;
+  font-weight: 300;
+  border-bottom: 1px solid #eee1e2;
+  padding: 10px 25px !important
+}
+
+.result_modal_table_form .result_header_modal {
+  margin-bottom: 45px
+}
+
+.result_modal_table_form .result_header_modal h2 {
+  font-size: 36px;
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 15px
+}
+
+@media(max-width:575.98px) {
+  .result_modal_table_form .result_header_modal h2 {
+    font-size: 20px
+  }
+}
+
+@media only screen and (min-width:576px) and (max-width:767px) {
+  .result_modal_table_form .result_header_modal h2 {
+    font-size: 20px
+  }
+}
+
+.result_modal_table_form .result_header_modal p {
+  font-size: 14px;
+  font-weight: 300;
+  color: #7e7172;
+  line-height: 26px
+}
+
+.result_modal_table_form .result_header_modal .passed_text {
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 29px;
+  margin-bottom: 35px
+}
+
+@media(max-width:575.98px) {
+  .result_modal_table_form .result_header_modal .passed_text {
+    margin-top: 15px;
+    margin-bottom: 15px
+  }
+}
+
+@media only screen and (min-width:576px) and (max-width:767px) {
+  .result_modal_table_form .result_header_modal .passed_text {
+    margin-top: 15px;
+    margin-bottom: 15px
+  }
+}
+
+@media only screen and (min-width:768px) and (max-width:991px) {
+  .result_modal_table_form .result_header_modal .passed_text {
+    margin-top: 15px;
+    margin-bottom: 15px
+  }
+}

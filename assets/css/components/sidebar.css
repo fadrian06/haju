@@ -387,3 +387,93 @@
 .sidebar #sidebar_menu li ul li ul {
   padding-left: 5px
 }
+
+.email-sidebar {
+  background: white;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
+  position: relative;
+  z-index: 6;
+  height: calc(100% - 3.9375rem)
+}
+
+.email-sidebar h4 {
+  font-weight: 600;
+  font-size: .875rem;
+  color: #333;
+  padding: 2.5rem 0 3.125rem 1.5625rem
+}
+
+.email-sidebar ul {
+  margin-bottom: 3.125rem
+}
+
+.email-sidebar ul li {
+  display: block
+}
+
+.email-sidebar ul li.active {
+  background: #2daab8;
+  box-shadow: 0 .625rem 1.875rem 0 rgba(45, 170, 184, .3);
+  color: white !important
+}
+
+.email-sidebar ul li.active a {
+  color: white
+}
+
+.email-sidebar ul li a {
+  display: block;
+  padding: .625rem .625rem .625rem 1.5rem;
+  transition: all .5s ease-in-out;
+  font-weight: 600;
+  font-size: .875rem;
+  color: #333
+}
+
+.email-sidebar ul li a:hover {
+  background: #2daab8;
+  box-shadow: 0 .625rem 1.875rem 0 rgba(22, 187, 229, .3);
+  color: white !important
+}
+
+.email-sidebar ul li a i {
+  margin-right: .7rem
+}
+
+.sidebar_icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: auto;
+  left: 20px
+}
+
+@media(max-width: 575.98px) {
+  .sidebar_icon {
+    right: auto;
+    left: 20px
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .sidebar_icon {
+    right: auto;
+    left: 20px
+  }
+}
+
+.sidebar_icon i {
+  font-size: 20px
+}
+
+@media(max-width:991px) {
+  .sidebar_widget {
+    margin-top: 30px
+  }
+}
+
+@media only screen and (min-width:768px) and (max-width:991px) {
+  .sidebar_widget {
+    margin-top: 0
+  }
+}

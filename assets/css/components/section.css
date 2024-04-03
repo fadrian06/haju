@@ -1,0 +1,196 @@
+.section_padding {
+  padding: 120px 0
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  .section_padding {
+    padding: 80px 0
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .section_padding {
+    padding: 70px 0
+  }
+}
+
+@media(max-width: 575.98px) {
+  .section_padding {
+    padding: 70px 0
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .section_padding {
+    padding: 70px 0
+  }
+}
+
+.section_bg {
+  background-color: #fef1f2
+}
+
+.section_tittle {
+  text-align: center
+}
+
+.section_tittle h2 {
+  font-size: 36px;
+  margin-bottom: 25px;
+  line-height: 33px
+}
+
+@media(max-width:991px) {
+  .section_tittle h2 {
+    margin-bottom: 15px;
+    font-size: 25px
+  }
+}
+
+@media(max-width:991px) {
+  .section_tittle h2 {
+    font-size: 30px
+  }
+}
+
+.section_tittle p {
+  margin-bottom: 72px
+}
+
+@media(max-width:991px) {
+  .section_tittle p {
+    margin-bottom: 40px
+  }
+}
+
+@media only screen and (min-width:992px) and (max-width:1200px) {
+  .section_tittle p {
+    margin-bottom: 50px
+  }
+}
+
+.QA_section .QA_table .table {
+  background: white;
+  border-radius: 10px;
+  margin-bottom: 35px;
+  padding-top: 20px
+}
+
+.QA_section .QA_table th,
+.QA_section .QA_table td {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.9;
+  color: #222;
+  padding: 16px 30px;
+  vertical-align: middle
+}
+
+.QA_section .QA_table .question_content {
+  color: #7e7172;
+  font-size: 13px
+}
+
+.QA_section .QA_table .question_content:hover {
+  color: #2e4765
+}
+
+.QA_section .QA_table thead th {
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(130, 139, 178, .3) !important
+}
+
+.QA_section .QA_table tbody th {
+  font-size: 14px;
+  color: #415094;
+  font-weight: 400 !important
+}
+
+.QA_section .QA_table tbody img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%
+}
+
+.QA_section .QA_table tbody th,
+.QA_section .QA_table tbody td {
+  color: #7e7172;
+  font-size: 14px;
+  color: #828bb2;
+  font-weight: 400;
+  border-bottom: 1px solid rgba(130, 139, 178, .1)
+}
+
+.QA_section .QA_table tbody th a,
+.QA_section .QA_table tbody td a {
+  font-size: 14px;
+  font-weight: 400;
+  color: #828bb2
+}
+
+.QA_section .QA_table tbody th a:hover,
+.QA_section .QA_table tbody td a:hover {
+  color: #7c32ff
+}
+
+.QA_section .QA_table tbody th.pending,
+.QA_section .QA_table tbody td.pending {
+  color: #e09079;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500
+}
+
+.QA_section .QA_table tbody th.priority_hight,
+.QA_section .QA_table tbody td.priority_hight {
+  font-size: 14px;
+  color: #d7598f;
+  font-weight: 400
+}
+
+.QA_section .QA_table tbody tr {
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s
+}
+
+.QA_section .QA_table tbody tr:hover {
+  background: white
+}
+
+.QA_section .QA_table .view_btn {
+  color: #2e4765
+}
+
+.QA_section .QA_table .view_btn:hover {
+  text-decoration: underline
+}
+
+.QA_section .QA_table .table {
+  margin-bottom: 0 !important
+}
+
+.QA_section .QA_table .table thead th {
+  border-bottom: 0 solid transparent;
+  background-color: white;
+  padding: 17px 30px;
+  line-height: 16px;
+  border: 0 solid transparent;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  white-space: nowrap;
+  text-transform: capitalize;
+  font-family: rajdhani, sans-serif;
+  border: 0;
+  background: #2daab8
+}
+
+.QA_section .QA_table .table thead th:first-child {
+  border-radius: 30px 0 0 30px
+}
+
+.QA_section .QA_table .table thead th:last-child {
+  border-radius: 0 30px 30px 0
+}

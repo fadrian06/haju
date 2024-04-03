@@ -31,10 +31,13 @@ if (isset($user)) {
   <link rel="stylesheet" href="./assets/vendors/themefy_icon/themify-icons.css" />
   <link rel="stylesheet" href="./assets/css/reset.css" />
   <link rel="stylesheet" href="./assets/css/utils.css" />
-  <link rel="stylesheet" href="./assets/css/theme.css" />
-  <link rel="stylesheet" href="./assets/css/header-inner.css" />
-  <link rel="stylesheet" href="./assets/css/cs-modal.css" />
-  <link rel="stylesheet" href="./assets/css/btn.css" />
+  <link rel="stylesheet" href="./assets/css/components/header.css" />
+  <link rel="stylesheet" href="./assets/css/components/modal.css" />
+  <link rel="stylesheet" href="./assets/css/components/btn.css" />
+  <link rel="stylesheet" href="./assets/css/components/footer.css" />
+  <link rel="stylesheet" href="./assets/css/components/main.css" />
+  <link rel="stylesheet" href="./assets/css/components/modal.css" />
+  <link rel="stylesheet" href="./assets/css/components/box.css" />
   <link rel="stylesheet" href="./assets/css/custom.css" />
 </head>
 

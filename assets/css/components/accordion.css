@@ -1,0 +1,95 @@
+.accordion_custom h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 40px
+}
+
+.accordion_custom .card {
+  margin-bottom: 15px;
+  border: 0;
+  overflow: visible
+}
+
+.accordion_custom .card .card-header {
+  border: 0;
+  padding: 0;
+  border-radius: 30px !important
+}
+
+.accordion_custom .card .card-header h2 {
+  padding: 0
+}
+
+.accordion_custom .card .card-header h2 a {
+  padding: 0;
+  font-size: 14px;
+  font-weight: 500;
+  width: 100%;
+  text-align: left;
+  position: relative;
+  position: relative;
+  padding: 13px 20px;
+  background: #2daab8;
+  box-shadow: 0 5px 10px rgba(45, 170, 184, .7);
+  color: white;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+  border: 0;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px
+}
+
+.accordion_custom .card .card-header h2 a::before {
+  content: "\e622";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: themify;
+  font-size: 14px;
+  right: 30px;
+  color: white
+}
+
+.accordion_custom .card .card-header h2 a.collapsed {
+  background: #f5f7fb;
+  color: #415094;
+  box-shadow: none;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px
+}
+
+.accordion_custom .card .card-header h2 a.collapsed::before {
+  content: "\e61a";
+  color: #415094
+}
+
+.accordion_custom .card .card-header h2 a:focus {
+  text-decoration: none
+}
+
+.accordion_custom .card .card-body {
+  padding: 24px 20px 30px
+}
+
+@media(max-width:575.98px) {
+  .accordion_custom .card .card-body {
+    padding: 15px
+  }
+}
+
+.accordion_custom .card .card-body p {
+  font-size: 14px;
+  line-height: 26px;
+  color: #555;
+  font-weight: 300;
+  margin-bottom: 28px
+}
+
+.accordion_custom .card .card-body p:last-child {
+  margin-bottom: 0
+}

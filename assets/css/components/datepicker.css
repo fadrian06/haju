@@ -1,0 +1,20 @@
+.gj-datepicker .fa-calendar-alt {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #cec1c2;
+  right: 25px
+}
+
+.common_date_picker input {
+  width: 100%;
+  border: 1px solid #eee1e2;
+  border-radius: 3px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 13px;
+  color: #7e7172;
+  padding: 0 25px;
+  font-weight: 300
+}

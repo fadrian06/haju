@@ -221,3 +221,58 @@ textarea {
     padding-left: 26%
   }
 }
+
+.custom-file-input:focus~.custom-file-label {
+  border-color: transparent;
+  box-shadow: none
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0 transparent;
+}
+
+.dropdown-menu {
+  margin: 0;
+  padding: 0
+}
+
+.progress-bar {
+  text-align: right;
+  padding-right: 8px
+}
+
+@media(min-width:768px) {
+  .modal-dialog.custom-modal-dialog {
+    max-width: 650px
+  }
+}
+
+@media(min-width:992px) {
+  .modal-dialog.custom-modal-dialog {
+    max-width: 950px
+  }
+}
+
+@media(min-width:1200px) {
+  .modal-dialog.custom-modal-dialog {
+    max-width: 1050px
+  }
+}
+
+@media only screen and (min-width:992px) and (max-width:1200px) {
+  .metismenu .has-arrow::after {
+    right: 25px
+  }
+}
+
+.bg-light {
+  background-color: #eee !important
+}
+
+.bg-focus {
+  background-color: #444054 !important
+}
+
+.bg-primary {
+  background-color: #3f6ad8 !important
+}

@@ -1,0 +1,39 @@
+.switch {
+  background-color: gray;
+  border-radius: 43px;
+  position: relative;
+  cursor: pointer;
+  padding: 14px 25px;
+  margin-right: 20px;
+  height: 30px;
+  box-sizing: border-box;
+  appearance: none;
+}
+
+.switch::after {
+  top: 6px;
+  left: 6px;
+  content: '';
+  width: 15px;
+  height: 15px;
+  background-color: #2e4765;
+  position: absolute;
+  border-radius: 100%;
+  transition: 1s
+}
+
+.switch:checked {
+  background-color: #2e4765;
+}
+
+.switch:checked::after {
+  background-color: white;
+}
+
+.switch:checked::after {
+  transform: translateX(25px)
+}
+
+.switch:focus {
+  outline-color: transparent
+}

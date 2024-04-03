@@ -80,3 +80,19 @@
     margin-bottom: 20px
   }
 }
+
+.main-title h3 {
+  font-family: rajdhani, sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  color: #2e4765;
+  line-height: 1.2
+}
+
+.main-title span {
+  font-size: 12px;
+  font-weight: 400;
+  color: #a3a0fb;
+  display: block;
+  margin-top: 6px
+}

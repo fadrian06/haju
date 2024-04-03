@@ -1,0 +1,84 @@
+.note-editable {
+  background-color: #fef1f2
+}
+
+.note-btn-group.note-style {
+  display: none
+}
+
+.note-editor.note-frame {
+  border: 1px solid #eee1e2
+}
+
+.note-editor.note-frame .note-popover .note-popover-content,
+.note-editor.note-frame .note-toolbar {
+  padding: 4px 15px 8px;
+  margin: 0;
+  border-radius: 5px 5px 0 0;
+  background-color: white7f8
+}
+
+.note-editor.note-frame .note-btn i,
+.note-editor.note-frame .note-current-fontname {
+  color: #7e7172;
+  font-size: 12px
+}
+
+.note-editor.note-frame .note-btn {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #7e7172;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  border-radius: 3px
+}
+
+.note-editor.note-frame .note-btn:hover {
+  color: white;
+  background: #fe1724
+}
+
+.note-editor.note-frame .note-btn:hover i {
+  color: white;
+  background: #fe1724
+}
+
+.note-editor.note-frame .note-btn .note-current-fontname:hover {
+  color: white
+}
+
+.note-editor.note-frame .show .dropdown-toggle::after {
+  transform: rotate(180deg);
+  color: red
+}
+
+.note-editor.note-frame .note-icon-font.note-recent-color {
+  background: 0 0 !important;
+  color: #7e7172 !important
+}
+
+.note-editor.note-frame .show .dropdown-toggle::after {
+  color: #7e7172 !important
+}
+
+.note-editor.note-frame .note-btn:hover span {
+  color: white !important
+}
+
+.note-editor.note-frame .note-btn:hover i {
+  color: white !important
+}
+
+.note-editor.note-frame .note-editing-area .note-editable {
+  background-color: white
+}
+
+.note-editor.note-frame .note-placeholder {
+  padding: 18px 25px 0;
+  font-size: 14px;
+  color: #7e7172;
+  line-height: 28px;
+  font-weight: 300
+}

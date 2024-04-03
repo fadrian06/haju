@@ -70,7 +70,7 @@ use App\ValueObjects\Appointment;
         </li>
       <?php endif ?>
       <?php if ($user->appointment->isHigherThan(Appointment::Coordinator)) : ?>
-        <li class="<?= isActive('/configuracion/general', '/configuracion/permisos', '/configuracion/respaldo-restauracion') ? 'mm-active' : '' ?>">
+        <li class="<?= isActive('/configuracion/institucion', '/configuracion/permisos', '/configuracion/respaldo-restauracion') ? 'mm-active' : '' ?>">
           <a href="#" class="has-arrow">
             <img src="./assets/img/icons/gears.svg" />
             <span>Configuraciones</span>

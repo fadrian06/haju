@@ -1,3 +1,14 @@
+.lms_common_header .lms_common_title h4 {
+  margin-bottom: 3px
+}
+
+.lms_common_header .lms_common_title p {
+  font-size: 12px;
+  font-weight: 300;
+  color: #7e7172;
+  margin-bottom: 0
+}
+
 .header_iner {
   background-color: white;
   top: 0;
@@ -202,3 +213,4 @@
 .header_iner .nice_Select {
   color: #929bb5
 }
+
