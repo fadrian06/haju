@@ -212,11 +212,20 @@ class UserWebController extends Controller {
   }
 
   function handleToggleStatus(int $id): void {
-    $user = $this->userRepository->getById($id);
-    $user->toggleStatus();
+    try {
+      $user = $this->userRepository->getById($id);
 
-    $this->userRepository->save($user);
-    self::setMessage("Usuario de {$user->firstName} {$user->getActiveStatusText()} exitósamente");
+      if (!$user->registeredBy->isEqualTo($this->loggedUser)) {
+        throw new Error('Acceso denegado');
+      }
+
+      $user->toggleStatus();
+      $this->userRepository->save($user);
+      self::setMessage("Usuario {$user->firstName} {$user->getActiveStatusText()} exitósamente");
+    } catch (Throwable $error) {
+      self::setError($error);
+    }
+
     App::redirect($user->appointment === Appointment::Director ? '/salir' : '/usuarios');
   }
 

@@ -5,11 +5,13 @@
  * @var string $text
  */
 
-const TYPES = [
-  'message' => 'success',
-  'info' => 'info',
-  'error' => 'danger'
-];
+if (!defined('TYPES')) {
+  define('TYPES', [
+    'message' => 'success',
+    'info' => 'info',
+    'error' => 'danger'
+  ]);
+}
 
 ?>
 

@@ -34,10 +34,6 @@ final class Department extends Model {
     return $this;
   }
 
-  function isEqualTo(self $department): bool {
-    return $this->id === $department->id;
-  }
-
   function __get(string $property): null|int|string {
     return match ($property) {
       'name' => $this->name,

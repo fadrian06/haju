@@ -12,7 +12,7 @@ abstract class Model {
   private ?int $id = null;
   private ?DateTime $registeredDateTime = null;
 
-  function setId(int $id): static {
+  final function setId(int $id): static {
     if ($this->id === null) {
       $this->id = $id;
     }
@@ -20,12 +20,16 @@ abstract class Model {
     return $this;
   }
 
-  function setRegisteredDate(DateTime $datetime): static {
+  final function setRegisteredDate(DateTime $datetime): static {
     if ($this->registeredDateTime === null) {
       $this->registeredDateTime = $datetime;
     }
 
     return $this;
+  }
+
+  final function isEqualTo(self $model): bool {
+    return $this->id === $model->id;
   }
 
   function __get(string $property): null|int|string {
