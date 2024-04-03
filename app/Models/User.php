@@ -4,9 +4,14 @@ namespace App\Models;
 
 use App\Models\Contracts\Activable;
 use App\Models\Contracts\Person;
-use App\Models\Exceptions\InvalidDateException;
-use App\Models\Exceptions\InvalidPhoneException;
 use App\Models\Helpers\HasActiveStatus;
+use App\ValueObjects\Appointment;
+use App\ValueObjects\Date;
+use App\ValueObjects\Exceptions\InvalidDateException;
+use App\ValueObjects\Exceptions\InvalidPhoneException;
+use App\ValueObjects\Gender;
+use App\ValueObjects\InstructionLevel;
+use App\ValueObjects\Phone;
 use Error;
 use Generator;
 use InvalidArgumentException;
@@ -38,17 +43,18 @@ final class User extends Person implements Activable {
     ?string $secondName,
     string $firstLastName,
     ?string $secondLastName,
-    Date|\App\ValueObjects\Date $birthDate,
-    Gender|\App\ValueObjects\Gender $gender,
-    public readonly Appointment|\App\ValueObjects\Appointment $appointment,
-    public InstructionLevel|\App\ValueObjects\InstructionLevel $instructionLevel,
+    Date $birthDate,
+    Gender $gender,
+    public readonly Appointment $appointment,
+    public InstructionLevel $instructionLevel,
     int $idCard,
     string $password,
-    public Phone|\App\ValueObjects\Phone $phone,
+    public Phone $phone,
     public Email $email,
     string $address,
     public string|Url $profileImagePath,
-    bool $isActive = true
+    bool $isActive = true,
+    public ?self $registeredBy = null
   ) {
     parent::__construct(
       $firstName,
@@ -86,16 +92,6 @@ final class User extends Person implements Activable {
     return $this;
   }
 
-  /** @deprecated */
-  function getPassword(): string {
-    return $this->password;
-  }
-
-  /** @deprecated */
-  function getAddress(): string {
-    return $this->address;
-  }
-
   function checkPassword(string $raw): bool {
     return password_verify($raw, $this->password);
   }
@@ -104,13 +100,6 @@ final class User extends Person implements Activable {
     if (!$this->isActive) {
       throw new Error('Este usuario se encuentra desactivado');
     }
-
-    return $this;
-  }
-
-  /** @deprecated Use `$user->toggleStatus()` */
-  function toggleActiveStatus(): static {
-    $this->isActive = !$this->isActive;
 
     return $this;
   }
@@ -148,7 +137,7 @@ final class User extends Person implements Activable {
   function hasDepartment(string|Department $department): bool {
     if (is_string($department)) {
       foreach ($this->departments as $savedDepartment) {
-        if ($savedDepartment->getName() === $department) {
+        if ($savedDepartment->name === $department) {
           return true;
         }
       }
@@ -157,7 +146,7 @@ final class User extends Person implements Activable {
     }
 
     foreach ($this->departments as $userDepartment) {
-      if ($userDepartment->getName() === $department->getName()) {
+      if ($userDepartment->name === $department->name) {
         return true;
       }
     }

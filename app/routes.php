@@ -12,7 +12,7 @@ use App\Middlewares\EnsureOnlyAcceptOneDirector;
 use App\Middlewares\EnsureUserIsNotAuthenticated;
 use App\Middlewares\MessagesMiddleware;
 use App\Middlewares\ShowRegisterIfThereIsNoUsers;
-use App\Models\Appointment;
+use App\ValueObjects\Appointment;
 
 App::group('', function (): void {
   App::route('/salir', [SessionWebController::class, 'logOut']);

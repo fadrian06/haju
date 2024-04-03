@@ -30,50 +30,10 @@ final class Hospital {
     $this->setName($name);
   }
 
-  /** @deprecated */
-  function getName(): string {
-    return $this->name;
-  }
-
   function setName(string $name): static {
     $this->name = new LongName($name, 'Nombre');
 
     return $this;
-  }
-
-  /** @deprecated */
-  function getAsic(): string {
-    return $this->asic;
-  }
-
-  /** @deprecated */
-  function getType(): string{
-    return $this->type;
-  }
-
-  /** @deprecated */
-  function getPlace(): string {
-    return $this->place;
-  }
-
-  /** @deprecated */
-  function getParish(): string {
-    return $this->parish;
-  }
-
-  /** @deprecated */
-  function getMunicipality(): string {
-    return $this->municipality;
-  }
-
-  /** @deprecated */
-  function getHealthDepartment(): string {
-    return $this->healthDepartment;
-  }
-
-  /** @deprecated */
-  function getRegion(): string {
-    return $this->region;
   }
 
   function setAsic(string $asic): static {

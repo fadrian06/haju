@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\Gender;
-use App\Models\InstructionLevel;
-
 /** @var ?string $error */
+
+use App\ValueObjects\Gender;
+use App\ValueObjects\InstructionLevel;
 
 ?>
 

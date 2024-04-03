@@ -6,11 +6,11 @@ use DateTime;
 
 /**
  * @property-read ?int $id
- * @property-read ?DateTime $registeredDate
+ * @property-read ?string $registeredDate
  */
 abstract class Model {
   private ?int $id = null;
-  private ?DateTime $registeredDate = null;
+  private ?DateTime $registeredDateTime = null;
 
   function setId(int $id): static {
     if ($this->id === null) {
@@ -20,29 +20,18 @@ abstract class Model {
     return $this;
   }
 
-  /** @deprecated */
-  function getId(): ?int {
-    return $this->id;
-  }
-
   function setRegisteredDate(DateTime $datetime): static {
     if ($this->registeredDateTime === null) {
-      $this->registeredDate = $datetime;
+      $this->registeredDateTime = $datetime;
     }
 
     return $this;
   }
 
-  /** @deprecated */
-  function getRegisteredDate(): string {
-    return $this->registeredDate->format('d/m/Y');
-  }
-
   function __get(string $property): null|int|string {
     return match ($property) {
       'id' => $this->id,
-      'registeredDate' => $this->registeredDate->format('d/m/Y'),
-      default => null
+      'registeredDate' => $this->registeredDateTime->format('d/m/Y')
     };
   }
 }

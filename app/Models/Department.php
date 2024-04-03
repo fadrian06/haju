@@ -8,7 +8,10 @@ use App\ValueObjects\Exceptions\InvalidNameException;
 use App\ValueObjects\LongName;
 use PharIo\Manifest\Url;
 
-class Department extends Model {
+/**
+ * @property-read string $name
+ */
+final class Department extends Model {
   use HasActiveStatus;
 
   private LongName $name;
@@ -31,11 +34,14 @@ class Department extends Model {
     return $this;
   }
 
-  function getName(): string {
-    return $this->name;
-  }
-
   function isEqualTo(self $department): bool {
     return $this->id === $department->id;
+  }
+
+  function __get(string $property): null|int|string {
+    return match ($property) {
+      'name' => $this->name,
+      default => parent::__get($property)
+    };
   }
 }

@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Appointment;
 use App\Models\Department;
 use App\Models\User;
+use App\ValueObjects\Appointment;
 
 /**
  * @var User $user
@@ -17,8 +17,8 @@ use App\Models\User;
     <i class="ti-menu"></i>
   </button>
   <h2 class="m-0 d-flex align-items-center">
-    <span class="d-none d-sm-block h3 m-0">Departamento de <?= $department->getName() ?></span>
-    <span class="d-block d-sm-none h6 m-0">Departamento de <?= $department->getName() ?></span>
+    <span class="d-none d-sm-block h3 m-0">Departamento de <?= $department->name ?></span>
+    <span class="d-block d-sm-none h6 m-0">Departamento de <?= $department->name ?></span>
     <?php if ($canChangeDepartment) : ?>
       <a href="./departamento/seleccionar" class="ms-4 btn btn-outline-primary btn-sm">
         Cambiar

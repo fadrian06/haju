@@ -3,8 +3,8 @@
 namespace App\Middlewares;
 
 use App;
-use App\Models\Appointment;
 use App\Models\User;
+use App\ValueObjects\Appointment;
 
 class EnsureOnlyAcceptOneDirector {
   static function before(): void {
@@ -15,7 +15,7 @@ class EnsureOnlyAcceptOneDirector {
     });
 
     $activeDirectors = array_filter($directors, function (User $director): bool {
-      return $director->getActiveStatus();
+      return $director->isActive();
     });
 
     if (!$directors || !$activeDirectors) {

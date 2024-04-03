@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Appointment;
 use App\Models\User;
+use App\ValueObjects\Appointment;
 
 /**
  * @var User $user
@@ -28,8 +28,8 @@ use App\Models\User;
     <header class="profile-info__main py-2 py-md-0 my-2 my-md-0 d-flex flex-column">
       <h4 class="h3"><?= $user->getFullName() ?></h4>
       <small class="text-muted"><?= $user->getParsedAppointment() ?></small>
-      <strong>Cédula: V-<?= $user->getIdCard() ?></strong>
-      <small class="text-muted">Registrado el: <?= $user->getRegisteredDate() ?></small>
+      <strong>Cédula: V-<?= $user->idCard ?></strong>
+      <small class="text-muted">Registrado el: <?= $user->registeredDate ?></small>
     </header>
   </div>
   <ul class="profile-info__secondary col-md-6">
@@ -49,7 +49,7 @@ use App\Models\User;
     </li>
     <li>
       <strong>Dirección:</strong>
-      <span><?= $user->getAddress() ?></span>
+      <span><?= $user->address ?></span>
     </li>
     <li>
       <strong>Género:</strong>
@@ -160,6 +160,6 @@ use App\Models\User;
 <?php render('components/confirmation', [
   'show' => false,
   'id' => 'disactivate-director-modal',
-  'action' => "./usuarios/{$user->getId()}/desactivar",
+  'action' => "./usuarios/{$user->id}/desactivar",
   'title' => 'Estás seguro que deseas inhabilitar tu cuenta',
 ]) ?>

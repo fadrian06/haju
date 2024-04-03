@@ -56,14 +56,13 @@ final class DepartmentWebController extends Controller {
     $selectedDepartment = App::view()->get('department');
     $department = $this->repository->getById($id);
     $department->toggleStatus();
-    $statusText = $department->getActiveStatus() ? 'activado' : 'desactivado';
 
     $redirectUrl = $department->isInactive() && $department->isEqualTo($selectedDepartment)
       ? '/departamento/seleccionar'
       : '/departamentos';
 
     $this->repository->save($department);
-    self::setMessage("Departamento de {$department->getName()} $statusText exitósamente");
+    self::setMessage("Departamento de {$department->name} {$department->getActiveStatusText()} exitósamente");
     App::redirect($redirectUrl);
   }
 

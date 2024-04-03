@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\Appointment;
-use App\Models\Gender;
-use App\Models\InstructionLevel;
 use App\Models\User;
+use App\ValueObjects\Appointment;
+use App\ValueObjects\Gender;
+use App\ValueObjects\InstructionLevel;
 
 /**
  * @var array<int, User> $users
@@ -30,23 +30,26 @@ use App\Models\User;
             <i class="ti-more"></i>
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="./usuarios/<?= $member->getId() ?>/<?= $member->getActiveStatus() ? 'desactivar' : 'activar' ?>">
-              <i class="ti-<?= $member->getActiveStatus() ? 'un' : '' ?>lock"></i>
-              <?= $member->getActiveStatus() ? 'Desactivar' : 'Activar' ?>
+            <a class="dropdown-item" href="./usuarios/<?= $member->id ?>/<?= $member->isActive() ? 'desactivar' : 'activar' ?>">
+              <i class="ti-<?= $member->isActive() ? 'un' : '' ?>lock"></i>
+              <?= $member->isActive() ? 'Desactivar' : 'Activar' ?>
             </a>
           </div>
         </div>
         <picture class="p-3">
           <img class="img-fluid rounded-circle" src="<?= urldecode($member->profileImagePath->asString()) ?>" />
         </picture>
-        <span class="custom-badge status-<?= $member->getActiveStatus() ? 'green' : 'red' ?> mx-4 mb-2">
-          <?= $member->getActiveStatus() ? 'Activo' : 'Inactivo' ?>
+        <span class="custom-badge status-<?= $member->isActive() ? 'green' : 'red' ?> mx-4 mb-2">
+          <?= $member->isActive() ? 'Activo' : 'Inactivo' ?>
         </span>
         <h4><?= $member->getFullName() ?></h4>
         <span><?= $member->getParsedAppointment() ?></span>
         <small class="text-muted">
           <i class="ti-pin2"></i>
-          <?= $member->getAddress() ?>
+          <?= $member->address ?>
+        </small>
+        <small class="text-muted">
+          Registrado por <?= $member->registeredBy->getFullName() ?>
         </small>
       </article>
     </li>
@@ -65,6 +68,7 @@ use App\Models\User;
       </header>
       <section class="modal-body">
         <?php $error &&  render('components/notification', ['type' => 'error', 'text' => $error]) ?>
+        <?php $message &&  render('components/notification', ['type' => 'message', 'text' => $message]) ?>
         <fieldset class="row">
           <summary class="fs-6 mb-2">Datos personales</summary>
           <?php
@@ -153,8 +157,8 @@ use App\Models\User;
             </label>
             <select name="departments[]" id="departments" required multiple class="form-control">
               <?php foreach ($user->getDepartment() as $department) : ?>
-                <option value="<?= $department->getId() ?>">
-                  <?= $department->getName() ?>
+                <option value="<?= $department->id ?>">
+                  <?= $department->name ?>
                 </option>
               <?php endforeach ?>
             </select>

@@ -3,11 +3,11 @@
 namespace App\Controllers\Web;
 
 use App;
-use App\Models\Appointment;
 use App\Models\User;
 use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Domain\SettingsRepository;
 use App\Repositories\Domain\UserRepository;
+use App\ValueObjects\Appointment;
 
 final class SettingsWebController extends Controller {
   private readonly UserRepository $userRepository;

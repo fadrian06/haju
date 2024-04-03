@@ -64,8 +64,6 @@ final class SessionWebController extends Controller {
       $departments[] = $department;
     }
 
-    $this->session->set('canChangeDepartment', count($departments) !== 1);
-
     if (count($departments) === 1) {
       exit(App::redirect("/departamento/seleccionar/{$departments[0]->id}"));
     }
@@ -74,15 +72,6 @@ final class SessionWebController extends Controller {
   }
 
   function saveChoice(int $id): void {
-    $department = $this->departmentRepository->getById($id);
-
-    if (!$department || $department->isInactive()) {
-      self::setError('No tiene departamentos activos para acceder');
-      App::redirect('/salir');
-
-      return;
-    }
-
     $this->session->set('departmentId', $id);
     App::redirect('/');
   }

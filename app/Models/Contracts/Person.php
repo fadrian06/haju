@@ -2,10 +2,10 @@
 
 namespace App\Models\Contracts;
 
-use App\Models\Date;
 use App\Models\Exceptions\InvalidDateException;
-use App\Models\Gender;
+use App\ValueObjects\Date;
 use App\ValueObjects\Exceptions\InvalidNameException;
+use App\ValueObjects\Gender;
 use App\ValueObjects\Name;
 use InvalidArgumentException;
 
@@ -32,8 +32,8 @@ abstract class Person extends Model {
     ?string $secondName,
     string $firstLastName,
     ?string $secondLastName,
-    public Date|\App\ValueObjects\Date $birthDate,
-    public Gender|\App\ValueObjects\Gender $gender,
+    public Date $birthDate,
+    public Gender $gender,
     int $idCard,
   ) {
     $this->setFirstName($firstName)
@@ -80,31 +80,6 @@ abstract class Person extends Model {
     $this->secondLastName = new Name($secondLastName, 'Segundo apellido');
 
     return $this;
-  }
-
-  /** @deprecated */
-  final function getIdCard(): int {
-    return $this->idCard;
-  }
-
-  /** @deprecated */
-  final function getFirstName(): string {
-    return $this->firstName;
-  }
-
-  /** @deprecated */
-  final function getSecondName(): ?string {
-    return $this->secondName;
-  }
-
-  /** @deprecated */
-  final function getFirstLastName(): string {
-    return $this->firstLastName;
-  }
-
-  /** @deprecated */
-  final function getSecondLastName(): ?string {
-    return $this->secondLastName;
   }
 
   final function getFullName(): string {

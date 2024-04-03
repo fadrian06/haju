@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Appointment;
 use App\Models\User;
+use App\ValueObjects\Appointment;
 
 /** @var User $user */
 

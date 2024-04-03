@@ -48,6 +48,7 @@ CREATE TABLE users (
   registered_date DATETIME DEFAULT CURRENT_TIMESTAMP,
   appointment_id INTEGER NOT NULL,
   instruction_level_id INTEGER NOT NULL,
+  registered_by_id INTEGER,
 
   UNIQUE (first_name, second_name, first_last_name, second_last_name),
   FOREIGN KEY (appointment_id) REFERENCES appointments (id),

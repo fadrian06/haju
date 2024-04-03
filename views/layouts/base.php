@@ -43,11 +43,6 @@ if (isset($user)) {
     <img src="./assets/img/logo.png" height="45" />
     <nav class="header_right">
       <ul class="header_notification_warp d-flex align-items-center mx-0">
-        <?php if (!isActive('/ingresar') && !isActive('/departamento/seleccionar')) : ?>
-          <li class="d-none d-md-block">
-            <a href="./ingresar">Iniciar sesión</a>
-          </li>
-        <?php endif ?>
         <?php if (isActive('/departamento/seleccionar')): ?>
           <li class="d-none d-md-block">
             <a href="./salir">Cerrar sesión</a>

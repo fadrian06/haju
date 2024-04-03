@@ -3,16 +3,16 @@
 namespace App\Controllers\Web;
 
 use App;
-use App\Models\Appointment;
-use App\Models\Date;
-use App\Models\Exceptions\InvalidDateException;
-use App\Models\Exceptions\InvalidPhoneException;
-use App\Models\Gender;
-use App\Models\InstructionLevel;
-use App\Models\Phone;
 use App\Models\User;
 use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Domain\UserRepository;
+use App\ValueObjects\Appointment;
+use App\ValueObjects\Date;
+use App\ValueObjects\Exceptions\InvalidDateException;
+use App\ValueObjects\Exceptions\InvalidPhoneException;
+use App\ValueObjects\Gender;
+use App\ValueObjects\InstructionLevel;
+use App\ValueObjects\Phone;
 use Error;
 use PharIo\Manifest\Email;
 use PharIo\Manifest\InvalidEmailException;
@@ -81,7 +81,9 @@ class UserWebController extends Controller {
         new Phone($this->data['phone']),
         new Email($this->data['email']),
         $this->data['address'],
-        $profileImageUrlPath
+        $profileImageUrlPath,
+        true,
+        $this->loggedUser
       );
 
       $departments = [];
@@ -211,11 +213,10 @@ class UserWebController extends Controller {
 
   function handleToggleStatus(int $id): void {
     $user = $this->userRepository->getById($id);
-    $user->toggleActiveStatus();
-    $statusText = $user->getActiveStatus() ? 'activado' : 'desactivado';
+    $user->toggleStatus();
 
     $this->userRepository->save($user);
-    self::setMessage("Usuario de {$user->getFirstName()} $statusText exitósamente");
+    self::setMessage("Usuario de {$user->firstName} {$user->getActiveStatusText()} exitósamente");
     App::redirect($user->appointment === Appointment::Director ? '/salir' : '/usuarios');
   }
 

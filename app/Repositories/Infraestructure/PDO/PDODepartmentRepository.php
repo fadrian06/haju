@@ -34,10 +34,10 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
 
   function save(Department $department): void {
     try {
-      if ($department->getId()) {
+      if ($department->id) {
         $this->ensureIsConnected()
           ->prepare(sprintf('UPDATE %s SET name = ?, is_active = ? WHERE id = ?', self::TABLE))
-          ->execute([$department->getName(), $department->getActiveStatus(), $department->getId()]);
+          ->execute([$department->name, $department->isActive(), $department->id]);
 
         return;
       }
@@ -53,11 +53,11 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
       $this->ensureIsConnected()
         ->prepare($query)
         ->execute([
-          $department->getName(),
+          $department->name,
           $date,
           $department->iconFilePath,
           $department->belongsToExternalConsultation,
-          $department->getActiveStatus()
+          $department->isActive()
         ]);
 
       $department
@@ -65,7 +65,7 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
         ->setRegisteredDate(self::parseDateTime($date));
     } catch (PDOException $exception) {
       if (str_contains($exception, 'UNIQUE constraint failed: departments.name')) {
-        throw new DuplicatedNamesException("Departamento \"{$department->getName()}\" ya existe");
+        throw new DuplicatedNamesException("Departamento \"{$department->name}\" ya existe");
       }
 
       throw $exception;

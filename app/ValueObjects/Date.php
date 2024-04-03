@@ -2,7 +2,7 @@
 
 namespace App\ValueObjects;
 
-use App\Models\Exceptions\InvalidDateException;
+use App\ValueObjects\Exceptions\InvalidDateException;
 use DateTime;
 use Stringable;
 

@@ -19,49 +19,49 @@ use App\Models\Hospital;
   <fieldset class="row w-100">
     <?php
       render('components/input-group', [
-        'value' => $hospital->getName(),
+        'value' => $hospital->name,
         'name' => 'name',
         'placeholder' => 'Nombre de la institución',
       ]);
 
       render('components/input-group', [
-        'value' => $hospital->getAsic(),
+        'value' => $hospital->asic,
         'name' => 'asic',
         'placeholder' => 'ASIC'
       ]);
 
       render('components/input-group', [
-        'value' => $hospital->getType(),
+        'value' => $hospital->type,
         'name' => 'type',
         'placeholder' => 'Tipo'
       ]);
 
       render('components/input-group', [
-        'value' => $hospital->getPlace(),
+        'value' => $hospital->place,
         'name' => 'place',
         'placeholder' => 'Lugar'
       ]);
 
       render('components/input-group', [
-        'value' => $hospital->getMunicipality(),
+        'value' => $hospital->municipality,
         'name' => 'municipality',
         'placeholder' => 'Municipio'
       ]);
 
       render('components/input-group', [
-        'value' => $hospital->getParish(),
+        'value' => $hospital->parish,
         'name' => 'parish',
         'placeholder' => 'Parroquia'
       ]);
 
       render('components/input-group', [
-        'value' => $hospital->getRegion(),
+        'value' => $hospital->region,
         'name' => 'region',
         'placeholder' => 'Región'
       ]);
 
       render('components/input-group', [
-        'value' => $hospital->getHealthDepartment(),
+        'value' => $hospital->healthDepartment,
         'name' => 'health_department',
         'placeholder' => 'Departamento de salud'
       ]);

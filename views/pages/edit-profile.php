@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Gender;
-use App\Models\InstructionLevel;
 use App\Models\User;
+use App\ValueObjects\Gender;
+use App\ValueObjects\InstructionLevel;
 
 /**
  * @var User $user
@@ -31,12 +31,12 @@ use App\Models\User;
             'variant' => 'input',
             'type' => 'number',
             'name' => 'id_card',
-            'value' => $user->getIdCard(),
+            'value' => $user->idCard,
             'placeholder' => 'Cédula'
           ]);
 
           render('components/input-group', [
-            'value' => $user->getFirstName(),
+            'value' => $user->firstName,
             'name' => 'first_name',
             'placeholder' => 'Primer nombre',
             'type' => 'text',
@@ -44,19 +44,19 @@ use App\Models\User;
           ]);
 
           render('components/input-group', [
-            'value' => $user->getSecondName(),
+            'value' => $user->secondName,
             'name' => 'second_name',
             'placeholder' => 'Segundo nombre'
           ]);
 
           render('components/input-group', [
-            'value' => $user->getFirstLastName(),
+            'value' => $user->firstLastName,
             'name' => 'first_last_name',
             'placeholder' => 'Primer apellido'
           ]);
 
           render('components/input-group', [
-            'value' => $user->getSecondLastName(),
+            'value' => $user->secondLastName,
             'name' => 'second_last_name',
             'placeholder' => 'Segundo apellido'
           ]);
@@ -114,7 +114,7 @@ use App\Models\User;
           'name' => 'address',
           'placeholder' => 'Dirección',
           'cols' => 12,
-          'value' => $user->getAddress(),
+          'value' => $user->address,
           'required' => true
         ]);
 

@@ -56,15 +56,15 @@ use App\Models\User;
         <tbody>
           <?php foreach ($departments as $department) : ?>
             <tr>
-              <form method="post" action="./departamentos/<?= $department->getId() ?>">
-                <td><?= $department->getId() ?></td>
+              <form method="post" action="./departamentos/<?= $department->id ?>">
+                <td><?= $department->id ?></td>
                 <td class="p-0">
                   <input
                     placeholder="Nombre del departamento"
                     class="form-control"
                     required
                     name="name"
-                    value="<?= $department->getName() ?>"
+                    value="<?= $department->name ?>"
                   />
                 </td>
                 <td>
@@ -74,17 +74,17 @@ use App\Models\User;
                     <span class="custom-badge status-red">No</span>
                   <?php endif ?>
                 </td>
-                <td><?= $department->getRegisteredDate() ?></td>
+                <td><?= $department->registeredDate ?></td>
                 <td>
-                  <?php if ($department->getActiveStatus()) : ?>
+                  <?php if ($department->isActive()) : ?>
                     <a
-                      href="./departamentos/<?= $department->getId() ?>/desactivar"
+                      href="./departamentos/<?= $department->id ?>/desactivar"
                       class="custom-badge status-green">
                       Activo
                     </a>
                   <?php else : ?>
                     <a
-                      href="./departamentos/<?= $department->getId() ?>/activar"
+                      href="./departamentos/<?= $department->id ?>/activar"
                       class="custom-badge status-red">
                       Inactivo
                     </a>

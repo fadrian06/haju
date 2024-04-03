@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Exceptions;
+namespace App\ValueObjects\Exceptions;
 
 use InvalidArgumentException;
 
