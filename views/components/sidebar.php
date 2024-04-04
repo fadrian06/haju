@@ -33,7 +33,7 @@ use App\ValueObjects\Appointment;
           <span>Usuarios</span>
         </a>
         <ul>
-          <li>
+          <li class="<?= isActive('/usuarios') ? 'mm-active' : '' ?>">
             <a href="./usuarios">
               <i class="ti-list"></i>
               Listado
@@ -54,7 +54,7 @@ use App\ValueObjects\Appointment;
             <span>Departamentos</span>
           </a>
           <ul>
-            <li>
+            <li class="<?= isActive('/departamentos') ? 'mm-active' : '' ?>">
               <a href="./departamentos">
                 <i class="ti-list"></i>
                 Listado
@@ -77,21 +77,21 @@ use App\ValueObjects\Appointment;
           </a>
           <ul>
             <?php if ($user->appointment === Appointment::Director) : ?>
-              <li>
+              <li class="<?= isActive('/configuracion/institucion') ? 'mm-active' : '' ?>">
                 <a href="./configuracion/institucion">
                   <i class="ti-bookmark-alt"></i>
                   Institución
                 </a>
               </li>
             <?php endif ?>
-            <li>
+            <li class="<?= isActive('/configuracion/permisos') ? 'mm-active' : '' ?>">
               <a href="./configuracion/permisos">
                 <i class="ti-key"></i>
                 Roles y permisos
               </a>
             </li>
             <?php if ($user->appointment === Appointment::Director || $user->hasDepartment('Estadística')) : ?>
-              <li>
+              <li class="<?= isActive('/configuracion/respaldo-restauracion') ? 'mm-active' : '' ?>">
                 <a href="./configuracion/respaldo-restauracion">
                   <i class="ti-import"></i>
                   Respaldo y restauración
