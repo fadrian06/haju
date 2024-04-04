@@ -6,9 +6,8 @@ use App\Models\Patient;
 use App\Repositories\Exceptions\DuplicatedIdCardException;
 use App\Repositories\Exceptions\DuplicatedNamesException;
 
-interface PatientRepository {
-  /** @return array<int, Patient> */
-  function getAll(): array;
+/** @extends Repository<Patient> */
+interface PatientRepository extends Repository {
   function getById(int $id): ?Patient;
   function getByIdCard(int $id): ?Patient;
 

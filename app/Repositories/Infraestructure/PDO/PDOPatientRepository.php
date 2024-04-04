@@ -4,9 +4,12 @@ namespace App\Repositories\Infraestructure\PDO;
 
 use App\Models\Patient;
 use App\Repositories\Domain\PatientRepository;
+use App\Repositories\Exceptions\DuplicatedIdCardException;
+use App\Repositories\Exceptions\DuplicatedNamesException;
 use App\ValueObjects\Date;
 use App\ValueObjects\Gender;
 use PDO;
+use PDOException;
 
 final class PDOPatientRepository extends PDORepository implements PatientRepository {
   private const FIELDS = <<<SQL
@@ -15,9 +18,7 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
     registered_date as registeredDate, registered_by_id as registeredById
   SQL;
 
-  private const TABLE = 'patients';
-
-  public function __construct(
+  function __construct(
     Connection $connection,
     string $baseUrl,
     private readonly PDOUserRepository $userRepository
@@ -25,12 +26,16 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
     parent::__construct($connection, $baseUrl);
   }
 
+  protected static function getTable(): string {
+    return 'patients';
+  }
+
   function getAll(): array {
     return $this->ensureIsConnected()
       ->query(sprintf(
         'SELECT %s FROM %s',
         self::FIELDS,
-        self::TABLE
+        self::getTable()
       ))->fetchAll(PDO::FETCH_FUNC, [__CLASS__, 'mapper']);
   }
 
@@ -43,7 +48,44 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
   }
 
   function save(Patient $patient): void {
+    try {
+      $query = sprintf(
+        <<<SQL
+          INSERT INTO %s (
+            first_name, second_name, first_last_name, second_last_name,
+            birth_date, gender, id_card, registered_date, registered_by_id
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        SQL,
+        self::getTable()
+      );
 
+      $datetime = parent::getCurrentDatetime();
+
+      $this->ensureIsConnected()
+        ->prepare($query)
+        ->execute([
+          $patient->firstName,
+          $patient->secondName,
+          $patient->firstLastName,
+          $patient->secondLastName,
+          $patient->birthDate->timestamp,
+          $patient->gender->value,
+          $patient->idCard,
+          $datetime,
+          $patient->registeredBy->id
+        ]);
+
+      $patient->setId($this->connection->instance()->lastInsertId())
+        ->setRegisteredDate(parent::parseDateTime($datetime));
+    } catch (PDOException $exception) {
+      if (str_contains($exception, 'UNIQUE constraint failed: patients.id_card')) {
+        throw new DuplicatedIdCardException("Cédula \"{$patient->idCard}\" ya existe");
+      }
+
+      if (str_contains($exception, 'UNIQUE constraint failed: patients.first_name')) {
+        throw new DuplicatedNamesException("Usuario \"{$patient->getFullName()}\" ya existe");
+      }
+    }
   }
 
   private function mapper(

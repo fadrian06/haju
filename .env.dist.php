@@ -1,6 +1,6 @@
 <?php
 
-use App\Repositories\Infraestructure\PDO\DBDriver;
+use App\ValueObjects\DBDriver;
 
 require_once __DIR__ . '/vendor/autoload.php';
 

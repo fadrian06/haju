@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Repositories\Infraestructure\PDO;
+namespace App\Repositories\Infraestructure\Files;
 
 use App\Models\Hospital;
 use App\Repositories\Domain\SettingsRepository;
+use App\Repositories\Infraestructure\PDO\Connection;
+use App\ValueObjects\DBDriver;
 
-class PDOSettingsRepository extends PDORepository implements SettingsRepository {
+final class FilesSettingsRepository implements SettingsRepository {
+  function __construct(private readonly Connection $connection) {}
+
   function getHospital(): Hospital {
     $info = json_decode(file_get_contents(__DIR__ . '/hospital.json'), true);
 
@@ -58,14 +62,14 @@ class PDOSettingsRepository extends PDORepository implements SettingsRepository 
 
   function save(Hospital $hospital): void {
     $data = [
-      'name' => $hospital->getName(),
-      'asic' => $hospital->getAsic(),
-      'type' => $hospital->getType(),
-      'place' => $hospital->getPlace(),
-      'parish' => $hospital->getParish(),
-      'municipality' => $hospital->getMunicipality(),
-      'healthDepartment' => $hospital->getHealthDepartment(),
-      'region' => $hospital->getRegion()
+      'name' => $hospital->name,
+      'asic' => $hospital->asic,
+      'type' => $hospital->type,
+      'place' => $hospital->place,
+      'parish' => $hospital->parish,
+      'municipality' => $hospital->municipality,
+      'healthDepartment' => $hospital->healthDepartment,
+      'region' => $hospital->region
     ];
 
     file_put_contents(__DIR__ . '/hospital.json', json_encode($data, JSON_PRETTY_PRINT));

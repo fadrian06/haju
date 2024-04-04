@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Contracts\Activable;
-use App\Models\Contracts\Model;
 use App\Models\Contracts\Person;
 use App\Models\Helpers\HasActiveStatus;
 use App\ValueObjects\Appointment;

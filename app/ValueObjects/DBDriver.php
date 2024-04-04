@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Infraestructure\PDO;
+namespace App\ValueObjects;
 
 enum DBDriver: string {
   case MySQL = 'mysql';

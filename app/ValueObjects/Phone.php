@@ -2,7 +2,7 @@
 
 namespace App\ValueObjects;
 
-use App\Models\Exceptions\InvalidPhoneException;
+use App\ValueObjects\Exceptions\InvalidPhoneException;
 use Stringable;
 
 readonly class Phone implements Stringable {

@@ -10,17 +10,12 @@ use App\Repositories\Exceptions\DuplicatedIdCardException;
 use App\Repositories\Exceptions\DuplicatedNamesException;
 use App\Repositories\Exceptions\DuplicatedPhonesException;
 
-interface UserRepository {
-  /**
-   * @return array<int, User>
-   * @throws ConnectionException
-   */
+/** @extends Repository<User> */
+interface UserRepository extends Repository {
   function getAll(User ...$exclude): array;
 
   /** @throws ConnectionException */
   function getByIdCard(int $idCard): ?User;
-
-  /** @throws ConnectionException */
   function getById(int $id): ?User;
 
   /**

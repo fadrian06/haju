@@ -10,22 +10,25 @@ use PDOException;
 use PharIo\Manifest\Url;
 
 class PDODepartmentRepository extends PDORepository implements DepartmentRepository {
-  private const FIELDS = <<<SQL_FIELDS
+  private const FIELDS = <<<sql
     id, name, registered_date as registeredDateTime,
     belongs_to_external_consultation as belongsToExternalConsultation,
     icon_file_path as iconFilePath, is_active as isActive
-  SQL_FIELDS;
-  private const TABLE = 'departments';
+  sql;
+
+  protected static function getTable(): string {
+    return 'departments';
+  }
 
   function getAll(): array {
     return $this->ensureIsConnected()
-      ->query(sprintf('SELECT %s FROM %s', self::FIELDS, self::TABLE))
+      ->query(sprintf('SELECT %s FROM %s', self::FIELDS, self::getTable()))
       ->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper']);
   }
 
   function getById(int $id): ?Department {
     $stmt = $this->ensureIsConnected()
-      ->prepare(sprintf('SELECT %s FROM %s WHERE id = ?', self::FIELDS, self::TABLE));
+      ->prepare(sprintf('SELECT %s FROM %s WHERE id = ?', self::FIELDS, self::getTable()));
 
     $stmt->execute([$id]);
 
@@ -36,7 +39,7 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
     try {
       if ($department->id) {
         $this->ensureIsConnected()
-          ->prepare(sprintf('UPDATE %s SET name = ?, is_active = ? WHERE id = ?', self::TABLE))
+          ->prepare(sprintf('UPDATE %s SET name = ?, is_active = ? WHERE id = ?', self::getTable()))
           ->execute([$department->name, $department->isActive(), $department->id]);
 
         return;
@@ -45,7 +48,7 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
       $query = sprintf(
         'INSERT INTO %s (name, registered_date, icon_file_path, belongs_to_external_consultation, is_active)
         VALUES (?, ?, ?, ?, ?)',
-        self::TABLE
+        self::getTable()
       );
 
       $date = self::getCurrentDatetime();

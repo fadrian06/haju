@@ -5,9 +5,8 @@ namespace App\Repositories\Domain;
 use App\Models\Department;
 use App\Repositories\Exceptions\DuplicatedNamesException;
 
-interface DepartmentRepository {
-  /** @return array<int, Department> */
-  function getAll(): array;
+/** @extends Repository<Department> */
+interface DepartmentRepository extends Repository {
   function getById(int $id): ?Department;
 
   /** @throws DuplicatedNamesException */

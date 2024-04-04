@@ -16,8 +16,16 @@ abstract class PDORepository {
   ) {
   }
 
+  abstract protected static function getTable(): string;
+
+  final function getRowsCount(): int {
+    return $this->ensureIsConnected()
+      ->query("SELECT count(id) FROM " . static::getTable())
+      ->fetchColumn(0);
+  }
+
   /** @throws ConnectionException */
-  protected function ensureIsConnected(): PDO {
+  final protected function ensureIsConnected(): PDO {
     if (!$this->connection) {
       throw new ConnectionException('DB is not connected');
     }
@@ -35,11 +43,11 @@ abstract class PDORepository {
     return $this->connection->instance();
   }
 
-  protected static function parseDateTime(string $raw): DateTime {
+  final protected static function parseDateTime(string $raw): DateTime {
     return DateTime::createFromFormat(self::DATETIME_FORMAT, $raw);
   }
 
-  protected static function getCurrentDatetime(): string {
+  final protected static function getCurrentDatetime(): string {
     return date(self::DATETIME_FORMAT);
   }
 }

@@ -20,7 +20,7 @@ use PharIo\Manifest\Email;
 use PharIo\Manifest\Url;
 
 class PDOUserRepository extends PDORepository implements UserRepository {
-  private const FIELDS = <<<SQL_FIELDS
+  private const FIELDS = <<<sql
   users.id as id, first_name as firstName, second_name as secondName,
   first_last_name as firstLastName, second_last_name as secondLastName,
   birth_date as birthDateTimestamp, gender, appointments.name as appointment,
@@ -28,9 +28,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
   password, phone, email, address, profile_image_path as profileImagePath,
   users.registered_date as registeredDateTime, is_active as isActive,
   registered_by_id as registeredById
-  SQL_FIELDS;
-
-  private const TABLE = 'users';
+  sql;
 
   private const JOINS = <<<SQL_JOINS
     JOIN appointments JOIN instruction_levels
@@ -46,6 +44,10 @@ class PDOUserRepository extends PDORepository implements UserRepository {
     parent::__construct($connection, $baseUrl);
   }
 
+  protected static function getTable(): string {
+    return 'users';
+  }
+
   function getAll(User ...$exclude): array {
     $ids = array_map(function (User $user): int {
       return $user->id;
@@ -55,7 +57,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
       ->query(sprintf(
         'SELECT %s FROM %s %s %s',
         self::FIELDS,
-        self::TABLE,
+        self::getTable(),
         self::JOINS,
         $ids !== []
           ? sprintf('WHERE users.id NOT IN (%s)', join(', ', $ids))
@@ -68,7 +70,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
       ->prepare(sprintf(
         'SELECT %s FROM %s %s WHERE id_card = ?',
         self::FIELDS,
-        self::TABLE,
+        self::getTable(),
         self::JOINS
       ));
 
@@ -82,7 +84,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
       ->prepare(sprintf(
         'SELECT %s FROM %s %s WHERE users.id = ?',
         self::FIELDS,
-        self::TABLE,
+        self::getTable(),
         self::JOINS
       ));
 
@@ -109,10 +111,10 @@ class PDOUserRepository extends PDORepository implements UserRepository {
             registered_by_id
           ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         SQL,
-        self::TABLE
+        self::getTable()
       );
 
-      $datetime = date('Y-m-d H:i:s');
+      $datetime = parent::getCurrentDatetime();
 
       $this->ensureIsConnected()
         ->prepare($query)
@@ -144,7 +146,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
         throw new DuplicatedIdCardException("Cédula \"{$user->idCard}\" ya existe");
       }
 
-      if (str_contains($exception, 'UNIQUE constraint failed: users.first_name, users.last_name')) {
+      if (str_contains($exception, 'UNIQUE constraint failed: users.first_name')) {
         throw new DuplicatedNamesException("Usuario \"{$user->getFullName()}\" ya existe");
       }
 
@@ -194,7 +196,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
         phone = ?, email = ?, address = ?, password = ?,
         is_active = ?, id_card = ?, profile_image_path = ? WHERE id = ?
       SQL,
-      self::TABLE
+      self::getTable()
     );
 
     $this->ensureIsConnected()

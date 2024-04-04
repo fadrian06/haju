@@ -2,9 +2,10 @@
 
 namespace App\Repositories\Infraestructure\PDO;
 
+use App\ValueObjects\DBDriver;
 use PDO;
 
-class Connection {
+final class Connection {
   private readonly PDO $instance;
 
   /** @param string|'memory' $dbName */

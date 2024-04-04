@@ -1,9 +1,9 @@
 <?php
 
+use App\Repositories\Infraestructure\Files\FilesSettingsRepository;
 use App\Repositories\Infraestructure\PDO\Connection;
 use App\Repositories\Infraestructure\PDO\PDODepartmentRepository;
 use App\Repositories\Infraestructure\PDO\PDOPatientRepository;
-use App\Repositories\Infraestructure\PDO\PDOSettingsRepository;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
 use Leaf\Http\Session;
 use Whoops\Handler\PlainTextHandler;
@@ -13,6 +13,7 @@ use Whoops\Run;
 $_ENV += require __DIR__ . '/../.env.php';
 
 date_default_timezone_set($_ENV['TIMEZONE']);
+ini_set('error_log', __DIR__ . '/logs/errors.log');
 
 $whoops = new Run();
 $whoops->pushHandler($_ENV['DEBUG'] ? new PrettyPageHandler : new PlainTextHandler);
@@ -47,8 +48,8 @@ App::register(
 
 App::register(
   'settingsRepository',
-  PDOSettingsRepository::class,
-  [App::db(), App::get('fullRoot')]
+  FilesSettingsRepository::class,
+  [App::db()]
 );
 
 App::register(

@@ -3,13 +3,18 @@
 use App\Models\User;
 use App\ValueObjects\Appointment;
 
-/** @var User $user */
+/**
+ * @var User $user
+ * @var int $usersNumber
+ * @var int $patientsNumber
+ * @var int $departmentsNumber
+ */
 
 ?>
 
-<?php if ($user->appointment->isHigherThan(Appointment::Coordinator)) : ?>
-  <section class="single_element">
-    <div class="quick_activity_wrap">
+<section class="single_element">
+  <div class="quick_activity_wrap">
+    <?php if ($user->appointment->isHigherThan(Appointment::Coordinator)) : ?>
       <a href="./usuarios" class="single_quick_activity d-flex">
         <img class="icon" src="./assets/img/icons/man.svg" />
         <div class="count_content">
@@ -26,9 +31,17 @@ use App\ValueObjects\Appointment;
           </div>
         </a>
       <?php endif ?>
-    </div>
-  </section>
-<?php endif ?>
+    <?php elseif ($user->appointment === Appointment::Secretary) : ?>
+      <a href="./pacientes" class="single_quick_activity d-flex">
+        <img class="icon" src="./assets/img/icons/wheel.svg" />
+        <div class="count_content">
+          <h3><?= $patientsNumber ?></h3>
+          <p>Paciente<?= $patientsNumber !== 1 ? 's' : '' ?></p>
+        </div>
+      </a>
+    <?php endif ?>
+  </div>
+</section>
 <!-- <div class="col-lg-12 col-xl-12">
   <div class="white_box mb_30 ">
     <div class="box_header border_bottom_1px  ">

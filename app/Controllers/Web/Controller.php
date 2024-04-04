@@ -22,9 +22,9 @@ abstract class Controller {
 
   final protected static function setError(Throwable|string $error): void {
     if ($error instanceof Throwable) {
-      if (!$_ENV['DEBUG']) {
-        $error = $error->getMessage();
-      }
+      $error = $error->getMessage();
+      error_log($error);
+      error_log("\n\n");
     }
 
     App::session()->set('error', "❌ $error");

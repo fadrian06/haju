@@ -3,20 +3,17 @@
 namespace App\Controllers\Web;
 
 use App;
-use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Domain\UserRepository;
 use Error;
 
 final class SessionWebController extends Controller {
   private readonly UserRepository $userRepository;
-  private readonly DepartmentRepository $departmentRepository;
   private const DEFAULT_PASSWORD = '1234';
 
   function __construct() {
     parent::__construct();
 
     $this->userRepository = App::userRepository();
-    $this->departmentRepository = App::departmentRepository();
   }
 
   function logOut(): void {

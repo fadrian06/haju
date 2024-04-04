@@ -26,6 +26,34 @@ use App\ValueObjects\Appointment;
         <span>Inicio</span>
       </a>
     </li>
+    <?php if ($user->appointment->isHigherThan(Appointment::Secretary) && $user->appointment !== Appointment::Director): ?>
+      <li class="<?= isActive('/pacientes') ? 'mm-active' : '' ?>">
+        <a href="#" class="has-arrow">
+          <img src="./assets/img/icons/patient.svg" />
+          <span>Pacientes</span>
+        </a>
+        <ul>
+          <li class="<?= isActive('/pacientes') ? 'mm-active' : '' ?>">
+            <a href="./pacientes">
+              <i class="ti-list"></i>
+              Listado
+            </a>
+          </li>
+          <li class="<?= isActive('/pacientes') ? 'mm-active' : '' ?>">
+            <a href="./pacientes#buscar-cedula">
+              <i class="ti-search"></i>
+              Consultar por cédula
+            </a>
+          </li>
+          <li>
+            <a href="./pacientes#registrar" <?= isActive('/pacientes') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
+              <i class="ti-plus"></i>
+              Registrar
+            </a>
+          </li>
+        </ul>
+      </li>
+    <?php endif ?>
     <?php if ($user->appointment->isHigherThan(Appointment::Coordinator)) : ?>
       <li class="<?= isActive('/usuarios') ? 'mm-active' : '' ?>">
         <a href="#" class="has-arrow">
