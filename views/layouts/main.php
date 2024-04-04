@@ -65,9 +65,9 @@ $showPasswordChangeModal ??= $mustChangePassword;
     'show' => true,
     'id' => 'change-password-confirmation',
     'action' => './perfil#seguridad',
-    'title' => 'Se recomienda cambiar inmediatamente la contraseña',
-    'confirmText' => 'Quiero cambiarla',
-    'denyText' => 'Ignorar'
+    'title' => 'Debe cambiar inmediatamente la contraseña',
+    'confirmText' => 'Cambiarla',
+    'denyText' => false
   ]); ?>
   <script src="./assets/vendors/jquery/jquery.min.js"></script>
   <script src="./assets/vendors/metismenu/metisMenu.min.js"></script>

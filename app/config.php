@@ -2,6 +2,7 @@
 
 use App\Repositories\Infraestructure\PDO\Connection;
 use App\Repositories\Infraestructure\PDO\PDODepartmentRepository;
+use App\Repositories\Infraestructure\PDO\PDOPatientRepository;
 use App\Repositories\Infraestructure\PDO\PDOSettingsRepository;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
 use Leaf\Http\Session;
@@ -48,6 +49,12 @@ App::register(
   'settingsRepository',
   PDOSettingsRepository::class,
   [App::db(), App::get('fullRoot')]
+);
+
+App::register(
+  'patientRepository',
+  PDOPatientRepository::class,
+  [App::db(), App::get('fullRoot'), App::userRepository()]
 );
 
 App::register('session', Session::class);

@@ -66,10 +66,10 @@ CREATE TABLE patients (
   gender VARCHAR(20) NOT NULL CHECK (gender IN ('Masculino', 'Femenino')),
   id_card INTEGER NOT NULL UNIQUE,
   registered_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-  user_id INTEGER NOT NULL,
+  registered_by_id INTEGER NOT NULL,
 
   UNIQUE (first_name, second_name, first_last_name, second_last_name),
-  FOREIGN KEY (user_id) REFERENCES users (id)
+  FOREIGN KEY (registered_by_id) REFERENCES users (id)
 );
 
 /*======================================

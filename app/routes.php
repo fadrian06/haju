@@ -2,6 +2,7 @@
 
 use App\Controllers\Web\DepartmentWebController;
 use App\Controllers\Web\HomeWebController;
+use App\Controllers\Web\PatientWebController;
 use App\Controllers\Web\SessionWebController;
 use App\Controllers\Web\SettingsWebController;
 use App\Controllers\Web\UserWebController;
@@ -43,6 +44,10 @@ App::group('', function (): void {
 
     App::route('/notificaciones', function (): void {
     });
+
+    App::group('', function (): void {
+      App::route('GET /pacientes', [PatientWebController::class, 'showPatients']);
+    }, [new AuthorizationMiddleware(Appointment::Secretary, Appointment::Director)]);
 
     App::group('', function (): void {
       App::route('GET /usuarios', [UserWebController::class, 'showUsers']);

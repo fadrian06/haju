@@ -161,5 +161,5 @@ use App\ValueObjects\Appointment;
   'show' => false,
   'id' => 'disactivate-director-modal',
   'action' => "./usuarios/{$user->id}/desactivar",
-  'title' => 'Estás seguro que deseas inhabilitar tu cuenta',
+  'title' => '¿Estás seguro que deseas inhabilitar tu cuenta?',
 ]) ?>
