@@ -4,7 +4,8 @@
     "flightphp/core": "^3.7",
     "phar-io/manifest": "^2.0",
     "leafs/session": "^2.0",
-    "filp/whoops": "^2.15"
+    "filp/whoops": "^2.15",
+    "megacreativo/cedulave-api": "^1.1"
   },
   "autoload": {
     "psr-4": {

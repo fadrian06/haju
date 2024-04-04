@@ -20,9 +20,40 @@ final class PatientWebController extends Controller {
   }
 
   function showPatients(): void {
+    $idCard = App::request()->query['cedula'];
+
+    if ($idCard) {
+      $patient = $this->repository->getByIdCard($idCard);
+
+      if ($patient) {
+        App::redirect("/pacientes/{$patient->id}");
+
+        return;
+      } else {
+        parent::setError("Paciente v-$idCard no encontrado");
+      }
+    }
+
     App::renderPage('patients', 'Pacientes', [
       'patients' => $this->repository->getAll()
     ], 'main');
+  }
+
+  function showPatient(int $id): void {
+
+    try {
+
+      $patient = $this->repository->getById($id);
+
+      if (!$patient) {
+        throw new Error("Paciente #$id no encontrado");
+      }
+
+      App::renderPage('patient', 'Detalles del paciente', compact('patient'), 'main');
+    } catch (Throwable $error) {
+      self::setError($error);
+      App::redirect('/pacientes');
+    }
   }
 
   function handleRegister(): void {

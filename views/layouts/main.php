@@ -40,6 +40,7 @@ $showPasswordChangeModal ??= $mustChangePassword;
   <link rel="stylesheet" href="./assets/css/components/single-element.css" />
   <link rel="stylesheet" href="./assets/css/components/box.css" />
   <link rel="stylesheet" href="./assets/css/components/section.css" />
+  <link rel="stylesheet" href="./assets/css/components/search-field.css" />
   <link rel="stylesheet" href="./assets/css/custom.css" />
   <style>
     .main_content {

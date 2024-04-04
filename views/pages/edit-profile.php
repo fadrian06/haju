@@ -46,26 +46,30 @@ use App\ValueObjects\InstructionLevel;
           render('components/input-group', [
             'value' => $user->secondName,
             'name' => 'second_name',
-            'placeholder' => 'Segundo nombre'
+            'placeholder' => 'Segundo nombre',
+            'required' => false
           ]);
 
           render('components/input-group', [
             'value' => $user->firstLastName,
             'name' => 'first_last_name',
-            'placeholder' => 'Primer apellido'
+            'placeholder' => 'Primer apellido',
+            'required' => true
           ]);
 
           render('components/input-group', [
             'value' => $user->secondLastName,
             'name' => 'second_last_name',
-            'placeholder' => 'Segundo apellido'
+            'placeholder' => 'Segundo apellido',
+            'required' => false
           ]);
 
           render('components/input-group', [
             'value' => $user->birthDate->getWithDashes(),
             'name' => 'birth_date',
             'placeholder' => 'Fecha de nacimiento',
-            'type' => 'date'
+            'type' => 'date',
+            'required' => true
           ]);
 
           render('components/input-group', [

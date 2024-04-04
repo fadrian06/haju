@@ -23,6 +23,8 @@ $loggedUser = $user;
   </a>
 </section>
 
+<?php $error && render('components/notification', ['type' => 'error', 'text' => $error]) ?>
+    <?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
 
 <?php if ($patients !== null) : ?>
   <section class="white_box QA_section">
@@ -34,8 +36,6 @@ $loggedUser = $user;
         </button>
       </form>
     </header> -->
-    <?php $error && render('components/notification', ['type' => 'error', 'text' => $error]) ?>
-    <?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
     <div class="QA_table table-responsive">
       <table class="table text-center">
         <thead>
@@ -45,6 +45,7 @@ $loggedUser = $user;
             <th>Fecha de nacimiento</th>
             <th>Género</th>
             <th>Registrado por</th>
+            <th></th>
             <th></th>
           </tr>
         </thead>
@@ -68,10 +69,15 @@ $loggedUser = $user;
                 <td title="<?= $patient->registeredBy->getFullName() ?>">
                   <?= $patient->registeredBy->firstName ?>
                 </td>
-                <td>
+                <td class="p-2">
                   <?php if ($canEdit) : ?>
-                    <button class="btn btn-primary text-white">Editar</button>
+                    <button class="btn btn-sm btn-primary text-white">Actualizar</button>
                   <?php endif ?>
+                </td>
+                <td class="p-2">
+                  <a class="btn btn-secondary btn-sm text-white" href="./pacientes/<?= $patient->id ?>">
+                    Detalles
+                  </a>
                 </td>
               </form>
             </tr>

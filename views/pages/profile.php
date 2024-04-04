@@ -35,11 +35,7 @@ use App\ValueObjects\Appointment;
   <ul class="profile-info__secondary col-md-6">
     <li>
       <strong>Teléfono:</strong>
-      <?php if ($user->phone) : ?>
-        <a href="tel:+<?= $user->phone->toValidPhoneLink() ?>"><?= $user->phone ?></a>
-      <?php else : ?>
-        <mark class="text-danger">No registrado</mark>
-      <?php endif ?>
+      <a href="tel:+<?= $user->phone->toValidPhoneLink() ?>"><?= $user->phone ?></a>
     </li>
     <li>
       <strong>Correo:</strong>

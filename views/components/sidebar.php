@@ -26,13 +26,13 @@ use App\ValueObjects\Appointment;
         <span>Inicio</span>
       </a>
     </li>
-    <?php if ($user->appointment->isHigherThan(Appointment::Secretary) && $user->appointment !== Appointment::Director): ?>
+    <?php if ($user->appointment->isHigherThan(Appointment::Secretary) && $user->appointment !== Appointment::Director) : ?>
       <li class="<?= isActive('/pacientes') ? 'mm-active' : '' ?>">
         <a href="#" class="has-arrow">
           <img src="./assets/img/icons/patient.svg" />
           <span>Pacientes</span>
         </a>
-        <ul>
+        <ul class="pe-2">
           <li class="<?= isActive('/pacientes') ? 'mm-active' : '' ?>">
             <a href="./pacientes">
               <i class="ti-list"></i>
@@ -40,10 +40,16 @@ use App\ValueObjects\Appointment;
             </a>
           </li>
           <li class="<?= isActive('/pacientes') ? 'mm-active' : '' ?>">
-            <a href="./pacientes#buscar-cedula">
-              <i class="ti-search"></i>
-              Consultar por cédula
-            </a>
+            <div class="serach_field-area m-0 w-100">
+              <form class="search_inner" action="./pacientes">
+                <div class="search_field">
+                  <input class="ps-5 py-2 small" name="cedula" style="height: unset" required type="number" placeholder="Cédula...">
+                </div>
+                <button class="ps-4">
+                  <img src="./assets/img/icons/icon_search.svg" />
+                </button>
+              </form>
+            </div>
           </li>
           <li>
             <a href="./pacientes#registrar" <?= isActive('/pacientes') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
@@ -60,7 +66,7 @@ use App\ValueObjects\Appointment;
           <img src="./assets/img/icons/users.svg" />
           <span>Usuarios</span>
         </a>
-        <ul>
+        <ul class="pe-2">
           <li class="<?= isActive('/usuarios') ? 'mm-active' : '' ?>">
             <a href="./usuarios">
               <i class="ti-list"></i>
@@ -81,7 +87,7 @@ use App\ValueObjects\Appointment;
             <img src="./assets/img/icons/hospital.svg" />
             <span>Departamentos</span>
           </a>
-          <ul>
+          <ul class="pe-2">
             <li class="<?= isActive('/departamentos') ? 'mm-active' : '' ?>">
               <a href="./departamentos">
                 <i class="ti-list"></i>
@@ -103,7 +109,7 @@ use App\ValueObjects\Appointment;
             <img src="./assets/img/icons/gears.svg" />
             <span>Configuraciones</span>
           </a>
-          <ul>
+          <ul class="pe-2">
             <?php if ($user->appointment === Appointment::Director) : ?>
               <li class="<?= isActive('/configuracion/institucion') ? 'mm-active' : '' ?>">
                 <a href="./configuracion/institucion">
