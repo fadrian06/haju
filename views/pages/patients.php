@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Patient;
+use App\Models\User;
 use App\ValueObjects\Gender;
 
 /**
@@ -22,37 +23,64 @@ $loggedUser = $user;
   </a>
 </section>
 
-<?php $error && render('components/notification', ['type' => 'error', 'text' => $error]) ?>
-<?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
 
-<div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Nombre completo</th>
-        <th>Cédula</th>
-        <th>Fecha de nacimiento</th>
-        <th>Género</th>
-        <th>Registrado por</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php foreach ($patients as $patient): ?>
-        <tr>
-          <td><?= $patient->getFullName() ?></td>
-          <td><?= $patient->idCard ?></td>
-          <td><?= $patient->birthDate ?></td>
-          <td><?= $patient->gender->value ?></td>
-          <td title="<?= $patient->registeredBy->getFullName() ?>">
-            <?= $patient->registeredBy->firstName ?>
-          </td>
-          <td></td>
-        </tr>
-      <?php endforeach ?>
-    </tbody>
-  </table>
-</div>
+<?php if ($patients !== null) : ?>
+  <section class="white_box QA_section">
+    <!-- <header class="list_header serach_field-area2 w-100">
+      <form class="search_inner w-100">
+        <input type="search" placeholder="Buscar por nombre...">
+        <button>
+          <i class="ti-search fs-2"></i>
+        </button>
+      </form>
+    </header> -->
+    <?php $error && render('components/notification', ['type' => 'error', 'text' => $error]) ?>
+    <?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
+    <div class="QA_table table-responsive">
+      <table class="table text-center">
+        <thead>
+          <tr>
+            <th>Nombre completo</th>
+            <th>Cédula</th>
+            <th>Fecha de nacimiento</th>
+            <th>Género</th>
+            <th>Registrado por</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($patients as $patient) : ?>
+            <?php $canEdit = $patient->registeredBy->registeredBy->isEqualTo($loggedUser) ?>
+            <tr>
+              <form method="post" action="./pacientes/<?= $patient->id ?>">
+                <td class="p-1">
+                  <input <?= $canEdit ? '' : 'readonly' ?> placeholder="Nombre del paciente" class="form-control" required name="full_name" value="<?= $patient->getFullName() ?>" />
+                </td>
+                <td class="p-1">
+                  <input <?= $canEdit ? '' : 'readonly' ?> type="number" placeholder="Cédula del paciente" class="form-control" required name="id_card" value="<?= $patient->idCard ?>" />
+                </td>
+                <td class="p-1">
+                  <input <?= $canEdit ? '' : 'readonly' ?> type="date" placeholder="Fecha de nacimiento" class="form-control" required name="birth_date" value="<?= $patient->birthDate->getWithDashes() ?>" />
+                </td>
+                <td>
+                  <?= $patient->gender->value ?>
+                </td>
+                <td title="<?= $patient->registeredBy->getFullName() ?>">
+                  <?= $patient->registeredBy->firstName ?>
+                </td>
+                <td>
+                  <?php if ($canEdit) : ?>
+                    <button class="btn btn-primary text-white">Editar</button>
+                  <?php endif ?>
+                </td>
+              </form>
+            </tr>
+          <?php endforeach ?>
+        </tbody>
+      </table>
+    </div>
+  </section>
+<?php endif ?>
 
 <div class="modal fade" id="registrar">
   <div class="modal-dialog">

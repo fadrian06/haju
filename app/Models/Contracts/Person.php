@@ -62,8 +62,10 @@ abstract class Person extends Model {
   }
 
   /** @throws InvalidNameException */
-  final function setSecondName(string $secondName): static {
-    $this->secondName = new Name($secondName, 'Segundo nombre');
+  final function setSecondName(?string $secondName): static {
+    $this->secondName = $secondName !== null
+      ? new Name($secondName, 'Segundo nombre')
+      : null;
 
     return $this;
   }
@@ -76,8 +78,10 @@ abstract class Person extends Model {
   }
 
   /** @throws InvalidNameException */
-  final function setSecondLastName(string $secondLastName): static {
-    $this->secondLastName = new Name($secondLastName, 'Segundo apellido');
+  final function setSecondLastName(?string $secondLastName): static {
+    $this->secondLastName = $secondLastName !== null
+      ? new Name($secondLastName, 'Segundo apellido')
+      : null;
 
     return $this;
   }

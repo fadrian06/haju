@@ -96,8 +96,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
   function save(User $user): void {
     try {
       if ($user->id) {
-        $this->assignDepartments($user);
-        $this->update($user);
+        $this->assignDepartments($user)->update($user);
 
         return;
       }
@@ -166,7 +165,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
     }
   }
 
-  private function assignDepartments(User $user): void {
+  private function assignDepartments(User $user): self {
     $this->ensureIsConnected()
       ->prepare('DELETE FROM department_assignments WHERE user_id = ?')
       ->execute([$user->id]);
@@ -186,9 +185,11 @@ class PDOUserRepository extends PDORepository implements UserRepository {
       $this->ensureIsConnected()
         ->query($sql);
     }
+
+    return $this;
   }
 
-  private function update(User $user): void {
+  private function update(User $user): self {
     $sql = sprintf(
       <<<SQL
         UPDATE %s SET first_name = ?, second_name = ?, first_last_name = ?,
@@ -217,6 +218,8 @@ class PDOUserRepository extends PDORepository implements UserRepository {
         is_string($user->profileImagePath) ? $user->profileImagePath : $user->getProfileImageRelPath(),
         $user->id
       ]);
+
+    return $this;
   }
 
   private function setDepartments(User $user): void {

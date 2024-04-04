@@ -4,9 +4,10 @@ namespace App\Models;
 
 use App\Models\Contracts\Person;
 use App\ValueObjects\Date;
+use App\ValueObjects\Exceptions\InvalidNameException;
 use App\ValueObjects\Gender;
 
-class Patient extends Person {
+final class Patient extends Person {
   function __construct(
     string $firstName,
     ?string $secondName,
@@ -26,5 +27,22 @@ class Patient extends Person {
       $gender,
       $idCard
     );
+  }
+
+  /** @throws InvalidNameException */
+  function setFullName(string $fullName): self {
+    @[$firstName, $secondName, $firstLastName, $secondLastName] = explode(' ', $fullName);
+
+    $this->setFirstName($firstName);
+
+    if (!$firstLastName) {
+      return $this->setSecondName(null)
+        ->setFirstLastName($secondName)
+        ->setSecondLastName(null);
+    }
+
+    return $this->setSecondName($secondName)
+      ->setFirstLastName($firstLastName)
+      ->setSecondLastName($secondLastName);
   }
 }

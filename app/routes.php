@@ -48,6 +48,7 @@ App::group('', function (): void {
     App::group('', function (): void {
       App::route('GET /pacientes', [PatientWebController::class, 'showPatients']);
       App::route('POST /pacientes', [PatientWebController::class, 'handleRegister']);
+      App::route('POST /pacientes/@id', [PatientWebController::class, 'handleEdition']);
     }, [new AuthorizationMiddleware(Appointment::Secretary, Appointment::Director)]);
 
     App::group('', function (): void {

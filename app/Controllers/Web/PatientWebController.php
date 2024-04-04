@@ -50,4 +50,26 @@ final class PatientWebController extends Controller {
 
     App::redirect('/pacientes');
   }
+
+  function handleEdition(int $id): void {
+    try {
+      $patient = $this->repository->getById($id);
+
+      if (!$patient?->registeredBy->registeredBy->isEqualTo($this->loggedUser)) {
+        throw new Error('Acceso denegado');
+      }
+
+      $patient->setFullName($this->data['full_name'])
+        ->setIdCard($this->data['id_card']);
+
+      $patient->birthDate = Date::from($this->data['birth_date'], '-');
+
+      $this->repository->save($patient);
+      parent::setMessage('Paciente actualizado exitósamente');
+    } catch (Throwable $error) {
+      parent::setError($error);
+    }
+
+    App::redirect('/pacientes');
+  }
 }

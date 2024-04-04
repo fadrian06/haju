@@ -40,15 +40,31 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
   }
 
   function getById(int $id): ?Patient {
-    return null;
+    $stmt = $this->ensureIsConnected()
+      ->prepare(sprintf('SELECT %s FROM %s WHERE id = ?', self::FIELDS, self::getTable()));
+
+    $stmt->execute([$id]);
+
+    return $stmt->fetchAll(PDO::FETCH_FUNC, [__CLASS__, 'mapper'])[0] ?? null;
   }
 
   function getByIdCard(int $idCard): ?Patient {
-    return null;
+    $stmt = $this->ensureIsConnected()
+      ->prepare(sprintf('SELECT %s FROM %s WHERE id_card = ?', self::FIELDS, self::getTable()));
+
+    $stmt->execute([$idCard]);
+
+    return $stmt->fetchAll(PDO::FETCH_FUNC, [__CLASS__, 'mapper'])[0] ?? null;
   }
 
   function save(Patient $patient): void {
     try {
+      if ($patient->id) {
+        $this->update($patient);
+
+        return;
+      }
+
       $query = sprintf(
         <<<SQL
           INSERT INTO %s (
@@ -86,6 +102,30 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
         throw new DuplicatedNamesException("Usuario \"{$patient->getFullName()}\" ya existe");
       }
     }
+  }
+
+  private function update(Patient $patient): self {
+    $query = sprintf(
+      <<<sql
+        UPDATE %s SET first_name = ?, second_name = ?, first_last_name = ?, second_last_name = ?,
+        birth_date = ?, id_card = ? WHERE id = ?
+      sql,
+      self::getTable()
+    );
+
+    $this->ensureIsConnected()
+      ->prepare($query)
+      ->execute([
+        $patient->firstName,
+        $patient->secondName,
+        $patient->firstLastName,
+        $patient->secondLastName,
+        $patient->birthDate->timestamp,
+        $patient->idCard,
+        $patient->id
+      ]);
+
+    return $this;
   }
 
   private function mapper(
