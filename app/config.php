@@ -2,6 +2,8 @@
 
 use App\Repositories\Infraestructure\Files\FilesSettingsRepository;
 use App\Repositories\Infraestructure\PDO\Connection;
+use App\Repositories\Infraestructure\PDO\PDOConsultationCauseCategoryRepository;
+use App\Repositories\Infraestructure\PDO\PDOConsultationCauseRepository;
 use App\Repositories\Infraestructure\PDO\PDODepartmentRepository;
 use App\Repositories\Infraestructure\PDO\PDOPatientRepository;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
@@ -56,6 +58,18 @@ App::register(
   'patientRepository',
   PDOPatientRepository::class,
   [App::db(), App::get('fullRoot'), App::userRepository()]
+);
+
+App::register(
+  'consultationCauseCategoryRepository',
+  PDOConsultationCauseCategoryRepository::class,
+  [App::db(), App::get('fullRoot')]
+);
+
+App::register(
+  'consultationCauseRepository',
+  PDOConsultationCauseRepository::class,
+  [App::db(), App::get('fullRoot'), App::consultationCauseCategoryRepository()]
 );
 
 App::register('session', Session::class);

@@ -6,8 +6,12 @@ use App\Models\Contracts\Person;
 use App\ValueObjects\Date;
 use App\ValueObjects\Exceptions\InvalidNameException;
 use App\ValueObjects\Gender;
+use Generator;
 
 final class Patient extends Person {
+  /** @var array<int, Consultation> */
+  private array $consultations;
+
   function __construct(
     string $firstName,
     ?string $secondName,
@@ -16,7 +20,8 @@ final class Patient extends Person {
     Date $birthDate,
     Gender $gender,
     int $idCard,
-    public User $registeredBy
+    public User $registeredBy,
+    Consultation ...$consultations
   ) {
     parent::__construct(
       $firstName,
@@ -27,6 +32,15 @@ final class Patient extends Person {
       $gender,
       $idCard
     );
+
+    $this->consultations = $consultations;
+  }
+
+  /** @return Generator<int, Consultation> */
+  function getConsultation(): Generator {
+    foreach ($this->consultations as $consultation) {
+      yield $consultation;
+    }
   }
 
   /** @throws InvalidNameException */
