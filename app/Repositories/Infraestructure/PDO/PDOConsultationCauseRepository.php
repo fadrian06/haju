@@ -4,6 +4,7 @@ namespace App\Repositories\Infraestructure\PDO;
 
 use App\Models\ConsultationCause;
 use App\Repositories\Domain\ConsultationCauseRepository;
+use Generator;
 use PDO;
 
 final class PDOConsultationCauseRepository
@@ -28,6 +29,15 @@ extends PDORepository implements ConsultationCauseRepository {
     return $this->ensureIsConnected()
       ->query(sprintf('SELECT %s FROM %s', self::FIELDS, self::getTable()))
       ->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper']);
+  }
+
+  function getAllWithGenerator(): Generator {
+    $stmt = $this->ensureIsConnected()
+      ->query(sprintf('SELECT %s FROM %s', self::FIELDS, self::getTable()));
+
+    while ($cause = $stmt->fetch(PDO::FETCH_ASSOC)) {
+      yield $this->mapper(...$cause);
+    }
   }
 
   function getById(int $id): ?ConsultationCause {

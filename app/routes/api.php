@@ -27,16 +27,20 @@ App::group('/api', function (): void {
   });
 
   App::route('/causas-consulta', function () use ($categoryMapper): void {
-    $causes = App::consultationCauseRepository()->getAll();
+    $causes = App::consultationCauseRepository()->getAllWithGenerator();
 
-    App::json(array_map(function (ConsultationCause $cause) use ($categoryMapper): array {
-      return [
+    $json = [];
+
+    foreach ($causes as $cause) {
+      $json[] = [
         'id' => $cause->id,
         'name' => $cause->getFullName(),
         'code' => $cause->code,
         'category' => $categoryMapper($cause->category)
       ];
-    }, $causes));
+    }
+
+    App::json($json);
   });
 
   App::route('/cedulacion/@idCard', function (int $idCard): void {
