@@ -4,20 +4,91 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "17a865d814da8c1dbc431e22873828cc",
+  "content-hash": "30b2b78a28f38a7a7ad0ece799e96757",
   "packages": [
     {
-      "name": "flightphp/core",
-      "version": "v3.6.0",
+      "name": "filp/whoops",
+      "version": "2.15.4",
       "source": {
         "type": "git",
-        "url": "https://github.com/flightphp/core.git",
-        "reference": "735dafefb9b49ef46f26a511efe224d575c28cc7"
+        "url": "https://github.com/filp/whoops.git",
+        "reference": "a139776fa3f5985a50b509f2a02ff0f709d2a546"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/flightphp/core/zipball/735dafefb9b49ef46f26a511efe224d575c28cc7",
-        "reference": "735dafefb9b49ef46f26a511efe224d575c28cc7",
+        "url": "https://api.github.com/repos/filp/whoops/zipball/a139776fa3f5985a50b509f2a02ff0f709d2a546",
+        "reference": "a139776fa3f5985a50b509f2a02ff0f709d2a546",
+        "shasum": ""
+      },
+      "require": {
+        "php": "^5.5.9 || ^7.0 || ^8.0",
+        "psr/log": "^1.0.1 || ^2.0 || ^3.0"
+      },
+      "require-dev": {
+        "mockery/mockery": "^0.9 || ^1.0",
+        "phpunit/phpunit": "^4.8.36 || ^5.7.27 || ^6.5.14 || ^7.5.20 || ^8.5.8 || ^9.3.3",
+        "symfony/var-dumper": "^2.6 || ^3.0 || ^4.0 || ^5.0"
+      },
+      "suggest": {
+        "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
+        "whoops/soap": "Formats errors as SOAP responses"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "2.7-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Whoops\\": "src/Whoops/"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Filipe Dobreira",
+          "homepage": "https://github.com/filp",
+          "role": "Developer"
+        }
+      ],
+      "description": "php error handling for cool kids",
+      "homepage": "https://filp.github.io/whoops/",
+      "keywords": [
+        "error",
+        "exception",
+        "handling",
+        "library",
+        "throwable",
+        "whoops"
+      ],
+      "support": {
+        "issues": "https://github.com/filp/whoops/issues",
+        "source": "https://github.com/filp/whoops/tree/2.15.4"
+      },
+      "funding": [
+        {
+          "url": "https://github.com/denis-sokolov",
+          "type": "github"
+        }
+      ],
+      "time": "2023-11-03T12:00:00+00:00"
+    },
+    {
+      "name": "flightphp/core",
+      "version": "v3.7.2",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/flightphp/core.git",
+        "reference": "fe2ad0c05e14d1649a9f13299b0b3ad580a0ed0b"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/flightphp/core/zipball/fe2ad0c05e14d1649a9f13299b0b3ad580a0ed0b",
+        "reference": "fe2ad0c05e14d1649a9f13299b0b3ad580a0ed0b",
         "shasum": ""
       },
       "require": {
@@ -29,6 +100,8 @@
       },
       "require-dev": {
         "ext-pdo_sqlite": "*",
+        "league/container": "^4.2",
+        "level-2/dice": "^4.0",
         "phpstan/extension-installer": "^1.3",
         "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^9.5",
@@ -73,9 +146,9 @@
       "homepage": "http://flightphp.com",
       "support": {
         "issues": "https://github.com/flightphp/core/issues",
-        "source": "https://github.com/flightphp/core/tree/v3.6.0"
+        "source": "https://github.com/flightphp/core/tree/v3.7.2"
       },
-      "time": "2024-03-02T21:06:28+00:00"
+      "time": "2024-03-30T13:37:34+00:00"
     },
     {
       "name": "leafs/anchor",
@@ -205,6 +278,62 @@
       "time": "2023-07-09T16:59:55+00:00"
     },
     {
+      "name": "megacreativo/cedulave-api",
+      "version": "v1.1.2",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/MegaCreativoTeam/CedulaVE-API.git",
+        "reference": "128663dc26b9462ccbdb1cb1e517fdbaea55a148"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/MegaCreativoTeam/CedulaVE-API/zipball/128663dc26b9462ccbdb1cb1e517fdbaea55a148",
+        "reference": "128663dc26b9462ccbdb1cb1e517fdbaea55a148",
+        "shasum": ""
+      },
+      "require": {
+        "ext-curl": "*",
+        "php": ">=5.6",
+        "php-curl-class/php-curl-class": "^8.8"
+      },
+      "suggest": {
+        "ext-mbstring": "*"
+      },
+      "type": "library",
+      "autoload": {
+        "psr-4": {
+          "MegaCreativo\\API\\": "src/"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Brayan Rincon",
+          "email": "brayan.er.rincon@gmail.com"
+        }
+      ],
+      "description": "CedulaVE API permite consultar datos personales de habitantes de Venezuela inscritos en el CNE mediante su Cédula de Identidad.",
+      "homepage": "https://github.com/megacreativo/CedulaVE-API",
+      "keywords": [
+        "DNI",
+        "api",
+        "cedula",
+        "cne",
+        "consejo nacional electoral",
+        "mega creativo",
+        "megacreativo",
+        "venezuela"
+      ],
+      "support": {
+        "issues": "https://github.com/MegaCreativoTeam/CedulaVE-API/issues",
+        "source": "https://github.com/MegaCreativoTeam/CedulaVE-API/tree/v1.1.2"
+      },
+      "time": "2022-11-22T19:39:18+00:00"
+    },
+    {
       "name": "phar-io/manifest",
       "version": "2.0.4",
       "source": {
@@ -321,6 +450,126 @@
         "source": "https://github.com/phar-io/version/tree/3.2.1"
       },
       "time": "2022-02-21T01:04:05+00:00"
+    },
+    {
+      "name": "php-curl-class/php-curl-class",
+      "version": "8.10.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/php-curl-class/php-curl-class.git",
+        "reference": "c97c96d5d422b4085aba32ace096c3e404dde607"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/c97c96d5d422b4085aba32ace096c3e404dde607",
+        "reference": "c97c96d5d422b4085aba32ace096c3e404dde607",
+        "shasum": ""
+      },
+      "require": {
+        "ext-curl": "*",
+        "php": ">=5.3"
+      },
+      "require-dev": {
+        "ext-gd": "*",
+        "phpunit/phpunit": "*",
+        "squizlabs/php_codesniffer": "*"
+      },
+      "suggest": {
+        "ext-mbstring": "*"
+      },
+      "type": "library",
+      "autoload": {
+        "psr-4": {
+          "Curl\\": "src/Curl/"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "Unlicense"
+      ],
+      "authors": [
+        {
+          "name": "Zach Borboa"
+        }
+      ],
+      "description": "PHP Curl Class makes it easy to send HTTP requests and integrate with web APIs.",
+      "homepage": "https://github.com/php-curl-class/php-curl-class",
+      "keywords": [
+        "API-Client",
+        "api",
+        "class",
+        "client",
+        "curl",
+        "framework",
+        "http",
+        "http-client",
+        "http-proxy",
+        "json",
+        "php",
+        "php-curl",
+        "php-curl-library",
+        "proxy",
+        "requests",
+        "restful",
+        "web-scraper",
+        "web-service",
+        "xml"
+      ],
+      "support": {
+        "issues": "https://github.com/php-curl-class/php-curl-class/issues",
+        "source": "https://github.com/php-curl-class/php-curl-class/tree/8.10.0"
+      },
+      "time": "2021-06-23T14:34:00+00:00"
+    },
+    {
+      "name": "psr/log",
+      "version": "3.0.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/php-fig/log.git",
+        "reference": "fe5ea303b0887d5caefd3d431c3e61ad47037001"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/php-fig/log/zipball/fe5ea303b0887d5caefd3d431c3e61ad47037001",
+        "reference": "fe5ea303b0887d5caefd3d431c3e61ad47037001",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=8.0.0"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "3.x-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Psr\\Log\\": "src"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "PHP-FIG",
+          "homepage": "https://www.php-fig.org/"
+        }
+      ],
+      "description": "Common interface for logging libraries",
+      "homepage": "https://github.com/php-fig/log",
+      "keywords": [
+        "log",
+        "psr",
+        "psr-3"
+      ],
+      "support": {
+        "source": "https://github.com/php-fig/log/tree/3.0.0"
+      },
+      "time": "2021-07-14T16:46:02+00:00"
     }
   ],
   "packages-dev": [
@@ -443,16 +692,16 @@
     },
     {
       "name": "phpunit/php-code-coverage",
-      "version": "11.0.1",
+      "version": "11.0.3",
       "source": {
         "type": "git",
         "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-        "reference": "89702be0ad026873ef3a1605fe8726254eef4e2c"
+        "reference": "7e35a2cbcabac0e6865fd373742ea432a3c34f92"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/89702be0ad026873ef3a1605fe8726254eef4e2c",
-        "reference": "89702be0ad026873ef3a1605fe8726254eef4e2c",
+        "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/7e35a2cbcabac0e6865fd373742ea432a3c34f92",
+        "reference": "7e35a2cbcabac0e6865fd373742ea432a3c34f92",
         "shasum": ""
       },
       "require": {
@@ -509,7 +758,7 @@
       "support": {
         "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
         "security": "https://github.com/sebastianbergmann/php-code-coverage/security/policy",
-        "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/11.0.1"
+        "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/11.0.3"
       },
       "funding": [
         {
@@ -517,7 +766,7 @@
           "type": "github"
         }
       ],
-      "time": "2024-03-02T07:34:25+00:00"
+      "time": "2024-03-12T15:35:40+00:00"
     },
     {
       "name": "phpunit/php-file-iterator",
@@ -766,16 +1015,16 @@
     },
     {
       "name": "phpunit/phpunit",
-      "version": "11.0.4",
+      "version": "11.0.9",
       "source": {
         "type": "git",
         "url": "https://github.com/sebastianbergmann/phpunit.git",
-        "reference": "3f4261269c91370e9b2b3f64cc76c617c442c35a"
+        "reference": "591bbfe416400385527d5086b346b92c06de404b"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3f4261269c91370e9b2b3f64cc76c617c442c35a",
-        "reference": "3f4261269c91370e9b2b3f64cc76c617c442c35a",
+        "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/591bbfe416400385527d5086b346b92c06de404b",
+        "reference": "591bbfe416400385527d5086b346b92c06de404b",
         "shasum": ""
       },
       "require": {
@@ -846,7 +1095,7 @@
       "support": {
         "issues": "https://github.com/sebastianbergmann/phpunit/issues",
         "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-        "source": "https://github.com/sebastianbergmann/phpunit/tree/11.0.4"
+        "source": "https://github.com/sebastianbergmann/phpunit/tree/11.0.9"
       },
       "funding": [
         {
@@ -862,7 +1111,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2024-02-29T16:21:10+00:00"
+      "time": "2024-03-28T10:09:42+00:00"
     },
     {
       "name": "sebastian/cli-parser",
@@ -1238,16 +1487,16 @@
     },
     {
       "name": "sebastian/environment",
-      "version": "7.0.0",
+      "version": "7.1.0",
       "source": {
         "type": "git",
         "url": "https://github.com/sebastianbergmann/environment.git",
-        "reference": "100d8b855d7180f79f9a9a5c483f2d960581c3ea"
+        "reference": "4eb3a442574d0e9d141aab209cd4aaf25701b09a"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/100d8b855d7180f79f9a9a5c483f2d960581c3ea",
-        "reference": "100d8b855d7180f79f9a9a5c483f2d960581c3ea",
+        "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/4eb3a442574d0e9d141aab209cd4aaf25701b09a",
+        "reference": "4eb3a442574d0e9d141aab209cd4aaf25701b09a",
         "shasum": ""
       },
       "require": {
@@ -1262,7 +1511,7 @@
       "type": "library",
       "extra": {
         "branch-alias": {
-          "dev-main": "7.0-dev"
+          "dev-main": "7.1-dev"
         }
       },
       "autoload": {
@@ -1290,7 +1539,7 @@
       "support": {
         "issues": "https://github.com/sebastianbergmann/environment/issues",
         "security": "https://github.com/sebastianbergmann/environment/security/policy",
-        "source": "https://github.com/sebastianbergmann/environment/tree/7.0.0"
+        "source": "https://github.com/sebastianbergmann/environment/tree/7.1.0"
       },
       "funding": [
         {
@@ -1298,7 +1547,7 @@
           "type": "github"
         }
       ],
-      "time": "2024-02-02T05:57:54+00:00"
+      "time": "2024-03-23T08:56:34+00:00"
     },
     {
       "name": "sebastian/exporter",
@@ -1786,6 +2035,169 @@
         }
       ],
       "time": "2024-02-02T06:10:47+00:00"
+    },
+    {
+      "name": "symfony/polyfill-mbstring",
+      "version": "v1.29.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/symfony/polyfill-mbstring.git",
+        "reference": "9773676c8a1bb1f8d4340a62efe641cf76eda7ec"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/9773676c8a1bb1f8d4340a62efe641cf76eda7ec",
+        "reference": "9773676c8a1bb1f8d4340a62efe641cf76eda7ec",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=7.1"
+      },
+      "provide": {
+        "ext-mbstring": "*"
+      },
+      "suggest": {
+        "ext-mbstring": "For best performance"
+      },
+      "type": "library",
+      "extra": {
+        "thanks": {
+          "name": "symfony/polyfill",
+          "url": "https://github.com/symfony/polyfill"
+        }
+      },
+      "autoload": {
+        "files": [
+          "bootstrap.php"
+        ],
+        "psr-4": {
+          "Symfony\\Polyfill\\Mbstring\\": ""
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Nicolas Grekas",
+          "email": "p@tchwork.com"
+        },
+        {
+          "name": "Symfony Community",
+          "homepage": "https://symfony.com/contributors"
+        }
+      ],
+      "description": "Symfony polyfill for the Mbstring extension",
+      "homepage": "https://symfony.com",
+      "keywords": [
+        "compatibility",
+        "mbstring",
+        "polyfill",
+        "portable",
+        "shim"
+      ],
+      "support": {
+        "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.29.0"
+      },
+      "funding": [
+        {
+          "url": "https://symfony.com/sponsor",
+          "type": "custom"
+        },
+        {
+          "url": "https://github.com/fabpot",
+          "type": "github"
+        },
+        {
+          "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+          "type": "tidelift"
+        }
+      ],
+      "time": "2024-01-29T20:11:03+00:00"
+    },
+    {
+      "name": "symfony/var-dumper",
+      "version": "v7.0.4",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/symfony/var-dumper.git",
+        "reference": "e03ad7c1535e623edbb94c22cc42353e488c6670"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/var-dumper/zipball/e03ad7c1535e623edbb94c22cc42353e488c6670",
+        "reference": "e03ad7c1535e623edbb94c22cc42353e488c6670",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=8.2",
+        "symfony/polyfill-mbstring": "~1.0"
+      },
+      "conflict": {
+        "symfony/console": "<6.4"
+      },
+      "require-dev": {
+        "ext-iconv": "*",
+        "symfony/console": "^6.4|^7.0",
+        "symfony/http-kernel": "^6.4|^7.0",
+        "symfony/process": "^6.4|^7.0",
+        "symfony/uid": "^6.4|^7.0",
+        "twig/twig": "^3.0.4"
+      },
+      "bin": [
+        "Resources/bin/var-dump-server"
+      ],
+      "type": "library",
+      "autoload": {
+        "files": [
+          "Resources/functions/dump.php"
+        ],
+        "psr-4": {
+          "Symfony\\Component\\VarDumper\\": ""
+        },
+        "exclude-from-classmap": [
+          "/Tests/"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Nicolas Grekas",
+          "email": "p@tchwork.com"
+        },
+        {
+          "name": "Symfony Community",
+          "homepage": "https://symfony.com/contributors"
+        }
+      ],
+      "description": "Provides mechanisms for walking through any arbitrary PHP variable",
+      "homepage": "https://symfony.com",
+      "keywords": [
+        "debug",
+        "dump"
+      ],
+      "support": {
+        "source": "https://github.com/symfony/var-dumper/tree/v7.0.4"
+      },
+      "funding": [
+        {
+          "url": "https://symfony.com/sponsor",
+          "type": "custom"
+        },
+        {
+          "url": "https://github.com/fabpot",
+          "type": "github"
+        },
+        {
+          "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+          "type": "tidelift"
+        }
+      ],
+      "time": "2024-02-15T11:33:06+00:00"
     },
     {
       "name": "theseer/tokenizer",

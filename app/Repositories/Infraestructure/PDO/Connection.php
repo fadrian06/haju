@@ -2,22 +2,23 @@
 
 namespace App\Repositories\Infraestructure\PDO;
 
+use App\ValueObjects\DBDriver;
 use PDO;
 
-class Connection {
+final class Connection {
   private readonly PDO $instance;
 
   /** @param string|'memory' $dbName */
   function __construct(
-    DBConnection $dbConnection,
-    string $dbName,
+    public readonly DBDriver $driver,
+    public readonly string $dbName,
     ?string $host = null,
     ?int $port = null,
-    ?string $user = null,
+    readonly ?string $user = null,
     ?string $password = null
   ) {
     $this->instance = new PDO(
-      $dbConnection === DBConnection::MySQL
+      $driver === DBDriver::MySQL
         ? "mysql:host=$host; dbname=$dbName; charset=utf8; port=$port"
         : "sqlite:$dbName",
       $user,

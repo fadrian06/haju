@@ -3,197 +3,263 @@
 namespace App\Controllers\Web;
 
 use App;
-use App\Models\Date;
-use App\Models\Exceptions\InvalidPhoneException;
-use App\Models\Gender;
-use App\Models\Phone;
-use App\Models\ProfessionPrefix;
-use App\Models\Role;
 use App\Models\User;
-use App\Repositories\Exceptions\DuplicatedIdCardException;
-use App\Repositories\Exceptions\DuplicatedNamesException;
+use App\Repositories\Domain\DepartmentRepository;
+use App\Repositories\Domain\UserRepository;
+use App\ValueObjects\Appointment;
+use App\ValueObjects\Date;
+use App\ValueObjects\Exceptions\InvalidDateException;
+use App\ValueObjects\Exceptions\InvalidPhoneException;
+use App\ValueObjects\Gender;
+use App\ValueObjects\InstructionLevel;
+use App\ValueObjects\Phone;
 use Error;
 use PharIo\Manifest\Email;
 use PharIo\Manifest\InvalidEmailException;
-use PharIo\Manifest\InvalidUrlException;
-use PharIo\Manifest\Url;
+use Throwable;
 
 class UserWebController extends Controller {
-  static function showRegister(): void {
-    App::render('pages/register', [], 'content');
-    App::render('layouts/base', ['title' => 'Regístrate']);
+  private readonly DepartmentRepository $departmentRepository;
+  private readonly UserRepository $userRepository;
+
+  function __construct() {
+    parent::__construct();
+
+    $this->departmentRepository = App::departmentRepository();
+    $this->userRepository = App::userRepository();
   }
 
-  static function handleRegister(): void {
-    $data = App::request()->data;
+  function showRegister(): void {
+    App::renderPage('register', 'Regístrate');
+  }
 
-    $loggedUser = App::view()->get('user');
-
-    assert($loggedUser === null || $loggedUser instanceof User);
-
-    [$role, $urlToRedirect, $urlWhenFail] = match (true) {
-      !$loggedUser => [Role::Director, '/ingresar', '/registrate'],
-      $loggedUser->role === Role::Director => [Role::Coordinator, '/usuarios', '/usuarios'],
-      $loggedUser->role === Role::Coordinator => [Role::Secretary, '/usuarios', '/usuarios']
+  function handleRegister(): void {
+    [$appointment, $urlToRedirect, $urlWhenFail] = match (true) {
+      !$this->loggedUser => [Appointment::Director, '/ingresar', '/registrate'],
+      $this->loggedUser->appointment === Appointment::Director => [Appointment::Coordinator, '/usuarios', '/usuarios'],
+      $this->loggedUser->appointment === Appointment::Coordinator => [Appointment::Secretary, '/usuarios', '/usuarios']
     };
 
-    $user = new User(
-      $data['first_name'],
-      $data['last_name'],
-      Date::from($data['birth_date'], '-'),
-      Gender::from($data['gender']),
-      $role,
-      $data['prefix'] ? ProfessionPrefix::from($data['prefix']) : null,
-      (int) $data['id_card'],
-      $data['password'],
-      $data['phone'] ? new Phone($data['phone']) : null,
-      $data['email'] ? new Email($data['email']) : null,
-      $data['address'],
-      $data['avatar'] ? new Url($data['avatar']) : null
-    );
-
-    $departments = [];
-
-    foreach ($data['departments'] ?? [] as $departmentID) {
-      $departments[] = App::departmentRepository()->getById((int) $departmentID);
-    }
-
-    if ($departments) {
-      $user->assignDepartments(...$departments);
-    }
-
     try {
-      App::userRepository()->save($user);
-      self::setMessage('Usuario registrado exitósamente');
-      App::redirect($urlToRedirect);
+      if ($this->data['password'] !== $this->data['confirm_password']) {
+        throw new Error('La contraseña y su confirmación no coinciden');
+      }
 
-      return;
-    } catch (DuplicatedNamesException) {
-      self::setError("Usuario \"{$user->getFullName()}\" ya existe");
-    } catch (DuplicatedIdCardException) {
-      self::setError("Cédula \"{$user->idCard}\" ya existe");
+      if (!in_array($this->data['gender'], Gender::values())) {
+        throw new Error(sprintf('El género es requerido y válido (%s)', join(', ', Gender::values())));
+      }
+
+      if (!in_array($this->data['instruction_level'], InstructionLevel::values())) {
+        throw new Error(sprintf('El nivel de instrucción es requerido y válido (%s)', join(', ', InstructionLevel::values())));
+      }
+
+      if (
+        $this->loggedUser
+        && $this->loggedUser->appointment === Appointment::Director
+        && !$this->data['departments']
+      ) {
+        throw new Error('Debe asignar al menos 1 departamento');
+      }
+
+      $profileImageUrlPath = self::ensureThatFileIsSaved(
+        'profile_image',
+        'avatars',
+        'La foto de perfil es requerida'
+      );
+
+      $user = new User(
+        $this->data['first_name'],
+        $this->data['second_name'],
+        $this->data['first_last_name'],
+        $this->data['second_last_name'],
+        Date::from($this->data['birth_date'], '-'),
+        Gender::from($this->data['gender']),
+        $appointment,
+        InstructionLevel::from($this->data['instruction_level']),
+        (int) $this->data['id_card'],
+        $this->data['password'],
+        new Phone($this->data['phone']),
+        new Email($this->data['email']),
+        $this->data['address'],
+        $profileImageUrlPath,
+        true,
+        $this->loggedUser
+      );
+
+      $departments = [];
+
+      foreach ($this->data['departments'] ?? [] as $departmentID) {
+        $departments[] = $this->departmentRepository->getById($departmentID);
+      }
+
+      if ($departments) {
+        $user->assignDepartments(...$departments);
+      }
+
+      $this->userRepository->save($user);
+      self::setMessage('Usuario registrado exitósamente');
+
+      exit(App::redirect($urlToRedirect));
+    } catch (InvalidDateException) {
+      self::setError('La fecha de nacimiento es requerida y válida');
     } catch (InvalidPhoneException) {
-      self::setError("Teléfono inválido \"{$data['phone']}\"");
+      self::setError('El teléfono es requerido y válido');
     } catch (InvalidEmailException) {
-      self::setError("Correo inválido \"{$data['email']}\"");
-    } catch (InvalidUrlException) {
-      self::setError("URL inválida \"{$data['avatar']}\"");
+      self::setError('El correo es requerido y válido');
+    } catch (Throwable $error) {
+      self::setError($error);
     }
 
     App::redirect($urlWhenFail);
   }
 
-  static function showPasswordReset(): void {
-    App::render('pages/forgot-pass', [], 'content');
-    App::render('layouts/base', ['title' => 'Recuperar contraseña (1/2)']);
+  function showPasswordReset(): void {
+    App::renderPage('forgot-pass', 'Recuperar contraseña (1/2)');
   }
 
-  static function handlePasswordReset(): void {
-    if (App::request()->data['id_card']) {
-      $user = App::userRepository()->getByIdCard((int) App::request()->data['id_card']);
+  function handlePasswordReset(): void {
+    if ($this->data['id_card']) {
+      $user = $this->userRepository->getByIdCard($this->data['id_card']);
 
       if ($user) {
-        App::render('pages/change-pass', compact('user'), 'content');
-        App::render('layouts/base', ['title' => 'Recuperar contraseña (2/2)']);
-
-        return;
+        exit(App::renderPage(
+          'change-pass',
+          'Recuperar contraseña (2/2)',
+          compact('user')
+        ));
       }
 
-      App::session()->set('error', '❌ Cédula incorrecta');
-      App::redirect('/recuperar');
+      self::setError('Cédula incorrecta');
 
-      return;
+      exit(App::redirect('/recuperar'));
     }
 
-    $user = App::userRepository()->getById(App::request()->data['id'])
-      ->setPassword(App::request()->data['password']);
+    $user = $this->userRepository
+      ->getById($this->data['id'])
+      ->setPassword($this->data['password']);
 
-    App::userRepository()->save($user);
-    App::session()->set('message', '✔ Contraseña actualizada exitósamente');
+    $this->userRepository->save($user);
+    self::setMessage('Contraseña actualizada exitósamente');
     App::redirect('/ingresar');
   }
 
-  static function showProfile(): void {
-    App::renderPage('profile', 'Mi perfil', [], 'main');
+  function showProfile(): void {
+    App::renderPage('profile', 'Mi perfil', [
+      'showPasswordChangeModal' => false
+    ], 'main');
   }
 
-  static function showEditProfile(): void {
+  function showEditProfile(): void {
     App::renderPage('edit-profile', 'Editar perfil', [], 'main');
   }
 
-  static function handleEditProfile(): void {
-    $loggedUser = App::view()->get('user');
-    $data = App::request()->data;
+  function handleEditProfile(): void {
+    try {
+      $profileImageUrlPath = '';
 
-    assert($loggedUser instanceof User);
+      if (App::request()->files['profile_image']['size']) {
+        $profileImageUrlPath = self::ensureThatFileIsSaved(
+          'profile_image',
+          'avatars',
+          'La foto de perfil es requerida'
+        );
+      }
 
-    $loggedUser->firstName = $data['first_name'];
-    $loggedUser->lastName = $data['last_name'];
-    $loggedUser->address = $data['address'];
-    $loggedUser->birthDate = Date::from($data['birth_date'], '-');
-    $loggedUser->gender = Gender::from($data['gender']);
-    $loggedUser->email = $data['email'] ? new Email($data['email']) : null;
-    $loggedUser->phone = $data['phone'] ? new Phone($data['phone']) : null;
+      $this->loggedUser->setIdCard($this->data['id_card']);
+      $this->loggedUser->instructionLevel = InstructionLevel::from($this->data['instruction_level']);
+      $this->loggedUser->setFirstName($this->data['first_name']);
+      $this->data['second_name'] && $this->loggedUser->setSecondName($this->data['second_name']);
+      $this->loggedUser->setFirstLastName($this->data['first_last_name']);
+      $this->data['second_last_name'] && $this->loggedUser->setSecondLastName($this->data['second_last_name']);
+      $this->loggedUser->setAddress($this->data['address']);
+      $this->loggedUser->birthDate = Date::from($this->data['birth_date'], '-');
+      $this->loggedUser->gender = Gender::from($this->data['gender']);
+      $this->loggedUser->email = new Email($this->data['email']);
+      $this->loggedUser->phone = new Phone($this->data['phone']);
 
-    App::userRepository()->save($loggedUser);
-    self::setMessage('Perfil actualizado exitósamente');
+      if ($profileImageUrlPath) {
+        $this->loggedUser->profileImagePath = $profileImageUrlPath;
+      }
+
+      $this->userRepository->save($this->loggedUser);
+      self::setMessage('Perfil actualizado exitósamente');
+    } catch (Throwable $error) {
+      self::setError($error);
+    }
+
     App::redirect('/perfil/editar');
   }
 
-  static function showUsers(): void {
-    $loggedUser = App::view()->get('user');
+  function showUsers(): void {
+    $users = $this->userRepository->getAll($this->loggedUser);
 
-    assert($loggedUser instanceof User);
+    $departments = $this->loggedUser->appointment === Appointment::Director
+      ? $this->departmentRepository->getAll()
+      : [];
 
-    $users = App::userRepository()->getAll($loggedUser);
-    $departments = $loggedUser->role === Role::Director ? App::departmentRepository()->getAll() : [];
-
-    $filteredUsers = array_filter($users, function (User $user) use ($loggedUser): bool {
-      return $user->role->getLevel() <= $loggedUser->role->getLevel();
+    $filteredUsers = array_filter($users, function (User $user): bool {
+      return $user->appointment->isLowerOrEqualThan($this->loggedUser->appointment);
     });
+
+    if ($this->loggedUser->appointment === Appointment::Coordinator) {
+      $filteredUsers = array_filter($filteredUsers, function (User $user): bool {
+        return (
+          $user->appointment->isHigherThan($this->loggedUser->appointment) || (
+            $user->appointment === Appointment::Secretary
+            && $user->registeredBy->isEqualTo($this->loggedUser)
+          )
+        );
+      });
+    }
 
     $usersNumber = count($filteredUsers);
 
     App::renderPage(
       'users',
       "Usuarios ($usersNumber)",
-      ['users' => $filteredUsers, 'departments' => $departments],
+      ['users' => $filteredUsers, ...compact('departments')],
       'main'
     );
   }
 
-  static function handleToggleStatus(string $id): void {
-    $user = App::userRepository()->getById((int) $id);
-    $user->isActive = !$user->isActive;
+  function handleToggleStatus(int $id): void {
+    try {
+      $user = $this->userRepository->getById($id);
 
-    App::userRepository()->save($user);
-    App::redirect('/usuarios');
+      if (!$user->registeredBy->isEqualTo($this->loggedUser)) {
+        throw new Error('Acceso denegado');
+      }
+
+      $user->toggleStatus();
+      $this->userRepository->save($user);
+      self::setMessage("Usuario {$user->firstName} {$user->getActiveStatusText()} exitósamente");
+    } catch (Throwable $error) {
+      self::setError($error);
+    }
+
+    App::redirect($user->appointment === Appointment::Director ? '/salir' : '/usuarios');
   }
 
-  static function handlePasswordChange(): void {
-    $loggedUser = App::view()->get('user');
-    $data = App::request()->data;
-
-    assert($loggedUser instanceof User);
-
+  function handlePasswordChange(): void {
     try {
-      if (!$loggedUser->checkPassword($data['old_password'])) {
+      if (!$this->loggedUser->checkPassword($this->data['old_password'])) {
         throw new Error('La contraseña anterior es incorrecta');
       }
 
-      if ($data['new_password'] !== $data['confirm_password']) {
+      if ($this->data['new_password'] !== $this->data['confirm_password']) {
         throw new Error('La nueva contraseña y su confirmación no coinciden');
       }
 
-      if ($data['new_password'] === $data['old_password']) {
+      if ($this->data['new_password'] === $this->data['old_password']) {
         throw new Error('La nueva contraseña no puede ser igual a la anterior');
       }
 
-      $loggedUser->setPassword($data['new_password']);
-      App::userRepository()->save($loggedUser);
+      $this->loggedUser->setPassword($this->data['new_password']);
+      $this->userRepository->save($this->loggedUser);
       self::setMessage('Contraseña actualizada exitósamente');
-    } catch (Error $error) {
-      self::setError($error->getMessage());
+      $this->session->set('mustChangePassword', false);
+    } catch (Throwable $error) {
+      self::setError($error);
     }
 
     App::redirect('/perfil');

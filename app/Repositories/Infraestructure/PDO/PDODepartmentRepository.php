@@ -7,20 +7,28 @@ use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Exceptions\DuplicatedNamesException;
 use PDO;
 use PDOException;
+use PharIo\Manifest\Url;
 
 class PDODepartmentRepository extends PDORepository implements DepartmentRepository {
-  private const FIELDS = 'id, name, registered, is_active as isActive';
-  private const TABLE = 'departments';
+  private const FIELDS = <<<sql
+    id, name, registered_date as registeredDateTime,
+    belongs_to_external_consultation as belongsToExternalConsultation,
+    icon_file_path as iconFilePath, is_active as isActive
+  sql;
+
+  protected static function getTable(): string {
+    return 'departments';
+  }
 
   function getAll(): array {
     return $this->ensureIsConnected()
-      ->query(sprintf('SELECT %s FROM %s', self::FIELDS, self::TABLE))
+      ->query(sprintf('SELECT %s FROM %s', self::FIELDS, self::getTable()))
       ->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper']);
   }
 
   function getById(int $id): ?Department {
     $stmt = $this->ensureIsConnected()
-      ->prepare(sprintf('SELECT %s FROM %s WHERE id = ?', self::FIELDS, self::TABLE));
+      ->prepare(sprintf('SELECT %s FROM %s WHERE id = ?', self::FIELDS, self::getTable()));
 
     $stmt->execute([$id]);
 
@@ -29,49 +37,60 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
 
   function save(Department $department): void {
     try {
-      if ($department->getId()) {
+      if ($department->id) {
         $this->ensureIsConnected()
-          ->prepare(sprintf('UPDATE %s SET name = ?, is_active = ? WHERE id = ?', self::TABLE))
-          ->execute([$department->name, $department->isActive, $department->getId()]);
+          ->prepare(sprintf('UPDATE %s SET name = ?, is_active = ? WHERE id = ?', self::getTable()))
+          ->execute([$department->name, $department->isActive(), $department->id]);
 
         return;
       }
 
       $query = sprintf(
-        'INSERT INTO %s (name, registered, is_active) VALUES (?, ?, ?)',
-        self::TABLE
+        'INSERT INTO %s (name, registered_date, icon_file_path, belongs_to_external_consultation, is_active)
+        VALUES (?, ?, ?, ?, ?)',
+        self::getTable()
       );
 
       $date = self::getCurrentDatetime();
 
       $this->ensureIsConnected()
         ->prepare($query)
-        ->execute([$department->name, $date, $department->isActive]);
+        ->execute([
+          $department->name,
+          $date,
+          $department->iconFilePath,
+          $department->belongsToExternalConsultation,
+          $department->isActive()
+        ]);
 
       $department
         ->setId($this->connection->instance()->lastInsertId())
-        ->setRegistered(self::parseDateTime($date));
+        ->setRegisteredDate(self::parseDateTime($date));
     } catch (PDOException $exception) {
       if (str_contains($exception, 'UNIQUE constraint failed: departments.name')) {
-        throw new DuplicatedNamesException("Department \"{$department->name}\" already exists");
+        throw new DuplicatedNamesException("Departamento \"{$department->name}\" ya existe");
       }
 
       throw $exception;
     }
   }
 
-  static function mapper(
+  function mapper(
     int $id,
     string $name,
-    string $registered,
+    string $registeredDateTime,
+    bool $belongsToExternalConsultation,
+    string $iconFilePath,
     bool $isActive
   ): Department {
     $department = new Department(
       $name,
+      new Url("{$this->baseUrl}/" . urlencode($iconFilePath)),
+      $belongsToExternalConsultation,
       $isActive
     );
 
-    $department->setId($id)->setRegistered(self::parseDateTime($registered));
+    $department->setId($id)->setRegisteredDate(self::parseDateTime($registeredDateTime));
 
     return $department;
   }

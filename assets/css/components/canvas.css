@@ -1,0 +1,4 @@
+canvas#highlights {
+  height: 300px !important;
+  overflow: hidden
+}

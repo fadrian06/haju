@@ -1,0 +1,58 @@
+.payment_methord h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 30px
+}
+
+.payment_methord .payment_mathord_content {
+  background-color: white;
+  padding: 30px
+}
+
+.payment_methord .payment_mathord_content h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 28px 0 7px
+}
+
+.payment_methord .payment_mathord_content .btn_1 {
+  margin-top: 28px
+}
+
+.payment_methord .nav-tabs {
+  border-bottom: 0 solid transparent
+}
+
+.payment_methord .payment_methord_logo {
+  display: flex;
+  align-items: center
+}
+
+.payment_methord .payment_methord_logo .single_logo_iner {
+  width: 188px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bbc1c9;
+  border-left: 0 solid transparent;
+  -webkit-transition: .5s;
+  transition: .5s
+}
+
+.payment_methord .payment_methord_logo .single_logo_iner:first-child {
+  border-left: 1px solid #bbc1c9;
+  border-radius: 5px 0 0 5px
+}
+
+.payment_methord .payment_methord_logo .single_logo_iner:last-child {
+  border-radius: 0 5px 5px 0
+}
+
+.payment_methord .payment_methord_logo .single_logo_iner img {
+  max-width: 100px
+}
+
+.payment_methord .payment_methord_logo .single_logo_iner.active {
+  border: 1px solid #2e4765 !important
+}

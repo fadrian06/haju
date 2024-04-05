@@ -1,33 +1,48 @@
 <?php
 
-/** @var App\Models\User $user */
+use App\Models\User;
+use App\ValueObjects\Appointment;
 
-use App\Models\Role;
+/**
+ * @var User $user
+ * @var int $usersNumber
+ * @var int $patientsNumber
+ * @var int $departmentsNumber
+ */
 
 ?>
 
-<?php if ($user->role->isHigherThan(Role::Coordinator)) : ?>
-  <section class="single_element">
-    <div class="quick_activity_wrap">
-      <a href="<?= route('/usuarios') ?>" class="single_quick_activity d-flex">
-        <img class="icon" src="<?= asset('img/icons/man.svg') ?>" />
+<section class="single_element">
+  <div class="quick_activity_wrap">
+    <?php if ($user->appointment->isHigherThan(Appointment::Coordinator)) : ?>
+      <a href="./usuarios" class="single_quick_activity d-flex">
+        <img class="icon" src="./assets/img/icons/man.svg" />
         <div class="count_content">
           <h3><?= $usersNumber ?></h3>
           <p>Usuario<?= $usersNumber !== 1 ? 's' : '' ?></p>
         </div>
       </a>
-      <?php if ($user->role === Role::Director) : ?>
-        <a href="<?= route('/departamentos') ?>" class="single_quick_activity d-flex">
-          <img class="icon" src="<?= asset('img/icons/cap.svg') ?>" />
+      <?php if ($user->appointment === Appointment::Director) : ?>
+        <a href="./departamentos" class="single_quick_activity d-flex">
+          <img class="icon" src="./assets/img/icons/cap.svg" />
           <div class="count_content">
             <h3><?= $departmentsNumber ?></h3>
             <p>Departamento<?= $departmentsNumber !== 1 ? 's' : '' ?></p>
           </div>
         </a>
       <?php endif ?>
-    </div>
-  </section>
-<?php endif ?>
+    <?php endif ?>
+    <?php if ($user->appointment->isHigherThan(Appointment::Secretary) && $user->appointment !== Appointment::Director) : ?>
+      <a href="./pacientes" class="single_quick_activity d-flex">
+        <img class="icon" src="./assets/img/icons/wheel.svg" />
+        <div class="count_content">
+          <h3><?= $patientsNumber ?></h3>
+          <p>Paciente<?= $patientsNumber !== 1 ? 's' : '' ?></p>
+        </div>
+      </a>
+    <?php endif ?>
+  </div>
+</section>
 <!-- <div class="col-lg-12 col-xl-12">
   <div class="white_box mb_30 ">
     <div class="box_header border_bottom_1px  ">
@@ -103,7 +118,7 @@ use App\Models\Role;
             <th scope="row">
               <div class="patient_thumb d-flex align-items-center">
                 <div class="student_list_img mr_20">
-                  <img src="<?= asset('img/patient/pataint.png') ?>" />
+                  <img src="./assets/img/patient/pataint.png" />
                 </div>
                 <p>Jhon Kural</p>
               </div>
@@ -131,7 +146,7 @@ use App\Models\Role;
             <th scope="row">
               <div class="patient_thumb d-flex align-items-center">
                 <div class="student_list_img mr_20">
-                  <img src="<?= asset('img/patient/2.png') ?>" />
+                  <img src="./assets/img/patient/2.png" />
                 </div>
                 <p>Jhon Kural</p>
               </div>
@@ -159,7 +174,7 @@ use App\Models\Role;
             <th scope="row">
               <div class="patient_thumb d-flex align-items-center">
                 <div class="student_list_img mr_20">
-                  <img src="<?= asset('img/patient/3.png') ?>" />
+                  <img src="./assets/img/patient/3.png" />
                 </div>
                 <p>Jhon Kural</p>
               </div>
@@ -187,7 +202,7 @@ use App\Models\Role;
             <th scope="row">
               <div class="patient_thumb d-flex align-items-center">
                 <div class="student_list_img mr_20">
-                  <img src="<?= asset('img/patient/4.png') ?>" />
+                  <img src="./assets/img/patient/4.png" />
                 </div>
                 <p>Jhon Kural</p>
               </div>
@@ -215,7 +230,7 @@ use App\Models\Role;
             <th scope="row">
               <div class="patient_thumb d-flex align-items-center">
                 <div class="student_list_img mr_20">
-                  <img src="<?= asset('img/patient/5.png') ?>" />
+                  <img src="./assets/img/patient/5.png" />
                 </div>
                 <p>Jhon Kural</p>
               </div>
@@ -243,7 +258,7 @@ use App\Models\Role;
             <th scope="row">
               <div class="patient_thumb d-flex align-items-center">
                 <div class="student_list_img mr_20">
-                  <img src="<?= asset('img/patient/6.png') ?>" />
+                  <img src="./assets/img/patient/6.png" />
                 </div>
                 <p>Jhon Kural</p>
               </div>
@@ -271,7 +286,7 @@ use App\Models\Role;
             <th scope="row">
               <div class="patient_thumb d-flex align-items-center">
                 <div class="student_list_img mr_20">
-                  <img src="<?= asset('img/patient/6.png') ?>" />
+                  <img src="./assets/img/patient/6.png" />
                 </div>
                 <p>Jhon Kural</p>
               </div>
@@ -349,7 +364,7 @@ use App\Models\Role;
 
       <div class="single_staf">
         <div class="staf_thumb">
-          <img src="<?= asset('img/staf/1.png') ?>" />
+          <img src="./assets/img/staf/1.png" />
         </div>
         <h4>Dr. Sysla J Smith</h4>
         <p>Doctor</p>
@@ -357,7 +372,7 @@ use App\Models\Role;
 
       <div class="single_staf">
         <div class="staf_thumb">
-          <img src="<?= asset('img/staf/2.png') ?>" />
+          <img src="./assets/img/staf/2.png" />
         </div>
         <h4>Dr. Sysla J Smith</h4>
         <p>Doctor</p>
@@ -365,7 +380,7 @@ use App\Models\Role;
 
       <div class="single_staf">
         <div class="staf_thumb">
-          <img src="<?= asset('img/staf/3.png') ?>" />
+          <img src="./assets/img/staf/3.png" />
         </div>
         <h4>Dr. Sysla J Smith</h4>
         <p>Doctor</p>
@@ -373,7 +388,7 @@ use App\Models\Role;
 
       <div class="single_staf">
         <div class="staf_thumb">
-          <img src="<?= asset('img/staf/4.png') ?>" />
+          <img src="./assets/img/staf/4.png" />
         </div>
         <h4>Dr. Sysla J Smith</h4>
         <p>Doctor</p>
@@ -381,7 +396,7 @@ use App\Models\Role;
 
       <div class="single_staf">
         <div class="staf_thumb">
-          <img src="<?= asset('img/staf/5.png') ?>" />
+          <img src="./assets/img/staf/5.png" />
         </div>
         <h4>Dr. Sysla J Smith</h4>
         <p>Doctor</p>
@@ -389,7 +404,7 @@ use App\Models\Role;
 
       <div class="single_staf">
         <div class="staf_thumb">
-          <img src="<?= asset('img/staf/1.png') ?>" />
+          <img src="./assets/img/staf/1.png" />
         </div>
         <h4>Dr. Sysla J Smith</h4>
         <p>Doctor</p>
@@ -397,7 +412,7 @@ use App\Models\Role;
 
       <div class="single_staf">
         <div class="staf_thumb">
-          <img src="<?= asset('img/staf/2.png') ?>" />
+          <img src="./assets/img/staf/2.png" />
         </div>
         <h4>Dr. Sysla J Smith</h4>
         <p>Doctor</p>
@@ -405,7 +420,7 @@ use App\Models\Role;
 
       <div class="single_staf">
         <div class="staf_thumb">
-          <img src="<?= asset('img/staf/3.png') ?>" />
+          <img src="./assets/img/staf/3.png" />
         </div>
         <h4>Dr. Sysla J Smith</h4>
         <p>Doctor</p>

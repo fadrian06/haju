@@ -1,0 +1,16 @@
+.import_topic_wrapper.modal_btn {
+  display: grid !important;
+  grid-gap: 10px;
+  grid-template-columns: 3fr 9fr;
+  align-items: end
+}
+
+.import_topic_wrapper.modal_btn .btn_1 {
+  margin: 0 !important
+}
+
+@media(max-width:575.98px) {
+  .import_topic_wrapper.modal_btn {
+    grid-template-columns: repeat(1, 1fr)
+  }
+}

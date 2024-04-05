@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\ValueObjects\Appointment;
 
 /**
  * @var User $user
@@ -12,47 +13,39 @@ use App\Models\User;
 
 <section class="mb-4 d-flex px-0 align-items-center justify-content-between">
   <h2 class="m-0">Mi perfil</h2>
-  <a href="<?= route('/perfil/editar') ?>" class="btn btn-primary rounded-pill d-flex align-items-center">
+  <a
+    href="./perfil/editar"
+    class="btn btn-primary rounded-pill d-flex align-items-center">
     <i class="px-2 ti-plus"></i>
     <span class="px-2">Editar perfil</span>
   </a>
 </section>
 <article class="white_box px-0 pb-0 row align-items-center">
-  <picture class="col-md-3 d-flex align-items-center justify-content-center mb-2 mb-md-0">
-    <img style="max-height: 150px" class="img-fluid rounded-circle" src="<?= $user->avatar?->asString() ?? asset('img/client_img.png') ?>" />
+  <picture class="col-md-2 d-flex align-items-center justify-content-center mb-2 mb-md-0">
+    <img style="max-height: 150px" class="img-fluid rounded-circle" src="<?= urldecode($user->profileImagePath->asString()) ?>" />
   </picture>
   <div class="profile-info col-md align-items-center">
     <header class="profile-info__main py-2 py-md-0 my-2 my-md-0 d-flex flex-column">
       <h4 class="h3"><?= $user->getFullName() ?></h4>
-      <small class="text-muted"><?= $user->getParsedRole() ?></small>
-      <strong>ID: DR-<?= str_pad($user->getId(), 4, '0', STR_PAD_LEFT) ?></strong>
-      <small class="text-muted">Registrado: <?= $user->getRegisteredDate() ?></small>
+      <small class="text-muted"><?= $user->getParsedAppointment() ?></small>
+      <strong>Cédula: V-<?= $user->idCard ?></strong>
+      <small class="text-muted">Registrado el: <?= $user->registeredDate ?></small>
     </header>
   </div>
   <ul class="profile-info__secondary col-md-6">
     <li>
       <strong>Teléfono:</strong>
-      <?php if ($user->phone) : ?>
-        <a href="tel:+<?= $user->phone?->toValidPhoneLink() ?>"><?= $user->phone ?></a>
-      <?php else : ?>
-        <mark class="text-danger">No registrado</mark>
-      <?php endif ?>
+      <a href="tel:+<?= $user->phone->toValidPhoneLink() ?>"><?= $user->phone ?></a>
     </li>
     <li>
       <strong>Correo:</strong>
-      <?php if ($user->email) : ?>
-        <a href="mailto:<?= $user->email?->asString() ?>"><?= $user->email?->asString() ?></a>
-      <?php else : ?>
-        <mark class="text-danger">No registrado</mark>
-      <?php endif ?>
+      <a href="mailto:<?= $user->email->asString() ?>">
+        <?= $user->email->asString() ?>
+      </a>
     </li>
     <li>
       <strong>Dirección:</strong>
-      <?php if ($user->address) : ?>
-        <span><?= $user->address ?></span>
-      <?php else : ?>
-        <mark class="text-danger">No registrado</mark>
-      <?php endif ?>
+      <span><?= $user->address ?></span>
     </li>
     <li>
       <strong>Género:</strong>
@@ -113,25 +106,56 @@ use App\Models\User;
     </div>
   </article> -->
   <section class="tab-pane fade show active row px-2" id="seguridad">
-    <form method="post" action="<?= route('/perfil') ?>#seguridad" class="col-md-6 white_box">
+    <form method="post" action="./perfil#seguridad" class="col-md white_box">
       <h3 class="mb-4">Cambiar contraseña</h3>
-      <?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
-      <?php $error && render('components/notification', ['type' => 'error', 'text' => $error]) ?>
-      <div class="form-floating mb-3">
-        <input type="password" name="old_password" id="old_password" required placeholder="Contraseña anterior" class="form-control" />
-        <label for="old_password">Contraseña anterior</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="password" name="new_password" id="new_password" required placeholder="Nueva contraseña" class="form-control" />
-        <label for="new_password">Nueva contraseña</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="password" name="confirm_password" id="confirm_password" required placeholder="Confirmar contraseña" class="form-control" />
-        <label for="confirm_password">Confirmar contraseña</label>
-      </div>
+      <?php
+        $message && render('components/notification', ['type' => 'message', 'text' => $message]);
+        $error && render('components/notification', ['type' => 'error', 'text' => $error]);
+
+        render('components/input-group', [
+          'variant' => 'input',
+          'type' => 'password',
+          'name' => 'old_password',
+          'placeholder' => 'Contraseña anterior',
+          'cols' => 12
+        ]);
+
+        render('components/input-group', [
+          'type' => 'password',
+          'name' => 'new_password',
+          'placeholder' => 'Nueva contraseña',
+          'cols' => 12
+        ]);
+
+        render('components/input-group', [
+          'type' => 'password',
+          'name' => 'confirm_password',
+          'placeholder' => 'Confirmar contraseña',
+          'cols' => 12
+        ]);
+      ?>
       <div class="text-center">
         <button class="btn btn-primary rounded-pill">Actualizar</button>
       </div>
     </form>
+
+    <form class="col-md"></form>
+    <?php if ($user->appointment === Appointment::Director): ?>
+      <div class="col-md-12 text-end">
+        <button
+          class="mt-4 btn btn-danger rounded-pill"
+          data-bs-toggle="modal"
+          data-bs-target="#disactivate-director-modal">
+          <i class="ti-lock me-2"></i> Inhabilitar cuenta
+        </button>
+      </div>
+    <?php endif ?>
   </section>
 </section>
+
+<?php render('components/confirmation', [
+  'show' => false,
+  'id' => 'disactivate-director-modal',
+  'action' => "./usuarios/{$user->id}/desactivar",
+  'title' => '¿Estás seguro que deseas inhabilitar tu cuenta?',
+]) ?>

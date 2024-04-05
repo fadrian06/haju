@@ -1,0 +1,21 @@
+.view_archive_btn {
+  border: 1px solid #e4e8ec;
+  color: #7e7172;
+  padding: 16px 30px;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  line-height: 16px;
+  background-color: white;
+  transition: .5s;
+  box-sizing: border-box;
+}
+
+.view_archive_btn i {
+  margin-right: 15px
+}
+
+.view_archive_btn:hover {
+  color: #2e4765;
+  border: 1px solid #2e4765
+}

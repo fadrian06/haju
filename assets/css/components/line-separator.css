@@ -1,0 +1,7 @@
+.common_line_separator {
+  display: inline-block;
+  width: 2px;
+  height: 11px;
+  background: #b9b3b3;
+  margin: 0 7px
+}

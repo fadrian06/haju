@@ -3,19 +3,25 @@
 namespace App\Middlewares;
 
 use App;
-use App\Models\Role;
 use App\Models\User;
+use App\ValueObjects\Appointment;
 
 class EnsureOnlyAcceptOneDirector {
   static function before(): void {
     $users = App::userRepository()->getAll();
 
     $directors = array_filter($users, function (User $user): bool {
-      return $user->role === Role::Director;
+      return $user->appointment === Appointment::Director;
     });
 
-    if ($directors !== []) {
-      exit(App::redirect('/ingresar'));
+    $activeDirectors = array_filter($directors, function (User $director): bool {
+      return $director->isActive();
+    });
+
+    if (!$directors || !$activeDirectors) {
+      return;
     }
+
+    exit(App::redirect('/ingresar'));
   }
 }

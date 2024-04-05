@@ -3,18 +3,27 @@
 namespace App\Middlewares;
 
 use App;
-use App\Models\Role;
 use App\Models\User;
+use App\ValueObjects\Appointment;
 
-class AuthorizationMiddleware {
-  function __construct(private readonly Role $permitted) {
+final class AuthorizationMiddleware {
+  private readonly ?Appointment $blocked;
+
+  function __construct(
+    private readonly Appointment $permitted,
+    ?Appointment $blocked = null
+  ) {
+    $this->blocked = $blocked;
   }
 
   function before(): void {
     /** @var ?User */
     $user = App::view()->get('user');
 
-    if (!$user?->role->isHigherThan($this->permitted)) {
+    if (
+      !$user?->appointment->isHigherThan($this->permitted)
+      || ($this->blocked && $user->appointment === $this->blocked)
+    ) {
       exit(App::redirect('/'));
     }
   }

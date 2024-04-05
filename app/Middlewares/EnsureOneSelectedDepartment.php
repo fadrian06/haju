@@ -7,12 +7,17 @@ use App;
 class EnsureOneSelectedDepartment {
   static function before(): void {
     $departmentId = App::session()->get('departmentId');
+    $departments = [];
 
-    if ($departmentId) {
-      $department = App::departmentRepository()->getById((int) $departmentId);
+    foreach (App::view()->get('user')->getDepartment() as $department) {
+      $departments[] = $department;
     }
 
-    App::view()->set('canChangeDepartment', (bool) App::session()->get('canChangeDepartment'));
+    if ($departmentId) {
+      $department = App::departmentRepository()->getById($departmentId);
+    }
+
+    App::view()->set('canChangeDepartment', count($departments) !== 1);
     App::view()->set('department', $department);
   }
 }

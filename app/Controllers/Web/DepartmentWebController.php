@@ -4,41 +4,77 @@ namespace App\Controllers\Web;
 
 use App;
 use App\Models\Department;
-use App\Repositories\Exceptions\DuplicatedNamesException;
+use App\Repositories\Domain\DepartmentRepository;
+use Throwable;
 
-class DepartmentWebController {
-  static function showDepartments(): void {
-    $departments = App::departmentRepository()->getAll();
+final class DepartmentWebController extends Controller {
+  private readonly DepartmentRepository $repository;
+
+  function __construct() {
+    parent::__construct();
+
+    $this->repository = App::departmentRepository();
+  }
+
+  function showDepartments(): void {
+    $departments = $this->repository->getAll();
     $departmentsNumber = count($departments);
 
-    App::renderPage('departments', "Departamentos ($departmentsNumber)", compact('departments'), 'main');
+    App::renderPage(
+      'departments',
+      "Departamentos ($departmentsNumber)",
+      compact('departments'),
+      'main'
+    );
   }
 
-  static function handleRegister(): void {
-    $data = App::request()->data;
-    $department = new Department($data['name'], $data['is_active'] ?? false);
+  function handleRegister(): void {
+    try {
+      $iconUrlPath = self::ensureThatFileIsSaved(
+        'department_icon',
+        'departments',
+        'El icono del departamento es requerido'
+      );
 
-    App::departmentRepository()->save($department);
-    self::showDepartments();
-  }
+      $department = new Department(
+        $this->data['name'],
+        $iconUrlPath,
+        $this->data['belongs_to_external_consultation'] ?? false,
+        $this->data['is_active'] ?? false
+      );
 
-  static function handleToggleStatus(string $id): void {
-    $department = App::departmentRepository()->getById((int) $id);
-    $department->isActive = !$department->isActive;
+      $this->repository->save($department);
+      self::setMessage('Departamento registrado exitósamente');
+    } catch (Throwable $error) {
+      self::setError($error);
+    }
 
-    App::departmentRepository()->save($department);
     App::redirect('/departamentos');
   }
 
-  static function handleDepartmentEdition(string $id): void {
-    $departament = App::departmentRepository()->getById((int) $id);
-    $departament->name = App::request()->data['name'];
+  function handleToggleStatus(int $id): void {
+    $selectedDepartment = App::view()->get('department');
+    $department = $this->repository->getById($id);
+    $department->toggleStatus();
 
+    $redirectUrl = $department->isInactive() && $department->isEqualTo($selectedDepartment)
+      ? '/departamento/seleccionar'
+      : '/departamentos';
+
+    $this->repository->save($department);
+    self::setMessage("Departamento de {$department->name} {$department->getActiveStatusText()} exitósamente");
+    App::redirect($redirectUrl);
+  }
+
+  function handleDepartmentEdition(int $id): void {
     try {
-      App::departmentRepository()->save($departament);
-      App::session()->set('message', '✔ Departamento actualizado exitósamente');
-    } catch (DuplicatedNamesException) {
-      App::session()->set('error', "❌ Departamento \"{$departament->name}\" ya existe");
+      $departament = $this->repository->getById($id);
+      $departament->setName($this->data['name']);
+
+      $this->repository->save($departament);
+      self::setMessage('Departamento actualizado exitósamente');
+    } catch (Throwable $error) {
+      self::setError($error);
     }
 
     App::redirect('/departamentos');
