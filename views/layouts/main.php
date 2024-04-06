@@ -66,7 +66,7 @@ $showPasswordChangeModal ??= $mustChangePassword;
     'show' => true,
     'id' => 'change-password-confirmation',
     'action' => './perfil#seguridad',
-    'title' => 'Debe cambiar inmediatamente la contraseña',
+    'title' => 'Debe cambiar la contraseña por seguridad',
     'confirmText' => 'Cambiarla',
     'denyText' => false
   ]); ?>

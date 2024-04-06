@@ -1015,16 +1015,16 @@
     },
     {
       "name": "phpunit/phpunit",
-      "version": "11.0.9",
+      "version": "11.1.1",
       "source": {
         "type": "git",
         "url": "https://github.com/sebastianbergmann/phpunit.git",
-        "reference": "591bbfe416400385527d5086b346b92c06de404b"
+        "reference": "816cb6070af901c0548aa5f18f2132fd8a6e4ade"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/591bbfe416400385527d5086b346b92c06de404b",
-        "reference": "591bbfe416400385527d5086b346b92c06de404b",
+        "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/816cb6070af901c0548aa5f18f2132fd8a6e4ade",
+        "reference": "816cb6070af901c0548aa5f18f2132fd8a6e4ade",
         "shasum": ""
       },
       "require": {
@@ -1063,7 +1063,7 @@
       "type": "library",
       "extra": {
         "branch-alias": {
-          "dev-main": "11.0-dev"
+          "dev-main": "11.1-dev"
         }
       },
       "autoload": {
@@ -1095,7 +1095,7 @@
       "support": {
         "issues": "https://github.com/sebastianbergmann/phpunit/issues",
         "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-        "source": "https://github.com/sebastianbergmann/phpunit/tree/11.0.9"
+        "source": "https://github.com/sebastianbergmann/phpunit/tree/11.1.1"
       },
       "funding": [
         {
@@ -1111,7 +1111,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2024-03-28T10:09:42+00:00"
+      "time": "2024-04-06T06:20:21+00:00"
     },
     {
       "name": "sebastian/cli-parser",
@@ -2118,16 +2118,16 @@
     },
     {
       "name": "symfony/var-dumper",
-      "version": "v7.0.4",
+      "version": "v7.0.6",
       "source": {
         "type": "git",
         "url": "https://github.com/symfony/var-dumper.git",
-        "reference": "e03ad7c1535e623edbb94c22cc42353e488c6670"
+        "reference": "66d13dc207d5dab6b4f4c2b5460efe1bea29dbfb"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/symfony/var-dumper/zipball/e03ad7c1535e623edbb94c22cc42353e488c6670",
-        "reference": "e03ad7c1535e623edbb94c22cc42353e488c6670",
+        "url": "https://api.github.com/repos/symfony/var-dumper/zipball/66d13dc207d5dab6b4f4c2b5460efe1bea29dbfb",
+        "reference": "66d13dc207d5dab6b4f4c2b5460efe1bea29dbfb",
         "shasum": ""
       },
       "require": {
@@ -2181,7 +2181,7 @@
         "dump"
       ],
       "support": {
-        "source": "https://github.com/symfony/var-dumper/tree/v7.0.4"
+        "source": "https://github.com/symfony/var-dumper/tree/v7.0.6"
       },
       "funding": [
         {
@@ -2197,7 +2197,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2024-02-15T11:33:06+00:00"
+      "time": "2024-03-19T11:57:22+00:00"
     },
     {
       "name": "theseer/tokenizer",

@@ -42,8 +42,8 @@ if (isset($user)) {
 </head>
 
 <body class="pb-4">
-  <header class="d-flex header_iner align-items-center py-0">
-    <img src="./assets/img/logo.png" height="45" />
+  <header class="d-flex header_iner align-items-center py-0" style="height: 60px">
+    <img src="./assets/img/logo.png" height="50" data-bs-toggle="tooltip" title='Hospital "José Antonio Uzcátegui"' />
     <nav class="header_right">
       <ul class="header_notification_warp d-flex align-items-center mx-0">
         <?php if (isActive('/departamento/seleccionar')): ?>
@@ -51,9 +51,6 @@ if (isset($user)) {
             <a href="./salir">Cerrar sesión</a>
           </li>
         <?php endif ?>
-        <li>
-          <img class="rounded-circle" src="<?= $user?->profileImagePath->asString() ?? './assets/img/client_img.png' ?>" height="69" />
-        </li>
       </ul>
     </nav>
   </header>
@@ -64,6 +61,11 @@ if (isset($user)) {
   </main>
   <?php render('components/footer') ?>
   <script src="./assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script>
+    for (const tooltipTriggerEl of document.querySelectorAll('[data-bs-toggle="tooltip"]')) {
+      new bootstrap.Tooltip(tooltipTriggerEl)
+    }
+  </script>
 </body>
 
 </html>

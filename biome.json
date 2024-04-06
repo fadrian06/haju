@@ -7,7 +7,7 @@
     "maxSize": 1048576
   },
   "javascript": {
-    "globals": ["$"],
+    "globals": ["$", "bootstrap"],
     "parser": {
       "unsafeParameterDecoratorsEnabled": false
     },
