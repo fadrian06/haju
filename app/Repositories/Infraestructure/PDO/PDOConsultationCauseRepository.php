@@ -3,6 +3,7 @@
 namespace App\Repositories\Infraestructure\PDO;
 
 use App\Models\ConsultationCause;
+use App\Models\ConsultationCauseCategory;
 use App\Repositories\Domain\ConsultationCauseRepository;
 use Generator;
 use PDO;
@@ -30,6 +31,18 @@ extends PDORepository implements ConsultationCauseRepository {
     return $this->ensureIsConnected()
       ->query(sprintf('SELECT %s FROM %s', self::FIELDS, self::getTable()))
       ->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper']);
+  }
+
+  function getByCategory(ConsultationCauseCategory $category): array {
+    $stmt = $this->ensureIsConnected()->prepare(sprintf(
+      'SELECT %s FROM %s WHERE category_id = ?',
+      self::FIELDS,
+      self::getTable()
+    ));
+
+    $stmt->execute([$category->id]);
+
+    return $stmt->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper']);
   }
 
   function getAllWithGenerator(): Generator {

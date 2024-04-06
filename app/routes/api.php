@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\ConsultationCause;
 use App\Models\ConsultationCauseCategory;
 use MegaCreativo\API\CedulaVE;
 
@@ -19,10 +20,41 @@ App::group('/api', function (): void {
     }
   };
 
+  $causeMapper = new class {
+    public ?object $categoryMapper = null;
+
+    function __invoke(ConsultationCause $cause): array {
+      $result = [
+        'id' => $cause->id,
+        'name' => [
+          'short' => $cause->getFullName(),
+          'extended' => $cause->getFullName(abbreviated: false)
+        ],
+        'code' => $cause->code
+      ];
+
+      if ($this->categoryMapper) {
+        $result['category'] = ($this->categoryMapper)($cause->category);
+      }
+
+      return $result;
+    }
+  };
+
   App::route('/causas-consulta/categorias', function () use ($categoryMapper): void {
     $categories = App::consultationCauseCategoryRepository()->getAll();
 
     App::json(array_map([$categoryMapper, '__invoke'], $categories));
+  });
+
+  App::route('/causas-consulta/categorias/@id', function (int $id) use ($categoryMapper, $causeMapper): void {
+    $category = App::consultationCauseCategoryRepository()->getById($id);
+    $causes = App::consultationCauseRepository()->getByCategory($category);
+
+    App::json([
+      ...$categoryMapper($category),
+      'consultation causes' => array_map([$causeMapper, '__invoke'], $causes)
+    ]);
   });
 
   App::route('/causas-consulta', function () use ($categoryMapper): void {
