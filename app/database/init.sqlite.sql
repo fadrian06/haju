@@ -66,12 +66,13 @@ CREATE TABLE users (
 DROP TABLE IF EXISTS consultation_causes;
 CREATE TABLE consultation_causes (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name VARCHAR(255) NOT NULL,
+  short_name VARCHAR(255) NOT NULL,
   variant VARCHAR(255),
+  extended_name VARCHAR(255) UNIQUE,
   code VARCHAR(255),
   category_id INTEGER NOT NULL,
 
-  UNIQUE (name, variant),
+  UNIQUE (short_name, variant),
   FOREIGN KEY (category_id) REFERENCES consultation_cause_categories (id)
 );
 
@@ -113,9 +114,11 @@ CREATE TABLE consultations (
   registered_date DATETIME DEFAULT CURRENT_TIMESTAMP,
   patient_id INTEGER NOT NULL,
   cause_id INTEGER NOT NULL,
+  department_id INTEGER NOT NULL,
 
   FOREIGN KEY (patient_id) REFERENCES patients (id),
-  FOREIGN KEY (cause_id) REFERENCES consultation_causes (id)
+  FOREIGN KEY (cause_id) REFERENCES consultation_causes (id),
+  FOREIGN KEY (department_id) REFERENCES departments (id)
 );
 
 /*=============================================
@@ -185,7 +188,7 @@ INSERT INTO consultation_cause_categories (id, short_name, extended_name, top_ca
 (27, 'Violencia familiar', null, null),
 (28, 'Otras causas de consulta', null, null);
 
-INSERT INTO consultation_causes (name, variant, code, category_id) VALUES
+INSERT INTO consultation_causes (short_name, variant, code, category_id) VALUES
 ('Cólera', null, 'A00', 2),
 ('Amibiasis', null, 'A06', 2),
 ('Diarreas', '< 1 año', 'A08-A09', 2),

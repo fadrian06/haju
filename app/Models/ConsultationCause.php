@@ -6,26 +6,33 @@ use App\Models\Contracts\Model;
 use App\ValueObjects\LongName;
 
 /**
- * @property-read string $name
+ * @property-read string $shortName
+ * @property-read ?string $extendedName
  * @property-read ?string $variant
  * @property-read ?string $code
  */
 final class ConsultationCause extends Model {
-  private LongName $name;
+  private LongName $shortName;
+  private ?LongName $extendedName;
   private ?string $variant;
   private ?string $code;
 
   function __construct(
     public readonly ConsultationCauseCategory $category,
-    string $name,
+    string $shortName,
+    ?string $extendedName,
     ?string $variant = null,
     ?string $code = null,
   ) {
-    $this->setName($name)->setVariant($variant)->setCode($code);
+    $this->setName($shortName, $extendedName)->setVariant($variant)->setCode($code);
   }
 
-  function getFullName(): string {
-    $fullName = $this->name;
+  function getFullName(bool $abbreviated = true): string {
+    $fullName = $this->shortName;
+
+    if (!$abbreviated && $this->extendedName) {
+      $fullName = $this->extendedName;
+    }
 
     if ($this->variant) {
       $fullName .= " {$this->variant}";
@@ -34,8 +41,11 @@ final class ConsultationCause extends Model {
     return $fullName;
   }
 
-  function setName(string $name): self {
-    $this->name = new LongName($name, 'Nombre');
+  function setName(string $shortName, ?string $extendedName = null): self {
+    $this->shortName = new LongName($shortName, 'Nombre corto');
+    $this->extendedName = $extendedName
+      ? new LongName($extendedName, 'Nombre extendido')
+      : null;
 
     return $this;
   }
@@ -54,8 +64,8 @@ final class ConsultationCause extends Model {
 
   function __get(string $property): null|int|string {
     return match ($property) {
-      'name' => $this->name,
-      'variant' => $this->variant,
+      'shortName' => $this->shortName,
+      'extendedName' => $this->extendedName,
       'code' => $this->code,
       default => parent::__get($property)
     };

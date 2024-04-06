@@ -10,7 +10,8 @@ use PDO;
 final class PDOConsultationCauseRepository
 extends PDORepository implements ConsultationCauseRepository {
   private const FIELDS = <<<sql
-  id, name, variant, code, category_id as categoryId
+  id, short_name as shortName, extended_name as extendedName, variant, code,
+  category_id as categoryId
   sql;
 
   function __construct(
@@ -54,14 +55,16 @@ extends PDORepository implements ConsultationCauseRepository {
 
   private function mapper(
     int $id,
-    string $name,
+    string $shortName,
+    ?string $extendedName,
     ?string $variant,
     ?string $code,
     int $categoryId
   ): ConsultationCause {
     $cause = new ConsultationCause(
       $this->categoryRepository->getById($categoryId),
-      $name,
+      $shortName,
+      $extendedName,
       $variant,
       $code
     );

@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\ConsultationCause;
 use App\Models\ConsultationCauseCategory;
 use MegaCreativo\API\CedulaVE;
 
@@ -34,13 +33,30 @@ App::group('/api', function (): void {
     foreach ($causes as $cause) {
       $json[] = [
         'id' => $cause->id,
-        'name' => $cause->getFullName(),
+        'name' => [
+          'short' => $cause->getFullName(),
+          'extended' => $cause->getFullName(abbreviated: false)
+        ],
         'code' => $cause->code,
         'category' => $categoryMapper($cause->category)
       ];
     }
 
     App::json($json);
+  });
+
+  App::route('/causas-consulta/@id', function (int $id) use ($categoryMapper): void {
+    $cause = App::consultationCauseRepository()->getById($id);
+
+    App::json([
+      'id' => $cause->id,
+      'name' => [
+        'short' => $cause->getFullName(),
+        'extended' => $cause->getFullName(abbreviated: false)
+      ],
+      'code' => $cause->code,
+      'category' => $categoryMapper($cause->category)
+    ]);
   });
 
   App::route('/cedulacion/@idCard', function (int $idCard): void {
