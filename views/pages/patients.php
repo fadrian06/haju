@@ -2,6 +2,7 @@
 
 use App\Models\Patient;
 use App\Models\User;
+use App\ValueObjects\Appointment;
 use App\ValueObjects\Gender;
 
 /**
@@ -17,14 +18,16 @@ $loggedUser = $user;
 
 <section class="mb-4 d-inline-flex px-0 align-items-center justify-content-between">
   <h2>Pacientes</h2>
-  <a data-bs-toggle="modal" href="#registrar" class="btn btn-primary rounded-pill d-flex align-items-center">
-    <i class="px-2 ti-plus"></i>
-    <span class="px-2">Registrar paciente</span>
-  </a>
+  <?php if ($loggedUser->appointment->isLowerOrEqualThan(Appointment::Coordinator)) : ?>
+    <a data-bs-toggle="modal" href="#registrar" class="btn btn-primary rounded-pill d-flex align-items-center">
+      <i class="px-2 ti-plus"></i>
+      <span class="px-2">Registrar paciente</span>
+    </a>
+  <?php endif ?>
 </section>
 
 <?php $error && render('components/notification', ['type' => 'error', 'text' => $error]) ?>
-    <?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
+<?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
 
 <?php if ($patients !== null) : ?>
   <section class="white_box QA_section">
@@ -40,12 +43,12 @@ $loggedUser = $user;
       <table class="table text-center">
         <thead>
           <tr>
+            <th></th>
             <th>Nombre completo</th>
             <th>Cédula</th>
             <th>Fecha de nacimiento</th>
             <th>Género</th>
             <th>Registrado por</th>
-            <th></th>
             <th></th>
           </tr>
         </thead>
@@ -54,6 +57,11 @@ $loggedUser = $user;
             <?php $canEdit = $patient->registeredBy->registeredBy->isEqualTo($loggedUser) ?>
             <tr>
               <form method="post" action="./pacientes/<?= $patient->id ?>">
+                <td class="p-2">
+                  <a class="btn btn-secondary btn-sm text-white" href="./pacientes/<?= $patient->id ?>">
+                    Detalles
+                  </a>
+                </td>
                 <td class="p-1">
                   <input <?= $canEdit ? '' : 'readonly' ?> placeholder="Nombre del paciente" class="form-control" required name="full_name" value="<?= $patient->getFullName() ?>" />
                 </td>
@@ -73,11 +81,6 @@ $loggedUser = $user;
                   <?php if ($canEdit) : ?>
                     <button class="btn btn-sm btn-primary text-white">Actualizar</button>
                   <?php endif ?>
-                </td>
-                <td class="p-2">
-                  <a class="btn btn-secondary btn-sm text-white" href="./pacientes/<?= $patient->id ?>">
-                    Detalles
-                  </a>
                 </td>
               </form>
             </tr>

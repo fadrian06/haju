@@ -45,12 +45,13 @@ App::group('', function (): void {
     App::route('/notificaciones', function (): void {
     });
 
+    App::route('GET /pacientes', [PatientWebController::class, 'showPatients']);
+    App::route('GET /pacientes/@id', [PatientWebController::class, 'showPatient']);
+
     App::group('', function (): void {
-      App::route('GET /pacientes', [PatientWebController::class, 'showPatients']);
       App::route('POST /pacientes', [PatientWebController::class, 'handleRegister']);
       App::route('POST /pacientes/@id', [PatientWebController::class, 'handleEdition']);
-      App::route('GET /pacientes/@id', [PatientWebController::class, 'showPatient']);
-    }, [new AuthorizationMiddleware(Appointment::Secretary, Appointment::Director)]);
+    }, [new AuthorizationMiddleware(Appointment::Coordinator, Appointment::Director)]);
 
     App::group('', function (): void {
       App::route('GET /usuarios', [UserWebController::class, 'showUsers']);

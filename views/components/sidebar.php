@@ -26,7 +26,7 @@ use App\ValueObjects\Appointment;
         <span>Inicio</span>
       </a>
     </li>
-    <?php if ($user->appointment->isHigherThan(Appointment::Secretary) && $user->appointment !== Appointment::Director) : ?>
+    <?php if ($user->appointment->isHigherThan(Appointment::Secretary)) : ?>
       <li class="<?= isActive('/pacientes') ? 'mm-active' : '' ?>">
         <a href="#" class="has-arrow">
           <img src="./assets/img/icons/patient.svg" />

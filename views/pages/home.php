@@ -32,7 +32,7 @@ use App\ValueObjects\Appointment;
         </a>
       <?php endif ?>
     <?php endif ?>
-    <?php if ($user->appointment->isHigherThan(Appointment::Secretary) && $user->appointment !== Appointment::Director) : ?>
+    <?php if ($user->appointment->isHigherThan(Appointment::Secretary)) : ?>
       <a href="./pacientes" class="single_quick_activity d-flex">
         <img class="icon" src="./assets/img/icons/wheel.svg" />
         <div class="count_content">

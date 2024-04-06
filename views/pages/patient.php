@@ -81,12 +81,13 @@ use App\Models\User;
   <ul class="nav nav-tabs row mx-0 px-0 mt-4">
     <li class="nav-item col px-0">
       <div class="row mx-0">
-        <!-- <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#about-cont">
-          Acerca de
-        </button> -->
         <button class="nav-link col-sm px-0 active" data-bs-toggle="tab" data-bs-target="#visitas">
           Visitas médicas
         </button>
+        <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#visitas">
+          Consultas externas
+        </button>
+
       </div>
     </li>
   </ul>
