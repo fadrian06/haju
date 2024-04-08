@@ -8,6 +8,8 @@ use PharIo\Manifest\Url;
  * @var string $title
  * @var string $content
  * @var ?User $user
+ * @var ?string $error
+ * @var ?string $message
  */
 
 if (isset($user)) {
@@ -38,6 +40,7 @@ if (isset($user)) {
   <link rel="stylesheet" href="./assets/css/components/main.css" />
   <link rel="stylesheet" href="./assets/css/components/modal.css" />
   <link rel="stylesheet" href="./assets/css/components/box.css" />
+  <link rel="stylesheet" href="./assets/vendors/sweetalert2/default.min.css" />
   <link rel="stylesheet" href="./assets/css/custom.css" />
 </head>
 
@@ -61,10 +64,30 @@ if (isset($user)) {
   </main>
   <?php render('components/footer') ?>
   <script src="./assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="./assets/vendors/sweetalert2/sweetalert2.min.js"></script>
   <script>
     for (const tooltipTriggerEl of document.querySelectorAll('[data-bs-toggle="tooltip"]')) {
       new bootstrap.Tooltip(tooltipTriggerEl)
     }
+
+    const swal = Swal.mixin({
+      // toast: true,
+      // position: 'top-right',
+      showCloseButton: true,
+      showConfirmButton: false
+    })
+
+    <?php if ($error): ?>
+      swal.fire({
+        title: '<?= $error ?>',
+        icon: 'error'
+      })
+    <?php elseif ($message): ?>
+      swal.fire({
+        title: '<?= $message ?>',
+        icon: 'success'
+      })
+    <?php endif ?>
   </script>
 </body>
 

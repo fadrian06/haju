@@ -12,4 +12,8 @@ final class Consultation extends Model {
     public readonly Department $department
   ) {
   }
+
+  function isFirstTime(): bool {
+    return $this->type === ConsultationType::FirstTime;
+  }
 }

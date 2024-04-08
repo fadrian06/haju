@@ -6,8 +6,6 @@ use App\Models\User;
 /**
  * @var User $user
  * @var Patient $patient
- * @var ?string $error
- * @var ?string $message
  */
 
 ?>
@@ -78,16 +76,24 @@ use App\Models\User;
       <span><?= $patient->birthDate ?></span>
     </li>
   </ul>
-  <ul class="nav nav-tabs row mx-0 px-0 mt-4">
+  <h3 class="mt-4 mb-0 py-3 text-center active border">
+    <strong>Historial médico</strong>
+  </h3>
+  <ul class="nav nav-tabs row mx-0 px-0">
     <li class="nav-item col px-0">
       <div class="row mx-0">
         <button class="nav-link col-sm px-0 active" data-bs-toggle="tab" data-bs-target="#visitas">
           Visitas médicas
         </button>
-        <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#visitas">
+        <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#">
           Consultas externas
         </button>
-
+        <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#">
+          Antecedentes médicos
+        </button>
+        <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#">
+          Tratamientos
+        </button>
       </div>
     </li>
   </ul>
@@ -99,12 +105,12 @@ use App\Models\User;
         <div class="white_box">
           <h3>Visitas médicas</h3>
           <ul class="timeline mt-4">
-            <?php foreach (range(1, 3) as $_) : ?>
+            <?php foreach ($patient->getConsultation() as $consultation) : ?>
               <li class="timeline-item">
-                <a href="#" target="_blank">
-                  <strong class="text-secondary">International College of Medical Science (UG)</strong>
-                  <span class="text-black-50 fw-semibold">MBBS</span>
-                  <time class="small text-black-50">2001 - 2003</time>
+                <a target="_blank" data-bs-toggle="tooltip" title="<?= $consultation->cause->category->extendedName ?? $consultation->cause->category->shortName ?>">
+                  <strong class="text-secondary"><?= $consultation->cause->getFullName() ?></strong>
+                  <span class="text-black-50 fw-semibold"><?= $consultation->type->getDescription() ?></span>
+                  <time class="small text-black-50"><?= $consultation->registeredDate ?></time>
                 </a>
               </li>
             <?php endforeach ?>
@@ -113,7 +119,7 @@ use App\Models\User;
       </article>
       <article class="col-md px-0 ps-md-2 mt-4 mt-md-0">
         <div class="white_box">
-          <h3>Destacadas</h3>
+          <h3>Frecuentes</h3>
           <ul class="timeline mt-4">
             <?php foreach (range(1, 2) as $_) : ?>
               <li class="timeline-item">

@@ -55,12 +55,6 @@ App::register(
 );
 
 App::register(
-  'patientRepository',
-  PDOPatientRepository::class,
-  [App::db(), App::get('fullRoot'), App::userRepository()]
-);
-
-App::register(
   'consultationCauseCategoryRepository',
   PDOConsultationCauseCategoryRepository::class,
   [App::db(), App::get('fullRoot')]
@@ -70,6 +64,12 @@ App::register(
   'consultationCauseRepository',
   PDOConsultationCauseRepository::class,
   [App::db(), App::get('fullRoot'), App::consultationCauseCategoryRepository()]
+);
+
+App::register(
+  'patientRepository',
+  PDOPatientRepository::class,
+  [App::db(), App::get('fullRoot'), App::userRepository(), App::consultationCauseRepository(), App::departmentRepository()]
 );
 
 App::register('session', Session::class);

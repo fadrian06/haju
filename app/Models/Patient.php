@@ -10,7 +10,7 @@ use Generator;
 
 final class Patient extends Person {
   /** @var array<int, Consultation> */
-  private array $consultations;
+  private array $consultations = [];
 
   function __construct(
     string $firstName,
@@ -20,8 +20,7 @@ final class Patient extends Person {
     Date $birthDate,
     Gender $gender,
     int $idCard,
-    public User $registeredBy,
-    Consultation ...$consultations
+    public User $registeredBy
   ) {
     parent::__construct(
       $firstName,
@@ -32,8 +31,6 @@ final class Patient extends Person {
       $gender,
       $idCard
     );
-
-    $this->consultations = $consultations;
   }
 
   /** @return Generator<int, Consultation> */
@@ -58,5 +55,11 @@ final class Patient extends Person {
     return $this->setSecondName($secondName)
       ->setFirstLastName($firstLastName)
       ->setSecondLastName($secondLastName);
+  }
+
+  function setConsultations(Consultation ...$consultations): self {
+    $this->consultations = $consultations;
+
+    return $this;
   }
 }

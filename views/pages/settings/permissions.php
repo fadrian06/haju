@@ -44,7 +44,7 @@ use App\Models\User;
         <div class="list-group">
           <?php foreach ($departments as $department) : ?>
             <label
-              class="<?= $department->isInactive() ? 'pe-none opacity-50' : 'pe-auto' ?> list-group-item d-flex justify-content-between align-items-center"
+              class="<?= ($department->isInactive() || !$user->hasDepartment($department)) ? 'pe-none opacity-50' : 'pe-auto' ?> list-group-item d-flex justify-content-between align-items-center"
               for="<?= $user->idCard . $department->id . $department->name ?>">
               <span class="user-select-none"><?= $department->name ?></span>
               <div class="form-check form-switch">

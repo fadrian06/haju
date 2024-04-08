@@ -14,13 +14,13 @@ use App\Models\User;
 
 <section class="mb-4 d-sm-flex px-0 align-items-center justify-content-between">
   <h2>Departamentos</h2>
-  <a data-bs-toggle="modal" href="#registrar" class="btn btn-primary rounded-pill d-flex align-items-center">
+  <!-- <a data-bs-toggle="modal" href="#registrar" class="btn btn-primary rounded-pill d-flex align-items-center">
     <i class="px-2 ti-plus"></i>
     <span class="px-2">Añadir departamento</span>
-  </a>
+  </a> -->
 </section>
 
-<?php if ($departments !== []): ?>
+<?php if ($departments !== []) : ?>
   <section class="white_box QA_section">
     <!-- <header class="list_header serach_field-area2 w-100">
       <form class="search_inner w-100">
@@ -30,17 +30,6 @@ use App\Models\User;
         </button>
       </form>
     </header> -->
-    <?php if ($error) : ?>
-      <div class="alert alert-danger alert-dismissible fade show">
-        <?= $error ?>
-        <button class="btn-close" data-bs-dismiss="alert"></button>
-      </div>
-    <?php elseif ($message) : ?>
-      <div class="alert alert-info alert-dismissible fade show">
-        <?= $message ?>
-        <button class="btn-close" data-bs-dismiss="alert"></button>
-      </div>
-    <?php endif ?>
     <div class="QA_table table-responsive">
       <table class="table text-center">
         <thead>
@@ -102,7 +91,7 @@ use App\Models\User;
   </section>
 <?php endif ?>
 
-<div class="modal fade" id="registrar">
+<!-- <div class="modal fade" id="registrar">
   <div class="modal-dialog">
     <form action="./departamentos#registrar" enctype="multipart/form-data" class="modal-content" method="post">
       <header class="modal-header">
@@ -111,9 +100,6 @@ use App\Models\User;
       </header>
       <section class="modal-body">
         <?php
-          $error && render('components/notification', ['type' => 'error', 'text' => $error]);
-          $message && render('components/notification', ['type' => 'message', 'text' => $message]);
-
           render('components/input-group', [
             'name' => 'name',
             'placeholder' => 'Nombre del departamento',
@@ -148,7 +134,7 @@ use App\Models\User;
       </footer>
     </form>
   </div>
-</div>
+</div> -->
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {

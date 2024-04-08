@@ -13,6 +13,7 @@ use App\Middlewares\EnsureOnlyAcceptOneDirector;
 use App\Middlewares\EnsureUserIsNotAuthenticated;
 use App\Middlewares\MessagesMiddleware;
 use App\Middlewares\ShowRegisterIfThereIsNoUsers;
+use App\Models\Patient;
 use App\ValueObjects\Appointment;
 
 App::group('', function (): void {
@@ -46,7 +47,12 @@ App::group('', function (): void {
     });
 
     App::route('GET /pacientes', [PatientWebController::class, 'showPatients']);
-    App::route('GET /pacientes/@id', [PatientWebController::class, 'showPatient']);
+    App::route('GET /pacientes/@id:[0-9]+', [PatientWebController::class, 'showPatient']);
+
+    App::group('/consultas', function (): void {
+      App::route('GET /registrar', [PatientWebController::class, 'showConsultationRegister']);
+      App::route('POST /', [PatientWebController::class, 'handleConsultationRegister']);
+    }, [new AuthorizationMiddleware(Appointment::Secretary, Appointment::Director)]);
 
     App::group('', function (): void {
       App::route('POST /pacientes', [PatientWebController::class, 'handleRegister']);

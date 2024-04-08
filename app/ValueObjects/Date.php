@@ -23,8 +23,10 @@ readonly class Date implements Stringable {
       case $year > (date('Y') - 18):
       case $day < 1:
       // TODO: check if $month has 30 or 31 days
+        break;
       case $day > 31:
       // TODO: check if $year if february has 28 or 29 days
+        break;
       case $month === 2 && $day > 29:
         throw new InvalidDateException("Invalid date \"$day/$month/$year\"");
     }

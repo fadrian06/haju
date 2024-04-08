@@ -276,3 +276,11 @@ textarea {
 .bg-primary {
   background-color: #3f6ad8 !important
 }
+
+.swal2-popup {
+  background: #364f6b;
+}
+
+.swal2-popup .swal2-title {
+  color: white;
+}

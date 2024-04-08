@@ -13,9 +13,9 @@ $('.close_icon').on('click', function () {
   $(this).parents('.hide_content')
 })
 
-/*$('.nice_Select').niceSelect()
-$('.nice_Select2').niceSelect()
-$('.default_sel').niceSelect()*/
+// $('.nice_Select').niceSelect()
+// $('.nice_Select2').niceSelect()
+// $('.default_sel').niceSelect()
 
 /*$(document).ready(function () {
   $('#start_datepicker').datepicker()

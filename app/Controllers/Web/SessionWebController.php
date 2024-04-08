@@ -26,7 +26,7 @@ final class SessionWebController extends Controller {
   }
 
   function handleLogin(): void {
-    $user = $this->userRepository->getByIdCard($this->data['id_card']);
+    $user = $this->userRepository->getByIdCard((int) $this->data['id_card']);
 
     try {
       if (!$this->data['id_card']) {

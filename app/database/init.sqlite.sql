@@ -110,7 +110,7 @@ CREATE TABLE department_assignments (
 DROP TABLE IF EXISTS consultations;
 CREATE TABLE consultations (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  type VARCHAR(1) NOT NULL CHECK (type IN ('P', 'S', 'A')),
+  type VARCHAR(1) NOT NULL CHECK (type IN ('P', 'S', 'X')),
   registered_date DATETIME DEFAULT CURRENT_TIMESTAMP,
   patient_id INTEGER NOT NULL,
   cause_id INTEGER NOT NULL,
@@ -179,7 +179,7 @@ INSERT INTO consultation_cause_categories (id, short_name, extended_name, top_ca
 (18, 'Enfermedades del sistema digestivo', null, null),
 (19, 'Enfermedades de la piel y tejido subcutáneo', null, null),
 (20, 'Enfermedades del sistema osteomuscular y tejidos conjuntivos', null, null),
-(21, 'Enfermedades del sistem genito-urinario', null, null),
+(21, 'Enfermedades del sistema genito-urinario', null, null),
 (22, 'Embarazo, parto y puerperio', null, null),
 (23, 'Afecciones en el período perinatal', null, null),
 (24, 'Síntomas, signos y hallazgos anormales', null, null),

@@ -7,8 +7,6 @@ use App\ValueObjects\InstructionLevel;
 
 /**
  * @var array<int, User> $users
- * @var ?string $error
- * @var ?string $message
  * @var User $user
  */
 
@@ -23,9 +21,6 @@ $loggedUser = $user;
     <span class="px-2">Añadir usuario</span>
   </a>
 </section>
-
-<?php $error && render('components/notification', ['type' => 'error', 'text' => $error]) ?>
-<?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
 
 <ul class="list-unstyled row row-cols-sm-2 row-cols-md-3">
   <?php foreach ($users as $member) : ?>
@@ -65,7 +60,7 @@ $loggedUser = $user;
 </ul>
 
 <div class="modal fade" id="registrar">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-scrollable">
     <form enctype="multipart/form-data" action="./usuarios#registrar" class="modal-content" method="post">
       <header class="modal-header">
         <h3 class="modal-title fs-5">
@@ -75,8 +70,6 @@ $loggedUser = $user;
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </header>
       <section class="modal-body">
-        <?php $error &&  render('components/notification', ['type' => 'error', 'text' => $error]) ?>
-        <?php $message &&  render('components/notification', ['type' => 'message', 'text' => $message]) ?>
         <fieldset class="row">
           <summary class="fs-6 mb-2">Datos personales</summary>
           <?php
@@ -175,6 +168,7 @@ $loggedUser = $user;
         <fieldset class="row">
           <summary class="fs-6 mb-2">Datos de contacto</summary>
           <?php
+
           render('components/input-group', [
             'type' => 'tel',
             'name' => 'phone',
@@ -195,9 +189,11 @@ $loggedUser = $user;
             'placeholder' => 'Dirección',
             'cols' => 12
           ]);
+
           ?>
         </fieldset>
         <?php
+
         render('components/input-group', [
           'variant' => 'file',
           'name' => 'profile_image',
@@ -211,6 +207,7 @@ $loggedUser = $user;
           'placeholder' => 'Estado <small>(activo/inactivo)</small>',
           'checked' => true
         ]);
+
         ?>
       </section>
       <footer class="modal-footer">

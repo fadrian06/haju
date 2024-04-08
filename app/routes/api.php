@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Consultation;
 use App\Models\ConsultationCause;
 use App\Models\ConsultationCauseCategory;
 use MegaCreativo\API\CedulaVE;
@@ -53,7 +54,7 @@ App::group('/api', function (): void {
 
     App::json([
       ...$categoryMapper($category),
-      'consultation causes' => array_map([$causeMapper, '__invoke'], $causes)
+      'consultationCauses' => array_map([$causeMapper, '__invoke'], $causes)
     ]);
   });
 
@@ -90,6 +91,129 @@ App::group('/api', function (): void {
       'category' => $categoryMapper($cause->category)
     ]);
   });
+
+  App::route('/pacientes', function (): void {
+  });
+
+  App::route('/pacientes/@patientId:[0-9]+', function (int $patientId): void {
+  });
+
+  App::route(
+    '/pacientes/@patientId:[0-9]+/causas-consulta',
+    function (int $patientId) use ($causeMapper, $categoryMapper): void {
+      $patient = App::patientRepository()->getById($patientId);
+
+      if (!$patient) {
+        App::json(['error' => "Paciente #$patientId no encontrado"], 404);
+
+        return;
+      }
+
+      App::patientRepository()->setConsultations($patient);
+      $causeMapper->categoryMapper = $categoryMapper;
+
+      $consultations = [];
+
+      foreach ($patient->getConsultation() as $consultation) {
+        $consultations[] = [
+          'id' => $consultation->id,
+          'registeredDate' => $consultation->registeredDate,
+          'type' => [
+            'id' => $consultation->type->value,
+            'description' => $consultation->type->getDescription()
+          ],
+          'department' => [
+            'id' => $consultation->department->id,
+            'name' => $consultation->department->name,
+            'registeredDate' => $consultation->department->registeredDate,
+            'icon' => urldecode($consultation->department->iconFilePath->asString()),
+            'belongsToExternalConsultation' => $consultation->department->belongsToExternalConsultation,
+            'isActive' => $consultation->department->isActive()
+          ],
+          'cause' => $causeMapper($consultation->cause)
+        ];
+      }
+
+      App::json([
+        'id' => $patient->id,
+        'names' => [
+          'first' => $patient->firstName,
+          'second' => $patient->secondName
+        ],
+        'lastNames' => [
+          'first' => $patient->firstLastName,
+          'second' => $patient->secondLastName
+        ],
+        'birthDate' => [
+          'day' => $patient->birthDate->day,
+          'month' => $patient->birthDate->month,
+          'year' => $patient->birthDate->year
+        ],
+        'gender' => $patient->gender->value,
+        'idCard' => $patient->idCard,
+        'consultations' => $consultations,
+      ]);
+    }
+  );
+
+  App::route(
+    '/pacientes/@patientId:[0-9]+/causas-consulta/@causeId:[0-9]+',
+    function (int $patientId, int $causeId) use ($causeMapper, $categoryMapper): void {
+      $patient = App::patientRepository()->getById($patientId);
+
+      if (!$patient) {
+        App::json(['error' => "Paciente #$patientId no encontrado"], 404);
+
+        return;
+      }
+
+      App::patientRepository()->setConsultationsById($patient, $causeId);
+      $causeMapper->categoryMapper = $categoryMapper;
+
+      $consultations = [];
+
+      foreach ($patient->getConsultation() as $consultation) {
+        $consultations[] = [
+          'id' => $consultation->id,
+          'registeredDate' => $consultation->registeredDate,
+          'type' => [
+            'id' => $consultation->type->value,
+            'description' => $consultation->type->getDescription()
+          ],
+          'department' => [
+            'id' => $consultation->department->id,
+            'name' => $consultation->department->name,
+            'registeredDate' => $consultation->department->registeredDate,
+            'icon' => urldecode($consultation->department->iconFilePath->asString()),
+            'belongsToExternalConsultation' => $consultation->department->belongsToExternalConsultation,
+            'isActive' => $consultation->department->isActive()
+          ],
+          'cause' => $causeMapper($consultation->cause)
+        ];
+      }
+
+      App::json([
+        'id' => $patient->id,
+        'names' => [
+          'first' => $patient->firstName,
+          'second' => $patient->secondName
+        ],
+        'lastNames' => [
+          'first' => $patient->firstLastName,
+          'second' => $patient->secondLastName
+        ],
+        'birthDate' => [
+          'day' => $patient->birthDate->day,
+          'month' => $patient->birthDate->month,
+          'year' => $patient->birthDate->year
+        ],
+        'gender' => $patient->gender->value,
+        'idCard' => $patient->idCard,
+        'isFirstTime' => $consultations === [],
+        'consultations' => $consultations,
+      ]);
+    }
+  );
 
   App::route('/cedulacion/@idCard', function (int $idCard): void {
     App::json(@CedulaVE::get('V', $idCard));

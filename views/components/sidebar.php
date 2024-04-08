@@ -51,12 +51,20 @@ use App\ValueObjects\Appointment;
               </form>
             </div>
           </li>
-          <li>
-            <a href="./pacientes#registrar" <?= isActive('/pacientes') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
-              <i class="ti-plus"></i>
-              Registrar
-            </a>
-          </li>
+          <?php if ($user->appointment !== Appointment::Director) : ?>
+            <li>
+              <a href="./pacientes#registrar" <?= isActive('/pacientes') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
+                <i class="ti-plus"></i>
+                Registrar paciente
+              </a>
+            </li>
+            <li>
+              <a href="./consultas/registrar" <?= isActive('/consultas/registrar') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
+                <i class="ti-plus"></i>
+                Registrar consulta
+              </a>
+            </li>
+          <?php endif ?>
         </ul>
       </li>
     <?php endif ?>

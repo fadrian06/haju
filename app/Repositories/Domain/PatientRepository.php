@@ -16,4 +16,8 @@ interface PatientRepository extends Repository {
    * @throws DuplicatedIdCardException
    */
   function save(Patient $patient): void;
+  function saveConsultationOf(Patient $patient): void;
+  function setConsultationsById(Patient $patient, int $causeId): void;
+  function setConsultations(Patient $patient): void;
+  function getConsultationsCount(): int;
 }

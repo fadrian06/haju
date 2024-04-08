@@ -8,6 +8,7 @@ use App\ValueObjects\Appointment;
  * @var int $usersNumber
  * @var int $patientsNumber
  * @var int $departmentsNumber
+ * @var int $consultationsNumber
  */
 
 ?>
@@ -38,6 +39,7 @@ use App\ValueObjects\Appointment;
         <div class="count_content">
           <h3><?= $patientsNumber ?></h3>
           <p>Paciente<?= $patientsNumber !== 1 ? 's' : '' ?></p>
+          <p><?= $consultationsNumber ?> Consulta<?= $consultationsNumber === 1 ? '' : 's' ?></p>
         </div>
       </a>
     <?php endif ?>

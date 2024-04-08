@@ -41,6 +41,7 @@ $showPasswordChangeModal ??= $mustChangePassword;
   <link rel="stylesheet" href="./assets/css/components/box.css" />
   <link rel="stylesheet" href="./assets/css/components/section.css" />
   <link rel="stylesheet" href="./assets/css/components/search-field.css" />
+  <link rel="stylesheet" href="./assets/vendors/sweetalert2/default.min.css" />
   <link rel="stylesheet" href="./assets/css/custom.css" />
   <style>
     .main_content {
@@ -73,6 +74,28 @@ $showPasswordChangeModal ??= $mustChangePassword;
   <script src="./assets/vendors/jquery/jquery.min.js"></script>
   <script src="./assets/vendors/metismenu/metisMenu.min.js"></script>
   <script src="./assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="./assets/vendors/sweetalert2/sweetalert2.min.js"></script>
+  <!-- <script src="./assets/vendors/niceselect/js/jquery.nice-select.min.js"></script> -->
+  <script>
+    const swal = Swal.mixin({
+      // toast: true,
+      // position: 'top-right',
+      showCloseButton: true,
+      showConfirmButton: false
+    })
+
+    <?php if ($error): ?>
+      swal.fire({
+        title: '<?= $error ?>',
+        icon: 'error'
+      })
+    <?php elseif ($message): ?>
+      swal.fire({
+        title: '<?= $message ?>',
+        icon: 'success'
+      })
+    <?php endif ?>
+  </script>
   <script src="./assets/js/custom.js"></script>
 </body>
 

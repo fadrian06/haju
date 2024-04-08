@@ -19,7 +19,7 @@ extends PDORepository implements ConsultationCauseCategoryRepository {
 
   function getAll(): array {
     return $this->ensureIsConnected()
-      ->query(sprintf('SELECT %s FROM %s', self::FIELDS, self::getTable()))
+      ->query(sprintf('SELECT %s FROM %s WHERE id != 1', self::FIELDS, self::getTable()))
       ->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper']);
   }
 

@@ -1,7 +1,5 @@
 <?php
 
-/** @var ?string $error */
-
 use App\ValueObjects\Gender;
 use App\ValueObjects\InstructionLevel;
 
@@ -13,7 +11,6 @@ use App\ValueObjects\InstructionLevel;
       <h5>Regístrate</h5>
     </header>
     <form enctype="multipart/form-data" class="modal-body" method="post">
-      <?= $error &&  render('components/notification', ['type' => 'error', 'text' => $error]) ?>
       <fieldset class="row">
         <summary class="fs-6 mb-2">Datos personales</summary>
         <?php
