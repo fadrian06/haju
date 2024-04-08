@@ -1,9 +1,13 @@
 <?php
 
+use App\Models\Department;
 use App\Models\User;
 use App\ValueObjects\Appointment;
 
-/** @var User $user */
+/**
+ * @var User $user
+ * @var Department $department
+ */
 
 ?>
 
@@ -89,7 +93,7 @@ use App\ValueObjects\Appointment;
           </li>
         </ul>
       </li>
-      <?php if ($user->appointment === Appointment::Director) : ?>
+      <?php if ($user->appointment === Appointment::Director && $department->name === 'Estadística') : ?>
         <li class="<?= isActive('/departamentos') ? 'mm-active' : '' ?>">
           <a href="#" class="has-arrow">
             <img src="./assets/img/icons/hospital.svg" />

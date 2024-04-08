@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Department;
 use App\Models\User;
 use App\ValueObjects\Appointment;
 
@@ -9,6 +10,7 @@ use App\ValueObjects\Appointment;
  * @var int $patientsNumber
  * @var int $departmentsNumber
  * @var int $consultationsNumber
+ * @var Department $department
  */
 
 ?>
@@ -23,7 +25,7 @@ use App\ValueObjects\Appointment;
           <p>Usuario<?= $usersNumber !== 1 ? 's' : '' ?></p>
         </div>
       </a>
-      <?php if ($user->appointment === Appointment::Director) : ?>
+      <?php if ($user->appointment === Appointment::Director && $department->name === 'Estadística') : ?>
         <a href="./departamentos" class="single_quick_activity d-flex">
           <img class="icon" src="./assets/img/icons/cap.svg" />
           <div class="count_content">

@@ -21,74 +21,35 @@ use App\Models\User;
 </section>
 
 <?php if ($departments !== []) : ?>
-  <section class="white_box QA_section">
-    <!-- <header class="list_header serach_field-area2 w-100">
-      <form class="search_inner w-100">
-        <input type="search" placeholder="Buscar por nombre...">
-        <button>
-          <i class="ti-search fs-2"></i>
-        </button>
-      </form>
-    </header> -->
-    <div class="QA_table table-responsive">
-      <table class="table text-center">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Nombre del departamento</th>
-            <th>Pertenece a consulta externa</th>
-            <th>Fecha de registro</th>
-            <th>Estado</th>
-            <th>Acción</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php foreach ($departments as $department) : ?>
-            <tr>
-              <form method="post" action="./departamentos/<?= $department->id ?>">
-                <td><?= $department->id ?></td>
-                <td class="p-0">
-                  <input
-                    placeholder="Nombre del departamento"
-                    class="form-control"
-                    required
-                    name="name"
-                    value="<?= $department->name ?>"
-                  />
-                </td>
-                <td>
-                  <?php if ($department->belongsToExternalConsultation): ?>
-                    <span class="custom-badge status-green">Sí</span>
-                  <?php else: ?>
-                    <span class="custom-badge status-red">No</span>
-                  <?php endif ?>
-                </td>
-                <td><?= $department->registeredDate ?></td>
-                <td>
-                  <?php if ($department->isActive()) : ?>
-                    <a
-                      href="./departamentos/<?= $department->id ?>/desactivar"
-                      class="custom-badge status-green">
-                      Activo
-                    </a>
-                  <?php else : ?>
-                    <a
-                      href="./departamentos/<?= $department->id ?>/activar"
-                      class="custom-badge status-red">
-                      Inactivo
-                    </a>
-                  <?php endif ?>
-                </td>
-                <td>
-                  <button class="btn btn-primary text-white">Editar</button>
-                </td>
-              </form>
-            </tr>
-          <?php endforeach ?>
-        </tbody>
-      </table>
-    </div>
-  </section>
+  <ul class="list-unstyled row row-cols-sm-2 row-cols-md-3">
+    <?php foreach ($departments as $department) : ?>
+      <li class="mb-4 d-flex align-items-stretch">
+        <article class="card card-body text-center">
+          <div class="dropdown position-relative">
+            <button style="right: 0" class="bg-transparent border-0 position-absolute" data-bs-toggle="dropdown">
+              <i class="ti-more"></i>
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="./departamentos/<?= $department->id ?>/<?= $department->isActive() ? 'desactivar' : 'activar' ?>">
+                <i class="ti-<?= $department->isActive() ? 'un' : '' ?>lock"></i>
+                <?= $department->isActive() ? 'Desactivar' : 'Activar' ?>
+              </a>
+            </div>
+          </div>
+          <picture class="p-3">
+            <img class="img-fluid" src="<?= urldecode($department->iconFilePath->asString()) ?>" style="height: 130px; object-fit: contain;" title="<?= $department->name ?>" />
+          </picture>
+          <span class="custom-badge status-<?= $department->isActive() ? 'green' : 'red' ?> mx-4 mb-2">
+            <?= $department->isActive() ? 'Activo' : 'Inactivo' ?>
+          </span>
+          <h4><?= $department->name ?></h4>
+          <small class="text-muted">
+            Fecha de registro: <?= $department->registeredDate ?>
+          </small>
+        </article>
+      </li>
+    <?php endforeach ?>
+  </ul>
 <?php endif ?>
 
 <!-- <div class="modal fade" id="registrar">
@@ -100,30 +61,30 @@ use App\Models\User;
       </header>
       <section class="modal-body">
         <?php
-          render('components/input-group', [
-            'name' => 'name',
-            'placeholder' => 'Nombre del departamento',
-            'cols' => 12
-          ]);
+        render('components/input-group', [
+          'name' => 'name',
+          'placeholder' => 'Nombre del departamento',
+          'cols' => 12
+        ]);
 
-          render('components/input-group', [
-            'variant' => 'file',
-            'name' => 'department_icon',
-            'placeholder' => 'Icono'
-          ]);
+        render('components/input-group', [
+          'variant' => 'file',
+          'name' => 'department_icon',
+          'placeholder' => 'Icono'
+        ]);
 
-          render('components/input-group', [
-            'variant' => 'checkbox',
-            'name' => 'belongs_to_external_consultation',
-            'placeholder' => 'Pertenece a Consulta Externa'
-          ]);
+        render('components/input-group', [
+          'variant' => 'checkbox',
+          'name' => 'belongs_to_external_consultation',
+          'placeholder' => 'Pertenece a Consulta Externa'
+        ]);
 
-          render('components/input-group', [
-            'variant' => 'checkbox',
-            'name' => 'is_active',
-            'placeholder' => 'Estado <small>(activo/inactivo)</small>',
-            'checked' => true
-          ]);
+        render('components/input-group', [
+          'variant' => 'checkbox',
+          'name' => 'is_active',
+          'placeholder' => 'Estado <small>(activo/inactivo)</small>',
+          'checked' => true
+        ]);
         ?>
       </section>
       <footer class="modal-footer">
