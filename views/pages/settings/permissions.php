@@ -8,7 +8,10 @@ use App\Models\User;
  * @var array<int, User> $users
  * @var ?string $error
  * @var ?string $message
+ * @var User $user
  */
+
+$loggedUser = $user;
 
 ?>
 
@@ -32,7 +35,6 @@ use App\Models\User;
   </ul>
 </section>
 <section class="col-sm">
-  <?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
   <div class="tab-content">
     <?php foreach ($users as $user) : ?>
       <form
@@ -44,7 +46,7 @@ use App\Models\User;
         <div class="list-group">
           <?php foreach ($departments as $department) : ?>
             <label
-              class="<?= ($department->isInactive() || !$user->hasDepartment($department)) ? 'pe-none opacity-50' : 'pe-auto' ?> list-group-item d-flex justify-content-between align-items-center"
+              class="<?= ($department->isInactive() || !$loggedUser->hasDepartment($department)) ? 'pe-none opacity-50' : 'pe-auto' ?> list-group-item d-flex justify-content-between align-items-center"
               for="<?= $user->idCard . $department->id . $department->name ?>">
               <span class="user-select-none"><?= $department->name ?></span>
               <div class="form-check form-switch">

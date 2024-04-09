@@ -1,19 +1,38 @@
 <?php
 
+use flight\template\View;
+
 $api = App::get('fullRoot');
 $causes = json_decode(file_get_contents("$api/api/causas-consulta/"), true);
 
 /** @var array<int, \App\Models\ConsultationCauseCategory> */
 $categories = [];
 
-[$startDate, $endDate] = explode('_', $_GET['rango']);
+$monthYear = $_GET['fecha'] ?? null;
 
+ob_start();
+if ($monthYear) {
+  [$year, $month] = explode('-', $monthYear);
+
+  $daysOfMonth = match ($month) {
+    '01', '03', '05', '07', '08', '10', '12' => 31,
+    '04', '06', '09', '11' => 30,
+    '02' => $year % 4 === 0 && ($year % 100 !== 0 || $year % 400 === 0)
+      ? 29
+      : 28
+  };
+
+  $startDate = (new View)->e("$monthYear-01");
+  $endDate = (new View)->e("$monthYear-$daysOfMonth");
+}
+
+ob_end_clean();
 $consultations = App::db()->instance()->query(<<<sql
   SELECT type, registered_date, cause_id FROM consultations
   WHERE registered_date BETWEEN '$startDate' AND '$endDate'
 sql)->fetchAll(PDO::FETCH_ASSOC);
 
-const DAYS = 31;
+define('DAYS', $daysOfMonth);
 $causeCounter = 1;
 
 ?>

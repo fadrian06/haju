@@ -14,6 +14,8 @@
  * @var ?bool $multiple
  * @var ?string $list
  * @var ?bool $hidden
+ * @var ?string $pattern
+ * @var ?string $title
  */
 
 $id = $name . rand();
@@ -26,6 +28,8 @@ $checked ??= false;
 $multiple ??= false;
 $readonly ??= false;
 $hidden ??= false;
+$pattern ??= null;
+$title ??= null;
 
 ?>
 
@@ -58,6 +62,8 @@ $hidden ??= false;
         value="<?= $value ?>"
         <?= $readonly ? 'readonly' : '' ?>
         list="<?= $list ?? null ?>"
+        <?= $pattern ? "pattern='$pattern'" : '' ?>
+        <?= $title ? "data-bs-toggle='tooltip' title='$title'" : '' ?>
       />
     <?php elseif ($variant === 'textarea') : ?>
       <textarea
