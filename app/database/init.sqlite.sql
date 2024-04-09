@@ -321,6 +321,7 @@ INSERT INTO consultation_causes (short_name, variant, code, category_id) VALUES
 ('Fiebre reumática sin complicaciones cardíacas', null, 'I00', 16),
 ('Hipertensión arterial', '< 15 años', 'I10', 16),
 ('Hipertensión arterial', '15-44 años', 'I10', 16),
+('Hipertensión arterial', '45 años y más', 'I10', 16),
 ('Enferm. isquémicas del corazón', null, 'I20-I22-I25', 16),
 ('Infarto agudo del miocardio', '< 45 años', 'I21', 16),
 ('Infarto agudo del miocardio', '45 años y más', 'I21', 16),
