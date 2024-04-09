@@ -26,7 +26,7 @@ $showPasswordChangeModal ??= $mustChangePassword;
   <link rel="icon" href="./assets/img/logo-mini.png" />
   <link rel="stylesheet" href="./assets/fonts/fonts.css" />
   <link rel="stylesheet" href="./assets/vendors/metismenu/metisMenu.min.css" />
-  <link rel="stylesheet" href="./assets/vendors/bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" href="./vendor/twbs/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="./assets/vendors/themefy_icon/themify-icons.css" />
   <link rel="stylesheet" href="./assets/css/reset.css" />
   <link rel="stylesheet" href="./assets/css/utils.css" />
@@ -73,7 +73,7 @@ $showPasswordChangeModal ??= $mustChangePassword;
   ]); ?>
   <script src="./assets/vendors/jquery/jquery.min.js"></script>
   <script src="./assets/vendors/metismenu/metisMenu.min.js"></script>
-  <script src="./assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="./vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./assets/vendors/sweetalert2/sweetalert2.min.js"></script>
   <!-- <script src="./assets/vendors/niceselect/js/jquery.nice-select.min.js"></script> -->
   <script>

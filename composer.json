@@ -5,7 +5,8 @@
     "phar-io/manifest": "^2.0",
     "leafs/session": "^2.0",
     "filp/whoops": "^2.15",
-    "megacreativo/cedulave-api": "^1.1"
+    "megacreativo/cedulave-api": "^1.1",
+    "twbs/bootstrap": "^5.3"
   },
   "autoload": {
     "psr-4": {

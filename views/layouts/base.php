@@ -29,7 +29,7 @@ if (isset($user)) {
   <base href="<?= $root ?>/" />
   <link rel="icon" href="./assets/img/logo-mini.png" />
   <link rel="stylesheet" href="./assets/fonts/fonts.css" />
-  <link rel="stylesheet" href="./assets/vendors/bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" href="./vendor/twbs/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="./assets/vendors/themefy_icon/themify-icons.css" />
   <link rel="stylesheet" href="./assets/css/reset.css" />
   <link rel="stylesheet" href="./assets/css/utils.css" />
@@ -63,7 +63,7 @@ if (isset($user)) {
     </div>
   </main>
   <?php render('components/footer') ?>
-  <script src="./assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="./vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./assets/vendors/sweetalert2/sweetalert2.min.js"></script>
   <script>
     for (const tooltipTriggerEl of document.querySelectorAll('[data-bs-toggle="tooltip"]')) {
