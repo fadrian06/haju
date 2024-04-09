@@ -3,6 +3,7 @@
 use App\Controllers\Web\DepartmentWebController;
 use App\Controllers\Web\HomeWebController;
 use App\Controllers\Web\PatientWebController;
+use App\Controllers\Web\ReportsWebController;
 use App\Controllers\Web\SessionWebController;
 use App\Controllers\Web\SettingsWebController;
 use App\Controllers\Web\UserWebController;
@@ -13,8 +14,9 @@ use App\Middlewares\EnsureOnlyAcceptOneDirector;
 use App\Middlewares\EnsureUserIsNotAuthenticated;
 use App\Middlewares\MessagesMiddleware;
 use App\Middlewares\ShowRegisterIfThereIsNoUsers;
-use App\Models\Patient;
 use App\ValueObjects\Appointment;
+
+App::route('GET /reportes/epi-11', [ReportsWebController::class, 'showEpi11']);
 
 App::group('', function (): void {
   App::route('/salir', [SessionWebController::class, 'logOut']);
