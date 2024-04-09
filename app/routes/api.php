@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Consultation;
 use App\Models\ConsultationCause;
 use App\Models\ConsultationCauseCategory;
 use MegaCreativo\API\CedulaVE;

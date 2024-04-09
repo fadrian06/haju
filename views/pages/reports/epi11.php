@@ -1,6 +1,20 @@
 <?php
 
+$api = App::get('fullRoot');
+$causes = json_decode(file_get_contents("$api/api/causas-consulta/"), true);
 
+/** @var array<int, \App\Models\ConsultationCauseCategory> */
+$categories = [];
+
+[$startDate, $endDate] = explode('_', $_GET['rango']);
+
+$consultations = App::db()->instance()->query(<<<sql
+  SELECT type, registered_date, cause_id FROM consultations
+  WHERE registered_date BETWEEN '$startDate' AND '$endDate'
+sql)->fetchAll(PDO::FETCH_ASSOC);
+
+const DAYS = 31;
+$causeCounter = 1;
 
 ?>
 
@@ -10,153 +24,76 @@
       <tr>
         <th rowspan="2">ENFERMEDADES</th>
         <th rowspan="2">Consultas</th>
-        <th colspan="31">DÍAS DEL MES</th>
+        <th colspan="<?= DAYS ?>">DÍAS DEL MES</th>
         <th rowspan="2">TOTAL</th>
       </tr>
       <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-        <td>4</td>
-        <td>5</td>
-        <td>6</td>
-        <td>7</td>
-        <td>8</td>
-        <td>9</td>
-        <td>10</td>
-        <td>11</td>
-        <td>12</td>
-        <td>13</td>
-        <td>14</td>
-        <td>15</td>
-        <td>16</td>
-        <td>17</td>
-        <td>18</td>
-        <td>19</td>
-        <td>20</td>
-        <td>21</td>
-        <td>22</td>
-        <td>23</td>
-        <td>24</td>
-        <td>25</td>
-        <td>26</td>
-        <td>27</td>
-        <td>28</td>
-        <td>29</td>
-        <td>30</td>
-        <td>31</td>
+        <?php foreach (range(1, DAYS) as $day) : ?>
+          <th><?= $day ?></th>
+        <?php endforeach ?>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td colspan="34" style="text-align: start">Enfermedades infecciosas y parasitarias</td>
-      </tr>
-      <tr>
-        <th rowspan="3" style="vertical-align: middle">Cólera</th>
-        <th>P</th>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <th>S</th>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <th>X</th>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
+      <?php foreach ($causes as $cause) : ?>
+        <?php if (!key_exists($cause['category']['id'], $categories)) : ?>
+          <?php $categories[$cause['category']['id']] = $cause['category'] ?>
+          <tr>
+            <td colspan="<?= DAYS + 3 ?>" style="text-align: start">
+              <?= $cause['category']['name']['extended'] ?? $cause['category']['name']['short'] ?>
+            </td>
+          </tr>
+        <?php endif ?>
+        <tr id="<?= $cause['id'] ?>">
+          <th rowspan="3"><?= $causeCounter++ . '. ' . $cause['name']['short'] ?></th>
+          <th>P</th>
+          <?php foreach (range(1, DAYS) as $day) : ?>
+            <td data-bs-toggle="tooltip" title="<?= "{$cause['name']['short']} ~ Primera vez ~ Día: " . $day ?>" id="cause-<?= $cause['id'] ?>_day-<?= $day ?>_type-P">0</td>
+          <?php endforeach ?>
+          <td data-bs-toggle="tooltip" title="<?= "{$cause['name']['short']} ~ Primera vez ~ Total" ?>">0</td>
+        </tr>
+        <tr>
+          <th>S</th>
+          <?php foreach (range(1, DAYS) as $day) : ?>
+            <td data-bs-toggle="tooltip" title="<?= "{$cause['name']['short']} ~ Sucesiva ~ Día: " . $day ?>" id="cause-<?= $cause['id'] ?>_day-<?= $day ?>_type-S">0</td>
+          <?php endforeach ?>
+          <td data-bs-toggle="tooltip" title="<?= "{$cause['name']['short']} ~ Sucesiva ~ Total" ?>">0</td>
+        </tr>
+        <tr>
+          <th>X</th>
+          <?php foreach (range(1, DAYS) as $day) : ?>
+            <td data-bs-toggle="tooltip" title="<?= "{$cause['name']['short']} ~ Asociada ~ Día: " . $day ?>" id="cause-<?= $cause['id'] ?>_day-<?= $day ?>_type-X">0</td>
+          <?php endforeach ?>
+          <td data-bs-toggle="tooltip" title="<?= "{$cause['name']['short']} ~ Asociada ~ Total" ?>">0</td>
+        </tr>
+      <?php endforeach ?>
     </tbody>
   </table>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const consultations = JSON.parse('<?= json_encode($consultations) ?>')
+
+    consultations.forEach(consultation => {
+      const causeRow = document.getElementById(consultation.cause_id)
+
+      let typeRow = causeRow
+
+      if (consultation.type === 'S') {
+        typeRow = causeRow.nextElementSibling
+      } else {
+        typeRow = causeRow.nextElementSibling.nextElementSibling
+      }
+
+      const registeredDate = new Date(consultation.registered_date)
+      const day = registeredDate.getDate()
+      const dayCell = document.getElementById(`cause-${consultation.cause_id}_day-${day}_type-${consultation.type}`)
+      const totalCell = dayCell.parentElement.lastElementChild
+
+      dayCell.innerText = parseInt(dayCell.innerText) + 1
+      totalCell.innerText = parseInt(totalCell.innerText) + 1
+
+      // console.log({causeId: consultation.cause_id, totalCell})
+    })
+  })
+</script>

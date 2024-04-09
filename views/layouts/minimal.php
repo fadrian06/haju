@@ -21,7 +21,7 @@ use App\Models\User;
   <?php render('components/open-graph-metas') ?>
   <base href="<?= $root ?>/" />
   <link rel="icon" href="./assets/img/logo-mini.png" />
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  <link rel="stylesheet" href="./vendor/twbs/bootstrap/dist/css/bootstrap.min.css" />
   <style>
     .w3-bordered th,
     .w3-bordered td {
@@ -29,6 +29,11 @@ use App\Models\User;
       box-sizing: border-box;
       border: medium solid black;
       padding: .25em .5em;
+    }
+
+    .w3-table {
+      border-collapse: collapse;
+      text-align: center;
     }
   </style>
 </head>
@@ -39,6 +44,12 @@ use App\Models\User;
       <?= $content ?>
     </div>
   </section>
+  <script src="./vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    for (const tooltipTriggerEl of document.querySelectorAll('[data-bs-toggle="tooltip"]')) {
+      new bootstrap.Tooltip(tooltipTriggerEl)
+    }
+  </script>
 </body>
 
 </html>
