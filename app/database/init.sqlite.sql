@@ -134,8 +134,8 @@ INSERT INTO instruction_levels (id, name, abbreviation) VALUES
 (4, 'Licenciado/a', 'Licdo');
 
 INSERT INTO departments (id, name, belongs_to_external_consultation, icon_file_path)
-VALUES /*(1, 'Pediatría', true),
-(2, 'Ginecología', true),
+VALUES /*(1, 'Pediatría', true,'assets/img/departments/PEDIATRIA.jpg),
+(2, 'Ginecología', true, 'assets/img/departments/GINECOLOGIAA.jpg'),
 (3, 'Alto Riesgo', true),
 (4, 'Cirugía General', true),
 (5, 'Nutrición Dietética', true),
