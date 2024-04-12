@@ -39,6 +39,10 @@ input[type="number"] {
   justify-content: space-between !important;
 }
 
+.header_iner ~ * {
+  margin-top: 65px !important;
+}
+
 .sidebar_close_icon i {
   position: unset;
 }
@@ -219,6 +223,10 @@ textarea {
 
   .main_content {
     padding-left: 26%
+  }
+
+  .header_iner {
+    padding-left: 28% !important
   }
 }
 

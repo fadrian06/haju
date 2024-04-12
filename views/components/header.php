@@ -12,7 +12,7 @@ use App\ValueObjects\Appointment;
 
 ?>
 
-<header class="header_iner d-flex align-items-center py-1" style="height: 65px">
+<header class="header_iner d-flex align-items-center py-1 position-fixed top-0 end-0 w-100" style="height: 65px">
   <button class="sidebar_icon d-lg-none me-2">
     <i class="ti-menu"></i>
   </button>
