@@ -47,5 +47,5 @@ use App\ValueObjects\Appointment;
     <?php endif ?>
   </div>
 </section>
-
+<?php $user->appointment->isHigherThan(Appointment::Coordinator) && $department->name === 'Estadística' && render('components/charts') ?>
 <?php $user->appointment === Appointment::Coordinator && $department->name === 'Estadística' && render('components/reports') ?>
