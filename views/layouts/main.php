@@ -75,6 +75,8 @@ $showPasswordChangeModal ??= $mustChangePassword;
   <script src="./assets/vendors/metismenu/metisMenu.min.js"></script>
   <script src="./vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./assets/vendors/sweetalert2/sweetalert2.min.js"></script>
+  <script src="./assets/vendors/ResizeObserver.global.js"></script>
+  <script src="./assets/vendors/chart.js"></script>
   <!-- <script src="./assets/vendors/niceselect/js/jquery.nice-select.min.js"></script> -->
   <script>
     const swal = Swal.mixin({

@@ -1,7 +1,7 @@
 {
   "require": {
     "php": "^8.2",
-    "flightphp/core": "^3.7",
+    "flightphp/core": "^3.8",
     "phar-io/manifest": "^2.0",
     "leafs/session": "^2.0",
     "filp/whoops": "^2.15",

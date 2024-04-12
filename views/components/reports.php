@@ -4,10 +4,10 @@
   <span class="border border-dark flex-grow-1 ms-2 h2"></span>
 </section>
 
-<ul class="list-unstyled row row-cols-sm-2">
+<ul class="list-unstyled row row-cols-sm-2 row-cols-md-3">
   <li class="mb-4 d-flex align-items-stretch">
     <article class="card card-body text-center">
-      <picture class="p-3 text-success w-50 mx-auto" data-bs-toggle="tooltip" title="Sistema de Información para la Salud ~ Epidemiología">
+      <picture class="p-3 pt-1 text-success w-50 mx-auto" data-bs-toggle="tooltip" title="Sistema de Información para la Salud ~ Epidemiología">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
           <path d="M17 12a5 5 0 1 0 -5 5" />
@@ -43,7 +43,7 @@
           'placeholder' => 'Mes/Año',
           'cols' => 12,
           'pattern' => '\d{4}-\d{2}',
-          'title' => 'La fecha debe tener el formato AAAA-MM'
+          'title' => 'La fecha debe tener el formato AAAA-MM',
         ]);
 
         ?>

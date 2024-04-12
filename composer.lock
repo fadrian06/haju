@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "70ab2d9ee2834968ff706b2621229f27",
+  "content-hash": "6f6e464ee16bc96e051b9b9d2c0297fd",
   "packages": [
     {
       "name": "filp/whoops",
@@ -79,16 +79,16 @@
     },
     {
       "name": "flightphp/core",
-      "version": "v3.7.2",
+      "version": "v3.8.1",
       "source": {
         "type": "git",
         "url": "https://github.com/flightphp/core.git",
-        "reference": "fe2ad0c05e14d1649a9f13299b0b3ad580a0ed0b"
+        "reference": "0011efd42c40f4c600612e425ad598ec8cd6bae7"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/flightphp/core/zipball/fe2ad0c05e14d1649a9f13299b0b3ad580a0ed0b",
-        "reference": "fe2ad0c05e14d1649a9f13299b0b3ad580a0ed0b",
+        "url": "https://api.github.com/repos/flightphp/core/zipball/0011efd42c40f4c600612e425ad598ec8cd6bae7",
+        "reference": "0011efd42c40f4c600612e425ad598ec8cd6bae7",
         "shasum": ""
       },
       "require": {
@@ -146,9 +146,9 @@
       "homepage": "http://flightphp.com",
       "support": {
         "issues": "https://github.com/flightphp/core/issues",
-        "source": "https://github.com/flightphp/core/tree/v3.7.2"
+        "source": "https://github.com/flightphp/core/tree/v3.8.1"
       },
-      "time": "2024-03-30T13:37:34+00:00"
+      "time": "2024-04-11T04:28:40+00:00"
     },
     {
       "name": "leafs/anchor",

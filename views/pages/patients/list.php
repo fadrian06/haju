@@ -53,7 +53,7 @@ $loggedUser = $user;
         </thead>
         <tbody>
           <?php foreach ($patients as $patient) : ?>
-            <?php $canEdit = $patient->registeredBy->registeredBy->isEqualTo($loggedUser) ?>
+            <?php $canEdit = $patient->registeredBy->registeredBy->isEqualTo($loggedUser) || $patient->registeredBy->isEqualTo($loggedUser) ?>
             <tr>
               <form method="post" action="./pacientes/<?= $patient->id ?>">
                 <td class="p-2">

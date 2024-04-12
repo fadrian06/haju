@@ -44,7 +44,7 @@ if (isset($user)) {
   <link rel="stylesheet" href="./assets/css/custom.css" />
 </head>
 
-<body class="pb-4">
+<body class="pb-4" style="display: grid; grid-template-rows: auto 1fr auto; min-height: 100vh">
   <header class="d-flex header_iner align-items-center py-0" style="height: 60px">
     <img src="./assets/img/logo.png" height="50" data-bs-toggle="tooltip" title='Hospital "José Antonio Uzcátegui"' />
     <nav class="header_right">

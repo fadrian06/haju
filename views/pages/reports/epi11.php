@@ -37,7 +37,7 @@ $causeCounter = 1;
 
 ?>
 
-<div class="w3-responsive w3-padding-large">
+<div class="p-1">
   <table style="width: 100%" class="w3-table w3-centered w3-bordered">
     <thead>
       <tr>
@@ -48,7 +48,7 @@ $causeCounter = 1;
       </tr>
       <tr>
         <?php foreach (range(1, DAYS) as $day) : ?>
-          <th><?= $day ?></th>
+          <th><?= str_pad($day, 2, '0', STR_PAD_LEFT) ?></th>
         <?php endforeach ?>
       </tr>
     </thead>
@@ -57,7 +57,7 @@ $causeCounter = 1;
         <?php if (!key_exists($cause['category']['id'], $categories)) : ?>
           <?php $categories[$cause['category']['id']] = $cause['category'] ?>
           <tr>
-            <td colspan="<?= DAYS + 3 ?>" style="text-align: start">
+            <td class="fw-bold" colspan="<?= DAYS + 3 ?>" style="text-align: start">
               <?= $cause['category']['name']['extended'] ?? $cause['category']['name']['short'] ?>
             </td>
           </tr>

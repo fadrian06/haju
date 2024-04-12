@@ -62,4 +62,14 @@ final class Patient extends Person {
 
     return $this;
   }
+
+  function getCauseById(int $causeId): ?ConsultationCause {
+    foreach ($this->consultations as $consultation) {
+      if ($consultation->cause->id === $causeId) {
+        return $consultation->cause;
+      }
+    }
+
+    return null;
+  }
 }

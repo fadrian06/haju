@@ -8,7 +8,23 @@ use App\Models\User;
  * @var Patient $patient
  */
 
+$causes = [];
+
+foreach ($patient->getConsultation() as $consultation) {
+  $causeName = $consultation->cause->getFullName(abbreviated: false);
+
+  $causes[$causeName] ??= 0;
+  ++$causes[$causeName];
+}
+
+$causes = array_slice($causes, 0, 5, true);
+
 ?>
+
+<script>
+  const causesNames = JSON.parse('<?= json_encode(array_keys($causes)) ?>')
+  const causesCounters = JSON.parse('<?= json_encode(array_values($causes)) ?>')
+</script>
 
 <section class="mb-4 d-flex px-0 align-items-center justify-content-between">
   <h2 class="m-0">Detalles del paciente</h2>
@@ -85,15 +101,15 @@ use App\Models\User;
         <button class="nav-link col-sm px-0 active" data-bs-toggle="tab" data-bs-target="#visitas">
           Visitas médicas
         </button>
-        <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#">
+        <!-- <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#">
           Consultas externas
-        </button>
-        <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#">
+        </button> -->
+        <!-- <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#">
           Antecedentes médicos
-        </button>
-        <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#">
+        </button> -->
+        <!-- <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#">
           Tratamientos
-        </button>
+        </button> -->
       </div>
     </li>
   </ul>
@@ -120,18 +136,25 @@ use App\Models\User;
       <article class="col-md px-0 ps-md-2 mt-4 mt-md-0">
         <div class="white_box">
           <h3>Frecuentes</h3>
-          <ul class="timeline mt-4">
-            <?php foreach (range(1, 2) as $_) : ?>
-              <li class="timeline-item">
-                <a href="#" target="_blank">
-                  <strong class="text-secondary">Consultant Gynecologist</strong>
-                  <time class="small text-black-50">Jan 2014 - Present (4 years 8 months)</time>
-                </a>
-              </li>
-            <?php endforeach ?>
-          </ul>
+          <canvas id="frecuent-consultation-causes" style="width: 100%"></canvas>
         </div>
       </article>
     </div>
   </article>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    new Chart(document.getElementById('frecuent-consultation-causes'), {
+      type: 'pie',
+      data: {
+        labels: causesNames,
+        datasets: [{
+          data: causesCounters,
+          backgroundColor: ['#364f6b', '#e6e6e6', '#2daab8', '#0d6efd', '#eff1f7'],
+          borderColor: 'black'
+        }]
+      }
+    });
+  })
+</script>
