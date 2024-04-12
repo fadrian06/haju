@@ -50,6 +50,8 @@ App::group('', function (): void {
 
     App::route('GET /pacientes', [PatientWebController::class, 'showPatients']);
     App::route('GET /pacientes/@id:[0-9]+', [PatientWebController::class, 'showPatient']);
+    App::route('POST /pacientes', [PatientWebController::class, 'handleRegister'])
+      ->addMiddleware(new AuthorizationMiddleware(Appointment::Secretary, Appointment::Director));
 
     App::group('/consultas', function (): void {
       App::route('GET /registrar', [PatientWebController::class, 'showConsultationRegister']);
@@ -57,7 +59,6 @@ App::group('', function (): void {
     }, [new AuthorizationMiddleware(Appointment::Secretary, Appointment::Director)]);
 
     App::group('', function (): void {
-      App::route('POST /pacientes', [PatientWebController::class, 'handleRegister']);
       App::route('POST /pacientes/@id', [PatientWebController::class, 'handleEdition']);
     }, [new AuthorizationMiddleware(Appointment::Coordinator, Appointment::Director)]);
 

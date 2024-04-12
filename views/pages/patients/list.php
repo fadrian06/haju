@@ -25,9 +25,6 @@ $loggedUser = $user;
   <?php endif ?>
 </section>
 
-<?php $error && render('components/notification', ['type' => 'error', 'text' => $error]) ?>
-<?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
-
 <?php if ($patients !== null) : ?>
   <section class="white_box QA_section">
     <!-- <header class="list_header serach_field-area2 w-100">

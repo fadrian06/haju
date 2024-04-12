@@ -8,9 +8,6 @@
 
 ?>
 
-<?php $error && render('components/notification', ['type' => 'error', 'text' => $error]) ?>
-<?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
-
 <div class="col-sm-6 p-2">
   <a href="./configuracion/respaldar" class="btn w-100 btn-light shadow p-4">
     <i class="mb-3 ti-save fs-1"></i>
