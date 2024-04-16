@@ -5,8 +5,7 @@
     "phar-io/manifest": "^2.0",
     "leafs/session": "^2.0",
     "filp/whoops": "^2.15",
-    "megacreativo/cedulave-api": "^1.1",
-    "twbs/bootstrap": "^5.3"
+    "megacreativo/cedulave-api": "^1.1"
   },
   "autoload": {
     "psr-4": {
@@ -31,7 +30,8 @@
   },
   "require-dev": {
     "phpunit/phpunit": "^11.0",
-    "symfony/var-dumper": "^7.0"
+    "symfony/var-dumper": "^7.0",
+    "twbs/bootstrap": "^5.3"
   },
   "archive": {
     "name": "HAJU",
