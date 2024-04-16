@@ -27,11 +27,11 @@ abstract class Controller {
       error_log("\n\n");
     }
 
-    App::session()->set('error', "❌ $error");
+    App::session()->set('error', $error);
   }
 
   final protected static function setMessage(string $message): void {
-    App::session()->set('message', "✔ $message");
+    App::session()->set('message', $message);
   }
 
   /**

@@ -39,6 +39,10 @@ input[type="number"] {
   justify-content: space-between !important;
 }
 
+.header_iner ~ * {
+  margin-top: 65px !important;
+}
+
 .sidebar_close_icon i {
   position: unset;
 }
@@ -138,7 +142,7 @@ input[type="number"] {
 }
 
 .form-floating>label {
-  left: unset;
+/*  left: unset;*/
   height: unset;
 }
 
@@ -220,6 +224,10 @@ textarea {
   .main_content {
     padding-left: 26%
   }
+
+  .header_iner {
+    padding-left: 28% !important
+  }
 }
 
 .custom-file-input:focus~.custom-file-label {
@@ -275,4 +283,12 @@ textarea {
 
 .bg-primary {
   background-color: #3f6ad8 !important
+}
+
+.swal2-popup {
+  background: #364f6b;
+}
+
+.swal2-popup .swal2-title {
+  color: white;
 }

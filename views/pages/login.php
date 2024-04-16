@@ -1,18 +1,8 @@
-<?php
-
-/**
- * @var ?string $error
- * @var ?string $message
- */
-?>
-
 <section class="px-0 modal modal-content cs_modal w-auto">
   <header class="modal-header py-3">
     <h5>Bienvenido</h5>
   </header>
   <form class="modal-body" method="post">
-    <?php $error && render('components/notification', ['type' => 'error', 'text' => $error]) ?>
-    <?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
     <?php
       render('components/input-group', [
         'type' => 'number',

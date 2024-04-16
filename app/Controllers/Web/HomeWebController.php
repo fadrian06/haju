@@ -31,11 +31,12 @@ final class HomeWebController extends Controller {
     $usersNumber = count($filteredUsers);
     $departmentsNumber = $this->departmentRepository->getRowsCount();
     $patientsNumber = $this->patientRepository->getRowsCount();
+    $consultationsNumber = $this->patientRepository->getConsultationsCount();
 
     App::renderPage(
       'home',
       'Inicio',
-      compact('usersNumber', 'departmentsNumber', 'patientsNumber'),
+      compact('usersNumber', 'departmentsNumber', 'patientsNumber', 'consultationsNumber'),
       'main'
     );
   }

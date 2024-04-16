@@ -21,8 +21,6 @@ use App\ValueObjects\InstructionLevel;
 </section>
 <form enctype="multipart/form-data" method="post" class="d-flex px-0 flex-column align-items-center">
   <section class="white_box">
-    <?php $error && render('components/notification', ['type' => 'error', 'text' => $error]) ?>
-    <?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
     <h3>Información básica</h3>
     <div class="row mt-4">
       <fieldset class="mt-4 mt-md-0 col-md row row-cols-md-2">

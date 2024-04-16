@@ -6,8 +6,12 @@ use App\Models\Contracts\Person;
 use App\ValueObjects\Date;
 use App\ValueObjects\Exceptions\InvalidNameException;
 use App\ValueObjects\Gender;
+use Generator;
 
 final class Patient extends Person {
+  /** @var array<int, Consultation> */
+  private array $consultations = [];
+
   function __construct(
     string $firstName,
     ?string $secondName,
@@ -29,6 +33,13 @@ final class Patient extends Person {
     );
   }
 
+  /** @return Generator<int, Consultation> */
+  function getConsultation(): Generator {
+    foreach ($this->consultations as $consultation) {
+      yield $consultation;
+    }
+  }
+
   /** @throws InvalidNameException */
   function setFullName(string $fullName): self {
     @[$firstName, $secondName, $firstLastName, $secondLastName] = explode(' ', $fullName);
@@ -44,5 +55,21 @@ final class Patient extends Person {
     return $this->setSecondName($secondName)
       ->setFirstLastName($firstLastName)
       ->setSecondLastName($secondLastName);
+  }
+
+  function setConsultations(Consultation ...$consultations): self {
+    $this->consultations = $consultations;
+
+    return $this;
+  }
+
+  function getCauseById(int $causeId): ?ConsultationCause {
+    foreach ($this->consultations as $consultation) {
+      if ($consultation->cause->id === $causeId) {
+        return $consultation->cause;
+      }
+    }
+
+    return null;
   }
 }

@@ -1,16 +1,20 @@
 <?php
 
+use App\Models\Department;
 use App\Models\User;
 use App\ValueObjects\Appointment;
 
-/** @var User $user */
+/**
+ * @var User $user
+ * @var Department $department
+ */
 
 ?>
 
 <aside class="sidebar" style="overflow-y: scroll">
   <header class="logo m-0 d-flex align-items-center justify-content-between">
     <picture class="p-2">
-      <img class="img-fluid" src="./assets/img/logo.png" />
+      <img class="img-fluid" src="./assets/img/logo.png" data-bs-toggle="tooltip" title='Hospital "José Antonio Uzcátegui"' />
     </picture>
     <div class="sidebar_close_icon d-flex align-items-center d-lg-none">
       <i class="ti-close"></i>
@@ -26,7 +30,7 @@ use App\ValueObjects\Appointment;
         <span>Inicio</span>
       </a>
     </li>
-    <?php if ($user->appointment->isHigherThan(Appointment::Secretary) && $user->appointment !== Appointment::Director) : ?>
+    <?php if ($user->appointment->isHigherThan(Appointment::Secretary)) : ?>
       <li class="<?= isActive('/pacientes') ? 'mm-active' : '' ?>">
         <a href="#" class="has-arrow">
           <img src="./assets/img/icons/patient.svg" />
@@ -51,12 +55,20 @@ use App\ValueObjects\Appointment;
               </form>
             </div>
           </li>
-          <li>
-            <a href="./pacientes#registrar" <?= isActive('/pacientes') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
-              <i class="ti-plus"></i>
-              Registrar
-            </a>
-          </li>
+          <?php if ($user->appointment !== Appointment::Director) : ?>
+            <li>
+              <a href="./pacientes#registrar" <?= isActive('/pacientes') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
+                <i class="ti-plus"></i>
+                Registrar paciente
+              </a>
+            </li>
+            <li>
+              <a href="./consultas/registrar" <?= isActive('/consultas/registrar') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
+                <i class="ti-plus"></i>
+                Registrar consulta
+              </a>
+            </li>
+          <?php endif ?>
         </ul>
       </li>
     <?php endif ?>
@@ -81,7 +93,7 @@ use App\ValueObjects\Appointment;
           </li>
         </ul>
       </li>
-      <?php if ($user->appointment === Appointment::Director) : ?>
+      <?php if ($user->appointment === Appointment::Director && $department->name === 'Estadística') : ?>
         <li class="<?= isActive('/departamentos') ? 'mm-active' : '' ?>">
           <a href="#" class="has-arrow">
             <img src="./assets/img/icons/hospital.svg" />

@@ -51,7 +51,7 @@ CREATE TABLE users (
   phone VARCHAR(16) NOT NULL UNIQUE,
   email VARCHAR(255) NOT NULL UNIQUE,
   address TEXT NOT NULL,
-  profile_image_path VARCHAR(255) NOT NULL UNIQUE,
+  profile_image_path VARCHAR(255) NOT NULL,
   is_active BOOL DEFAULT true,
   registered_date DATETIME DEFAULT CURRENT_TIMESTAMP,
   appointment_id INTEGER NOT NULL,
@@ -66,12 +66,13 @@ CREATE TABLE users (
 DROP TABLE IF EXISTS consultation_causes;
 CREATE TABLE consultation_causes (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name VARCHAR(255) NOT NULL,
+  short_name VARCHAR(255) NOT NULL,
   variant VARCHAR(255),
+  extended_name VARCHAR(255) UNIQUE,
   code VARCHAR(255),
   category_id INTEGER NOT NULL,
 
-  UNIQUE (name, variant),
+  UNIQUE (short_name, variant),
   FOREIGN KEY (category_id) REFERENCES consultation_cause_categories (id)
 );
 
@@ -109,13 +110,15 @@ CREATE TABLE department_assignments (
 DROP TABLE IF EXISTS consultations;
 CREATE TABLE consultations (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  type VARCHAR(1) NOT NULL CHECK (type IN ('P', 'S', 'A')),
+  type VARCHAR(1) NOT NULL CHECK (type IN ('P', 'S', 'X')),
   registered_date DATETIME DEFAULT CURRENT_TIMESTAMP,
   patient_id INTEGER NOT NULL,
   cause_id INTEGER NOT NULL,
+  department_id INTEGER NOT NULL,
 
   FOREIGN KEY (patient_id) REFERENCES patients (id),
-  FOREIGN KEY (cause_id) REFERENCES consultation_causes (id)
+  FOREIGN KEY (cause_id) REFERENCES consultation_causes (id),
+  FOREIGN KEY (department_id) REFERENCES departments (id)
 );
 
 /*=============================================
@@ -131,8 +134,9 @@ INSERT INTO instruction_levels (id, name, abbreviation) VALUES
 (4, 'Licenciado/a', 'Licdo');
 
 INSERT INTO departments (id, name, belongs_to_external_consultation, icon_file_path)
-VALUES /*(1, 'Pediatría', true),
-(2, 'Ginecología', true),
+VALUES (1, 'Pediatría', true, 'assets/img/departments/PEDIATRIA.jpg'),
+(2, 'Ginecología', true, 'assets/img/departments/GINECOLOGIAA.jpg'),
+(22, 'Estadística', false, 'assets/img/departments/web01-obs_turismo-SIT.svg')/*,
 (3, 'Alto Riesgo', true),
 (4, 'Cirugía General', true),
 (5, 'Nutrición Dietética', true),
@@ -151,8 +155,7 @@ VALUES /*(1, 'Pediatría', true),
 (18, 'Quirófano', false),
 (19, 'Rayos X', false),
 (20, 'Banco de Sangre', false),
-(21, 'Emergencia', false),*/
-(22, 'Estadística', false, 'assets/img/departments/web01-obs_turismo-SIT.svg')/*,
+(21, 'Emergencia', false),
 (23, 'Hospitalización', false)*/;
 
 INSERT INTO consultation_cause_categories (id, short_name, extended_name, top_category_id) VALUES
@@ -176,7 +179,7 @@ INSERT INTO consultation_cause_categories (id, short_name, extended_name, top_ca
 (18, 'Enfermedades del sistema digestivo', null, null),
 (19, 'Enfermedades de la piel y tejido subcutáneo', null, null),
 (20, 'Enfermedades del sistema osteomuscular y tejidos conjuntivos', null, null),
-(21, 'Enfermedades del sistem genito-urinario', null, null),
+(21, 'Enfermedades del sistema genito-urinario', null, null),
 (22, 'Embarazo, parto y puerperio', null, null),
 (23, 'Afecciones en el período perinatal', null, null),
 (24, 'Síntomas, signos y hallazgos anormales', null, null),
@@ -185,7 +188,7 @@ INSERT INTO consultation_cause_categories (id, short_name, extended_name, top_ca
 (27, 'Violencia familiar', null, null),
 (28, 'Otras causas de consulta', null, null);
 
-INSERT INTO consultation_causes (name, variant, code, category_id) VALUES
+INSERT INTO consultation_causes (short_name, variant, code, category_id) VALUES
 ('Cólera', null, 'A00', 2),
 ('Amibiasis', null, 'A06', 2),
 ('Diarreas', '< 1 año', 'A08-A09', 2),
@@ -318,6 +321,7 @@ INSERT INTO consultation_causes (name, variant, code, category_id) VALUES
 ('Fiebre reumática sin complicaciones cardíacas', null, 'I00', 16),
 ('Hipertensión arterial', '< 15 años', 'I10', 16),
 ('Hipertensión arterial', '15-44 años', 'I10', 16),
+('Hipertensión arterial', '45 años y más', 'I10', 16),
 ('Enferm. isquémicas del corazón', null, 'I20-I22-I25', 16),
 ('Infarto agudo del miocardio', '< 45 años', 'I21', 16),
 ('Infarto agudo del miocardio', '45 años y más', 'I21', 16),

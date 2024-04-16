@@ -12,6 +12,10 @@
  * @var ?bool $checked
  * @var array<int, array{value: string, text: string, selected?: bool}> $options
  * @var ?bool $multiple
+ * @var ?string $list
+ * @var ?bool $hidden
+ * @var ?string $pattern
+ * @var ?string $title
  */
 
 $id = $name . rand();
@@ -23,6 +27,9 @@ $value ??= '';
 $checked ??= false;
 $multiple ??= false;
 $readonly ??= false;
+$hidden ??= false;
+$pattern ??= null;
+$title ??= null;
 
 ?>
 
@@ -34,13 +41,14 @@ $readonly ??= false;
       type="checkbox"
       id="<?= $id ?>"
       <?= $checked ? 'checked' : '' ?>
+      <?= $hidden ? 'hidden' : '' ?>
     />
     <label class="form-check-label" for="<?= $id ?>">
       <?= $placeholder ?>
     </label>
   </div>
 <?php else: ?>
-  <div class="col-md-<?= $cols ?? 6 ?> form-floating mb-4">
+  <div class="col-md-<?= $cols ?? 6 ?> <?= $hidden ? 'd-none' : '' ?> form-floating mb-4">
     <?php if ($variant === 'input') : ?>
       <input
         <?= $type === 'date' ? 'style="height: auto"' : '' ?>
@@ -53,6 +61,9 @@ $readonly ??= false;
         placeholder="<?= $placeholder ?>"
         value="<?= $value ?>"
         <?= $readonly ? 'readonly' : '' ?>
+        list="<?= $list ?? null ?>"
+        <?= $pattern ? "pattern='$pattern'" : '' ?>
+        <?= $title ? "data-bs-toggle='tooltip' title='$title'" : '' ?>
       />
     <?php elseif ($variant === 'textarea') : ?>
       <textarea

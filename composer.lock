@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "30b2b78a28f38a7a7ad0ece799e96757",
+  "content-hash": "6f6e464ee16bc96e051b9b9d2c0297fd",
   "packages": [
     {
       "name": "filp/whoops",
@@ -79,16 +79,16 @@
     },
     {
       "name": "flightphp/core",
-      "version": "v3.7.2",
+      "version": "v3.8.1",
       "source": {
         "type": "git",
         "url": "https://github.com/flightphp/core.git",
-        "reference": "fe2ad0c05e14d1649a9f13299b0b3ad580a0ed0b"
+        "reference": "0011efd42c40f4c600612e425ad598ec8cd6bae7"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/flightphp/core/zipball/fe2ad0c05e14d1649a9f13299b0b3ad580a0ed0b",
-        "reference": "fe2ad0c05e14d1649a9f13299b0b3ad580a0ed0b",
+        "url": "https://api.github.com/repos/flightphp/core/zipball/0011efd42c40f4c600612e425ad598ec8cd6bae7",
+        "reference": "0011efd42c40f4c600612e425ad598ec8cd6bae7",
         "shasum": ""
       },
       "require": {
@@ -146,9 +146,9 @@
       "homepage": "http://flightphp.com",
       "support": {
         "issues": "https://github.com/flightphp/core/issues",
-        "source": "https://github.com/flightphp/core/tree/v3.7.2"
+        "source": "https://github.com/flightphp/core/tree/v3.8.1"
       },
-      "time": "2024-03-30T13:37:34+00:00"
+      "time": "2024-04-11T04:28:40+00:00"
     },
     {
       "name": "leafs/anchor",
@@ -570,6 +570,56 @@
         "source": "https://github.com/php-fig/log/tree/3.0.0"
       },
       "time": "2021-07-14T16:46:02+00:00"
+    },
+    {
+      "name": "twbs/bootstrap",
+      "version": "v5.3.3",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/twbs/bootstrap.git",
+        "reference": "6e1f75f420f68e1d52733b8e407fc7c3766c9dba"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/twbs/bootstrap/zipball/6e1f75f420f68e1d52733b8e407fc7c3766c9dba",
+        "reference": "6e1f75f420f68e1d52733b8e407fc7c3766c9dba",
+        "shasum": ""
+      },
+      "replace": {
+        "twitter/bootstrap": "self.version"
+      },
+      "type": "library",
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Mark Otto",
+          "email": "markdotto@gmail.com"
+        },
+        {
+          "name": "Jacob Thornton",
+          "email": "jacobthornton@gmail.com"
+        }
+      ],
+      "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
+      "homepage": "https://getbootstrap.com/",
+      "keywords": [
+        "JS",
+        "css",
+        "framework",
+        "front-end",
+        "mobile-first",
+        "responsive",
+        "sass",
+        "web"
+      ],
+      "support": {
+        "issues": "https://github.com/twbs/bootstrap/issues",
+        "source": "https://github.com/twbs/bootstrap/tree/v5.3.3"
+      },
+      "time": "2024-02-20T15:14:29+00:00"
     }
   ],
   "packages-dev": [
@@ -1015,16 +1065,16 @@
     },
     {
       "name": "phpunit/phpunit",
-      "version": "11.0.9",
+      "version": "11.1.1",
       "source": {
         "type": "git",
         "url": "https://github.com/sebastianbergmann/phpunit.git",
-        "reference": "591bbfe416400385527d5086b346b92c06de404b"
+        "reference": "816cb6070af901c0548aa5f18f2132fd8a6e4ade"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/591bbfe416400385527d5086b346b92c06de404b",
-        "reference": "591bbfe416400385527d5086b346b92c06de404b",
+        "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/816cb6070af901c0548aa5f18f2132fd8a6e4ade",
+        "reference": "816cb6070af901c0548aa5f18f2132fd8a6e4ade",
         "shasum": ""
       },
       "require": {
@@ -1063,7 +1113,7 @@
       "type": "library",
       "extra": {
         "branch-alias": {
-          "dev-main": "11.0-dev"
+          "dev-main": "11.1-dev"
         }
       },
       "autoload": {
@@ -1095,7 +1145,7 @@
       "support": {
         "issues": "https://github.com/sebastianbergmann/phpunit/issues",
         "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-        "source": "https://github.com/sebastianbergmann/phpunit/tree/11.0.9"
+        "source": "https://github.com/sebastianbergmann/phpunit/tree/11.1.1"
       },
       "funding": [
         {
@@ -1111,7 +1161,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2024-03-28T10:09:42+00:00"
+      "time": "2024-04-06T06:20:21+00:00"
     },
     {
       "name": "sebastian/cli-parser",
@@ -2118,16 +2168,16 @@
     },
     {
       "name": "symfony/var-dumper",
-      "version": "v7.0.4",
+      "version": "v7.0.6",
       "source": {
         "type": "git",
         "url": "https://github.com/symfony/var-dumper.git",
-        "reference": "e03ad7c1535e623edbb94c22cc42353e488c6670"
+        "reference": "66d13dc207d5dab6b4f4c2b5460efe1bea29dbfb"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/symfony/var-dumper/zipball/e03ad7c1535e623edbb94c22cc42353e488c6670",
-        "reference": "e03ad7c1535e623edbb94c22cc42353e488c6670",
+        "url": "https://api.github.com/repos/symfony/var-dumper/zipball/66d13dc207d5dab6b4f4c2b5460efe1bea29dbfb",
+        "reference": "66d13dc207d5dab6b4f4c2b5460efe1bea29dbfb",
         "shasum": ""
       },
       "require": {
@@ -2181,7 +2231,7 @@
         "dump"
       ],
       "support": {
-        "source": "https://github.com/symfony/var-dumper/tree/v7.0.4"
+        "source": "https://github.com/symfony/var-dumper/tree/v7.0.6"
       },
       "funding": [
         {
@@ -2197,7 +2247,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2024-02-15T11:33:06+00:00"
+      "time": "2024-03-19T11:57:22+00:00"
     },
     {
       "name": "theseer/tokenizer",

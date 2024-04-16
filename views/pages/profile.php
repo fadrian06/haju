@@ -5,8 +5,6 @@ use App\ValueObjects\Appointment;
 
 /**
  * @var User $user
- * @var ?string $error
- * @var ?string $message
  */
 
 ?>
@@ -109,9 +107,6 @@ use App\ValueObjects\Appointment;
     <form method="post" action="./perfil#seguridad" class="col-md white_box">
       <h3 class="mb-4">Cambiar contraseña</h3>
       <?php
-        $message && render('components/notification', ['type' => 'message', 'text' => $message]);
-        $error && render('components/notification', ['type' => 'error', 'text' => $error]);
-
         render('components/input-group', [
           'variant' => 'input',
           'type' => 'password',

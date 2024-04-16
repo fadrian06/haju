@@ -8,6 +8,8 @@ use PharIo\Manifest\Url;
  * @var string $title
  * @var string $content
  * @var ?User $user
+ * @var ?string $error
+ * @var ?string $message
  */
 
 if (isset($user)) {
@@ -38,12 +40,13 @@ if (isset($user)) {
   <link rel="stylesheet" href="./assets/css/components/main.css" />
   <link rel="stylesheet" href="./assets/css/components/modal.css" />
   <link rel="stylesheet" href="./assets/css/components/box.css" />
+  <link rel="stylesheet" href="./assets/vendors/sweetalert2/default.min.css" />
   <link rel="stylesheet" href="./assets/css/custom.css" />
 </head>
 
-<body class="pb-4">
-  <header class="d-flex header_iner align-items-center py-0">
-    <img src="./assets/img/logo.png" height="45" />
+<body class="pb-4" style="display: grid; grid-template-rows: auto 1fr auto; min-height: 100vh">
+  <header class="d-flex header_iner align-items-center py-0" style="height: 60px">
+    <img src="./assets/img/logo.png" height="50" data-bs-toggle="tooltip" title='Hospital "José Antonio Uzcátegui"' />
     <nav class="header_right">
       <ul class="header_notification_warp d-flex align-items-center mx-0">
         <?php if (isActive('/departamento/seleccionar')): ?>
@@ -51,9 +54,6 @@ if (isset($user)) {
             <a href="./salir">Cerrar sesión</a>
           </li>
         <?php endif ?>
-        <li>
-          <img class="rounded-circle" src="<?= $user?->profileImagePath->asString() ?? './assets/img/client_img.png' ?>" height="69" />
-        </li>
       </ul>
     </nav>
   </header>
@@ -64,6 +64,31 @@ if (isset($user)) {
   </main>
   <?php render('components/footer') ?>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/vendors/sweetalert2/sweetalert2.min.js"></script>
+  <script>
+    for (const tooltipTriggerEl of document.querySelectorAll('[data-bs-toggle="tooltip"]')) {
+      new bootstrap.Tooltip(tooltipTriggerEl)
+    }
+
+    const swal = Swal.mixin({
+      // toast: true,
+      // position: 'top-right',
+      showCloseButton: true,
+      showConfirmButton: false
+    })
+
+    <?php if ($error): ?>
+      swal.fire({
+        title: '<?= $error ?>',
+        icon: 'error'
+      })
+    <?php elseif ($message): ?>
+      swal.fire({
+        title: '<?= $message ?>',
+        icon: 'success'
+      })
+    <?php endif ?>
+  </script>
 </body>
 
 </html>

@@ -1,3 +1,7 @@
+for (const tooltipTriggerEl of document.querySelectorAll('[data-bs-toggle="tooltip"]')) {
+  new bootstrap.Tooltip(tooltipTriggerEl)
+}
+
 /*$(document).ready(function () {
   $('#bar1').barfiller({ barColor: '#089bab', duration: 3000 })
   $('#bar2').barfiller({ barColor: '#28a745 ', duration: 3000 })
@@ -9,9 +13,9 @@ $('.close_icon').on('click', function () {
   $(this).parents('.hide_content')
 })
 
-/*$('.nice_Select').niceSelect()
-$('.nice_Select2').niceSelect()
-$('.default_sel').niceSelect()*/
+// $('.nice_Select').niceSelect()
+// $('.nice_Select2').niceSelect()
+// $('.default_sel').niceSelect()
 
 /*$(document).ready(function () {
   $('#start_datepicker').datepicker()
@@ -219,7 +223,7 @@ $('.custom_lms_choose li').click(function () {
   $(this).addClass('selected_lang')
 })
 
-$('.spin_icon_clicker').on('click', (e) => {
+$('.spin_icon_clicker').on('click', e => {
   $('.switcher_slide_wrapper').toggleClass('swith_show')
   e.preventDefault()
 })

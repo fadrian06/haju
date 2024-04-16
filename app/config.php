@@ -2,6 +2,8 @@
 
 use App\Repositories\Infraestructure\Files\FilesSettingsRepository;
 use App\Repositories\Infraestructure\PDO\Connection;
+use App\Repositories\Infraestructure\PDO\PDOConsultationCauseCategoryRepository;
+use App\Repositories\Infraestructure\PDO\PDOConsultationCauseRepository;
 use App\Repositories\Infraestructure\PDO\PDODepartmentRepository;
 use App\Repositories\Infraestructure\PDO\PDOPatientRepository;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
@@ -10,7 +12,14 @@ use Whoops\Handler\PlainTextHandler;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
+
 $_ENV += require __DIR__ . '/../.env.php';
+
+if (!$_ENV['DEBUG']) {
+  error_reporting(0);
+  ini_set('display_errors', 'Off');
+  ini_set('html_errors', 'Off');
+}
 
 date_default_timezone_set($_ENV['TIMEZONE']);
 ini_set('error_log', __DIR__ . '/logs/errors.log');
@@ -53,9 +62,21 @@ App::register(
 );
 
 App::register(
+  'consultationCauseCategoryRepository',
+  PDOConsultationCauseCategoryRepository::class,
+  [App::db(), App::get('fullRoot')]
+);
+
+App::register(
+  'consultationCauseRepository',
+  PDOConsultationCauseRepository::class,
+  [App::db(), App::get('fullRoot'), App::consultationCauseCategoryRepository()]
+);
+
+App::register(
   'patientRepository',
   PDOPatientRepository::class,
-  [App::db(), App::get('fullRoot'), App::userRepository()]
+  [App::db(), App::get('fullRoot'), App::userRepository(), App::consultationCauseRepository(), App::departmentRepository()]
 );
 
 App::register('session', Session::class);

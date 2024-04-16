@@ -24,6 +24,7 @@ final class AuthorizationMiddleware {
       !$user?->appointment->isHigherThan($this->permitted)
       || ($this->blocked && $user->appointment === $this->blocked)
     ) {
+      App::session()->set('error', 'Acceso no autorizado');
       exit(App::redirect('/'));
     }
   }

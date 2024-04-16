@@ -3,6 +3,7 @@
 use App\Controllers\Web\DepartmentWebController;
 use App\Controllers\Web\HomeWebController;
 use App\Controllers\Web\PatientWebController;
+use App\Controllers\Web\ReportsWebController;
 use App\Controllers\Web\SessionWebController;
 use App\Controllers\Web\SettingsWebController;
 use App\Controllers\Web\UserWebController;
@@ -14,11 +15,8 @@ use App\Middlewares\EnsureUserIsNotAuthenticated;
 use App\Middlewares\MessagesMiddleware;
 use App\Middlewares\ShowRegisterIfThereIsNoUsers;
 use App\ValueObjects\Appointment;
-use MegaCreativo\API\CedulaVE;
 
-App::route('/api/cedulacion/@idCard', function (int $idCard): void {
-  App::json(@CedulaVE::get('V', $idCard));
-});
+App::route('GET /reportes/epi-11', [ReportsWebController::class, 'showEpi11']);
 
 App::group('', function (): void {
   App::route('/salir', [SessionWebController::class, 'logOut']);
@@ -50,12 +48,19 @@ App::group('', function (): void {
     App::route('/notificaciones', function (): void {
     });
 
-    App::group('', function (): void {
-      App::route('GET /pacientes', [PatientWebController::class, 'showPatients']);
-      App::route('POST /pacientes', [PatientWebController::class, 'handleRegister']);
-      App::route('POST /pacientes/@id', [PatientWebController::class, 'handleEdition']);
-      App::route('GET /pacientes/@id', [PatientWebController::class, 'showPatient']);
+    App::route('GET /pacientes', [PatientWebController::class, 'showPatients']);
+    App::route('GET /pacientes/@id:[0-9]+', [PatientWebController::class, 'showPatient']);
+    App::route('POST /pacientes', [PatientWebController::class, 'handleRegister'])
+      ->addMiddleware(new AuthorizationMiddleware(Appointment::Secretary, Appointment::Director));
+
+    App::group('/consultas', function (): void {
+      App::route('GET /registrar', [PatientWebController::class, 'showConsultationRegister']);
+      App::route('POST /', [PatientWebController::class, 'handleConsultationRegister']);
     }, [new AuthorizationMiddleware(Appointment::Secretary, Appointment::Director)]);
+
+    App::group('', function (): void {
+      App::route('POST /pacientes/@id', [PatientWebController::class, 'handleEdition']);
+    }, [new AuthorizationMiddleware(Appointment::Coordinator, Appointment::Director)]);
 
     App::group('', function (): void {
       App::route('GET /usuarios', [UserWebController::class, 'showUsers']);

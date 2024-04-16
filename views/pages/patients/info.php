@@ -6,11 +6,25 @@ use App\Models\User;
 /**
  * @var User $user
  * @var Patient $patient
- * @var ?string $error
- * @var ?string $message
  */
 
+$causes = [];
+
+foreach ($patient->getConsultation() as $consultation) {
+  $causeName = $consultation->cause->getFullName(abbreviated: false);
+
+  $causes[$causeName] ??= 0;
+  ++$causes[$causeName];
+}
+
+$causes = array_slice($causes, 0, 5, true);
+
 ?>
+
+<script>
+  const causesNames = JSON.parse('<?= json_encode(array_keys($causes)) ?>')
+  const causesCounters = JSON.parse('<?= json_encode(array_values($causes)) ?>')
+</script>
 
 <section class="mb-4 d-flex px-0 align-items-center justify-content-between">
   <h2 class="m-0">Detalles del paciente</h2>
@@ -78,15 +92,24 @@ use App\Models\User;
       <span><?= $patient->birthDate ?></span>
     </li>
   </ul>
-  <ul class="nav nav-tabs row mx-0 px-0 mt-4">
+  <h3 class="mt-4 mb-0 py-3 text-center active border">
+    <strong>Historial médico</strong>
+  </h3>
+  <ul class="nav nav-tabs row mx-0 px-0">
     <li class="nav-item col px-0">
       <div class="row mx-0">
-        <!-- <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#about-cont">
-          Acerca de
-        </button> -->
         <button class="nav-link col-sm px-0 active" data-bs-toggle="tab" data-bs-target="#visitas">
           Visitas médicas
         </button>
+        <!-- <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#">
+          Consultas externas
+        </button> -->
+        <!-- <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#">
+          Antecedentes médicos
+        </button> -->
+        <!-- <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#">
+          Tratamientos
+        </button> -->
       </div>
     </li>
   </ul>
@@ -98,12 +121,12 @@ use App\Models\User;
         <div class="white_box">
           <h3>Visitas médicas</h3>
           <ul class="timeline mt-4">
-            <?php foreach (range(1, 3) as $_) : ?>
+            <?php foreach ($patient->getConsultation() as $consultation) : ?>
               <li class="timeline-item">
-                <a href="#" target="_blank">
-                  <strong class="text-secondary">International College of Medical Science (UG)</strong>
-                  <span class="text-black-50 fw-semibold">MBBS</span>
-                  <time class="small text-black-50">2001 - 2003</time>
+                <a target="_blank" data-bs-toggle="tooltip" title="<?= $consultation->cause->category->extendedName ?? $consultation->cause->category->shortName ?>">
+                  <strong class="text-secondary"><?= $consultation->cause->getFullName() ?></strong>
+                  <span class="text-black-50 fw-semibold"><?= $consultation->type->getDescription() ?></span>
+                  <time class="small text-black-50"><?= $consultation->registeredDate ?></time>
                 </a>
               </li>
             <?php endforeach ?>
@@ -112,19 +135,26 @@ use App\Models\User;
       </article>
       <article class="col-md px-0 ps-md-2 mt-4 mt-md-0">
         <div class="white_box">
-          <h3>Destacadas</h3>
-          <ul class="timeline mt-4">
-            <?php foreach (range(1, 2) as $_) : ?>
-              <li class="timeline-item">
-                <a href="#" target="_blank">
-                  <strong class="text-secondary">Consultant Gynecologist</strong>
-                  <time class="small text-black-50">Jan 2014 - Present (4 years 8 months)</time>
-                </a>
-              </li>
-            <?php endforeach ?>
-          </ul>
+          <h3>Frecuentes</h3>
+          <canvas id="frecuent-consultation-causes" style="width: 100%"></canvas>
         </div>
       </article>
     </div>
   </article>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    new Chart(document.getElementById('frecuent-consultation-causes'), {
+      type: 'pie',
+      data: {
+        labels: causesNames,
+        datasets: [{
+          data: causesCounters,
+          backgroundColor: ['#364f6b', '#e6e6e6', '#2daab8', '#0d6efd', '#eff1f7'],
+          borderColor: 'black'
+        }]
+      }
+    });
+  })
+</script>
