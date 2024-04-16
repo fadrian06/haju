@@ -42,14 +42,19 @@ if (isset($user)) {
   <link rel="stylesheet" href="./assets/css/components/box.css" />
   <link rel="stylesheet" href="./assets/vendors/sweetalert2/default.min.css" />
   <link rel="stylesheet" href="./assets/css/custom.css" />
+  <style>
+    .header_iner~* {
+      margin-top: unset !important;
+    }
+  </style>
 </head>
 
 <body class="pb-4" style="display: grid; grid-template-rows: auto 1fr auto; min-height: 100vh">
-  <header class="d-flex header_iner align-items-center py-0" style="height: 60px">
+  <header class="d-flex header_iner align-items-center py-0" style="height: 60px; padding-left: 30px !important">
     <img src="./assets/img/logo.png" height="50" data-bs-toggle="tooltip" title='Hospital "José Antonio Uzcátegui"' />
     <nav class="header_right">
       <ul class="header_notification_warp d-flex align-items-center mx-0">
-        <?php if (isActive('/departamento/seleccionar')): ?>
+        <?php if (isActive('/departamento/seleccionar')) : ?>
           <li class="d-none d-md-block">
             <a href="./salir">Cerrar sesión</a>
           </li>
@@ -77,12 +82,12 @@ if (isset($user)) {
       showConfirmButton: false
     })
 
-    <?php if ($error): ?>
+    <?php if ($error) : ?>
       swal.fire({
         title: '<?= $error ?>',
         icon: 'error'
       })
-    <?php elseif ($message): ?>
+    <?php elseif ($message) : ?>
       swal.fire({
         title: '<?= $message ?>',
         icon: 'success'
