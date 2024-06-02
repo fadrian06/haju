@@ -292,3 +292,9 @@ textarea {
 .swal2-popup .swal2-title {
   color: white;
 }
+
+.profile_info .profile_info_iner::before {
+  top: -25px;
+  right: 5px;
+  border-width: 0 15px 25px;
+}

@@ -51,10 +51,14 @@ $showPasswordChangeModal ??= $mustChangePassword;
       grid-template-columns: 100%;
       align-items: start;
     }
+
+    body {
+      padding-right: 0 !important;;
+    }
   </style>
 </head>
 
-<body style="padding-right: 0 !important">
+<body>
   <?php render('components/sidebar') ?>
   <section class="main_content pb-4 pt-0">
     <?php render('components/header') ?>
