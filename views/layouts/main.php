@@ -54,7 +54,7 @@ $showPasswordChangeModal ??= $mustChangePassword;
   </style>
 </head>
 
-<body>
+<body style="padding-right: 0 !important">
   <?php render('components/sidebar') ?>
   <section class="main_content pb-4 pt-0">
     <?php render('components/header') ?>
