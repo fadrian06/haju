@@ -1,17 +1,17 @@
 PST III:
-  ☐ ¿Presenta autenticación y Autoriza los usuarios según privilegio asignado?
-  ☐ ¿Cierra sesión y evita el ingreso desde la URL del navegador?
+  ✔ ¿Presenta autenticación y Autoriza los usuarios según privilegio asignado? @done (02/06/2024 17:49:32)
+  ✔ ¿Cierra sesión y evita el ingreso desde la URL del navegador? @done (02/06/2024 17:49:57)
   ☐ ¿Permite Insertar, Consultar, Modificar y Eliminar en todos los Módulos?
   ☐ ¿Valida los campos de los formularios del lado usuario y servidor?
   ☐ ¿Genera Reportes en PDF?
   ☐ ¿Genera Reportes Estadístico con graficas según rango de fecha?
   ☐ ¿El sistema contiene rutinas con Transacción Segura?
   ☐ ¿Permite Respaldar para su descarga y Restaurar la base de datos seleccionando una copia guardada en unidad extraíble?
-  ☐ ¿El sistema genera mensajes de alerta de forma automatizada dependiendo de cálculos realizados en base de datos?
-  ☐ ¿Las interfaces son de fácil comprensión al usuario; utilizando calendarios, menú desplegables y mantiene el estilo en los distintos módulos del sistema?
+  ✔ ¿El sistema genera mensajes de alerta de forma automatizada dependiendo de cálculos realizados en base de datos? @done (02/06/2024 17:51:57)
+  ✔ ¿Las interfaces son de fácil comprensión al usuario; utilizando calendarios, menú desplegables y mantiene el estilo en los distintos módulos del sistema? @done (02/06/2024 17:52:02)
 
 PST IV:
-  ☐ ¿Presenta autenticación y Autoriza los usuarios según privilegio asignado?
+  ✔ ¿Presenta autenticación y Autoriza los usuarios según privilegio asignado? @done (02/06/2024 17:49:37)
   ☐ ¿Permite Insertar, Consultar, Modificar y Eliminar en todos los Módulos?
   ☐ ¿Valida los campos de los formularios del lado usuario y servidor?
   ☐ ¿Genera Reportes en PDF y Estadístico con graficas según rango de fecha?
@@ -19,8 +19,8 @@ PST IV:
   ☐ ¿Permite llevar el registro de Log’s de los usuarios y Triggers en el sistema?
   ☐ ¿Permite Respaldar para su descarga y Restaurar la base de datos seleccionando una copia guardada en unidad extraíble?
   ☐ ¿Evita ataque XSS?
-  ☐ ¿El sistema genera mensajes de alerta de forma automatizada dependiendo de cálculos realizados en base de datos?
-  ☐ ¿Las interfaces son de fácil comprensión al usuario; utilizando calendarios, menú desplegables y mantiene el estilo en los distintos módulos del sistema?
+  ✔ ¿El sistema genera mensajes de alerta de forma automatizada dependiendo de cálculos realizados en base de datos? @done (02/06/2024 17:52:00)
+  ✔ ¿Las interfaces son de fácil comprensión al usuario; utilizando calendarios, menú desplegables y mantiene el estilo en los distintos módulos del sistema? @done (02/06/2024 17:52:04)
 
 Recomendaciones:
   Presentación T3:
