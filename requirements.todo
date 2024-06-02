@@ -1,0 +1,39 @@
+PST III:
+  ☐ ¿Presenta autenticación y Autoriza los usuarios según privilegio asignado?
+  ☐ ¿Cierra sesión y evita el ingreso desde la URL del navegador?
+  ☐ ¿Permite Insertar, Consultar, Modificar y Eliminar en todos los Módulos?
+  ☐ ¿Valida los campos de los formularios del lado usuario y servidor?
+  ☐ ¿Genera Reportes en PDF?
+  ☐ ¿Genera Reportes Estadístico con graficas según rango de fecha?
+  ☐ ¿El sistema contiene rutinas con Transacción Segura?
+  ☐ ¿Permite Respaldar para su descarga y Restaurar la base de datos seleccionando una copia guardada en unidad extraíble?
+  ☐ ¿El sistema genera mensajes de alerta de forma automatizada dependiendo de cálculos realizados en base de datos?
+  ☐ ¿Las interfaces son de fácil comprensión al usuario; utilizando calendarios, menú desplegables y mantiene el estilo en los distintos módulos del sistema?
+
+PST IV:
+  ☐ ¿Presenta autenticación y Autoriza los usuarios según privilegio asignado?
+  ☐ ¿Permite Insertar, Consultar, Modificar y Eliminar en todos los Módulos?
+  ☐ ¿Valida los campos de los formularios del lado usuario y servidor?
+  ☐ ¿Genera Reportes en PDF y Estadístico con graficas según rango de fecha?
+  ☐ ¿El sistema contiene rutinas con Transacción Segura?
+  ☐ ¿Permite llevar el registro de Log’s de los usuarios y Triggers en el sistema?
+  ☐ ¿Permite Respaldar para su descarga y Restaurar la base de datos seleccionando una copia guardada en unidad extraíble?
+  ☐ ¿Evita ataque XSS?
+  ☐ ¿El sistema genera mensajes de alerta de forma automatizada dependiendo de cálculos realizados en base de datos?
+  ☐ ¿Las interfaces son de fácil comprensión al usuario; utilizando calendarios, menú desplegables y mantiene el estilo en los distintos módulos del sistema?
+
+Recomendaciones:
+  Presentación T3:
+    ☐ Ingresar por el login tanto registrar como ingresar.
+    ☐ Mejorar la pantalla de ingreso.
+    ☐ Agregar una búsqueda por cédula en registrar consulta.
+    ☐ Terminar los reportes faltantes según sea el formato.
+    ☐ Agregar las notificaciones de cuando una enfermedad se convierte en epidemia.
+    ☐ En la parte de consulta agregar el doctor que atendió la consulta.
+
+  Asesorías T4:
+    ☐ Mejorar pantalla de inicio del sistema.
+    ☐ Integrar opcion de registro de usuario nuevo de administrador.
+    ☐ Gestión del cambio de director para crear cuenta nueva de director.
+    ☐ Delimitar el número de departamentos en el sistema.
+    ☐ Generar formato de proyecto para exportar a excel y pdf.
