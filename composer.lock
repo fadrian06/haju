@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "838b1477fd6c3f51bf12c23d182da318",
+  "content-hash": "e99dea3e148f4761851b7b36c21a81bd",
   "packages": [
     {
       "name": "filp/whoops",
@@ -79,27 +79,28 @@
     },
     {
       "name": "flightphp/core",
-      "version": "v3.8.1",
+      "version": "v3.10.0",
       "source": {
         "type": "git",
         "url": "https://github.com/flightphp/core.git",
-        "reference": "0011efd42c40f4c600612e425ad598ec8cd6bae7"
+        "reference": "c8a1c888999e6c0a4a7ca7df94e96b2702f39ab2"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/flightphp/core/zipball/0011efd42c40f4c600612e425ad598ec8cd6bae7",
-        "reference": "0011efd42c40f4c600612e425ad598ec8cd6bae7",
+        "url": "https://api.github.com/repos/flightphp/core/zipball/c8a1c888999e6c0a4a7ca7df94e96b2702f39ab2",
+        "reference": "c8a1c888999e6c0a4a7ca7df94e96b2702f39ab2",
         "shasum": ""
       },
       "require": {
         "ext-json": "*",
-        "php": "^7.4|^8.0|^8.1|^8.2|^8.3"
+        "php": ">=7.4"
       },
       "replace": {
         "mikecao/flight": "2.0.2"
       },
       "require-dev": {
         "ext-pdo_sqlite": "*",
+        "flightphp/runway": "^0.2.0",
         "league/container": "^4.2",
         "level-2/dice": "^4.0",
         "phpstan/extension-installer": "^1.3",
@@ -146,9 +147,9 @@
       "homepage": "http://flightphp.com",
       "support": {
         "issues": "https://github.com/flightphp/core/issues",
-        "source": "https://github.com/flightphp/core/tree/v3.8.1"
+        "source": "https://github.com/flightphp/core/tree/v3.10.0"
       },
-      "time": "2024-04-11T04:28:40+00:00"
+      "time": "2024-05-30T13:40:44+00:00"
     },
     {
       "name": "leafs/anchor",
@@ -705,16 +706,16 @@
     },
     {
       "name": "symfony/var-dumper",
-      "version": "v7.0.6",
+      "version": "v7.1.0",
       "source": {
         "type": "git",
         "url": "https://github.com/symfony/var-dumper.git",
-        "reference": "66d13dc207d5dab6b4f4c2b5460efe1bea29dbfb"
+        "reference": "595e4a4bc2118e7f4884315a684678b9403d44a6"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/symfony/var-dumper/zipball/66d13dc207d5dab6b4f4c2b5460efe1bea29dbfb",
-        "reference": "66d13dc207d5dab6b4f4c2b5460efe1bea29dbfb",
+        "url": "https://api.github.com/repos/symfony/var-dumper/zipball/595e4a4bc2118e7f4884315a684678b9403d44a6",
+        "reference": "595e4a4bc2118e7f4884315a684678b9403d44a6",
         "shasum": ""
       },
       "require": {
@@ -768,7 +769,7 @@
         "dump"
       ],
       "support": {
-        "source": "https://github.com/symfony/var-dumper/tree/v7.0.6"
+        "source": "https://github.com/symfony/var-dumper/tree/v7.1.0"
       },
       "funding": [
         {
@@ -784,7 +785,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2024-03-19T11:57:22+00:00"
+      "time": "2024-05-28T06:54:05+00:00"
     }
   ],
   "aliases": [],
