@@ -142,7 +142,7 @@ input[type="number"] {
 }
 
 .form-floating>label {
-/*  left: unset;*/
+  left: unset;
   height: unset;
 }
 
