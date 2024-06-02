@@ -1,6 +1,6 @@
 {
   "require": {
-    "php": "^8.2",
+    "php": ">=8.2",
     "flightphp/core": "^3.8",
     "phar-io/manifest": "^2.0",
     "leafs/session": "^2.0",
@@ -23,13 +23,11 @@
   "scripts": {
     "dev:win": "start php -S localhost:80",
     "db:install": "php app/commands/db-install.php",
-    "test": "phpunit",
     "post-install-cmd": [
       "php -r \"if (!file_exists('.env.php')) copy('.env.dist.php', '.env.php');\""
     ]
   },
   "require-dev": {
-    "phpunit/phpunit": "^11.0",
     "symfony/var-dumper": "^7.0"
   }
 }
