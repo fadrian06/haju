@@ -103,7 +103,7 @@ $title ??= null;
         <?php endforeach ?>
       </select>
     <?php endif ?>
-    <label for="<?= $id ?>">
+    <label for="<?= $id ?>" style="<?= $labelStyle ?? '' ?>">
       <?= $placeholder . ($required ? '<sub class="text-danger ms-2" style="font-size: 2em">*</sub>' : '') ?>
     </label>
   </div>

@@ -44,6 +44,7 @@
           'cols' => 12,
           'pattern' => '\d{4}-\d{2}',
           'title' => 'La fecha debe tener el formato AAAA-MM',
+          'labelStyle' => 'left: 0'
         ]);
 
         ?>
