@@ -27,6 +27,10 @@ $frecuentCause = App::db()->instance()->query(<<<sql
   ) GROUP BY registered_date
 sql)->fetchAll(PDO::FETCH_ASSOC);
 
+if (!$frecuentCauses) {
+  return;
+}
+
 ?>
 
 <script>
