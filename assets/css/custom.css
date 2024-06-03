@@ -39,7 +39,7 @@ input[type="number"] {
   justify-content: space-between !important;
 }
 
-.header_iner ~ * {
+.header_iner~* {
   margin-top: 65px !important;
 }
 
@@ -294,7 +294,5 @@ textarea {
 }
 
 .profile_info .profile_info_iner::before {
-  top: -25px;
-  right: 5px;
-  border-width: 0 15px 25px;
+  right: 20px;
 }
