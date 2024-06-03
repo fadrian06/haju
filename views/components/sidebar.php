@@ -95,24 +95,10 @@ use App\ValueObjects\Appointment;
       </li>
       <?php if ($user->appointment === Appointment::Director && $department->name === 'Estadística') : ?>
         <li class="<?= isActive('/departamentos') ? 'mm-active' : '' ?>">
-          <a href="#" class="has-arrow">
+          <a href="./departamentos">
             <img src="./assets/img/icons/hospital.svg" />
             <span>Departamentos</span>
           </a>
-          <ul class="pe-2">
-            <li class="<?= isActive('/departamentos') ? 'mm-active' : '' ?>">
-              <a href="./departamentos">
-                <i class="ti-list"></i>
-                Listado
-              </a>
-            </li>
-            <li>
-              <a href="./departamentos#registrar" <?= isActive('/departamentos') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
-                <i class="ti-plus"></i>
-                Registrar
-              </a>
-            </li>
-          </ul>
         </li>
       <?php endif ?>
       <?php if ($user->appointment->isHigherThan(Appointment::Coordinator)) : ?>
