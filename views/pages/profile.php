@@ -106,29 +106,31 @@ use App\ValueObjects\Appointment;
   <section class="tab-pane fade show active row px-2" id="seguridad">
     <form method="post" action="./perfil#seguridad" class="col-md white_box">
       <h3 class="mb-4">Cambiar contraseña</h3>
-      <?php
-        render('components/input-group', [
-          'variant' => 'input',
-          'type' => 'password',
-          'name' => 'old_password',
-          'placeholder' => 'Contraseña anterior',
-          'cols' => 12
-        ]);
+      <div class="row">
+        <?php
+          render('components/input-group', [
+            'variant' => 'input',
+            'type' => 'password',
+            'name' => 'old_password',
+            'placeholder' => 'Contraseña anterior',
+            'cols' => 12
+          ]);
 
-        render('components/input-group', [
-          'type' => 'password',
-          'name' => 'new_password',
-          'placeholder' => 'Nueva contraseña',
-          'cols' => 12
-        ]);
+          render('components/input-group', [
+            'type' => 'password',
+            'name' => 'new_password',
+            'placeholder' => 'Nueva contraseña',
+            'cols' => 6
+          ]);
 
-        render('components/input-group', [
-          'type' => 'password',
-          'name' => 'confirm_password',
-          'placeholder' => 'Confirmar contraseña',
-          'cols' => 12
-        ]);
-      ?>
+          render('components/input-group', [
+            'type' => 'password',
+            'name' => 'confirm_password',
+            'placeholder' => 'Confirmar contraseña',
+            'cols' => 6
+          ]);
+        ?>
+      </div>
       <div class="text-center">
         <button class="btn btn-primary rounded-pill">Actualizar</button>
       </div>
