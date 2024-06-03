@@ -5,7 +5,7 @@ use App\ValueObjects\InstructionLevel;
 
 ?>
 
-<div class="col-md-8 mx-auto">
+<div class="col-md-9 mx-auto">
   <section class="px-0 modal modal-content cs_modal">
     <header class="modal-header px-4 py-3">
       <h5>Regístrate</h5>
