@@ -51,7 +51,7 @@ $title ??= null;
   <div class="col-md-<?= $cols ?? 6 ?> <?= $hidden ? 'd-none' : '' ?> form-floating mb-4">
     <?php if ($variant === 'input') : ?>
       <input
-        <?= $type === 'date' ? 'style="height: auto"' : '' ?>
+        style="height: 66px; <?= $type === 'date' ? 'padding-top: 1em; padding-bottom: 0' : '' ?>"
         type="<?= $type ?>"
         class="form-control <?= $readonly ? 'opacity-25' : '' ?>"
         <?= $required ? 'required' : '' ?>
@@ -71,11 +71,11 @@ $title ??= null;
         <?= $required ? 'required' : '' ?>
         name="<?= $name ?>"
         id="<?= $id ?>"
-        style="height: 60px"
+        style="height: 66px"
         placeholder="<?= $placeholder ?>"><?= $value ?></textarea>
     <?php elseif ($variant === 'file'): ?>
       <input
-        style="height: auto"
+        style="height: auto; padding-bottom: 0"
         type="file"
         class="form-control"
         <?= $required ? 'required' : '' ?>
@@ -84,13 +84,16 @@ $title ??= null;
       />
     <?php else: ?>
       <select
+        style="border-color: rgb(241, 243, 245)"
         <?= $required ? 'required' : '' ?>
         class="form-select"
         name="<?= $name ?>"
         id="<?= $id ?>"
         placeholder="<?= $placeholder ?>"
         <?= $multiple ? 'multiple' : '' ?>>
-        <option <?= !$value ? 'selected' : '' ?> disabled>Seleccione una opción</option>
+        <option <?= !$value ? 'selected' : '' ?> disabled>
+          Seleccione una opción
+        </option>
         <?php foreach ($options as $option) : ?>
           <option
             <?= !empty($option['selected']) ? 'selected' : '' ?>
