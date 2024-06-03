@@ -18,7 +18,10 @@ $loggedUser = $user;
   <h2>Usuarios</h2>
   <a data-bs-toggle="modal" href="#registrar" class="btn btn-primary rounded-pill d-flex align-items-center">
     <i class="px-2 ti-plus"></i>
-    <span class="px-2">Añadir usuario</span>
+    <span class="px-2">
+      Registrar
+      <?= $user->appointment === Appointment::Director ? 'coordinador/a' : 'secretario/a' ?>
+    </span>
   </a>
 </section>
 
