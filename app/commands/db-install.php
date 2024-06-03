@@ -14,7 +14,7 @@ $connection = new Connection(
   $_ENV['DB_PASSWORD']
 );
 
-$initDbFilePath = dirname(__DIR__) . "/database/init.{$_ENV['DB_CONNECTION']->value}.sql";
+$initDbFilePath = dirname(__DIR__, 2) . "/database/init.{$_ENV['DB_CONNECTION']->value}.sql";
 
 foreach (explode(';', file_get_contents($initDbFilePath)) as $query) {
   $connection->instance()->query($query);
