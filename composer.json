@@ -22,7 +22,7 @@
   },
   "scripts": {
     "dev:win": "start php -S localhost:80",
-    "db:install": "php app/commands/db-install.php",
+    "migrate:fresh": "php app/commands/migrate-fresh.php",
     "post-install-cmd": [
       "php -r \"if (!file_exists('.env.php')) copy('.env.dist.php', '.env.php');\""
     ]
