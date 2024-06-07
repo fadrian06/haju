@@ -7,7 +7,7 @@ $frecuentCauses = App::db()->instance()->query(<<<sql
   FROM consultations
   JOIN consultation_causes
   ON consultations.cause_id = consultation_causes.id
-  WHERE registered_date BETWEEN '2024-04-01' AND '2024-04-31'
+  WHERE registered_date BETWEEN '2024-04-01' AND CURRENT_TIMESTAMP
   GROUP BY cause_id
   LIMIT 5
 sql)->fetchAll(PDO::FETCH_ASSOC);
@@ -21,13 +21,13 @@ $frecuentCause = App::db()->instance()->query(<<<sql
     FROM consultations
     JOIN consultation_causes
     ON consultations.cause_id = consultation_causes.id
-    WHERE cause_id = 96 AND registered_date BETWEEN '2024-04-01' AND '2024-04-31'
+    WHERE cause_id = 1 AND registered_date BETWEEN '2024-04-01' AND CURRENT_TIMESTAMP
     GROUP BY registered_date
     ORDER BY registered_date
   ) GROUP BY registered_date
 sql)->fetchAll(PDO::FETCH_ASSOC);
 
-if (!$frecuentCauses) {
+if (!$frecuentCauses || !$frecuentCause) {
   return;
 }
 

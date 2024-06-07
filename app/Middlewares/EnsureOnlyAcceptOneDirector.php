@@ -27,7 +27,7 @@ class EnsureOnlyAcceptOneDirector {
   private static function checkSecretKey(string $secretKey): void {
     if ($secretKey !== '1234') {
       exit(App::renderPage('login', 'Ingreso (1/2)', [
-        'error' => 'Clave secreta incorrecta'
+        'error' => 'Clave maestra incorrecta'
       ]));
     }
   }
