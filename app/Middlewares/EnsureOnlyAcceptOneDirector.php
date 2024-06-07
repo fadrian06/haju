@@ -3,25 +3,32 @@
 namespace App\Middlewares;
 
 use App;
-use App\Models\User;
-use App\ValueObjects\Appointment;
 
 class EnsureOnlyAcceptOneDirector {
   static function before(): void {
-    $users = App::userRepository()->getAll();
+    if (App::request()->data['secret_key']) {
+      self::checkSecretKey(App::request()->data['secret_key']);
+      App::session()->set('let_register_director', true);
 
-    $directors = array_filter($users, function (User $user): bool {
-      return $user->appointment === Appointment::Director;
-    });
+      exit(<<<html
+      <script>
+        location.href = './registrate'
+      </script>
+      html);
+    }
 
-    $activeDirectors = array_filter($directors, function (User $director): bool {
-      return $director->isActive();
-    });
-
-    if (!$directors || !$activeDirectors) {
+    if (App::session()->get('let_register_director')) {
       return;
     }
 
     exit(App::redirect('/ingresar'));
+  }
+
+  private static function checkSecretKey(string $secretKey): void {
+    if ($secretKey !== '1234') {
+      exit(App::renderPage('login', 'Ingreso (1/2)', [
+        'error' => 'Clave secreta incorrecta'
+      ]));
+    }
   }
 }

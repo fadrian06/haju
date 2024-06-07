@@ -24,7 +24,7 @@ PST IV:
 
 Recomendaciones:
   Presentación T3:
-    ☐ Ingresar por el login tanto registrar como ingresar.
+    ✔ Ingresar por el login tanto registrar como ingresar. @done (06/06/2024 23:19:25)
     ☐ Mejorar la pantalla de ingreso.
     ☐ Agregar una búsqueda por cédula en registrar consulta.
     ☐ Terminar los reportes faltantes según sea el formato.
@@ -33,7 +33,7 @@ Recomendaciones:
 
   Asesorías T4:
     ☐ Mejorar pantalla de inicio del sistema.
-    ☐ Integrar opcion de registro de usuario nuevo de administrador.
-    ☐ Gestión del cambio de director para crear cuenta nueva de director.
+    ✔ Integrar opcion de registro de usuario nuevo de administrador. @done (06/06/2024 23:19:43)
+    ✔ Gestión del cambio de director para crear cuenta nueva de director. @done (06/06/2024 23:19:45)
     ☐ Delimitar el número de departamentos en el sistema.
     ☐ Generar formato de proyecto para exportar a excel y pdf.
