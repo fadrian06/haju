@@ -25,9 +25,9 @@ use App\ValueObjects\Appointment;
           <p>Usuario<?= $usersNumber !== 1 ? 's' : '' ?></p>
         </div>
       </a>
-      <?php if ($user->appointment === Appointment::Director && $department->name === 'Estadística') : ?>
+      <?php if ($user->appointment === Appointment::Director) : ?>
         <a href="./departamentos" class="single_quick_activity d-flex">
-          <img class="icon" src="./assets/img/icons/cap.svg" />
+          <img class="icon" src="./assets/img/icons/hospital-o.svg" />
           <div class="count_content">
             <h3><?= $departmentsNumber ?></h3>
             <p>Departamento<?= $departmentsNumber !== 1 ? 's' : '' ?></p>
@@ -42,6 +42,13 @@ use App\ValueObjects\Appointment;
           <h3><?= $patientsNumber ?></h3>
           <p>Paciente<?= $patientsNumber !== 1 ? 's' : '' ?></p>
           <p><?= $consultationsNumber ?> Consulta<?= $consultationsNumber === 1 ? '' : 's' ?></p>
+        </div>
+      </a>
+      <a href="./doctores" class="single_quick_activity d-flex">
+        <img class="icon" src="./assets/img/icons/cap.svg" />
+        <div class="count_content">
+          <h3><?= $doctorsNumber ?></h3>
+          <p>Doctor<?= $doctorsNumber !== 1 ? 'es' : '' ?></p>
         </div>
       </a>
     <?php endif ?>

@@ -127,6 +127,9 @@ $causes = array_slice($causes, 0, 5, true);
                   <strong class="text-secondary"><?= $consultation->cause->getFullName() ?></strong>
                   <span class="text-black-50 fw-semibold"><?= $consultation->type->getDescription() ?></span>
                   <time class="small text-black-50"><?= $consultation->registeredDate ?></time>
+                  <small class="small text-black-50">
+                    Atendido por: <?= $consultation->doctor->getFullName() ?>
+                  </small>
                 </a>
               </li>
             <?php endforeach ?>

@@ -9,7 +9,8 @@ final class Consultation extends Model {
   function __construct(
     public readonly ConsultationType $type,
     public readonly ConsultationCause $cause,
-    public readonly Department $department
+    public readonly Department $department,
+    public readonly Doctor $doctor
   ) {
   }
 

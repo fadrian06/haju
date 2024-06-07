@@ -5,6 +5,7 @@ use App\Repositories\Infraestructure\PDO\Connection;
 use App\Repositories\Infraestructure\PDO\PDOConsultationCauseCategoryRepository;
 use App\Repositories\Infraestructure\PDO\PDOConsultationCauseRepository;
 use App\Repositories\Infraestructure\PDO\PDODepartmentRepository;
+use App\Repositories\Infraestructure\PDO\PDODoctorRepository;
 use App\Repositories\Infraestructure\PDO\PDOPatientRepository;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
 use Leaf\Http\Session;
@@ -73,10 +74,17 @@ App::register(
   [App::db(), App::get('fullRoot'), App::consultationCauseCategoryRepository()]
 );
 
-App::register(
-  'patientRepository',
-  PDOPatientRepository::class,
-  [App::db(), App::get('fullRoot'), App::userRepository(), App::consultationCauseRepository(), App::departmentRepository()]
-);
+App::register('doctorRepository', PDODoctorRepository::class, [
+  App::db(), App::get('fullRoot'), App::userRepository()
+]);
+
+App::register('patientRepository', PDOPatientRepository::class, [
+  App::db(),
+  App::get('fullRoot'),
+  App::userRepository(),
+  App::consultationCauseRepository(),
+  App::departmentRepository(),
+  App::doctorRepository()
+]);
 
 App::register('session', Session::class);

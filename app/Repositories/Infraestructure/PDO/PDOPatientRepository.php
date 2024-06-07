@@ -25,7 +25,8 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
     string $baseUrl,
     private readonly PDOUserRepository $userRepository,
     private readonly PDOConsultationCauseRepository $causeRepository,
-    private readonly PDODepartmentRepository $departmentRepository
+    private readonly PDODepartmentRepository $departmentRepository,
+    private readonly PDODoctorRepository $doctorRepository
   ) {
     parent::__construct($connection, $baseUrl);
   }
@@ -70,7 +71,7 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
   function setConsultationsById(Patient $patient, int $causeId): void {
     $stmt = $this->ensureIsConnected()
       ->prepare(<<<sql
-        SELECT id, type, registered_date, cause_id, department_id
+        SELECT id, type, registered_date, cause_id, department_id, doctor_id
         FROM consultations
         WHERE patient_id = ? AND cause_id = ?
       sql);
@@ -83,10 +84,12 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
       $consultation = new Consultation(
         ConsultationType::from($consultationRecord['type']),
         $this->causeRepository->getById($consultationRecord['cause_id']),
-        $this->departmentRepository->getById($consultationRecord['department_id'])
+        $this->departmentRepository->getById($consultationRecord['department_id']),
+        $this->doctorRepository->getById($consultationRecord['doctor_id'])
       );
 
-      $consultation->setId($consultationRecord['id'])
+      $consultation
+        ->setId($consultationRecord['id'])
         ->setRegisteredDate(parent::parseDateTime($consultationRecord['registered_date']));
 
       $consultations[] = $consultation;
@@ -98,7 +101,7 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
   function setConsultations(Patient $patient): void {
     $stmt = $this->ensureIsConnected()
       ->prepare(<<<sql
-        SELECT id, type, registered_date, cause_id, department_id
+        SELECT id, type, registered_date, cause_id, department_id, doctor_id
         FROM consultations
         WHERE patient_id = ?
         ORDER BY registered_date DESC
@@ -112,7 +115,8 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
       $consultation = new Consultation(
         ConsultationType::from($consultationRecord['type']),
         $this->causeRepository->getById($consultationRecord['cause_id']),
-        $this->departmentRepository->getById($consultationRecord['department_id'])
+        $this->departmentRepository->getById($consultationRecord['department_id']),
+        $this->doctorRepository->getById($consultationRecord['doctor_id'])
       );
 
       $consultation->setId($consultationRecord['id'])
@@ -184,14 +188,16 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
 
     $this->ensureIsConnected()
       ->prepare("
-        INSERT INTO consultations (type, registered_date, patient_id, cause_id, department_id)
-        VALUES (?, ?, ?, ?, ?)
+        INSERT INTO consultations (type, registered_date, patient_id, cause_id,
+        department_id, doctor_id)
+        VALUES (?, ?, ?, ?, ?, ?)
       ")->execute([
         $consultations[0]->type->value,
         $registeredDate,
         $patient->id,
         $consultations[0]->cause->id,
-        $consultations[0]->department->id
+        $consultations[0]->department->id,
+        $consultations[0]->doctor->id
       ]);
 
     $consultations[0]->setRegisteredDate(parent::parseDateTime($registeredDate));

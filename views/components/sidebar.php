@@ -73,6 +73,26 @@ use App\ValueObjects\Appointment;
       </li>
     <?php endif ?>
     <?php if ($user->appointment->isHigherThan(Appointment::Coordinator)) : ?>
+      <li class="<?= isActive('/doctores') ? 'mm-active' : '' ?>">
+        <a href="#" class="has-arrow">
+          <img src="./assets/img/icons/user-md.svg" />
+          <span>Doctores</span>
+        </a>
+        <ul class="pe-2">
+          <li class="<?= isActive('/doctores') ? 'mm-active' : '' ?>">
+            <a href="./doctores">
+              <i class="ti-list"></i>
+              Listado
+            </a>
+          </li>
+          <li>
+            <a href="./doctores#registrar" <?= isActive('/doctores') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
+              <i class="ti-plus"></i>
+              Registrar
+            </a>
+          </li>
+        </ul>
+      </li>
       <li class="<?= isActive('/usuarios') ? 'mm-active' : '' ?>">
         <a href="#" class="has-arrow">
           <img src="./assets/img/icons/users.svg" />
@@ -93,7 +113,7 @@ use App\ValueObjects\Appointment;
           </li>
         </ul>
       </li>
-      <?php if ($user->appointment === Appointment::Director && $department->name === 'Estadística') : ?>
+      <?php if ($user->appointment === Appointment::Director) : ?>
         <li class="<?= isActive('/departamentos') ? 'mm-active' : '' ?>">
           <a href="./departamentos">
             <img src="./assets/img/icons/hospital.svg" />

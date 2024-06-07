@@ -93,6 +93,23 @@ CREATE TABLE patients (
   FOREIGN KEY (registered_by_id) REFERENCES users (id)
 );
 
+DROP TABLE IF EXISTS doctors;
+CREATE TABLE doctors (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  first_name VARCHAR(20) NOT NULL,
+  second_name VARCHAR(20),
+  first_last_name VARCHAR(20) NOT NULL,
+  second_last_name VARCHAR(20),
+  birth_date DATE NOT NULL,
+  gender VARCHAR(20) NOT NULL CHECK (gender IN ('Masculino', 'Femenino')),
+  id_card INTEGER NOT NULL UNIQUE,
+  registered_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+  registered_by_id INTEGER NOT NULL,
+
+  UNIQUE (first_name, second_name, first_last_name, second_last_name),
+  FOREIGN KEY (registered_by_id) REFERENCES users (id)
+);
+
 /*======================================
 =            PIVOT ENTITIES            =
 ======================================*/
@@ -115,10 +132,12 @@ CREATE TABLE consultations (
   patient_id INTEGER NOT NULL,
   cause_id INTEGER NOT NULL,
   department_id INTEGER NOT NULL,
+  doctor_id INTEGER NOT NULL,
 
   FOREIGN KEY (patient_id) REFERENCES patients (id),
   FOREIGN KEY (cause_id) REFERENCES consultation_causes (id),
-  FOREIGN KEY (department_id) REFERENCES departments (id)
+  FOREIGN KEY (department_id) REFERENCES departments (id),
+  FOREIGN KEY (doctor_id) REFERENCES doctors (id)
 );
 
 /*=============================================
