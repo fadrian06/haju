@@ -153,7 +153,7 @@ INSERT INTO instruction_levels (id, name, abbreviation) VALUES
 (4, 'Licenciado/a', 'Licdo');
 
 INSERT INTO departments (id, name, belongs_to_external_consultation, icon_file_path)
-VALUES (1, 'Pediatría', true, 'assets/img/departments/PEDIATRIA.jpg'),
+VALUES (1, 'Pediatría', true, 'assets/img/departments/pediatria.jpg'),
 (2, 'Ginecología', true, 'assets/img/departments/GINECOLOGIAA.jpg'),
 (22, 'Estadística', false, 'assets/img/departments/web01-obs_turismo-SIT.svg')/*,
 (3, 'Alto Riesgo', true),
