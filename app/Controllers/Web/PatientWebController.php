@@ -8,6 +8,7 @@ use App\Models\Patient;
 use App\Repositories\Domain\ConsultationCauseCategoryRepository;
 use App\Repositories\Domain\ConsultationCauseRepository;
 use App\Repositories\Domain\DepartmentRepository;
+use App\Repositories\Domain\DoctorRepository;
 use App\Repositories\Domain\PatientRepository;
 use App\ValueObjects\ConsultationType;
 use App\ValueObjects\Date;
@@ -20,6 +21,7 @@ final class PatientWebController extends Controller {
   private readonly ConsultationCauseCategoryRepository $consultationCauseCategoryRepository;
   private readonly ConsultationCauseRepository $consultationCauseRepository;
   private readonly DepartmentRepository $departmentRepository;
+  private readonly DoctorRepository $doctorRepository;
 
   function __construct() {
     parent::__construct();
@@ -28,6 +30,7 @@ final class PatientWebController extends Controller {
     $this->consultationCauseCategoryRepository = App::consultationCauseCategoryRepository();
     $this->consultationCauseRepository = App::consultationCauseRepository();
     $this->departmentRepository = App::departmentRepository();
+    $this->doctorRepository = App::doctorRepository();
   }
 
   function showPatients(): void {
@@ -124,6 +127,7 @@ final class PatientWebController extends Controller {
   function showConsultationRegister(): void {
     $patients = $this->patientRepository->getAll();
     $consultationCauseCategories = $this->consultationCauseCategoryRepository->getAll();
+    $doctors = $this->doctorRepository->getAll();
 
     $departments = [];
 
@@ -133,12 +137,12 @@ final class PatientWebController extends Controller {
       }
     }
 
-    App::renderPage(
-      'patients/add-consultation',
-      'Registrar consulta',
-      compact('patients', 'consultationCauseCategories', 'departments'),
-      'main'
-    );
+    App::renderPage('patients/add-consultation', 'Registrar consulta', compact(
+      'patients',
+      'consultationCauseCategories',
+      'departments',
+      'doctors'
+    ), 'main');
   }
 
   function handleConsultationRegister(): void {
@@ -150,7 +154,8 @@ final class PatientWebController extends Controller {
           ? ConsultationType::from($this->data['consultation_type'])
           : ConsultationType::FirstTime,
         $this->consultationCauseRepository->getById($this->data['consultation_cause']),
-        $this->departmentRepository->getById($this->data['department'])
+        $this->departmentRepository->getById($this->data['department']),
+        $this->doctorRepository->getById($this->data['doctor'])
       );
 
       $patient->setConsultations($consultation);
@@ -160,6 +165,6 @@ final class PatientWebController extends Controller {
       parent::setError($error);
     }
 
-    App::redirect('/consultas/registrar');
+    App::redirect(App::request()->referrer);
   }
 }

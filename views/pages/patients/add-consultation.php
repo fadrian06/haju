@@ -2,6 +2,7 @@
 
 use App\Models\ConsultationCauseCategory;
 use App\Models\Department;
+use App\Models\Doctor;
 use App\Models\Patient;
 use App\ValueObjects\ConsultationType;
 
@@ -84,6 +85,18 @@ use App\ValueObjects\ConsultationType;
       'placeholder' => 'Seleccione un departamento',
       'cols' => 6,
       'name' => 'department',
+      'hidden' => false
+    ]);
+
+    render('components/input-group', [
+      'variant' => 'select',
+      'options' => array_map(fn (Doctor $doctor): array => [
+        'value' => $doctor->id,
+        'text' => "v-$doctor->idCard ~ $doctor->firstName $doctor->firstLastName"
+      ], $doctors),
+      'placeholder' => 'Seleccione un doctor',
+      'cols' => 6,
+      'name' => 'doctor',
       'hidden' => false
     ]);
 

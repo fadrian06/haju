@@ -3,6 +3,7 @@
 use App\Repositories\Domain\ConsultationCauseCategoryRepository;
 use App\Repositories\Domain\ConsultationCauseRepository;
 use App\Repositories\Domain\DepartmentRepository;
+use App\Repositories\Domain\DoctorRepository;
 use App\Repositories\Domain\PatientRepository;
 use App\Repositories\Domain\SettingsRepository;
 use App\Repositories\Domain\UserRepository;
@@ -19,6 +20,7 @@ use Leaf\Http\Session;
  * @method static PatientRepository patientRepository()
  * @method static ConsultationCauseCategoryRepository consultationCauseCategoryRepository()
  * @method static ConsultationCauseRepository consultationCauseRepository()
+ * @method static DoctorRepository doctorRepository()
  */
 class App extends Flight {
   static function route(

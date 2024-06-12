@@ -46,6 +46,10 @@ if (isset($user)) {
     .header_iner~* {
       margin-top: unset !important;
     }
+
+    body {
+      padding-right: 0 !important;;
+    }
   </style>
 </head>
 

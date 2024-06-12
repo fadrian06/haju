@@ -3,6 +3,27 @@ html {
   overflow-y: scroll;
 }
 
+/* Works on Firefox */
+/** {
+  scrollbar-width: thin;
+  scrollbar-color: blue orange;
+}*/
+
+/* Works on Chrome, Edge, and Safari */
+/**::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: orange;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: blue;
+  border-radius: 20px;
+  border: 3px solid orange;
+}*/
+
 summary {
   display: initial;
 }
@@ -39,7 +60,7 @@ input[type="number"] {
   justify-content: space-between !important;
 }
 
-.header_iner ~ * {
+.header_iner~* {
   margin-top: 65px !important;
 }
 
@@ -142,7 +163,7 @@ input[type="number"] {
 }
 
 .form-floating>label {
-/*  left: unset;*/
+  left: unset;
   height: unset;
 }
 
@@ -291,4 +312,8 @@ textarea {
 
 .swal2-popup .swal2-title {
   color: white;
+}
+
+.profile_info .profile_info_iner::before {
+  right: 20px;
 }

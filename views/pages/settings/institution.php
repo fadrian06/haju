@@ -13,8 +13,7 @@ use App\Models\Hospital;
 <section class="mb-4 d-inline-flex px-0 align-items-center justify-content-between">
   <h2>Configuración de la institución</h2>
 </section>
-<?php $error && render('components/notification', ['type' => 'error', 'text' => $error]) ?>
-<?php $message && render('components/notification', ['type' => 'message', 'text' => $message]) ?>
+
 <form method="post" class="white_box d-flex flex-column align-items-center">
   <fieldset class="row w-100">
     <?php

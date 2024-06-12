@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\Web\DepartmentWebController;
+use App\Controllers\Web\DoctorWebController;
 use App\Controllers\Web\HomeWebController;
 use App\Controllers\Web\PatientWebController;
 use App\Controllers\Web\ReportsWebController;
@@ -47,6 +48,13 @@ App::group('', function (): void {
 
     App::route('/notificaciones', function (): void {
     });
+
+    App::group('/doctores', function (): void {
+      App::route('GET /', [DoctorWebController::class, 'showDoctors']);
+      App::route('POST /', [DoctorWebController::class, 'handleRegister']);
+      App::route('GET /@idCard', [DoctorWebController::class, 'showEdit']);
+      App::route('POST /@idCard', [DoctorWebController::class, 'handleEdition']);
+    }, [new AuthorizationMiddleware(Appointment::Coordinator)]);
 
     App::route('GET /pacientes', [PatientWebController::class, 'showPatients']);
     App::route('GET /pacientes/@id:[0-9]+', [PatientWebController::class, 'showPatient']);

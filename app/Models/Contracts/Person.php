@@ -86,6 +86,23 @@ abstract class Person extends Model {
     return $this;
   }
 
+  /** @throws InvalidNameException */
+  function setFullName(string $fullName): self {
+    @[$firstName, $secondName, $firstLastName, $secondLastName] = explode(' ', $fullName);
+
+    $this->setFirstName($firstName);
+
+    if (!$firstLastName) {
+      return $this->setSecondName(null)
+        ->setFirstLastName($secondName)
+        ->setSecondLastName(null);
+    }
+
+    return $this->setSecondName($secondName)
+      ->setFirstLastName($firstLastName)
+      ->setSecondLastName($secondLastName);
+  }
+
   final function getFullName(): string {
     $fullName = $this->firstName;
     $fullName .= $this->secondName ? " {$this->secondName}" : '';

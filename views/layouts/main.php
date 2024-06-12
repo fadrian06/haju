@@ -51,6 +51,10 @@ $showPasswordChangeModal ??= $mustChangePassword;
       grid-template-columns: 100%;
       align-items: start;
     }
+
+    body {
+      padding-right: 0 !important;;
+    }
   </style>
 </head>
 

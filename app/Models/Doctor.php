@@ -7,7 +7,7 @@ use App\ValueObjects\Date;
 use App\ValueObjects\Gender;
 use Generator;
 
-final class Patient extends Person {
+final class Doctor extends Person {
   /** @var array<int, Consultation> */
   private array $consultations = [];
 
@@ -43,15 +43,5 @@ final class Patient extends Person {
     $this->consultations = $consultations;
 
     return $this;
-  }
-
-  function getCauseById(int $causeId): ?ConsultationCause {
-    foreach ($this->consultations as $consultation) {
-      if ($consultation->cause->id === $causeId) {
-        return $consultation->cause;
-      }
-    }
-
-    return null;
   }
 }
