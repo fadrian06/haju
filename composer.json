@@ -48,7 +48,8 @@
       "package.json",
       "pnpm-*",
       "*.db",
-      "*.sqlite"
+      "*.sqlite",
+      "*.todo"
     ]
   }
 }
