@@ -27,9 +27,10 @@ if (isset($user)) {
   <title><?= $title ?> - HAJU</title>
   <?php render('components/open-graph-metas') ?>
   <base href="<?= $root ?>/" />
+  <link rel="icon" href="./assets/img/logo-mini.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,700&family=Rajdhani:wght@300;400;500;600;700&display=swap" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
-  <link rel="icon" href="./assets/img/logo-mini.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css" />
   <link rel="stylesheet" href="./assets/vendors/themefy_icon/themify-icons.css" />
   <link rel="stylesheet" href="./assets/css/reset.css" />
   <link rel="stylesheet" href="./assets/css/utils.css" />
@@ -40,7 +41,6 @@ if (isset($user)) {
   <link rel="stylesheet" href="./assets/css/components/main.css" />
   <link rel="stylesheet" href="./assets/css/components/modal.css" />
   <link rel="stylesheet" href="./assets/css/components/box.css" />
-  <link rel="stylesheet" href="./assets/vendors/sweetalert2/default.min.css" />
   <link rel="stylesheet" href="./assets/css/custom.css" />
   <style>
     .header_iner~* {
@@ -73,7 +73,7 @@ if (isset($user)) {
   </main>
   <?php render('components/footer') ?>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="./assets/vendors/sweetalert2/sweetalert2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
   <script>
     for (const tooltipTriggerEl of document.querySelectorAll('[data-bs-toggle="tooltip"]')) {
       new bootstrap.Tooltip(tooltipTriggerEl)
