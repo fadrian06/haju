@@ -15,6 +15,7 @@ use App\Middlewares\EnsureOnlyAcceptOneDirector;
 use App\Middlewares\EnsureUserIsNotAuthenticated;
 use App\Middlewares\MessagesMiddleware;
 use App\Middlewares\ShowRegisterIfThereIsNoUsers;
+use App\Models\Patient;
 use App\ValueObjects\Appointment;
 
 App::route('GET /reportes/epi-11', [ReportsWebController::class, 'showEpi11']);
@@ -65,6 +66,11 @@ App::group('', function (): void {
       App::route('GET /registrar', [PatientWebController::class, 'showConsultationRegister']);
       App::route('POST /', [PatientWebController::class, 'handleConsultationRegister']);
     }, [new AuthorizationMiddleware(Appointment::Secretary, Appointment::Director)]);
+
+    App::group('/hospitalizaciones', function (): void {
+      App::route('GET /registrar', [PatientWebController::class, 'showHospitalizationRegister']);
+      App::route('POST /', [PatientWebController::class, 'handleHospitalizationRegister']);
+    });
 
     App::group('', function (): void {
       App::route('POST /pacientes/@id', [PatientWebController::class, 'handleEdition']);

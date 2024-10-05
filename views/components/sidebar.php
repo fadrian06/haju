@@ -63,9 +63,15 @@ use App\ValueObjects\Appointment;
               </a>
             </li>
             <li>
-              <a href="./consultas/registrar" <?= isActive('/consultas/registrar') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
+              <a href="./consultas/registrar">
                 <i class="ti-plus"></i>
                 Registrar consulta
+              </a>
+            </li>
+            <li>
+              <a href="./hospitalizaciones/registrar">
+                <i class="ti-plus"></i>
+                Registrar hospitalización
               </a>
             </li>
           <?php endif ?>

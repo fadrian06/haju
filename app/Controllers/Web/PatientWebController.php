@@ -167,4 +167,18 @@ final class PatientWebController extends Controller {
 
     App::redirect(App::request()->referrer);
   }
+
+  function showHospitalizationRegister(): void {
+    $patients = $this->patientRepository->getAll();
+
+    App::renderPage(
+      'patients/add-hospitalization',
+      'Registrar hospitalización',
+      compact('patients'),
+      'main'
+    );
+  }
+
+  function handleHospitalizationRegister(): void {
+  }
 }
