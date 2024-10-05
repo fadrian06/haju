@@ -22,7 +22,7 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
 
   function getAll(): array {
     return $this->ensureIsConnected()
-      ->query(sprintf('SELECT %s FROM %s', self::FIELDS, self::getTable()))
+      ->query(sprintf('SELECT %s FROM %s ORDER BY name', self::FIELDS, self::getTable()))
       ->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper']);
   }
 

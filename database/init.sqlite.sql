@@ -174,8 +174,8 @@ VALUES (1, 'Pediatría', true, 'assets/img/departments/pediatria.jpg'),
 (18, 'Quirófano', false),
 (19, 'Rayos X', false),
 (20, 'Banco de Sangre', false),
-(21, 'Emergencia', false),
-(23, 'Hospitalización', false)*/;
+(21, 'Emergencia', false),*/
+(23, 'Hospitalización', false, 'assets/img/departments/doctor-visiting-patient-hospital-female-260nw-2477344121.png');
 
 INSERT INTO consultation_cause_categories (id, short_name, extended_name, top_category_id) VALUES
 (1, 'Enfermedades infecciosas y parasitarias', null, null),
