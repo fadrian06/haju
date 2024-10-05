@@ -140,6 +140,22 @@ CREATE TABLE consultations (
   FOREIGN KEY (doctor_id) REFERENCES doctors (id)
 );
 
+DROP TABLE IF EXISTS hospitalizations;
+CREATE TABLE hospitalizations (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  admission_department VARCHAR(255) NOT NULL,
+  admission_date DATE NOT NULL,
+  departure_date DATE,
+  departure_status VARCHAR(255),
+  diagnoses TEXT,
+  registered_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+  patient_id INTEGER NOT NULL,
+  doctor_id INTEGER NOT NULL,
+
+  FOREIGN KEY (patient_id) REFERENCES patients (id),
+  FOREIGN KEY (doctor_id) REFERENCES doctors (id)
+);
+
 /*=============================================
 =            PRE-INSTALLED RECORDS            =
 =============================================*/
