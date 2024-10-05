@@ -13,7 +13,6 @@ use Whoops\Handler\PlainTextHandler;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
-
 $_ENV += require __DIR__ . '/../.env.php';
 
 if (!$_ENV['DEBUG']) {

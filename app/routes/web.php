@@ -15,7 +15,6 @@ use App\Middlewares\EnsureOnlyAcceptOneDirector;
 use App\Middlewares\EnsureUserIsNotAuthenticated;
 use App\Middlewares\MessagesMiddleware;
 use App\Middlewares\ShowRegisterIfThereIsNoUsers;
-use App\Models\Patient;
 use App\ValueObjects\Appointment;
 
 App::route('GET /reportes/epi-11', [ReportsWebController::class, 'showEpi11']);
@@ -28,7 +27,7 @@ App::group('', function (): void {
     App::route('POST /ingresar', [SessionWebController::class, 'handleLogin']);
     App::route('GET /recuperar', [UserWebController::class, 'showPasswordReset']);
     App::route('POST /recuperar', [UserWebController::class, 'handlePasswordReset']);
-  }, [ShowRegisterIfThereIsNoUsers::class]);
+  }, [/*ShowRegisterIfThereIsNoUsers::class*/]);
 
   App::group('', function (): void {
     App::route('GET /registrate', [UserWebController::class, 'showRegister']);
