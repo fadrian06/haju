@@ -41,25 +41,30 @@ App::group('/api', function (): void {
     }
   };
 
-  App::route('/causas-consulta/categorias', function () use ($categoryMapper): void {
-    $categories = App::consultationCauseCategoryRepository()->getAll();
+  App::route(
+    '/causas-consulta/categorias',
+    function () use ($categoryMapper): void {
+      $categories = App::consultationCauseCategoryRepository()->getAll();
 
-    App::json(array_map([$categoryMapper, '__invoke'], $categories));
-  });
+      App::json(array_map([$categoryMapper, '__invoke'], $categories));
+    }
+  );
 
-  App::route('/causas-consulta/categorias/@id', function (int $id) use ($categoryMapper, $causeMapper): void {
-    $category = App::consultationCauseCategoryRepository()->getById($id);
-    $causes = App::consultationCauseRepository()->getByCategory($category);
+  App::route(
+    '/causas-consulta/categorias/@id',
+    function (int $id) use ($categoryMapper, $causeMapper): void {
+      $category = App::consultationCauseCategoryRepository()->getById($id);
+      $causes = App::consultationCauseRepository()->getByCategory($category);
 
-    App::json([
-      ...$categoryMapper($category),
-      'consultationCauses' => array_map([$causeMapper, '__invoke'], $causes)
-    ]);
-  });
+      App::json([
+        ...$categoryMapper($category),
+        'consultationCauses' => array_map([$causeMapper, '__invoke'], $causes)
+      ]);
+    }
+  );
 
   App::route('/causas-consulta', function () use ($categoryMapper): void {
     $causes = App::consultationCauseRepository()->getAllWithGenerator();
-
     $json = [];
 
     foreach ($causes as $cause) {
@@ -77,19 +82,22 @@ App::group('/api', function (): void {
     App::json($json);
   });
 
-  App::route('/causas-consulta/@id', function (int $id) use ($categoryMapper): void {
-    $cause = App::consultationCauseRepository()->getById($id);
+  App::route(
+    '/causas-consulta/@id',
+    function (int $id) use ($categoryMapper): void {
+      $cause = App::consultationCauseRepository()->getById($id);
 
-    App::json([
-      'id' => $cause->id,
-      'name' => [
-        'short' => $cause->getFullName(),
-        'extended' => $cause->getFullName(abbreviated: false)
-      ],
-      'code' => $cause->code,
-      'category' => $categoryMapper($cause->category)
-    ]);
-  });
+      App::json([
+        'id' => $cause->id,
+        'name' => [
+          'short' => $cause->getFullName(),
+          'extended' => $cause->getFullName(abbreviated: false)
+        ],
+        'code' => $cause->code,
+        'category' => $categoryMapper($cause->category)
+      ]);
+    }
+  );
 
   App::route('/pacientes', function (): void {
   });
@@ -157,7 +165,13 @@ App::group('/api', function (): void {
 
   App::route(
     '/pacientes/@patientId:[0-9]+/causas-consulta/@causeId:[0-9]+',
-    function (int $patientId, int $causeId) use ($causeMapper, $categoryMapper): void {
+    function (
+      int $patientId,
+      int $causeId
+    ) use (
+      $causeMapper,
+      $categoryMapper
+    ): void {
       $patient = App::patientRepository()->getById($patientId);
 
       if (!$patient) {

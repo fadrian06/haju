@@ -1,0 +1,22 @@
+@apiUrl = http://localhost/api
+
+### Obtener todas las categorías de causas de consulta
+{{apiUrl}}/causas-consulta/categorias
+
+### Obtener una categoría de causa de consulta por su ID
+{{apiUrl}}/causas-consulta/categorias/2
+
+### Obtener todas las causas de consulta
+{{apiUrl}}/causas-consulta
+
+### Obtener una causa de consulta
+{{apiUrl}}/causas-consulta/1
+
+### Obtener todas las causas de consulta por ID del paciente
+{{apiUrl}}/pacientes/1/causas-consulta
+
+### Obtener una causa de consulta por ID del paciente e ID de la causa de consulta
+{{apiUrl}}/pacientes/1/causas-consulta/1
+
+### Obtener información del CNE sobre una cédula
+{{apiUrl}}/cedulacion/28072391

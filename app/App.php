@@ -22,7 +22,7 @@ use Leaf\Http\Session;
  * @method static ConsultationCauseRepository consultationCauseRepository()
  * @method static DoctorRepository doctorRepository()
  */
-class App extends Flight {
+final class App extends Flight {
   static function route(
     string $pattern,
     $callback,
