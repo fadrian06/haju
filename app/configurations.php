@@ -13,27 +13,42 @@ use Whoops\Handler\PlainTextHandler;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
+///////////////////////////
+// ENVIRONMENT VARIABLES //
+///////////////////////////
 $_ENV += require __DIR__ . '/../.env.php';
 
+////////////////////
+// ERR0R HANDLING //
+////////////////////
 if (!$_ENV['DEBUG']) {
   error_reporting(0);
   ini_set('display_errors', 'Off');
   ini_set('html_errors', 'Off');
 }
 
-date_default_timezone_set($_ENV['TIMEZONE']);
 ini_set('error_log', __DIR__ . '/logs/errors.log');
-
-$whoops = new Run();
+$whoops = new Run;
 $whoops->pushHandler($_ENV['DEBUG'] ? new PrettyPageHandler : new PlainTextHandler);
 $whoops->register();
-
 App::set('flight.handle_errors', false);
+
+//////////////
+// TIMEZONE //
+//////////////
+date_default_timezone_set($_ENV['TIMEZONE']);
+
+//////////////////////
+// GLOBAL CONSTANTS //
+//////////////////////
 App::set('root', str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']));
 App::set('fullRoot', App::request()->scheme . '://' . App::request()->host . App::get('root'));
 App::view()->set('root', App::get('root'));
 App::view()->set('user', null);
 
+//////////////////
+// DEPENDENCIES //
+//////////////////
 App::register('db', Connection::class, [
   $_ENV['DB_CONNECTION'],
   $_ENV['DB_DATABASE'],
@@ -74,7 +89,9 @@ App::register(
 );
 
 App::register('doctorRepository', PDODoctorRepository::class, [
-  App::db(), App::get('fullRoot'), App::userRepository()
+  App::db(),
+  App::get('fullRoot'),
+  App::userRepository()
 ]);
 
 App::register('patientRepository', PDOPatientRepository::class, [
