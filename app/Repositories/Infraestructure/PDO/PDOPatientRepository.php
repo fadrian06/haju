@@ -175,6 +175,37 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
     }
   }
 
+  function saveHospitalizationOf(Patient $patient): void {
+    /** @var Hospitalization[] */
+    $hospitalizations = [];
+
+    foreach ($patient->getHospitalization() as $hospitalization) {
+      if (!$hospitalization->id) {
+        $hospitalizations[] = $hospitalization;
+      }
+    }
+
+    $registeredDate = parent::getCurrentDatetime();
+
+    $this->ensureIsConnected()
+      ->prepare("
+        INSERT INTO hospitalizations (admission_department, admission_date,
+        departure_date, departure_status, diagnoses, patient_id, doctor_id)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+      ")->execute([
+        $hospitalizations[0]->admissionDepartment,
+        $hospitalizations[0]->admissionDate->format(self::DATE_FORMAT),
+        $hospitalizations[0]->departureDate?->format(self::DATE_FORMAT),
+        $hospitalizations[0]->departureStatus?->value,
+        $hospitalizations[0]->diagnoses,
+        $hospitalizations[0]->patient->id,
+        $hospitalizations[0]->doctor->id
+      ]);
+
+    $hospitalizations[0]->setRegisteredDate(parent::parseDateTime($registeredDate));
+    $patient->setHospitalization(...$hospitalizations);
+  }
+
   function saveConsultationOf(Patient $patient): void {
     $consultations = [];
 

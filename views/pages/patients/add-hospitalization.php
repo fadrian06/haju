@@ -1,8 +1,14 @@
 <?php
 
+use App\Models\Doctor;
 use App\Models\Patient;
+use App\ValueObjects\AdmissionDepartment;
+use App\ValueObjects\DepartureStatus;
 
-/** @var Patient[] $patients */
+/**
+ * @var Patient[] $patients
+ * @var Doctor[] $doctors
+ */
 
 ?>
 
@@ -20,7 +26,7 @@ use App\Models\Patient;
         'value' => $patient->id,
         'text' => "v-{$patient->idCard} ~ {$patient->getFullName()}"
       ], $patients),
-      'placeholder' => 'Buscar cédula...',
+      'placeholder' => 'Paciente',
       'name' => 'id_card',
       'cols' => 7
     ]);
@@ -38,8 +44,76 @@ use App\Models\Patient;
 
     <?php
 
+    render('components/input-group', [
+      'variant' => 'input',
+      'type' => 'date',
+      'placeholder' => 'Fecha de ingreso',
+      'cols' => 6,
+      'name' => 'admission_date',
+      'value' => date('Y-m-d')
+    ]);
 
+    render('components/input-group', [
+      'variant' => 'input',
+      'type' => 'date',
+      'placeholder' => 'Fecha de salida',
+      'cols' => 6,
+      'name' => 'departure_date',
+      'required' => false,
+      'value' => ''
+    ]);
+
+    render('components/input-group', [
+      'variant' => 'select',
+      'options' => array_map(fn (DepartureStatus $status): array => [
+        'value' => $status->value,
+        'text' => $status->value
+      ], DepartureStatus::cases()),
+      'placeholder' => 'Estado de salida',
+      'cols' => 6,
+      'name' => 'admission_status',
+      'hidden' => false,
+      'required' => false
+    ]);
+
+    render('components/input-group', [
+      'variant' => 'select',
+      'options' => array_map(fn (AdmissionDepartment $department): array => [
+        'value' => $department->value,
+        'text' => $department->value
+      ], AdmissionDepartment::cases()),
+      'placeholder' => 'Departamento de ingreso',
+      'cols' => 6,
+      'name' => 'admission_department',
+      'hidden' => false,
+      'required' => true
+    ]);
+
+    render('components/input-group', [
+      'variant' => 'select',
+      'options' => array_map(fn (Doctor $doctor): array => [
+        'value' => $doctor->id,
+        'text' => "v-$doctor->idCard ~ $doctor->firstName $doctor->firstLastName"
+      ], $doctors),
+      'placeholder' => 'Seleccione un doctor',
+      'cols' => 6,
+      'name' => 'doctor',
+      'hidden' => false
+    ]);
+
+    render('components/input-group', [
+      'variant' => 'textarea',
+      'placeholder' => 'Diagnósticos',
+      'cols' => 6,
+      'name' => 'diagnoses',
+      'hidden' => false,
+      'required' => false
+    ]);
 
     ?>
   </fieldset>
+
+  <button id="register-btn" class="btn btn-primary btn-lg mt-4 px-5 rounded-pill">
+    Registrar
+  </button>
 </form>

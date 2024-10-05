@@ -11,6 +11,9 @@ final class Patient extends Person {
   /** @var array<int, Consultation> */
   private array $consultations = [];
 
+  /** @var array<int, Hospitalization> */
+  private array $hospitalizations = [];
+
   function __construct(
     string $firstName,
     ?string $secondName,
@@ -39,6 +42,13 @@ final class Patient extends Person {
     }
   }
 
+  /** @return Generator<int, Hospitalization> */
+  function getHospitalization(): Generator {
+    foreach ($this->hospitalizations as $hospitalization) {
+      yield $hospitalization;
+    }
+  }
+
   function setConsultations(Consultation ...$consultations): self {
     $this->consultations = $consultations;
 
@@ -53,5 +63,11 @@ final class Patient extends Person {
     }
 
     return null;
+  }
+
+  function setHospitalization(Hospitalization ...$hospitalizations): self {
+    $this->hospitalizations = $hospitalizations;
+
+    return $this;
   }
 }

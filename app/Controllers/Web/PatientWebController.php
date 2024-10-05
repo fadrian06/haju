@@ -4,6 +4,8 @@ namespace App\Controllers\Web;
 
 use App;
 use App\Models\Consultation;
+use App\Models\Hospital;
+use App\Models\Hospitalization;
 use App\Models\Patient;
 use App\Repositories\Domain\ConsultationCauseCategoryRepository;
 use App\Repositories\Domain\ConsultationCauseRepository;
@@ -12,7 +14,9 @@ use App\Repositories\Domain\DoctorRepository;
 use App\Repositories\Domain\PatientRepository;
 use App\ValueObjects\ConsultationType;
 use App\ValueObjects\Date;
+use App\ValueObjects\DepartureStatus;
 use App\ValueObjects\Gender;
+use DateTimeImmutable;
 use Error;
 use Throwable;
 
@@ -170,15 +174,41 @@ final class PatientWebController extends Controller {
 
   function showHospitalizationRegister(): void {
     $patients = $this->patientRepository->getAll();
+    $doctors = $this->doctorRepository->getAll();
 
     App::renderPage(
       'patients/add-hospitalization',
       'Registrar hospitalización',
-      compact('patients'),
+      compact('patients', 'doctors'),
       'main'
     );
   }
 
   function handleHospitalizationRegister(): void {
+    try {
+      $patient = $this->patientRepository->getById($this->data['id_card']);
+
+      $hospitalization = new Hospitalization(
+        $patient,
+        $this->doctorRepository->getById($this->data['doctor']),
+        $this->data['admission_department'],
+        new DateTimeImmutable($this->data['admission_date']),
+        $this->data['departure_date']
+          ? new DateTimeImmutable($this->data['departure_date'])
+          : null,
+        $this->data['departure_status']
+          ? DepartureStatus::from($this->data['departure_status'])
+          : null,
+        $this->data['diagnoses'] ?: null
+      );
+
+      $patient->setHospitalization($hospitalization);
+      $this->patientRepository->saveHospitalizationOf($patient);
+      parent::setMessage('Hospitalización registrada exitósamente');
+    } catch (Throwable $error) {
+      parent::setError($error);
+    }
+
+    App::redirect(App::request()->referrer);
   }
 }
