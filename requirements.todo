@@ -1,9 +1,9 @@
 PST III:
   ✔ ¿Presenta autenticación y Autoriza los usuarios según privilegio asignado? @done (02/06/2024 17:49:32)
   ✔ ¿Cierra sesión y evita el ingreso desde la URL del navegador? @done (02/06/2024 17:49:57)
-  ☐ ¿Permite Insertar, Consultar, Modificar y Eliminar en todos los Módulos?
+  ✔ ¿Permite Insertar, Consultar, Modificar y Eliminar en todos los Módulos? @done (29/09/2024 11:32:46)
   ☐ ¿Valida los campos de los formularios del lado usuario y servidor?
-  ☐ ¿Genera Reportes en PDF?
+  ✔ ¿Genera Reportes en PDF? @done (29/09/2024 11:37:11)
   ☐ ¿Genera Reportes Estadístico con graficas según rango de fecha?
   ☐ ¿El sistema contiene rutinas con Transacción Segura?
   ☐ ¿Permite Respaldar para su descarga y Restaurar la base de datos seleccionando una copia guardada en unidad extraíble?
@@ -12,7 +12,7 @@ PST III:
 
 PST IV:
   ✔ ¿Presenta autenticación y Autoriza los usuarios según privilegio asignado? @done (02/06/2024 17:49:37)
-  ☐ ¿Permite Insertar, Consultar, Modificar y Eliminar en todos los Módulos?
+  ✔ ¿Permite Insertar, Consultar, Modificar y Eliminar en todos los Módulos? @done (29/09/2024 11:42:30)
   ☐ ¿Valida los campos de los formularios del lado usuario y servidor?
   ☐ ¿Genera Reportes en PDF y Estadístico con graficas según rango de fecha?
   ☐ ¿El sistema contiene rutinas con Transacción Segura?
@@ -25,7 +25,7 @@ PST IV:
 Recomendaciones:
   Presentación T3:
     ✔ Ingresar por el login tanto registrar como ingresar. @done (06/06/2024 23:19:25)
-    ☐ Mejorar la pantalla de ingreso.
+    ✔ Mejorar la pantalla de ingreso. @done (29/09/2024 11:16:26)
     ☐ Agregar una búsqueda por cédula en registrar consulta.
     ☐ Terminar los reportes faltantes según sea el formato.
     ☐ Agregar las notificaciones de cuando una enfermedad se convierte en epidemia.
