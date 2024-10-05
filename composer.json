@@ -6,7 +6,8 @@
     "leafs/session": "^2.2",
     "filp/whoops": "^2.16",
     "megacreativo/cedulave-api": "^1.1",
-    "twbs/bootstrap": "^5.3"
+    "twbs/bootstrap": "^5.3",
+    "illuminate/container": "^11.26"
   },
   "autoload": {
     "psr-4": {
