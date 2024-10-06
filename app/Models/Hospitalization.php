@@ -17,4 +17,8 @@ final class Hospitalization extends Model {
     public ?string $diagnoses = null
   ) {
   }
+
+  function isFinished(): bool {
+    return !!$this->departureDate;
+  }
 }

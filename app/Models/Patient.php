@@ -70,4 +70,9 @@ final class Patient extends Person {
 
     return $this;
   }
+
+  /** @return Hospitalization[] */
+  function getHospitalizations(): array {
+    return $this->hospitalizations;
+  }
 }

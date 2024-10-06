@@ -66,6 +66,7 @@ final class PatientWebController extends Controller {
       }
 
       $this->patientRepository->setConsultations($patient);
+      $this->patientRepository->setHospitalizations($patient);
 
       App::renderPage('patients/info', 'Detalles del paciente', compact('patient'), 'main');
     } catch (Throwable $error) {

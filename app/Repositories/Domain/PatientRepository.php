@@ -20,5 +20,6 @@ interface PatientRepository extends Repository {
   function saveHospitalizationOf(Patient $patient): void;
   function setConsultationsById(Patient $patient, int $causeId): void;
   function setConsultations(Patient $patient): void;
+  function setHospitalizations(Patient $patient): void;
   function getConsultationsCount(): int;
 }

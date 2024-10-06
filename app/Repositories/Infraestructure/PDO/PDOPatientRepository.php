@@ -3,13 +3,16 @@
 namespace App\Repositories\Infraestructure\PDO;
 
 use App\Models\Consultation;
+use App\Models\Hospitalization;
 use App\Models\Patient;
 use App\Repositories\Domain\PatientRepository;
 use App\Repositories\Exceptions\DuplicatedIdCardException;
 use App\Repositories\Exceptions\DuplicatedNamesException;
 use App\ValueObjects\ConsultationType;
 use App\ValueObjects\Date;
+use App\ValueObjects\DepartureStatus;
 use App\ValueObjects\Gender;
+use DateTimeImmutable;
 use PDO;
 use PDOException;
 
@@ -96,6 +99,44 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
     }
 
     $patient->setConsultations(...$consultations);
+  }
+
+  function setHospitalizations(Patient $patient): void {
+    $stmt = $this->ensureIsConnected()
+      ->prepare(<<<sql
+        SELECT id, admission_department, admission_date, departure_date,
+        departure_status, diagnoses, registered_date, doctor_id
+        FROM hospitalizations
+        WHERE patient_id = ?
+        ORDER BY registered_date DESC
+      sql);
+
+    $stmt->execute([$patient->id]);
+
+    /** @var Hospitalization[] */
+    $hospitalizations = [];
+
+    while ($hospitalizationRecord = $stmt->fetch(PDO::FETCH_ASSOC)) {
+      $hospitalization = new Hospitalization(
+        $patient,
+        $this->doctorRepository->getById($hospitalizationRecord['doctor_id']),
+        $hospitalizationRecord['admission_department'],
+        new DateTimeImmutable($hospitalizationRecord['admission_date']),
+        $hospitalizationRecord['departure_date']
+          ? new DateTimeImmutable($hospitalizationRecord['departure_date'])
+          : null,
+        DepartureStatus::tryFrom($hospitalizationRecord['departure_status']),
+        $hospitalizationRecord['diagnoses'] ?: null
+      );
+
+
+      $hospitalization->setId($hospitalizationRecord['id'])
+        ->setRegisteredDate(parent::parseDateTime($hospitalizationRecord['registered_date']));
+
+      $hospitalizations[] = $hospitalization;
+    }
+
+    $patient->setHospitalization(...$hospitalizations);
   }
 
   function setConsultations(Patient $patient): void {
