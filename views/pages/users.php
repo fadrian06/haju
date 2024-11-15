@@ -64,7 +64,7 @@ $loggedUser = $user;
   <?php endforeach ?>
 </ul>
 
-<div class="modal fade" id="registrar">
+<div class="modal modal-xl fade" id="registrar">
   <div class="modal-dialog modal-dialog-scrollable">
     <form enctype="multipart/form-data" action="./usuarios#registrar" class="modal-content" method="post">
       <header class="modal-header">
