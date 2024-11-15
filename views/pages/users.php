@@ -80,56 +80,75 @@ $loggedUser = $user;
           <?php
           render('components/input-group', [
             'name' => 'first_name',
-            'placeholder' => 'Primer nombre'
+            'placeholder' => 'Primer nombre',
+            'value' => $_SESSION['lastData']['first_name'] ?? ''
           ]);
 
           render('components/input-group', [
             'name' => 'second_name',
             'placeholder' => 'Segundo nombre',
-            'required' => false
+            'required' => false,
+            'value' => $_SESSION['lastData']['second_name'] ?? ''
           ]);
 
           render('components/input-group', [
             'name' => 'first_last_name',
             'placeholder' => 'Primer apellido',
-            'required' => true
+            'required' => true,
+            'value' => $_SESSION['lastData']['first_last_name'] ?? ''
           ]);
 
           render('components/input-group', [
             'name' => 'second_last_name',
             'placeholder' => 'Segundo apellido',
-            'required' => false
+            'required' => false,
+            'value' => $_SESSION['lastData']['second_last_name'] ?? ''
           ]);
 
           render('components/input-group', [
             'type' => 'number',
             'name' => 'id_card',
             'placeholder' => 'Cédula',
-            'required' => true
+            'required' => true,
+            'value' => $_SESSION['lastData']['id_card'] ?? ''
           ]);
 
           render('components/input-group', [
             'type' => 'date',
             'name' => 'birth_date',
-            'placeholder' => 'Fecha de nacimiento'
+            'placeholder' => 'Fecha de nacimiento',
+            'value' => $_SESSION['lastData']['birth_date'] ?? ''
           ]);
 
           render('components/input-group', [
             'variant' => 'select',
             'name' => 'gender',
             'placeholder' => 'Género',
-            'options' => array_map(function (Gender $gender): array {
-              return ['value' => $gender->value, 'text' => $gender->value];
-            }, Gender::cases())
+            'required' => true,
+            'value' => null,
+            'options' => array_map(
+              fn(Gender $gender): array => [
+                'value' => $gender->value,
+                'text' => $gender->value,
+                'selected' => ($_SESSION['lastData']['gender'] ?? '') === $gender->value
+              ],
+              Gender::cases()
+            )
           ]);
 
           render('components/input-group', [
             'variant' => 'select',
             'name' => 'instruction_level',
             'placeholder' => 'Nivel de instrucción',
-            'options' => array_map(function (InstructionLevel $instruction): array {
-              return ['value' => $instruction->value, 'text' => $instruction->getLongValue()];
-            }, InstructionLevel::cases())
+            'value' => null,
+            'options' => array_map(
+              fn(InstructionLevel $instruction): array => [
+                'value' => $instruction->value,
+                'text' => $instruction->getLongValue(),
+                'selected' => ($_SESSION['lastData']['instruction_level'] ?? '') === $instruction->value
+              ],
+              InstructionLevel::cases()
+            )
           ]);
           ?>
         </fieldset>
@@ -163,7 +182,9 @@ $loggedUser = $user;
             </label>
             <select name="departments[]" id="departments" required multiple class="form-control">
               <?php foreach ($user->getDepartment() as $department) : ?>
-                <option value="<?= $department->id ?>">
+                <option
+                  value="<?= $department->id ?>"
+                  <?= in_array($department->id, $_SESSION['lastData']['departments'] ?? []) ? 'selected' : '' ?>>
                   <?= $department->name ?>
                 </option>
               <?php endforeach ?>
@@ -179,41 +200,56 @@ $loggedUser = $user;
             'name' => 'phone',
             'placeholder' => 'Teléfono',
             'readonly' => false,
-            'value' => ''
+            'value' => $_SESSION['lastData']['phone'] ?? ''
           ]);
 
           render('components/input-group', [
             'type' => 'email',
             'name' => 'email',
-            'placeholder' => 'Correo electrónico'
+            'placeholder' => 'Correo electrónico',
+            'value' => $_SESSION['lastData']['email'] ?? ''
           ]);
 
           render('components/input-group', [
             'variant' => 'textarea',
             'name' => 'address',
             'placeholder' => 'Dirección',
-            'cols' => 12
+            'cols' => 12,
+            'value' => $_SESSION['lastData']['address'] ?? ''
           ]);
 
           ?>
         </fieldset>
-        <?php
+        <fieldset class="row">
+          <?php
 
-        render('components/input-group', [
-          'variant' => 'file',
-          'name' => 'profile_image',
-          'placeholder' => 'Foto de perfil',
-          'cols' => 12
-        ]);
+          render('components/input-group', [
+            'variant' => 'file',
+            'name' => 'profile_image',
+            'placeholder' => 'Foto de perfil',
+            'cols' => 5
+          ]);
 
-        render('components/input-group', [
-          'variant' => 'checkbox',
-          'name' => 'is_active',
-          'placeholder' => 'Estado <small>(activo/inactivo)</small>',
-          'checked' => true
-        ]);
+          echo '<div class="col-md-2 text-center">O</div>';
 
-        ?>
+          render('components/input-group', [
+            'variant' => 'input',
+            'type' => 'url',
+            'name' => 'profile_image_url',
+            'placeholder' => 'URL de la foto de perfil',
+            'cols' => 5,
+            'value' => $_SESSION['lastData']['profile_image_url'] ?? ''
+          ]);
+
+          render('components/input-group', [
+            'variant' => 'checkbox',
+            'name' => 'is_active',
+            'placeholder' => 'Estado <small>(activo/inactivo)</small>',
+            'checked' => true
+          ]);
+
+          ?>
+        </fieldset>
       </section>
       <footer class="modal-footer">
         <button class="btn btn-primary">Registrar</button>
@@ -231,4 +267,25 @@ $loggedUser = $user;
       new bootstrap.Modal('#registrar').show()
     }
   })
+
+  /** @type {HTMLInputElement} */
+  const $profileFileInput = document.querySelector('[name=profile_image]')
+
+  /** @type {HTMLInputElement} */
+  const $profileUrlInput = document.querySelector('[name=profile_image_url]')
+
+  $profileFileInput.addEventListener('change', () => {
+    $profileUrlInput.removeAttribute('required')
+  })
+
+  function toggleProfileInputsHandler() {
+    if ($profileUrlInput.value) {
+      $profileFileInput.removeAttribute('required')
+    } else {
+      $profileFileInput.setAttribute('required', true)
+    }
+  }
+
+  $profileUrlInput.addEventListener('keydown', toggleProfileInputsHandler)
+  $profileUrlInput.addEventListener('change', toggleProfileInputsHandler)
 </script>

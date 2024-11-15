@@ -40,6 +40,8 @@ class UserWebController extends Controller {
       $this->loggedUser->appointment === Appointment::Coordinator => [Appointment::Secretary, '/usuarios', '/usuarios']
     };
 
+    $_SESSION['lastData'] = $this->data->getData();
+
     try {
       if ($this->data['password'] !== $this->data['confirm_password']) {
         throw new Error('La contraseña y su confirmación no coinciden');
@@ -63,6 +65,8 @@ class UserWebController extends Controller {
 
       $profileImageUrlPath = self::ensureThatFileIsSaved(
         'profile_image',
+        'profile_image_url',
+        $this->data['id_card'],
         'avatars',
         'La foto de perfil es requerida'
       );
@@ -98,6 +102,7 @@ class UserWebController extends Controller {
 
       $this->userRepository->save($user);
       self::setMessage('Usuario registrado exitósamente');
+      unset($_SESSION['lastData']);
 
       exit(App::redirect($urlToRedirect));
     } catch (InvalidDateException) {

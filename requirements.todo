@@ -37,3 +37,10 @@ Recomendaciones:
     ✔ Gestión del cambio de director para crear cuenta nueva de director. @done (06/06/2024 23:19:45)
     ☐ Delimitar el número de departamentos en el sistema.
     ☐ Generar formato de proyecto para exportar a excel y pdf.
+
+  Auto-asesorías:
+    ✔ Posibilidad de cargar URL como foto de perfil. @done (15/11/2024 17:41:57)
+    ✔ Renombrar cada foto con el ID del usuario. @done (15/11/2024 17:41:57)
+    ☐ Añadir posibilidad de eliminar un usuario registrado por error (respetando jerarquía de roles).
+    ☐ Añadir posibilidad de eliminar un doctor registrado por error (respetando jerarquía de roles).
+    ✔ Rellenar partes de los formularios en caso de algún error de validación. @done (15/11/2024 18:23:08)

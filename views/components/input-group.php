@@ -91,7 +91,7 @@ $title ??= null;
         id="<?= $id ?>"
         placeholder="<?= $placeholder ?>"
         <?= $multiple ? 'multiple' : '' ?>>
-        <option <?= !$value ? 'selected' : '' ?> disabled>
+        <option <?= !$value ? 'selected' : '' ?> disabled value="">
           Seleccione una opción
         </option>
         <?php foreach ($options as $option) : ?>
