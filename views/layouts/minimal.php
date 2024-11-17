@@ -16,7 +16,7 @@ use App\Models\User;
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width" />
   <title><?= $title ?> - HAJU</title>
   <?php render('components/open-graph-metas') ?>
   <base href="<?= $root ?>/" />
