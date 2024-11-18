@@ -216,6 +216,35 @@ $monthName = [
       </tr>
     </tfoot>
   </table>
+
+  <div class="fw-bold row">
+    <span class="col-md-1">(a*):</span>
+    <span class="col-md-11">
+      CHAGAS AGUDO SE INCLUYE EN ENFERMEDAD DE CHAGAS.
+    </span>
+    <span class="col-md-1">(a**):</span>
+    <span class="col-md-11">
+      ACCIDENTES DE TRANSPORTE TERRESTRE, DEL HOGAR,
+      LABORALES Y OTROS ACCIDENTES, SE EXCLUYEN DEL CONTEO DEL TOTAL DE
+      CAUSAS. SE SUPONEN INCLUIDAS EN HERIDAS, FRACTURAS Y/O LUXACIONES,
+      ESGUINCES Y OTROS TRAUMATISMOS.
+    </span>
+    <span class="col-md-12 my-2">Para calcular las tasas:</span>
+    <span class="col-md-1">(*):</span>
+    <span class="col-md-11">TASAS POR 100.000 N.V.R.</span>
+    <span class="col-md-1">(**):</span>
+    <span class="col-md-11">
+      TASAS ESPECIFICAS POR 100.000 MUJERES ENTRE 15 Y 49 AÑOS DE EDAD.
+    </span>
+    <span class="col-md-1">(***):</span>
+    <span class="col-md-11">
+      TASAS ESPECIFICAS POR 100.000 HABS. DEL CORRESPONDIENTE GRUPO DE EDAD.
+    </span>
+    <span class="col-md-12">
+      NOTA: LA TASA GENERAL DE MORBILIDAD REGISTRADA (TOTAL CAUSAS) ES POR
+      1.000 HABITANTES.
+    </span>
+  </div>
 </div>
 
 <script>
@@ -239,16 +268,16 @@ $monthName = [
       $s.innerText = typesByCause[causeId].S
       $x.innerText = typesByCause[causeId].X
       $px.innerText = typesByCause[causeId].P + typesByCause[causeId].X
-      $accumulated.innerText = typesByCause[causeId].P + typesByCause[causeId].S+ typesByCause[causeId].X
+      $accumulated.innerText = typesByCause[causeId].P + typesByCause[causeId].S + typesByCause[causeId].X
 
       $totalP.innerText = parseInt($totalP.innerText || 0) + typesByCause[causeId].P
       $totalS.innerText = parseInt($totalS.innerText || 0) + typesByCause[causeId].S
       $totalX.innerText = parseInt($totalX.innerText || 0) + typesByCause[causeId].X
 
       $totalPX.innerText = parseInt($totalP.innerText) + parseInt($totalX.innerText)
-      $totalA.innerText = parseInt($totalP.innerText)
-        + parseInt($totalS.innerText)
-        + parseInt($totalX.innerText)
+      $totalA.innerText = parseInt($totalP.innerText) +
+        parseInt($totalS.innerText) +
+        parseInt($totalX.innerText)
     })
   })
-</script>
+</script></script>
