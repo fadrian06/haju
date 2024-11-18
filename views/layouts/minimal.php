@@ -35,6 +35,17 @@ use App\Models\User;
       border-collapse: collapse;
       text-align: center;
     }
+
+    .form-control {
+      border-radius: unset;
+      border-color: black;
+    }
+
+    .input-group-text {
+      border-radius: unset;
+      border-color: black;
+      background: unset;
+    }
   </style>
 </head>
 

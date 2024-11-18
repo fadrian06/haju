@@ -1,4 +1,4 @@
-<section class="mb-4 d-flex align-items-center">
+<section class="my-4 d-flex align-items-center">
   <h2>Reportes - </h2>
   <i class="ti-write ms-2 h2"></i>
   <span class="border border-dark flex-grow-1 ms-2 h2"></span>
