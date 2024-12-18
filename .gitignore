@@ -17,3 +17,8 @@ dist/
 !.vscode/extensions.json
 .idea
 *.sublime-*
+
+vendor/
+assets/
+database/
+.env.*
