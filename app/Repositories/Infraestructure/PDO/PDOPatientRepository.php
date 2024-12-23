@@ -125,7 +125,7 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
         $hospitalizationRecord['departure_date']
           ? new DateTimeImmutable($hospitalizationRecord['departure_date'])
           : null,
-        DepartureStatus::tryFrom($hospitalizationRecord['departure_status']),
+        DepartureStatus::tryFrom($hospitalizationRecord['departure_status'] ?? ''),
         $hospitalizationRecord['diagnoses'] ?: null
       );
 
