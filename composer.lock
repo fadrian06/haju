@@ -1,0 +1,1004 @@
+{
+  "_readme": [
+    "This file locks the dependencies of your project to a known state",
+    "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+    "This file is @generated automatically"
+  ],
+  "content-hash": "8f6c62fe0615f591065a79b97312c583",
+  "packages": [
+    {
+      "name": "filp/whoops",
+      "version": "2.16.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/filp/whoops.git",
+        "reference": "befcdc0e5dce67252aa6322d82424be928214fa2"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/filp/whoops/zipball/befcdc0e5dce67252aa6322d82424be928214fa2",
+        "reference": "befcdc0e5dce67252aa6322d82424be928214fa2",
+        "shasum": ""
+      },
+      "require": {
+        "php": "^7.1 || ^8.0",
+        "psr/log": "^1.0.1 || ^2.0 || ^3.0"
+      },
+      "require-dev": {
+        "mockery/mockery": "^1.0",
+        "phpunit/phpunit": "^7.5.20 || ^8.5.8 || ^9.3.3",
+        "symfony/var-dumper": "^4.0 || ^5.0"
+      },
+      "suggest": {
+        "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
+        "whoops/soap": "Formats errors as SOAP responses"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "2.7-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Whoops\\": "src/Whoops/"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Filipe Dobreira",
+          "homepage": "https://github.com/filp",
+          "role": "Developer"
+        }
+      ],
+      "description": "php error handling for cool kids",
+      "homepage": "https://filp.github.io/whoops/",
+      "keywords": [
+        "error",
+        "exception",
+        "handling",
+        "library",
+        "throwable",
+        "whoops"
+      ],
+      "support": {
+        "issues": "https://github.com/filp/whoops/issues",
+        "source": "https://github.com/filp/whoops/tree/2.16.0"
+      },
+      "funding": [
+        {
+          "url": "https://github.com/denis-sokolov",
+          "type": "github"
+        }
+      ],
+      "time": "2024-09-25T12:00:00+00:00"
+    },
+    {
+      "name": "flightphp/core",
+      "version": "v3.12.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/flightphp/core.git",
+        "reference": "63fbf9b0316969e8aa6c318f8479d1ed0578f9b4"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/flightphp/core/zipball/63fbf9b0316969e8aa6c318f8479d1ed0578f9b4",
+        "reference": "63fbf9b0316969e8aa6c318f8479d1ed0578f9b4",
+        "shasum": ""
+      },
+      "require": {
+        "ext-json": "*",
+        "php": ">=7.4"
+      },
+      "replace": {
+        "mikecao/flight": "2.0.2"
+      },
+      "require-dev": {
+        "ext-pdo_sqlite": "*",
+        "flightphp/runway": "^0.2.0",
+        "league/container": "^4.2",
+        "level-2/dice": "^4.0",
+        "phpstan/extension-installer": "^1.3",
+        "phpstan/phpstan": "^1.10",
+        "phpunit/phpunit": "^9.5",
+        "rregeer/phpunit-coverage-check": "^0.3.1",
+        "squizlabs/php_codesniffer": "^3.8"
+      },
+      "suggest": {
+        "latte/latte": "Latte template engine",
+        "phpstan/phpstan": "PHP Static Analyzer",
+        "tracy/tracy": "Tracy debugger"
+      },
+      "type": "library",
+      "autoload": {
+        "files": [
+          "flight/autoload.php"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Mike Cao",
+          "email": "mike@mikecao.com",
+          "homepage": "http://www.mikecao.com/",
+          "role": "Original Developer"
+        },
+        {
+          "name": "Franyer Sánchez",
+          "email": "franyeradriansanchez@gmail.com",
+          "homepage": "https://faslatam.000webhostapp.com",
+          "role": "Maintainer"
+        },
+        {
+          "name": "n0nag0n",
+          "email": "n0nag0n@sky-9.com",
+          "role": "Maintainer"
+        }
+      ],
+      "description": "Flight is a fast, simple, extensible framework for PHP. Flight enables you to quickly and easily build RESTful web applications. This is the maintained fork of mikecao/flight",
+      "homepage": "http://flightphp.com",
+      "support": {
+        "issues": "https://github.com/flightphp/core/issues",
+        "source": "https://github.com/flightphp/core/tree/v3.12.0"
+      },
+      "time": "2024-08-22T17:05:34+00:00"
+    },
+    {
+      "name": "illuminate/container",
+      "version": "v11.26.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/illuminate/container.git",
+        "reference": "d6aca7c315d68cb6807c139facd7ea134b4f5104"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/illuminate/container/zipball/d6aca7c315d68cb6807c139facd7ea134b4f5104",
+        "reference": "d6aca7c315d68cb6807c139facd7ea134b4f5104",
+        "shasum": ""
+      },
+      "require": {
+        "illuminate/contracts": "^11.0",
+        "php": "^8.2",
+        "psr/container": "^1.1.1|^2.0.1"
+      },
+      "provide": {
+        "psr/container-implementation": "1.1|2.0"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "11.x-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Illuminate\\Container\\": ""
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Taylor Otwell",
+          "email": "taylor@laravel.com"
+        }
+      ],
+      "description": "The Illuminate Container package.",
+      "homepage": "https://laravel.com",
+      "support": {
+        "issues": "https://github.com/laravel/framework/issues",
+        "source": "https://github.com/laravel/framework"
+      },
+      "time": "2024-09-20T12:51:05+00:00"
+    },
+    {
+      "name": "illuminate/contracts",
+      "version": "v11.26.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/illuminate/contracts.git",
+        "reference": "56312862af937bd6da8e6dc8bbd88188dfb478f8"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/illuminate/contracts/zipball/56312862af937bd6da8e6dc8bbd88188dfb478f8",
+        "reference": "56312862af937bd6da8e6dc8bbd88188dfb478f8",
+        "shasum": ""
+      },
+      "require": {
+        "php": "^8.2",
+        "psr/container": "^1.1.1|^2.0.1",
+        "psr/simple-cache": "^1.0|^2.0|^3.0"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "11.x-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Illuminate\\Contracts\\": ""
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Taylor Otwell",
+          "email": "taylor@laravel.com"
+        }
+      ],
+      "description": "The Illuminate Contracts package.",
+      "homepage": "https://laravel.com",
+      "support": {
+        "issues": "https://github.com/laravel/framework/issues",
+        "source": "https://github.com/laravel/framework"
+      },
+      "time": "2024-09-22T15:08:08+00:00"
+    },
+    {
+      "name": "leafs/anchor",
+      "version": "v1.6.1",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/leafsphp/anchor.git",
+        "reference": "7f040c0b10f080046ca93ed10c2d310d63bfb2db"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/leafsphp/anchor/zipball/7f040c0b10f080046ca93ed10c2d310d63bfb2db",
+        "reference": "7f040c0b10f080046ca93ed10c2d310d63bfb2db",
+        "shasum": ""
+      },
+      "require-dev": {
+        "pestphp/pest": "^1.21"
+      },
+      "type": "library",
+      "autoload": {
+        "psr-4": {
+          "Leaf\\": "src"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Michael Darko",
+          "email": "mickdd22@gmail.com",
+          "homepage": "https://mychi.netlify.app",
+          "role": "Developer"
+        }
+      ],
+      "description": "Leaf PHP util module",
+      "homepage": "https://leafphp.netlify.app/#/",
+      "keywords": [
+        "framework",
+        "leaf",
+        "php",
+        "util"
+      ],
+      "support": {
+        "issues": "https://github.com/leafsphp/anchor/issues",
+        "source": "https://github.com/leafsphp/anchor/tree/v1.6.1"
+      },
+      "funding": [
+        {
+          "url": "https://github.com/leafsphp",
+          "type": "github"
+        },
+        {
+          "url": "https://opencollective.com/leaf",
+          "type": "open_collective"
+        }
+      ],
+      "time": "2024-10-05T10:05:29+00:00"
+    },
+    {
+      "name": "leafs/session",
+      "version": "v2.2",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/leafsphp/session.git",
+        "reference": "380227b221943445cdf024ddfc9661372b470a58"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/leafsphp/session/zipball/380227b221943445cdf024ddfc9661372b470a58",
+        "reference": "380227b221943445cdf024ddfc9661372b470a58",
+        "shasum": ""
+      },
+      "require": {
+        "leafs/anchor": "*"
+      },
+      "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "pestphp/pest": "^1.21"
+      },
+      "type": "library",
+      "autoload": {
+        "files": [
+          "src/functions.php"
+        ],
+        "psr-4": {
+          "Leaf\\": "src"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Michael Darko",
+          "email": "mickdd22@gmail.com",
+          "homepage": "https://mychi.netlify.app",
+          "role": "Developer"
+        }
+      ],
+      "description": "Leaf PHP session + flash modules",
+      "homepage": "https://leafphp.dev/modules/session/",
+      "keywords": [
+        "flash",
+        "framework",
+        "http",
+        "leaf",
+        "php",
+        "session"
+      ],
+      "support": {
+        "issues": "https://github.com/leafsphp/session/issues",
+        "source": "https://github.com/leafsphp/session/tree/v2.2"
+      },
+      "funding": [
+        {
+          "url": "https://github.com/leafsphp",
+          "type": "github"
+        },
+        {
+          "url": "https://opencollective.com/leaf",
+          "type": "open_collective"
+        }
+      ],
+      "time": "2024-08-17T05:51:54+00:00"
+    },
+    {
+      "name": "megacreativo/cedulave-api",
+      "version": "v1.1.2",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/MegaCreativoTeam/CedulaVE-API.git",
+        "reference": "128663dc26b9462ccbdb1cb1e517fdbaea55a148"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/MegaCreativoTeam/CedulaVE-API/zipball/128663dc26b9462ccbdb1cb1e517fdbaea55a148",
+        "reference": "128663dc26b9462ccbdb1cb1e517fdbaea55a148",
+        "shasum": ""
+      },
+      "require": {
+        "ext-curl": "*",
+        "php": ">=5.6",
+        "php-curl-class/php-curl-class": "^8.8"
+      },
+      "suggest": {
+        "ext-mbstring": "*"
+      },
+      "type": "library",
+      "autoload": {
+        "psr-4": {
+          "MegaCreativo\\API\\": "src/"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Brayan Rincon",
+          "email": "brayan.er.rincon@gmail.com"
+        }
+      ],
+      "description": "CedulaVE API permite consultar datos personales de habitantes de Venezuela inscritos en el CNE mediante su Cédula de Identidad.",
+      "homepage": "https://github.com/megacreativo/CedulaVE-API",
+      "keywords": [
+        "DNI",
+        "api",
+        "cedula",
+        "cne",
+        "consejo nacional electoral",
+        "mega creativo",
+        "megacreativo",
+        "venezuela"
+      ],
+      "support": {
+        "issues": "https://github.com/MegaCreativoTeam/CedulaVE-API/issues",
+        "source": "https://github.com/MegaCreativoTeam/CedulaVE-API/tree/v1.1.2"
+      },
+      "time": "2022-11-22T19:39:18+00:00"
+    },
+    {
+      "name": "phar-io/manifest",
+      "version": "2.0.4",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/phar-io/manifest.git",
+        "reference": "54750ef60c58e43759730615a392c31c80e23176"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/phar-io/manifest/zipball/54750ef60c58e43759730615a392c31c80e23176",
+        "reference": "54750ef60c58e43759730615a392c31c80e23176",
+        "shasum": ""
+      },
+      "require": {
+        "ext-dom": "*",
+        "ext-libxml": "*",
+        "ext-phar": "*",
+        "ext-xmlwriter": "*",
+        "phar-io/version": "^3.0.1",
+        "php": "^7.2 || ^8.0"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "2.0.x-dev"
+        }
+      },
+      "autoload": {
+        "classmap": [
+          "src/"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "authors": [
+        {
+          "name": "Arne Blankerts",
+          "email": "arne@blankerts.de",
+          "role": "Developer"
+        },
+        {
+          "name": "Sebastian Heuer",
+          "email": "sebastian@phpeople.de",
+          "role": "Developer"
+        },
+        {
+          "name": "Sebastian Bergmann",
+          "email": "sebastian@phpunit.de",
+          "role": "Developer"
+        }
+      ],
+      "description": "Component for reading phar.io manifest information from a PHP Archive (PHAR)",
+      "support": {
+        "issues": "https://github.com/phar-io/manifest/issues",
+        "source": "https://github.com/phar-io/manifest/tree/2.0.4"
+      },
+      "funding": [
+        {
+          "url": "https://github.com/theseer",
+          "type": "github"
+        }
+      ],
+      "time": "2024-03-03T12:33:53+00:00"
+    },
+    {
+      "name": "phar-io/version",
+      "version": "3.2.1",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/phar-io/version.git",
+        "reference": "4f7fd7836c6f332bb2933569e566a0d6c4cbed74"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/phar-io/version/zipball/4f7fd7836c6f332bb2933569e566a0d6c4cbed74",
+        "reference": "4f7fd7836c6f332bb2933569e566a0d6c4cbed74",
+        "shasum": ""
+      },
+      "require": {
+        "php": "^7.2 || ^8.0"
+      },
+      "type": "library",
+      "autoload": {
+        "classmap": [
+          "src/"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "authors": [
+        {
+          "name": "Arne Blankerts",
+          "email": "arne@blankerts.de",
+          "role": "Developer"
+        },
+        {
+          "name": "Sebastian Heuer",
+          "email": "sebastian@phpeople.de",
+          "role": "Developer"
+        },
+        {
+          "name": "Sebastian Bergmann",
+          "email": "sebastian@phpunit.de",
+          "role": "Developer"
+        }
+      ],
+      "description": "Library for handling version information and constraints",
+      "support": {
+        "issues": "https://github.com/phar-io/version/issues",
+        "source": "https://github.com/phar-io/version/tree/3.2.1"
+      },
+      "time": "2022-02-21T01:04:05+00:00"
+    },
+    {
+      "name": "php-curl-class/php-curl-class",
+      "version": "8.10.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/php-curl-class/php-curl-class.git",
+        "reference": "c97c96d5d422b4085aba32ace096c3e404dde607"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/c97c96d5d422b4085aba32ace096c3e404dde607",
+        "reference": "c97c96d5d422b4085aba32ace096c3e404dde607",
+        "shasum": ""
+      },
+      "require": {
+        "ext-curl": "*",
+        "php": ">=5.3"
+      },
+      "require-dev": {
+        "ext-gd": "*",
+        "phpunit/phpunit": "*",
+        "squizlabs/php_codesniffer": "*"
+      },
+      "suggest": {
+        "ext-mbstring": "*"
+      },
+      "type": "library",
+      "autoload": {
+        "psr-4": {
+          "Curl\\": "src/Curl/"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "Unlicense"
+      ],
+      "authors": [
+        {
+          "name": "Zach Borboa"
+        }
+      ],
+      "description": "PHP Curl Class makes it easy to send HTTP requests and integrate with web APIs.",
+      "homepage": "https://github.com/php-curl-class/php-curl-class",
+      "keywords": [
+        "API-Client",
+        "api",
+        "class",
+        "client",
+        "curl",
+        "framework",
+        "http",
+        "http-client",
+        "http-proxy",
+        "json",
+        "php",
+        "php-curl",
+        "php-curl-library",
+        "proxy",
+        "requests",
+        "restful",
+        "web-scraper",
+        "web-service",
+        "xml"
+      ],
+      "support": {
+        "issues": "https://github.com/php-curl-class/php-curl-class/issues",
+        "source": "https://github.com/php-curl-class/php-curl-class/tree/8.10.0"
+      },
+      "time": "2021-06-23T14:34:00+00:00"
+    },
+    {
+      "name": "psr/container",
+      "version": "2.0.2",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/php-fig/container.git",
+        "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/php-fig/container/zipball/c71ecc56dfe541dbd90c5360474fbc405f8d5963",
+        "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=7.4.0"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "2.0.x-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Psr\\Container\\": "src/"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "PHP-FIG",
+          "homepage": "https://www.php-fig.org/"
+        }
+      ],
+      "description": "Common Container Interface (PHP FIG PSR-11)",
+      "homepage": "https://github.com/php-fig/container",
+      "keywords": [
+        "PSR-11",
+        "container",
+        "container-interface",
+        "container-interop",
+        "psr"
+      ],
+      "support": {
+        "issues": "https://github.com/php-fig/container/issues",
+        "source": "https://github.com/php-fig/container/tree/2.0.2"
+      },
+      "time": "2021-11-05T16:47:00+00:00"
+    },
+    {
+      "name": "psr/log",
+      "version": "3.0.2",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/php-fig/log.git",
+        "reference": "f16e1d5863e37f8d8c2a01719f5b34baa2b714d3"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/php-fig/log/zipball/f16e1d5863e37f8d8c2a01719f5b34baa2b714d3",
+        "reference": "f16e1d5863e37f8d8c2a01719f5b34baa2b714d3",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=8.0.0"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "3.x-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Psr\\Log\\": "src"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "PHP-FIG",
+          "homepage": "https://www.php-fig.org/"
+        }
+      ],
+      "description": "Common interface for logging libraries",
+      "homepage": "https://github.com/php-fig/log",
+      "keywords": [
+        "log",
+        "psr",
+        "psr-3"
+      ],
+      "support": {
+        "source": "https://github.com/php-fig/log/tree/3.0.2"
+      },
+      "time": "2024-09-11T13:17:53+00:00"
+    },
+    {
+      "name": "psr/simple-cache",
+      "version": "3.0.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/php-fig/simple-cache.git",
+        "reference": "764e0b3939f5ca87cb904f570ef9be2d78a07865"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/764e0b3939f5ca87cb904f570ef9be2d78a07865",
+        "reference": "764e0b3939f5ca87cb904f570ef9be2d78a07865",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=8.0.0"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "3.0.x-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Psr\\SimpleCache\\": "src/"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "PHP-FIG",
+          "homepage": "https://www.php-fig.org/"
+        }
+      ],
+      "description": "Common interfaces for simple caching",
+      "keywords": [
+        "cache",
+        "caching",
+        "psr",
+        "psr-16",
+        "simple-cache"
+      ],
+      "support": {
+        "source": "https://github.com/php-fig/simple-cache/tree/3.0.0"
+      },
+      "time": "2021-10-29T13:26:27+00:00"
+    },
+    {
+      "name": "twbs/bootstrap",
+      "version": "v5.3.3",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/twbs/bootstrap.git",
+        "reference": "6e1f75f420f68e1d52733b8e407fc7c3766c9dba"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/twbs/bootstrap/zipball/6e1f75f420f68e1d52733b8e407fc7c3766c9dba",
+        "reference": "6e1f75f420f68e1d52733b8e407fc7c3766c9dba",
+        "shasum": ""
+      },
+      "replace": {
+        "twitter/bootstrap": "self.version"
+      },
+      "type": "library",
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Mark Otto",
+          "email": "markdotto@gmail.com"
+        },
+        {
+          "name": "Jacob Thornton",
+          "email": "jacobthornton@gmail.com"
+        }
+      ],
+      "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
+      "homepage": "https://getbootstrap.com/",
+      "keywords": [
+        "JS",
+        "css",
+        "framework",
+        "front-end",
+        "mobile-first",
+        "responsive",
+        "sass",
+        "web"
+      ],
+      "support": {
+        "issues": "https://github.com/twbs/bootstrap/issues",
+        "source": "https://github.com/twbs/bootstrap/tree/v5.3.3"
+      },
+      "time": "2024-02-20T15:14:29+00:00"
+    }
+  ],
+  "packages-dev": [
+    {
+      "name": "symfony/polyfill-mbstring",
+      "version": "v1.31.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/symfony/polyfill-mbstring.git",
+        "reference": "85181ba99b2345b0ef10ce42ecac37612d9fd341"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/85181ba99b2345b0ef10ce42ecac37612d9fd341",
+        "reference": "85181ba99b2345b0ef10ce42ecac37612d9fd341",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=7.2"
+      },
+      "provide": {
+        "ext-mbstring": "*"
+      },
+      "suggest": {
+        "ext-mbstring": "For best performance"
+      },
+      "type": "library",
+      "extra": {
+        "thanks": {
+          "name": "symfony/polyfill",
+          "url": "https://github.com/symfony/polyfill"
+        }
+      },
+      "autoload": {
+        "files": [
+          "bootstrap.php"
+        ],
+        "psr-4": {
+          "Symfony\\Polyfill\\Mbstring\\": ""
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Nicolas Grekas",
+          "email": "p@tchwork.com"
+        },
+        {
+          "name": "Symfony Community",
+          "homepage": "https://symfony.com/contributors"
+        }
+      ],
+      "description": "Symfony polyfill for the Mbstring extension",
+      "homepage": "https://symfony.com",
+      "keywords": [
+        "compatibility",
+        "mbstring",
+        "polyfill",
+        "portable",
+        "shim"
+      ],
+      "support": {
+        "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.31.0"
+      },
+      "funding": [
+        {
+          "url": "https://symfony.com/sponsor",
+          "type": "custom"
+        },
+        {
+          "url": "https://github.com/fabpot",
+          "type": "github"
+        },
+        {
+          "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+          "type": "tidelift"
+        }
+      ],
+      "time": "2024-09-09T11:45:10+00:00"
+    },
+    {
+      "name": "symfony/var-dumper",
+      "version": "v7.1.5",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/symfony/var-dumper.git",
+        "reference": "e20e03889539fd4e4211e14d2179226c513c010d"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/var-dumper/zipball/e20e03889539fd4e4211e14d2179226c513c010d",
+        "reference": "e20e03889539fd4e4211e14d2179226c513c010d",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=8.2",
+        "symfony/polyfill-mbstring": "~1.0"
+      },
+      "conflict": {
+        "symfony/console": "<6.4"
+      },
+      "require-dev": {
+        "ext-iconv": "*",
+        "symfony/console": "^6.4|^7.0",
+        "symfony/http-kernel": "^6.4|^7.0",
+        "symfony/process": "^6.4|^7.0",
+        "symfony/uid": "^6.4|^7.0",
+        "twig/twig": "^3.0.4"
+      },
+      "bin": [
+        "Resources/bin/var-dump-server"
+      ],
+      "type": "library",
+      "autoload": {
+        "files": [
+          "Resources/functions/dump.php"
+        ],
+        "psr-4": {
+          "Symfony\\Component\\VarDumper\\": ""
+        },
+        "exclude-from-classmap": [
+          "/Tests/"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Nicolas Grekas",
+          "email": "p@tchwork.com"
+        },
+        {
+          "name": "Symfony Community",
+          "homepage": "https://symfony.com/contributors"
+        }
+      ],
+      "description": "Provides mechanisms for walking through any arbitrary PHP variable",
+      "homepage": "https://symfony.com",
+      "keywords": [
+        "debug",
+        "dump"
+      ],
+      "support": {
+        "source": "https://github.com/symfony/var-dumper/tree/v7.1.5"
+      },
+      "funding": [
+        {
+          "url": "https://symfony.com/sponsor",
+          "type": "custom"
+        },
+        {
+          "url": "https://github.com/fabpot",
+          "type": "github"
+        },
+        {
+          "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+          "type": "tidelift"
+        }
+      ],
+      "time": "2024-09-16T10:07:02+00:00"
+    }
+  ],
+  "aliases": [],
+  "minimum-stability": "stable",
+  "stability-flags": [],
+  "prefer-stable": false,
+  "prefer-lowest": false,
+  "platform": {
+    "php": ">=8.2"
+  },
+  "platform-dev": [],
+  "plugin-api-version": "2.6.0"
+}

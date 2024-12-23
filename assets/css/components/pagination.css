@@ -1,0 +1,30 @@
+.lms_pagination_wrap {
+  margin-top: 30px
+}
+
+.lms_pagination_wrap ul li {
+  display: inline-block;
+  margin: 0 .8px
+}
+
+.lms_pagination_wrap ul li a {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  background: white;
+  line-height: 40px;
+  color: #cec1c2;
+  text-align: center;
+  border-radius: 3px;
+  font-size: 14px
+}
+
+.lms_pagination_wrap ul li a.active {
+  background: #fe1724;
+  color: white
+}
+
+.lms_pagination_wrap ul li a:hover {
+  background: #fe1724;
+  color: white
+}

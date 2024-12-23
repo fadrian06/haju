@@ -7,6 +7,9 @@
 *.bkp
 *.dtmp
 ~*.xlsx
+.env.php
+*.db
+.phpunit.cache
 
 # Dist
 node_modules
@@ -17,8 +20,3 @@ dist/
 !.vscode/extensions.json
 .idea
 *.sublime-*
-
-vendor/
-assets/
-database/
-.env.*
