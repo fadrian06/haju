@@ -145,7 +145,7 @@ use App\ValueObjects\Appointment;
             <li class="<?= isActive('/configuracion/permisos') ? 'mm-active' : '' ?>">
               <a href="./configuracion/permisos">
                 <i class="ti-key"></i>
-                Roles y permisos
+                Asignar departamentos
               </a>
             </li>
             <?php if ($user->appointment === Appointment::Director || $user->hasDepartment('Estadística')) : ?>

@@ -17,7 +17,7 @@ $loggedUser = $user;
 ?>
 
 <section class="px-0 mb-4">
-  <h2>Roles y permisos</h2>
+  <h2>Asignar departamentos</h2>
 </section>
 
 <?php if (!$users) : ?>
