@@ -39,22 +39,38 @@ abstract class Controller {
    * @throws Error If file isn't provided.
    */
   final protected static function ensureThatFileIsSaved(
-    string $postParam,
+    string $fileParam,
+    string $urlParam,
+    string $fileId,
     string $destinationFolder,
     string $errorMessage
   ): string {
+    $url = App::request()->data[$urlParam];
     $files = App::request()->files;
+    $fileName = "$fileId.jpg";
 
-    if (!$files[$postParam]['size']) {
+    if (is_string($url) && $url !== '') {
+      $image = file_get_contents($url);
+
+      $filePath = [
+        'rel' => "assets/img/$destinationFolder/$fileName",
+        'abs' => dirname(__DIR__, 3) . "/assets/img/$destinationFolder/$fileName"
+      ];
+
+      file_put_contents($filePath['abs'], $image);
+
+      return $filePath['rel'];
+    }
+
+    if (!$files[$fileParam]['size']) {
       throw new Error($errorMessage);
     }
 
-    $temporalFileAbsPath = $files[$postParam]['tmp_name'];
-    $fileName = $files[$postParam]['name'];
+    $temporalFileAbsPath = $files[$fileParam]['tmp_name'];
 
     $filePath = [
-      'rel' => "assets/img/$destinationFolder/{$fileName}",
-      'abs' => dirname(__DIR__, 3) . "/assets/img/$destinationFolder/{$fileName}"
+      'rel' => "assets/img/$destinationFolder/$fileName",
+      'abs' => dirname(__DIR__, 3) . "/assets/img/$destinationFolder/$fileName"
     ];
 
     copy($temporalFileAbsPath, $filePath['abs']);

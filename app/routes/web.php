@@ -14,10 +14,7 @@ use App\Middlewares\EnsureOneSelectedDepartment;
 use App\Middlewares\EnsureOnlyAcceptOneDirector;
 use App\Middlewares\EnsureUserIsNotAuthenticated;
 use App\Middlewares\MessagesMiddleware;
-use App\Middlewares\ShowRegisterIfThereIsNoUsers;
 use App\ValueObjects\Appointment;
-
-App::route('GET /reportes/epi-11', [ReportsWebController::class, 'showEpi11']);
 
 App::group('', function (): void {
   App::route('/salir', [SessionWebController::class, 'logOut']);
@@ -27,7 +24,7 @@ App::group('', function (): void {
     App::route('POST /ingresar', [SessionWebController::class, 'handleLogin']);
     App::route('GET /recuperar', [UserWebController::class, 'showPasswordReset']);
     App::route('POST /recuperar', [UserWebController::class, 'handlePasswordReset']);
-  }, [ShowRegisterIfThereIsNoUsers::class]);
+  }, [/*ShowRegisterIfThereIsNoUsers::class*/]);
 
   App::group('', function (): void {
     App::route('GET /registrate', [UserWebController::class, 'showRegister']);
@@ -66,6 +63,11 @@ App::group('', function (): void {
       App::route('POST /', [PatientWebController::class, 'handleConsultationRegister']);
     }, [new AuthorizationMiddleware(Appointment::Secretary, Appointment::Director)]);
 
+    App::group('/hospitalizaciones', function (): void {
+      App::route('GET /registrar', [PatientWebController::class, 'showHospitalizationRegister']);
+      App::route('POST /', [PatientWebController::class, 'handleHospitalizationRegister']);
+    });
+
     App::group('', function (): void {
       App::route('POST /pacientes/@id', [PatientWebController::class, 'handleEdition']);
     }, [new AuthorizationMiddleware(Appointment::Coordinator, Appointment::Director)]);
@@ -93,4 +95,7 @@ App::group('', function (): void {
       }, [new AuthorizationMiddleware(Appointment::Director)]);
     }, [new AuthorizationMiddleware(Appointment::Coordinator)]);
   }, [EnsureOneSelectedDepartment::class]);
+
+  App::route('GET /reportes/epi-11', [ReportsWebController::class, 'showEpi11']);
+  App::route('GET /reportes/epi-15', [ReportsWebController::class, 'showEpi15']);
 }, [AuthenticationMiddleware::class, MessagesMiddleware::class]);

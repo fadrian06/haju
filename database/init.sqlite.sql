@@ -140,6 +140,22 @@ CREATE TABLE consultations (
   FOREIGN KEY (doctor_id) REFERENCES doctors (id)
 );
 
+DROP TABLE IF EXISTS hospitalizations;
+CREATE TABLE hospitalizations (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  admission_department VARCHAR(255) NOT NULL,
+  admission_date DATE NOT NULL,
+  departure_date DATE,
+  departure_status VARCHAR(255),
+  diagnoses TEXT,
+  registered_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+  patient_id INTEGER NOT NULL,
+  doctor_id INTEGER NOT NULL,
+
+  FOREIGN KEY (patient_id) REFERENCES patients (id),
+  FOREIGN KEY (doctor_id) REFERENCES doctors (id)
+);
+
 /*=============================================
 =            PRE-INSTALLED RECORDS            =
 =============================================*/
@@ -153,9 +169,9 @@ INSERT INTO instruction_levels (id, name, abbreviation) VALUES
 (4, 'Licenciado/a', 'Licdo');
 
 INSERT INTO departments (id, name, belongs_to_external_consultation, icon_file_path)
-VALUES (1, 'Pediatría', true, 'assets/img/departments/PEDIATRIA.jpg'),
+VALUES (22, 'Estadística', false, 'assets/img/departments/web01-obs_turismo-SIT.svg'),
+/*(1, 'Pediatría', true, 'assets/img/departments/pediatria.jpg'),
 (2, 'Ginecología', true, 'assets/img/departments/GINECOLOGIAA.jpg'),
-(22, 'Estadística', false, 'assets/img/departments/web01-obs_turismo-SIT.svg')/*,
 (3, 'Alto Riesgo', true),
 (4, 'Cirugía General', true),
 (5, 'Nutrición Dietética', true),
@@ -174,8 +190,8 @@ VALUES (1, 'Pediatría', true, 'assets/img/departments/PEDIATRIA.jpg'),
 (18, 'Quirófano', false),
 (19, 'Rayos X', false),
 (20, 'Banco de Sangre', false),
-(21, 'Emergencia', false),
-(23, 'Hospitalización', false)*/;
+(21, 'Emergencia', false),*/
+(23, 'Hospitalización', false, 'assets/img/departments/doctor-visiting-patient-hospital-female-260nw-2477344121.png');
 
 INSERT INTO consultation_cause_categories (id, short_name, extended_name, top_category_id) VALUES
 (1, 'Enfermedades infecciosas y parasitarias', null, null),

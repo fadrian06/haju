@@ -16,7 +16,7 @@ use App\Models\User;
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width" />
   <title><?= $title ?> - HAJU</title>
   <?php render('components/open-graph-metas') ?>
   <base href="<?= $root ?>/" />
@@ -34,6 +34,17 @@ use App\Models\User;
     .w3-table {
       border-collapse: collapse;
       text-align: center;
+    }
+
+    .form-control {
+      border-radius: unset;
+      border-color: black;
+    }
+
+    .input-group-text {
+      border-radius: unset;
+      border-color: black;
+      background: unset;
     }
   </style>
 </head>

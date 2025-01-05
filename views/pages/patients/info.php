@@ -101,9 +101,9 @@ $causes = array_slice($causes, 0, 5, true);
         <button class="nav-link col-sm px-0 active" data-bs-toggle="tab" data-bs-target="#visitas">
           Visitas médicas
         </button>
-        <!-- <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#">
-          Consultas externas
-        </button> -->
+        <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#hospitalizaciones">
+          Hospitalizaciones
+        </button>
         <!-- <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#">
           Antecedentes médicos
         </button> -->
@@ -140,6 +140,27 @@ $causes = array_slice($causes, 0, 5, true);
         <div class="white_box">
           <h3>Frecuentes</h3>
           <canvas id="frecuent-consultation-causes" style="width: 100%"></canvas>
+        </div>
+      </article>
+    </div>
+  </article>
+
+  <article class="tab-pane fade" id="hospitalizaciones">
+    <div class="row mx-0">
+      <article class="col-md-6 px-0 pe-md-2">
+        <div class="white_box">
+          <h3>Histórico</h3>
+          <ul class="timeline mt-4">
+            <?php foreach ($patient->getHospitalization() as $hospitalization) : ?>
+              <li class="timeline-item">
+                <strong class="text-secondary">Hospitalización #<?= $hospitalization->id ?></strong>
+                <time class="small text-black-50"><?= $hospitalization->registeredDate ?></time>
+                <span class="text-black-50 fw-semibold custom-badge status-<?= $hospitalization->isFinished() ? 'green' : 'red' ?>">
+                  <?= $hospitalization->isFinished() ? 'Finalizada' : 'No finalizada' ?>
+                </span>
+              </li>
+            <?php endforeach ?>
+          </ul>
         </div>
       </article>
     </div>

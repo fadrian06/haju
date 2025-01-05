@@ -2,6 +2,11 @@
 .DS_Store
 *.local
 *.log*
+*~*.docx
+*.tmp
+*.bkp
+*.dtmp
+~*.xlsx
 .env.php
 *.db
 .phpunit.cache
@@ -9,7 +14,7 @@
 # Dist
 node_modules
 dist/
-vendor
+vendor/
 *.tar
 *.css
 *.js
