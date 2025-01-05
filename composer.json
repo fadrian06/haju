@@ -50,7 +50,11 @@
       "pnpm-*",
       "*.db",
       "*.sqlite",
-      "*.todo"
+      "*.todo",
+      "app/commands",
+      "assets/img/avatars",
+      "*.sql",
+      "docs"
     ]
   }
 }
