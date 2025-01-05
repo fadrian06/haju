@@ -59,7 +59,6 @@
         class="p-3 pt-1 text-success w-50 mx-auto"
         data-bs-toggle="tooltip"
         title="Sistema de Información para la Salud ~ Epidemiología">
-        <?xml version="1.0" encoding="iso-8859-1"?>
         <svg viewBox="0 0 460 460" xml:space="preserve">
           <g>
             <path style="fill:#1398AD;" d="M230,80c-7.288,0-14.115-1.959-20-5.365v47.184c6.486-1.191,13.169-1.819,20-1.819
