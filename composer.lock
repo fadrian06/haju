@@ -4,20 +4,20 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "8f6c62fe0615f591065a79b97312c583",
+  "content-hash": "186094166cc8ded0067324686dcc4b0f",
   "packages": [
     {
       "name": "filp/whoops",
-      "version": "2.16.0",
+      "version": "2.17.0",
       "source": {
         "type": "git",
         "url": "https://github.com/filp/whoops.git",
-        "reference": "befcdc0e5dce67252aa6322d82424be928214fa2"
+        "reference": "075bc0c26631110584175de6523ab3f1652eb28e"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/filp/whoops/zipball/befcdc0e5dce67252aa6322d82424be928214fa2",
-        "reference": "befcdc0e5dce67252aa6322d82424be928214fa2",
+        "url": "https://api.github.com/repos/filp/whoops/zipball/075bc0c26631110584175de6523ab3f1652eb28e",
+        "reference": "075bc0c26631110584175de6523ab3f1652eb28e",
         "shasum": ""
       },
       "require": {
@@ -67,7 +67,7 @@
       ],
       "support": {
         "issues": "https://github.com/filp/whoops/issues",
-        "source": "https://github.com/filp/whoops/tree/2.16.0"
+        "source": "https://github.com/filp/whoops/tree/2.17.0"
       },
       "funding": [
         {
@@ -75,20 +75,20 @@
           "type": "github"
         }
       ],
-      "time": "2024-09-25T12:00:00+00:00"
+      "time": "2025-01-25T12:00:00+00:00"
     },
     {
       "name": "flightphp/core",
-      "version": "v3.12.0",
+      "version": "v3.13.1",
       "source": {
         "type": "git",
         "url": "https://github.com/flightphp/core.git",
-        "reference": "63fbf9b0316969e8aa6c318f8479d1ed0578f9b4"
+        "reference": "da6540bbdd3b64a28de0606da7b530d0013f281c"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/flightphp/core/zipball/63fbf9b0316969e8aa6c318f8479d1ed0578f9b4",
-        "reference": "63fbf9b0316969e8aa6c318f8479d1ed0578f9b4",
+        "url": "https://api.github.com/repos/flightphp/core/zipball/da6540bbdd3b64a28de0606da7b530d0013f281c",
+        "reference": "da6540bbdd3b64a28de0606da7b530d0013f281c",
         "shasum": ""
       },
       "require": {
@@ -100,7 +100,7 @@
       },
       "require-dev": {
         "ext-pdo_sqlite": "*",
-        "flightphp/runway": "^0.2.0",
+        "flightphp/runway": "^0.2.3 || ^1.0",
         "league/container": "^4.2",
         "level-2/dice": "^4.0",
         "phpstan/extension-installer": "^1.3",
@@ -147,22 +147,22 @@
       "homepage": "http://flightphp.com",
       "support": {
         "issues": "https://github.com/flightphp/core/issues",
-        "source": "https://github.com/flightphp/core/tree/v3.12.0"
+        "source": "https://github.com/flightphp/core/tree/v3.13.1"
       },
-      "time": "2024-08-22T17:05:34+00:00"
+      "time": "2025-01-14T05:58:50+00:00"
     },
     {
       "name": "illuminate/container",
-      "version": "v11.26.0",
+      "version": "v11.41.0",
       "source": {
         "type": "git",
         "url": "https://github.com/illuminate/container.git",
-        "reference": "d6aca7c315d68cb6807c139facd7ea134b4f5104"
+        "reference": "4a777578ce2388384565bf5c8e76881f0da68e54"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/illuminate/container/zipball/d6aca7c315d68cb6807c139facd7ea134b4f5104",
-        "reference": "d6aca7c315d68cb6807c139facd7ea134b4f5104",
+        "url": "https://api.github.com/repos/illuminate/container/zipball/4a777578ce2388384565bf5c8e76881f0da68e54",
+        "reference": "4a777578ce2388384565bf5c8e76881f0da68e54",
         "shasum": ""
       },
       "require": {
@@ -200,20 +200,20 @@
         "issues": "https://github.com/laravel/framework/issues",
         "source": "https://github.com/laravel/framework"
       },
-      "time": "2024-09-20T12:51:05+00:00"
+      "time": "2024-12-08T15:40:56+00:00"
     },
     {
       "name": "illuminate/contracts",
-      "version": "v11.26.0",
+      "version": "v11.41.0",
       "source": {
         "type": "git",
         "url": "https://github.com/illuminate/contracts.git",
-        "reference": "56312862af937bd6da8e6dc8bbd88188dfb478f8"
+        "reference": "534b697fc1dd9fbdd9fbf2f33fc9dcbb943dea75"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/illuminate/contracts/zipball/56312862af937bd6da8e6dc8bbd88188dfb478f8",
-        "reference": "56312862af937bd6da8e6dc8bbd88188dfb478f8",
+        "url": "https://api.github.com/repos/illuminate/contracts/zipball/534b697fc1dd9fbdd9fbf2f33fc9dcbb943dea75",
+        "reference": "534b697fc1dd9fbdd9fbf2f33fc9dcbb943dea75",
         "shasum": ""
       },
       "require": {
@@ -248,20 +248,20 @@
         "issues": "https://github.com/laravel/framework/issues",
         "source": "https://github.com/laravel/framework"
       },
-      "time": "2024-09-22T15:08:08+00:00"
+      "time": "2025-01-10T20:57:00+00:00"
     },
     {
       "name": "leafs/anchor",
-      "version": "v1.6.1",
+      "version": "v1.6.2",
       "source": {
         "type": "git",
         "url": "https://github.com/leafsphp/anchor.git",
-        "reference": "7f040c0b10f080046ca93ed10c2d310d63bfb2db"
+        "reference": "f4508398e87045b946b7e83f709790b491b0bb04"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/leafsphp/anchor/zipball/7f040c0b10f080046ca93ed10c2d310d63bfb2db",
-        "reference": "7f040c0b10f080046ca93ed10c2d310d63bfb2db",
+        "url": "https://api.github.com/repos/leafsphp/anchor/zipball/f4508398e87045b946b7e83f709790b491b0bb04",
+        "reference": "f4508398e87045b946b7e83f709790b491b0bb04",
         "shasum": ""
       },
       "require-dev": {
@@ -295,7 +295,7 @@
       ],
       "support": {
         "issues": "https://github.com/leafsphp/anchor/issues",
-        "source": "https://github.com/leafsphp/anchor/tree/v1.6.1"
+        "source": "https://github.com/leafsphp/anchor/tree/v1.6.2"
       },
       "funding": [
         {
@@ -307,20 +307,20 @@
           "type": "open_collective"
         }
       ],
-      "time": "2024-10-05T10:05:29+00:00"
+      "time": "2024-10-10T13:55:24+00:00"
     },
     {
       "name": "leafs/session",
-      "version": "v2.2",
+      "version": "v2.3.2",
       "source": {
         "type": "git",
         "url": "https://github.com/leafsphp/session.git",
-        "reference": "380227b221943445cdf024ddfc9661372b470a58"
+        "reference": "7d9358b3832504490896f59c998c877119b9fe69"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/leafsphp/session/zipball/380227b221943445cdf024ddfc9661372b470a58",
-        "reference": "380227b221943445cdf024ddfc9661372b470a58",
+        "url": "https://api.github.com/repos/leafsphp/session/zipball/7d9358b3832504490896f59c998c877119b9fe69",
+        "reference": "7d9358b3832504490896f59c998c877119b9fe69",
         "shasum": ""
       },
       "require": {
@@ -363,7 +363,7 @@
       ],
       "support": {
         "issues": "https://github.com/leafsphp/session/issues",
-        "source": "https://github.com/leafsphp/session/tree/v2.2"
+        "source": "https://github.com/leafsphp/session/tree/v2.3.2"
       },
       "funding": [
         {
@@ -375,7 +375,7 @@
           "type": "open_collective"
         }
       ],
-      "time": "2024-08-17T05:51:54+00:00"
+      "time": "2025-01-20T18:48:05+00:00"
     },
     {
       "name": "megacreativo/cedulave-api",
@@ -853,8 +853,8 @@
       "type": "library",
       "extra": {
         "thanks": {
-          "name": "symfony/polyfill",
-          "url": "https://github.com/symfony/polyfill"
+          "url": "https://github.com/symfony/polyfill",
+          "name": "symfony/polyfill"
         }
       },
       "autoload": {
@@ -909,16 +909,16 @@
     },
     {
       "name": "symfony/var-dumper",
-      "version": "v7.1.5",
+      "version": "v7.2.0",
       "source": {
         "type": "git",
         "url": "https://github.com/symfony/var-dumper.git",
-        "reference": "e20e03889539fd4e4211e14d2179226c513c010d"
+        "reference": "c6a22929407dec8765d6e2b6ff85b800b245879c"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/symfony/var-dumper/zipball/e20e03889539fd4e4211e14d2179226c513c010d",
-        "reference": "e20e03889539fd4e4211e14d2179226c513c010d",
+        "url": "https://api.github.com/repos/symfony/var-dumper/zipball/c6a22929407dec8765d6e2b6ff85b800b245879c",
+        "reference": "c6a22929407dec8765d6e2b6ff85b800b245879c",
         "shasum": ""
       },
       "require": {
@@ -934,7 +934,7 @@
         "symfony/http-kernel": "^6.4|^7.0",
         "symfony/process": "^6.4|^7.0",
         "symfony/uid": "^6.4|^7.0",
-        "twig/twig": "^3.0.4"
+        "twig/twig": "^3.12"
       },
       "bin": [
         "Resources/bin/var-dump-server"
@@ -972,7 +972,7 @@
         "dump"
       ],
       "support": {
-        "source": "https://github.com/symfony/var-dumper/tree/v7.1.5"
+        "source": "https://github.com/symfony/var-dumper/tree/v7.2.0"
       },
       "funding": [
         {
@@ -988,17 +988,17 @@
           "type": "tidelift"
         }
       ],
-      "time": "2024-09-16T10:07:02+00:00"
+      "time": "2024-11-08T15:48:14+00:00"
     }
   ],
   "aliases": [],
   "minimum-stability": "stable",
-  "stability-flags": [],
+  "stability-flags": {},
   "prefer-stable": false,
   "prefer-lowest": false,
   "platform": {
     "php": ">=8.2"
   },
-  "platform-dev": [],
+  "platform-dev": {},
   "plugin-api-version": "2.6.0"
 }

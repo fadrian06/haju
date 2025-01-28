@@ -1,13 +1,13 @@
 {
   "require": {
     "php": ">=8.2",
-    "flightphp/core": "^3.12",
+    "flightphp/core": "^3.13",
     "phar-io/manifest": "^2.0",
-    "leafs/session": "^2.2",
-    "filp/whoops": "^2.16",
+    "leafs/session": "^2.3",
+    "filp/whoops": "^2.17",
     "megacreativo/cedulave-api": "^1.1",
     "twbs/bootstrap": "^5.3",
-    "illuminate/container": "^11.26"
+    "illuminate/container": "^11.41"
   },
   "autoload": {
     "psr-4": {
@@ -29,6 +29,6 @@
     ]
   },
   "require-dev": {
-    "symfony/var-dumper": "^7.1"
+    "symfony/var-dumper": "^7.2"
   }
 }
