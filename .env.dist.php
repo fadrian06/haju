@@ -12,5 +12,4 @@ return [
   'DB_USERNAME' => '',
   'DB_PASSWORD' => '',
   'TIMEZONE' => 'UTC',
-  'DEBUG' => true
 ];

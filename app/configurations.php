@@ -9,29 +9,11 @@ use App\Repositories\Infraestructure\PDO\PDODoctorRepository;
 use App\Repositories\Infraestructure\PDO\PDOPatientRepository;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
 use Leaf\Http\Session;
-use Whoops\Handler\PlainTextHandler;
-use Whoops\Handler\PrettyPageHandler;
-use Whoops\Run;
 
 ///////////////////////////
 // ENVIRONMENT VARIABLES //
 ///////////////////////////
 $_ENV += require __DIR__ . '/../.env.php';
-
-////////////////////
-// ERR0R HANDLING //
-////////////////////
-if (!$_ENV['DEBUG']) {
-  error_reporting(0);
-  ini_set('display_errors', 'Off');
-  ini_set('html_errors', 'Off');
-}
-
-ini_set('error_log', __DIR__ . '/logs/errors.log');
-$whoops = new Run;
-$whoops->pushHandler($_ENV['DEBUG'] ? new PrettyPageHandler : new PlainTextHandler);
-$whoops->register();
-App::set('flight.handle_errors', false);
 
 //////////////
 // TIMEZONE //

@@ -4,79 +4,8 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "186094166cc8ded0067324686dcc4b0f",
+  "content-hash": "f41cdbceec489597f8f8b12ba252cdae",
   "packages": [
-    {
-      "name": "filp/whoops",
-      "version": "2.17.0",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/filp/whoops.git",
-        "reference": "075bc0c26631110584175de6523ab3f1652eb28e"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/filp/whoops/zipball/075bc0c26631110584175de6523ab3f1652eb28e",
-        "reference": "075bc0c26631110584175de6523ab3f1652eb28e",
-        "shasum": ""
-      },
-      "require": {
-        "php": "^7.1 || ^8.0",
-        "psr/log": "^1.0.1 || ^2.0 || ^3.0"
-      },
-      "require-dev": {
-        "mockery/mockery": "^1.0",
-        "phpunit/phpunit": "^7.5.20 || ^8.5.8 || ^9.3.3",
-        "symfony/var-dumper": "^4.0 || ^5.0"
-      },
-      "suggest": {
-        "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
-        "whoops/soap": "Formats errors as SOAP responses"
-      },
-      "type": "library",
-      "extra": {
-        "branch-alias": {
-          "dev-master": "2.7-dev"
-        }
-      },
-      "autoload": {
-        "psr-4": {
-          "Whoops\\": "src/Whoops/"
-        }
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "Filipe Dobreira",
-          "homepage": "https://github.com/filp",
-          "role": "Developer"
-        }
-      ],
-      "description": "php error handling for cool kids",
-      "homepage": "https://filp.github.io/whoops/",
-      "keywords": [
-        "error",
-        "exception",
-        "handling",
-        "library",
-        "throwable",
-        "whoops"
-      ],
-      "support": {
-        "issues": "https://github.com/filp/whoops/issues",
-        "source": "https://github.com/filp/whoops/tree/2.17.0"
-      },
-      "funding": [
-        {
-          "url": "https://github.com/denis-sokolov",
-          "type": "github"
-        }
-      ],
-      "time": "2025-01-25T12:00:00+00:00"
-    },
     {
       "name": "flightphp/core",
       "version": "v3.13.1",
@@ -673,56 +602,6 @@
         "source": "https://github.com/php-fig/container/tree/2.0.2"
       },
       "time": "2021-11-05T16:47:00+00:00"
-    },
-    {
-      "name": "psr/log",
-      "version": "3.0.2",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/php-fig/log.git",
-        "reference": "f16e1d5863e37f8d8c2a01719f5b34baa2b714d3"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/php-fig/log/zipball/f16e1d5863e37f8d8c2a01719f5b34baa2b714d3",
-        "reference": "f16e1d5863e37f8d8c2a01719f5b34baa2b714d3",
-        "shasum": ""
-      },
-      "require": {
-        "php": ">=8.0.0"
-      },
-      "type": "library",
-      "extra": {
-        "branch-alias": {
-          "dev-master": "3.x-dev"
-        }
-      },
-      "autoload": {
-        "psr-4": {
-          "Psr\\Log\\": "src"
-        }
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "PHP-FIG",
-          "homepage": "https://www.php-fig.org/"
-        }
-      ],
-      "description": "Common interface for logging libraries",
-      "homepage": "https://github.com/php-fig/log",
-      "keywords": [
-        "log",
-        "psr",
-        "psr-3"
-      ],
-      "support": {
-        "source": "https://github.com/php-fig/log/tree/3.0.2"
-      },
-      "time": "2024-09-11T13:17:53+00:00"
     },
     {
       "name": "psr/simple-cache",
