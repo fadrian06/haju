@@ -8,6 +8,7 @@ use App\Repositories\Infraestructure\PDO\PDODepartmentRepository;
 use App\Repositories\Infraestructure\PDO\PDODoctorRepository;
 use App\Repositories\Infraestructure\PDO\PDOPatientRepository;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
+use Illuminate\Container\Container;
 use Leaf\Http\Session;
 
 ///////////////////////////
@@ -27,6 +28,28 @@ App::set('root', str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']));
 App::set('fullRoot', App::request()->scheme . '://' . App::request()->host . App::get('root'));
 App::view()->set('root', App::get('root'));
 App::view()->set('user', null);
+
+///////////////
+// CONTAINER //
+///////////////
+$container = new class extends Container {
+  function terminating(): void {
+  }
+  function getNamespace(): void {
+  }
+};
+
+$container->singleton(Connection::class, static fn(): Connection => new Connection(
+  $_ENV['DB_CONNECTION'],
+  $_ENV['DB_DATABASE'],
+  $_ENV['DB_HOST'],
+  $_ENV['DB_PORT'],
+  $_ENV['DB_USERNAME'],
+  $_ENV['DB_PASSWORD']
+));
+
+Container::setInstance($container);
+App::registerContainerHandler([$container, 'get']);
 
 //////////////////
 // DEPENDENCIES //
