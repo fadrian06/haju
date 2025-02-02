@@ -25,7 +25,7 @@ assert($loggedUser instanceof User);
 <ul class="list-unstyled row row-cols-sm-2 row-cols-md-3">
   <?php foreach ($doctors as $doctor) : ?>
     <li class="mb-4 d-flex align-items-stretch">
-      <article class="card card-body text-center <?= !$doctor->registeredBy->isEqualTo($loggedUser) ? 'pe-none opacity-50 user-select-none' : '' ?>">
+      <article class="card card-body text-center <?= $doctor->canBeEditedBy($loggedUser) ? '' : 'pe-none opacity-50 user-select-none' ?>">
         <div class="dropdown position-relative">
           <button style="right: 0" class="bg-transparent border-0 position-absolute" data-bs-toggle="dropdown">
             <i class="ti-more"></i>

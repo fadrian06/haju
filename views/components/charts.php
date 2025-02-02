@@ -12,7 +12,7 @@ $frecuentCauses = App::db()->instance()->query(<<<sql
   LIMIT 5
 sql)->fetchAll(PDO::FETCH_ASSOC);
 
-$frecuentCause = App::db()->instance()->query(<<<sql
+$stmt = App::db()->instance()->query(<<<sql
   SELECT short_name, extended_name, variant, registered_date,
   COUNT(short_name) as consultations
   FROM (
@@ -21,13 +21,16 @@ $frecuentCause = App::db()->instance()->query(<<<sql
     FROM consultations
     JOIN consultation_causes
     ON consultations.cause_id = consultation_causes.id
-    WHERE cause_id = 1 AND registered_date BETWEEN '2024-04-01' AND CURRENT_TIMESTAMP
+    WHERE cause_id = :cause_id AND registered_date BETWEEN '2024-04-01' AND CURRENT_TIMESTAMP
     GROUP BY registered_date
     ORDER BY registered_date
   ) GROUP BY registered_date
-sql)->fetchAll(PDO::FETCH_ASSOC);
+sql);
 
-if (!$frecuentCauses || !$frecuentCause) {
+$stmt->execute([$_GET['id_causa'] ?? $frecuentCauses[0]['cause_id'] ?? '']);
+$frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+if (!$frecuentCauses) {
   return;
 }
 
@@ -49,12 +52,29 @@ if (!$frecuentCauses || !$frecuentCause) {
   <h3>Causas de consulta más frecuentes</h3>
   <canvas class="w-100" id="frecuent-causes"></canvas>
 </div>
+
 <div class="mt-2 white_box">
-  <h3>
-    Casos de
-    <?= $frecuentCause[0]['extended_name'] ?? $frecuentCause[0]['short_name'] . $frecuentCause[0]['variant'] ?>
+  <h3 class="d-flex gap-3 align-items-center justify-content-between flex-wrap">
+    <span>Casos de</span>
+    <form class="row align-items-center row-gap-3">
+      <?php render('components/input-group', [
+        'name' => 'id_causa',
+        'variant' => 'select',
+        'placeholder' => 'Causa de consulta',
+        'options' => array_map(static fn(array $cause): array => [
+          'selected' => ($_GET['id_causa'] ?? $frecuentCauses[0]['cause_id']) == $cause['cause_id'],
+          'value' => $cause['cause_id'],
+          'text' => $cause['extended_name'] ?? $cause['short_name'] . $cause['variant']
+        ], $frecuentCauses),
+        'cols' => 6,
+        'margin' => 0
+      ]) ?>
+      <button class="btn btn-primary btn-lg px-5 rounded-pill col-md-auto">
+        Consultar
+      </button>
+    </form>
+    <canvas class="w-100" id="frecuent-cause"></canvas>
   </h3>
-  <canvas class="w-100" id="frecuent-cause"></canvas>
 </div>
 
 <script>

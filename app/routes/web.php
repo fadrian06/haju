@@ -10,6 +10,7 @@ use App\Controllers\Web\SettingsWebController;
 use App\Controllers\Web\UserWebController;
 use App\Middlewares\AuthenticationMiddleware;
 use App\Middlewares\AuthorizationMiddleware;
+use App\Middlewares\EnsureCanEditDoctorMiddleware;
 use App\Middlewares\EnsureOneSelectedDepartment;
 use App\Middlewares\EnsureOnlyAcceptOneDirector;
 use App\Middlewares\EnsureUserIsNotAuthenticated;
@@ -49,8 +50,11 @@ App::group('', function (): void {
     App::group('/doctores', function (): void {
       App::route('GET /', [DoctorWebController::class, 'showDoctors']);
       App::route('POST /', [DoctorWebController::class, 'handleRegister']);
-      App::route('GET /@idCard', [DoctorWebController::class, 'showEdit']);
-      App::route('POST /@idCard', [DoctorWebController::class, 'handleEdition']);
+
+      App::group('/@idCard', function (): void {
+        App::route('GET /', [DoctorWebController::class, 'showEdit']);
+        App::route('POST /', [DoctorWebController::class, 'handleEdition']);
+      }, [EnsureCanEditDoctorMiddleware::class]);
     }, [new AuthorizationMiddleware(Appointment::Coordinator)]);
 
     App::route('GET /pacientes', [PatientWebController::class, 'showPatients']);

@@ -30,6 +30,7 @@ $readonly ??= false;
 $hidden ??= false;
 $pattern ??= null;
 $title ??= null;
+$margin ??= 4;
 
 ?>
 
@@ -48,7 +49,7 @@ $title ??= null;
     </label>
   </div>
 <?php else: ?>
-  <div class="col-md-<?= $cols ?? 6 ?> <?= $hidden ? 'd-none' : '' ?> form-floating mb-4">
+  <div class="col-md-<?= $cols ?? 6 ?> <?= $hidden ? 'd-none' : '' ?> form-floating mb-<?= $margin ?>">
     <?php if ($variant === 'input') : ?>
       <input
         style="height: 66px; <?= $type === 'date' ? 'padding-top: 1em; padding-bottom: 0' : '' ?>"
