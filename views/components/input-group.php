@@ -32,6 +32,7 @@ $pattern ??= null;
 $title ??= null;
 $margin ??= 4;
 $max ??= null;
+$oninput ??= null;
 
 ?>
 
@@ -68,6 +69,7 @@ $max ??= null;
         list="<?= $list ?? null ?>"
         <?= $pattern ? "pattern='$pattern'" : '' ?>
         <?= $title ? "data-bs-toggle='tooltip' title='$title'" : '' ?>
+        <?= $oninput ? "oninput='$oninput'" : '' ?>
       />
     <?php elseif ($variant === 'textarea') : ?>
       <textarea

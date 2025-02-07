@@ -110,7 +110,14 @@ $loggedUser = $user;
             'name' => 'id_card',
             'placeholder' => 'Cédula',
             'required' => true,
-            'value' => $_SESSION['lastData']['id_card'] ?? ''
+            'value' => $_SESSION['lastData']['id_card'] ?? '',
+            'oninput' => '
+              this
+                .form
+                .querySelectorAll("[name=password],[name=confirm_password]")
+                .forEach(input => {
+                  input.setAttribute("value", event.target.value)
+                })'
           ]);
 
           render('components/input-group', [
@@ -161,7 +168,7 @@ $loggedUser = $user;
             'name' => 'password',
             'placeholder' => 'Contraseña',
             'readonly' => true,
-            'value' => '1234'
+            'value' => ''
           ]);
 
           render('components/input-group', [
@@ -170,7 +177,7 @@ $loggedUser = $user;
             'name' => 'confirm_password',
             'placeholder' => 'Confirmar contraseña',
             'readonly' => true,
-            'value' => '1234'
+            'value' => ''
           ]);
           ?>
         </fieldset>
