@@ -34,6 +34,10 @@ final class Department extends Model {
     return $this;
   }
 
+  function hasIcon(): bool {
+    return (bool) $this->iconFilePath->asString();
+  }
+
   function __get(string $property): null|int|string {
     return match ($property) {
       'name' => $this->name,

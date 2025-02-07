@@ -42,13 +42,15 @@ $stmt = App::db()->instance()->query(<<<sql
   ) GROUP BY registered_date
 sql);
 
-$stmt->execute([
+$params = [
   ':cause_id' => $_GET['id_causa'] ?? $frecuentCauses[0]['cause_id'] ?? '',
-  ':start_date' => $_GET['fecha_inicio']
-    ?? $range?->getDate()->format('Y-m-d')
-    ?? $lastMonth,
+  ':start_date' => @$_GET['fecha_inicio']
+    ?: $range?->getDate()->format('Y-m-d')
+    ?: $lastMonth,
   ':end_date' => $_GET['fecha_fin'] ?? $currentDate
-]);
+];
+
+$stmt->execute($params);
 
 $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

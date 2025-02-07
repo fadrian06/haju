@@ -4,7 +4,7 @@ PST III:
   ✔ ¿Permite Insertar, Consultar, Modificar y Eliminar en todos los Módulos? @done (29/09/2024 11:32:46)
   ☐ ¿Valida los campos de los formularios del lado usuario y servidor?
   ✔ ¿Genera Reportes en PDF? @done (29/09/2024 11:37:11)
-  ☐ ¿Genera Reportes Estadístico con graficas según rango de fecha?
+  ✔ ¿Genera Reportes Estadístico con graficas según rango de fecha? @done (07/02/2025 09:59:24)
   ☐ ¿El sistema contiene rutinas con Transacción Segura?
   ☐ ¿Permite Respaldar para su descarga y Restaurar la base de datos seleccionando una copia guardada en unidad extraíble?
   ✔ ¿El sistema genera mensajes de alerta de forma automatizada dependiendo de cálculos realizados en base de datos? @done (02/06/2024 17:51:57)
@@ -14,7 +14,7 @@ PST IV:
   ✔ ¿Presenta autenticación y Autoriza los usuarios según privilegio asignado? @done (02/06/2024 17:49:37)
   ✔ ¿Permite Insertar, Consultar, Modificar y Eliminar en todos los Módulos? @done (29/09/2024 11:42:30)
   ☐ ¿Valida los campos de los formularios del lado usuario y servidor?
-  ☐ ¿Genera Reportes en PDF y Estadístico con graficas según rango de fecha?
+  ✔ ¿Genera Reportes en PDF y Estadístico con graficas según rango de fecha? @done (07/02/2025 09:59:40)
   ☐ ¿El sistema contiene rutinas con Transacción Segura?
   ☐ ¿Permite llevar el registro de Log’s de los usuarios y Triggers en el sistema?
   ☐ ¿Permite Respaldar para su descarga y Restaurar la base de datos seleccionando una copia guardada en unidad extraíble?
