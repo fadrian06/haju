@@ -18,6 +18,11 @@ foreach ($patient->getConsultation() as $consultation) {
 }
 
 $causes = array_slice($causes, 0, 5, true);
+$avatarUrl = "https://unavatar.io/$patient->firstName";
+
+$patientAvatar = @file_get_contents($avatarUrl)
+  ? $avatarUrl
+  : './assets/img/user.jpg';
 
 ?>
 
@@ -34,7 +39,10 @@ $causes = array_slice($causes, 0, 5, true);
     <header class="profile-info__main py-2 py-md-0 my-2 my-md-0">
       <div class="row">
         <picture class="col-md-4 d-flex align-items-center justify-content-center mb-2 mb-md-0">
-          <img style="max-height: 150px" class="img-fluid rounded-circle" src="https://unavatar.io/<?= $patient->firstName ?>" />
+          <img
+            style="max-height: 150px"
+            class="img-fluid rounded-circle"
+            src="<?= $patientAvatar ?>" />
         </picture>
         <div class="col-md d-flex flex-column">
           <h4 class="h3">Paciente: <?= $patient->getFullName() ?></h4>
@@ -45,7 +53,9 @@ $causes = array_slice($causes, 0, 5, true);
       </div>
       <div class="row pt-3 mt-3 justify-content-end align-items-center" style="border-top: 2px dashed #ccc">
         <picture class="col-4 d-none d-md-block text-center">
-          <img src="<?= urldecode($patient->registeredBy->profileImagePath->asString()) ?>" class="img-fluid rounded-circle" />
+          <img
+            src="<?= urldecode($patient->registeredBy->profileImagePath->asString()) ?>"
+            class="img-fluid rounded-circle" />
         </picture>
         <div class="col">
           <h5>Registrado por:</h5>
@@ -119,7 +129,7 @@ $causes = array_slice($causes, 0, 5, true);
     <div class="row mx-0">
       <article class="col-md px-0 pe-md-2">
         <div class="white_box">
-          <h3>Visitas médicas</h3>
+          <h3>Visitas médicas <sub>(de la más reciente a la más antigua)</sub></h3>
           <ul class="timeline mt-4">
             <?php foreach ($patient->getConsultation() as $consultation) : ?>
               <li class="timeline-item">
