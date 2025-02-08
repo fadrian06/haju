@@ -6,7 +6,8 @@
     "leafs/session": "^2.3",
     "megacreativo/cedulave-api": "^1.1",
     "twbs/bootstrap": "^5.3",
-    "illuminate/container": "^11.41"
+    "illuminate/container": "^11.41",
+    "faslatam/alpine-js": "^3.14"
   },
   "autoload": {
     "psr-4": {

@@ -4,8 +4,40 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "f41cdbceec489597f8f8b12ba252cdae",
+  "content-hash": "4786dcedcb68648bf15e822f67252266",
   "packages": [
+    {
+      "name": "faslatam/alpine-js",
+      "version": "3.14.8",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/fadrian06/AlpineJS.git",
+        "reference": "d60f0e9ef27678acd13037845e0effc28e4add3c"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/fadrian06/AlpineJS/zipball/d60f0e9ef27678acd13037845e0effc28e4add3c",
+        "reference": "d60f0e9ef27678acd13037845e0effc28e4add3c",
+        "shasum": ""
+      },
+      "type": "library",
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "fadrian06",
+          "email": "franyeradriansanchez@gmail.com"
+        }
+      ],
+      "description": "AlpineJS composer package",
+      "support": {
+        "issues": "https://github.com/fadrian06/AlpineJS/issues",
+        "source": "https://github.com/fadrian06/AlpineJS/tree/3.14.8"
+      },
+      "time": "2025-02-08T19:16:45+00:00"
+    },
     {
       "name": "flightphp/core",
       "version": "v3.13.1",
