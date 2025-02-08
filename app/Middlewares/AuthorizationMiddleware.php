@@ -6,15 +6,11 @@ use App;
 use App\Models\User;
 use App\ValueObjects\Appointment;
 
-final class AuthorizationMiddleware {
-  private readonly ?Appointment $blocked;
-
+final readonly class AuthorizationMiddleware {
   function __construct(
-    private readonly Appointment $permitted,
-    ?Appointment $blocked = null
-  ) {
-    $this->blocked = $blocked;
-  }
+    private Appointment $permitted,
+    private ?Appointment $blocked = null
+  ) {}
 
   function before(): void {
     /** @var ?User */

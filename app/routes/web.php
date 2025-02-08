@@ -11,9 +11,11 @@ use App\Controllers\Web\UserWebController;
 use App\Middlewares\AuthenticationMiddleware;
 use App\Middlewares\AuthorizationMiddleware;
 use App\Middlewares\EnsureCanEditDoctorMiddleware;
+use App\Middlewares\EnsureCanEditPatientMiddleware;
 use App\Middlewares\EnsureOneSelectedDepartment;
 use App\Middlewares\EnsureOnlyAcceptOneDirector;
 use App\Middlewares\EnsureUserIsNotAuthenticated;
+use App\Middlewares\LogLoginMiddleware;
 use App\Middlewares\MessagesMiddleware;
 use App\ValueObjects\Appointment;
 
@@ -35,7 +37,8 @@ App::group('', function (): void {
 
 App::group('', function (): void {
   App::route('/departamento/seleccionar', [SessionWebController::class, 'showDepartments']);
-  App::route('/departamento/seleccionar/@id', [SessionWebController::class, 'saveChoice']);
+  App::route('/departamento/seleccionar/@id', [SessionWebController::class, 'saveChoice'])
+    ->addMiddleware(LogLoginMiddleware::class);
 
   App::group('', function (): void {
     App::route('/', [HomeWebController::class, 'showIndex']);
