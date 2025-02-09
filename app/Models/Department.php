@@ -27,6 +27,12 @@ final class Department extends Model {
     $this->setName($name);
   }
 
+  function isStatistics(): bool {
+    assert($this->name instanceof LongName);
+
+    return $this->name->__toString() === 'Estadística';
+  }
+
   /** @throws InvalidNameException */
   function setName(string $name): static {
     $this->name = new LongName($name, 'Nombre del departamento');

@@ -212,4 +212,26 @@ final class PatientWebController extends Controller {
 
     App::redirect(App::request()->referrer);
   }
+
+  function deletePatient(int $id): void {
+    $patient = App::patientRepository()->getById($id);
+
+    if (!$patient) {
+      self::setMessage('Paciente no encontrado');
+      App::redirect('/pacientes', 404);
+    } elseif (!$patient->canBeDeleted()) {
+      self::setMessage('Este paciente no puede ser eliminado (tiene consultas u hospitalizaciones asignadas)');
+      App::redirect('/pacientes', 409);
+    } else {
+      $pdo = App::db()->instance();
+
+      $pdo->beginTransaction();
+      $stmt = $pdo->prepare('DELETE FROM patients WHERE id = ?');
+      $stmt->execute([$id]);
+      $pdo->commit();
+
+      parent::setMessage('Paciente eliminado exitósamente');
+      App::redirect('/pacientes');
+    }
+  }
 }

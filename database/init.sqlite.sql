@@ -190,8 +190,8 @@ VALUES (22, 'Estadística', false, 'assets/img/departments/web01-obs_turismo-SIT
 (17, 'Servicios Sociales', false),
 (18, 'Quirófano', false),
 (19, 'Rayos X', false),
-(20, 'Banco de Sangre', false),
-(21, 'Emergencia', false),*/
+(20, 'Banco de Sangre', false),*/
+(21, 'Emergencia', true, 'assets/img/departments/emergency-department-1.png'),
 (23, 'Hospitalización', false, 'assets/img/departments/doctor-visiting-patient-hospital-female-260nw-2477344121.png');
 
 INSERT INTO consultation_cause_categories (id, short_name, extended_name, top_category_id) VALUES

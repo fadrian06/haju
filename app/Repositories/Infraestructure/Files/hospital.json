@@ -1,10 +1,10 @@
 {
     "name": "Hospital Dr. Antonio Jos\u00e9 Uzc\u00e1tegui Tucan\u00ed",
-    "asic": "",
-    "type": "",
+    "asic": "287383673",
+    "type": "P\u00fablico",
     "place": "Tucan\u00ed",
     "parish": "Tucan\u00ed",
     "municipality": "Caracciolo Parra Olmedo",
-    "healthDepartment": "",
-    "region": ""
+    "healthDepartment": "No s\u00e9",
+    "region": "Andes"
 }

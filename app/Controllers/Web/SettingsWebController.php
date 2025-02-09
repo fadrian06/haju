@@ -105,6 +105,39 @@ final class SettingsWebController extends Controller {
     App::redirect('/configuracion/institucion');
   }
 
+  function showConsultationCausesConfigs(): void {
+    $consultationCauses = App::consultationCauseRepository()->getAll();
+
+    App::renderPage(
+      'settings/consultation-causes',
+      'Configurar causas de consulta',
+      compact('consultationCauses'),
+      'main'
+    );
+  }
+
+  function handleConsultationCausesUpdate(): void {
+    $limitOf = array_map(
+      static fn(string $limit): int => $limit,
+      array_filter(App::request()->data->limit_of)
+    );
+
+    $pdo = App::db()->instance();
+    $pdo->beginTransaction();
+    $stmt = $pdo->prepare('UPDATE consultation_causes SET weekly_cases_limit = :weeklyLimit WHERE id = :id');
+
+    foreach ($limitOf as $consultationCauseId => $weeklyLimit) {
+      $stmt->execute([
+        ':weeklyLimit' => $weeklyLimit,
+        ':id' => $consultationCauseId
+      ]);
+    }
+
+    $pdo->commit();
+    self::setMessage('Límites de casos semanales actualizados exitósamente');
+    App::redirect(App::request()->referrer);
+  }
+
   private function ensureUserIsAuthorized(): static {
     if (
       !$this->loggedUser->appointment->isHigherThan(Appointment::Coordinator)

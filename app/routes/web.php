@@ -15,6 +15,7 @@ use App\Middlewares\EnsureCanEditDoctorMiddleware;
 use App\Middlewares\EnsureCanEditPatientMiddleware;
 use App\Middlewares\EnsureOneSelectedDepartment;
 use App\Middlewares\EnsureOnlyAcceptOneDirector;
+use App\Middlewares\EnsureSelectedDepartmentIsNotStatistics;
 use App\Middlewares\EnsureUserIsNotAuthenticated;
 use App\Middlewares\LogLoginMiddleware;
 use App\Middlewares\MessagesMiddleware;
@@ -72,13 +73,13 @@ App::group('', function (): void {
 
     App::route('GET /pacientes', [PatientWebController::class, 'showPatients']);
     App::route('GET /pacientes/@id:[0-9]+', [PatientWebController::class, 'showPatient']);
-    App::route('POST /pacientes', [PatientWebController::class, 'handleRegister'])
-      ->addMiddleware(new AuthorizationMiddleware(Appointment::Secretary));
+    App::route('GET /pacientes/@id:[0-9]+/eliminar', [PatientWebController::class, 'deletePatient']);
+    App::route('POST /pacientes', [PatientWebController::class, 'handleRegister']);
 
     App::group('/consultas', function (): void {
       App::route('GET /registrar', [PatientWebController::class, 'showConsultationRegister']);
       App::route('POST /', [PatientWebController::class, 'handleConsultationRegister']);
-    }, [new AuthorizationMiddleware(Appointment::Secretary, Appointment::Director)]);
+    }, [EnsureSelectedDepartmentIsNotStatistics::class]);
 
     App::group('/hospitalizaciones', function (): void {
       App::route('GET /registrar', [PatientWebController::class, 'showHospitalizationRegister']);
@@ -100,6 +101,14 @@ App::group('', function (): void {
       App::route('/configuracion/respaldo-restauracion', [SettingsWebController::class, 'showBackups']);
       App::route('/configuracion/respaldar', [SettingsWebController::class, 'handleCreateBackup']);
       App::route('/configuracion/restaurar', [SettingsWebController::class, 'handleRestoreBackup']);
+
+      App::route('GET /configuracion/causas-de-consulta', [SettingsWebController::class, 'showConsultationCausesConfigs'])
+        ->addMiddleware(new AuthorizationMiddleware(Appointment::Coordinator));
+
+      App::route('POST /configuracion/causas-de-consulta', [SettingsWebController::class, 'handleConsultationCausesUpdate'])
+        ->addMiddleware(new AuthorizationMiddleware(Appointment::Coordinator));
+
+
 
       App::group('', function (): void {
         App::route('GET /departamentos', [DepartmentWebController::class, 'showDepartments']);

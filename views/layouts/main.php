@@ -48,6 +48,7 @@ $epidemic = rand(0, 1) ? ['cause' => ['short_name' => 'Dengue']] : false;
   <link rel="stylesheet" href="./assets/css/components/section.css" />
   <link rel="stylesheet" href="./assets/css/components/search-field.css" />
   <link rel="stylesheet" href="./assets/vendors/sweetalert2/default.min.css" />
+  <script defer src="./vendor/faslatam/alpine-js/dist/cdn.min.js"></script>
   <link rel="stylesheet" href="./assets/css/custom.css" />
   <style>
     .main_content {

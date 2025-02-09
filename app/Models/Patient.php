@@ -35,6 +35,18 @@ final class Patient extends Person {
     );
   }
 
+  function canBeDeleted(): bool {
+    return !$this->hasConsultations() && !$this->hasHospitalizations();
+  }
+
+  function hasHospitalizations(): bool {
+    return $this->hospitalizations !== [];
+  }
+
+  function hasConsultations(): bool {
+    return $this->consultations !== [];
+  }
+
   function canBeEditedBy(User $user): bool {
     // TODO: que el coordinador del secretario que registró al paciente también pueda editarlo
     return $user->appointment->isDirector() || $this->registeredBy->isEqualTo($user);

@@ -18,7 +18,7 @@ foreach ($patient->getConsultation() as $consultation) {
 }
 
 $causes = array_slice($causes, 0, 5, true);
-$avatarUrl = "https://unavatar.io/$patient->firstName";
+$avatarUrl = "https://unavatar.io/github/$patient->firstName";
 
 $patientAvatar = @file_get_contents($avatarUrl)
   ? $avatarUrl
@@ -131,6 +131,11 @@ $patientAvatar = @file_get_contents($avatarUrl)
         <div class="white_box">
           <h3>Visitas médicas <sub>(de la más reciente a la más antigua)</sub></h3>
           <ul class="timeline mt-4">
+            <?php if (!$patient->hasConsultations()): ?>
+              No hay consultas registradas
+              <a href="./consultas/registrar">Registrar una</a>
+            <?php endif ?>
+
             <?php foreach ($patient->getConsultation() as $consultation) : ?>
               <li class="timeline-item">
                 <a target="_blank" data-bs-toggle="tooltip" title="<?= $consultation->cause->category->extendedName ?? $consultation->cause->category->shortName ?>">

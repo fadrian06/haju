@@ -17,12 +17,10 @@ $loggedUser = $user;
 
 <section class="mb-4 d-inline-flex px-0 align-items-center justify-content-between">
   <h2>Pacientes</h2>
-  <?php if ($loggedUser->appointment->isLowerOrEqualThan(Appointment::Coordinator)) : ?>
-    <a data-bs-toggle="modal" href="#registrar" class="btn btn-primary rounded-pill d-flex align-items-center">
-      <i class="px-2 ti-plus"></i>
-      <span class="px-2">Registrar paciente</span>
-    </a>
-  <?php endif ?>
+  <a data-bs-toggle="modal" href="#registrar" class="btn btn-primary rounded-pill d-flex align-items-center">
+    <i class="px-2 ti-plus"></i>
+    <span class="px-2">Registrar paciente</span>
+  </a>
 </section>
 
 <?php if ($patients !== null) : ?>
@@ -50,7 +48,7 @@ $loggedUser = $user;
         </thead>
         <tbody>
           <?php foreach ($patients as $patient) : ?>
-            <?php $canEdit = $patient->registeredBy->registeredBy->isEqualTo($loggedUser) || $patient->registeredBy->isEqualTo($loggedUser) ?>
+            <?php $canEdit = $patient->registeredBy?->registeredBy?->isEqualTo($loggedUser) || $patient->registeredBy?->isEqualTo($loggedUser) ?>
             <tr>
               <form method="post" action="./pacientes/<?= $patient->id ?>">
                 <td class="p-2">
@@ -74,9 +72,14 @@ $loggedUser = $user;
                   <?= $patient->registeredBy->firstName ?>
                 </td>
                 <td class="p-2">
-                  <?php if ($canEdit) : ?>
-                    <button class="btn btn-sm btn-primary text-white">Actualizar</button>
-                  <?php endif ?>
+                  <div class="btn-group">
+                    <?php if ($canEdit) : ?>
+                      <button class="btn btn-sm btn-primary text-white">Actualizar</button>
+                    <?php endif ?>
+                    <?php if ($patient->canBeDeleted()): ?>
+                      <a href="./pacientes/<?= $patient->id ?>/eliminar" class="btn btn-sm btn-danger text-white">Eliminar</a>
+                    <?php endif ?>
+                  </div>
                 </td>
               </form>
             </tr>

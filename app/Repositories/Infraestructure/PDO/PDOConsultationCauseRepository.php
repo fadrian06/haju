@@ -12,7 +12,7 @@ final class PDOConsultationCauseRepository
 extends PDORepository implements ConsultationCauseRepository {
   private const FIELDS = <<<sql
   id, short_name as shortName, extended_name as extendedName, variant, code,
-  category_id as categoryId
+  category_id as categoryId, weekly_cases_limit as weeklyLimit
   sql;
 
   function __construct(
@@ -72,14 +72,16 @@ extends PDORepository implements ConsultationCauseRepository {
     ?string $extendedName,
     ?string $variant,
     ?string $code,
-    int $categoryId
+    int $categoryId,
+    ?int $weeklyLimit
   ): ConsultationCause {
     $cause = new ConsultationCause(
       $this->categoryRepository->getById($categoryId),
       $shortName,
       $extendedName,
       $variant,
-      $code
+      $code,
+      $weeklyLimit
     );
 
     $cause->setId($id);

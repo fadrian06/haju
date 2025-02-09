@@ -9,10 +9,16 @@ use App\ValueObjects\Appointment;
  * @var Department $department
  */
 
+$backgrounds = [
+  'Estadística' => 'white',
+  'Emergencia' => '#fff0df',
+  'Hospitalización' => '#f0ffff'
+];
+
 ?>
 
-<aside class="sidebar" style="overflow-y: scroll">
-  <header class="logo m-0 d-flex align-items-center justify-content-between">
+<aside class="sidebar overflow-y-scroll" style="background: <?= $backgrounds[$department->name] ?? 'white' ?>">
+  <header class="logo m-0 d-flex align-items-center justify-content-between" style="background: <?= $backgrounds[$department->name] ?? 'white' ?>">
     <picture class="p-2">
       <img class="img-fluid" src="./assets/img/logo@light.png" data-bs-toggle="tooltip" title='Hospital "José Antonio Uzcátegui"' />
     </picture>
@@ -55,7 +61,7 @@ use App\ValueObjects\Appointment;
               </form>
             </div>
           </li>
-          <?php if ($user->appointment !== Appointment::Director) : ?>
+          <?php if (!$department->isStatistics()): ?>
             <li>
               <a href="./pacientes#registrar" <?= isActive('/pacientes') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
                 <i class="ti-plus"></i>
@@ -153,6 +159,14 @@ use App\ValueObjects\Appointment;
                 <a href="./configuracion/respaldo-restauracion">
                   <i class="ti-import"></i>
                   Respaldo y restauración
+                </a>
+              </li>
+            <?php endif ?>
+            <?php if ($user->appointment->isHigherThan(Appointment::Coordinator)): ?>
+              <li class="<?= isActive('/configuracion/causas-de-consulta') ? 'mm-active' : '' ?>">
+                <a href="./configuracion/causas-de-consulta" class="text-wrap">
+                  <i class="ti-bookmark-alt"></i>
+                  Configurar causas de consultas
                 </a>
               </li>
             <?php endif ?>

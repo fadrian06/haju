@@ -10,6 +10,7 @@ use App\ValueObjects\LongName;
  * @property-read ?string $extendedName
  * @property-read ?string $variant
  * @property-read ?string $code
+ * @property-read ?int $limit
  */
 final class ConsultationCause extends Model {
   private LongName $shortName;
@@ -23,6 +24,7 @@ final class ConsultationCause extends Model {
     ?string $extendedName,
     ?string $variant = null,
     ?string $code = null,
+    private ?int $limit = null
   ) {
     $this->setName($shortName, $extendedName)->setVariant($variant)->setCode($code);
   }
@@ -67,6 +69,7 @@ final class ConsultationCause extends Model {
       'shortName' => $this->shortName,
       'extendedName' => $this->extendedName,
       'code' => $this->code,
+      'limit' => $this->limit,
       default => parent::__get($property)
     };
   }
