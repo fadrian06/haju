@@ -33,7 +33,8 @@ foreach ($consultationCauses as $consultationCause) {
             'min' => 1,
             'required' => false,
             'cols' => 4,
-            'value' => $consultationCause->limit ?? ''
+            'value' => $consultationCause->limit ?? '',
+            'labelStyle' => 'left: 0'
           ]) ?>
         </label>
       <?php endforeach ?>

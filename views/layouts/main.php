@@ -16,7 +16,45 @@ if (str_contains($_SERVER['REQUEST_URI'], 'perfil')) {
   $showPasswordChangeModal = false;
 }
 
-$epidemic = rand(0, 1) ? ['cause' => ['short_name' => 'Dengue']] : false;
+$pdo = App::db()->instance();
+$currentDate = new DateTimeImmutable;
+$oneWeekAgo = $currentDate->sub(new DateInterval('P1W'));
+
+// TODO: group by patient_id + cause_id to skip consultations of same patient and the same consultation cause
+$stmt = $pdo->prepare('
+  SELECT short_name, variant, extended_name, weekly_cases_limit, cause_id, patient_id
+  FROM consultations
+  JOIN consultation_causes
+  ON consultations.cause_id = consultation_causes.id
+  WHERE consultations.registered_date BETWEEN :start_date AND :end_date
+');
+
+$stmt->execute([
+  ':start_date' => $oneWeekAgo->format('Y-m-d') . ' 00:00:00',
+  ':end_date' => $currentDate->format('Y-m-d') . ' 23:59:59'
+]);
+
+$consultations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$causesGroupedByCauseId = [];
+$epidemic = false;
+
+foreach ($consultations as $consultation) {
+  $causeId = $consultation['cause_id'];
+  $causesGroupedByCauseId[$causeId]['weeklyLimit'] = $consultation['weekly_cases_limit'];
+  $causesGroupedByCauseId[$causeId]['consultations'][] = $consultation;
+  $consultationsCount = count($causesGroupedByCauseId[$causeId]['consultations']);
+  $weeklyLimit = $causesGroupedByCauseId[$causeId]['weeklyLimit'];
+
+  if ($consultationsCount > $weeklyLimit) {
+    $epidemic = ['cause' => [
+      'short_name' => str_replace(
+        '  ',
+        ' ',
+        ($consultation['extended_name'] ?? $consultation['short_name']) . ' ' . $consultation['variant']
+      )
+    ]];
+  }
+}
 
 ?>
 
@@ -61,14 +99,13 @@ $epidemic = rand(0, 1) ? ['cause' => ['short_name' => 'Dengue']] : false;
 
     body {
       padding-right: 0 !important;
-      ;
     }
   </style>
 </head>
 
 <body>
-  <?php if ($epidemic ?? false): ?>
-    <?php render('components/epidemic-alert', ['epidemic' => $epidemic]) ?>
+  <?php if ($epidemic ?: false): ?>
+    <?php renderComponent('epidemic-alert', ['epidemic' => $epidemic]) ?>
   <?php endif ?>
   <?php render('components/sidebar') ?>
   <section class="main_content pb-4 pt-0">

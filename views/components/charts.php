@@ -3,7 +3,7 @@
 use App\ValueObjects\DateRange;
 
 $lastMonth = (new DateTimeImmutable)->sub(new DateInterval('P1M'))->format('Y-m-d');
-$currentDate = date('Y-m-d');
+$currentDate = date('Y-m-d') . ' 23:59:59';
 $range = DateRange::tryFrom($_GET['rango'] ?? '');
 
 $stmt = App::db()->instance()->query(<<<sql
@@ -18,13 +18,14 @@ $stmt = App::db()->instance()->query(<<<sql
   LIMIT 5
 sql);
 
-$stmt->execute([
-  ':start_date' => $_GET['fecha_inicio']
-    ?? $range?->getDate()->format('Y-m-d')
-    ?? $lastMonth,
-  ':end_date' => $_GET['fecha_fin'] ?? $currentDate
-]);
+$params = [
+  ':start_date' => (@$_GET['fecha_inicio']
+    ?: $range?->getDate()->format('Y-m-d')
+    ?: $lastMonth) . ' 00:00:00',
+  ':end_date' => (@$_GET['fecha_fin'] ?: $currentDate) . ' 23:59:59'
+];
 
+$stmt->execute($params);
 $frecuentCauses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $stmt = App::db()->instance()->query(<<<sql
@@ -51,12 +52,7 @@ $params = [
 ];
 
 $stmt->execute($params);
-
 $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-if (!$frecuentCauses) {
-  return;
-}
 
 ?>
 
