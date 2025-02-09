@@ -168,7 +168,8 @@ $loggedUser = $user;
             'name' => 'password',
             'placeholder' => 'Contraseña',
             'readonly' => true,
-            'value' => ''
+            'value' => '',
+            'required' => false
           ]);
 
           render('components/input-group', [
@@ -177,7 +178,8 @@ $loggedUser = $user;
             'name' => 'confirm_password',
             'placeholder' => 'Confirmar contraseña',
             'readonly' => true,
-            'value' => ''
+            'value' => '',
+            'required' => false
           ]);
           ?>
         </fieldset>
