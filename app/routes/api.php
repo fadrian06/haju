@@ -2,7 +2,22 @@
 
 use App\Models\ConsultationCause;
 use App\Models\ConsultationCauseCategory;
+use Leaf\Http\Session;
 use MegaCreativo\API\CedulaVE;
+
+App::route('/api/preferencias/tema/@theme', static function (string $theme): void {
+  Session::set('theme', $theme);
+});
+
+App::route('/api/verificar-clave-maestra', static function (): void {
+  $secretKey = App::request()->data->secret_key;
+
+  if ($secretKey !== '1234') {
+    App::json('Clave maestra incorrecta', 401);
+  } else {
+    Session::set('let_register_director', true);
+  }
+});
 
 App::group('/api', function (): void {
   $categoryMapper = new class {

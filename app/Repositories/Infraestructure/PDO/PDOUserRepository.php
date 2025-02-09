@@ -9,8 +9,8 @@ use App\Repositories\Exceptions\DuplicatedIdCardException;
 use App\Repositories\Exceptions\DuplicatedNamesException;
 use App\Repositories\Exceptions\DuplicatedPhonesException;
 use App\Repositories\Exceptions\DuplicatedProfileImagesException;
+use App\ValueObjects\AdultBirthDate;
 use App\ValueObjects\Appointment;
-use App\ValueObjects\Date;
 use App\ValueObjects\Gender;
 use App\ValueObjects\InstructionLevel;
 use App\ValueObjects\Phone;
@@ -275,7 +275,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
       $secondName,
       $firstLastName,
       $secondLastName,
-      Date::fromTimestamp($birthDateTimestamp),
+      AdultBirthDate::fromTimestamp($birthDateTimestamp),
       Gender::from($gender),
       Appointment::from($appointment),
       InstructionLevel::from($instructionAbbreviation),

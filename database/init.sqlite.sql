@@ -71,6 +71,7 @@ CREATE TABLE consultation_causes (
   extended_name VARCHAR(255) UNIQUE,
   code VARCHAR(255),
   category_id INTEGER NOT NULL,
+  weekly_cases_limit INTEGER CHECK (weekly_cases_limit > 0),
 
   UNIQUE (short_name, variant),
   FOREIGN KEY (category_id) REFERENCES consultation_cause_categories (id)

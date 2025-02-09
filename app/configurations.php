@@ -114,3 +114,4 @@ App::register('patientRepository', PDOPatientRepository::class, [
 ]);
 
 App::register('session', Session::class);
+App::view()->preserveVars = false;

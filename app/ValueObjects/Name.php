@@ -16,7 +16,10 @@ readonly class Name implements Stringable {
 
   /** @throws InvalidNameException */
   protected function validate(string $value, string $field): static {
-    if (!preg_match('/^[A-Za-zÁÉÍÓÚáéíóúñ]{3,}$/', trim($value))) {
+    $value = mb_convert_case(str_replace('  ', ' ', $value), MB_CASE_LOWER);
+    $pattern = '/^(del|de)?\s?[a-záéíóúñ]{3,}$/';
+
+    if (!preg_match($pattern, $value)) {
       throw new InvalidNameException("$field debe contener mínimo 3 letras con inicial en mayúscula");
     }
 

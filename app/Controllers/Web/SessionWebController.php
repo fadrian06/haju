@@ -5,6 +5,7 @@ namespace App\Controllers\Web;
 use App;
 use App\Repositories\Domain\UserRepository;
 use Error;
+use Leaf\Http\Session;
 
 final class SessionWebController extends Controller {
   private readonly UserRepository $userRepository;
@@ -36,7 +37,7 @@ final class SessionWebController extends Controller {
       if (!$this->data['password']) {
         throw new Error('La contraseña es requerida');
       } elseif ($this->data['password'] === self::DEFAULT_PASSWORD) {
-        $this->session->set('mustChangePassword', true);
+        Session::set('mustChangePassword', true);
       }
 
       if (!$user?->checkPassword($this->data['password'])) {
@@ -44,7 +45,7 @@ final class SessionWebController extends Controller {
       }
 
       $user->ensureThatIsActive()->ensureHasActiveDepartments();
-      $this->session->set('userId', $user->id);
+      Session::set('userId', $user->id);
 
       exit(App::redirect('/departamento/seleccionar'));
     } catch (Error $error) {

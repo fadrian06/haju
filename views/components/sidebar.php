@@ -14,7 +14,7 @@ use App\ValueObjects\Appointment;
 <aside class="sidebar" style="overflow-y: scroll">
   <header class="logo m-0 d-flex align-items-center justify-content-between">
     <picture class="p-2">
-      <img class="img-fluid" src="./assets/img/logo.png" data-bs-toggle="tooltip" title='Hospital "José Antonio Uzcátegui"' />
+      <img class="img-fluid" src="./assets/img/logo@light.png" data-bs-toggle="tooltip" title='Hospital "José Antonio Uzcátegui"' />
     </picture>
     <div class="sidebar_close_icon d-flex align-items-center d-lg-none">
       <i class="ti-close"></i>

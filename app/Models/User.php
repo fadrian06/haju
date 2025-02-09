@@ -5,8 +5,8 @@ namespace App\Models;
 use App\Models\Contracts\Activable;
 use App\Models\Contracts\Person;
 use App\Models\Helpers\HasActiveStatus;
+use App\ValueObjects\AdultBirthDate;
 use App\ValueObjects\Appointment;
-use App\ValueObjects\Date;
 use App\ValueObjects\Exceptions\InvalidDateException;
 use App\ValueObjects\Exceptions\InvalidPhoneException;
 use App\ValueObjects\Gender;
@@ -43,7 +43,7 @@ final class User extends Person implements Activable {
     ?string $secondName,
     string $firstLastName,
     ?string $secondLastName,
-    Date $birthDate,
+    AdultBirthDate $birthDate,
     Gender $gender,
     public readonly Appointment $appointment,
     public InstructionLevel $instructionLevel,

@@ -11,6 +11,11 @@ use App\Models\User;
  */
 
 $showPasswordChangeModal ??= $mustChangePassword;
+
+if (str_contains($_SERVER['REQUEST_URI'], 'perfil')) {
+  $showPasswordChangeModal = false;
+}
+
 $epidemic = rand(0, 1) ? ['cause' => ['short_name' => 'Dengue']] : false;
 
 ?>

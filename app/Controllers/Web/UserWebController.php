@@ -6,6 +6,7 @@ use App;
 use App\Models\User;
 use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Domain\UserRepository;
+use App\ValueObjects\AdultBirthDate;
 use App\ValueObjects\Appointment;
 use App\ValueObjects\Date;
 use App\ValueObjects\Exceptions\InvalidDateException;
@@ -14,6 +15,7 @@ use App\ValueObjects\Gender;
 use App\ValueObjects\InstructionLevel;
 use App\ValueObjects\Phone;
 use Error;
+use Leaf\Http\Session;
 use PharIo\Manifest\Email;
 use PharIo\Manifest\InvalidEmailException;
 use Throwable;
@@ -40,7 +42,7 @@ class UserWebController extends Controller {
       $this->loggedUser->appointment === Appointment::Coordinator => [Appointment::Secretary, '/usuarios', '/usuarios']
     };
 
-    $_SESSION['lastData'] = $this->data->getData();
+    Session::set('lastData', $this->data->getData());
 
     try {
       if ($this->data['password'] !== $this->data['confirm_password']) {
@@ -76,7 +78,7 @@ class UserWebController extends Controller {
         $this->data['second_name'],
         $this->data['first_last_name'],
         $this->data['second_last_name'],
-        Date::from($this->data['birth_date'], '-'),
+        AdultBirthDate::from($this->data['birth_date'], '-'),
         Gender::from($this->data['gender']),
         $appointment,
         InstructionLevel::from($this->data['instruction_level']),
@@ -102,7 +104,7 @@ class UserWebController extends Controller {
 
       $this->userRepository->save($user);
       self::setMessage('Usuario registrado exitósamente');
-      unset($_SESSION['lastData']);
+      Session::unset('lastData');
 
       exit(App::redirect($urlToRedirect));
     } catch (InvalidDateException) {

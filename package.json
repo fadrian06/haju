@@ -1,0 +1,17 @@
+{
+  "devDependencies": {
+    "@fontsource/poppins": "^5.1.1",
+    "@fontsource/rajdhani": "^5.1.1",
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "@types/bootstrap": "^5.2.10",
+    "alpinejs": "^3.14.8",
+    "bootstrap": "^5.3.3",
+    "esbuild": "0.21.5",
+    "metismenujs": "^1.4.0",
+    "pure-css-loader": "^3.3.3",
+    "sweetalert2": "^11.16.0"
+  },
+  "scripts": {
+    "dev": "esbuild assets/src/*.ts --outdir=assets/dist --bundle --watch --sourcemap --loader:.woff2=copy --loader:.woff=copy --loader:.ttf=copy"
+  }
+}

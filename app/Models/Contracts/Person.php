@@ -6,8 +6,8 @@ use App\Models\Exceptions\InvalidDateException;
 use App\ValueObjects\Date;
 use App\ValueObjects\Exceptions\InvalidNameException;
 use App\ValueObjects\Gender;
+use App\ValueObjects\IdCard;
 use App\ValueObjects\Name;
-use InvalidArgumentException;
 
 /**
  * @property-read string $firstName
@@ -21,7 +21,7 @@ abstract class Person extends Model {
   private ?Name $secondName = null;
   private Name $firstLastName;
   private ?Name $secondLastName = null;
-  private int $idCard;
+  private IdCard $idCard;
 
   /**
    * @throws InvalidDateException
@@ -45,11 +45,7 @@ abstract class Person extends Model {
   }
 
   final function setIdCard(int $idCard): static {
-    if ($idCard < 1) {
-      throw new InvalidArgumentException('La cédula es requerida y válida');
-    }
-
-    $this->idCard = $idCard;
+    $this->idCard = new IdCard($idCard);
 
     return $this;
   }
@@ -113,12 +109,14 @@ abstract class Person extends Model {
   }
 
   function __get(string $property): null|int|string {
+    assert($this->idCard instanceof IdCard);
+
     return match ($property) {
       'firstName' => $this->firstName,
       'secondName' => $this->secondName,
       'firstLastName' => $this->firstLastName,
       'secondLastName' => $this->secondLastName,
-      'idCard' => $this->idCard,
+      'idCard' => $this->idCard->value,
       default => parent::__get($property)
     };
   }

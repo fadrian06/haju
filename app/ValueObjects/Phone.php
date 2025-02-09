@@ -23,7 +23,7 @@ readonly class Phone implements Stringable {
       return;
     }
 
-    if (preg_match('/^\+(?<countryCode>\d{2})(\s|-)?(?<simPrefix>\d{3})(\s|-)?(\d{3})(\s|-)?(\d{4})$/', $phone, $matches)) {
+    if (preg_match('/^\+(?<countryCode>\d{2,4})(\s|-)?(?<simPrefix>\d{3})(\s|-)?(\d{3})(\s|-)?(\d{4})$/', $phone, $matches)) {
       $this->countryCode = $matches['countryCode'];
       $this->simPrefix = $matches['simPrefix'];
       $this->phoneNumber = $matches[5] . $matches[7];

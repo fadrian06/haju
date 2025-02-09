@@ -1,7 +1,11 @@
 <?php
 
-function render(string $componentPath, array $params = []): void {
-  App::render($componentPath, $params);
+function render(string $viewPath, array $params = []): void {
+  App::render($viewPath, $params);
+}
+
+function renderComponent(string $componentPath, array $params = []): void {
+  render("components/$componentPath", $params);
 }
 
 function isActive(string ...$urls): bool {

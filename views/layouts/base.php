@@ -55,7 +55,7 @@ if (isset($user)) {
 
 <body class="pb-4" style="display: grid; grid-template-rows: auto 1fr auto; min-height: 100vh">
   <header class="d-flex header_iner align-items-center py-0" style="height: 60px; padding-left: 30px !important">
-    <img src="./assets/img/logo.png" height="50" data-bs-toggle="tooltip" title='Hospital "José Antonio Uzcátegui"' />
+    <img src="./assets/img/logo@light.png" height="50" data-bs-toggle="tooltip" title='Hospital "José Antonio Uzcátegui"' />
     <nav class="header_right">
       <ul class="header_notification_warp d-flex align-items-center mx-0">
         <?php if (isActive('/departamento/seleccionar')) : ?>

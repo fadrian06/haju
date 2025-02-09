@@ -3,6 +3,7 @@
 use App\Controllers\Web\DepartmentWebController;
 use App\Controllers\Web\DoctorWebController;
 use App\Controllers\Web\HomeWebController;
+use App\Controllers\Web\LandingWebController;
 use App\Controllers\Web\PatientWebController;
 use App\Controllers\Web\ReportsWebController;
 use App\Controllers\Web\SessionWebController;
@@ -18,6 +19,15 @@ use App\Middlewares\EnsureUserIsNotAuthenticated;
 use App\Middlewares\LogLoginMiddleware;
 use App\Middlewares\MessagesMiddleware;
 use App\ValueObjects\Appointment;
+use Leaf\Http\Session;
+
+App::route('/', static function () {
+  if (Session::has('userId')) {
+    return true;
+  }
+
+  (new LandingWebController)->showLanding();
+});
 
 App::group('', function (): void {
   App::route('/salir', [SessionWebController::class, 'logOut']);
