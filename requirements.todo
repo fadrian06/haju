@@ -44,3 +44,5 @@ Recomendaciones:
     ☐ Añadir posibilidad de eliminar un usuario registrado por error (respetando jerarquía de roles).
     ☐ Añadir posibilidad de eliminar un doctor registrado por error (respetando jerarquía de roles).
     ✔ Rellenar partes de los formularios en caso de algún error de validación. @done (15/11/2024 18:23:08)
+    ☐ Añadir edición de usuarios, disponible sólo al Director.
+    ☐ Desactivar al secretario si el coordinador también es desactivado.
