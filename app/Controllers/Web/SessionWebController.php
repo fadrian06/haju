@@ -18,7 +18,8 @@ final class SessionWebController extends Controller {
   }
 
   function logOut(): void {
-    $this->session->destroy();
+    Session::unset('userId');
+    Session::unset('department');
     App::redirect('/ingresar');
   }
 

@@ -34,7 +34,7 @@
       <section class="modal-body">
         <?php renderComponent('inputs/input', [
           'name' => 'secret_key',
-          'slot' => 'Clave maestra'
+          'slot' => 'Clave maestra',
         ]) ?>
       </section>
       <footer class="modal-footer">

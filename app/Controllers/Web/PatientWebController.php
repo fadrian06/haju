@@ -111,10 +111,6 @@ final class PatientWebController extends Controller {
     try {
       $patient = $this->patientRepository->getById($id);
 
-      if (!$patient?->registeredBy->registeredBy->isEqualTo($this->loggedUser)) {
-        throw new Error('Acceso denegado');
-      }
-
       $patient->setFullName($this->data['full_name'])
         ->setIdCard($this->data['id_card']);
 

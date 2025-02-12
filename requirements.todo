@@ -49,3 +49,5 @@ Recomendaciones:
     ☐ Añadir edición de usuarios, disponible sólo al Director.
     ☐ Desactivar al secretario si el coordinador también es desactivado.
     ☐ Darle acceso al director a todos los casos de uso.
+    ☐ Añadir notificación a los coordinadores cuando el director desactiva un departamento en uso.
+    ☐ Añadir cambio de género en pacientes. @critical

@@ -13,6 +13,7 @@ use App\Middlewares\AuthenticationMiddleware;
 use App\Middlewares\AuthorizationMiddleware;
 use App\Middlewares\EnsureCanEditDoctorMiddleware;
 use App\Middlewares\EnsureCanEditPatientMiddleware;
+use App\Middlewares\EnsureDepartmentIsActive;
 use App\Middlewares\EnsureOneSelectedDepartment;
 use App\Middlewares\EnsureOnlyAcceptOneDirector;
 use App\Middlewares\EnsureSelectedDepartmentIsNotStatistics;
@@ -124,7 +125,7 @@ App::group('', function (): void {
         App::route('POST /configuracion/institucion', [SettingsWebController::class, 'handleInstitutionUpdate']);
       }, [new AuthorizationMiddleware(Appointment::Director)]);
     }, [new AuthorizationMiddleware(Appointment::Coordinator)]);
-  }, [EnsureOneSelectedDepartment::class]);
+  }, [EnsureOneSelectedDepartment::class, EnsureDepartmentIsActive::class]);
 
   App::route('GET /reportes/epi-11', [ReportsWebController::class, 'showEpi11']);
   App::route('GET /reportes/epi-15', [ReportsWebController::class, 'showEpi15']);
