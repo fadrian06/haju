@@ -279,5 +279,7 @@ $monthName = [
         parseInt($totalS.innerText) +
         parseInt($totalX.innerText)
     })
+
+    print()
   })
 </script></script>

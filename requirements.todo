@@ -13,9 +13,9 @@ PST III:
 PST IV:
   ✔ ¿Presenta autenticación y Autoriza los usuarios según privilegio asignado? @done (02/06/2024 17:49:37)
   ✔ ¿Permite Insertar, Consultar, Modificar y Eliminar en todos los Módulos? @done (29/09/2024 11:42:30)
-  ☐ ¿Valida los campos de los formularios del lado usuario y servidor?
+  ✔ ¿Valida los campos de los formularios del lado usuario y servidor? @done (12/02/2025 17:44:46)
   ✔ ¿Genera Reportes en PDF y Estadístico con graficas según rango de fecha? @done (07/02/2025 09:59:40)
-  ☐ ¿El sistema contiene rutinas con Transacción Segura?
+  ✔ ¿El sistema contiene rutinas con Transacción Segura? @done (12/02/2025 17:44:50)
   ☐ ¿Permite llevar el registro de Log’s de los usuarios y Triggers en el sistema?
   ☐ ¿Permite Respaldar para su descarga y Restaurar la base de datos seleccionando una copia guardada en unidad extraíble?
   ☐ ¿Evita ataque XSS?
@@ -32,11 +32,13 @@ Recomendaciones:
     ✔ En la parte de consulta agregar el doctor que atendió la consulta. @done (06/06/2024 22:37:03)
 
   Asesorías T4:
-    ☐ Mejorar pantalla de inicio del sistema.
+    ✔ Mejorar pantalla de inicio del sistema. @done (12/02/2025 17:15:42)
     ✔ Integrar opcion de registro de usuario nuevo de administrador. @done (06/06/2024 23:19:43)
     ✔ Gestión del cambio de director para crear cuenta nueva de director. @done (06/06/2024 23:19:45)
-    ☐ Delimitar el número de departamentos en el sistema.
-    ☐ Generar formato de proyecto para exportar a excel y pdf.
+    ✔ Delimitar el número de departamentos en el sistema. @done (12/02/2025 17:17:41)
+    Generar formato de proyecto para exportar a excel y pdf:
+      ✔ PDF @done (12/02/2025 17:17:56)
+      ☐ Excel
 
   Auto-asesorías:
     ✔ Posibilidad de cargar URL como foto de perfil. @done (15/11/2024 17:41:57)

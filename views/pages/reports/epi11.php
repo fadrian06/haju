@@ -143,6 +143,8 @@ $printedParentCategories = [];
 
       dayCell.innerText = parseInt(dayCell.innerText || 0) + 1
       totalCell.innerText = parseInt(totalCell.innerText || 0) + 1
+
+      print()
     })
   })
 </script>
