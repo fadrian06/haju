@@ -77,7 +77,9 @@ final class User extends Person implements Activable {
 
     $this->password = str_contains($password, '$2y$10')
       ? $password
-      : password_hash($password, PASSWORD_DEFAULT);
+      : password_hash($password, PASSWORD_BCRYPT, [
+        'cost' => 10
+      ]);
 
     return $this;
   }
