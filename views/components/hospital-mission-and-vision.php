@@ -15,10 +15,12 @@
         </div>
         <div class="card-body">
           <p class="card-text fs-5 text-muted">
-            Proporcionar atención médica integral de excelencia con calidez
-            humana, tecnología de vanguardia y personal altamente calificado,
-            garantizando la seguridad del paciente y contribuyendo al bienestar
-            de la comunidad.
+            El Departamento de Registros y Estadísticas de Salud, tiene el
+            propósito de asegurar, mantener, producir, interpretar, preservar y
+            garantizar la información de los registros asistenciales derivados
+            de la atención prestada al usuario a través del análisis
+            cuantitativo y cualitativo de los problemas de la salud de la
+            comunidad.
           </p>
         </div>
       </div>
@@ -34,10 +36,10 @@
         </div>
         <div class="card-body">
           <p class="card-text fs-5 text-muted">
-            Ser reconocidos como el referente nacional en atención hospitalaria,
-            innovando continuamente en servicios médicos y manteniendo los más
-            altos estándares de calidad, para convertirnos en la institución de
-            salud preferida por las familias.
+            Garantizar en forma idónea el sistema de información estadísticas
+            optimalizada el procesamiento de los registros asistenciales que
+            puedan permitir el estudio cuantitativo y cualitativo de los
+            problemas de la comunidad.
           </p>
         </div>
       </div>
