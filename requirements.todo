@@ -2,10 +2,10 @@ PST III:
   ✔ ¿Presenta autenticación y Autoriza los usuarios según privilegio asignado? @done (02/06/2024 17:49:32)
   ✔ ¿Cierra sesión y evita el ingreso desde la URL del navegador? @done (02/06/2024 17:49:57)
   ✔ ¿Permite Insertar, Consultar, Modificar y Eliminar en todos los Módulos? @done (29/09/2024 11:32:46)
-  ☐ ¿Valida los campos de los formularios del lado usuario y servidor?
+  ✔ ¿Valida los campos de los formularios del lado usuario y servidor? @done (12/02/2025 18:21:54)
   ✔ ¿Genera Reportes en PDF? @done (29/09/2024 11:37:11)
   ✔ ¿Genera Reportes Estadístico con graficas según rango de fecha? @done (07/02/2025 09:59:24)
-  ☐ ¿El sistema contiene rutinas con Transacción Segura?
+  ✔ ¿El sistema contiene rutinas con Transacción Segura? @done (12/02/2025 18:21:46)
   ☐ ¿Permite Respaldar para su descarga y Restaurar la base de datos seleccionando una copia guardada en unidad extraíble?
   ✔ ¿El sistema genera mensajes de alerta de forma automatizada dependiendo de cálculos realizados en base de datos? @done (02/06/2024 17:51:57)
   ✔ ¿Las interfaces son de fácil comprensión al usuario; utilizando calendarios, menú desplegables y mantiene el estilo en los distintos módulos del sistema? @done (02/06/2024 17:52:02)
@@ -27,15 +27,15 @@ Recomendaciones:
     ✔ Ingresar por el login tanto registrar como ingresar. @done (06/06/2024 23:19:25)
     ✔ Mejorar la pantalla de ingreso. @done (29/09/2024 11:16:26)
     ☐ Agregar una búsqueda por cédula en registrar consulta.
-    ☐ Terminar los reportes faltantes según sea el formato.
-    ☐ Agregar las notificaciones de cuando una enfermedad se convierte en epidemia.
+    ✔ Terminar los reportes faltantes según sea el formato. @done (12/02/2025 18:06:46)
+    ✔ Agregar las notificaciones de cuando una enfermedad se convierte en epidemia. @done (12/02/2025 18:06:59)
     ✔ En la parte de consulta agregar el doctor que atendió la consulta. @done (06/06/2024 22:37:03)
 
   Asesorías T4:
     ✔ Mejorar pantalla de inicio del sistema. @done (12/02/2025 17:15:42)
     ✔ Integrar opcion de registro de usuario nuevo de administrador. @done (06/06/2024 23:19:43)
     ✔ Gestión del cambio de director para crear cuenta nueva de director. @done (06/06/2024 23:19:45)
-    ✔ Delimitar el número de departamentos en el sistema. @done (12/02/2025 17:17:41)
+    ✔ Delimitar el número de departamentos en el sistema. (3: Emergencia porque pertenece a consulta, Estadística y Hospitalización) @done (12/02/2025 17:17:41)
     Generar formato de proyecto para exportar a excel y pdf:
       ✔ PDF @done (12/02/2025 17:17:56)
       ☐ Excel

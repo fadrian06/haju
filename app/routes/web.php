@@ -30,6 +30,9 @@ App::route('/', static function () {
   (new LandingWebController)->showLanding();
 });
 
+////////////////////
+// RUTAS PÚBLICAS //
+////////////////////
 App::group('', function (): void {
   App::route('/salir', [SessionWebController::class, 'logOut']);
 
@@ -46,6 +49,9 @@ App::group('', function (): void {
   }, [EnsureOnlyAcceptOneDirector::class]);
 }, [EnsureUserIsNotAuthenticated::class, MessagesMiddleware::class]);
 
+////////////////////
+// RUTAS PRIVADAS //
+////////////////////
 App::group('', function (): void {
   App::route('/departamento/seleccionar', [SessionWebController::class, 'showDepartments']);
   App::route('/departamento/seleccionar/@id', [SessionWebController::class, 'saveChoice'])
@@ -107,8 +113,6 @@ App::group('', function (): void {
 
       App::route('POST /configuracion/causas-de-consulta', [SettingsWebController::class, 'handleConsultationCausesUpdate'])
         ->addMiddleware(new AuthorizationMiddleware(Appointment::Coordinator));
-
-
 
       App::group('', function (): void {
         App::route('GET /departamentos', [DepartmentWebController::class, 'showDepartments']);

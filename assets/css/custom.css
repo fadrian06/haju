@@ -177,12 +177,13 @@ textarea {
 }
 
 .single_quick_activity {
-  transition: 250ms transform, 250ms box-shadow;
+  transition: 250ms transform, 250ms box-shadow, 250ms background;
 }
 
 .single_quick_activity:hover {
   transform: scale(1.025) rotate(1deg);
   box-shadow: var(--bs-box-shadow-sm);
+  background: #bbe6ff;
 }
 
 .single_quick_activity:nth-child(even):hover {
@@ -239,21 +240,21 @@ textarea {
   }
 
   .sidebar {
-    width: 26%
+    width: 26%;
   }
 
   .main_content {
-    padding-left: 26%
+    padding-left: 26%;
   }
 
   .header_iner {
-    padding-left: 28% !important
+    padding-left: 28% !important;
   }
 }
 
-.custom-file-input:focus~.custom-file-label {
+.custom-file-input:focus ~ .custom-file-label {
   border-color: transparent;
-  box-shadow: none
+  box-shadow: none;
 }
 
 .form-control:focus {
@@ -262,58 +263,37 @@ textarea {
 
 .dropdown-menu {
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
 .progress-bar {
   text-align: right;
-  padding-right: 8px
+  padding-right: 8px;
 }
 
-@media(min-width:768px) {
+@media (min-width: 768px) {
   .modal-dialog.custom-modal-dialog {
-    max-width: 650px
+    max-width: 650px;
   }
 }
 
-@media(min-width:992px) {
+@media (min-width: 992px) {
   .modal-dialog.custom-modal-dialog {
-    max-width: 950px
+    max-width: 950px;
   }
 }
 
-@media(min-width:1200px) {
+@media (min-width: 1200px) {
   .modal-dialog.custom-modal-dialog {
-    max-width: 1050px
+    max-width: 1050px;
   }
 }
 
-@media only screen and (min-width:992px) and (max-width:1200px) {
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
   .metismenu .has-arrow::after {
-    right: 25px
+    right: 25px;
   }
 }
 
 .bg-light {
-  background-color: #eee !important
-}
-
-.bg-focus {
-  background-color: #444054 !important
-}
-
-.bg-primary {
-  background-color: #3f6ad8 !important
-}
-
-.swal2-popup {
-  background: #364f6b;
-}
-
-.swal2-popup .swal2-title {
-  color: white;
-}
-
-.profile_info .profile_info_iner::before {
-  right: 20px;
-}
+  backgro
