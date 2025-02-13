@@ -114,16 +114,16 @@
     },
     {
       "name": "illuminate/container",
-      "version": "v11.41.3",
+      "version": "v11.42.1",
       "source": {
         "type": "git",
         "url": "https://github.com/illuminate/container.git",
-        "reference": "1caf7d6cf42078fa8d30f26f1e43943ed6b01dae"
+        "reference": "4dcc3fcbab92e734fc0c08d9cfd97f5a1aef18ca"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/illuminate/container/zipball/1caf7d6cf42078fa8d30f26f1e43943ed6b01dae",
-        "reference": "1caf7d6cf42078fa8d30f26f1e43943ed6b01dae",
+        "url": "https://api.github.com/repos/illuminate/container/zipball/4dcc3fcbab92e734fc0c08d9cfd97f5a1aef18ca",
+        "reference": "4dcc3fcbab92e734fc0c08d9cfd97f5a1aef18ca",
         "shasum": ""
       },
       "require": {
@@ -161,20 +161,20 @@
         "issues": "https://github.com/laravel/framework/issues",
         "source": "https://github.com/laravel/framework"
       },
-      "time": "2025-01-28T20:44:34+00:00"
+      "time": "2025-02-10T14:20:57+00:00"
     },
     {
       "name": "illuminate/contracts",
-      "version": "v11.41.3",
+      "version": "v11.42.1",
       "source": {
         "type": "git",
         "url": "https://github.com/illuminate/contracts.git",
-        "reference": "534b697fc1dd9fbdd9fbf2f33fc9dcbb943dea75"
+        "reference": "b350a3cd8450846325cb49e1cbc1293598b18898"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/illuminate/contracts/zipball/534b697fc1dd9fbdd9fbf2f33fc9dcbb943dea75",
-        "reference": "534b697fc1dd9fbdd9fbf2f33fc9dcbb943dea75",
+        "url": "https://api.github.com/repos/illuminate/contracts/zipball/b350a3cd8450846325cb49e1cbc1293598b18898",
+        "reference": "b350a3cd8450846325cb49e1cbc1293598b18898",
         "shasum": ""
       },
       "require": {
@@ -209,7 +209,7 @@
         "issues": "https://github.com/laravel/framework/issues",
         "source": "https://github.com/laravel/framework"
       },
-      "time": "2025-01-10T20:57:00+00:00"
+      "time": "2025-02-10T14:20:57+00:00"
     },
     {
       "name": "leafs/anchor",
@@ -740,16 +740,16 @@
   "packages-dev": [
     {
       "name": "myclabs/deep-copy",
-      "version": "1.12.1",
+      "version": "1.13.0",
       "source": {
         "type": "git",
         "url": "https://github.com/myclabs/DeepCopy.git",
-        "reference": "123267b2c49fbf30d78a7b2d333f6be754b94845"
+        "reference": "024473a478be9df5fdaca2c793f2232fe788e414"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/123267b2c49fbf30d78a7b2d333f6be754b94845",
-        "reference": "123267b2c49fbf30d78a7b2d333f6be754b94845",
+        "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/024473a478be9df5fdaca2c793f2232fe788e414",
+        "reference": "024473a478be9df5fdaca2c793f2232fe788e414",
         "shasum": ""
       },
       "require": {
@@ -788,7 +788,7 @@
       ],
       "support": {
         "issues": "https://github.com/myclabs/DeepCopy/issues",
-        "source": "https://github.com/myclabs/DeepCopy/tree/1.12.1"
+        "source": "https://github.com/myclabs/DeepCopy/tree/1.13.0"
       },
       "funding": [
         {
@@ -796,7 +796,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2024-11-08T17:47:46+00:00"
+      "time": "2025-02-12T12:17:51+00:00"
     },
     {
       "name": "nikic/php-parser",
