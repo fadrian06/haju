@@ -48,7 +48,7 @@ $params = [
   ':start_date' => @$_GET['fecha_inicio']
     ?: $range?->getDate()->format('Y-m-d')
     ?: $lastMonth,
-  ':end_date' => $_GET['fecha_fin'] ?? $currentDate
+  ':end_date' => @$_GET['fecha_fin'] ?: $currentDate
 ];
 
 $stmt->execute($params);

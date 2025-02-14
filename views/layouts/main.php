@@ -35,10 +35,15 @@ $stmt->execute([
 ]);
 
 $consultations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 $causesGroupedByCauseId = [];
 $epidemic = false;
 
 foreach ($consultations as $consultation) {
+  if ($consultation['weekly_cases_limit'] === null) {
+    continue;
+  }
+
   $causeId = $consultation['cause_id'];
   $causesGroupedByCauseId[$causeId]['weeklyLimit'] = $consultation['weekly_cases_limit'];
   $causesGroupedByCauseId[$causeId]['consultations'][] = $consultation;
