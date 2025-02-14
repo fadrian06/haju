@@ -6,7 +6,7 @@ PST III:
   ✔ ¿Genera Reportes en PDF? @done (29/09/2024 11:37:11)
   ✔ ¿Genera Reportes Estadístico con graficas según rango de fecha? @done (07/02/2025 09:59:24)
   ✔ ¿El sistema contiene rutinas con Transacción Segura? @done (12/02/2025 18:21:46)
-  ☐ ¿Permite Respaldar para su descarga y Restaurar la base de datos seleccionando una copia guardada en unidad extraíble?
+  ✔ ¿Permite Respaldar para su descarga y Restaurar la base de datos seleccionando una copia guardada en unidad extraíble? @done (14/02/2025 07:05:37)
   ✔ ¿El sistema genera mensajes de alerta de forma automatizada dependiendo de cálculos realizados en base de datos? @done (02/06/2024 17:51:57)
   ✔ ¿Las interfaces son de fácil comprensión al usuario; utilizando calendarios, menú desplegables y mantiene el estilo en los distintos módulos del sistema? @done (02/06/2024 17:52:02)
 
@@ -17,8 +17,8 @@ PST IV:
   ✔ ¿Genera Reportes en PDF y Estadístico con graficas según rango de fecha? @done (07/02/2025 09:59:40)
   ✔ ¿El sistema contiene rutinas con Transacción Segura? @done (12/02/2025 17:44:50)
   ☐ ¿Permite llevar el registro de Log’s de los usuarios y Triggers en el sistema?
-  ☐ ¿Permite Respaldar para su descarga y Restaurar la base de datos seleccionando una copia guardada en unidad extraíble?
-  ☐ ¿Evita ataque XSS?
+  ✔ ¿Permite Respaldar para su descarga y Restaurar la base de datos seleccionando una copia guardada en unidad extraíble? @done (14/02/2025 07:05:40)
+  ✔ ¿Evita ataque XSS? @done (14/02/2025 07:05:44)
   ✔ ¿El sistema genera mensajes de alerta de forma automatizada dependiendo de cálculos realizados en base de datos? @done (02/06/2024 17:52:00)
   ✔ ¿Las interfaces son de fácil comprensión al usuario; utilizando calendarios, menú desplegables y mantiene el estilo en los distintos módulos del sistema? @done (02/06/2024 17:52:04)
 

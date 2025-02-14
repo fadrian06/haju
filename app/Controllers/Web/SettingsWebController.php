@@ -85,6 +85,13 @@ final class SettingsWebController extends Controller {
     App::redirect('/configuracion/respaldo-restauracion');
   }
 
+  function loadBackupFile(): void {
+    $script = file_get_contents(App::request()->files->script['tmp_name']);
+    $this->ensureUserIsAuthorized()->settingsRepository->restoreFromScript($script);
+    self::setMessage('Base de datos restaurada exitósamente');
+    App::redirect('/salir');
+  }
+
   function handleRestoreBackup(): void {
     $this->ensureUserIsAuthorized()->settingsRepository->restore();
     self::setMessage('Base de datos restaurada exitósamente');

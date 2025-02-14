@@ -7,12 +7,14 @@ use App\Repositories\Domain\SettingsRepository;
 use App\Repositories\Infraestructure\PDO\Connection;
 use App\ValueObjects\DBDriver;
 use PDO;
+use PDOException;
 
-final class FilesSettingsRepository implements SettingsRepository {
-  function __construct(private readonly Connection $connection) {
-  }
+final class FilesSettingsRepository implements SettingsRepository
+{
+  function __construct(private readonly Connection $connection) {}
 
-  function getHospital(): Hospital {
+  function getHospital(): Hospital
+  {
     $info = json_decode(file_get_contents(__DIR__ . '/hospital.json'), true);
 
     return new Hospital(
@@ -27,7 +29,8 @@ final class FilesSettingsRepository implements SettingsRepository {
     );
   }
 
-  function backupExists(): bool {
+  function backupExists(): bool
+  {
     switch ($this->connection->driver) {
       case DBDriver::SQLite:
         return file_exists(str_replace('.db', '.backup.db', $this->connection->dbName));
@@ -37,7 +40,8 @@ final class FilesSettingsRepository implements SettingsRepository {
     }
   }
 
-  function backup(): string {
+  function backup(): string
+  {
     switch ($this->connection->driver) {
       case DBDriver::SQLite:
         copy($this->connection->dbName, str_replace('.db', '.backup.db', $this->connection->dbName));
@@ -56,7 +60,8 @@ final class FilesSettingsRepository implements SettingsRepository {
     }
   }
 
-  function restore(): void {
+  function restore(): void
+  {
     switch ($this->connection->driver) {
       case DBDriver::SQLite:
         $copy = str_replace('.db', '.backup.db', $this->connection->dbName);
@@ -71,7 +76,23 @@ final class FilesSettingsRepository implements SettingsRepository {
     }
   }
 
-  function save(Hospital $hospital): void {
+  function restoreFromScript(string $script): void {
+    $pdo = $this->connection->instance();
+
+    switch ($this->connection->driver) {
+      case DBDriver::SQLite:
+        foreach (explode(';', $script) as $statement) {
+          if ($statement) {
+            try {
+              $pdo->query($statement);
+            } catch (PDOException) {}
+          }
+        }
+    }
+  }
+
+  function save(Hospital $hospital): void
+  {
     $data = [
       'name' => $hospital->name,
       'asic' => $hospital->asic,
@@ -86,7 +107,8 @@ final class FilesSettingsRepository implements SettingsRepository {
     file_put_contents(__DIR__ . '/hospital.json', json_encode($data, JSON_PRETTY_PRINT));
   }
 
-  private function generateSqliteScript(): string {
+  private function generateSqliteScript(): string
+  {
     $pdo = $this->connection->instance();
     $tablesQuery = $pdo->query("SELECT name FROM sqlite_master WHERE type='table'");
     $tables = $tablesQuery->fetchAll(PDO::FETCH_COLUMN);
@@ -99,9 +121,11 @@ final class FilesSettingsRepository implements SettingsRepository {
 
       $createTableQuery = $pdo->query("SELECT sql FROM sqlite_master WHERE type='table' AND name='$table'");
       $createTableSql = $createTableQuery->fetch(PDO::FETCH_COLUMN);
+      $createTableSql = str_replace('CREATE TABLE', 'CREATE TABLE IF NOT EXISTS', $createTableSql);
       $sqlScript .= $createTableSql . ";\n\n";
       $rowsQuery = $pdo->query("SELECT * FROM $table");
       $rows = $rowsQuery->fetchAll(PDO::FETCH_ASSOC);
+      $allValues = [];
 
       foreach ($rows as $row) {
         $columns = array_keys($row);
@@ -113,11 +137,23 @@ final class FilesSettingsRepository implements SettingsRepository {
         ));
 
         $valuesList = implode(', ', array_map(
-          static fn($val): string => $pdo->quote($val),
-          array_filter($values)
+          static function ($val) use ($pdo): string {
+            if ($val === null) {
+              return 'null';
+            }
+
+            return $pdo->quote($val);
+          },
+          $values
         ));
 
-        $sqlScript .= "INSERT INTO `$table` ($columnsList) VALUES ($valuesList);\n";
+        if (!in_array("($valuesList)", $allValues)) {
+          $allValues[] = "($valuesList)";
+        }
+      }
+
+      if ($allValues !== []) {
+        $sqlScript .= "INSERT INTO `$table` ($columnsList) VALUES " . implode(', ', $allValues) . ";\n";
       }
 
       $sqlScript .= "\n";

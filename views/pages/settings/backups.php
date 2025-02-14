@@ -17,7 +17,7 @@
 </div>
 <?php if ($scriptPath): ?>
   <div class="col-sm p-2">
-    <a href="<?= $scriptPath ?>" download="backup.sqlite.sql" class="btn w-100 btn-light shadow p-4">
+    <a href="<?= $scriptPath ?>" download="haju.sqlite.sql" class="btn w-100 btn-light shadow p-4">
       <i class="mb-3 ti-download fs-1"></i>
       <h2>Descargar</h2>
     </a>
@@ -31,3 +31,15 @@
     </a>
   </div>
 <?php endif ?>
+<form method="post" enctype="multipart/form-data" class="col-md p-2">
+  <label class="btn w-100 btn-light shadow p-4">
+    <input
+      onchange="this.form.submit()"
+      type="file"
+      name="script"
+      accept=".sql"
+      hidden />
+    <i class="mb-3 ti-upload fs-1"></i>
+    <h2>Cargar respaldo y restaurar</h2>
+  </label>
+</form>

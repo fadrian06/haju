@@ -105,7 +105,8 @@ App::group('', function (): void {
       App::route('/configuracion/permisos', [SettingsWebController::class, 'showPermissions']);
       App::route('POST /configuracion/@id/permisos', [SettingsWebController::class, 'handlePermissionAssignment']);
 
-      App::route('/configuracion/respaldo-restauracion', [SettingsWebController::class, 'showBackups']);
+      App::route('GET /configuracion/respaldo-restauracion', [SettingsWebController::class, 'showBackups']);
+      App::route('POST /configuracion/respaldo-restauracion', [SettingsWebController::class, 'loadBackupFile']);
       App::route('/configuracion/respaldar', [SettingsWebController::class, 'handleCreateBackup']);
       App::route('/configuracion/restaurar', [SettingsWebController::class, 'handleRestoreBackup']);
 
