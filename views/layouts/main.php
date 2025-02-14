@@ -11,6 +11,7 @@ use App\Models\User;
  */
 
 $showPasswordChangeModal ??= $mustChangePassword;
+$epidemic = rand(0, 1) ? ['cause' => ['short_name' => 'Dengue']] : false;
 
 ?>
 
@@ -53,12 +54,16 @@ $showPasswordChangeModal ??= $mustChangePassword;
     }
 
     body {
-      padding-right: 0 !important;;
+      padding-right: 0 !important;
+      ;
     }
   </style>
 </head>
 
 <body>
+  <?php if ($epidemic ?? false): ?>
+    <?php render('components/epidemic-alert', ['epidemic' => $epidemic]) ?>
+  <?php endif ?>
   <?php render('components/sidebar') ?>
   <section class="main_content pb-4 pt-0">
     <?php render('components/header') ?>
