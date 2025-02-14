@@ -149,6 +149,23 @@ final class SettingsWebController extends Controller {
     App::redirect(App::request()->referrer);
   }
 
+  function showLogs(): void {
+    $logsPath = __DIR__ . '/../../logs/authentications.log';
+    $logs = [];
+
+    if (file_exists($logsPath)) {
+      $logs = array_filter(explode(';', file_get_contents($logsPath)));
+    }
+
+    App::renderPage('logs', 'Logs de usuarios', compact('logs'), 'main');
+  }
+
+  function cleanLogs(): void {
+    $logsPath = __DIR__ . '/../../logs/authentications.log';
+    file_put_contents($logsPath, '');
+    App::redirect('/logs');
+  }
+
   private function ensureUserIsAuthorized(): static {
     if (
       !$this->loggedUser->appointment->isHigherThan(Appointment::Coordinator)

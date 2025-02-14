@@ -21,7 +21,7 @@ final readonly class LogLoginMiddleware {
     if ($loggedUser) {
       file_put_contents(
         self::LOG_FILE_PATH,
-        "El usuario {$loggedUser->getFullName()} se ha autenticado el " . date('d/m/Y H:i:s' . PHP_EOL),
+        "El usuario {$loggedUser->getFullName()} se ha autenticado el " . date('d/m/Y H:i:s' . PHP_EOL . ';'),
         FILE_APPEND
       );
     }

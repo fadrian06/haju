@@ -147,6 +147,12 @@ $backgrounds = [
                   Institución
                 </a>
               </li>
+              <li class="<?= isActive('/logs') ? 'mm-active' : '' ?>">
+                <a href="./logs">
+                  <i class="ti-eye"></i>
+                  Logs de usuarios
+                </a>
+              </li>
             <?php endif ?>
             <li class="<?= isActive('/configuracion/permisos') ? 'mm-active' : '' ?>">
               <a href="./configuracion/permisos">

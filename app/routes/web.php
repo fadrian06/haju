@@ -109,6 +109,8 @@ App::group('', function (): void {
       App::route('POST /configuracion/respaldo-restauracion', [SettingsWebController::class, 'loadBackupFile']);
       App::route('/configuracion/respaldar', [SettingsWebController::class, 'handleCreateBackup']);
       App::route('/configuracion/restaurar', [SettingsWebController::class, 'handleRestoreBackup']);
+      App::route('/logs', [SettingsWebController::class, 'showLogs']);
+      App::route('/logs/vaciar', [SettingsWebController::class, 'cleanLogs']);
 
       App::route('GET /configuracion/causas-de-consulta', [SettingsWebController::class, 'showConsultationCausesConfigs'])
         ->addMiddleware(new AuthorizationMiddleware(Appointment::Coordinator));
