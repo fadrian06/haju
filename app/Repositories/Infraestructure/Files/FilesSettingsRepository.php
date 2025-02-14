@@ -7,7 +7,6 @@ use App\Repositories\Domain\SettingsRepository;
 use App\Repositories\Infraestructure\PDO\Connection;
 use App\ValueObjects\DBDriver;
 use PDO;
-use PDOException;
 
 final class FilesSettingsRepository implements SettingsRepository {
   function __construct(private readonly Connection $connection) {
@@ -94,6 +93,10 @@ final class FilesSettingsRepository implements SettingsRepository {
     $sqlScript = '';
 
     foreach ($tables as $table) {
+      if ($table === 'sqlite_sequence') {
+        continue;
+      }
+
       $createTableQuery = $pdo->query("SELECT sql FROM sqlite_master WHERE type='table' AND name='$table'");
       $createTableSql = $createTableQuery->fetch(PDO::FETCH_COLUMN);
       $sqlScript .= $createTableSql . ";\n\n";
