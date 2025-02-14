@@ -6,9 +6,12 @@ use App\Models\Hospital;
 use App\Repositories\Domain\SettingsRepository;
 use App\Repositories\Infraestructure\PDO\Connection;
 use App\ValueObjects\DBDriver;
+use PDO;
+use PDOException;
 
 final class FilesSettingsRepository implements SettingsRepository {
-  function __construct(private readonly Connection $connection) {}
+  function __construct(private readonly Connection $connection) {
+  }
 
   function getHospital(): Hospital {
     $info = json_decode(file_get_contents(__DIR__ . '/hospital.json'), true);
@@ -35,13 +38,22 @@ final class FilesSettingsRepository implements SettingsRepository {
     }
   }
 
-  function backup(): void {
+  function backup(): string {
     switch ($this->connection->driver) {
       case DBDriver::SQLite:
         copy($this->connection->dbName, str_replace('.db', '.backup.db', $this->connection->dbName));
+        $script = $this->generateSqliteScript();
+        $backupPath = str_replace('.db', '.backup.sql', $this->connection->dbName);
 
-        return;
+        file_put_contents(
+          $backupPath,
+          $script
+        );
+
+        return $backupPath;
       case DBDriver::MySQL:
+      default:
+        return '';
     }
   }
 
@@ -73,5 +85,41 @@ final class FilesSettingsRepository implements SettingsRepository {
     ];
 
     file_put_contents(__DIR__ . '/hospital.json', json_encode($data, JSON_PRETTY_PRINT));
+  }
+
+  private function generateSqliteScript(): string {
+    $pdo = $this->connection->instance();
+    $tablesQuery = $pdo->query("SELECT name FROM sqlite_master WHERE type='table'");
+    $tables = $tablesQuery->fetchAll(PDO::FETCH_COLUMN);
+    $sqlScript = '';
+
+    foreach ($tables as $table) {
+      $createTableQuery = $pdo->query("SELECT sql FROM sqlite_master WHERE type='table' AND name='$table'");
+      $createTableSql = $createTableQuery->fetch(PDO::FETCH_COLUMN);
+      $sqlScript .= $createTableSql . ";\n\n";
+      $rowsQuery = $pdo->query("SELECT * FROM $table");
+      $rows = $rowsQuery->fetchAll(PDO::FETCH_ASSOC);
+
+      foreach ($rows as $row) {
+        $columns = array_keys($row);
+        $values = array_values($row);
+
+        $columnsList = implode(', ', array_map(
+          static fn($col): string =>  "`$col`",
+          $columns
+        ));
+
+        $valuesList = implode(', ', array_map(
+          static fn($val): string => $pdo->quote($val),
+          array_filter($values)
+        ));
+
+        $sqlScript .= "INSERT INTO `$table` ($columnsList) VALUES ($valuesList);\n";
+      }
+
+      $sqlScript .= "\n";
+    }
+
+    return $sqlScript;
   }
 }

@@ -8,6 +8,7 @@ use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Domain\SettingsRepository;
 use App\Repositories\Domain\UserRepository;
 use App\ValueObjects\Appointment;
+use Leaf\Http\Session;
 
 final class SettingsWebController extends Controller {
   private readonly UserRepository $userRepository;
@@ -76,8 +77,11 @@ final class SettingsWebController extends Controller {
   }
 
   function handleCreateBackup(): void {
-    $this->ensureUserIsAuthorized()->settingsRepository->backup();
+    $scriptPath = $this->ensureUserIsAuthorized()->settingsRepository->backup();
+    $dataUrl = 'data:text/plain;base64,' . base64_encode(file_get_contents($scriptPath));
+
     self::setMessage('Base de datos respaldada exitósamente');
+    Session::set('scriptPath', $dataUrl);
     App::redirect('/configuracion/respaldo-restauracion');
   }
 

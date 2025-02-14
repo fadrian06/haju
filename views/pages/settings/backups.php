@@ -4,18 +4,27 @@
  * @var bool $showRestore
  * @var ?string $error
  * @var ?string $message
+ * @var ?string $scriptPath
  */
 
 ?>
 
-<div class="col-sm-6 p-2">
+<div class="col-sm p-2">
   <a href="./configuracion/respaldar" class="btn w-100 btn-light shadow p-4">
     <i class="mb-3 ti-save fs-1"></i>
     <h2>Respaldar</h2>
   </a>
 </div>
+<?php if ($scriptPath): ?>
+  <div class="col-sm p-2">
+    <a href="<?= $scriptPath ?>" download="backup.sqlite.sql" class="btn w-100 btn-light shadow p-4">
+      <i class="mb-3 ti-download fs-1"></i>
+      <h2>Descargar</h2>
+    </a>
+  </div>
+<?php endif ?>
 <?php if ($showRestore) : ?>
-  <div class="col-sm-6 p-2">
+  <div class="col-sm p-2">
     <a href="./configuracion/restaurar" class="btn w-100 btn-light shadow p-4">
       <i class="mb-3 ti-reload fs-1"></i>
       <h2>Restaurar</h2>
