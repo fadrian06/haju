@@ -1,16 +1,31 @@
 <?php
 
-$frecuentCauses = App::db()->instance()->query(<<<sql
+use App\ValueObjects\DateRange;
+
+$lastMonth = (new DateTimeImmutable)->sub(new DateInterval('P1M'))->format('Y-m-d');
+$currentDate = date('Y-m-d');
+$range = DateRange::tryFrom($_GET['rango'] ?? '');
+
+$stmt = App::db()->instance()->query(<<<sql
   SELECT consultations.cause_id, consultation_causes.short_name,
   consultation_causes.variant, consultation_causes.extended_name,
   COUNT(patient_id) as consultations
   FROM consultations
   JOIN consultation_causes
   ON consultations.cause_id = consultation_causes.id
-  WHERE registered_date BETWEEN '2024-04-01' AND CURRENT_TIMESTAMP
+  WHERE registered_date BETWEEN :start_date AND :end_date
   GROUP BY cause_id
   LIMIT 5
-sql)->fetchAll(PDO::FETCH_ASSOC);
+sql);
+
+$stmt->execute([
+  ':start_date' => $_GET['fecha_inicio']
+    ?? $range?->getDate()->format('Y-m-d')
+    ?? $lastMonth,
+  ':end_date' => $_GET['fecha_fin'] ?? $currentDate
+]);
+
+$frecuentCauses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $stmt = App::db()->instance()->query(<<<sql
   SELECT short_name, extended_name, variant, registered_date,
@@ -21,13 +36,20 @@ $stmt = App::db()->instance()->query(<<<sql
     FROM consultations
     JOIN consultation_causes
     ON consultations.cause_id = consultation_causes.id
-    WHERE cause_id = :cause_id AND registered_date BETWEEN '2024-04-01' AND CURRENT_TIMESTAMP
+    WHERE cause_id = :cause_id AND registered_date BETWEEN :start_date AND :end_date
     GROUP BY registered_date
     ORDER BY registered_date
   ) GROUP BY registered_date
 sql);
 
-$stmt->execute([$_GET['id_causa'] ?? $frecuentCauses[0]['cause_id'] ?? '']);
+$stmt->execute([
+  ':cause_id' => $_GET['id_causa'] ?? $frecuentCauses[0]['cause_id'] ?? '',
+  ':start_date' => $_GET['fecha_inicio']
+    ?? $range?->getDate()->format('Y-m-d')
+    ?? $lastMonth,
+  ':end_date' => $_GET['fecha_fin'] ?? $currentDate
+]);
+
 $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (!$frecuentCauses) {
@@ -48,16 +70,68 @@ if (!$frecuentCauses) {
   <span class="border border-dark flex-grow-1 ms-2 h2"></span>
 </section>
 
+<hr id="causas-mas-frecuentes" />
+
 <div class="white_box">
-  <h3>Causas de consulta más frecuentes</h3>
-  <canvas class="w-100" id="frecuent-causes"></canvas>
+  <h3 class="d-flex gap-3 align-items-center justify-content-between flex-wrap">
+    <form class="row align-items-center row-gap-3" action="#causas-mas-frecuentes">
+      <span class="col-md-12">Causas de consulta más frecuentes</span>
+
+      <?php
+
+      render('components/input-group', [
+        'name' => 'fecha_inicio',
+        'variant' => 'input',
+        'placeholder' => 'Desde',
+        'type' => 'date',
+        'value' => $_GET['fecha_inicio'] ?? '',
+        'cols' => 6,
+        'required' => false
+      ]);
+
+      render('components/input-group', [
+        'name' => 'fecha_fin',
+        'variant' => 'input',
+        'placeholder' => 'Hasta',
+        'type' => 'date',
+        'value' => $_GET['fecha_fin'] ?? $currentDate,
+        'cols' => 6,
+        'required' => false,
+        'max' => $currentDate
+      ]);
+
+      ?>
+
+      <div class="col-md-12 d-flex align-items-center justify-content-center flex-wrap gap-3">
+        <?php foreach (DateRange::cases() as $index => $range): ?>
+          <?php render('components/input-group', [
+            'name' => 'rango',
+            'variant' => 'radio',
+            'checked' => ($_GET['rango'] ?? DateRange::Monthly->value) === $range->value,
+            'placeholder' => $range->value,
+            'value' => $range->value
+          ]) ?>
+        <?php endforeach ?>
+      </div>
+
+      <button class="btn btn-primary btn-lg px-5 rounded-pill col-md-12">
+        Consultar
+      </button>
+    </form>
+    <canvas class="w-100" id="frecuent-causes"></canvas>
+  </h3>
 </div>
+
+<hr id="causa-mas-frecuente" />
 
 <div class="mt-2 white_box">
   <h3 class="d-flex gap-3 align-items-center justify-content-between flex-wrap">
-    <span>Casos de</span>
-    <form class="row align-items-center row-gap-3">
-      <?php render('components/input-group', [
+    <form class="row align-items-center row-gap-3" action="#causa-mas-frecuente">
+      <span class="col-md-3">Casos de</span>
+
+      <?php
+
+      render('components/input-group', [
         'name' => 'id_causa',
         'variant' => 'select',
         'placeholder' => 'Causa de consulta',
@@ -66,10 +140,46 @@ if (!$frecuentCauses) {
           'value' => $cause['cause_id'],
           'text' => $cause['extended_name'] ?? $cause['short_name'] . $cause['variant']
         ], $frecuentCauses),
-        'cols' => 6,
+        'cols' => 9,
         'margin' => 0
-      ]) ?>
-      <button class="btn btn-primary btn-lg px-5 rounded-pill col-md-auto">
+      ]);
+
+      render('components/input-group', [
+        'name' => 'fecha_inicio',
+        'variant' => 'input',
+        'placeholder' => 'Desde',
+        'type' => 'date',
+        'value' => $_GET['fecha_inicio'] ?? '',
+        'cols' => 6,
+        'required' => false
+      ]);
+
+      render('components/input-group', [
+        'name' => 'fecha_fin',
+        'variant' => 'input',
+        'placeholder' => 'Hasta',
+        'type' => 'date',
+        'value' => $_GET['fecha_fin'] ?? $currentDate,
+        'cols' => 6,
+        'required' => false,
+        'max' => $currentDate
+      ]);
+
+      ?>
+
+      <div class="col-md-12 d-flex align-items-center justify-content-center flex-wrap gap-3">
+        <?php foreach (DateRange::cases() as $index => $range): ?>
+          <?php render('components/input-group', [
+            'name' => 'rango',
+            'variant' => 'radio',
+            'checked' => ($_GET['rango'] ?? DateRange::Monthly->value) === $range->value,
+            'placeholder' => $range->value,
+            'value' => $range->value
+          ]) ?>
+        <?php endforeach ?>
+      </div>
+
+      <button class="btn btn-primary btn-lg px-5 rounded-pill col-md-12">
         Consultar
       </button>
     </form>

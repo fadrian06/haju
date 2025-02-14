@@ -31,18 +31,20 @@ $hidden ??= false;
 $pattern ??= null;
 $title ??= null;
 $margin ??= 4;
+$max ??= null;
 
 ?>
 
-<?php if ($variant === 'checkbox'): ?>
-  <div class="form-check form-switch fs-6">
+<?php if ($variant === 'checkbox' || $variant === 'radio'): ?>
+  <div class="form-check form-switch fs-6 d-flex gap-1 align-items-end">
     <input
       class="form-check-input"
       name="<?= $name ?>"
-      type="checkbox"
+      type="<?= $variant ?>"
       id="<?= $id ?>"
       <?= $checked ? 'checked' : '' ?>
       <?= $hidden ? 'hidden' : '' ?>
+      value="<?= $value ?>"
     />
     <label class="form-check-label" for="<?= $id ?>">
       <?= $placeholder ?>
@@ -59,6 +61,7 @@ $margin ??= 4;
         name="<?= $name ?>"
         id="<?= $id ?>"
         min="<?= $min ?>"
+        <?= $max ? "max='$max'" : '' ?>
         placeholder="<?= $placeholder ?>"
         value="<?= $value ?>"
         <?= $readonly ? 'readonly' : '' ?>
