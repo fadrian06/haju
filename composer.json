@@ -1,13 +1,13 @@
 {
   "require": {
     "php": "^8.2",
+    "faslatam/alpine-js": "^3.14",
     "flightphp/core": "^3.13",
-    "phar-io/manifest": "^2.0",
+    "illuminate/container": "^11.41",
     "leafs/session": "^2.3",
     "megacreativo/cedulave-api": "^1.1",
-    "twbs/bootstrap": "^5.3",
-    "illuminate/container": "^11.41",
-    "faslatam/alpine-js": "^3.14"
+    "phar-io/manifest": "^2.0",
+    "twbs/bootstrap": "^5.3"
   },
   "autoload": {
     "psr-4": {
@@ -31,5 +31,8 @@
   "require-dev": {
     "symfony/var-dumper": "^7.2",
     "phpunit/phpunit": "^11.5"
+  },
+  "config": {
+    "sort-packages": true
   }
 }
