@@ -242,8 +242,4 @@ App::group('/api', function (): void {
       ]);
     }
   );
-
-  App::route('/cedulacion/@idCard', function (int $idCard): void {
-    App::json(@CedulaVE::get('V', $idCard));
-  });
 });

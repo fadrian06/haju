@@ -47,13 +47,11 @@ final class SessionWebController extends Controller {
 
       $user->ensureThatIsActive()->ensureHasActiveDepartments();
       Session::set('userId', $user->id);
-
-      exit(App::redirect('/departamento/seleccionar'));
+      App::redirect('/departamento/seleccionar');
     } catch (Error $error) {
       self::setError($error);
+      App::redirect('/ingresar');
     }
-
-    App::redirect('/ingresar');
   }
 
   function showDepartments(): void {
@@ -64,7 +62,9 @@ final class SessionWebController extends Controller {
     }
 
     if (count($departments) === 1) {
-      exit(App::redirect("/departamento/seleccionar/{$departments[0]->id}"));
+      App::redirect("/departamento/seleccionar/{$departments[0]->id}");
+
+      return;
     }
 
     App::renderPage('select-department', 'Ingresar (2/2)');

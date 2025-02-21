@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "ac775fce5fb61e21e1e340884886eb25",
+  "content-hash": "5e5a935671759a31fd1a10fbff6d4fe6",
   "packages": [
     {
       "name": "faslatam/alpine-js",
@@ -339,62 +339,6 @@
       "time": "2025-01-20T18:48:05+00:00"
     },
     {
-      "name": "megacreativo/cedulave-api",
-      "version": "v1.1.2",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/MegaCreativoTeam/CedulaVE-API.git",
-        "reference": "128663dc26b9462ccbdb1cb1e517fdbaea55a148"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/MegaCreativoTeam/CedulaVE-API/zipball/128663dc26b9462ccbdb1cb1e517fdbaea55a148",
-        "reference": "128663dc26b9462ccbdb1cb1e517fdbaea55a148",
-        "shasum": ""
-      },
-      "require": {
-        "ext-curl": "*",
-        "php": ">=5.6",
-        "php-curl-class/php-curl-class": "^8.8"
-      },
-      "suggest": {
-        "ext-mbstring": "*"
-      },
-      "type": "library",
-      "autoload": {
-        "psr-4": {
-          "MegaCreativo\\API\\": "src/"
-        }
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "Brayan Rincon",
-          "email": "brayan.er.rincon@gmail.com"
-        }
-      ],
-      "description": "CedulaVE API permite consultar datos personales de habitantes de Venezuela inscritos en el CNE mediante su Cédula de Identidad.",
-      "homepage": "https://github.com/megacreativo/CedulaVE-API",
-      "keywords": [
-        "DNI",
-        "api",
-        "cedula",
-        "cne",
-        "consejo nacional electoral",
-        "mega creativo",
-        "megacreativo",
-        "venezuela"
-      ],
-      "support": {
-        "issues": "https://github.com/MegaCreativoTeam/CedulaVE-API/issues",
-        "source": "https://github.com/MegaCreativoTeam/CedulaVE-API/tree/v1.1.2"
-      },
-      "time": "2022-11-22T19:39:18+00:00"
-    },
-    {
       "name": "phar-io/manifest",
       "version": "2.0.4",
       "source": {
@@ -511,76 +455,6 @@
         "source": "https://github.com/phar-io/version/tree/3.2.1"
       },
       "time": "2022-02-21T01:04:05+00:00"
-    },
-    {
-      "name": "php-curl-class/php-curl-class",
-      "version": "8.10.0",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/php-curl-class/php-curl-class.git",
-        "reference": "c97c96d5d422b4085aba32ace096c3e404dde607"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/c97c96d5d422b4085aba32ace096c3e404dde607",
-        "reference": "c97c96d5d422b4085aba32ace096c3e404dde607",
-        "shasum": ""
-      },
-      "require": {
-        "ext-curl": "*",
-        "php": ">=5.3"
-      },
-      "require-dev": {
-        "ext-gd": "*",
-        "phpunit/phpunit": "*",
-        "squizlabs/php_codesniffer": "*"
-      },
-      "suggest": {
-        "ext-mbstring": "*"
-      },
-      "type": "library",
-      "autoload": {
-        "psr-4": {
-          "Curl\\": "src/Curl/"
-        }
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "Unlicense"
-      ],
-      "authors": [
-        {
-          "name": "Zach Borboa"
-        }
-      ],
-      "description": "PHP Curl Class makes it easy to send HTTP requests and integrate with web APIs.",
-      "homepage": "https://github.com/php-curl-class/php-curl-class",
-      "keywords": [
-        "API-Client",
-        "api",
-        "class",
-        "client",
-        "curl",
-        "framework",
-        "http",
-        "http-client",
-        "http-proxy",
-        "json",
-        "php",
-        "php-curl",
-        "php-curl-library",
-        "proxy",
-        "requests",
-        "restful",
-        "web-scraper",
-        "web-service",
-        "xml"
-      ],
-      "support": {
-        "issues": "https://github.com/php-curl-class/php-curl-class/issues",
-        "source": "https://github.com/php-curl-class/php-curl-class/tree/8.10.0"
-      },
-      "time": "2021-06-23T14:34:00+00:00"
     },
     {
       "name": "psr/container",

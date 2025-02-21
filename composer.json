@@ -5,7 +5,6 @@
     "flightphp/core": "^3.13",
     "illuminate/container": "^11.43",
     "leafs/session": "^2.3",
-    "megacreativo/cedulave-api": "^1.1",
     "phar-io/manifest": "^2.0",
     "twbs/bootstrap": "^5.3"
   },
