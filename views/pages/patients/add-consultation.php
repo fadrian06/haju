@@ -19,21 +19,58 @@ use App\ValueObjects\ConsultationType;
 </section>
 
 <form action="./consultas" method="post" class="white_box d-flex flex-column align-items-center">
-  <fieldset class="row w-100">
-    <?php
+  <fieldset
+    class="row w-100 align-items-center row-gap-3"
+    x-data='{
+      selected_id: null,
+      search: "",
+      patients: JSON.parse(`<?= json_encode(array_map(fn(Patient $patient): array => [
+                              'value' => $patient->id,
+                              'text' => "v-{$patient->idCard} ~ {$patient->getFullName()}"
+                            ], $patients)) ?>`),
 
-    render('components/input-group', [
-      'variant' => 'select',
-      'options' => array_map(fn (Patient $patient): array => [
-        'value' => $patient->id,
-        'text' => "v-{$patient->idCard} ~ {$patient->getFullName()}"
-      ], $patients),
-      'placeholder' => 'Buscar cédula...',
-      'name' => 'id_card',
-      'cols' => 7
-    ]);
+      filteredPatients: []
+    }'
+    x-init="filteredPatients = patients"
+    x-effect="filteredPatients = patients.filter(savedPatient => savedPatient.text.startsWith(search))">
 
-    ?>
+    <div class="form-floating col-md-6">
+      <input
+        name="id_card"
+        readonly
+        :value="selected_id"
+        class="form-control"
+        placeholder="" />
+      <label>ID del paciente seleccionado</label>
+    </div>
+
+    <div class="col-md-6 dropdown">
+      <button
+        class="btn btn-secondary w-100 dropdown-toggle"
+        data-bs-toggle="dropdown">
+        Seleccionar paciente
+      </button>
+      <menu class="dropdown-menu dropdown-menu-end" style="width: 90%">
+        <input
+          type="search"
+          class="form-control"
+          placeholder="Introduce la búsqueda..."
+          x-model="search" />
+        <template x-for="patient in filteredPatients">
+          <li
+            :class="`dropdown-item p-0 ${patient.value === selected_id && 'active'}`"
+            @click="selected_id = patient.value">
+            <button
+              type="button"
+              :class="`btn w-100 text-start ${patient.value === selected_id ? 'btn-primary' : 'btn-outline-primary'}`"
+              x-text="patient.text">
+            </button>
+          </li>
+          <option :value="patient.value" x-text="patient.text"></option>
+        </template>
+      </menu>
+    </div>
+
     <div class="col d-flex flex-column text-center mb-4 mb-md-0">
       ¿El paciente no está registrado?
       <div class="mt-2">
@@ -46,7 +83,7 @@ use App\ValueObjects\ConsultationType;
 
     render('components/input-group', [
       'variant' => 'select',
-      'options' => array_map(fn (ConsultationCauseCategory $category): array => [
+      'options' => array_map(fn(ConsultationCauseCategory $category): array => [
         'value' => $category->id,
         'text' => $category->extendedName ?? $category->shortName
       ], $consultationCauseCategories),
@@ -67,7 +104,7 @@ use App\ValueObjects\ConsultationType;
     render('components/input-group', [
       'variant' => 'select',
       'hidden' => true,
-      'options' => array_map(fn (ConsultationType $type): array => [
+      'options' => array_map(fn(ConsultationType $type): array => [
         'value' => $type->value,
         'text' => $type->getDescription()
       ], ConsultationType::getCases()),
@@ -78,7 +115,7 @@ use App\ValueObjects\ConsultationType;
 
     render('components/input-group', [
       'variant' => 'select',
-      'options' => array_map(fn (Department $department): array => [
+      'options' => array_map(fn(Department $department): array => [
         'value' => $department->id,
         'text' => $department->name
       ], $departments),
@@ -90,7 +127,7 @@ use App\ValueObjects\ConsultationType;
 
     render('components/input-group', [
       'variant' => 'select',
-      'options' => array_map(fn (Doctor $doctor): array => [
+      'options' => array_map(fn(Doctor $doctor): array => [
         'value' => $doctor->id,
         'text' => "v-$doctor->idCard ~ $doctor->firstName $doctor->firstLastName"
       ], $doctors),
