@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "67053a7f9d942c0d77bf0714bd7748d9",
+  "content-hash": "f8d83ecb68e1f401e1268686800095bd",
   "packages": [
     {
       "name": "faslatam/alpine-js",
@@ -114,7 +114,7 @@
     },
     {
       "name": "illuminate/container",
-      "version": "v11.42.1",
+      "version": "v11.43.2",
       "source": {
         "type": "git",
         "url": "https://github.com/illuminate/container.git",
@@ -165,7 +165,7 @@
     },
     {
       "name": "illuminate/contracts",
-      "version": "v11.42.1",
+      "version": "v11.43.2",
       "source": {
         "type": "git",
         "url": "https://github.com/illuminate/contracts.git",

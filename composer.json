@@ -3,7 +3,7 @@
     "php": "^8.2",
     "faslatam/alpine-js": "^3.14",
     "flightphp/core": "^3.13",
-    "illuminate/container": "^11.41",
+    "illuminate/container": "^11.43",
     "leafs/session": "^2.3",
     "megacreativo/cedulave-api": "^1.1",
     "phar-io/manifest": "^2.0",
@@ -29,8 +29,8 @@
     ]
   },
   "require-dev": {
-    "symfony/var-dumper": "^7.2",
-    "phpunit/phpunit": "^11.5"
+    "phpunit/phpunit": "^11.5",
+    "symfony/var-dumper": "^7.2"
   },
   "config": {
     "sort-packages": true
