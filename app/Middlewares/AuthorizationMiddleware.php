@@ -10,7 +10,8 @@ final readonly class AuthorizationMiddleware {
   function __construct(
     private Appointment $permitted,
     private ?Appointment $blocked = null
-  ) {}
+  ) {
+  }
 
   function before(): void {
     /** @var ?User */
@@ -21,7 +22,9 @@ final readonly class AuthorizationMiddleware {
       || ($this->blocked && $user->appointment === $this->blocked)
     ) {
       App::session()->set('error', 'Acceso no autorizado');
-      exit(App::redirect('/'));
+      App::redirect('/');
+
+      exit;
     }
   }
 }

@@ -12,7 +12,9 @@ final readonly class EnsureDepartmentIsActive {
 
     if ($department instanceof Department && $department->isInactive()) {
       Session::set('error', "El departamento de {$department->name} ha sido desactivado");
-      exit(App::redirect('/salir'));
+      App::redirect('/salir');
+
+      exit;
     }
 
     return true;

@@ -5,10 +5,10 @@ namespace App\ValueObjects;
 use App\ValueObjects\Exceptions\InvalidPhoneException;
 use Stringable;
 
-readonly class Phone implements Stringable {
-  private string $countryCode;
-  private string $simPrefix;
-  private string $phoneNumber;
+class Phone implements Stringable {
+  private string $countryCode = '58';
+  private readonly string $simPrefix;
+  private readonly string $phoneNumber;
 
   /** @throws InvalidPhoneException */
   function __construct(string $phone) {

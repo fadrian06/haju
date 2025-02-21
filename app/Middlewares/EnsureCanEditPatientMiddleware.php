@@ -16,6 +16,8 @@ final readonly class EnsureCanEditPatientMiddleware {
     }
 
     App::session()->set('error', 'Acceso no autorizado');
-    exit(App::redirect('/'));
+    App::redirect('/');
+
+    exit;
   }
 }

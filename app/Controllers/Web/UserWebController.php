@@ -105,8 +105,9 @@ class UserWebController extends Controller {
       $this->userRepository->save($user);
       self::setMessage('Usuario registrado exitósamente');
       Session::unset('lastData');
+      App::redirect($urlToRedirect);
 
-      exit(App::redirect($urlToRedirect));
+      exit;
     } catch (InvalidDateException) {
       self::setError('La fecha de nacimiento es requerida y válida');
     } catch (InvalidPhoneException) {
@@ -129,16 +130,19 @@ class UserWebController extends Controller {
       $user = $this->userRepository->getByIdCard($this->data['id_card']);
 
       if ($user) {
-        exit(App::renderPage(
+        App::renderPage(
           'change-pass',
           'Recuperar contraseña (2/2)',
           compact('user')
-        ));
+        );
+
+        exit;
       }
 
       self::setError('Cédula incorrecta');
+      App::redirect('/recuperar');
 
-      exit(App::redirect('/recuperar'));
+      exit;
     }
 
     $user = $this->userRepository
@@ -167,6 +171,8 @@ class UserWebController extends Controller {
       if (App::request()->files['profile_image']['size']) {
         $profileImageUrlPath = self::ensureThatFileIsSaved(
           'profile_image',
+          'profile_image_url',
+          $this->data['id_card'],
           'avatars',
           'La foto de perfil es requerida'
         );
