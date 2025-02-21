@@ -9,9 +9,9 @@ use App\ValueObjects\DBDriver;
 use PDO;
 use PDOException;
 
-final class FilesSettingsRepository implements SettingsRepository
+final readonly class FilesSettingsRepository implements SettingsRepository
 {
-  function __construct(private readonly Connection $connection) {}
+  function __construct(private Connection $connection) {}
 
   function getHospital(): Hospital
   {

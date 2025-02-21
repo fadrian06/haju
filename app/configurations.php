@@ -54,7 +54,7 @@ $container->singleton(Connection::class, static fn(): Connection => new Connecti
 ));
 
 Container::setInstance($container);
-App::registerContainerHandler([$container, 'get']);
+App::registerContainerHandler($container->get(...));
 
 //////////////////
 // DEPENDENCIES //

@@ -61,7 +61,7 @@ App::group('/api', function (): void {
     function () use ($categoryMapper): void {
       $categories = App::consultationCauseCategoryRepository()->getAll();
 
-      App::json(array_map([$categoryMapper, '__invoke'], $categories));
+      App::json(array_map($categoryMapper->__invoke(...), $categories));
     }
   );
 
@@ -73,7 +73,7 @@ App::group('/api', function (): void {
 
       App::json([
         ...$categoryMapper($category),
-        'consultationCauses' => array_map([$causeMapper, '__invoke'], $causes)
+        'consultationCauses' => array_map($causeMapper->__invoke(...), $causes)
       ]);
     }
   );

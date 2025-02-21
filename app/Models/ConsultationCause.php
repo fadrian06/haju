@@ -14,8 +14,8 @@ use App\ValueObjects\LongName;
  */
 final class ConsultationCause extends Model {
   private LongName $shortName;
-  private ?LongName $extendedName;
-  private ?string $variant;
+  private ?LongName $extendedName = null;
+  private ?string $variant = null;
   private ?string $code;
 
   function __construct(
@@ -24,7 +24,7 @@ final class ConsultationCause extends Model {
     ?string $extendedName,
     ?string $variant = null,
     ?string $code = null,
-    private ?int $limit = null
+    private readonly ?int $limit = null
   ) {
     $this->setName($shortName, $extendedName)->setVariant($variant)->setCode($code);
   }

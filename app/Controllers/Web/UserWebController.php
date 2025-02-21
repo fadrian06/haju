@@ -204,19 +204,13 @@ class UserWebController extends Controller {
       ? $this->departmentRepository->getAll()
       : [];
 
-    $filteredUsers = array_filter($users, function (User $user): bool {
-      return $user->appointment->isLowerOrEqualThan($this->loggedUser->appointment);
-    });
+    $filteredUsers = array_filter($users, fn(User $user): bool => $user->appointment->isLowerOrEqualThan($this->loggedUser->appointment));
 
     if ($this->loggedUser->appointment === Appointment::Coordinator) {
-      $filteredUsers = array_filter($filteredUsers, function (User $user): bool {
-        return (
-          $user->appointment->isHigherThan($this->loggedUser->appointment) || (
-            $user->appointment === Appointment::Secretary
-            && $user->registeredBy->isEqualTo($this->loggedUser)
-          )
-        );
-      });
+      $filteredUsers = array_filter($filteredUsers, fn(User $user): bool => $user->appointment->isHigherThan($this->loggedUser->appointment) || (
+        $user->appointment === Appointment::Secretary
+        && $user->registeredBy->isEqualTo($this->loggedUser)
+      ));
     }
 
     $usersNumber = count($filteredUsers);

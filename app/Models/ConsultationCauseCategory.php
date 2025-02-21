@@ -12,15 +12,13 @@ use App\ValueObjects\LongName;
 final class ConsultationCauseCategory extends Model {
   private LongName $shortName;
   private ?LongName $extendedName;
-  public readonly ?self $parentCategory;
 
   function __construct(
     string $shortName,
     ?string $extendedName = null,
-    ?self $parentCategory = null
+    public readonly ?self $parentCategory = null
   ) {
     $this->setName($shortName, $extendedName);
-    $this->parentCategory = $parentCategory;
   }
 
   function setName(string $short, ?string $extended = null): self {

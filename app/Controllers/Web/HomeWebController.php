@@ -27,9 +27,7 @@ final class HomeWebController extends Controller {
   function showIndex(): void {
     $users = $this->userRepository->getAll($this->loggedUser);
 
-    $filteredUsers = array_filter($users, function (User $user): bool {
-      return $user->appointment->isLowerOrEqualThan($this->loggedUser->appointment);
-    });
+    $filteredUsers = array_filter($users, fn(User $user): bool => $user->appointment->isLowerOrEqualThan($this->loggedUser->appointment));
 
     $usersNumber = count($filteredUsers);
     $departmentsNumber = $this->departmentRepository->getRowsCount();

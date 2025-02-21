@@ -65,26 +65,22 @@ use Leaf\Http\Session;
             'variant' => 'select',
             'name' => 'gender',
             'placeholder' => 'Género',
-            'options' => array_map(function (Gender $gender): array {
-              return [
-                'value' => $gender->value,
-                'text' => $gender->value,
-                'selected' => $gender->value === (Session::get('lastData', [])['gender'] ?? '')
-              ];
-            }, Gender::cases())
+            'options' => array_map(fn(Gender $gender): array => [
+              'value' => $gender->value,
+              'text' => $gender->value,
+              'selected' => $gender->value === (Session::get('lastData', [])['gender'] ?? '')
+            ], Gender::cases())
           ]);
 
           render('components/input-group', [
             'variant' => 'select',
             'name' => 'instruction_level',
             'placeholder' => 'Nivel de instrucción',
-            'options' => array_map(function (InstructionLevel $instruction): array {
-              return [
-                'value' => $instruction->value,
-                'text' => $instruction->getLongValue(),
-                'selected' => $instruction->value === (Session::get('lastData', [])['instruction_level'] ?? '')
-              ];
-            }, InstructionLevel::cases())
+            'options' => array_map(fn(InstructionLevel $instruction): array => [
+              'value' => $instruction->value,
+              'text' => $instruction->getLongValue(),
+              'selected' => $instruction->value === (Session::get('lastData', [])['instruction_level'] ?? '')
+            ], InstructionLevel::cases())
           ]);
         ?>
       </fieldset>

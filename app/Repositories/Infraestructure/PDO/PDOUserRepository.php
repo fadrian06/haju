@@ -49,9 +49,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
   }
 
   function getAll(User ...$exclude): array {
-    $ids = array_map(function (User $user): int {
-      return $user->id;
-    }, $exclude);
+    $ids = array_map(fn(User $user): int => $user->id, $exclude);
 
     return $this->ensureIsConnected()
       ->query(sprintf(
@@ -244,7 +242,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
 
     $departments = $stmt->fetchAll(
       PDO::FETCH_FUNC,
-      [$this->departmentRepository, 'mapper']
+      $this->departmentRepository->mapper(...)
     );
 
     $user->assignDepartments(...$departments);

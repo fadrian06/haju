@@ -27,11 +27,9 @@ final class SettingsWebController extends Controller {
     $departments = $this->departmentRepository->getAll();
     $users = $this->userRepository->getAll($this->loggedUser);
 
-    $filteredUsers = array_filter($users, function (User $user): bool {
-      return $this->loggedUser->appointment === Appointment::Director
-        ? $user->appointment === Appointment::Coordinator
-        : $user->appointment === Appointment::Secretary;
-    });
+    $filteredUsers = array_filter($users, fn(User $user): bool => $this->loggedUser->appointment === Appointment::Director
+      ? $user->appointment === Appointment::Coordinator
+      : $user->appointment === Appointment::Secretary);
 
     App::renderPage(
       'settings/permissions',

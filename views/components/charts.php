@@ -19,8 +19,7 @@ $stmt = App::db()->instance()->query(<<<sql
 sql);
 
 $params = [
-  ':start_date' => (@$_GET['fecha_inicio']
-    ?: $range?->getDate()->format('Y-m-d')
+  ':start_date' => ((@$_GET['fecha_inicio'] ?: $range?->getDate()->format('Y-m-d'))
     ?: $lastMonth) . ' 00:00:00',
   ':end_date' => (@$_GET['fecha_fin'] ?: $currentDate) . ' 23:59:59'
 ];
@@ -45,8 +44,7 @@ sql);
 
 $params = [
   ':cause_id' => $_GET['id_causa'] ?? $frecuentCauses[0]['cause_id'] ?? '',
-  ':start_date' => @$_GET['fecha_inicio']
-    ?: $range?->getDate()->format('Y-m-d')
+  ':start_date' => (@$_GET['fecha_inicio'] ?: $range?->getDate()->format('Y-m-d'))
     ?: $lastMonth,
   ':end_date' => @$_GET['fecha_fin'] ?: $currentDate
 ];

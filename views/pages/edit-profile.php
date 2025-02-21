@@ -74,26 +74,22 @@ use App\ValueObjects\InstructionLevel;
             'variant' => 'select',
             'name' => 'gender',
             'placeholder' => 'Género',
-            'options' => array_map(function (Gender $gender) use ($user): array {
-              return [
-                'value' => $gender->value,
-                'text' => $gender->value,
-                'selected' => $gender === $user->gender
-              ];
-            }, Gender::cases())
+            'options' => array_map(fn(Gender $gender): array => [
+              'value' => $gender->value,
+              'text' => $gender->value,
+              'selected' => $gender === $user->gender
+            ], Gender::cases())
           ]);
 
           render('components/input-group', [
             'variant' => 'select',
             'name' => 'instruction_level',
             'placeholder' => 'Nivel de instrucción',
-            'options' => array_map(function (InstructionLevel $instruction) use ($user): array {
-              return [
-                'value' => $instruction->value,
-                'text' => $instruction->getLongValue(),
-                'selected' => $instruction === $user->instructionLevel
-              ];
-            }, InstructionLevel::cases())
+            'options' => array_map(fn(InstructionLevel $instruction): array => [
+              'value' => $instruction->value,
+              'text' => $instruction->getLongValue(),
+              'selected' => $instruction === $user->instructionLevel
+            ], InstructionLevel::cases())
           ]);
 
           render('components/input-group', [

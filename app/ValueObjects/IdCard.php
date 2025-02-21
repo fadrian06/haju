@@ -26,6 +26,6 @@ final readonly class IdCard implements Stringable {
   }
 
   function __toString(): string {
-    return $this->value;
+    return (string) $this->value;
   }
 }

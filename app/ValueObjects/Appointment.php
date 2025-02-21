@@ -36,9 +36,7 @@ enum Appointment: string {
 
   /** @return array<int, self> */
   static function getLowersThan(self $role): array {
-    return array_filter(self::cases(), function (self $case) use ($role): bool {
-      return $case->getLevel() < $role->getLevel();
-    });
+    return array_filter(self::cases(), fn(self $case): bool => $case->getLevel() < $role->getLevel());
   }
 
   function getLevel(): int {

@@ -12,7 +12,7 @@ $monthYear = $_GET['fecha'] ?? null;
 
 ob_start();
 if ($monthYear) {
-  [$year, $month] = explode('-', $monthYear);
+  [$year, $month] = explode('-', (string) $monthYear);
 
   $daysOfMonth = match ($month) {
     '01', '03', '05', '07', '08', '10', '12' => 31,
@@ -80,7 +80,7 @@ $monthName = [
       <label style="flex-basis: 60px" class="input-group-text">MES</label>
       <input
         readonly
-        value="<?= $monthName[(int) explode('-', $monthYear)[1]] ?>"
+        value="<?= $monthName[(int) explode('-', (string) $monthYear)[1]] ?>"
         class="form-control" />
     </div>
     <div class="input-group mb-3">
@@ -88,7 +88,7 @@ $monthName = [
       <input
         type="number"
         readonly
-        value="<?= explode('-', $monthYear)[0] ?>"
+        value="<?= explode('-', (string) $monthYear)[0] ?>"
         class="form-control" />
     </div>
   </div>

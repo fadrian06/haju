@@ -12,7 +12,7 @@ $monthYear = $_GET['fecha'] ?? null;
 
 ob_start();
 if ($monthYear) {
-  [$year, $month] = explode('-', $monthYear);
+  [$year, $month] = explode('-', (string) $monthYear);
 
   $daysOfMonth = match ($month) {
     '01', '03', '05', '07', '08', '10', '12' => 31,

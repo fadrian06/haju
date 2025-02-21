@@ -5,16 +5,16 @@ namespace App\Repositories\Infraestructure\PDO;
 use App\ValueObjects\DBDriver;
 use PDO;
 
-final class Connection {
-  private readonly PDO $instance;
+final readonly class Connection {
+  private PDO $instance;
 
   /** @param string|'memory' $dbName */
   function __construct(
-    public readonly DBDriver $driver,
-    public readonly string $dbName,
+    public DBDriver $driver,
+    public string $dbName,
     ?string $host = null,
     ?int $port = null,
-    readonly ?string $user = null,
+    ?string $user = null,
     ?string $password = null
   ) {
     $this->instance = new PDO(

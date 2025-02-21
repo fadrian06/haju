@@ -37,7 +37,7 @@ final class PDODoctorRepository extends PDORepository implements DoctorRepositor
         'SELECT %s FROM %s ORDER BY idCard',
         self::FIELDS,
         self::getTable()
-      ))->fetchAll(PDO::FETCH_FUNC, [__CLASS__, 'mapper']);
+      ))->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper']);
   }
 
   function getById(int $id): ?Doctor {
@@ -49,7 +49,7 @@ final class PDODoctorRepository extends PDORepository implements DoctorRepositor
 
     $stmt->execute([$id]);
 
-    return $stmt->fetchAll(PDO::FETCH_FUNC, [__CLASS__, 'mapper'])[0] ?? null;
+    return $stmt->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper'])[0] ?? null;
   }
 
   function getByIdCard(int $idCard): ?Doctor {
@@ -61,7 +61,7 @@ final class PDODoctorRepository extends PDORepository implements DoctorRepositor
 
     $stmt->execute([$idCard]);
 
-    return $stmt->fetchAll(PDO::FETCH_FUNC, [__CLASS__, 'mapper'])[0] ?? null;
+    return $stmt->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper'])[0] ?? null;
   }
 
   function save(Doctor $doctor): void {

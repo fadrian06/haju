@@ -12,7 +12,7 @@ use App\Models\User;
 
 $showPasswordChangeModal ??= $mustChangePassword;
 
-if (str_contains($_SERVER['REQUEST_URI'], 'perfil')) {
+if (str_contains((string) $_SERVER['REQUEST_URI'], 'perfil')) {
   $showPasswordChangeModal = false;
 }
 

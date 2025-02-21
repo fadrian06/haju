@@ -18,7 +18,7 @@
  * @var ?string $title
  */
 
-$id = $name . rand();
+$id = $name . random_int(0, mt_getrandmax());
 $variant ??= 'input';
 $required ??= true;
 $min ??= 0;
