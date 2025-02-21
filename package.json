@@ -9,7 +9,7 @@
     "esbuild": "0.21.5",
     "metismenujs": "^1.4.0",
     "pure-css-loader": "^3.3.3",
-    "sweetalert2": "^11.16.0"
+    "sweetalert2": "^11.17.2"
   },
   "scripts": {
     "dev": "esbuild assets/src/*.ts --outdir=assets/dist --bundle --watch --sourcemap --loader:.woff2=copy --loader:.woff=copy --loader:.ttf=copy",
