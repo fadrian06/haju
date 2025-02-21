@@ -1,0 +1,21 @@
+{
+  "folders": [
+    {
+      "path": ".",
+    }
+  ],
+  "settings": {
+    "LSP": {
+      "formatters": {
+        "source.json.composer": "LSP-json",
+        "source.json.sublime": "LSP-json",
+      },
+      "LSP-intelephense": {
+        "settings": {
+          "intelephense.environment.phpVersion": "8.2",
+          "intelephense.format.braces": "k&r"
+        }
+      }
+    },
+  },
+}

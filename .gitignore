@@ -21,4 +21,4 @@ vendor/
 .vscode/*
 !.vscode/extensions.json
 .idea
-*.sublime-*
+*.sublime-workspace
