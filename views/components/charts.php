@@ -134,7 +134,7 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
         'options' => array_map(static fn(array $cause): array => [
           'selected' => ($_GET['id_causa'] ?? $frecuentCauses[0]['cause_id']) == $cause['cause_id'],
           'value' => $cause['cause_id'],
-          'text' => $cause['extended_name'] ?? $cause['short_name'] . $cause['variant']
+          'text' => $cause['extended_name'] ?? "{$cause['short_name']} {$cause['variant']}"
         ], $frecuentCauses),
         'cols' => 9,
         'margin' => 0

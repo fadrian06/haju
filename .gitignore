@@ -9,6 +9,7 @@
 ~*.xlsx
 .env.php
 *.db
+*.db-journal
 .phpunit.cache
 *.backup.sql
 
