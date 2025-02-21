@@ -21,8 +21,8 @@ final readonly class Connection {
       $driver === DBDriver::MySQL
         ? "mysql:host=$host; dbname=$dbName; charset=utf8; port=$port"
         : "sqlite:$dbName",
-      $user,
-      $password
+      $user ?: null,
+      $password ?: null
     );
   }
 

@@ -120,7 +120,6 @@ App::group('', function (): void {
 
       App::group('', function (): void {
         App::route('GET /departamentos', [DepartmentWebController::class, 'showDepartments']);
-        App::route('POST /departamentos', [DepartmentWebController::class, 'handleRegister']);
         App::route('POST /departamentos/@id', [DepartmentWebController::class, 'handleDepartmentEdition']);
         App::route('/departamentos/@id/activar', [DepartmentWebController::class, 'handleToggleStatus']);
         App::route('/departamentos/@id/desactivar', [DepartmentWebController::class, 'handleToggleStatus']);

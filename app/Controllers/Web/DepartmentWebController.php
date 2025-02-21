@@ -28,30 +28,6 @@ final class DepartmentWebController extends Controller {
     );
   }
 
-  function handleRegister(): void {
-    try {
-      $iconUrlPath = self::ensureThatFileIsSaved(
-        'department_icon',
-        'departments',
-        'El icono del departamento es requerido'
-      );
-
-      $department = new Department(
-        $this->data['name'],
-        $iconUrlPath,
-        $this->data['belongs_to_external_consultation'] ?? false,
-        $this->data['is_active'] ?? false
-      );
-
-      $this->repository->save($department);
-      self::setMessage('Departamento registrado exitósamente');
-    } catch (Throwable $error) {
-      self::setError($error);
-    }
-
-    App::redirect('/departamentos');
-  }
-
   function handleToggleStatus(int $id): void {
     $selectedDepartment = App::view()->get('department');
     $department = $this->repository->getById($id);
