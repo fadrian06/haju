@@ -29,11 +29,16 @@
     ]
   },
   "require-dev": {
+    "phpstan/extension-installer": "^1.4",
+    "phpstan/phpstan": "^2.1",
     "phpunit/phpunit": "^11.5",
     "rector/rector": "^2.0",
     "symfony/var-dumper": "^7.2"
   },
   "config": {
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "phpstan/extension-installer": true
+    }
   }
 }
