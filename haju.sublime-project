@@ -17,5 +17,7 @@
         }
       }
     },
-  },
+    "SublimeLinter.linters.phpmd.disable": false,
+    "SublimeLinter.linters.phpmd.rulesets": "${project_path}/phpmd.xml"
+  }
 }

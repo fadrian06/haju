@@ -25,9 +25,16 @@
     "migrate:fresh": "php app/commands/migrate-fresh.php",
     "post-install-cmd": [
       "php -r \"if (!file_exists('.env.php')) copy('.env.dist.php', '.env.php');\""
+    ],
+    "ci": [
+      "phpunit --no-progress",
+      "phpstan --no-progress -cphpstan.neon",
+      "rector --dry-run --no-progress-bar",
+      "phpmd app tests views ansi phpmd.xml"
     ]
   },
   "require-dev": {
+    "phpmd/phpmd": "^2.15",
     "phpstan/extension-installer": "^1.4",
     "phpstan/phpstan": "^2.1",
     "phpunit/phpunit": "^11.5",
