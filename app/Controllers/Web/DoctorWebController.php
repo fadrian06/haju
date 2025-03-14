@@ -14,26 +14,26 @@ use Error;
 use Throwable;
 
 final class DoctorWebController extends Controller {
-  private readonly DoctorRepository $repository;
+  private readonly DoctorRepository $doctorRepository;
 
-  function __construct() {
+  public function __construct() {
     parent::__construct();
 
-    $this->repository = App::doctorRepository();
+    $this->doctorRepository = App::doctorRepository();
   }
 
-  function showDoctors(): void {
+  public function showDoctors(): void {
     App::renderPage('doctors/list', 'Doctores', [
-      'doctors' => $this->repository->getAll()
+      'doctors' => $this->doctorRepository->getAll()
     ], 'main');
   }
 
-  function handleRegister(): void {
+  public function handleRegister(): void {
     try {
       if (!in_array($this->data['gender'], Gender::values())) {
         throw new Error(sprintf(
           'El género es requerido y válido (%s)',
-          join(', ', Gender::values())
+          implode(', ', Gender::values())
         ));
       }
 
@@ -48,7 +48,7 @@ final class DoctorWebController extends Controller {
         $this->loggedUser
       );
 
-      $this->repository->save($doctor);
+      $this->doctorRepository->save($doctor);
       parent::setMessage('Doctor registrado exitósamente');
     } catch (Throwable $error) {
       parent::setError($error);
@@ -57,15 +57,15 @@ final class DoctorWebController extends Controller {
     App::redirect(App::request()->referrer);
   }
 
-  function showEdit(int $idCard): void {
+  public function showEdit(int $idCard): void {
     App::renderPage('doctors/edit', 'Editar doctor', [
-      'doctor' => $this->repository->getByIdCard($idCard)
+      'doctor' => $this->doctorRepository->getByIdCard($idCard)
     ], 'main');
   }
 
-  function handleEdition(int $idCard): void {
+  public function handleEdition(int $idCard): void {
     try {
-      $doctor = $this->repository->getByIdCard($idCard);
+      $doctor = $this->doctorRepository->getByIdCard($idCard);
 
       $doctor
         ->setFirstName($this->data['first_name'])
@@ -76,7 +76,7 @@ final class DoctorWebController extends Controller {
 
       $doctor->birthDate = Date::from($this->data['birth_date'], '-');
 
-      $this->repository->save($doctor);
+      $this->doctorRepository->save($doctor);
       parent::setMessage('Doctor actualizado exitósamente');
     } catch (Throwable $error) {
       parent::setError($error);
