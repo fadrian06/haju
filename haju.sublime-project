@@ -9,15 +9,16 @@
       "formatters": {
         "source.json.composer": "LSP-json",
         "source.json.sublime": "LSP-json",
+        "source.json.biome": "LSP-json",
       },
       "LSP-intelephense": {
         "settings": {
           "intelephense.environment.phpVersion": "8.2",
-          "intelephense.format.braces": "k&r"
-        }
-      }
+          "intelephense.format.braces": "k&r",
+        },
+      },
     },
     "SublimeLinter.linters.phpmd.disable": false,
-    "SublimeLinter.linters.phpmd.rulesets": "${project_path}/phpmd.xml"
-  }
+    "SublimeLinter.linters.phpmd.rulesets": "${project_path}/phpmd.xml",
+  },
 }
