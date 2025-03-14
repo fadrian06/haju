@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\ValueObjects\AdultBirthDate;
 use App\ValueObjects\Exceptions\InvalidDateException;
 use PHPUnit\Framework\Attributes\DataProvider;

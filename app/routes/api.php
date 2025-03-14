@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\ConsultationCause;
 use App\Models\ConsultationCauseCategory;
 use Leaf\Http\Session;
-use MegaCreativo\API\CedulaVE;
 
 App::route('/api/preferencias/tema/@theme', static function (string $theme): void {
   Session::set('theme', $theme);

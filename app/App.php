@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Repositories\Domain\ConsultationCauseCategoryRepository;
 use App\Repositories\Domain\ConsultationCauseRepository;
 use App\Repositories\Domain\DepartmentRepository;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Repositories\Infraestructure\PDO\Connection;
 
 $localVars = require_once __DIR__ . '/../../.env.php';

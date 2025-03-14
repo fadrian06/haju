@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\ValueObjects\Exceptions\InvalidPhoneException;
 use App\ValueObjects\Phone;
 use PHPUnit\Framework\Attributes\DataProvider;

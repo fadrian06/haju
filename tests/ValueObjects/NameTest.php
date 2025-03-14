@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\ValueObjects\Name;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;

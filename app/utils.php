@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 function render(string $viewPath, array $params = []): void {
   App::render($viewPath, $params);
 }

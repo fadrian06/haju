@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Controllers\Web\DepartmentWebController;
 use App\Controllers\Web\DoctorWebController;
 use App\Controllers\Web\HomeWebController;
