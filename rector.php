@@ -9,6 +9,18 @@ return RectorConfig::configure()
     __DIR__ . '/app',
     __DIR__ . '/tests',
   ])
-  // ->withPhpSets(php82: true)
-  ->withPreparedSets(rectorPreset: true)
+  ->withPhpSets(php82: true)
+  ->withPreparedSets(
+    deadCode: true,
+    codeQuality: true,
+    codingStyle: true,
+    typeDeclarations: true,
+    privatization: true,
+    naming: true,
+    instanceOf: true,
+    earlyReturn: true,
+    strictBooleans: true,
+    rectorPreset: true,
+    phpunitCodeQuality: true,
+  )
   ->withRootFiles();
