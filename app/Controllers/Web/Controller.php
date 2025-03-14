@@ -16,7 +16,7 @@ abstract class Controller {
   protected readonly Collection $data;
   protected readonly Session $session;
 
-  function __construct() {
+  public function __construct() {
     $this->loggedUser = App::view()->get('user');
     $this->data = App::request()->data;
     $this->session = App::session();
@@ -49,14 +49,14 @@ abstract class Controller {
   ): string {
     $url = App::request()->data[$urlParam];
     $files = App::request()->files;
-    $fileName = "$fileId.jpg";
+    $fileName = "{$fileId}.jpg";
 
     if (is_string($url) && $url !== '') {
       $image = file_get_contents($url);
 
       $filePath = [
-        'rel' => "assets/img/$destinationFolder/$fileName",
-        'abs' => dirname(__DIR__, 3) . "/assets/img/$destinationFolder/$fileName"
+        'rel' => "assets/img/{$destinationFolder}/{$fileName}",
+        'abs' => dirname(__DIR__, 3) . "/assets/img/{$destinationFolder}/{$fileName}"
       ];
 
       file_put_contents($filePath['abs'], $image);
@@ -71,8 +71,8 @@ abstract class Controller {
     $temporalFileAbsPath = $files[$fileParam]['tmp_name'];
 
     $filePath = [
-      'rel' => "assets/img/$destinationFolder/$fileName",
-      'abs' => dirname(__DIR__, 3) . "/assets/img/$destinationFolder/$fileName"
+      'rel' => "assets/img/{$destinationFolder}/{$fileName}",
+      'abs' => dirname(__DIR__, 3) . "/assets/img/{$destinationFolder}/{$fileName}"
     ];
 
     copy($temporalFileAbsPath, $filePath['abs']);
