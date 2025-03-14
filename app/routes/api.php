@@ -6,9 +6,12 @@ use App\Models\ConsultationCause;
 use App\Models\ConsultationCauseCategory;
 use Leaf\Http\Session;
 
-App::route('/api/preferencias/tema/@theme', static function (string $theme): void {
-  Session::set('theme', $theme);
-});
+App::route(
+  '/api/preferencias/tema/@theme',
+  static function (string $theme): void {
+    Session::set('theme', $theme);
+  }
+);
 
 App::route('/api/verificar-clave-maestra', static function (): void {
   $secretKey = App::request()->data->secret_key;
@@ -22,7 +25,7 @@ App::route('/api/verificar-clave-maestra', static function (): void {
 
 App::group('/api', function (): void {
   $categoryMapper = new class {
-    function __invoke(ConsultationCauseCategory $category): array {
+    public function __invoke(ConsultationCauseCategory $category): array {
       return [
         'id' => $category->id,
         'name' => [
@@ -39,7 +42,7 @@ App::group('/api', function (): void {
   $causeMapper = new class {
     public ?object $categoryMapper = null;
 
-    function __invoke(ConsultationCause $cause): array {
+    public function __invoke(ConsultationCause $cause): array {
       $result = [
         'id' => $cause->id,
         'name' => [
@@ -118,7 +121,7 @@ App::group('/api', function (): void {
   App::route('/pacientes', function (): void {
   });
 
-  App::route('/pacientes/@patientId:[0-9]+', function (int $patientId): void {
+  App::route('/pacientes/@patientId:[0-9]+', function (): void {
   });
 
   App::route(
@@ -127,7 +130,7 @@ App::group('/api', function (): void {
       $patient = App::patientRepository()->getById($patientId);
 
       if (!$patient) {
-        App::json(['error' => "Paciente #$patientId no encontrado"], 404);
+        App::json(['error' => "Paciente #{$patientId} no encontrado"], 404);
 
         return;
       }
@@ -191,7 +194,7 @@ App::group('/api', function (): void {
       $patient = App::patientRepository()->getById($patientId);
 
       if (!$patient) {
-        App::json(['error' => "Paciente #$patientId no encontrado"], 404);
+        App::json(['error' => "Paciente #{$patientId} no encontrado"], 404);
 
         return;
       }

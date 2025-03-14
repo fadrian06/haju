@@ -22,7 +22,7 @@
     "SublimeLinter.linters.phpstan.disable": false,
     "SublimeLinter.linters.phpcs.disable": true,
     "SublimeLinter.linters.phpcsfixer.disable": true,
-    "SublimeLinter.linters.rector.disable": true,
+    "SublimeLinter.linters.rector.disable": false,
     "SublimeLinter.linters.ecs.disable": true,
     "SublimeLinter.linters.phpmd.disable": false,
     "SublimeLinter.linters.phpmd.rulesets": "${project_path}/phpmd.xml",

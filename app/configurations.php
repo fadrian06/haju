@@ -40,9 +40,10 @@ App::view()->set('user', null);
 // CONTAINER //
 ///////////////
 $container = new class extends Container {
-  function terminating(): void {
+  public function terminating(): void {
   }
-  function getNamespace(): void {
+
+  public function getNamespace(): void {
   }
 };
 
