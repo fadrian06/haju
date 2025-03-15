@@ -9,7 +9,7 @@ use App\Models\Department;
 use Leaf\Http\Session;
 
 final readonly class EnsureDepartmentIsActive {
-  function before() {
+  public function before(): true {
     $department = App::view()->get('department');
 
     if ($department instanceof Department && $department->isInactive()) {

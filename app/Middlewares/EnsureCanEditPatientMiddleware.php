@@ -8,7 +8,7 @@ use App;
 use App\Models\User;
 
 final readonly class EnsureCanEditPatientMiddleware {
-  static function before(array $params) {
+  public static function before(array $params): true {
     $patient = App::patientRepository()->getById($params['id']);
     $loggedUser = App::view()->get('user');
     assert($loggedUser instanceof User);

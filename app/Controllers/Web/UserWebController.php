@@ -22,7 +22,7 @@ use PharIo\Manifest\Email;
 use PharIo\Manifest\InvalidEmailException;
 use Throwable;
 
-class UserWebController extends Controller {
+final class UserWebController extends Controller {
   private readonly DepartmentRepository $departmentRepository;
   private readonly UserRepository $userRepository;
 

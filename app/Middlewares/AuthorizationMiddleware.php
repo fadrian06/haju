@@ -9,13 +9,13 @@ use App\Models\User;
 use App\ValueObjects\Appointment;
 
 final readonly class AuthorizationMiddleware {
-  function __construct(
+  public function __construct(
     private Appointment $permitted,
     private ?Appointment $blocked = null
   ) {
   }
 
-  function before(): void {
+  public function before(): void {
     /** @var ?User */
     $user = App::view()->get('user');
 

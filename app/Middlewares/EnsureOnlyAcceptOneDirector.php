@@ -6,8 +6,8 @@ namespace App\Middlewares;
 
 use App;
 
-class EnsureOnlyAcceptOneDirector {
-  static function before(): void {
+final readonly class EnsureOnlyAcceptOneDirector {
+  public static function before(): void {
     if (App::request()->data['secret_key']) {
       self::checkSecretKey(App::request()->data['secret_key']);
       App::session()->set('let_register_director', true);

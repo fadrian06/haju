@@ -8,14 +8,14 @@ use App;
 use Leaf\Http\Session;
 
 final readonly class EnsureSelectedDepartmentIsNotStatistics {
-  function before() {
+  public static function before(): true {
     $selectedDepartment = App::departmentRepository()->getById(Session::get('departmentId'));
 
-    if ($selectedDepartment->isStatistics()) {
-      Session::set('error', 'No puedes registrar consultas desde el departamento de Estadística');
-      App::redirect('/');
-    } else {
+    if (!$selectedDepartment->isStatistics()) {
       return true;
     }
+
+    Session::set('error', 'No puedes registrar consultas desde el departamento de Estadística');
+    App::redirect('/');
   }
 }

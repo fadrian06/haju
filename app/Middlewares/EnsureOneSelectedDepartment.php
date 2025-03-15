@@ -6,8 +6,8 @@ namespace App\Middlewares;
 
 use App;
 
-class EnsureOneSelectedDepartment {
-  static function before(): void {
+final readonly class EnsureOneSelectedDepartment {
+  public static function before(): void {
     $departmentId = App::session()->get('departmentId');
     $departments = [];
 

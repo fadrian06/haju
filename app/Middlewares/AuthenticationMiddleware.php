@@ -6,8 +6,8 @@ namespace App\Middlewares;
 
 use App;
 
-class AuthenticationMiddleware {
-  static function before(): void {
+final readonly class AuthenticationMiddleware {
+  public static function before(): void {
     if (
       !App::session()->get('userId')
       || !$user = App::userRepository()->getById((int) App::session()->get('userId'))
