@@ -16,7 +16,7 @@ final class Patient extends Person {
   /** @var array<int, Hospitalization> */
   private array $hospitalizations = [];
 
-  function __construct(
+  public function __construct(
     string $firstName,
     ?string $secondName,
     string $firstLastName,
@@ -37,44 +37,44 @@ final class Patient extends Person {
     );
   }
 
-  function canBeDeleted(): bool {
+  public function canBeDeleted(): bool {
     return !$this->hasConsultations() && !$this->hasHospitalizations();
   }
 
-  function hasHospitalizations(): bool {
+  public function hasHospitalizations(): bool {
     return $this->hospitalizations !== [];
   }
 
-  function hasConsultations(): bool {
+  public function hasConsultations(): bool {
     return $this->consultations !== [];
   }
 
-  function canBeEditedBy(User $user): bool {
+  public function canBeEditedBy(User $user): bool {
     // TODO: que el coordinador del secretario que registró al paciente también pueda editarlo
     return $user->appointment->isDirector() || $this->registeredBy->isEqualTo($user);
   }
 
   /** @return Generator<int, Consultation> */
-  function getConsultation(): Generator {
+  public function getConsultation(): Generator {
     foreach ($this->consultations as $consultation) {
       yield $consultation;
     }
   }
 
   /** @return Generator<int, Hospitalization> */
-  function getHospitalization(): Generator {
+  public function getHospitalization(): Generator {
     foreach ($this->hospitalizations as $hospitalization) {
       yield $hospitalization;
     }
   }
 
-  function setConsultations(Consultation ...$consultations): self {
+  public function setConsultations(Consultation ...$consultations): self {
     $this->consultations = $consultations;
 
     return $this;
   }
 
-  function getCauseById(int $causeId): ?ConsultationCause {
+  public function getCauseById(int $causeId): ?ConsultationCause {
     foreach ($this->consultations as $consultation) {
       if ($consultation->cause->id === $causeId) {
         return $consultation->cause;
@@ -84,14 +84,14 @@ final class Patient extends Person {
     return null;
   }
 
-  function setHospitalization(Hospitalization ...$hospitalizations): self {
+  public function setHospitalization(Hospitalization ...$hospitalizations): self {
     $this->hospitalizations = $hospitalizations;
 
     return $this;
   }
 
   /** @return Hospitalization[] */
-  function getHospitalizations(): array {
+  public function getHospitalizations(): array {
     return $this->hospitalizations;
   }
 }

@@ -29,7 +29,7 @@ abstract class Person extends Model {
    * @throws InvalidDateException
    * @throws InvalidNameException
    */
-  function __construct(
+  public function __construct(
     string $firstName,
     ?string $secondName,
     string $firstLastName,
@@ -46,21 +46,21 @@ abstract class Person extends Model {
     $secondLastName && $this->setSecondLastName($secondLastName);
   }
 
-  final function setIdCard(int $idCard): static {
+  final public function setIdCard(int $idCard): static {
     $this->idCard = new IdCard($idCard);
 
     return $this;
   }
 
   /** @throws InvalidNameException */
-  final function setFirstName(string $firstName): static {
+  final public function setFirstName(string $firstName): static {
     $this->firstName = new Name($firstName, 'Primer nombre');
 
     return $this;
   }
 
   /** @throws InvalidNameException */
-  final function setSecondName(?string $secondName): static {
+  final public function setSecondName(?string $secondName): static {
     $this->secondName = $secondName !== null
       ? new Name($secondName, 'Segundo nombre')
       : null;
@@ -69,14 +69,14 @@ abstract class Person extends Model {
   }
 
   /** @throws InvalidNameException */
-  final function setFirstLastName(string $firstLastName): static {
+  final public function setFirstLastName(string $firstLastName): static {
     $this->firstLastName = new Name($firstLastName, 'Primer apellido');
 
     return $this;
   }
 
   /** @throws InvalidNameException */
-  final function setSecondLastName(?string $secondLastName): static {
+  final public function setSecondLastName(?string $secondLastName): static {
     $this->secondLastName = $secondLastName !== null
       ? new Name($secondLastName, 'Segundo apellido')
       : null;
@@ -85,7 +85,7 @@ abstract class Person extends Model {
   }
 
   /** @throws InvalidNameException */
-  function setFullName(string $fullName): self {
+  public function setFullName(string $fullName): self {
     @[$firstName, $secondName, $firstLastName, $secondLastName] = explode(' ', $fullName);
 
     $this->setFirstName($firstName);
@@ -101,7 +101,7 @@ abstract class Person extends Model {
       ->setSecondLastName($secondLastName);
   }
 
-  final function getFullName(): string {
+  final public function getFullName(): string {
     $fullName = $this->firstName;
     $fullName .= $this->secondName ? " {$this->secondName}" : '';
     $fullName .= " $this->firstLastName";
@@ -110,7 +110,7 @@ abstract class Person extends Model {
     return $fullName;
   }
 
-  function __get(string $property): null|int|string {
+  public function __get(string $property): null|int|string {
     assert($this->idCard instanceof IdCard);
 
     return match ($property) {

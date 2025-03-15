@@ -20,8 +20,8 @@ final class ConsultationCause extends Model {
   private ?string $variant = null;
   private ?string $code;
 
-  function __construct(
     public readonly ConsultationCauseCategory $category,
+  public function __construct(
     string $shortName,
     ?string $extendedName,
     ?string $variant = null,
@@ -31,7 +31,7 @@ final class ConsultationCause extends Model {
     $this->setName($shortName, $extendedName)->setVariant($variant)->setCode($code);
   }
 
-  function getFullName(bool $abbreviated = true): string {
+  public function getFullName(bool $abbreviated = true): string {
     $fullName = $this->shortName;
 
     if (!$abbreviated && $this->extendedName) {
@@ -45,7 +45,7 @@ final class ConsultationCause extends Model {
     return $fullName;
   }
 
-  function setName(string $shortName, ?string $extendedName = null): self {
+  public function setName(string $shortName, ?string $extendedName = null): self {
     $this->shortName = new LongName($shortName, 'Nombre corto');
     $this->extendedName = $extendedName
       ? new LongName($extendedName, 'Nombre extendido')
@@ -54,19 +54,19 @@ final class ConsultationCause extends Model {
     return $this;
   }
 
-  function setCode(?string $code): self {
+  public function setCode(?string $code): self {
     $this->code = $code;
 
     return $this;
   }
 
-  function setVariant(?string $variant): self {
+  public function setVariant(?string $variant): self {
     $this->variant = $variant;
 
     return $this;
   }
 
-  function __get(string $property): null|int|string {
+  public function __get(string $property): null|int|string {
     return match ($property) {
       'shortName' => $this->shortName,
       'extendedName' => $this->extendedName,

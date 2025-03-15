@@ -13,7 +13,7 @@ final class Doctor extends Person {
   /** @var array<int, Consultation> */
   private array $consultations = [];
 
-  function __construct(
+  public function __construct(
     string $firstName,
     ?string $secondName,
     string $firstLastName,
@@ -34,18 +34,18 @@ final class Doctor extends Person {
     );
   }
 
-  function canBeEditedBy(User $user): bool {
+  public function canBeEditedBy(User $user): bool {
     return $user->appointment->isDirector() || $this->registeredBy->isEqualTo($user);
   }
 
   /** @return Generator<int, Consultation> */
-  function getConsultation(): Generator {
+  public function getConsultation(): Generator {
     foreach ($this->consultations as $consultation) {
       yield $consultation;
     }
   }
 
-  function setConsultations(Consultation ...$consultations): self {
+  public function setConsultations(Consultation ...$consultations): self {
     $this->consultations = $consultations;
 
     return $this;

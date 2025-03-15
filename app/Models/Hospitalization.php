@@ -9,7 +9,7 @@ use App\ValueObjects\DepartureStatus;
 use DateTimeInterface;
 
 final class Hospitalization extends Model {
-  function __construct(
+  public function __construct(
     public readonly Patient $patient,
     public readonly Doctor $doctor,
     public readonly string $admissionDepartment,
@@ -20,7 +20,7 @@ final class Hospitalization extends Model {
   ) {
   }
 
-  function isFinished(): bool {
-    return !!$this->departureDate;
+  public function isFinished(): bool {
+    return (bool) $this->departureDate;
   }
 }

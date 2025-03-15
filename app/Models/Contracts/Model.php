@@ -14,7 +14,7 @@ abstract class Model {
   private ?int $id = null;
   private ?DateTime $registeredDateTime = null;
 
-  final function setId(int $id): static {
+  final public function setId(int $id): static {
     if ($this->id === null) {
       $this->id = $id;
     }
@@ -22,7 +22,7 @@ abstract class Model {
     return $this;
   }
 
-  final function setRegisteredDate(DateTime $datetime): static {
+  final public function setRegisteredDate(DateTime $datetime): static {
     if ($this->registeredDateTime === null) {
       $this->registeredDateTime = $datetime;
     }
@@ -30,11 +30,11 @@ abstract class Model {
     return $this;
   }
 
-  final function isEqualTo(self $model): bool {
+  final public function isEqualTo(self $model): bool {
     return $this->id === $model->id;
   }
 
-  function __get(string $property): null|int|string {
+  public function __get(string $property): null|int|string {
     return match ($property) {
       'id' => $this->id,
       'registeredDate' => $this->registeredDateTime->format('d/m/Y')

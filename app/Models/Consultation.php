@@ -8,7 +8,7 @@ use App\Models\Contracts\Model;
 use App\ValueObjects\ConsultationType;
 
 final class Consultation extends Model {
-  function __construct(
+  public function __construct(
     public readonly ConsultationType $type,
     public readonly ConsultationCause $cause,
     public readonly Department $department,
@@ -16,7 +16,7 @@ final class Consultation extends Model {
   ) {
   }
 
-  function isFirstTime(): bool {
+  public function isFirstTime(): bool {
     return $this->type === ConsultationType::FirstTime;
   }
 }

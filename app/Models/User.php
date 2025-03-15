@@ -40,7 +40,7 @@ final class User extends Person implements Activable {
    * @throws InvalidUrlException
    * @throws InvalidDateException
    */
-  function __construct(
+  public function __construct(
     string $firstName,
     ?string $secondName,
     string $firstLastName,
@@ -72,7 +72,7 @@ final class User extends Person implements Activable {
     $this->setPassword($password)->setAddress($address);
   }
 
-  function setPassword(string $password): static {
+  public function setPassword(string $password): static {
     if (!$password) {
       throw new InvalidArgumentException('La contraseña es requerida');
     }
@@ -86,7 +86,7 @@ final class User extends Person implements Activable {
     return $this;
   }
 
-  function setAddress(string $address): static {
+  public function setAddress(string $address): static {
     if (!$address) {
       throw new InvalidArgumentException('La dirección es requerida');
     }
@@ -96,11 +96,11 @@ final class User extends Person implements Activable {
     return $this;
   }
 
-  function checkPassword(string $raw): bool {
+  public function checkPassword(string $raw): bool {
     return password_verify($raw, $this->password);
   }
 
-  function ensureThatIsActive(): static {
+  public function ensureThatIsActive(): static {
     if (!$this->isActive) {
       throw new Error('Este usuario se encuentra desactivado');
     }
@@ -108,13 +108,13 @@ final class User extends Person implements Activable {
     return $this;
   }
 
-  function getProfileImageRelPath(): string {
+  public function getProfileImageRelPath(): string {
     return $this->profileImagePath instanceof Url
       ? mb_substr($this->profileImagePath->asString(), strpos($this->profileImagePath->asString(), 'assets'))
       : $this->profileImagePath;
   }
 
-  function ensureHasActiveDepartments(): static {
+  public function ensureHasActiveDepartments(): static {
     foreach ($this->departments as $department) {
       if ($department->isActive()) {
         return $this;
@@ -124,21 +124,21 @@ final class User extends Person implements Activable {
     throw new Error('Este usuario no tiene departamentos asignados, o están inhabilitados');
   }
 
-  function getParsedAppointment(): string {
+  public function getParsedAppointment(): string {
     return $this->appointment->getParsed($this->gender);
   }
 
-  function assignDepartments(Department ...$departments): self {
+  public function assignDepartments(Department ...$departments): self {
     $this->departments = $departments;
 
     return $this;
   }
 
-  function hasDepartments(): bool {
+  public function hasDepartments(): bool {
     return $this->departments !== [];
   }
 
-  function hasDepartment(string|Department $department): bool {
+  public function hasDepartment(string|Department $department): bool {
     if (is_string($department)) {
       foreach ($this->departments as $savedDepartment) {
         if ($savedDepartment->name === $department) {
@@ -159,13 +159,13 @@ final class User extends Person implements Activable {
   }
 
   /** @return Generator<int, Department> */
-  function getDepartment(): Generator {
+  public function getDepartment(): Generator {
     foreach ($this->departments as $index => $department) {
       yield $index => $department;
     }
   }
 
-  function __get(string $property): null|int|string {
+  public function __get(string $property): null|int|string {
     return match ($property) {
       'password' => $this->password,
       'address' => $this->address,

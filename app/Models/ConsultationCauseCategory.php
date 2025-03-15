@@ -15,7 +15,7 @@ final class ConsultationCauseCategory extends Model {
   private LongName $shortName;
   private ?LongName $extendedName;
 
-  function __construct(
+  public function __construct(
     string $shortName,
     ?string $extendedName = null,
     public readonly ?self $parentCategory = null
@@ -23,7 +23,7 @@ final class ConsultationCauseCategory extends Model {
     $this->setName($shortName, $extendedName);
   }
 
-  function setName(string $short, ?string $extended = null): self {
+  public function setName(string $short, ?string $extended = null): self {
     $this->shortName = new LongName($short, 'Nombre corto');
 
     $this->extendedName = $extended !== null
@@ -33,7 +33,7 @@ final class ConsultationCauseCategory extends Model {
     return $this;
   }
 
-  function __get(string $property): null|int|string {
+  public function __get(string $property): null|int|string {
     return match ($property) {
       'shortName' => $this->shortName,
       'extendedName' => $this->extendedName,

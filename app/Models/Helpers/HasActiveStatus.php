@@ -7,22 +7,22 @@ namespace App\Models\Helpers;
 trait HasActiveStatus {
   private bool $isActive = true;
 
-  final function toggleStatus(): static {
+  final public function toggleStatus(): static {
     $this->isActive = !$this->isActive;
 
     return $this;
   }
 
-  final function isActive(): bool {
+  final public function isActive(): bool {
     return $this->isActive;
   }
 
-  final function isInactive(): bool {
+  final public function isInactive(): bool {
     return $this->isActive === false;
   }
 
   /** @return 'habilitado'|'inhabilitado' */
-  final function getActiveStatusText(): string {
+  final public function getActiveStatusText(): string {
     return $this->isActive ? 'habilitado' : 'inhabilitado';
   }
 }

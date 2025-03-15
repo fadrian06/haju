@@ -19,7 +19,7 @@ final class Department extends Model {
   private LongName $name;
 
   /** @throws InvalidNameException */
-  function __construct(
+  public function __construct(
     string $name,
     public readonly string|Url $iconFilePath,
     public readonly bool $belongsToExternalConsultation = false,
@@ -29,24 +29,24 @@ final class Department extends Model {
     $this->setName($name);
   }
 
-  function isStatistics(): bool {
+  public function isStatistics(): bool {
     assert($this->name instanceof LongName);
 
     return $this->name->__toString() === 'Estadística';
   }
 
   /** @throws InvalidNameException */
-  function setName(string $name): static {
+  public function setName(string $name): static {
     $this->name = new LongName($name, 'Nombre del departamento');
 
     return $this;
   }
 
-  function hasIcon(): bool {
+  public function hasIcon(): bool {
     return (bool) $this->iconFilePath->asString();
   }
 
-  function __get(string $property): null|int|string {
+  public function __get(string $property): null|int|string {
     return match ($property) {
       'name' => $this->name,
       default => parent::__get($property)
