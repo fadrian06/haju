@@ -10,14 +10,21 @@ final class StatusCheckTest extends FeatureTestCase {
   #[Test]
   public function apiIsRunning(): void {
     $response = self::$client->get('./api/status');
+    $body = $response->getBody()->getContents();
 
-    $this->assertSame(200, $response->getStatusCode());
+    echo $body, PHP_EOL;
 
-    $this->assertStringContainsString(
+    self::assertSame(
+      200,
+      $response->getStatusCode(),
+      $body
+    );
+
+    self::assertStringContainsString(
       'application/json',
       mb_strtolower($response->getHeaderLine('content-type'))
     );
 
-    $this->assertSame('{"status":"ok"}', $response->getBody()->getContents());
+    self::assertSame('{"status":"ok"}', $body);
   }
 }

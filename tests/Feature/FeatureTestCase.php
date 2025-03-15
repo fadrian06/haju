@@ -18,7 +18,8 @@ abstract class FeatureTestCase extends TestCase {
     }
 
     self::$client ??= new Client([
-      'base_uri' => $_ENV['APP_URL']
+      'base_uri' => $_ENV['APP_URL'],
+      'http_errors' => false,
     ]);
   }
 }

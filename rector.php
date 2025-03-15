@@ -13,6 +13,7 @@ use Rector\Config\RectorConfig;
 use Rector\Naming\Rector\Assign\RenameVariableToMatchMethodCallReturnTypeRector;
 use Rector\Naming\Rector\Class_\RenamePropertyToMatchTypeRector;
 use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
+use Rector\PHPUnit\CodeQuality\Rector\Class_\PreferPHPUnitThisCallRector;
 use Rector\Strict\Rector\BooleanNot\BooleanInBooleanNotRuleFixerRector;
 use Rector\Strict\Rector\If_\BooleanInIfConditionRuleFixerRector;
 use Rector\Strict\Rector\Ternary\BooleanInTernaryOperatorRuleFixerRector;
@@ -55,6 +56,7 @@ return RectorConfig::configure()
     BinaryOpNullableToInstanceofRector::class,
     RenamePropertyToMatchTypeRector::class,
     DisallowedShortTernaryRuleFixerRector::class,
+    PreferPHPUnitThisCallRector::class,
   ])
   ->withIndent(' ', 2)
   ->withImportNames();
