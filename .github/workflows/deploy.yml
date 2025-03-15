@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -39,7 +39,7 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: Start PHP Development Server
-        run: start composer run-script serve
+        run: composer run-script serve &
 
       - name: Run ci suite
         run: composer run-script ci

@@ -139,18 +139,6 @@ parameters:
 			path: app/ValueObjects/Phone.php
 
 		-
-			message: '#^Dynamic call to static method PHPUnit\\Framework\\Assert\:\:assertSame\(\)\.$#'
-			identifier: staticMethod.dynamicCall
-			count: 2
-			path: tests/Feature/StatusCheckTest.php
-
-		-
-			message: '#^Dynamic call to static method PHPUnit\\Framework\\Assert\:\:assertStringContainsString\(\)\.$#'
-			identifier: staticMethod.dynamicCall
-			count: 1
-			path: tests/Feature/StatusCheckTest.php
-
-		-
 			message: '#^Dynamic call to static method PHPUnit\\Framework\\Assert\:\:assertInstanceOf\(\)\.$#'
 			identifier: staticMethod.dynamicCall
 			count: 1
