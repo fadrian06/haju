@@ -1,6 +1,7 @@
 {
   "name": "faslatam/haju",
   "description": "Sistema Automatizado para el Registro y Control del Departamento de Estadistica de Salud del Hospital Antonio José Uzcátegui",
+  "license": "proprietary",
   "require": {
     "php": "^8.2",
     "faslatam/alpine-js": "^3.14",
