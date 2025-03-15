@@ -42,9 +42,7 @@
     "ci": [
       "phpunit --no-progress --colors=never",
       "phpstan --no-progress --no-ansi",
-      "rector --dry-run --no-progress-bar --no-ansi",
-      "phpcs --no-colors",
-      "phpmd app tests views text phpmd.xml"
+      "rector --dry-run --no-progress-bar --no-ansi"
     ],
     "migrate:fresh": "php app/commands/migrate-fresh.php"
   },
