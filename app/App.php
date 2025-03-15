@@ -25,7 +25,7 @@ use Leaf\Http\Session;
  * @method static DoctorRepository doctorRepository()
  */
 final class App extends Flight {
-  static function route(
+  public static function route(
     string $pattern,
     $callback,
     bool $pass_route = false,
@@ -36,13 +36,13 @@ final class App extends Flight {
     return self::router()->map($pattern, $callback, $pass_route, $alias);
   }
 
-  static function renderPage(
+  public static function renderPage(
     string $page,
     string $title,
     array $params = [],
     string $layout = 'base'
   ): void {
-    App::render("pages/$page", $params, 'content');
-    App::render("layouts/$layout", compact('title'));
+    App::render("pages/{$page}", $params, 'content');
+    App::render("layouts/{$layout}", compact('title'));
   }
 }
