@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "f2fc4d0ef2f0a840b961c63bdea00c46",
+  "content-hash": "f1402ac8d40d1967580152459b52b544",
   "packages": [
     {
       "name": "faslatam/alpine-js",
