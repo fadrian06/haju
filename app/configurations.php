@@ -16,7 +16,7 @@ use Leaf\Http\Session;
 ///////////////////////////
 // ENVIRONMENT VARIABLES //
 ///////////////////////////
-$_ENV += (require __DIR__ . '/.env.php') + (require __DIR__ . '/.env.dist.php');
+$_ENV += (require __DIR__ . '/../.env.php') + (require __DIR__ . '/../.env.dist.php');
 
 //////////////
 // TIMEZONE //
