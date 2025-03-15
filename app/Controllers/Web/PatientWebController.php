@@ -6,7 +6,6 @@ namespace App\Controllers\Web;
 
 use App;
 use App\Models\Consultation;
-use App\Models\Hospital;
 use App\Models\Hospitalization;
 use App\Models\Patient;
 use App\Repositories\Domain\ConsultationCauseCategoryRepository;
@@ -29,7 +28,7 @@ final class PatientWebController extends Controller {
   private readonly DepartmentRepository $departmentRepository;
   private readonly DoctorRepository $doctorRepository;
 
-  function __construct() {
+  public function __construct() {
     parent::__construct();
 
     $this->patientRepository = App::patientRepository();
@@ -39,7 +38,7 @@ final class PatientWebController extends Controller {
     $this->doctorRepository = App::doctorRepository();
   }
 
-  function showPatients(): void {
+  public function showPatients(): void {
     $idCard = App::request()->query['cedula'];
 
     if ($idCard) {
@@ -49,9 +48,9 @@ final class PatientWebController extends Controller {
         App::redirect("/pacientes/{$patient->id}");
 
         return;
-      } else {
-        parent::setError("Paciente v-$idCard no encontrado");
       }
+
+      parent::setError("Paciente v-{$idCard} no encontrado");
     }
 
     App::renderPage('patients/list', 'Pacientes', [
@@ -59,12 +58,12 @@ final class PatientWebController extends Controller {
     ], 'main');
   }
 
-  function showPatient(int $id): void {
+  public function showPatient(int $id): void {
     try {
       $patient = $this->patientRepository->getById($id);
 
       if (!$patient) {
-        throw new Error("Paciente #$id no encontrado");
+        throw new Error("Paciente #{$id} no encontrado");
       }
 
       $this->patientRepository->setConsultations($patient);
@@ -77,10 +76,10 @@ final class PatientWebController extends Controller {
     }
   }
 
-  function handleRegister(): void {
+  public function handleRegister(): void {
     try {
       if (!in_array($this->data['gender'], Gender::values())) {
-        throw new Error(sprintf('El género es requerido y válido (%s)', join(', ', Gender::values())));
+        throw new Error(sprintf('El género es requerido y válido (%s)', implode(', ', Gender::values())));
       }
 
       $patient = new Patient(
@@ -109,7 +108,7 @@ final class PatientWebController extends Controller {
     App::redirect('/pacientes');
   }
 
-  function handleEdition(int $id): void {
+  public function handleEdition(int $id): void {
     try {
       $patient = $this->patientRepository->getById($id);
 
@@ -127,7 +126,7 @@ final class PatientWebController extends Controller {
     App::redirect('/pacientes');
   }
 
-  function showConsultationRegister(): void {
+  public function showConsultationRegister(): void {
     $patients = $this->patientRepository->getAll();
     $consultationCauseCategories = $this->consultationCauseCategoryRepository->getAll();
     $doctors = $this->doctorRepository->getAll();
@@ -148,7 +147,7 @@ final class PatientWebController extends Controller {
     ), 'main');
   }
 
-  function handleConsultationRegister(): void {
+  public function handleConsultationRegister(): void {
     try {
       $patient = $this->patientRepository->getById($this->data['id_card']);
 
@@ -171,7 +170,7 @@ final class PatientWebController extends Controller {
     App::redirect(App::request()->referrer);
   }
 
-  function showHospitalizationRegister(): void {
+  public function showHospitalizationRegister(): void {
     $patients = $this->patientRepository->getAll();
     $doctors = $this->doctorRepository->getAll();
 
@@ -183,7 +182,7 @@ final class PatientWebController extends Controller {
     );
   }
 
-  function handleHospitalizationRegister(): void {
+  public function handleHospitalizationRegister(): void {
     try {
       $patient = $this->patientRepository->getById($this->data['id_card']);
 
@@ -211,7 +210,7 @@ final class PatientWebController extends Controller {
     App::redirect(App::request()->referrer);
   }
 
-  function deletePatient(int $id): void {
+  public function deletePatient(int $id): void {
     $patient = App::patientRepository()->getById($id);
 
     if (!$patient) {

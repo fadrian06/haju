@@ -17,7 +17,7 @@ final class HomeWebController extends Controller {
   private readonly PatientRepository $patientRepository;
   private readonly DoctorRepository $doctorRepository;
 
-  function __construct() {
+  public function __construct() {
     parent::__construct();
 
     $this->userRepository = App::userRepository();
@@ -26,7 +26,7 @@ final class HomeWebController extends Controller {
     $this->doctorRepository = App::doctorRepository();
   }
 
-  function showIndex(): void {
+  public function showIndex(): void {
     $users = $this->userRepository->getAll($this->loggedUser);
 
     $filteredUsers = array_filter($users, fn(User $user): bool => $user->appointment->isLowerOrEqualThan($this->loggedUser->appointment));

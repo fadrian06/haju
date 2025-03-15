@@ -17,7 +17,7 @@ final class SettingsWebController extends Controller {
   private readonly DepartmentRepository $departmentRepository;
   private readonly SettingsRepository $settingsRepository;
 
-  function __construct() {
+  public function __construct() {
     parent::__construct();
 
     $this->departmentRepository = App::departmentRepository();
@@ -25,7 +25,7 @@ final class SettingsWebController extends Controller {
     $this->settingsRepository = App::settingsRepository();
   }
 
-  function showPermissions(): void {
+  public function showPermissions(): void {
     $departments = $this->departmentRepository->getAll();
     $users = $this->userRepository->getAll($this->loggedUser);
 
@@ -41,9 +41,10 @@ final class SettingsWebController extends Controller {
     );
   }
 
-  function handlePermissionAssignment(int $id): void {
+  public function handlePermissionAssignment(int $id): void {
     $userRequested = $this->userRepository->getById($id);
     $userRequested->assignDepartments();
+
     $departments = [];
 
     foreach (array_keys($this->data->getData()) as $departmentID) {
@@ -59,7 +60,7 @@ final class SettingsWebController extends Controller {
     App::redirect('/configuracion/permisos');
   }
 
-  function showBackups(): void {
+  public function showBackups(): void {
     $this->ensureUserIsAuthorized();
 
     App::renderPage(
@@ -70,13 +71,13 @@ final class SettingsWebController extends Controller {
     );
   }
 
-  function showInstitutionConfigs(): void {
+  public function showInstitutionConfigs(): void {
     App::renderPage('settings/institution', 'Institución', [
       'hospital' => $this->settingsRepository->getHospital()
     ], 'main');
   }
 
-  function handleCreateBackup(): void {
+  public function handleCreateBackup(): void {
     $scriptPath = $this->ensureUserIsAuthorized()->settingsRepository->backup();
     $dataUrl = 'data:text/plain;base64,' . base64_encode(file_get_contents($scriptPath));
 
@@ -85,20 +86,20 @@ final class SettingsWebController extends Controller {
     App::redirect('/configuracion/respaldo-restauracion');
   }
 
-  function loadBackupFile(): void {
+  public function loadBackupFile(): void {
     $script = file_get_contents(App::request()->files->script['tmp_name']);
     $this->ensureUserIsAuthorized()->settingsRepository->restoreFromScript($script);
     self::setMessage('Base de datos restaurada exitósamente');
     App::redirect('/salir');
   }
 
-  function handleRestoreBackup(): void {
+  public function handleRestoreBackup(): void {
     $this->ensureUserIsAuthorized()->settingsRepository->restore();
     self::setMessage('Base de datos restaurada exitósamente');
     App::redirect('/salir');
   }
 
-  function handleInstitutionUpdate(): void {
+  public function handleInstitutionUpdate(): void {
     $hospital = $this->settingsRepository->getHospital();
 
     $hospital->setAsic($this->data['asic'])
@@ -116,7 +117,7 @@ final class SettingsWebController extends Controller {
     App::redirect('/configuracion/institucion');
   }
 
-  function showConsultationCausesConfigs(): void {
+  public function showConsultationCausesConfigs(): void {
     $consultationCauses = App::consultationCauseRepository()->getAll();
 
     App::renderPage(
@@ -127,7 +128,7 @@ final class SettingsWebController extends Controller {
     );
   }
 
-  function handleConsultationCausesUpdate(): void {
+  public function handleConsultationCausesUpdate(): void {
     $limitOf = array_map(
       static fn(string $limit): int => $limit,
       array_filter(App::request()->data->limit_of)
@@ -135,6 +136,7 @@ final class SettingsWebController extends Controller {
 
     $pdo = App::db()->instance();
     $pdo->beginTransaction();
+
     $stmt = $pdo->prepare('UPDATE consultation_causes SET weekly_cases_limit = :weeklyLimit WHERE id = :id');
 
     foreach ($limitOf as $consultationCauseId => $weeklyLimit) {
@@ -149,7 +151,7 @@ final class SettingsWebController extends Controller {
     App::redirect(App::request()->referrer);
   }
 
-  function showLogs(): void {
+  public function showLogs(): void {
     $logsPath = __DIR__ . '/../../logs/authentications.log';
     $logs = [];
 
@@ -160,7 +162,7 @@ final class SettingsWebController extends Controller {
     App::renderPage('logs', 'Logs de usuarios', compact('logs'), 'main');
   }
 
-  function cleanLogs(): void {
+  public function cleanLogs(): void {
     $logsPath = __DIR__ . '/../../logs/authentications.log';
     file_put_contents($logsPath, '');
     App::redirect('/logs');

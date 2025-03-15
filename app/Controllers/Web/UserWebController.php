@@ -26,18 +26,18 @@ class UserWebController extends Controller {
   private readonly DepartmentRepository $departmentRepository;
   private readonly UserRepository $userRepository;
 
-  function __construct() {
+  public function __construct() {
     parent::__construct();
 
     $this->departmentRepository = App::departmentRepository();
     $this->userRepository = App::userRepository();
   }
 
-  function showRegister(): void {
+  public function showRegister(): void {
     App::renderPage('register', 'Regístrate');
   }
 
-  function handleRegister(): void {
+  public function handleRegister(): void {
     [$appointment, $urlToRedirect, $urlWhenFail] = match (true) {
       !$this->loggedUser => [Appointment::Director, '/ingresar', '/registrate'],
       $this->loggedUser->appointment === Appointment::Director => [Appointment::Coordinator, '/usuarios', '/usuarios'],
@@ -52,11 +52,11 @@ class UserWebController extends Controller {
       }
 
       if (!in_array($this->data['gender'], Gender::values())) {
-        throw new Error(sprintf('El género es requerido y válido (%s)', join(', ', Gender::values())));
+        throw new Error(sprintf('El género es requerido y válido (%s)', implode(', ', Gender::values())));
       }
 
       if (!in_array($this->data['instruction_level'], InstructionLevel::values())) {
-        throw new Error(sprintf('El nivel de instrucción es requerido y válido (%s)', join(', ', InstructionLevel::values())));
+        throw new Error(sprintf('El nivel de instrucción es requerido y válido (%s)', implode(', ', InstructionLevel::values())));
       }
 
       if (
@@ -123,11 +123,11 @@ class UserWebController extends Controller {
     App::redirect($urlWhenFail);
   }
 
-  function showPasswordReset(): void {
+  public function showPasswordReset(): void {
     App::renderPage('forgot-pass', 'Recuperar contraseña (1/2)');
   }
 
-  function handlePasswordReset(): void {
+  public function handlePasswordReset(): void {
     if ($this->data['id_card']) {
       $user = $this->userRepository->getByIdCard($this->data['id_card']);
 
@@ -156,17 +156,17 @@ class UserWebController extends Controller {
     App::redirect('/ingresar');
   }
 
-  function showProfile(): void {
+  public function showProfile(): void {
     App::renderPage('profile', 'Mi perfil', [
       'showPasswordChangeModal' => false
     ], 'main');
   }
 
-  function showEditProfile(): void {
+  public function showEditProfile(): void {
     App::renderPage('edit-profile', 'Editar perfil', [], 'main');
   }
 
-  function handleEditProfile(): void {
+  public function handleEditProfile(): void {
     try {
       $profileImageUrlPath = '';
 
@@ -205,7 +205,7 @@ class UserWebController extends Controller {
     App::redirect('/perfil/editar');
   }
 
-  function showUsers(): void {
+  public function showUsers(): void {
     $users = $this->userRepository->getAll($this->loggedUser);
 
     $departments = $this->loggedUser->appointment === Appointment::Director
@@ -225,13 +225,13 @@ class UserWebController extends Controller {
 
     App::renderPage(
       'users',
-      "Usuarios ($usersNumber)",
+      "Usuarios ({$usersNumber})",
       ['users' => $filteredUsers, ...compact('departments')],
       'main'
     );
   }
 
-  function handleToggleStatus(int $id): void {
+  public function handleToggleStatus(int $id): void {
     try {
       $user = $this->userRepository->getById($id);
 
@@ -249,7 +249,7 @@ class UserWebController extends Controller {
     App::redirect($user->appointment === Appointment::Director ? '/salir' : '/usuarios');
   }
 
-  function handlePasswordChange(): void {
+  public function handlePasswordChange(): void {
     try {
       if (!$this->loggedUser->checkPassword($this->data['old_password'])) {
         throw new Error('La contraseña anterior es incorrecta');

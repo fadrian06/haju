@@ -8,10 +8,14 @@ use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
 use Rector\CodingStyle\Rector\Catch_\CatchExceptionNameMatchingTypeRector;
 use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\CodingStyle\Rector\If_\NullableCompareToNullRector;
+use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
 use Rector\Naming\Rector\Assign\RenameVariableToMatchMethodCallReturnTypeRector;
 use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
+use Rector\Strict\Rector\BooleanNot\BooleanInBooleanNotRuleFixerRector;
+use Rector\Strict\Rector\If_\BooleanInIfConditionRuleFixerRector;
 use Rector\Strict\Rector\Ternary\BooleanInTernaryOperatorRuleFixerRector;
+use Rector\TypeDeclaration\Rector\BooleanAnd\BinaryOpNullableToInstanceofRector;
 
 return RectorConfig::configure()
   ->withPaths([
@@ -43,4 +47,9 @@ return RectorConfig::configure()
     BooleanInTernaryOperatorRuleFixerRector::class,
     CompactToVariablesRector::class,
     CatchExceptionNameMatchingTypeRector::class,
-  ]);
+    NewlineAfterStatementRector::class,
+    BooleanInBooleanNotRuleFixerRector::class,
+    BooleanInIfConditionRuleFixerRector::class,
+    BinaryOpNullableToInstanceofRector::class,
+  ])
+  ->withIndent(' ', 2);

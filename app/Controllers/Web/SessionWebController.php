@@ -13,33 +13,34 @@ final class SessionWebController extends Controller {
   private readonly UserRepository $userRepository;
   private const DEFAULT_PASSWORD = '1234';
 
-  function __construct() {
+  public function __construct() {
     parent::__construct();
 
     $this->userRepository = App::userRepository();
   }
 
-  function logOut(): void {
+  public function logOut(): void {
     Session::unset('userId');
     Session::unset('department');
     App::redirect('/ingresar');
   }
 
-  function showLogin(): void {
+  public function showLogin(): void {
     App::renderPage('login', 'Ingreso (1/2)');
   }
 
-  function handleLogin(): void {
+  public function handleLogin(): void {
     $user = $this->userRepository->getByIdCard((int) $this->data['id_card']);
 
     try {
       if (!$this->data['id_card']) {
         throw new Error('La cédula es requerida');
       }
-
       if (!$this->data['password']) {
         throw new Error('La contraseña es requerida');
-      } elseif ($this->data['password'] === self::DEFAULT_PASSWORD) {
+      }
+
+      if ($this->data['password'] === self::DEFAULT_PASSWORD) {
         Session::set('mustChangePassword', true);
       }
 
@@ -56,7 +57,7 @@ final class SessionWebController extends Controller {
     }
   }
 
-  function showDepartments(): void {
+  public function showDepartments(): void {
     $departments = [];
 
     foreach ($this->loggedUser->getDepartment() as $department) {
@@ -72,7 +73,7 @@ final class SessionWebController extends Controller {
     App::renderPage('select-department', 'Ingresar (2/2)');
   }
 
-  function saveChoice(int $id): void {
+  public function saveChoice(int $id): void {
     $this->session->set('departmentId', $id);
     App::redirect('/');
   }
