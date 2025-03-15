@@ -10,32 +10,28 @@ use PHPUnit\Framework\TestCase;
 final class IdCardTest extends TestCase {
   #[Test]
   #[DataProvider('validIdCards')]
-  function acceptvalidIdCards(int $idCard): void {
+  public function acceptvalidIdCards(int $idCard): void {
     $idCard = new IdCard($idCard);
 
-    self::assertIsInt($idCard->value);
+    $this->assertIsInt($idCard->value);
   }
 
   #[Test]
   #[DataProvider('invalidIdCards')]
-  function throwsExceptionForInvalidIdCards(int $invalidIdCard): void {
+  public function throwsExceptionForInvalidIdCards(int $invalidIdCard): void {
     self::expectException(InvalidArgumentException::class);
     new IdCard($invalidIdCard);
   }
 
-  static function validIdCards(): array {
-    return [
-      [30122782],
-      [36000001],
-    ];
+  public static function validIdCards(): Iterator {
+    yield [30122782];
+    yield [36000001];
   }
 
-  static function invalidIdCards(): array {
-    return [
-      [25431],
-      [1],
-      [0],
-      [9],
-    ];
+  public static function invalidIdCards(): Iterator {
+    yield [25431];
+    yield [1];
+    yield [0];
+    yield [9];
   }
 }

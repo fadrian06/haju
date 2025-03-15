@@ -56,4 +56,5 @@ return RectorConfig::configure()
     RenamePropertyToMatchTypeRector::class,
     DisallowedShortTernaryRuleFixerRector::class,
   ])
-  ->withIndent(' ', 2);
+  ->withIndent(' ', 2)
+  ->withImportNames();

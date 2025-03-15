@@ -6,6 +6,8 @@ use App\Models\ConsultationCause;
 use App\Models\ConsultationCauseCategory;
 use Leaf\Http\Session;
 
+Flight::route('GET /api/status', static fn() => Flight::json(['status' => 'ok']));
+
 App::route(
   '/api/preferencias/tema/@theme',
   static function (string $theme): void {

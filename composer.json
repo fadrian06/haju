@@ -20,8 +20,16 @@
       "app/utils.php"
     ]
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests"
+    }
+  },
   "scripts": {
-    "dev:win": "start php -S localhost:80",
+    "serve": [
+      "Composer\\Config::disableProcessTimeout",
+      "php -S 0.0.0.0:61001"
+    ],
     "migrate:fresh": "php app/commands/migrate-fresh.php",
     "post-install-cmd": [
       "php -r \"if (!file_exists('.env.php')) copy('.env.dist.php', '.env.php');\""
@@ -35,6 +43,7 @@
     ]
   },
   "require-dev": {
+    "guzzlehttp/guzzle": "^7.9",
     "phpmd/phpmd": "^2.15",
     "phpstan/extension-installer": "^1.4",
     "phpstan/phpstan": "^2.1",

@@ -10,7 +10,7 @@
 .env.php
 *.db
 *.db-journal
-.phpunit.cache
+.phpunit.result.cache
 *.backup.sql
 
 # Dist
