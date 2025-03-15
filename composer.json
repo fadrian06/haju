@@ -41,7 +41,7 @@
     ],
     "ci": [
       "phpunit --no-progress --colors=never",
-      "phpstan --no-progress --no-ansi",
+      "phpstan --no-progress --no-ansi --memory-limit=512M",
       "rector --dry-run --no-progress-bar --no-ansi"
     ],
     "migrate:fresh": "php app/commands/migrate-fresh.php"

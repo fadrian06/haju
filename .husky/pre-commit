@@ -1,2 +1,4 @@
+#!/bin/sh
+
 composer validate --no-ansi
-composer ci
+composer --no-ansi ci
