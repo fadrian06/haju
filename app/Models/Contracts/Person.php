@@ -113,10 +113,10 @@ abstract class Person extends Model {
     assert($this->idCard instanceof IdCard);
 
     return match ($property) {
-      'firstName' => $this->firstName,
-      'secondName' => $this->secondName,
-      'firstLastName' => $this->firstLastName,
-      'secondLastName' => $this->secondLastName,
+      'firstName' => (string) $this->firstName,
+      'secondName' => (string) $this->secondName,
+      'firstLastName' => (string) $this->firstLastName,
+      'secondLastName' => (string) $this->secondLastName,
       'idCard' => $this->idCard->value,
       default => parent::__get($property)
     };

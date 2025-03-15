@@ -36,7 +36,11 @@ final readonly class AdultBirthDate extends Date {
     $regexp = "/^(?<year>\d{4}){$separator}(?<month>\d{2}){$separator}(?<day>\d{2})$/";
 
     if (preg_match($regexp, $raw, $matches)) {
-      return new self($matches['day'], $matches['month'], $matches['year']);
+      return new self(
+        (int) $matches['day'],
+        (int) $matches['month'],
+        (int) $matches['year']
+      );
     }
 
     throw new InvalidDateException("Fecha inválida \"{$raw}\"");
@@ -45,7 +49,7 @@ final readonly class AdultBirthDate extends Date {
   public static function fromTimestamp(int $timestamp): self {
     [$day, $month, $year] = explode('-', date(self::FORMAT, $timestamp));
 
-    return new self($day, $month, $year);
+    return new self((int) $day, (int) $month, (int) $year);
   }
 
   private function validate(int $day, int $month, int $year): void {

@@ -48,7 +48,7 @@ final class Department extends Model {
 
   public function __get(string $property): null|int|string {
     return match ($property) {
-      'name' => $this->name,
+      'name' => (string) $this->name,
       default => parent::__get($property)
     };
   }

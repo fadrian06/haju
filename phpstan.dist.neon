@@ -11,3 +11,4 @@ parameters:
     - .env.dist.php
     - index.php
     - rector.php
+  treatPhpDocTypesAsCertain: false
