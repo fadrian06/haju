@@ -1,18 +1,20 @@
 {
   "devDependencies": {
-    "@fontsource/poppins": "^5.1.1",
-    "@fontsource/rajdhani": "^5.1.1",
+    "@fontsource/poppins": "^5.2.5",
+    "@fontsource/rajdhani": "^5.2.5",
     "@fortawesome/fontawesome-free": "^6.7.2",
     "@types/bootstrap": "^5.2.10",
-    "alpinejs": "^3.14.8",
+    "alpinejs": "^3.14.9",
     "bootstrap": "^5.3.3",
     "esbuild": "0.21.5",
+    "husky": "^9.1.7",
     "metismenujs": "^1.4.0",
     "pure-css-loader": "^3.3.3",
     "sweetalert2": "^11.17.2"
   },
   "scripts": {
+    "build": "esbuild assets/src/*.ts --outdir=assets/dist --bundle --minify --loader:.woff2=copy --loader:.woff=copy --loader:.ttf=copy",
     "dev": "esbuild assets/src/*.ts --outdir=assets/dist --bundle --watch --sourcemap --loader:.woff2=copy --loader:.woff=copy --loader:.ttf=copy",
-    "build": "esbuild assets/src/*.ts --outdir=assets/dist --bundle --minify --loader:.woff2=copy --loader:.woff=copy --loader:.ttf=copy"
+    "prepare": "husky"
   }
 }

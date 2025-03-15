@@ -1,0 +1,82 @@
+name: PHP Composer
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+      - run: npm run build --if-present
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Start PHP Development Server
+        run: composer run-script serve &
+
+      - name: Run ci suite
+        run: composer run-script ci
+
+      - name: Install dependencies
+        run: composer install --no-dev --prefer-dist --no-progress
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.ftp_server }}
+          username: ${{ secrets.ftp_username }}
+          password: ${{ secrets.ftp_password }}
+          port: ${{ secrets.ftp_port }}
+          server-dir: ${{ secrets.ftp_server_dir }}
+          exclude: |
+            .git
+            .husky
+            docs
+            node_modules
+            tests
+            .editorconfig
+            .gitignore
+            .phpunit.result.cache
+            biome.json
+            composer.json
+            composer.lock
+            haju.sublime-project
+            haju.sublime-workspace
+            package-lock.json
+            package.json
+            phpcs.xml
+            phpcs.xml.dist
+            phpmd.xml
+            phpstan-baseline.neon
+            phpstan.dist.neon
+            phpstan.neon
+            phpunit.xml
+            rector.php
+            requirements.todo

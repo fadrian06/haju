@@ -12,6 +12,8 @@
 *.db-journal
 .phpunit.result.cache
 *.backup.sql
+phpcs.xml
+phpstan.neon
 
 # Dist
 node_modules

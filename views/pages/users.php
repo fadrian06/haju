@@ -193,7 +193,7 @@ $loggedUser = $user;
               <?php foreach ($user->getDepartment() as $department) : ?>
                 <option
                   value="<?= $department->id ?>"
-                  <?= in_array($department->id, $_SESSION['lastData']['departments'] ?? []) ? 'selected' : '' ?>>
+                  <?= in_array($department->id, $_SESSION['lastData']['departments'] ?? [], true) ? 'selected' : '' ?>>
                   <?= $department->name ?>
                 </option>
               <?php endforeach ?>

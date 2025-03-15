@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Department;
 use App\Models\User;
 use App\ValueObjects\Appointment;
@@ -27,11 +29,11 @@ $loggedUser = $user;
 <?php else : ?>
   <section class="col-sm-5">
     <ul class="list-group my-4 roles-menu">
-      <?php foreach ($users as $user) : ?>
+      <?php foreach ($users as $iteratedUser) : ?>
         <li>
-          <a class="list-group-item d-flex justify-content-between" data-bs-toggle="list" href="#<?= $user->idCard ?>">
-            <strong class="me-2">v<?= $user->idCard ?></strong>
-            <span><?= $user->getFullName() ?></span>
+          <a class="list-group-item d-flex justify-content-between" data-bs-toggle="list" href="#<?= $iteratedUser->idCard ?>">
+            <strong class="me-2">v<?= $iteratedUser->idCard ?></strong>
+            <span><?= $iteratedUser->getFullName() ?></span>
           </a>
         </li>
       <?php endforeach ?>
@@ -39,15 +41,15 @@ $loggedUser = $user;
   </section>
   <section class="col-sm">
     <div class="tab-content">
-      <?php foreach ($users as $user) : ?>
-        <form action="./configuracion/<?= $user->id ?>/permisos" method="post" class="tab-pane fade text-center" id="<?= $user->idCard ?>">
+      <?php foreach ($users as $iteratedUser) : ?>
+        <form action="./configuracion/<?= $iteratedUser->id ?>/permisos" method="post" class="tab-pane fade text-center" id="<?= $iteratedUser->idCard ?>">
           <h4 class="mb-4">Departamentos asignados</h4>
           <div class="list-group">
             <?php foreach ($departments as $department) : ?>
-              <label class="<?= ($department->isInactive() || !$loggedUser->hasDepartment($department)) ? 'pe-none opacity-50' : 'pe-auto' ?> list-group-item d-flex justify-content-between align-items-center" for="<?= $user->idCard . $department->id . $department->name ?>">
+              <label class="<?= ($department->isInactive() || !$loggedUser->hasDepartment($department)) ? 'pe-none opacity-50' : 'pe-auto' ?> list-group-item d-flex justify-content-between align-items-center" for="<?= $iteratedUser->idCard . $department->id . $department->name ?>">
                 <span class="user-select-none"><?= $department->name ?></span>
                 <div class="form-check form-switch">
-                  <input <?= $department->isInactive() ? 'disabled' : '' ?> name="<?= $department->id ?>" class="form-check-input fs-3" id="<?= $user->idCard . $department->id . $department->name ?>" type="checkbox" <?= $user->hasDepartment($department) ? 'checked' : '' ?> />
+                  <input <?= $department->isInactive() ? 'disabled' : '' ?> name="<?= $department->id ?>" class="form-check-input fs-3" id="<?= $iteratedUser->idCard . $department->id . $department->name ?>" type="checkbox" <?= $iteratedUser->hasDepartment($department) ? 'checked' : '' ?> />
                 </div>
               </label>
             <?php endforeach ?>

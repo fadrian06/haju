@@ -16,12 +16,7 @@ use Leaf\Http\Session;
 ///////////////////////////
 // ENVIRONMENT VARIABLES //
 ///////////////////////////
-$_ENV += array_merge(
-  require __DIR__ . '/../.env.dist.php',
-  file_exists(__DIR__ . '/../.env.php')
-    ? require __DIR__ . '/../.env.php'
-    : []
-);
+$_ENV += (require __DIR__ . '/.env.php') + (require __DIR__ . '/.env.dist.php');
 
 //////////////
 // TIMEZONE //
@@ -118,3 +113,4 @@ App::register('patientRepository', PDOPatientRepository::class, [
 
 App::register('session', Session::class);
 App::view()->preserveVars = false;
+Flight::set('flight.views.path', 'views');

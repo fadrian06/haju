@@ -10,6 +10,7 @@
         "source.json.composer": "LSP-json",
         "source.json.sublime": "LSP-json",
         "source.json.biome": "LSP-json",
+        "source.json.npm": "LSP-json",
       },
       "LSP-intelephense": {
         "settings": {

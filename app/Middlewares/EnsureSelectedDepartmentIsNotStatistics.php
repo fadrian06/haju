@@ -17,5 +17,7 @@ final readonly class EnsureSelectedDepartmentIsNotStatistics {
 
     Session::set('error', 'No puedes registrar consultas desde el departamento de Estadística');
     App::redirect('/');
+
+    exit;
   }
 }
