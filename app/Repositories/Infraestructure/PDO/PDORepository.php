@@ -13,7 +13,7 @@ abstract class PDORepository {
   private const DATETIME_FORMAT = 'Y-m-d H:i:s';
   protected const DATE_FORMAT = 'Y-m-d';
 
-  function __construct(
+  public function __construct(
     protected readonly Connection $connection,
     protected readonly string $baseUrl
   ) {
@@ -21,7 +21,7 @@ abstract class PDORepository {
 
   abstract protected static function getTable(): string;
 
-  final function getRowsCount(): int {
+  final public function getRowsCount(): int {
     return $this->ensureIsConnected()
       ->query("SELECT count(id) FROM " . static::getTable())
       ->fetchColumn(0);

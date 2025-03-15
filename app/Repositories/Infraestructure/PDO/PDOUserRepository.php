@@ -38,7 +38,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
     AND users.instruction_level_id = instruction_levels.id
   SQL_JOINS;
 
-  function __construct(
+  public function __construct(
     Connection $connection,
     string $baseUrl,
     private readonly PDODepartmentRepository $departmentRepository
@@ -50,7 +50,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
     return 'users';
   }
 
-  function getAll(User ...$exclude): array {
+  public function getAll(User ...$exclude): array {
     $ids = array_map(fn(User $user): int => $user->id, $exclude);
 
     return $this->ensureIsConnected()
@@ -60,12 +60,12 @@ class PDOUserRepository extends PDORepository implements UserRepository {
         self::getTable(),
         self::JOINS,
         $ids !== []
-          ? sprintf('WHERE users.id NOT IN (%s)', join(', ', $ids))
+          ? sprintf('WHERE users.id NOT IN (%s)', implode(', ', $ids))
           : ''
       ))->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper']);
   }
 
-  function getByIdCard(int $idCard): ?User {
+  public function getByIdCard(int $idCard): ?User {
     $stmt = $this->ensureIsConnected()
       ->prepare(sprintf(
         'SELECT %s FROM %s %s WHERE id_card = ?',
@@ -79,7 +79,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
     return $stmt->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper'])[0] ?? null;
   }
 
-  function getById(int $id): ?User {
+  public function getById(int $id): ?User {
     $stmt = $this->ensureIsConnected()
       ->prepare(sprintf(
         'SELECT %s FROM %s %s WHERE users.id = ?',
@@ -93,7 +93,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
     return $stmt->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper'])[0] ?? null;
   }
 
-  function save(User $user): void {
+  public function save(User $user): void {
     try {
       if ($user->id) {
         $this->assignDepartments($user)->update($user);
@@ -179,7 +179,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
     if ($values) {
       $sql = sprintf(
         'INSERT INTO department_assignments (user_id, department_id) VALUES %s',
-        join(', ', $values)
+        implode(', ', $values)
       );
 
       $this->ensureIsConnected()

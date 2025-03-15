@@ -11,12 +11,11 @@ use App\ValueObjects\DBDriver;
 use PDO;
 use PDOException;
 
-final readonly class FilesSettingsRepository implements SettingsRepository
-{
-  function __construct(private Connection $connection) {}
+final readonly class FilesSettingsRepository implements SettingsRepository {
+  public function __construct(private Connection $connection) {
+  }
 
-  function getHospital(): Hospital
-  {
+  public function getHospital(): Hospital {
     $info = json_decode(file_get_contents(__DIR__ . '/hospital.json'), true);
 
     return new Hospital(
@@ -31,8 +30,7 @@ final readonly class FilesSettingsRepository implements SettingsRepository
     );
   }
 
-  function backupExists(): bool
-  {
+  public function backupExists(): bool {
     switch ($this->connection->driver) {
       case DBDriver::SQLite:
         return file_exists(str_replace('.db', '.backup.db', $this->connection->dbName));
@@ -42,8 +40,7 @@ final readonly class FilesSettingsRepository implements SettingsRepository
     }
   }
 
-  function backup(): string
-  {
+  public function backup(): string {
     switch ($this->connection->driver) {
       case DBDriver::SQLite:
         copy($this->connection->dbName, str_replace('.db', '.backup.db', $this->connection->dbName));
@@ -62,8 +59,7 @@ final readonly class FilesSettingsRepository implements SettingsRepository
     }
   }
 
-  function restore(): void
-  {
+  public function restore(): void {
     switch ($this->connection->driver) {
       case DBDriver::SQLite:
         $copy = str_replace('.db', '.backup.db', $this->connection->dbName);
@@ -78,23 +74,22 @@ final readonly class FilesSettingsRepository implements SettingsRepository
     }
   }
 
-  function restoreFromScript(string $script): void {
+  public function restoreFromScript(string $script): void {
     $pdo = $this->connection->instance();
 
-    switch ($this->connection->driver) {
-      case DBDriver::SQLite:
-        foreach (explode(';', $script) as $statement) {
-          if ($statement) {
-            try {
-              $pdo->query($statement);
-            } catch (PDOException) {}
+    if ($this->connection->driver === DBDriver::SQLite) {
+      foreach (explode(';', $script) as $statement) {
+        if ($statement) {
+          try {
+            $pdo->query($statement);
+          } catch (PDOException) {
           }
         }
+      }
     }
   }
 
-  function save(Hospital $hospital): void
-  {
+  public function save(Hospital $hospital): void {
     $data = [
       'name' => $hospital->name,
       'asic' => $hospital->asic,
@@ -109,8 +104,7 @@ final readonly class FilesSettingsRepository implements SettingsRepository
     file_put_contents(__DIR__ . '/hospital.json', json_encode($data, JSON_PRETTY_PRINT));
   }
 
-  private function generateSqliteScript(): string
-  {
+  private function generateSqliteScript(): string {
     $pdo = $this->connection->instance();
     $tablesQuery = $pdo->query("SELECT name FROM sqlite_master WHERE type='table'");
     $tables = $tablesQuery->fetchAll(PDO::FETCH_COLUMN);
@@ -121,11 +115,11 @@ final readonly class FilesSettingsRepository implements SettingsRepository
         continue;
       }
 
-      $createTableQuery = $pdo->query("SELECT sql FROM sqlite_master WHERE type='table' AND name='$table'");
+      $createTableQuery = $pdo->query("SELECT sql FROM sqlite_master WHERE type='table' AND name='{$table}'");
       $createTableSql = $createTableQuery->fetch(PDO::FETCH_COLUMN);
       $createTableSql = str_replace('CREATE TABLE', 'CREATE TABLE IF NOT EXISTS', $createTableSql);
       $sqlScript .= $createTableSql . ";\n\n";
-      $rowsQuery = $pdo->query("SELECT * FROM $table");
+      $rowsQuery = $pdo->query("SELECT * FROM {$table}");
       $rows = $rowsQuery->fetchAll(PDO::FETCH_ASSOC);
       $allValues = [];
 
@@ -134,7 +128,7 @@ final readonly class FilesSettingsRepository implements SettingsRepository
         $values = array_values($row);
 
         $columnsList = implode(', ', array_map(
-          static fn($col): string =>  "`$col`",
+          static fn($col): string =>  "`{$col}`",
           $columns
         ));
 
@@ -149,13 +143,13 @@ final readonly class FilesSettingsRepository implements SettingsRepository
           $values
         ));
 
-        if (!in_array("($valuesList)", $allValues)) {
-          $allValues[] = "($valuesList)";
+        if (!in_array("({$valuesList})", $allValues)) {
+          $allValues[] = "({$valuesList})";
         }
       }
 
       if ($allValues !== []) {
-        $sqlScript .= "INSERT INTO `$table` ($columnsList) VALUES " . implode(', ', $allValues) . ";\n";
+        $sqlScript .= "INSERT INTO `{$table}` ({$columnsList}) VALUES " . implode(', ', $allValues) . ";\n";
       }
 
       $sqlScript .= "\n";

@@ -8,5 +8,5 @@ use App\Models\ConsultationCauseCategory;
 
 /** @implements Repository<ConsultationCauseCategory> */
 interface ConsultationCauseCategoryRepository extends Repository {
-  function getById(int $id): ?ConsultationCauseCategory;
+  public function getById(int $id): ?ConsultationCauseCategory;
 }

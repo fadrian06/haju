@@ -10,9 +10,9 @@ use Generator;
 
 /** @implements Repository<ConsultationCause> */
 interface ConsultationCauseRepository extends Repository {
-  function getById(int $id): ?ConsultationCause;
+  public function getById(int $id): ?ConsultationCause;
   /** @return Generator<int, ConsultationCause> */
-  function getAllWithGenerator(): Generator;
+  public function getAllWithGenerator(): Generator;
   /** @return array<int, ConsultationCause> */
-  function getByCategory(ConsultationCauseCategory $category): array;
+  public function getByCategory(ConsultationCauseCategory $category): array;
 }

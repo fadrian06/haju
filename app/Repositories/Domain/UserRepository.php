@@ -14,11 +14,11 @@ use App\Repositories\Exceptions\DuplicatedPhonesException;
 
 /** @extends Repository<User> */
 interface UserRepository extends Repository {
-  function getAll(User ...$exclude): array;
+  public function getAll(User ...$exclude): array;
 
   /** @throws ConnectionException */
-  function getByIdCard(int $idCard): ?User;
-  function getById(int $id): ?User;
+  public function getByIdCard(int $idCard): ?User;
+  public function getById(int $id): ?User;
 
   /**
    * @throws ConnectionException
@@ -28,5 +28,5 @@ interface UserRepository extends Repository {
    * @throws DuplicatedEmailsException
    * @throws DuplicatedAvatarsException
    */
-  function save(User $user): void;
+  public function save(User $user): void;
 }

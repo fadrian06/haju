@@ -21,7 +21,7 @@ final class PDODoctorRepository extends PDORepository implements DoctorRepositor
     registered_date as registeredDate, registered_by_id as registeredById
   SQL;
 
-  function __construct(
+  public function __construct(
     Connection $connection,
     string $baseUrl,
     private readonly PDOUserRepository $userRepository
@@ -33,7 +33,7 @@ final class PDODoctorRepository extends PDORepository implements DoctorRepositor
     return 'doctors';
   }
 
-  function getAll(): array {
+  public function getAll(): array {
     return $this->ensureIsConnected()
       ->query(sprintf(
         'SELECT %s FROM %s ORDER BY idCard',
@@ -42,7 +42,7 @@ final class PDODoctorRepository extends PDORepository implements DoctorRepositor
       ))->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper']);
   }
 
-  function getById(int $id): ?Doctor {
+  public function getById(int $id): ?Doctor {
     $stmt = $this->ensureIsConnected()->prepare(sprintf(
       'SELECT %s FROM %s WHERE id = ?',
       self::FIELDS,
@@ -54,7 +54,7 @@ final class PDODoctorRepository extends PDORepository implements DoctorRepositor
     return $stmt->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper'])[0] ?? null;
   }
 
-  function getByIdCard(int $idCard): ?Doctor {
+  public function getByIdCard(int $idCard): ?Doctor {
     $stmt = $this->ensureIsConnected()->prepare(sprintf(
       'SELECT %s FROM %s WHERE id_card = ?',
       self::FIELDS,
@@ -66,7 +66,7 @@ final class PDODoctorRepository extends PDORepository implements DoctorRepositor
     return $stmt->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper'])[0] ?? null;
   }
 
-  function save(Doctor $doctor): void {
+  public function save(Doctor $doctor): void {
     try {
       if ($doctor->id) {
         $this->update($doctor);

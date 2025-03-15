@@ -22,13 +22,13 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
     return 'departments';
   }
 
-  function getAll(): array {
+  public function getAll(): array {
     return $this->ensureIsConnected()
       ->query(sprintf('SELECT %s FROM %s ORDER BY name', self::FIELDS, self::getTable()))
       ->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper']);
   }
 
-  function getById(int $id): ?Department {
+  public function getById(int $id): ?Department {
     $stmt = $this->ensureIsConnected()
       ->prepare(sprintf('SELECT %s FROM %s WHERE id = ?', self::FIELDS, self::getTable()));
 
@@ -37,7 +37,7 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
     return $stmt->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper'])[0] ?? null;
   }
 
-  function save(Department $department): void {
+  public function save(Department $department): void {
     try {
       if ($department->id) {
         $this->ensureIsConnected()
@@ -77,7 +77,7 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
     }
   }
 
-  function mapper(
+  public function mapper(
     int $id,
     string $name,
     string $registeredDateTime,

@@ -17,7 +17,7 @@ extends PDORepository implements ConsultationCauseRepository {
   category_id as categoryId, weekly_cases_limit as weeklyLimit
   sql;
 
-  function __construct(
+  public function __construct(
     Connection $connection,
     string $baseUrl,
     private readonly PDOConsultationCauseCategoryRepository $categoryRepository
@@ -29,13 +29,13 @@ extends PDORepository implements ConsultationCauseRepository {
     return 'consultation_causes';
   }
 
-  function getAll(): array {
+  public function getAll(): array {
     return $this->ensureIsConnected()
       ->query(sprintf('SELECT %s FROM %s', self::FIELDS, self::getTable()))
       ->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper']);
   }
 
-  function getByCategory(ConsultationCauseCategory $category): array {
+  public function getByCategory(ConsultationCauseCategory $category): array {
     $stmt = $this->ensureIsConnected()->prepare(sprintf(
       'SELECT %s FROM %s WHERE category_id = ?',
       self::FIELDS,
@@ -47,7 +47,7 @@ extends PDORepository implements ConsultationCauseRepository {
     return $stmt->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper']);
   }
 
-  function getAllWithGenerator(): Generator {
+  public function getAllWithGenerator(): Generator {
     $stmt = $this->ensureIsConnected()
       ->query(sprintf('SELECT %s FROM %s', self::FIELDS, self::getTable()));
 
@@ -56,7 +56,7 @@ extends PDORepository implements ConsultationCauseRepository {
     }
   }
 
-  function getById(int $id): ?ConsultationCause {
+  public function getById(int $id): ?ConsultationCause {
     $stmt = $this->ensureIsConnected()->prepare(sprintf(
       'SELECT %s FROM %s WHERE id = ?',
       self::FIELDS,
@@ -77,7 +77,7 @@ extends PDORepository implements ConsultationCauseRepository {
     int $categoryId,
     ?int $weeklyLimit
   ): ConsultationCause {
-    $cause = new ConsultationCause(
+    $consultationCause = new ConsultationCause(
       $this->categoryRepository->getById($categoryId),
       $shortName,
       $extendedName,
@@ -86,8 +86,8 @@ extends PDORepository implements ConsultationCauseRepository {
       $weeklyLimit
     );
 
-    $cause->setId($id);
+    $consultationCause->setId($id);
 
-    return $cause;
+    return $consultationCause;
   }
 }

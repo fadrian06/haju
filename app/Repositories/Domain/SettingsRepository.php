@@ -7,10 +7,10 @@ namespace App\Repositories\Domain;
 use App\Models\Hospital;
 
 interface SettingsRepository {
-  function getHospital(): Hospital;
-  function backupExists(): bool;
-  function backup(): string;
-  function restore(): void;
-  function restoreFromScript(string $script): void;
-  function save(Hospital $hospital): void;
+  public function getHospital(): Hospital;
+  public function backupExists(): bool;
+  public function backup(): string;
+  public function restore(): void;
+  public function restoreFromScript(string $script): void;
+  public function save(Hospital $hospital): void;
 }

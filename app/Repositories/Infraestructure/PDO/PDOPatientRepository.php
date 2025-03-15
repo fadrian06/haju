@@ -25,7 +25,7 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
     registered_date as registeredDate, registered_by_id as registeredById
   SQL;
 
-  function __construct(
+  public function __construct(
     Connection $connection,
     string $baseUrl,
     private readonly PDOUserRepository $userRepository,
@@ -40,7 +40,7 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
     return 'patients';
   }
 
-  function getAll(): array {
+  public function getAll(): array {
     return $this->ensureIsConnected()
       ->query(sprintf(
         'SELECT %s FROM %s ORDER BY idCard',
@@ -49,7 +49,7 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
       ))->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper']);
   }
 
-  function getById(int $id): ?Patient {
+  public function getById(int $id): ?Patient {
     $stmt = $this->ensureIsConnected()
       ->prepare(sprintf('SELECT %s FROM %s WHERE id = ?', self::FIELDS, self::getTable()));
 
@@ -58,7 +58,7 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
     return $stmt->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper'])[0] ?? null;
   }
 
-  function getByIdCard(int $idCard): ?Patient {
+  public function getByIdCard(int $idCard): ?Patient {
     $stmt = $this->ensureIsConnected()
       ->prepare(sprintf('SELECT %s FROM %s WHERE id_card = ?', self::FIELDS, self::getTable()));
 
@@ -67,13 +67,13 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
     return $stmt->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper'])[0] ?? null;
   }
 
-  function getConsultationsCount(): int {
+  public function getConsultationsCount(): int {
     return $this->ensureIsConnected()
       ->query('SELECT count(id) FROM consultations')
       ->fetchColumn(0);
   }
 
-  function setConsultationsById(Patient $patient, int $causeId): void {
+  public function setConsultationsById(Patient $patient, int $causeId): void {
     $stmt = $this->ensureIsConnected()
       ->prepare(<<<sql
         SELECT id, type, registered_date, cause_id, department_id, doctor_id
@@ -103,7 +103,7 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
     $patient->setConsultations(...$consultations);
   }
 
-  function setHospitalizations(Patient $patient): void {
+  public function setHospitalizations(Patient $patient): void {
     $stmt = $this->ensureIsConnected()
       ->prepare(<<<sql
         SELECT id, admission_department, admission_date, departure_date,
@@ -141,7 +141,7 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
     $patient->setHospitalization(...$hospitalizations);
   }
 
-  function setConsultations(Patient $patient): void {
+  public function setConsultations(Patient $patient): void {
     $stmt = $this->ensureIsConnected()
       ->prepare(<<<sql
         SELECT id, type, registered_date, cause_id, department_id, doctor_id
@@ -171,7 +171,7 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
     $patient->setConsultations(...$consultations);
   }
 
-  function save(Patient $patient): void {
+  public function save(Patient $patient): void {
     try {
       if ($patient->id) {
         $this->update($patient);
@@ -218,7 +218,7 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
     }
   }
 
-  function saveHospitalizationOf(Patient $patient): void {
+  public function saveHospitalizationOf(Patient $patient): void {
     /** @var Hospitalization[] */
     $hospitalizations = [];
 
@@ -249,7 +249,7 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
     $patient->setHospitalization(...$hospitalizations);
   }
 
-  function saveConsultationOf(Patient $patient): void {
+  public function saveConsultationOf(Patient $patient): void {
     $consultations = [];
 
     foreach ($patient->getConsultation() as $consultation) {

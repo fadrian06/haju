@@ -13,13 +13,13 @@ interface Repository {
    * @return array<int, T>
    * @throws ConnectionException
    */
-  function getAll(): array;
+  public function getAll(): array;
 
   /** @throws ConnectionException */
-  function getRowsCount(): int;
+  public function getRowsCount(): int;
   /**
    * @return ?T
    * @throws ConnectionException
    */
-  function getById(int $id): ?Model;
+  public function getById(int $id): ?Model;
 }

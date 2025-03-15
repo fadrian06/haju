@@ -19,13 +19,13 @@ extends PDORepository implements ConsultationCauseCategoryRepository {
     return 'consultation_cause_categories';
   }
 
-  function getAll(): array {
+  public function getAll(): array {
     return $this->ensureIsConnected()
       ->query(sprintf('SELECT %s FROM %s WHERE id != 1', self::FIELDS, self::getTable()))
       ->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper']);
   }
 
-  function getById(int $id): ?ConsultationCauseCategory {
+  public function getById(int $id): ?ConsultationCauseCategory {
     $stmt = $this->ensureIsConnected()->prepare(sprintf(
       'SELECT %s FROM %s WHERE id = ?',
       self::FIELDS,
@@ -43,14 +43,14 @@ extends PDORepository implements ConsultationCauseCategoryRepository {
     ?string $extendedName,
     ?int $parentCategoryId
   ): ConsultationCauseCategory {
-    $category = new ConsultationCauseCategory(
+    $consultationCauseCategory = new ConsultationCauseCategory(
       $shortName,
       $extendedName,
       $parentCategoryId ? $this->getById($parentCategoryId) : null
     );
 
-    $category->setId($id);
+    $consultationCauseCategory->setId($id);
 
-    return $category;
+    return $consultationCauseCategory;
   }
 }

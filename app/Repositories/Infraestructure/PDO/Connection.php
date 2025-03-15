@@ -10,8 +10,7 @@ use PDO;
 final readonly class Connection {
   private PDO $instance;
 
-  /** @param string|'memory' $dbName */
-  function __construct(
+  public function __construct(
     public DBDriver $driver,
     public string $dbName,
     ?string $host = null,
@@ -21,14 +20,14 @@ final readonly class Connection {
   ) {
     $this->instance = new PDO(
       $driver === DBDriver::MySQL
-        ? "mysql:host=$host; dbname=$dbName; charset=utf8; port=$port"
-        : "sqlite:$dbName",
+        ? "mysql:host={$host}; dbname={$dbName}; charset=utf8; port={$port}"
+        : "sqlite:{$dbName}",
       $user ?: null,
       $password ?: null
     );
   }
 
-  function instance(): PDO {
+  public function instance(): PDO {
     return $this->instance;
   }
 }

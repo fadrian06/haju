@@ -16,6 +16,7 @@ use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
 use Rector\Strict\Rector\BooleanNot\BooleanInBooleanNotRuleFixerRector;
 use Rector\Strict\Rector\If_\BooleanInIfConditionRuleFixerRector;
 use Rector\Strict\Rector\Ternary\BooleanInTernaryOperatorRuleFixerRector;
+use Rector\Strict\Rector\Ternary\DisallowedShortTernaryRuleFixerRector;
 use Rector\TypeDeclaration\Rector\BooleanAnd\BinaryOpNullableToInstanceofRector;
 
 return RectorConfig::configure()
@@ -53,5 +54,6 @@ return RectorConfig::configure()
     BooleanInIfConditionRuleFixerRector::class,
     BinaryOpNullableToInstanceofRector::class,
     RenamePropertyToMatchTypeRector::class,
+    DisallowedShortTernaryRuleFixerRector::class,
   ])
   ->withIndent(' ', 2);
