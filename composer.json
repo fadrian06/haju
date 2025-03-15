@@ -37,7 +37,7 @@
       "php -r \"if (!file_exists('phpstan.neon')) copy('phpstan.dist.neon', 'phpstan.neon');\""
     ],
     "ci": [
-      "phpunit --no-progress",
+      "phpunit --no-progress --colors=never",
       "phpstan --no-progress --no-ansi",
       "rector --dry-run --no-progress-bar --no-ansi",
       "phpcs --no-colors",
