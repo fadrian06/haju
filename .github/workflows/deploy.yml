@@ -56,11 +56,12 @@ jobs:
           port: ${{ secrets.ftp_port }}
           server-dir: ${{ secrets.ftp_server_dir }}
           exclude: |
-            .git
-            .husky
-            docs
-            node_modules
-            tests
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.husky/**
+            **/docs/**
+            **/tests/**
             .editorconfig
             .gitignore
             .phpunit.result.cache
