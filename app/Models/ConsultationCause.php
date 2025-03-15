@@ -20,8 +20,8 @@ final class ConsultationCause extends Model {
   private ?string $variant = null;
   private ?string $code;
 
-    public readonly ConsultationCauseCategory $category,
   public function __construct(
+    public readonly ConsultationCauseCategory $category,
     string $shortName,
     ?string $extendedName,
     ?string $variant = null,

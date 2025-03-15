@@ -35,7 +35,11 @@ final class Doctor extends Person {
   }
 
   public function canBeEditedBy(User $user): bool {
-    return $user->appointment->isDirector() || $this->registeredBy->isEqualTo($user);
+    if ($user->appointment->isDirector()) {
+      return true;
+    }
+
+    return $this->registeredBy->isEqualTo($user);
   }
 
   /** @return Generator<int, Consultation> */

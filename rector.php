@@ -11,6 +11,7 @@ use Rector\CodingStyle\Rector\If_\NullableCompareToNullRector;
 use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
 use Rector\Naming\Rector\Assign\RenameVariableToMatchMethodCallReturnTypeRector;
+use Rector\Naming\Rector\Class_\RenamePropertyToMatchTypeRector;
 use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
 use Rector\Strict\Rector\BooleanNot\BooleanInBooleanNotRuleFixerRector;
 use Rector\Strict\Rector\If_\BooleanInIfConditionRuleFixerRector;
@@ -51,5 +52,6 @@ return RectorConfig::configure()
     BooleanInBooleanNotRuleFixerRector::class,
     BooleanInIfConditionRuleFixerRector::class,
     BinaryOpNullableToInstanceofRector::class,
+    RenamePropertyToMatchTypeRector::class,
   ])
   ->withIndent(' ', 2);

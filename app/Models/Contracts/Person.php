@@ -105,9 +105,8 @@ abstract class Person extends Model {
     $fullName = $this->firstName;
     $fullName .= $this->secondName ? " {$this->secondName}" : '';
     $fullName .= " $this->firstLastName";
-    $fullName .= $this->secondLastName ? " {$this->secondLastName}" : '';
 
-    return $fullName;
+    return $fullName . $this->secondLastName ? " {$this->secondLastName}" : '';
   }
 
   public function __get(string $property): null|int|string {

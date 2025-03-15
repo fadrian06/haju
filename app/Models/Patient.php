@@ -51,7 +51,11 @@ final class Patient extends Person {
 
   public function canBeEditedBy(User $user): bool {
     // TODO: que el coordinador del secretario que registró al paciente también pueda editarlo
-    return $user->appointment->isDirector() || $this->registeredBy->isEqualTo($user);
+    if ($user->appointment->isDirector()) {
+      return true;
+    }
+
+    return $this->registeredBy->isEqualTo($user);
   }
 
   /** @return Generator<int, Consultation> */
