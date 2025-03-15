@@ -13,7 +13,7 @@ enum DateRange: string {
   case Monthly = 'Mensual';
   case Weekly = 'Semanal';
 
-  function getDate(): DateTimeInterface {
+  public function getDate(): DateTimeInterface {
     return (new DateTimeImmutable)->sub(new DateInterval(match ($this) {
       self::Anual => 'P1Y',
       self::Monthly => 'P1M',

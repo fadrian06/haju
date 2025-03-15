@@ -13,13 +13,13 @@ final readonly class IdCard implements Stringable {
   public int $value;
 
   /** @throws InvalidNameException */
-  function __construct(int $value) {
+  public function __construct(int $value) {
     $this->validate($value);
     $this->value = $value;
   }
 
   /** @throws InvalidNameException */
-  protected function validate(int $value): static {
+  private function validate(int $value): static {
     if ($value < self::MIN || $value > self::MAX) {
       throw new InvalidNameException('Cédula debe estar entre ' . self::MIN . ' y ' . self::MAX);
     }
@@ -27,7 +27,7 @@ final readonly class IdCard implements Stringable {
     return $this;
   }
 
-  function __toString(): string {
+  public function __toString(): string {
     return (string) $this->value;
   }
 }

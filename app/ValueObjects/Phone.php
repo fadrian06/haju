@@ -13,7 +13,7 @@ class Phone implements Stringable {
   private readonly string $phoneNumber;
 
   /** @throws InvalidPhoneException */
-  function __construct(string $phone) {
+  public function __construct(string $phone) {
     if (preg_match('/^(0?(?<simPrefix>\d{3}))(\s|-)?(\d{3})(\s|-)?(\d{4})$/', $phone, $matches)) {
       if (in_array($matches['simPrefix'], [416, 426, 414, 424])) {
         $this->countryCode = '58';
@@ -33,14 +33,14 @@ class Phone implements Stringable {
       return;
     }
 
-    throw new InvalidPhoneException("Teléfono inválido \"$phone\"");
+    throw new InvalidPhoneException("Teléfono inválido \"{$phone}\"");
   }
 
-  function __toString(): string {
+  public function __toString(): string {
     return "+{$this->countryCode} {$this->simPrefix}-{$this->phoneNumber}";
   }
 
-  function toValidPhoneLink(): string {
+  public function toValidPhoneLink(): string {
     return $this->countryCode . $this->simPrefix . $this->phoneNumber;
   }
 }

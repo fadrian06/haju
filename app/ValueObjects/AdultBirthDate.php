@@ -18,8 +18,8 @@ final readonly class AdultBirthDate extends Date {
   public int $timestamp;
 
   /** @throws InvalidDateException */
-  function __construct(int $day, int $month, int $year) {
-    self::validate($day, $month, $year);
+  public function __construct(int $day, int $month, int $year) {
+    $this->validate($day, $month, $year);
     $date = DateTime::createFromFormat(self::FORMAT, "{$day}-{$month}-{$year}");
     $this->timestamp = $date->getTimestamp();
     $this->day = (int) $date->format('d');
@@ -27,28 +27,28 @@ final readonly class AdultBirthDate extends Date {
     $this->year = (int) $date->format('Y');
   }
 
-  function getWithDashes(): string {
+  public function getWithDashes(): string {
     return date('Y-m-d', $this->timestamp);
   }
 
   /** @throws InvalidDateException */
-  static function from(string $raw, string $separator): self {
-    $regexp = "/^(?<year>\d{4})$separator(?<month>\d{2})$separator(?<day>\d{2})$/";
+  public static function from(string $raw, string $separator): self {
+    $regexp = "/^(?<year>\d{4}){$separator}(?<month>\d{2}){$separator}(?<day>\d{2})$/";
 
     if (preg_match($regexp, $raw, $matches)) {
       return new self($matches['day'], $matches['month'], $matches['year']);
     }
 
-    throw new InvalidDateException("Fecha inválida \"$raw\"");
+    throw new InvalidDateException("Fecha inválida \"{$raw}\"");
   }
 
-  static function fromTimestamp(int $timestamp): self {
+  public static function fromTimestamp(int $timestamp): self {
     [$day, $month, $year] = explode('-', date(self::FORMAT, $timestamp));
 
     return new self($day, $month, $year);
   }
 
-  private static function validate(int $day, int $month, int $year): void {
+  private function validate(int $day, int $month, int $year): void {
     switch (true) {
       case $month < 1:
       case $month > 12:
@@ -61,18 +61,18 @@ final readonly class AdultBirthDate extends Date {
         // TODO: check if $year if february has 28 or 29 days
         break;
       case $month === 2 && $day > 29:
-        throw new InvalidDateException("Invalid date \"$day/$month/$year\"");
+        throw new InvalidDateException("Invalid date \"{$day}/{$month}/{$year}\"");
     }
 
     $currentDate = new DateTimeImmutable;
     $validBirthDate = $currentDate->sub(new DateInterval('P18Y'));
 
-    if ("$year-$month-$day" > $validBirthDate->format('Y-n-j')) {
+    if ("{$year}-{$month}-{$day}" > $validBirthDate->format('Y-n-j')) {
       throw new InvalidDateException("You don't have at least 18 years old");
     }
   }
 
-  function __toString(): string {
+  public function __toString(): string {
     return "{$this->day}/{$this->month}/{$this->year}";
   }
 }

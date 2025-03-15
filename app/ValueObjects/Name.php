@@ -11,7 +11,7 @@ readonly class Name implements Stringable {
   protected string $value;
 
   /** @throws InvalidNameException */
-  function __construct(string $value, string $field) {
+  public function __construct(string $value, string $field) {
     $this->validate($value, $field);
     $this->value = mb_convert_case($value, MB_CASE_TITLE);
   }
@@ -22,13 +22,13 @@ readonly class Name implements Stringable {
     $pattern = '/^(del|de)?\s?[a-záéíóúñ]{3,}$/';
 
     if (!preg_match($pattern, $value)) {
-      throw new InvalidNameException("$field debe contener mínimo 3 letras con inicial en mayúscula");
+      throw new InvalidNameException("{$field} debe contener mínimo 3 letras con inicial en mayúscula");
     }
 
     return $this;
   }
 
-  function __toString(): string {
+  public function __toString(): string {
     return $this->value;
   }
 }

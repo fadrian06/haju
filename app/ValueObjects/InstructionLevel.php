@@ -12,7 +12,7 @@ enum InstructionLevel: string {
   case TSU = 'TSU';
   case Graduate = 'Licdo';
 
-  function getLongValue(): string {
+  public function getLongValue(): string {
     return match ($this) {
       self::Doctor => 'Doctor/a',
       self::Engineer => 'Ingeniero/a',
@@ -21,7 +21,7 @@ enum InstructionLevel: string {
     };
   }
 
-  function getId(): int {
+  public function getId(): int {
     return match ($this) {
       self::Doctor => 1,
       self::Engineer => 2,

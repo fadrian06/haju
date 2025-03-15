@@ -9,7 +9,7 @@ enum ConsultationType: string {
   case Succesive = 'S';
   case Associated = 'X';
 
-  function getDescription(): string {
+  public function getDescription(): string {
     return match ($this) {
       self::Associated => 'Asociada',
       self::FirstTime => 'Primera vez',
@@ -18,7 +18,7 @@ enum ConsultationType: string {
   }
 
   /** @return array<int, static> */
-  static function getCases(bool $excludeFirstTime = true): array {
+  public static function getCases(bool $excludeFirstTime = true): array {
     return [self::Succesive, self::Associated];
   }
 }

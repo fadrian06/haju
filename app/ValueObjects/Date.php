@@ -17,7 +17,7 @@ readonly class Date implements Stringable {
   public int $timestamp;
 
   /** @throws InvalidDateException */
-  function __construct(int $day, int $month, int $year) {
+  public function __construct(int $day, int $month, int $year) {
     switch (true) {
       case $month < 1:
       case $month > 12:
@@ -30,7 +30,7 @@ readonly class Date implements Stringable {
       // TODO: check if $year if february has 28 or 29 days
         break;
       case $month === 2 && $day > 29:
-        throw new InvalidDateException("Invalid date \"$day/$month/$year\"");
+        throw new InvalidDateException("Invalid date \"{$day}/{$month}/{$year}\"");
     }
 
     $date = DateTime::createFromFormat(self::FORMAT, "{$day}-{$month}-{$year}");
@@ -40,28 +40,28 @@ readonly class Date implements Stringable {
     $this->year = (int) $date->format('Y');
   }
 
-  function getWithDashes(): string {
+  public function getWithDashes(): string {
     return date('Y-m-d', $this->timestamp);
   }
 
   /** @throws InvalidDateException */
-  static function from(string $raw, string $separator): self {
-    $regexp = "/^(?<year>\d{4})$separator(?<month>\d{2})$separator(?<day>\d{2})$/";
+  public static function from(string $raw, string $separator): self {
+    $regexp = "/^(?<year>\d{4}){$separator}(?<month>\d{2}){$separator}(?<day>\d{2})$/";
 
     if (preg_match($regexp, $raw, $matches)) {
       return new self($matches['day'], $matches['month'], $matches['year']);
     }
 
-    throw new InvalidDateException("Fecha inválida \"$raw\"");
+    throw new InvalidDateException("Fecha inválida \"{$raw}\"");
   }
 
-  static function fromTimestamp(int $timestamp): self {
+  public static function fromTimestamp(int $timestamp): self {
     [$day, $month, $year] = explode('-', date(self::FORMAT, $timestamp));
 
     return new self($day, $month, $year);
   }
 
-  function __toString(): string {
+  public function __toString(): string {
     return "{$this->day}/{$this->month}/{$this->year}";
   }
 }
