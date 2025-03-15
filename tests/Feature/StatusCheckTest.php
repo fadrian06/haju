@@ -13,7 +13,10 @@ final class StatusCheckTest extends FeatureTestCase {
 
     $this->assertSame(200, $response->getStatusCode());
 
-    $this->assertStringContainsString('application/json', mb_strtolower($response->getHeaderLine('content-type')));
+    $this->assertStringContainsString(
+      'application/json',
+      mb_strtolower($response->getHeaderLine('content-type'))
+    );
 
     $this->assertSame('{"status":"ok"}', $response->getBody()->getContents());
   }

@@ -20,7 +20,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
@@ -40,7 +39,7 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: Start PHP Development Server
-        run: composer run-script serve &
+        run: php -S localhost:61001 &
 
       - name: Run ci suite
         run: composer run-script ci
