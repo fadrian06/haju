@@ -1,11 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ruleset
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="./vendor/squizlabs/php_codesniffer/phpcs.xsd">
-    <arg name="colors" />
-    <arg name="tab-width" value="2" />
-    <file>app</file>
-    <file>tests</file>
-    <file>views</file>
-    <rule ref="PSR1" />
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="./vendor/squizlabs/php_codesniffer/phpcs.xsd">
+  <arg name="colors" />
+  <arg name="tab-width" value="2" />
+  <file>app</file>
+  <file>tests</file>
+  <file>views</file>
+
+  <rule ref="Generic">
+    <exclude name="Generic.PHP.ClosingPHPTag.NotFound" />
+    <exclude name="Generic.Files.EndFileNoNewline.Found" />
+    <exclude name="Generic.PHP.UpperCaseConstant.Found" />
+    <exclude name="Generic.Functions.OpeningFunctionBraceBsdAllman.BraceOnSameLine" />
+    <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
+  </rule>
+
+  <rule ref="MySource">
+    <exclude name="MySource.Channels.IncludeSystem.NotIncludedCall" />
+    <exclude name="MySource.Channels.IncludeSystem.NotIncludedExtends" />
+    <exclude name="MySource.Commenting.FunctionComment.Missing" />
+  </rule>
+
+  <rule ref="PEAR">
+    <exclude name="PEAR.Commenting.FileComment.Missing" />
+    <exclude name="PEAR.Commenting.FunctionComment.Missing" />
+    <exclude name="PEAR.Functions.FunctionDeclaration.BraceOnSameLine" />
+  </rule>
+
+  <rule ref="PSR1" />
+  <rule ref="PSR12" />
+  <rule ref="PSR2" />
+
+  <rule ref="Squiz">
+    <exclude name="Squiz.Commenting.FileComment.Missing" />
+    <exclude name="Squiz.Commenting.FunctionComment.Missing" />
+    <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.BraceOnSameLine" />
+    <exclude name="Squiz.Commenting.ClosingDeclarationComment.Missing" />
+    <exclude name="Squiz.WhiteSpace.FunctionClosingBraceSpace.SpacingBeforeClose" />
+  </rule>
+
+  <rule ref="Zend" />
+
+  <rule ref="Squiz.Strings.ConcatenationSpacing">
+    <properties>
+      <property name="spacing" value="1" />
+    </properties>
+  </rule>
+
+  <rule ref="PEAR.Functions.FunctionCallSignature">
+    <properties>
+      <property name="allowMultipleArguments" value="false" />
+      <property name="indent" value="2" />
+    </properties>
+  </rule>
+
+  <rule ref="PSR2.Methods.FunctionCallSignature">
+    <properties>
+      <property name="allowMultipleArguments" value="false" />
+      <property name="indent" value="2" />
+    </properties>
+  </rule>
+
+  <rule ref="Generic.WhiteSpace.ScopeIndent">
+    <properties>
+      <property name="exact" value="true" />
+      <property name="indent" value="2" />
+    </properties>
+  </rule>
+
+  <rule ref="PEAR.WhiteSpace.ScopeIndent">
+    <properties>
+      <property name="exact" value="true" />
+      <property name="indent" value="2" />
+    </properties>
+  </rule>
+
+  <rule ref="Squiz.WhiteSpace.FunctionSpacing">
+    <properties>
+      <property name="spacing" value="1" />
+      <property name="spacingAfterLast" value="0" />
+      <property name="spacingBeforeFirst" value="0" />
+    </properties>
+  </rule>
 </ruleset>

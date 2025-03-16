@@ -6,6 +6,7 @@ namespace App\Repositories\Infraestructure\PDO;
 
 use App\Models\Doctor;
 use App\Repositories\Domain\DoctorRepository;
+use App\Repositories\Domain\UserRepository;
 use App\Repositories\Exceptions\DuplicatedIdCardException;
 use App\Repositories\Exceptions\DuplicatedNamesException;
 use App\ValueObjects\Date;
@@ -24,7 +25,7 @@ final class PDODoctorRepository extends PDORepository implements DoctorRepositor
   public function __construct(
     Connection $connection,
     string $baseUrl,
-    private readonly PDOUserRepository $userRepository
+    private readonly UserRepository $userRepository
   ) {
     parent::__construct($connection, $baseUrl);
   }

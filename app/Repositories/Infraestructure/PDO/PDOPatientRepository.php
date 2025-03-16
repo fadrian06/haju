@@ -7,7 +7,11 @@ namespace App\Repositories\Infraestructure\PDO;
 use App\Models\Consultation;
 use App\Models\Hospitalization;
 use App\Models\Patient;
+use App\Repositories\Domain\ConsultationCauseRepository;
+use App\Repositories\Domain\DepartmentRepository;
+use App\Repositories\Domain\DoctorRepository;
 use App\Repositories\Domain\PatientRepository;
+use App\Repositories\Domain\UserRepository;
 use App\Repositories\Exceptions\DuplicatedIdCardException;
 use App\Repositories\Exceptions\DuplicatedNamesException;
 use App\ValueObjects\ConsultationType;
@@ -28,10 +32,10 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
   public function __construct(
     Connection $connection,
     string $baseUrl,
-    private readonly PDOUserRepository $userRepository,
-    private readonly PDOConsultationCauseRepository $causeRepository,
-    private readonly PDODepartmentRepository $departmentRepository,
-    private readonly PDODoctorRepository $doctorRepository
+    private readonly UserRepository $userRepository,
+    private readonly ConsultationCauseRepository $causeRepository,
+    private readonly DepartmentRepository $departmentRepository,
+    private readonly DoctorRepository $doctorRepository
   ) {
     parent::__construct($connection, $baseUrl);
   }

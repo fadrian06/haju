@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories\Infraestructure\PDO;
 
 use App\Models\User;
+use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Domain\UserRepository;
 use App\Repositories\Exceptions\DuplicatedEmailsException;
 use App\Repositories\Exceptions\DuplicatedIdCardException;
@@ -41,7 +42,7 @@ class PDOUserRepository extends PDORepository implements UserRepository {
   public function __construct(
     Connection $connection,
     string $baseUrl,
-    private readonly PDODepartmentRepository $departmentRepository
+    private readonly DepartmentRepository $departmentRepository
   ) {
     parent::__construct($connection, $baseUrl);
   }

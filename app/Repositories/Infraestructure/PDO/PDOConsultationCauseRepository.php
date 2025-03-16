@@ -6,6 +6,7 @@ namespace App\Repositories\Infraestructure\PDO;
 
 use App\Models\ConsultationCause;
 use App\Models\ConsultationCauseCategory;
+use App\Repositories\Domain\ConsultationCauseCategoryRepository;
 use App\Repositories\Domain\ConsultationCauseRepository;
 use Generator;
 use PDO;
@@ -20,7 +21,7 @@ extends PDORepository implements ConsultationCauseRepository {
   public function __construct(
     Connection $connection,
     string $baseUrl,
-    private readonly PDOConsultationCauseCategoryRepository $categoryRepository
+    private readonly ConsultationCauseCategoryRepository $categoryRepository
   ) {
     parent::__construct($connection, $baseUrl);
   }

@@ -1,17 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
+use App\Models\ConsultationCauseCategory;
 use flight\template\View;
 
 $api = App::get('fullRoot');
-$causes = json_decode(file_get_contents("$api/api/causas-consulta/"), true);
+$causes = json_decode(file_get_contents("{$api}/api/causas-consulta/"), true);
 
-/** @var array<int, \App\Models\ConsultationCauseCategory> */
+/** @var array<int, ConsultationCauseCategory> */
 $categories = [];
 
 $monthYear = $_GET['fecha'] ?? null;
 
 ob_start();
-if ($monthYear) {
+
+if ($monthYear !== null) {
   [$year, $month] = explode('-', (string) $monthYear);
 
   $daysOfMonth = match ($month) {
@@ -22,8 +26,8 @@ if ($monthYear) {
       : 28
   };
 
-  $startDate = (new View)->e("$monthYear-01");
-  $endDate = (new View)->e("$monthYear-$daysOfMonth");
+  $startDate = (new View)->e("{$monthYear}-01");
+  $endDate = (new View)->e("{$monthYear}-{$daysOfMonth}");
 }
 
 ob_end_clean();
@@ -34,7 +38,7 @@ $printedParentCategories = [];
 
 $consultations = App::db()->instance()->query(<<<sql
   SELECT type, cause_id FROM consultations
-  WHERE registered_date BETWEEN '$startDate' AND '$endDate'
+  WHERE registered_date BETWEEN '{$startDate}' AND '{$endDate}'
 sql)->fetchAll(PDO::FETCH_ASSOC);
 
 $typesByCause = [];
@@ -46,7 +50,7 @@ foreach ($consultations as $consultation) {
     'X' => 0
   ];
 
-  $typesByCause[$consultation['cause_id']][$consultation['type']]++;
+  ++$typesByCause[$consultation['cause_id']][$consultation['type']];
 }
 
 $monthName = [
@@ -161,11 +165,11 @@ $monthName = [
     </thead>
     <tbody class="text-uppercase">
       <?php foreach ($causes as $cause): ?>
-        <?php if (!key_exists($cause['category']['id'], $categories)) : ?>
+        <?php if (!array_key_exists($cause['category']['id'], $categories)): ?>
           <?php $categories[$cause['category']['id']] = $cause['category'] ?>
           <tr>
             <td class="fw-bold" colspan="7" style="text-align: start">
-              <?php if ($cause['category']['parentCategory'] && !in_array($cause['category']['parentCategory'], $printedParentCategories)): ?>
+              <?php if ($cause['category']['parentCategory'] && !in_array($cause['category']['parentCategory'], $printedParentCategories, true)): ?>
                 <?= $cause['category']['parentCategory']['name']['extended'] ?? $cause['category']['parentCategory']['name']['short'] ?>
                 <br />
                 <?php $printedParentCategories[] = $cause['category']['parentCategory'] ?>
@@ -282,4 +286,4 @@ $monthName = [
 
     print()
   })
-</script></script>
+</script>

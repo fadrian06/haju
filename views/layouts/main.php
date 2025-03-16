@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\User;
 
 /**
@@ -120,14 +122,16 @@ foreach ($consultations as $consultation) {
     </div>
     <?php render('components/footer') ?>
   </section>
-  <?php $mustChangePassword && $showPasswordChangeModal && render('components/confirmation', [
-    'show' => true,
-    'id' => 'change-password-confirmation',
-    'action' => './perfil#seguridad',
-    'title' => 'Debe cambiar la contraseña por seguridad',
-    'confirmText' => 'Cambiarla',
-    'denyText' => false
-  ]); ?>
+  <?php if ($mustChangePassword && $showPasswordChangeModal): ?>
+    <?php render('components/confirmation', [
+      'show' => true,
+      'id' => 'change-password-confirmation',
+      'action' => './perfil#seguridad',
+      'title' => 'Debe cambiar la contraseña por seguridad',
+      'confirmText' => 'Cambiarla',
+      'denyText' => false
+    ]) ?>
+  <?php endif ?>
   <script src="./assets/vendors/jquery/jquery.min.js"></script>
   <script src="./assets/vendors/metismenu/metisMenu.min.js"></script>
   <script src="./vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
