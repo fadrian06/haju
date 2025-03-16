@@ -24,10 +24,10 @@ readonly class Date implements Stringable {
       case $year < 1900:
       case $year > (date('Y') - 18):
       case $day < 1:
-      // TODO: check if $month has 30 or 31 days
+        // TODO: check if $month has 30 or 31 days
         break;
       case $day > 31:
-      // TODO: check if $year if february has 28 or 29 days
+        // TODO: check if $year if february has 28 or 29 days
         break;
       case $month === 2 && $day > 29:
         throw new InvalidDateException("Invalid date \"{$day}/{$month}/{$year}\"");
@@ -49,7 +49,11 @@ readonly class Date implements Stringable {
     $regexp = "/^(?<year>\d{4}){$separator}(?<month>\d{2}){$separator}(?<day>\d{2})$/";
 
     if (preg_match($regexp, $raw, $matches)) {
-      return new self($matches['day'], $matches['month'], $matches['year']);
+      return new self(
+        (int) $matches['day'],
+        (int) $matches['month'],
+        (int) $matches['year']
+      );
     }
 
     throw new InvalidDateException("Fecha inválida \"{$raw}\"");
@@ -58,7 +62,7 @@ readonly class Date implements Stringable {
   public static function fromTimestamp(int $timestamp): self {
     [$day, $month, $year] = explode('-', date(self::FORMAT, $timestamp));
 
-    return new self($day, $month, $year);
+    return new self((int) $day, (int) $month, (int) $year);
   }
 
   public function __toString(): string {

@@ -14,22 +14,33 @@
     <exclude name="Generic.PHP.UpperCaseConstant.Found" />
     <exclude name="Generic.Functions.OpeningFunctionBraceBsdAllman.BraceOnSameLine" />
     <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
+    <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
+    <exclude name="Generic.Commenting.DocComment.MissingShort" />
   </rule>
 
   <rule ref="MySource">
     <exclude name="MySource.Channels.IncludeSystem.NotIncludedCall" />
     <exclude name="MySource.Channels.IncludeSystem.NotIncludedExtends" />
     <exclude name="MySource.Commenting.FunctionComment.Missing" />
+    <exclude name="MySource.Commenting.FunctionComment.MissingParamTag" />
+    <exclude name="MySource.PHP.ReturnFunctionValue.NotAssigned" />
   </rule>
 
   <rule ref="PEAR">
     <exclude name="PEAR.Commenting.FileComment.Missing" />
     <exclude name="PEAR.Commenting.FunctionComment.Missing" />
     <exclude name="PEAR.Functions.FunctionDeclaration.BraceOnSameLine" />
+    <exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket" />
+    <exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
+    <exclude name="PEAR.Commenting.FunctionComment.MissingParamTag" />
   </rule>
 
   <rule ref="PSR1" />
-  <rule ref="PSR12" />
+
+  <rule ref="PSR12">
+    <exclude name="PSR12.Classes.AnonClassDeclaration.SpaceAfterKeyword" />
+  </rule>
+
   <rule ref="PSR2" />
 
   <rule ref="Squiz">
@@ -38,6 +49,20 @@
     <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.BraceOnSameLine" />
     <exclude name="Squiz.Commenting.ClosingDeclarationComment.Missing" />
     <exclude name="Squiz.WhiteSpace.FunctionClosingBraceSpace.SpacingBeforeClose" />
+    <exclude name="Squiz.Operators.ComparisonOperatorUsage.ImplicitTrue" />
+    <exclude name="Squiz.Arrays.ArrayDeclaration.SingleLineNotAllowed" />
+    <exclude name="Squiz.Objects.ObjectInstantiation.NotAssigned" />
+    <exclude name="Squiz.PHP.DisallowComparisonAssignment.AssignedComparison" />
+    <exclude name="Squiz.Commenting.FunctionComment.MissingParamTag" />
+    <exclude name="Squiz.Arrays.ArrayDeclaration.DoubleArrowNotAligned" />
+    <exclude name="Squiz.ControlStructures.InlineIfDeclaration.NotSingleLine" />
+    <exclude name="Squiz.PHP.DisallowInlineIf.Found" />
+    <exclude name="Squiz.Commenting.VariableComment.Missing" />
+    <exclude name="Squiz.Operators.ComparisonOperatorUsage.NotAllowed" />
+    <exclude name="Squiz.Commenting.LongConditionClosingComment.Missing" />
+    <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.Indent" />
+    <exclude name="Squiz.Strings.DoubleQuoteUsage.ContainsVar" />
+    <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.UseOneParamPerLine" />
   </rule>
 
   <rule ref="Zend" />
@@ -50,7 +75,7 @@
 
   <rule ref="PEAR.Functions.FunctionCallSignature">
     <properties>
-      <property name="allowMultipleArguments" value="false" />
+      <property name="allowMultipleArguments" value="true" />
       <property name="indent" value="2" />
     </properties>
   </rule>
@@ -81,6 +106,49 @@
       <property name="spacing" value="1" />
       <property name="spacingAfterLast" value="0" />
       <property name="spacingBeforeFirst" value="0" />
+    </properties>
+  </rule>
+
+  <rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing">
+    <properties>
+      <property name="ignoreNewlines" value="true" />
+    </properties>
+  </rule>
+
+  <rule ref="Generic.Arrays.ArrayIndent">
+    <properties>
+      <property name="indent" value="2" />
+    </properties>
+  </rule>
+
+  <rule ref="Squiz.WhiteSpace.OperatorSpacing">
+    <properties>
+      <property name="ignoreNewlines" value="true" />
+    </properties>
+  </rule>
+
+  <rule ref="Squiz.WhiteSpace.MemberVarSpacing">
+    <properties>
+      <property name="spacing" value="0" />
+      <property name="spacingBeforeFirst" value="0" />
+    </properties>
+  </rule>
+
+  <rule ref="PEAR.WhiteSpace.ObjectOperatorIndent">
+    <properties>
+      <property name="indent" value="2" />
+    </properties>
+  </rule>
+
+  <rule ref="Generic.Formatting.SpaceAfterNot">
+    <properties>
+      <property name="spacing" value="0" />
+    </properties>
+  </rule>
+
+  <rule ref="PEAR.Functions.FunctionDeclaration">
+    <properties>
+      <property name="indent" value="2" />
     </properties>
   </rule>
 </ruleset>

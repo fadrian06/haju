@@ -42,7 +42,7 @@ final class ConsultationCause extends Model {
       $fullName .= " {$this->variant}";
     }
 
-    return $fullName;
+    return (string) $fullName;
   }
 
   public function setName(string $shortName, ?string $extendedName = null): self {

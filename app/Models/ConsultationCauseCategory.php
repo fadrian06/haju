@@ -35,8 +35,8 @@ final class ConsultationCauseCategory extends Model {
 
   public function __get(string $property): null|int|string {
     return match ($property) {
-      'shortName' => $this->shortName,
-      'extendedName' => $this->extendedName,
+      'shortName' => (string) $this->shortName,
+      'extendedName' => (string) $this->extendedName,
       default => parent::__get($property)
     };
   }
