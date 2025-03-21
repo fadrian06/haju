@@ -115,6 +115,9 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
       </button>
     </form>
     <canvas class="w-100" id="frecuent-causes"></canvas>
+    <button class="btn btn-primary btn-lg w-100" id="print-frecuent-causes">
+      Imprimir
+    </button>
   </h3>
 </div>
 
@@ -180,35 +183,73 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
       </button>
     </form>
     <canvas class="w-100" id="frecuent-cause"></canvas>
+    <button class="btn btn-primary btn-lg w-100" id="print-frecuent-cause">
+      Imprimir
+    </button>
   </h3>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    new Chart(document.getElementById('frecuent-causes'), {
-      type: 'bar',
-      data: {
-        labels: frecuentCauses.map(cause => (cause.extended_name || cause.short_name) + ' ' + (cause.variant || '')),
-        datasets: [{
-          label: 'Número de casos',
-          data: frecuentCauses.map(cause => cause.consultations),
-          backgroundColor: ['#364f6b', '#e6e6e6', '#2daab8', '#0d6efd', '#eff1f7'],
-          borderColor: 'black'
-        }]
-      }
-    })
+    const printBtns = {
+      frecuentCause: document.getElementById('print-frecuent-cause'),
+      frecuentCauses: document.getElementById('print-frecuent-causes')
+    }
 
-    new Chart(document.getElementById('frecuent-cause'), {
-      type: 'line',
-      data: {
-        labels: frecuentCause.map(cause => cause.registered_date),
-        datasets: [{
-          label: 'Número de casos',
-          data: frecuentCause.map(cause => cause.consultations),
-          backgroundColor: '#344f6b',
-          borderColor: 'black'
-        }]
-      }
-    })
+    const charts = {
+      frecuentCauses: new Chart(document.getElementById('frecuent-causes'), {
+        type: 'bar',
+        data: {
+          labels: frecuentCauses.map(cause => (cause.extended_name || cause.short_name) + ' ' + (cause.variant || '')),
+          datasets: [{
+            label: 'Número de casos',
+            data: frecuentCauses.map(cause => cause.consultations),
+            backgroundColor: ['#364f6b', '#e6e6e6', '#2daab8', '#0d6efd', '#eff1f7'],
+            borderColor: 'black'
+          }]
+        }
+      }),
+      frecuentCause: new Chart(document.getElementById('frecuent-cause'), {
+        type: 'line',
+        data: {
+          labels: frecuentCause.map(cause => cause.registered_date),
+          datasets: [{
+            label: 'Número de casos',
+            data: frecuentCause.map(cause => cause.consultations),
+            backgroundColor: '#344f6b',
+            borderColor: 'black'
+          }]
+        }
+      })
+    }
+
+    function printCanvas(canvas, title = '') {
+      const image = canvas.toDataURL('image/png', 1)
+
+      const browserTab = open()
+      const script = document.createElement('script')
+      script.innerText = 'setTimeout(print, 1000)'
+
+      browserTab.document.write(`
+        <base href="<?= str_replace('index.php', '', $_SERVER['SCRIPT_NAME']) ?>" />
+        <link rel="icon" href="./assets/img/favicon.svg" />
+        <title>${title}</title>
+        <center>
+          <h1>${title}</h1>
+          <img src="${image}" width="75%" />
+        </center>
+        ${script.outerHTML}
+      `)
+    }
+
+    printBtns.frecuentCauses.addEventListener(
+      'click',
+      () => printCanvas(charts.frecuentCauses.canvas, 'Causas de consulta más frecuentes')
+    )
+
+    printBtns.frecuentCause.addEventListener(
+      'click',
+      () => printCanvas(charts.frecuentCause.canvas, 'Frecuencia de ' + frecuentCause[0]?.short_name + ' ' + (frecuentCause[0]?.variant || ''))
+    )
   })
 </script>
