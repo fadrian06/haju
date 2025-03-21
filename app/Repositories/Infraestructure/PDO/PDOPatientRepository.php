@@ -206,51 +206,76 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
           $patient->gender->value,
           $patient->idCard,
           $datetime,
-          $patient->registeredBy->id
+          $patient->registeredBy->id,
         ]);
 
-      $patient->setId($this->connection->instance()->lastInsertId())
+      $patient->setId((int) $this->connection->instance()->lastInsertId())
         ->setRegisteredDate(parent::parseDateTime($datetime));
     } catch (PDOException $exception) {
-      if (str_contains($exception, 'UNIQUE constraint failed: patients.id_card')) {
+      if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: patients.id_card')) {
         throw new DuplicatedIdCardException("Cédula \"{$patient->idCard}\" ya existe");
       }
 
-      if (str_contains($exception, 'UNIQUE constraint failed: patients.first_name')) {
+      if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: patients.first_name')) {
         throw new DuplicatedNamesException("Usuario \"{$patient->getFullName()}\" ya existe");
       }
     }
   }
 
   public function saveHospitalizationOf(Patient $patient): void {
-    /** @var Hospitalization[] */
-    $hospitalizations = [];
+    $this->ensureIsConnected()->beginTransaction();
 
-    foreach ($patient->getHospitalization() as $hospitalization) {
-      if (!$hospitalization->id) {
-        $hospitalizations[] = $hospitalization;
+    try {
+      /** @var Hospitalization[] */
+      $hospitalizations = [];
+      $registeredDate = parent::getCurrentDatetime();
+
+      foreach ($patient->getHospitalization() as $hospitalization) {
+        if ($hospitalization->id) {
+          $this
+            ->ensureIsConnected()
+            ->prepare('
+              UPDATE hospitalizations SET admission_department = ?, admission_date = ?,
+              departure_date = ?, departure_status = ?, diagnoses = ?, patient_id = ?, doctor_id = ?
+              WHERE id = ?
+            ')
+            ->execute([
+              $hospitalization->admissionDepartment,
+              $hospitalization->admissionDate->format(self::DATE_FORMAT),
+              $hospitalization->departureDate?->format(self::DATE_FORMAT),
+              $hospitalization->departureStatus?->value,
+              $hospitalization->diagnoses,
+              $hospitalization->patient->id,
+              $hospitalization->doctor->id,
+              $hospitalization->id
+            ]);
+
+          continue;
+        }
+
+        $this->ensureIsConnected()
+          ->prepare("
+            INSERT INTO hospitalizations (admission_department, admission_date,
+            departure_date, departure_status, diagnoses, patient_id, doctor_id)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+          ")->execute([
+            $hospitalization->admissionDepartment,
+            $hospitalization->admissionDate->format(self::DATE_FORMAT),
+            $hospitalization->departureDate?->format(self::DATE_FORMAT),
+            $hospitalization->departureStatus?->value,
+            $hospitalization->diagnoses,
+            $hospitalization->patient->id,
+            $hospitalization->doctor->id,
+          ]);
+
+        $hospitalization->setRegisteredDate(parent::parseDateTime($registeredDate));
+        $patient->setHospitalization(...$hospitalizations);
       }
+
+      $this->connection->instance()->commit();
+    } catch (PDOException) {
+      $this->connection->instance()->rollBack();
     }
-
-    $registeredDate = parent::getCurrentDatetime();
-
-    $this->ensureIsConnected()
-      ->prepare("
-        INSERT INTO hospitalizations (admission_department, admission_date,
-        departure_date, departure_status, diagnoses, patient_id, doctor_id)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-      ")->execute([
-        $hospitalizations[0]->admissionDepartment,
-        $hospitalizations[0]->admissionDate->format(self::DATE_FORMAT),
-        $hospitalizations[0]->departureDate?->format(self::DATE_FORMAT),
-        $hospitalizations[0]->departureStatus?->value,
-        $hospitalizations[0]->diagnoses,
-        $hospitalizations[0]->patient->id,
-        $hospitalizations[0]->doctor->id
-      ]);
-
-    $hospitalizations[0]->setRegisteredDate(parent::parseDateTime($registeredDate));
-    $patient->setHospitalization(...$hospitalizations);
   }
 
   public function saveConsultationOf(Patient $patient): void {
@@ -304,6 +329,16 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
       ]);
 
     return $this;
+  }
+
+  public function getByHospitalizationId(int $id): ?Patient {
+    $stmt = $this
+      ->ensureIsConnected()
+      ->prepare('SELECT patient_id FROM hospitalizations WHERE id = ?');
+
+    $stmt->execute([$id]);
+
+    return $this->getById($stmt->fetchColumn(0));
   }
 
   private function mapper(

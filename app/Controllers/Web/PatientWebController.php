@@ -195,31 +195,27 @@ final class PatientWebController extends Controller {
   }
 
   public function handleHospitalizationRegister(): void {
-    try {
-      $patient = $this->patientRepository->getById($this->data['id_card']);
+    $patient = $this->patientRepository->getById((int) $this->data['id_card']);
 
-      $hospitalization = new Hospitalization(
-        $patient,
-        $this->doctorRepository->getById((int) $this->data['doctor']),
-        $this->data['admission_department'],
-        new DateTimeImmutable($this->data['admission_date']),
-        $this->data['departure_date']
-          ? new DateTimeImmutable($this->data['departure_date'])
-          : null,
-        $this->data['departure_status']
-          ? DepartureStatus::from($this->data['departure_status'])
-          : null,
-        $this->data['diagnoses'] ?: null
-      );
+    $hospitalization = new Hospitalization(
+      $patient,
+      $this->doctorRepository->getById((int) $this->data['doctor']),
+      $this->data['admission_department'],
+      new DateTimeImmutable($this->data['admission_date']),
+      $this->data['departure_date']
+        ? new DateTimeImmutable($this->data['departure_date'])
+        : null,
+      $this->data['departure_status']
+        ? DepartureStatus::from($this->data['departure_status'])
+        : null,
+      $this->data['diagnoses'] ?: null
+    );
 
-      $patient->setHospitalization($hospitalization);
-      $this->patientRepository->saveHospitalizationOf($patient);
-      parent::setMessage('Hospitalización registrada exitósamente');
-    } catch (Throwable $error) {
-      parent::setError($error);
-    }
+    $patient->setHospitalization($hospitalization);
+    $this->patientRepository->saveHospitalizationOf($patient);
+    parent::setMessage('Hospitalización registrada exitósamente');
 
-    App::redirect(App::request()->referrer);
+    App::redirect("/pacientes/{$patient->id}");
   }
 
   public function deletePatient(int $patientId): void {
@@ -248,5 +244,69 @@ final class PatientWebController extends Controller {
 
     parent::setMessage('Paciente eliminado exitósamente');
     App::redirect('/pacientes');
+  }
+
+  public function showEditHospitalization(int $hospitalizationId): void {
+    $patient = $this
+      ->patientRepository
+      ->getByHospitalizationId($hospitalizationId);
+
+    if (!$patient) {
+      self::setError('Hospitalización no encontrada');
+      App::redirect('/pacientes', 404);
+
+      return;
+    }
+
+    $this->patientRepository->setHospitalizations($patient);
+    $hospitalization = $patient->getHospitalizationById($hospitalizationId);
+    $doctors = $this->doctorRepository->getAll();
+
+    App::renderPage(
+      'patients/edit-hospitalization',
+      "Dar de alta a {$patient->getFullName()}",
+      compact('patient', 'hospitalization', 'doctors'),
+      'main'
+    );
+  }
+
+  public function handleUpdateHospitalization(int $hospitalizationId): void {
+    try {
+      $patient = $this
+        ->patientRepository
+        ->getByHospitalizationId($hospitalizationId);
+
+      if (!$patient) {
+        throw new Error('Hospitalización no encontrada');
+      }
+
+      $this->patientRepository->setHospitalizations($patient);
+      $hospitalization = $patient->getHospitalizationById($hospitalizationId);
+
+      $hospitalization
+        ?->setAdmissionDate(new DateTimeImmutable($this->data['admission_date']))
+        ->setDepartureDate(new DateTimeImmutable($this->data['departure_date']))
+        ->setDepartureStatus(
+          DepartureStatus::from($this->data['departure_status'])
+        );
+
+      $hospitalization->diagnoses = $this->data['diagnoses'] ?? '';
+
+      $hospitalization->doctor = $this
+        ->doctorRepository
+        ->getById((int) $this->data['doctor']);
+
+      $hospitalization->admissionDepartment = $this->data['admission_department'];
+
+      $this->patientRepository->saveHospitalizationOf($patient);
+      parent::setMessage('Alta procesada exitósamente');
+      App::redirect("/pacientes/{$patient->id}");
+
+      return;
+    } catch (Throwable $error) {
+      parent::setError($error);
+    }
+
+    App::redirect(App::request()->referrer);
   }
 }

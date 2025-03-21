@@ -142,6 +142,16 @@ App::group('', function (): void {
         'POST /',
         [PatientWebController::class, 'handleHospitalizationRegister']
       );
+
+      App::route(
+        'GET /@id:[0-9]+/alta',
+        [PatientWebController::class, 'showEditHospitalization']
+      );
+
+      App::route(
+        'POST /@id:[0-9]+',
+        [PatientWebController::class, 'handleUpdateHospitalization']
+      );
     });
 
     App::group('', function (): void {

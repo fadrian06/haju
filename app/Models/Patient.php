@@ -98,4 +98,14 @@ final class Patient extends Person {
   public function getHospitalizations(): array {
     return $this->hospitalizations;
   }
+
+  public function getHospitalizationById(int $hospitalizationId): ?Hospitalization {
+    foreach ($this->hospitalizations as $hospitalization) {
+      if ($hospitalization->id === $hospitalizationId) {
+        return $hospitalization;
+      }
+    }
+
+    return null;
+  }
 }

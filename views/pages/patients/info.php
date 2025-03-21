@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Patient;
 use App\Models\User;
 
@@ -173,6 +175,15 @@ $patientAvatar = @file_get_contents($avatarUrl)
                 <span class="text-black-50 fw-semibold custom-badge status-<?= $hospitalization->isFinished() ? 'green' : 'red' ?>">
                   <?= $hospitalization->isFinished() ? 'Finalizada' : 'No finalizada' ?>
                 </span>
+                <?php if (!$hospitalization->isFinished()) : ?>
+                  <a
+                    class="btn btn-primary w-100"
+                    href="./hospitalizaciones/<?= $hospitalization->id ?>/alta">
+                    Dar de alta
+                  </a>
+                <?php else: ?>
+                  <span><?= $hospitalization->diagnoses ?></span>
+                <?php endif ?>
               </li>
             <?php endforeach ?>
           </ul>
