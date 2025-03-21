@@ -63,6 +63,7 @@
     <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.Indent" />
     <exclude name="Squiz.Strings.DoubleQuoteUsage.ContainsVar" />
     <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.UseOneParamPerLine" />
+    <exclude name="Squiz.PHP.EmbeddedPhp.ShortOpenEchoNoSemicolon" />
   </rule>
 
   <rule ref="Zend" />
@@ -150,5 +151,9 @@
     <properties>
       <property name="indent" value="2" />
     </properties>
+  </rule>
+
+  <rule ref="Generic.Files.InlineHTML.Found">
+    <exclude-pattern>views</exclude-pattern>
   </rule>
 </ruleset>

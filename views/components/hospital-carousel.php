@@ -1,31 +1,38 @@
 <?php
 
+declare(strict_types=1);
+
 $id = uniqid();
 
 ?>
 
-<div id="<?= $id ?>" class="carousel slide carousel-fade" data-bs-ride="carousel">
+<div
+  id="<?= $id ?>"
+  class="carousel slide carousel-fade"
+  data-bs-ride="carousel">
   <div class="carousel-indicators">
-    <?php foreach (range(0, 2) as $index): ?>
+    <?php foreach (range(0, 2) as $index) : ?>
       <button
         data-bs-target="#<?= $id ?>"
         data-bs-slide-to="<?= $index ?>"
-        class="<?= !$index ? 'active' : '' ?>">
+        class="<?= $index === 0 ? '' : 'active' ?>">
       </button>
     <?php endforeach ?>
   </div>
   <div class="carousel-inner">
-    <?php foreach (range(1, 3) as $index => $imageNumber): ?>
-      <div class="carousel-item <?= !$index ? 'active' : '' ?>">
+    <?php foreach (range(1, 3) as $index => $imageNumber) : ?>
+      <div class="carousel-item <?= $index === 0 ? '' : 'active' ?>">
         <img
-          loading="<?= !$index ? 'eager' : 'lazy' ?>"
+          loading="<?= $index === 0 ? 'lazy' : 'eager' ?>"
           src="./assets/img/hospital-exterior-<?= $imageNumber ?>.jpg"
           height="350"
           class="object-fit-cover w-100"
           alt='Exterior del hospital "Antonio José Uzcátegui"' />
         <div class="carousel-caption w-100 d-none d-md-block">
           <h5 class="d-none">Slide label</h5>
-          <p class="d-none">Some representative placeholder content for the slide.</p>
+          <p class="d-none">
+            Some representative placeholder content for the slide.
+          </p>
         </div>
       </div>
     <?php endforeach ?>

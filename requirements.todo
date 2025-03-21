@@ -54,7 +54,7 @@ Recomendaciones:
     ☐ Añadir notificación a los coordinadores cuando el director desactiva un departamento en uso.
     ☐ Añadir cambio de género en pacientes. @critical
   Correcciones T4T2:
-    ☐ Arreglar menú de inicio (fotos)
+    ✔ Arreglar menú de inicio (fotos) @done (20/03/2025 21:15:40)
     ☐ Arreglar formulario departamento de estadística, mensaje "Paciente no encontrado"
     ☐ Arreglar formulario de alta.
     ☐ Generar reporte de gráficas en PDF.
