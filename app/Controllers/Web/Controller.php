@@ -8,6 +8,7 @@ use App;
 use App\Models\User;
 use Error;
 use flight\util\Collection;
+use Illuminate\Container\Container;
 use Leaf\Http\Session;
 use Throwable;
 
@@ -19,7 +20,7 @@ abstract class Controller {
   public function __construct() {
     $this->loggedUser = App::view()->get('user');
     $this->data = App::request()->data;
-    $this->session = App::session();
+    $this->session = Container::getInstance()->get(Session::class);
   }
 
   final protected static function setError(Throwable|string $error): void {
@@ -56,7 +57,7 @@ abstract class Controller {
 
       $filePath = [
         'rel' => "assets/img/{$destinationFolder}/{$fileName}",
-        'abs' => dirname(__DIR__, 3) . "/assets/img/{$destinationFolder}/{$fileName}"
+        'abs' => dirname(__DIR__, 3) . "/assets/img/{$destinationFolder}/{$fileName}",
       ];
 
       file_put_contents($filePath['abs'], $image);
@@ -72,7 +73,7 @@ abstract class Controller {
 
     $filePath = [
       'rel' => "assets/img/{$destinationFolder}/{$fileName}",
-      'abs' => dirname(__DIR__, 3) . "/assets/img/{$destinationFolder}/{$fileName}"
+      'abs' => dirname(__DIR__, 3) . "/assets/img/{$destinationFolder}/{$fileName}",
     ];
 
     copy($temporalFileAbsPath, $filePath['abs']);

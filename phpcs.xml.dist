@@ -16,6 +16,14 @@
     <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
     <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
     <exclude name="Generic.Commenting.DocComment.MissingShort" />
+    <exclude name="Generic.Files.LowercasedFilename.NotFound" />
+    <exclude name="Generic.NamingConventions.AbstractClassNamePrefix.Missing" />
+    <exclude name="Generic.Commenting.DocComment.ContentAfterOpen" />
+    <exclude name="Generic.Commenting.DocComment.ContentBeforeClose" />
+    <exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" />
+    <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSame" />
+    <exclude name="Generic.Formatting.NoSpaceAfterCast.SpaceFound" />
+    <exclude name="Generic.Formatting.SpaceBeforeCast.NoSpace" />
   </rule>
 
   <rule ref="MySource">
@@ -24,6 +32,8 @@
     <exclude name="MySource.Commenting.FunctionComment.Missing" />
     <exclude name="MySource.Commenting.FunctionComment.MissingParamTag" />
     <exclude name="MySource.PHP.ReturnFunctionValue.NotAssigned" />
+    <exclude name="MySource.Commenting.FunctionComment.EmptyThrows" />
+    <exclude name="MySource.Commenting.FunctionComment.MissingReturn" />
   </rule>
 
   <rule ref="PEAR">
@@ -33,6 +43,16 @@
     <exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket" />
     <exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
     <exclude name="PEAR.Commenting.FunctionComment.MissingParamTag" />
+    <exclude name="PEAR.Commenting.ClassComment.MissingCategoryTag" />
+    <exclude name="PEAR.Commenting.ClassComment.MissingPackageTag" />
+    <exclude name="PEAR.Commenting.ClassComment.MissingAuthorTag" />
+    <exclude name="PEAR.Commenting.ClassComment.MissingLicenseTag" />
+    <exclude name="PEAR.Commenting.ClassComment.MissingLinkTag" />
+    <exclude name="PEAR.Classes.ClassDeclaration.OpenBraceNewLine" />
+    <exclude name="PEAR.NamingConventions.ValidVariableName.PrivateNoUnderscore" />
+    <exclude name="PEAR.Commenting.ClassComment.Missing" />
+    <exclude name="PEAR.Commenting.FunctionComment.MissingReturn" />
+    <exclude name="PEAR.WhiteSpace.ScopeIndent.IncorrectExact" />
   </rule>
 
   <rule ref="PSR1" />
@@ -41,7 +61,9 @@
     <exclude name="PSR12.Classes.AnonClassDeclaration.SpaceAfterKeyword" />
   </rule>
 
-  <rule ref="PSR2" />
+  <rule ref="PSR2">
+    <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine" />
+  </rule>
 
   <rule ref="Squiz">
     <exclude name="Squiz.Commenting.FileComment.Missing" />
@@ -64,9 +86,19 @@
     <exclude name="Squiz.Strings.DoubleQuoteUsage.ContainsVar" />
     <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.UseOneParamPerLine" />
     <exclude name="Squiz.PHP.EmbeddedPhp.ShortOpenEchoNoSemicolon" />
+    <exclude name="Squiz.PHP.DisallowBooleanStatement.Found" />
+    <exclude name="Squiz.Files.FileExtension.ClassFound" />
+    <exclude name="Squiz.Commenting.ClassComment.TagNotAllowed" />
+    <exclude name="Squiz.Classes.ClassDeclaration.OpenBraceNewLine" />
+    <exclude name="Squiz.Commenting.FunctionComment.EmptyThrows" />
+    <exclude name="Squiz.Commenting.ClassComment.Missing" />
+    <exclude name="Squiz.Commenting.FunctionComment.MissingReturn" />
+    <exclude name="Squiz.Formatting.OperatorBracket.MissingBrackets" />
   </rule>
 
-  <rule ref="Zend" />
+  <rule ref="Zend">
+    <exclude name="Zend.NamingConventions.ValidVariableName.PrivateNoUnderscore" />
+  </rule>
 
   <rule ref="Squiz.Strings.ConcatenationSpacing">
     <properties>
@@ -154,6 +186,26 @@
   </rule>
 
   <rule ref="Generic.Files.InlineHTML.Found">
+    <exclude-pattern>views</exclude-pattern>
+  </rule>
+
+  <rule ref="Squiz.Commenting.BlockComment.WrongStart">
+    <exclude-pattern>views</exclude-pattern>
+  </rule>
+
+  <rule ref="Squiz.Commenting.InlineComment.DocBlock">
+    <exclude-pattern>views</exclude-pattern>
+  </rule>
+
+  <rule ref="Generic.WhiteSpace.ScopeIndent.IncorrectExact">
+    <exclude-pattern>views</exclude-pattern>
+  </rule>
+
+  <rule ref="PEAR.WhiteSpace.ScopeIndent.IncorrectExact">
+    <exclude-pattern>views</exclude-pattern>
+  </rule>
+
+  <rule ref="Squiz.PHP.DisallowComparisonAssignment.AssignedBool">
     <exclude-pattern>views</exclude-pattern>
   </rule>
 </ruleset>

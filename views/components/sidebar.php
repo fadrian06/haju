@@ -1,26 +1,48 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Department;
 use App\Models\User;
+use App\Repositories\Domain\PatientRepository;
 use App\ValueObjects\Appointment;
+use Illuminate\Container\Container;
 
 /**
  * @var User $user
  * @var Department $department
  */
 
+$patients = Container::getInstance()->get(PatientRepository::class)->getAll();
+
 $backgrounds = [
   'Estadística' => 'white',
   'Emergencia' => '#fff0df',
-  'Hospitalización' => '#f0ffff'
+  'Hospitalización' => '#f0ffff',
 ];
+
+$patientsListId = uniqid();
 
 ?>
 
-<aside class="sidebar overflow-y-scroll" style="background: <?= $backgrounds[$department->name] ?? 'white' ?>">
-  <header class="logo m-0 d-flex align-items-center justify-content-between" style="background: <?= $backgrounds[$department->name] ?? 'white' ?>">
+<datalist id="<?= $patientsListId ?>">
+  <?php foreach ($patients ?? [] as $patient) : ?>
+    <option value="<?= $patient->idCard ?>"></option>
+  <?php endforeach ?>
+</datalist>
+
+<aside
+  class="sidebar overflow-y-scroll"
+  style="background: <?= $backgrounds[$department->name] ?? 'white' ?>">
+  <header
+    class="logo m-0 d-flex align-items-center justify-content-between"
+    style="background: <?= $backgrounds[$department->name] ?? 'white' ?>">
     <picture class="p-2">
-      <img class="img-fluid" src="./assets/img/logo@light.png" data-bs-toggle="tooltip" title='Hospital "José Antonio Uzcátegui"' />
+      <img
+        class="img-fluid"
+        src="./assets/img/logo@light.png"
+        data-bs-toggle="tooltip"
+        title='Hospital "José Antonio Uzcátegui"' />
     </picture>
     <div class="sidebar_close_icon d-flex align-items-center d-lg-none">
       <i class="ti-close"></i>
@@ -53,7 +75,14 @@ $backgrounds = [
             <div class="serach_field-area m-0 w-100">
               <form class="search_inner" action="./pacientes">
                 <div class="search_field">
-                  <input class="ps-5 py-2 small" name="cedula" style="height: unset" required type="number" placeholder="Cédula...">
+                  <input
+                    class="ps-5 py-2 small"
+                    name="cedula"
+                    style="height: unset"
+                    required
+                    type="number"
+                    placeholder="Cédula..."
+                    list="<?= $patientsListId ?>" />
                 </div>
                 <button class="ps-4">
                   <img src="./assets/img/icons/icon_search.svg" />
@@ -61,9 +90,12 @@ $backgrounds = [
               </form>
             </div>
           </li>
-          <?php if (!$department->isStatistics()): ?>
+          <?php if (!$department->isStatistics()) : ?>
             <li>
-              <a href="./pacientes#registrar" <?= isActive('/pacientes') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
+              <a
+                href="./pacientes#registrar"
+                <?= isActive('/pacientes') ? 'data-bs-toggle="modal"' : '' ?>
+                data-bs-target="#registrar">
                 <i class="ti-plus"></i>
                 Registrar paciente
               </a>
@@ -98,7 +130,10 @@ $backgrounds = [
             </a>
           </li>
           <li>
-            <a href="./doctores#registrar" <?= isActive('/doctores') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
+            <a
+              href="./doctores#registrar"
+              <?= isActive('/doctores') ? 'data-bs-toggle="modal"' : '' ?>
+              data-bs-target="#registrar">
               <i class="ti-plus"></i>
               Registrar
             </a>
@@ -118,7 +153,10 @@ $backgrounds = [
             </a>
           </li>
           <li>
-            <a href="./usuarios#registrar" <?= isActive('/usuarios') ? 'data-bs-toggle="modal"' : '' ?> data-bs-target="#registrar">
+            <a
+              href="./usuarios#registrar"
+              <?= isActive('/usuarios') ? 'data-bs-toggle="modal"' : '' ?>
+              data-bs-target="#registrar">
               <i class="ti-plus"></i>
               Registrar
             </a>
@@ -160,7 +198,7 @@ $backgrounds = [
                 Asignar departamentos
               </a>
             </li>
-            <?php if ($user->appointment === Appointment::Director || $user->hasDepartment('Estadística')) : ?>
+            <?php if ($user->appointment->isDirector() || $user->hasDepartment('Estadística')) : ?>
               <li class="<?= isActive('/configuracion/respaldo-restauracion') ? 'mm-active' : '' ?>">
                 <a href="./configuracion/respaldo-restauracion">
                   <i class="ti-import"></i>
@@ -168,7 +206,7 @@ $backgrounds = [
                 </a>
               </li>
             <?php endif ?>
-            <?php if ($user->appointment->isHigherThan(Appointment::Coordinator)): ?>
+            <?php if ($user->appointment->isHigherThan(Appointment::Coordinator)) : ?>
               <li class="<?= isActive('/configuracion/causas-de-consulta') ? 'mm-active' : '' ?>">
                 <a href="./configuracion/causas-de-consulta" class="text-wrap">
                   <i class="ti-bookmark-alt"></i>
@@ -184,5 +222,8 @@ $backgrounds = [
 </aside>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => $('#sidebar_menu').metisMenu())
+  document.addEventListener(
+    'DOMContentLoaded',
+    () => $('#sidebar_menu').metisMenu()
+  )
 </script>

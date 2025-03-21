@@ -55,6 +55,6 @@ Recomendaciones:
     ☐ Añadir cambio de género en pacientes. @critical
   Correcciones T4T2:
     ✔ Arreglar menú de inicio (fotos) @done (20/03/2025 21:15:40)
-    ☐ Arreglar formulario departamento de estadística, mensaje "Paciente no encontrado"
+    ✔ Arreglar formulario departamento de estadística, mensaje "Paciente no encontrado" @done (20/03/2025 22:46:02)
     ☐ Arreglar formulario de alta.
     ☐ Generar reporte de gráficas en PDF.

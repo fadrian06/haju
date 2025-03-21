@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Patient;
 use App\Models\User;
-use App\ValueObjects\Appointment;
 
 /**
  * @var array<int, Patient> $patients
@@ -15,9 +16,12 @@ $loggedUser = $user;
 
 ?>
 
-<section class="mb-4 d-inline-flex px-0 align-items-center justify-content-between">
+<section class="mb-4 d-inline-flex align-items-center justify-content-between">
   <h2>Pacientes</h2>
-  <a data-bs-toggle="modal" href="#registrar" class="btn btn-primary rounded-pill d-flex align-items-center">
+  <a
+    data-bs-toggle="modal"
+    href="#registrar"
+    class="btn btn-primary rounded-pill d-flex align-items-center">
     <i class="px-2 ti-plus"></i>
     <span class="px-2">Registrar paciente</span>
   </a>
@@ -48,22 +52,43 @@ $loggedUser = $user;
         </thead>
         <tbody>
           <?php foreach ($patients as $patient) : ?>
-            <?php $canEdit = $patient->registeredBy?->registeredBy?->isEqualTo($loggedUser) || $patient->registeredBy?->isEqualTo($loggedUser) ?>
             <tr>
               <form method="post" action="./pacientes/<?= $patient->id ?>">
                 <td class="p-2">
-                  <a class="btn btn-secondary btn-sm text-white" href="./pacientes/<?= $patient->id ?>">
+                  <a
+                    class="btn btn-secondary btn-sm text-white"
+                    href="./pacientes/<?= $patient->id ?>">
                     Detalles
                   </a>
                 </td>
                 <td class="p-1">
-                  <input <?= $canEdit ? '' : 'readonly' ?> placeholder="Nombre del paciente" class="form-control" required name="full_name" value="<?= $patient->getFullName() ?>" />
+                  <input
+                    <?= $patient->canBeEditedBy($loggedUser) ? '' : 'readonly' ?>
+                    placeholder="Nombre del paciente"
+                    class="form-control"
+                    required
+                    name="full_name"
+                    value="<?= $patient->getFullName() ?>" />
                 </td>
                 <td class="p-1">
-                  <input <?= $canEdit ? '' : 'readonly' ?> type="number" placeholder="Cédula del paciente" class="form-control" required name="id_card" value="<?= $patient->idCard ?>" />
+                  <input
+                    <?= $patient->canBeEditedBy($loggedUser) ? '' : 'readonly' ?>
+                    type="number"
+                    placeholder="Cédula del paciente"
+                    class="form-control"
+                    required
+                    name="id_card"
+                    value="<?= $patient->idCard ?>" />
                 </td>
                 <td class="p-1">
-                  <input <?= $canEdit ? '' : 'readonly' ?> type="date" placeholder="Fecha de nacimiento" class="form-control" required name="birth_date" value="<?= $patient->birthDate->getWithDashes() ?>" />
+                  <input
+                    <?= $patient->canBeEditedBy($loggedUser) ? '' : 'readonly' ?>
+                    type="date"
+                    placeholder="Fecha de nacimiento"
+                    class="form-control"
+                    required
+                    name="birth_date"
+                    value="<?= $patient->birthDate->getWithDashes() ?>" />
                 </td>
                 <td>
                   <?= $patient->gender->value ?>
@@ -73,11 +98,17 @@ $loggedUser = $user;
                 </td>
                 <td class="p-2">
                   <div class="btn-group">
-                    <?php if ($canEdit) : ?>
-                      <button class="btn btn-sm btn-primary text-white">Actualizar</button>
+                    <?php if ($patient->canBeEditedBy($loggedUser)) : ?>
+                      <button class="btn btn-sm btn-primary text-white">
+                        Actualizar
+                      </button>
                     <?php endif ?>
-                    <?php if ($patient->canBeDeleted()): ?>
-                      <a href="./pacientes/<?= $patient->id ?>/eliminar" class="btn btn-sm btn-danger text-white">Eliminar</a>
+                    <?php if ($patient->canBeDeleted()) : ?>
+                      <a
+                        href="./pacientes/<?= $patient->id ?>/eliminar"
+                        class="btn btn-sm btn-danger text-white">
+                        Eliminar
+                      </a>
                     <?php endif ?>
                   </div>
                 </td>
@@ -90,4 +121,5 @@ $loggedUser = $user;
   </section>
 <?php endif ?>
 
-<?php render('forms/patient-register', ['action' => './pacientes#registrar']) ?>
+<?php
+render('forms/patient-register', ['action' => './pacientes#registrar']);

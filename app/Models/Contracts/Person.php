@@ -4,20 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models\Contracts;
 
-use App\Models\Exceptions\InvalidDateException;
 use App\ValueObjects\Date;
+use App\ValueObjects\Exceptions\InvalidDateException;
 use App\ValueObjects\Exceptions\InvalidNameException;
 use App\ValueObjects\Gender;
 use App\ValueObjects\IdCard;
 use App\ValueObjects\Name;
 
-/**
- * @property-read string $firstName
- * @property-read ?string $secondName
- * @property-read string $firstLastName
- * @property-read ?string $secondLastName
- * @property-read int $idCard
- */
 abstract class Person extends Model {
   private Name $firstName;
   private ?Name $secondName = null;
@@ -42,8 +35,13 @@ abstract class Person extends Model {
       ->setFirstLastName($firstLastName)
       ->setIdCard($idCard);
 
-    $secondName && $this->setSecondName($secondName);
-    $secondLastName && $this->setSecondLastName($secondLastName);
+    if ($secondName !== null) {
+      $this->setSecondName($secondName);
+    }
+
+    if ($secondLastName !== null) {
+      $this->setSecondLastName($secondLastName);
+    }
   }
 
   final public function setIdCard(int $idCard): static {
@@ -86,13 +84,18 @@ abstract class Person extends Model {
 
   /** @throws InvalidNameException */
   public function setFullName(string $fullName): self {
-    @[$firstName, $secondName, $firstLastName, $secondLastName] = explode(' ', $fullName);
+    $fullName = explode(' ', $fullName);
+
+    $firstName = $fullName[0] ?? null;
+    $secondName = $fullName[1] ?? null;
+    $firstLastName = $fullName[2] ?? null;
+    $secondLastName = $fullName[3] ?? null;
 
     $this->setFirstName($firstName);
 
-    if (!$firstLastName) {
+    if ($firstLastName === null) {
       return $this->setSecondName(null)
-        ->setFirstLastName($secondName)
+        ->setFirstLastName($secondName ?? '')
         ->setSecondLastName(null);
     }
 
@@ -103,20 +106,17 @@ abstract class Person extends Model {
 
   final public function getFullName(): string {
     $fullName = $this->firstName;
-    $fullName .= $this->secondName ? " {$this->secondName}" : '';
-    $fullName .= " $this->firstLastName";
+    $fullName .= ($this->secondName !== null) ? " {$this->secondName}" : '';
 
-    return $fullName . $this->secondLastName ? " {$this->secondLastName}" : '';
+    return $fullName . " $this->firstLastName";
   }
 
   public function __get(string $property): null|int|string {
-    assert($this->idCard instanceof IdCard);
-
     return match ($property) {
-      'firstName' => (string) $this->firstName,
-      'secondName' => (string) $this->secondName,
-      'firstLastName' => (string) $this->firstLastName,
-      'secondLastName' => (string) $this->secondLastName,
+      'firstName' => $this->firstName->__toString(),
+      'secondName' => $this->secondName?->__toString(),
+      'firstLastName' => $this->firstLastName->__toString(),
+      'secondLastName' => $this->secondLastName?->__toString(),
       'idCard' => $this->idCard->value,
       default => parent::__get($property)
     };

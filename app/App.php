@@ -32,8 +32,8 @@ final class App extends Flight {
     array $params = [],
     string $layout = 'base'
   ): void {
-    App::render("pages/{$page}", $params, 'content');
-    App::render("layouts/{$layout}", compact('title'));
+    self::render("pages/{$page}", $params, 'content');
+    self::render("layouts/{$layout}", compact('title') + $params);
   }
 
   /** @deprecated */

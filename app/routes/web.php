@@ -34,7 +34,7 @@ App::route('/', static function () {
   Container::getInstance()->get(LandingWebController::class)->showLanding();
 });
 
-App::group('/', static function (): void {
+App::group('', static function (): void {
   App::route('/salir', [SessionWebController::class, 'logOut']);
 
   App::group('', static function (): void {
@@ -52,7 +52,7 @@ App::group('/', static function (): void {
     );
   });
 
-  App::group('/', static function (): void {
+  App::group('', static function (): void {
     App::route('GET /registrate', [UserWebController::class, 'showRegister']);
 
     App::route(
@@ -62,7 +62,7 @@ App::group('/', static function (): void {
   }, [EnsureOnlyAcceptOneDirector::class]);
 }, [EnsureUserIsNotAuthenticated::class, MessagesMiddleware::class]);
 
-App::group('/', function (): void {
+App::group('', function (): void {
   App::route(
     '/departamento/seleccionar',
     [SessionWebController::class, 'showDepartments']
@@ -74,7 +74,7 @@ App::group('/', function (): void {
   )
     ->addMiddleware(LogLoginMiddleware::class);
 
-  App::group('/', function (): void {
+  App::group('', function (): void {
     App::route('/', [HomeWebController::class, 'showIndex']);
     App::route('GET /perfil', [UserWebController::class, 'showProfile']);
 
@@ -144,14 +144,14 @@ App::group('/', function (): void {
       );
     });
 
-    App::group('/', function (): void {
+    App::group('', function (): void {
       App::route(
         'POST /pacientes/@id',
         [PatientWebController::class, 'handleEdition']
       );
     }, [EnsureCanEditPatientMiddleware::class]);
 
-    App::group('/', function (): void {
+    App::group('', function (): void {
       App::route('GET /usuarios', [UserWebController::class, 'showUsers']);
 
       App::route(
