@@ -22,6 +22,7 @@ abstract class Controller {
     $this->session = container()->get(Session::class);
   }
 
+  /** @deprecated */
   final protected static function setError(Throwable|string $error): void {
     if ($error instanceof Throwable) {
       $error = $error->getMessage();
@@ -29,11 +30,12 @@ abstract class Controller {
       error_log("\n\n");
     }
 
-    Flight::session()->set('error', $error);
+    container()->get(Session::class)->set('error', $error);
   }
 
+  /** @deprecated */
   final protected static function setMessage(string $message): void {
-    Flight::session()->set('message', $message);
+    container()->get(Session::class)->set('message', $message);
   }
 
   /**

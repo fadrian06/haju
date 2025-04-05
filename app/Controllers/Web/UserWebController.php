@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controllers\Web;
 
-use App;
 use App\Models\User;
 use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Domain\UserRepository;
@@ -17,24 +16,26 @@ use App\ValueObjects\Gender;
 use App\ValueObjects\InstructionLevel;
 use App\ValueObjects\Phone;
 use Error;
+use Flight;
 use Leaf\Http\Session;
 use PharIo\Manifest\Email;
 use PharIo\Manifest\InvalidEmailException;
 use Throwable;
+use ZxcvbnPhp\Zxcvbn;
 
 final class UserWebController extends Controller {
-  private readonly DepartmentRepository $departmentRepository;
-  private readonly UserRepository $userRepository;
+  private const INSECURE_PASSWORD_STRENGTH_LEVEL = 2;
 
-  public function __construct() {
+  public function __construct(
+    private readonly DepartmentRepository $departmentRepository,
+    private readonly UserRepository $userRepository,
+    private readonly Zxcvbn $passwordValidator,
+  ) {
     parent::__construct();
-
-    $this->departmentRepository = App::departmentRepository();
-    $this->userRepository = App::userRepository();
   }
 
   public function showRegister(): void {
-    App::renderPage('register', 'Regístrate');
+    renderPage('register', 'Regístrate');
   }
 
   public function handleRegister(): void {
@@ -44,7 +45,7 @@ final class UserWebController extends Controller {
       $this->loggedUser->appointment === Appointment::Coordinator => [Appointment::Secretary, '/usuarios', '/usuarios']
     };
 
-    Session::set('lastData', $this->data->getData());
+    $this->session->set('lastData', $this->data->getData());
 
     try {
       if ($this->data['password'] !== $this->data['confirm_password']) {
@@ -107,7 +108,7 @@ final class UserWebController extends Controller {
       $this->userRepository->save($user);
       self::setMessage('Usuario registrado exitósamente');
       Session::unset('lastData');
-      App::redirect($urlToRedirect);
+      Flight::redirect($urlToRedirect);
 
       exit;
     } catch (InvalidDateException) {
@@ -120,11 +121,11 @@ final class UserWebController extends Controller {
       self::setError($error);
     }
 
-    App::redirect($urlWhenFail);
+    Flight::redirect($urlWhenFail);
   }
 
   public function showPasswordReset(): void {
-    App::renderPage('forgot-pass', 'Recuperar contraseña (1/2)');
+    renderPage('forgot-pass', 'Recuperar contraseña (1/2)');
   }
 
   public function handlePasswordReset(): void {
@@ -132,7 +133,7 @@ final class UserWebController extends Controller {
       $user = $this->userRepository->getByIdCard($this->data['id_card']);
 
       if ($user) {
-        App::renderPage(
+        renderPage(
           'change-pass',
           'Recuperar contraseña (2/2)',
           compact('user')
@@ -142,7 +143,7 @@ final class UserWebController extends Controller {
       }
 
       self::setError('Cédula incorrecta');
-      App::redirect('/recuperar');
+      Flight::redirect('/recuperar');
 
       exit;
     }
@@ -153,24 +154,24 @@ final class UserWebController extends Controller {
 
     $this->userRepository->save($user);
     self::setMessage('Contraseña actualizada exitósamente');
-    App::redirect('/ingresar');
+    Flight::redirect('/ingresar');
   }
 
   public function showProfile(): void {
-    App::renderPage('profile', 'Mi perfil', [
+    renderPage('profile', 'Mi perfil', [
       'showPasswordChangeModal' => false
     ], 'main');
   }
 
   public function showEditProfile(): void {
-    App::renderPage('edit-profile', 'Editar perfil', [], 'main');
+    renderPage('edit-profile', 'Editar perfil', [], 'main');
   }
 
   public function handleEditProfile(): void {
     try {
       $profileImageUrlPath = '';
 
-      if (App::request()->files['profile_image']['size']) {
+      if (Flight::request()->files['profile_image']['size']) {
         $profileImageUrlPath = self::ensureThatFileIsSaved(
           'profile_image',
           'profile_image_url',
@@ -202,7 +203,7 @@ final class UserWebController extends Controller {
       self::setError($error);
     }
 
-    App::redirect('/perfil/editar');
+    Flight::redirect('/perfil/editar');
   }
 
   public function showUsers(): void {
@@ -223,7 +224,7 @@ final class UserWebController extends Controller {
 
     $usersNumber = count($filteredUsers);
 
-    App::renderPage(
+    renderPage(
       'users',
       "Usuarios ({$usersNumber})",
       ['users' => $filteredUsers, ...compact('departments')],
@@ -246,7 +247,7 @@ final class UserWebController extends Controller {
       self::setError($error);
     }
 
-    App::redirect($user->appointment === Appointment::Director ? '/salir' : '/usuarios');
+    Flight::redirect($user->appointment === Appointment::Director ? '/salir' : '/usuarios');
   }
 
   public function handlePasswordChange(): void {
@@ -263,6 +264,15 @@ final class UserWebController extends Controller {
         throw new Error('La nueva contraseña no puede ser igual a la anterior');
       }
 
+      $passwordStrength = $this->passwordValidator->passwordStrength($this->data['new_password']);
+
+      if (
+        $passwordStrength['score'] <= self::INSECURE_PASSWORD_STRENGTH_LEVEL
+        || $this->data['new_password'] === $this->loggedUser->idCard
+      ) {
+        throw new Error('Contraseña poco segura, por favor utilice números, símbolos y mayúsculas');
+      }
+
       $this->loggedUser->setPassword($this->data['new_password']);
       $this->userRepository->save($this->loggedUser);
       self::setMessage('Contraseña actualizada exitósamente');
@@ -271,6 +281,6 @@ final class UserWebController extends Controller {
       self::setError($error);
     }
 
-    App::redirect('/perfil');
+    Flight::redirect('/perfil');
   }
 }

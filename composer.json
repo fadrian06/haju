@@ -4,6 +4,7 @@
   "license": "proprietary",
   "require": {
     "php": "^8.2",
+    "bjeavons/zxcvbn-php": "^1.4",
     "faslatam/alpine-js": "^3.14",
     "flightphp/container": "^1.2",
     "flightphp/core": "^3.15",

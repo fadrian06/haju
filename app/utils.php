@@ -18,6 +18,16 @@ function render(string $viewPath, array $params = []): void {
   Flight::render($viewPath, $params);
 }
 
+function renderPage(
+  string $page,
+  string $title,
+  array $params = [],
+  string $layout = 'base'
+): void {
+  Flight::render("pages/{$page}", $params, 'content');
+  Flight::render("layouts/{$layout}", compact('title') + $params);
+}
+
 function renderComponent(string $componentPath, array $params = []): void {
   render("components/{$componentPath}", $params);
 }

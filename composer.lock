@@ -4,8 +4,64 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "6b996c62171452a33fb08c534ee5ebb4",
+  "content-hash": "1e1e759c9f0c5a81e1b57156dd7f2171",
   "packages": [
+    {
+      "name": "bjeavons/zxcvbn-php",
+      "version": "1.4.2",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/bjeavons/zxcvbn-php.git",
+        "reference": "426f664501a0747beb8f3ee17ac30c7dd6327ffa"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/bjeavons/zxcvbn-php/zipball/426f664501a0747beb8f3ee17ac30c7dd6327ffa",
+        "reference": "426f664501a0747beb8f3ee17ac30c7dd6327ffa",
+        "shasum": ""
+      },
+      "require": {
+        "ext-json": "*",
+        "php": "^7.2 | ^8.0 | ^8.1",
+        "symfony/polyfill-mbstring": ">=1.3.1"
+      },
+      "require-dev": {
+        "php-coveralls/php-coveralls": "*",
+        "phpstan/phpstan": "^2.0",
+        "phpunit/phpunit": "^8.5",
+        "squizlabs/php_codesniffer": "3.*"
+      },
+      "suggest": {
+        "ext-gmp": "Required for optimized binomial calculations (also requires PHP >= 7.3)"
+      },
+      "type": "library",
+      "autoload": {
+        "psr-4": {
+          "ZxcvbnPhp\\": "src/"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "See contributors",
+          "homepage": "https://github.com/bjeavons/zxcvbn-php"
+        }
+      ],
+      "description": "Realistic password strength estimation PHP library based on Zxcvbn JS",
+      "homepage": "https://github.com/bjeavons/zxcvbn-php",
+      "keywords": [
+        "password",
+        "zxcvbn"
+      ],
+      "support": {
+        "issues": "https://github.com/bjeavons/zxcvbn-php/issues",
+        "source": "https://github.com/bjeavons/zxcvbn-php/tree/1.4.2"
+      },
+      "time": "2025-02-24T16:47:20+00:00"
+    },
     {
       "name": "faslatam/alpine-js",
       "version": "3.14.9",
@@ -507,6 +563,86 @@
         "source": "https://github.com/php-fig/container/tree/2.0.2"
       },
       "time": "2021-11-05T16:47:00+00:00"
+    },
+    {
+      "name": "symfony/polyfill-mbstring",
+      "version": "v1.31.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/symfony/polyfill-mbstring.git",
+        "reference": "85181ba99b2345b0ef10ce42ecac37612d9fd341"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/85181ba99b2345b0ef10ce42ecac37612d9fd341",
+        "reference": "85181ba99b2345b0ef10ce42ecac37612d9fd341",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=7.2"
+      },
+      "provide": {
+        "ext-mbstring": "*"
+      },
+      "suggest": {
+        "ext-mbstring": "For best performance"
+      },
+      "type": "library",
+      "extra": {
+        "thanks": {
+          "url": "https://github.com/symfony/polyfill",
+          "name": "symfony/polyfill"
+        }
+      },
+      "autoload": {
+        "files": [
+          "bootstrap.php"
+        ],
+        "psr-4": {
+          "Symfony\\Polyfill\\Mbstring\\": ""
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Nicolas Grekas",
+          "email": "p@tchwork.com"
+        },
+        {
+          "name": "Symfony Community",
+          "homepage": "https://symfony.com/contributors"
+        }
+      ],
+      "description": "Symfony polyfill for the Mbstring extension",
+      "homepage": "https://symfony.com",
+      "keywords": [
+        "compatibility",
+        "mbstring",
+        "polyfill",
+        "portable",
+        "shim"
+      ],
+      "support": {
+        "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.31.0"
+      },
+      "funding": [
+        {
+          "url": "https://symfony.com/sponsor",
+          "type": "custom"
+        },
+        {
+          "url": "https://github.com/fabpot",
+          "type": "github"
+        },
+        {
+          "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+          "type": "tidelift"
+        }
+      ],
+      "time": "2024-09-09T11:45:10+00:00"
     },
     {
       "name": "twbs/bootstrap",
@@ -4041,86 +4177,6 @@
       ],
       "support": {
         "source": "https://github.com/symfony/polyfill-ctype/tree/v1.31.0"
-      },
-      "funding": [
-        {
-          "url": "https://symfony.com/sponsor",
-          "type": "custom"
-        },
-        {
-          "url": "https://github.com/fabpot",
-          "type": "github"
-        },
-        {
-          "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-          "type": "tidelift"
-        }
-      ],
-      "time": "2024-09-09T11:45:10+00:00"
-    },
-    {
-      "name": "symfony/polyfill-mbstring",
-      "version": "v1.31.0",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/symfony/polyfill-mbstring.git",
-        "reference": "85181ba99b2345b0ef10ce42ecac37612d9fd341"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/85181ba99b2345b0ef10ce42ecac37612d9fd341",
-        "reference": "85181ba99b2345b0ef10ce42ecac37612d9fd341",
-        "shasum": ""
-      },
-      "require": {
-        "php": ">=7.2"
-      },
-      "provide": {
-        "ext-mbstring": "*"
-      },
-      "suggest": {
-        "ext-mbstring": "For best performance"
-      },
-      "type": "library",
-      "extra": {
-        "thanks": {
-          "url": "https://github.com/symfony/polyfill",
-          "name": "symfony/polyfill"
-        }
-      },
-      "autoload": {
-        "files": [
-          "bootstrap.php"
-        ],
-        "psr-4": {
-          "Symfony\\Polyfill\\Mbstring\\": ""
-        }
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "Nicolas Grekas",
-          "email": "p@tchwork.com"
-        },
-        {
-          "name": "Symfony Community",
-          "homepage": "https://symfony.com/contributors"
-        }
-      ],
-      "description": "Symfony polyfill for the Mbstring extension",
-      "homepage": "https://symfony.com",
-      "keywords": [
-        "compatibility",
-        "mbstring",
-        "polyfill",
-        "portable",
-        "shim"
-      ],
-      "support": {
-        "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.31.0"
       },
       "funding": [
         {

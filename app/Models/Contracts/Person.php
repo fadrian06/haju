@@ -11,6 +11,7 @@ use App\ValueObjects\Gender;
 use App\ValueObjects\IdCard;
 use App\ValueObjects\Name;
 
+/** @property-read int $idCard */
 abstract class Person extends Model {
   private Name $firstName;
   private ?Name $secondName = null;

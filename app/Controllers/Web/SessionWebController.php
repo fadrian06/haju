@@ -4,29 +4,29 @@ declare(strict_types=1);
 
 namespace App\Controllers\Web;
 
-use App;
 use App\Repositories\Domain\UserRepository;
 use Error;
-use Leaf\Http\Session;
+use Flight;
+use ZxcvbnPhp\Zxcvbn;
 
 final class SessionWebController extends Controller {
-  private readonly UserRepository $userRepository;
-  private const DEFAULT_PASSWORD = '1234';
+  private const INSECURE_PASSWORD_STRENGTH_LEVEL = 2;
 
-  public function __construct() {
+  public function __construct(
+    private readonly UserRepository $userRepository,
+    private readonly Zxcvbn $passwordValidator,
+  ) {
     parent::__construct();
-
-    $this->userRepository = App::userRepository();
   }
 
   public function logOut(): void {
-    Session::unset('userId');
-    Session::unset('department');
-    App::redirect('/ingresar');
+    $this->session->unset('userId');
+    $this->session->unset('department');
+    Flight::redirect('/ingresar');
   }
 
   public function showLogin(): void {
-    App::renderPage('login', 'Ingreso (1/2)');
+    renderPage('login', 'Ingreso (1/2)');
   }
 
   public function handleLogin(): void {
@@ -40,20 +40,25 @@ final class SessionWebController extends Controller {
         throw new Error('La contraseña es requerida');
       }
 
-      if ($this->data['password'] === self::DEFAULT_PASSWORD) {
-        $this->session->set('mustChangePassword', true);
-      }
-
       if (!$user?->checkPassword($this->data['password'])) {
         throw new Error('Cédula o contraseña incorrecta');
       }
 
+      $passwordStrength = $this->passwordValidator->passwordStrength($this->data['password']);
+
+      if (
+        $passwordStrength['score'] <= self::INSECURE_PASSWORD_STRENGTH_LEVEL
+        || $this->data['password'] === $this->data['id_card']
+      ) {
+        $this->session->set('mustChangePassword', true);
+      }
+
       $user->ensureThatIsActive()->ensureHasActiveDepartments();
       $this->session->set('userId', $user->id);
-      App::redirect('/departamento/seleccionar');
+      Flight::redirect('/departamento/seleccionar');
     } catch (Error $error) {
       self::setError($error);
-      App::redirect('/ingresar');
+      Flight::redirect('/ingresar');
     }
   }
 
@@ -65,16 +70,16 @@ final class SessionWebController extends Controller {
     }
 
     if (count($departments) === 1) {
-      App::redirect("/departamento/seleccionar/{$departments[0]->id}");
+      Flight::redirect("/departamento/seleccionar/{$departments[0]->id}");
 
       return;
     }
 
-    App::renderPage('select-department', 'Ingresar (2/2)');
+    renderPage('select-department', 'Ingresar (2/2)');
   }
 
   public function saveChoice(int $id): void {
     $this->session->set('departmentId', $id);
-    App::redirect('/');
+    Flight::redirect('/');
   }
 }

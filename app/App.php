@@ -15,6 +15,7 @@ use Leaf\Http\Session;
 
 /** @deprecated */
 final class App extends Flight {
+  /** @deprecated */
   public static function route(
     string $pattern,
     $callback,
@@ -26,6 +27,7 @@ final class App extends Flight {
     return self::router()->map($pattern, $callback, $pass_route, $alias);
   }
 
+  /** @deprecated */
   public static function renderPage(
     string $page,
     string $title,
