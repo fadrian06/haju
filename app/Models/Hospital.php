@@ -82,7 +82,7 @@ final class Hospital {
 
   public function __get(string $property): null|string {
     return match ($property) {
-      'name' => $this->name,
+      'name' => (string) $this->name,
       'asic' => $this->asic,
       'type' => $this->type,
       'place' => $this->place,

@@ -35,13 +35,29 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
     private readonly UserRepository $userRepository,
     private readonly ConsultationCauseRepository $causeRepository,
     private readonly DepartmentRepository $departmentRepository,
-    private readonly DoctorRepository $doctorRepository
+    private readonly DoctorRepository $doctorRepository,
+    private bool $withHospitalizations = false,
+    private bool $withConsultations = false,
   ) {
     parent::__construct($connection, $baseUrl);
   }
 
   protected static function getTable(): string {
     return 'patients';
+  }
+
+  public function withHospitalizations(): PatientRepository {
+    $patientRepository = clone $this;
+    $patientRepository->withHospitalizations = true;
+
+    return $patientRepository;
+  }
+
+  public function withConsultations(): PatientRepository {
+    $patientRepository = clone $this;
+    $patientRepository->withConsultations = true;
+
+    return $patientRepository;
   }
 
   public function getAll(): array {
@@ -365,6 +381,14 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
     );
 
     $patient->setId($id)->setRegisteredDate(parent::parseDateTime($registeredDate));
+
+    if ($this->withHospitalizations) {
+      $this->setHospitalizations($patient);
+    }
+
+    if ($this->withConsultations) {
+      $this->setConsultations($patient);
+    }
 
     return $patient;
   }

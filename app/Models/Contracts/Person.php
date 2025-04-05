@@ -122,4 +122,16 @@ abstract class Person extends Model {
       default => parent::__get($property)
     };
   }
+
+  public function jsonSerialize(): array {
+    return parent::jsonSerialize() + [
+      'firstName' => $this->firstName->__toString(),
+      'secondName' => $this->secondName?->__toString(),
+      'firstLastName' => $this->firstLastName->__toString(),
+      'secondLastName' => $this->secondLastName?->__toString(),
+      'idCard' => $this->idCard->value,
+      'fullName' => $this->getFullName(),
+      'gender' => $this->gender->value,
+    ];
+  }
 }

@@ -25,4 +25,6 @@ interface PatientRepository extends Repository {
   public function setConsultations(Patient $patient): void;
   public function setHospitalizations(Patient $patient): void;
   public function getConsultationsCount(): int;
+  public function withHospitalizations(): self;
+  public function withConsultations(): self;
 }

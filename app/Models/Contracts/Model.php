@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace App\Models\Contracts;
 
 use DateTime;
+use JsonSerializable;
 
 /**
  * @property-read ?int $id
  * @property-read ?string $registeredDate
  */
-abstract class Model {
+abstract class Model implements JsonSerializable {
   private ?int $id = null;
   private ?DateTime $registeredDateTime = null;
 
@@ -39,5 +40,12 @@ abstract class Model {
       'id' => $this->id,
       'registeredDate' => $this->registeredDateTime->format('d/m/Y')
     };
+  }
+
+  public function jsonSerialize(): array {
+    return [
+      'id' => $this->id,
+      'registeredDate' => $this->registeredDateTime?->format('d/m/Y'),
+    ];
   }
 }

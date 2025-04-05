@@ -37,6 +37,16 @@ final class Patient extends Person {
     );
   }
 
+  public function isHospitalized(): bool {
+    foreach ($this->hospitalizations as $hospitalization) {
+      if (!$hospitalization->isFinished()) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   public function canBeDeleted(): bool {
     return !$this->hasConsultations() && !$this->hasHospitalizations();
   }
@@ -107,5 +117,14 @@ final class Patient extends Person {
     }
 
     return null;
+  }
+
+  public function jsonSerialize(): array {
+    return parent::jsonSerialize() + [
+      'consultations' => $this->consultations,
+      'hospitalizations' => $this->hospitalizations,
+      'registeredBy' => $this->registeredBy,
+      'canBeDeleted' => $this->canBeDeleted(),
+    ];
   }
 }

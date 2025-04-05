@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App;
 use App\Models\Contracts\Activable;
 use App\Models\Contracts\Person;
 use App\Models\Helpers\HasActiveStatus;
@@ -171,5 +172,12 @@ final class User extends Person implements Activable {
       'address' => $this->address,
       default => parent::__get($property)
     };
+  }
+
+  public function jsonSerialize(): array
+  {
+    return parent::jsonSerialize() + [
+      'isDirector' => $this->appointment->isDirector(),
+    ];
   }
 }

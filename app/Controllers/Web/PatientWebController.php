@@ -52,7 +52,10 @@ final class PatientWebController extends Controller {
     }
 
     renderPage('patients/list', 'Pacientes', [
-      'patients' => $this->patientRepository->getAll(),
+      'patients' => $this
+        ->patientRepository
+        ->withHospitalizations()
+        ->getAll(),
     ], 'main');
   }
 
