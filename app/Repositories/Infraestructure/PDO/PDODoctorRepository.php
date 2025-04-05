@@ -102,14 +102,14 @@ final class PDODoctorRepository extends PDORepository implements DoctorRepositor
         ]);
 
       $doctor
-        ->setId($this->connection->instance()->lastInsertId())
+        ->setId((int) $this->connection->instance()->lastInsertId())
         ->setRegisteredDate(parent::parseDateTime($datetime));
     } catch (PDOException $exception) {
-      if (str_contains($exception, 'UNIQUE constraint failed: patients.id_card')) {
+      if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: patients.id_card')) {
         throw new DuplicatedIdCardException("Cédula \"{$doctor->idCard}\" ya existe");
       }
 
-      if (str_contains($exception, 'UNIQUE constraint failed: patients.first_name')) {
+      if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: patients.first_name')) {
         throw new DuplicatedNamesException("Usuario \"{$doctor->getFullName()}\" ya existe");
       }
     }

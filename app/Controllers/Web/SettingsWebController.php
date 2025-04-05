@@ -130,7 +130,7 @@ final class SettingsWebController extends Controller {
 
   public function handleConsultationCausesUpdate(): void {
     $limitOf = array_map(
-      static fn(string $limit): int => $limit,
+      static fn(string $limit): int => (int) $limit,
       array_filter(App::request()->data->limit_of)
     );
 

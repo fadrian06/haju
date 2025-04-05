@@ -137,28 +137,28 @@ class PDOUserRepository extends PDORepository implements UserRepository {
           $user->registeredBy?->id
         ]);
 
-      $user->setId($this->connection->instance()->lastInsertId())
+      $user->setId((int) $this->connection->instance()->lastInsertId())
         ->setRegisteredDate(self::parseDateTime($datetime));
 
       $this->assignDepartments($user);
     } catch (PDOException $exception) {
-      if (str_contains($exception, 'UNIQUE constraint failed: users.id_card')) {
+      if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: users.id_card')) {
         throw new DuplicatedIdCardException("Cédula \"{$user->idCard}\" ya existe");
       }
 
-      if (str_contains($exception, 'UNIQUE constraint failed: users.first_name')) {
+      if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: users.first_name')) {
         throw new DuplicatedNamesException("Usuario \"{$user->getFullName()}\" ya existe");
       }
 
-      if (str_contains($exception, 'UNIQUE constraint failed: users.phone')) {
+      if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: users.phone')) {
         throw new DuplicatedPhonesException("Teléfono \"{$user->phone}\" ya existe");
       }
 
-      if (str_contains($exception, 'UNIQUE constraint failed: users.email')) {
+      if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: users.email')) {
         throw new DuplicatedEmailsException("Correo \"{$user->email->asString()}\" ya existe");
       }
 
-      if (str_contains($exception, 'UNIQUE constraint failed: users.avatar')) {
+      if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: users.avatar')) {
         throw new DuplicatedProfileImagesException("Foto de perfil \"{$user->profileImagePath->asString()}\" ya existe");
       }
 

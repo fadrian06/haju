@@ -66,10 +66,10 @@ class PDODepartmentRepository extends PDORepository implements DepartmentReposit
         ]);
 
       $department
-        ->setId($this->connection->instance()->lastInsertId())
+        ->setId((int) $this->connection->instance()->lastInsertId())
         ->setRegisteredDate(self::parseDateTime($date));
     } catch (PDOException $exception) {
-      if (str_contains($exception, 'UNIQUE constraint failed: departments.name')) {
+      if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: departments.name')) {
         throw new DuplicatedNamesException("Departamento \"{$department->name}\" ya existe");
       }
 
