@@ -17,7 +17,6 @@ use App\Repositories\Infraestructure\PDO\PDODepartmentRepository;
 use App\Repositories\Infraestructure\PDO\PDODoctorRepository;
 use App\Repositories\Infraestructure\PDO\PDOPatientRepository;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
-use flight\Container;
 
 error_reporting(E_ALL | E_STRICT);
 
@@ -33,6 +32,7 @@ date_default_timezone_set($_ENV['TIMEZONE']);
  */
 define('BASE_URI', str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']));
 
+/** `http://localhost:61001` */
 define(
   'BASE_URL',
   Flight::request()->scheme . '://' . $_SERVER['HTTP_HOST'] . BASE_URI
