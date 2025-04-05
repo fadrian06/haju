@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "1e1e759c9f0c5a81e1b57156dd7f2171",
+  "content-hash": "0bf76085c6d29bf980f691c44b282f8a",
   "packages": [
     {
       "name": "bjeavons/zxcvbn-php",
@@ -216,54 +216,6 @@
         "source": "https://github.com/flightphp/core/tree/v3.15.2"
       },
       "time": "2025-03-15T05:22:55+00:00"
-    },
-    {
-      "name": "joseph-lenton/php-error",
-      "version": "dev-master",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/JosephLenton/PHP-Error.git",
-        "reference": "08d5aacda02352ca72198e3f5161d83338e26389"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/JosephLenton/PHP-Error/zipball/08d5aacda02352ca72198e3f5161d83338e26389",
-        "reference": "08d5aacda02352ca72198e3f5161d83338e26389",
-        "shasum": ""
-      },
-      "require": {
-        "php": ">=5.3.0"
-      },
-      "default-branch": true,
-      "type": "library",
-      "autoload": {
-        "files": [
-          "src/php_error.php"
-        ]
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "BSD-3-Clause"
-      ],
-      "authors": [
-        {
-          "name": "Joseph Lenton",
-          "homepage": "http://www.playmycode.com",
-          "role": "Developer"
-        }
-      ],
-      "description": "Better error reporting for PHP, and prettier too!",
-      "homepage": "https://github.com/JosephLenton/PHP-Error",
-      "keywords": [
-        "error",
-        "php",
-        "reporting"
-      ],
-      "support": {
-        "issues": "https://github.com/JosephLenton/PHP-Error/issues",
-        "source": "https://github.com/JosephLenton/PHP-Error/tree/master"
-      },
-      "time": "2018-12-11T01:19:28+00:00"
     },
     {
       "name": "leafs/anchor",
@@ -4489,9 +4441,7 @@
   ],
   "aliases": [],
   "minimum-stability": "stable",
-  "stability-flags": {
-    "joseph-lenton/php-error": 20
-  },
+  "stability-flags": {},
   "prefer-stable": false,
   "prefer-lowest": false,
   "platform": {
