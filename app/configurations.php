@@ -19,10 +19,12 @@ use App\Repositories\Infraestructure\PDO\PDOPatientRepository;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
 use Illuminate\Container\Container;
 
+error_reporting(E_ALL & E_STRICT);
+
 $_ENV += include __DIR__ . '/../.env.php';
 $_ENV += include __DIR__ . '/../.env.dist.php';
 
-date_default_timezone_set($_ENV['TIMEZONE'] ?? 'America/Caracas');
+date_default_timezone_set($_ENV['TIMEZONE']);
 
 App::set('root', str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']));
 
