@@ -41,7 +41,7 @@ final class SessionWebController extends Controller {
       }
 
       if ($this->data['password'] === self::DEFAULT_PASSWORD) {
-        Session::set('mustChangePassword', true);
+        $this->session->set('mustChangePassword', true);
       }
 
       if (!$user?->checkPassword($this->data['password'])) {
@@ -49,7 +49,7 @@ final class SessionWebController extends Controller {
       }
 
       $user->ensureThatIsActive()->ensureHasActiveDepartments();
-      Session::set('userId', $user->id);
+      $this->session->set('userId', $user->id);
       App::redirect('/departamento/seleccionar');
     } catch (Error $error) {
       self::setError($error);

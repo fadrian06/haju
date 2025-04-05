@@ -17,6 +17,8 @@ use App\Repositories\Infraestructure\PDO\PDODepartmentRepository;
 use App\Repositories\Infraestructure\PDO\PDODoctorRepository;
 use App\Repositories\Infraestructure\PDO\PDOPatientRepository;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
+use flight\template\View;
+use Leaf\Http\Session;
 
 error_reporting(E_ALL | E_STRICT);
 
@@ -44,6 +46,9 @@ Flight::view()->path = dirname(__DIR__) . '/views';
 Flight::view()->preserveVars = false;
 
 $container = container();
+
+$container->singleton(Session::class);
+$container->singleton(View::class, Flight::view());
 
 $container->singleton(
   Connection::class,

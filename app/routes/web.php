@@ -23,9 +23,15 @@ use App\Middlewares\EnsureUserIsNotAuthenticated;
 use App\Middlewares\LogLoginMiddleware;
 use App\Middlewares\MessagesMiddleware;
 use App\ValueObjects\Appointment;
+use Leaf\Http\Session;
 
-Flight::route('/', [LandingWebController::class, 'showLanding'])
-  ->addMiddleware(EnsureUserIsNotAuthenticated::class);
+Flight::route('/', static function () {
+  if (container()->get(Session::class)->has('userId')) {
+    return true;
+  }
+
+  container()->get(LandingWebController::class)->showLanding();
+});
 
 Flight::group('', static function (): void {
   Flight::route('/salir', [SessionWebController::class, 'logOut']);
