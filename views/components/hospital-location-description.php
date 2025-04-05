@@ -17,7 +17,7 @@
             <?php renderComponent('hospital-location') ?>
           </div>
         </div>
-        <div class="card-footer bg-light">
+        <div :class="`card-footer text-bg-${theme}`">
           <div class="row g-3 align-items-center">
             <div class="col-md-4">
               <div class="d-flex align-items-center">
