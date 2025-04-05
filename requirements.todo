@@ -55,6 +55,13 @@ Recomendaciones:
     ☐ Añadir cambio de género en pacientes. @critical
   Correcciones T4T2:
     ✔ Arreglar menú de inicio (fotos) @done (20/03/2025 21:15:40)
-    ✔ Arreglar formulario departamento de estadística, mensaje "Paciente no encontrado" @done (20/03/2025 22:46:02)
+    ☐ Arreglar formulario departamento de estadística, mensaje "Paciente no encontrado"
     ✔ Arreglar formulario de alta. @done (21/03/2025 00:48:23)
     ✔ Generar reporte de gráficas en PDF. @done (20/03/2025 23:33:17)
+
+  Correcciones T4T3:
+    ☐ Lista de pacientes de hospitalización
+    ☐ Filtrar pacientes por enfermedades
+      ☐ Mostrar la información de los pacientes que generan alerta epidemia
+      ☐ Mostrar la información de los pacientes que generan las gráficas
+    ☐ En el formato PDF agregar metainformación.
