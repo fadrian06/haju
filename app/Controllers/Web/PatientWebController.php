@@ -20,7 +20,6 @@ use App\ValueObjects\Gender;
 use DateTimeImmutable;
 use Error;
 use Flight;
-use Illuminate\Container\Container;
 use Throwable;
 
 final class PatientWebController extends Controller {
@@ -47,9 +46,12 @@ final class PatientWebController extends Controller {
       }
 
       self::setError("Paciente v-{$idCard} no encontrado");
+      Flight::redirect('/pacientes');
+
+      return;
     }
 
-    Flight::renderPage('patients/list', 'Pacientes', [
+    renderPage('patients/list', 'Pacientes', [
       'patients' => $this->patientRepository->getAll(),
     ], 'main');
   }
@@ -65,7 +67,7 @@ final class PatientWebController extends Controller {
       $this->patientRepository->setConsultations($patient);
       $this->patientRepository->setHospitalizations($patient);
 
-      Flight::renderPage(
+      renderPage(
         'patients/info',
         'Detalles del paciente',
         compact('patient'),
@@ -98,9 +100,9 @@ final class PatientWebController extends Controller {
       );
 
       $this->patientRepository->save($patient);
-      parent::setMessage('Paciente registrado exitósamente');
+      self::setMessage('Paciente registrado exitósamente');
     } catch (Throwable $error) {
-      parent::setError($error);
+      self::setError($error);
     }
 
     if (Flight::request()->query['referido'] !== null) {
@@ -123,9 +125,9 @@ final class PatientWebController extends Controller {
       $patient->birthDate = Date::from($this->data['birth_date'], '-');
 
       $this->patientRepository->save($patient);
-      parent::setMessage('Paciente actualizado exitósamente');
+      self::setMessage('Paciente actualizado exitósamente');
     } catch (Throwable $error) {
-      parent::setError($error);
+      self::setError($error);
     }
 
     Flight::redirect('/pacientes');
@@ -147,7 +149,7 @@ final class PatientWebController extends Controller {
       }
     }
 
-    Flight::renderPage('patients/add-consultation', 'Registrar consulta', compact(
+    renderPage('patients/add-consultation', 'Registrar consulta', compact(
       'patients',
       'consultationCauseCategories',
       'departments',
@@ -174,9 +176,9 @@ final class PatientWebController extends Controller {
 
       $patient->setConsultations($consultation);
       $this->patientRepository->saveConsultationOf($patient);
-      parent::setMessage('Consulta registrada exitósamente');
+      self::setMessage('Consulta registrada exitósamente');
     } catch (Throwable $error) {
-      parent::setError($error);
+      self::setError($error);
     }
 
     Flight::redirect(Flight::request()->referrer);
@@ -186,7 +188,7 @@ final class PatientWebController extends Controller {
     $patients = $this->patientRepository->getAll();
     $doctors = $this->doctorRepository->getAll();
 
-    Flight::renderPage(
+    renderPage(
       'patients/add-hospitalization',
       'Registrar hospitalización',
       compact('patients', 'doctors'),
@@ -213,7 +215,7 @@ final class PatientWebController extends Controller {
 
     $patient->setHospitalization($hospitalization);
     $this->patientRepository->saveHospitalizationOf($patient);
-    parent::setMessage('Hospitalización registrada exitósamente');
+    self::setMessage('Hospitalización registrada exitósamente');
 
     Flight::redirect("/pacientes/{$patient->id}");
   }
@@ -235,14 +237,14 @@ final class PatientWebController extends Controller {
       return;
     }
 
-    $pdo = Container::getInstance()->get(Connection::class)->instance();
+    $pdo = container()->get(Connection::class)->instance();
 
     $pdo->beginTransaction();
     $stmt = $pdo->prepare('DELETE FROM patients WHERE id = ?');
     $stmt->execute([$patientId]);
     $pdo->commit();
 
-    parent::setMessage('Paciente eliminado exitósamente');
+    self::setMessage('Paciente eliminado exitósamente');
     Flight::redirect('/pacientes');
   }
 
@@ -262,7 +264,7 @@ final class PatientWebController extends Controller {
     $hospitalization = $patient->getHospitalizationById($hospitalizationId);
     $doctors = $this->doctorRepository->getAll();
 
-    Flight::renderPage(
+    renderPage(
       'patients/edit-hospitalization',
       "Dar de alta a {$patient->getFullName()}",
       compact('patient', 'hospitalization', 'doctors'),
@@ -299,12 +301,12 @@ final class PatientWebController extends Controller {
       $hospitalization->admissionDepartment = $this->data['admission_department'];
 
       $this->patientRepository->saveHospitalizationOf($patient);
-      parent::setMessage('Alta procesada exitósamente');
+      self::setMessage('Alta procesada exitósamente');
       Flight::redirect("/pacientes/{$patient->id}");
 
       return;
     } catch (Throwable $error) {
-      parent::setError($error);
+      self::setError($error);
     }
 
     Flight::redirect(Flight::request()->referrer);
