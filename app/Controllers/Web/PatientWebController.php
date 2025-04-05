@@ -17,9 +17,11 @@ use App\ValueObjects\ConsultationType;
 use App\ValueObjects\Date;
 use App\ValueObjects\DepartureStatus;
 use App\ValueObjects\Gender;
+use DateTime;
 use DateTimeImmutable;
 use Error;
 use Flight;
+use PDO;
 use Throwable;
 
 final class PatientWebController extends Controller {
@@ -31,6 +33,37 @@ final class PatientWebController extends Controller {
     private readonly DoctorRepository $doctorRepository,
   ) {
     parent::__construct();
+  }
+
+  public function showConsultations(): void {
+    $pdo = container()->get(Connection::class)->instance();
+
+    $stmt = $pdo->prepare(<<<sql
+      SELECT id, type, registered_date, cause_id, department_id, doctor_id
+      FROM consultations
+      ORDER BY registered_date DESC
+    sql);
+
+    $stmt->execute();
+    $consultations = [];
+
+    while ($consultationRecord = $stmt->fetch(PDO::FETCH_ASSOC)) {
+      $consultation = new Consultation(
+        ConsultationType::from($consultationRecord['type']),
+        $this->consultationCauseRepository->getById($consultationRecord['cause_id']),
+        $this->departmentRepository->getById($consultationRecord['department_id']),
+        $this->doctorRepository->getById($consultationRecord['doctor_id'])
+      );
+
+      $consultation->setId($consultationRecord['id'])
+        ->setRegisteredDate(DateTime::createFromFormat('Y-m-d H:i:s', $consultationRecord['registered_date']));
+
+      $consultations[] = $consultation;
+    }
+
+    renderPage('consultations/list', 'Consultas', [
+      'consultations' => $consultations,
+    ], 'main');
   }
 
   public function showPatients(): void {

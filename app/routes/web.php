@@ -62,6 +62,9 @@ Flight::group('', static function (): void {
 }, [EnsureUserIsNotAuthenticated::class, MessagesMiddleware::class]);
 
 Flight::group('', function (): void {
+  Flight::route('/hospitalizaciones', [PatientWebController::class, 'showHospitalizations']);
+  Flight::route('/consultas', [PatientWebController::class, 'showConsultations']);
+
   Flight::route(
     '/departamento/seleccionar',
     [SessionWebController::class, 'showDepartments']

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Models\User;
+use App\Repositories\Infraestructure\PDO\Connection;
 
 /**
  * @var string $title
@@ -17,7 +18,7 @@ if (str_contains((string) $_SERVER['REQUEST_URI'], 'perfil')) {
   $showPasswordChangeModal = false;
 }
 
-$pdo = App::db()->instance();
+$pdo = container()->get(Connection::class)->instance();
 $currentDate = new DateTimeImmutable;
 $oneWeekAgo = $currentDate->sub(new DateInterval('P1W'));
 

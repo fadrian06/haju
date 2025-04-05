@@ -57,64 +57,77 @@ $patientsListId = uniqid();
         <span>Inicio</span>
       </a>
     </li>
-    <?php if ($user->appointment->isHigherThan(Appointment::Secretary)) : ?>
-      <li class="<?= isActive('/pacientes') ? 'mm-active' : '' ?>">
-        <a href="#" class="has-arrow">
-          <img src="./assets/img/icons/patient.svg" />
-          <span>Pacientes</span>
-        </a>
-        <ul class="pe-2">
-          <li class="<?= isActive('/pacientes') ? 'mm-active' : '' ?>">
-            <a href="./pacientes">
-              <i class="ti-list"></i>
-              Listado
+    <li class="<?= isActive('/pacientes') ? 'mm-active' : '' ?>">
+      <a href="#" class="has-arrow">
+        <img src="./assets/img/icons/patient.svg" />
+        <span>Pacientes</span>
+      </a>
+      <ul class="pe-2">
+        <li class="<?= isActive('/pacientes') ? 'mm-active' : '' ?>">
+          <a href="./pacientes">
+            <i class="ti-list"></i>
+            Listado
+          </a>
+        </li>
+        <li class="<?= isActive('/pacientes') ? 'mm-active' : '' ?>">
+          <div class="serach_field-area m-0 w-100">
+            <form class="search_inner" action="./pacientes">
+              <div class="search_field">
+                <input
+                  class="ps-5 py-2 small"
+                  name="cedula"
+                  style="height: unset"
+                  required
+                  type="number"
+                  placeholder="Cédula..."
+                  list="<?= $patientsListId ?>" />
+              </div>
+              <button class="ps-4">
+                <img src="./assets/img/icons/icon_search.svg" />
+              </button>
+            </form>
+          </div>
+        </li>
+        <?php if (!$department->isStatistics()) : ?>
+          <li>
+            <a
+              href="./pacientes#registrar"
+              <?= isActive('/pacientes') ? 'data-bs-toggle="modal"' : '' ?>
+              data-bs-target="#registrar">
+              <i class="ti-plus"></i>
+              Registrar paciente
             </a>
           </li>
-          <li class="<?= isActive('/pacientes') ? 'mm-active' : '' ?>">
-            <div class="serach_field-area m-0 w-100">
-              <form class="search_inner" action="./pacientes">
-                <div class="search_field">
-                  <input
-                    class="ps-5 py-2 small"
-                    name="cedula"
-                    style="height: unset"
-                    required
-                    type="number"
-                    placeholder="Cédula..."
-                    list="<?= $patientsListId ?>" />
-                </div>
-                <button class="ps-4">
-                  <img src="./assets/img/icons/icon_search.svg" />
-                </button>
-              </form>
-            </div>
+          <li>
+            <a href="./consultas/registrar">
+              <i class="ti-plus"></i>
+              Registrar consulta
+            </a>
           </li>
-          <?php if (!$department->isStatistics()) : ?>
-            <li>
-              <a
-                href="./pacientes#registrar"
-                <?= isActive('/pacientes') ? 'data-bs-toggle="modal"' : '' ?>
-                data-bs-target="#registrar">
-                <i class="ti-plus"></i>
-                Registrar paciente
-              </a>
-            </li>
-            <li>
-              <a href="./consultas/registrar">
-                <i class="ti-plus"></i>
-                Registrar consulta
-              </a>
-            </li>
-            <li>
-              <a href="./hospitalizaciones/registrar">
-                <i class="ti-plus"></i>
-                Registrar hospitalización
-              </a>
-            </li>
-          <?php endif ?>
-        </ul>
-      </li>
-    <?php endif ?>
+          <li>
+            <a href="./hospitalizaciones/registrar">
+              <i class="ti-plus"></i>
+              Registrar hospitalización
+            </a>
+          </li>
+        <?php endif ?>
+      </ul>
+    </li>
+
+    <li class="<?= isActive('/hospitalizaciones') ? 'mm-active' : '' ?>">
+      <a href="./hospitalizaciones">
+        <img height="23" src="./assets/img/icons/hospitalizations.svg" />
+        <span>Hospitalizaciones</span>
+      </a>
+    </li>
+
+    <li class="<?= isActive('/consultas') ? 'mm-active' : '' ?>">
+      <a href="./consultas">
+        <img height="23" src="./assets/img/icons/stethoscope.svg" />
+        <span>Consultas</span>
+      </a>
+    </li>
+
     <?php if ($user->appointment->isHigherThan(Appointment::Coordinator)) : ?>
       <li class="<?= isActive('/doctores') ? 'mm-active' : '' ?>">
         <a href="#" class="has-arrow">
