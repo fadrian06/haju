@@ -23,234 +23,227 @@ use App\Middlewares\EnsureUserIsNotAuthenticated;
 use App\Middlewares\LogLoginMiddleware;
 use App\Middlewares\MessagesMiddleware;
 use App\ValueObjects\Appointment;
-use Illuminate\Container\Container;
-use Leaf\Http\Session;
 
-App::route('/', static function () {
-  if (Session::has('userId')) {
-    return true;
-  }
+Flight::route('/', [LandingWebController::class, 'showLanding'])
+  ->addMiddleware(EnsureUserIsNotAuthenticated::class);
 
-  Container::getInstance()->get(LandingWebController::class)->showLanding();
-});
+Flight::group('', static function (): void {
+  Flight::route('/salir', [SessionWebController::class, 'logOut']);
 
-App::group('', static function (): void {
-  App::route('/salir', [SessionWebController::class, 'logOut']);
+  Flight::group('', static function (): void {
+    Flight::route('GET /ingresar', [SessionWebController::class, 'showLogin']);
+    Flight::route('POST /ingresar', [SessionWebController::class, 'handleLogin']);
 
-  App::group('', static function (): void {
-    App::route('GET /ingresar', [SessionWebController::class, 'showLogin']);
-    App::route('POST /ingresar', [SessionWebController::class, 'handleLogin']);
-
-    App::route(
+    Flight::route(
       'GET /recuperar',
       [UserWebController::class, 'showPasswordReset']
     );
 
-    App::route(
+    Flight::route(
       'POST /recuperar',
       [UserWebController::class, 'handlePasswordReset']
     );
   });
 
-  App::group('', static function (): void {
-    App::route('GET /registrate', [UserWebController::class, 'showRegister']);
+  Flight::group('', static function (): void {
+    Flight::route('GET /registrate', [UserWebController::class, 'showRegister']);
 
-    App::route(
+    Flight::route(
       'POST /registrate',
       [UserWebController::class, 'handleRegister']
     );
   }, [EnsureOnlyAcceptOneDirector::class]);
 }, [EnsureUserIsNotAuthenticated::class, MessagesMiddleware::class]);
 
-App::group('', function (): void {
-  App::route(
+Flight::group('', function (): void {
+  Flight::route(
     '/departamento/seleccionar',
     [SessionWebController::class, 'showDepartments']
   );
 
-  App::route(
+  Flight::route(
     '/departamento/seleccionar/@id',
     [SessionWebController::class, 'saveChoice']
   )
     ->addMiddleware(LogLoginMiddleware::class);
 
-  App::group('', function (): void {
-    App::route('/', [HomeWebController::class, 'showIndex']);
-    App::route('GET /perfil', [UserWebController::class, 'showProfile']);
+  Flight::group('', function (): void {
+    Flight::route('/', [HomeWebController::class, 'showIndex']);
+    Flight::route('GET /perfil', [UserWebController::class, 'showProfile']);
 
-    App::route(
+    Flight::route(
       'POST /perfil',
       [UserWebController::class, 'handlePasswordChange']
     );
 
-    App::route(
+    Flight::route(
       'GET /perfil/editar',
       [UserWebController::class, 'showEditProfile']
     );
 
-    App::route(
+    Flight::route(
       'POST /perfil/editar',
       [UserWebController::class, 'handleEditProfile']
     );
 
-    App::group('/doctores', function (): void {
-      App::route('GET /', [DoctorWebController::class, 'showDoctors']);
-      App::route('POST /', [DoctorWebController::class, 'handleRegister']);
+    Flight::group('/doctores', function (): void {
+      Flight::route('GET /', [DoctorWebController::class, 'showDoctors']);
+      Flight::route('POST /', [DoctorWebController::class, 'handleRegister']);
 
-      App::group('/@idCard', function (): void {
-        App::route('GET /', [DoctorWebController::class, 'showEdit']);
-        App::route('POST /', [DoctorWebController::class, 'handleEdition']);
+      Flight::group('/@idCard', function (): void {
+        Flight::route('GET /', [DoctorWebController::class, 'showEdit']);
+        Flight::route('POST /', [DoctorWebController::class, 'handleEdition']);
       }, [EnsureCanEditDoctorMiddleware::class]);
     }, [new AuthorizationMiddleware(Appointment::Coordinator)]);
 
-    App::route('GET /pacientes', [PatientWebController::class, 'showPatients']);
+    Flight::route('GET /pacientes', [PatientWebController::class, 'showPatients']);
 
-    App::route(
+    Flight::route(
       'GET /pacientes/@id:[0-9]+',
       [PatientWebController::class, 'showPatient']
     );
 
-    App::route(
+    Flight::route(
       'GET /pacientes/@id:[0-9]+/eliminar',
       [PatientWebController::class, 'deletePatient']
     );
 
-    App::route(
+    Flight::route(
       'POST /pacientes',
       [PatientWebController::class, 'handleRegister']
     );
 
-    App::group('/consultas', function (): void {
-      App::route(
+    Flight::group('/consultas', function (): void {
+      Flight::route(
         'GET /registrar',
         [PatientWebController::class, 'showConsultationRegister']
       );
 
-      App::route(
+      Flight::route(
         'POST /',
         [PatientWebController::class, 'handleConsultationRegister']
       );
     }, [EnsureSelectedDepartmentIsNotStatistics::class]);
 
-    App::group('/hospitalizaciones', function (): void {
-      App::route(
+    Flight::group('/hospitalizaciones', function (): void {
+      Flight::route(
         'GET /registrar',
         [PatientWebController::class, 'showHospitalizationRegister']
       );
 
-      App::route(
+      Flight::route(
         'POST /',
         [PatientWebController::class, 'handleHospitalizationRegister']
       );
 
-      App::route(
+      Flight::route(
         'GET /@id:[0-9]+/alta',
         [PatientWebController::class, 'showEditHospitalization']
       );
 
-      App::route(
+      Flight::route(
         'POST /@id:[0-9]+',
         [PatientWebController::class, 'handleUpdateHospitalization']
       );
     });
 
-    App::group('', function (): void {
-      App::route(
+    Flight::group('', function (): void {
+      Flight::route(
         'POST /pacientes/@id',
         [PatientWebController::class, 'handleEdition']
       );
     }, [EnsureCanEditPatientMiddleware::class]);
 
-    App::group('', function (): void {
-      App::route('GET /usuarios', [UserWebController::class, 'showUsers']);
+    Flight::group('', function (): void {
+      Flight::route('GET /usuarios', [UserWebController::class, 'showUsers']);
 
-      App::route(
+      Flight::route(
         'POST /usuarios',
         [UserWebController::class, 'handleRegister']
       );
 
-      App::route(
+      Flight::route(
         '/usuarios/@id/activar',
         [UserWebController::class, 'handleToggleStatus']
       );
 
-      App::route(
+      Flight::route(
         '/usuarios/@id/desactivar',
         [UserWebController::class, 'handleToggleStatus']
       );
 
-      App::route(
+      Flight::route(
         '/configuracion/permisos',
         [SettingsWebController::class, 'showPermissions']
       );
 
-      App::route(
+      Flight::route(
         'POST /configuracion/@id/permisos',
         [SettingsWebController::class, 'handlePermissionAssignment']
       );
 
-      App::route(
+      Flight::route(
         'GET /configuracion/respaldo-restauracion',
         [SettingsWebController::class, 'showBackups']
       );
 
-      App::route(
+      Flight::route(
         'POST /configuracion/respaldo-restauracion',
         [SettingsWebController::class, 'loadBackupFile']
       );
 
-      App::route(
+      Flight::route(
         '/configuracion/respaldar',
         [SettingsWebController::class, 'handleCreateBackup']
       );
 
-      App::route(
+      Flight::route(
         '/configuracion/restaurar',
         [SettingsWebController::class, 'handleRestoreBackup']
       );
 
-      App::route('/logs', [SettingsWebController::class, 'showLogs']);
-      App::route('/logs/vaciar', [SettingsWebController::class, 'cleanLogs']);
+      Flight::route('/logs', [SettingsWebController::class, 'showLogs']);
+      Flight::route('/logs/vaciar', [SettingsWebController::class, 'cleanLogs']);
 
-      App::route(
+      Flight::route(
         'GET /configuracion/causas-de-consulta',
         [SettingsWebController::class, 'showConsultationCausesConfigs']
       )
         ->addMiddleware(new AuthorizationMiddleware(Appointment::Coordinator));
 
-      App::route(
+      Flight::route(
         'POST /configuracion/causas-de-consulta',
         [SettingsWebController::class, 'handleConsultationCausesUpdate']
       )
         ->addMiddleware(new AuthorizationMiddleware(Appointment::Coordinator));
 
-      App::group('/', function (): void {
-        App::route(
+      Flight::group('/', function (): void {
+        Flight::route(
           'GET /departamentos',
           [DepartmentWebController::class, 'showDepartments']
         );
 
-        App::route(
+        Flight::route(
           'POST /departamentos/@id',
           [DepartmentWebController::class, 'handleDepartmentEdition']
         );
 
-        App::route(
+        Flight::route(
           '/departamentos/@id/activar',
           [DepartmentWebController::class, 'handleToggleStatus']
         );
 
-        App::route(
+        Flight::route(
           '/departamentos/@id/desactivar',
           [DepartmentWebController::class, 'handleToggleStatus']
         );
 
-        App::route(
+        Flight::route(
           'GET /configuracion/institucion',
           [SettingsWebController::class, 'showInstitutionConfigs']
         );
 
-        App::route(
+        Flight::route(
           'POST /configuracion/institucion',
           [SettingsWebController::class, 'handleInstitutionUpdate']
         );
@@ -258,12 +251,12 @@ App::group('', function (): void {
     }, [new AuthorizationMiddleware(Appointment::Coordinator)]);
   }, [EnsureOneSelectedDepartment::class, EnsureDepartmentIsActive::class]);
 
-  App::route(
+  Flight::route(
     'GET /reportes/epi-11',
     [ReportsWebController::class, 'showEpi11']
   );
 
-  App::route(
+  Flight::route(
     'GET /reportes/epi-15',
     [ReportsWebController::class, 'showEpi15']
   );

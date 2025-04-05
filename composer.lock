@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "7d12994e81497d9dd545ff68e24db041",
+  "content-hash": "6b996c62171452a33fb08c534ee5ebb4",
   "packages": [
     {
       "name": "faslatam/alpine-js",
@@ -37,6 +37,54 @@
         "source": "https://github.com/fadrian06/AlpineJS/tree/3.14.9"
       },
       "time": "2025-03-13T04:59:38+00:00"
+    },
+    {
+      "name": "flightphp/container",
+      "version": "v1.2.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/flightphp/container.git",
+        "reference": "0e4b4b9921b92aaa86cf15baa15aa7db3774dbfa"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/flightphp/container/zipball/0e4b4b9921b92aaa86cf15baa15aa7db3774dbfa",
+        "reference": "0e4b4b9921b92aaa86cf15baa15aa7db3774dbfa",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=7.4",
+        "psr/container": "^2.0"
+      },
+      "require-dev": {
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpunit/phpunit": "^9.6",
+        "rector/rector": "^2.0"
+      },
+      "type": "library",
+      "autoload": {
+        "psr-4": {
+          "flight\\": "src"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "fadrian06",
+          "email": "franyeradriansanchez@gmail.com"
+        }
+      ],
+      "description": "FlightPHP Dependency Injection Container",
+      "support": {
+        "issues": "https://github.com/flightphp/container/issues",
+        "source": "https://github.com/flightphp/container/tree/v1.2.0"
+      },
+      "time": "2025-03-22T20:48:14+00:00"
     },
     {
       "name": "flightphp/core",
@@ -114,103 +162,52 @@
       "time": "2025-03-15T05:22:55+00:00"
     },
     {
-      "name": "illuminate/container",
-      "version": "v12.7.2",
+      "name": "joseph-lenton/php-error",
+      "version": "dev-master",
       "source": {
         "type": "git",
-        "url": "https://github.com/illuminate/container.git",
-        "reference": "cdd99204b29acf795a02f778542df5a5244361fd"
+        "url": "https://github.com/JosephLenton/PHP-Error.git",
+        "reference": "08d5aacda02352ca72198e3f5161d83338e26389"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/illuminate/container/zipball/cdd99204b29acf795a02f778542df5a5244361fd",
-        "reference": "cdd99204b29acf795a02f778542df5a5244361fd",
+        "url": "https://api.github.com/repos/JosephLenton/PHP-Error/zipball/08d5aacda02352ca72198e3f5161d83338e26389",
+        "reference": "08d5aacda02352ca72198e3f5161d83338e26389",
         "shasum": ""
       },
       "require": {
-        "illuminate/contracts": "^12.0",
-        "php": "^8.2",
-        "psr/container": "^1.1.1|^2.0.1"
+        "php": ">=5.3.0"
       },
-      "provide": {
-        "psr/container-implementation": "1.1|2.0"
-      },
+      "default-branch": true,
       "type": "library",
-      "extra": {
-        "branch-alias": {
-          "dev-master": "12.x-dev"
-        }
-      },
       "autoload": {
-        "psr-4": {
-          "Illuminate\\Container\\": ""
-        }
+        "files": [
+          "src/php_error.php"
+        ]
       },
       "notification-url": "https://packagist.org/downloads/",
       "license": [
-        "MIT"
+        "BSD-3-Clause"
       ],
       "authors": [
         {
-          "name": "Taylor Otwell",
-          "email": "taylor@laravel.com"
+          "name": "Joseph Lenton",
+          "homepage": "http://www.playmycode.com",
+          "role": "Developer"
         }
       ],
-      "description": "The Illuminate Container package.",
-      "homepage": "https://laravel.com",
+      "description": "Better error reporting for PHP, and prettier too!",
+      "homepage": "https://github.com/JosephLenton/PHP-Error",
+      "keywords": [
+        "error",
+        "php",
+        "reporting"
+      ],
       "support": {
-        "issues": "https://github.com/laravel/framework/issues",
-        "source": "https://github.com/laravel/framework"
+        "issues": "https://github.com/JosephLenton/PHP-Error/issues",
+        "source": "https://github.com/JosephLenton/PHP-Error/tree/master"
       },
-      "time": "2025-03-22T17:41:27+00:00"
-    },
-    {
-      "name": "illuminate/contracts",
-      "version": "v12.7.2",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/illuminate/contracts.git",
-        "reference": "bbaec083da240396f2186f4c3a9952da207f28a0"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/illuminate/contracts/zipball/bbaec083da240396f2186f4c3a9952da207f28a0",
-        "reference": "bbaec083da240396f2186f4c3a9952da207f28a0",
-        "shasum": ""
-      },
-      "require": {
-        "php": "^8.2",
-        "psr/container": "^1.1.1|^2.0.1",
-        "psr/simple-cache": "^1.0|^2.0|^3.0"
-      },
-      "type": "library",
-      "extra": {
-        "branch-alias": {
-          "dev-master": "12.x-dev"
-        }
-      },
-      "autoload": {
-        "psr-4": {
-          "Illuminate\\Contracts\\": ""
-        }
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "Taylor Otwell",
-          "email": "taylor@laravel.com"
-        }
-      ],
-      "description": "The Illuminate Contracts package.",
-      "homepage": "https://laravel.com",
-      "support": {
-        "issues": "https://github.com/laravel/framework/issues",
-        "source": "https://github.com/laravel/framework"
-      },
-      "time": "2025-03-19T20:10:05+00:00"
+      "time": "2018-12-11T01:19:28+00:00"
     },
     {
       "name": "leafs/anchor",
@@ -510,57 +507,6 @@
         "source": "https://github.com/php-fig/container/tree/2.0.2"
       },
       "time": "2021-11-05T16:47:00+00:00"
-    },
-    {
-      "name": "psr/simple-cache",
-      "version": "3.0.0",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/php-fig/simple-cache.git",
-        "reference": "764e0b3939f5ca87cb904f570ef9be2d78a07865"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/764e0b3939f5ca87cb904f570ef9be2d78a07865",
-        "reference": "764e0b3939f5ca87cb904f570ef9be2d78a07865",
-        "shasum": ""
-      },
-      "require": {
-        "php": ">=8.0.0"
-      },
-      "type": "library",
-      "extra": {
-        "branch-alias": {
-          "dev-master": "3.0.x-dev"
-        }
-      },
-      "autoload": {
-        "psr-4": {
-          "Psr\\SimpleCache\\": "src/"
-        }
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "PHP-FIG",
-          "homepage": "https://www.php-fig.org/"
-        }
-      ],
-      "description": "Common interfaces for simple caching",
-      "keywords": [
-        "cache",
-        "caching",
-        "psr",
-        "psr-16",
-        "simple-cache"
-      ],
-      "support": {
-        "source": "https://github.com/php-fig/simple-cache/tree/3.0.0"
-      },
-      "time": "2021-10-29T13:26:27+00:00"
     },
     {
       "name": "twbs/bootstrap",
@@ -4487,7 +4433,9 @@
   ],
   "aliases": [],
   "minimum-stability": "stable",
-  "stability-flags": {},
+  "stability-flags": {
+    "joseph-lenton/php-error": 20
+  },
   "prefer-stable": false,
   "prefer-lowest": false,
   "platform": {

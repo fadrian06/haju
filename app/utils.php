@@ -2,8 +2,20 @@
 
 declare(strict_types=1);
 
+use flight\Container;
+
+function container(): Container {
+  static $container = null;
+
+  if ($container === null) {
+    $container = new Container;
+  }
+
+  return $container;
+}
+
 function render(string $viewPath, array $params = []): void {
-  App::render($viewPath, $params);
+  Flight::render($viewPath, $params);
 }
 
 function renderComponent(string $componentPath, array $params = []): void {
@@ -13,10 +25,10 @@ function renderComponent(string $componentPath, array $params = []): void {
 function isActive(string ...$urls): bool {
   foreach ($urls as $url) {
     if ($url === '/') {
-      if (App::request()->url === $url) {
+      if (Flight::request()->url === $url) {
         return true;
       }
-    } elseif (str_starts_with(App::request()->url, $url)) {
+    } elseif (str_starts_with(Flight::request()->url, $url)) {
       return true;
     }
   }

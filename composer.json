@@ -5,8 +5,9 @@
   "require": {
     "php": "^8.2",
     "faslatam/alpine-js": "^3.14",
+    "flightphp/container": "^1.2",
     "flightphp/core": "^3.15",
-    "illuminate/container": "^12.7",
+    "joseph-lenton/php-error": "dev-master",
     "leafs/session": "^4.0",
     "phar-io/manifest": "^2.0",
     "twbs/bootstrap": "^5.3"

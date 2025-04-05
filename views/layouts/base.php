@@ -4,7 +4,6 @@ use App\Models\User;
 use PharIo\Manifest\Url;
 
 /**
- * @var string $root
  * @var string $title
  * @var string $content
  * @var ?User $user
@@ -26,7 +25,7 @@ if (isset($user)) {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title><?= $title ?> - HAJU</title>
   <?php render('components/open-graph-metas') ?>
-  <base href="<?= $root ?>/" />
+  <base href="<?= str_replace('index.php', '', $_SERVER['SCRIPT_NAME']) ?>" />
   <link rel="icon" href="./assets/img/logo-mini.png" />
   <link rel="stylesheet" href="./assets/fonts/fonts.css" />
   <link rel="stylesheet" href="./vendor/twbs/bootstrap/dist/css/bootstrap.min.css" />

@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Middlewares;
 
-use App;
+use Leaf\Http\Session;
 
 final readonly class EnsureUserIsNotAuthenticated {
-  public static function before(): void {
-    if (App::session()->get('userId')) {
-      App::redirect('/');
+  public function __construct(private Session $session) {
+    // ...
+  }
 
-      return;
-    }
+  public function before(): bool {
+    return !$this->session->has('userId');
   }
 }

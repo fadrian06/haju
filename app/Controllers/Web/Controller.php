@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controllers\Web;
 
-use App;
 use App\Models\User;
 use Error;
+use Flight;
 use flight\util\Collection;
-use Illuminate\Container\Container;
 use Leaf\Http\Session;
 use Throwable;
 
@@ -18,9 +17,9 @@ abstract class Controller {
   protected readonly Session $session;
 
   public function __construct() {
-    $this->loggedUser = App::view()->get('user');
-    $this->data = App::request()->data;
-    $this->session = Container::getInstance()->get(Session::class);
+    $this->loggedUser = Flight::view()->get('user');
+    $this->data = Flight::request()->data;
+    $this->session = container()->get(Session::class);
   }
 
   final protected static function setError(Throwable|string $error): void {
@@ -30,11 +29,11 @@ abstract class Controller {
       error_log("\n\n");
     }
 
-    App::session()->set('error', $error);
+    Flight::session()->set('error', $error);
   }
 
   final protected static function setMessage(string $message): void {
-    App::session()->set('message', $message);
+    Flight::session()->set('message', $message);
   }
 
   /**
@@ -48,8 +47,8 @@ abstract class Controller {
     string $destinationFolder,
     string $errorMessage
   ): string {
-    $url = App::request()->data[$urlParam];
-    $files = App::request()->files;
+    $url = Flight::request()->data[$urlParam];
+    $files = Flight::request()->files;
     $fileName = "{$fileId}.jpg";
 
     if (is_string($url) && $url !== '') {

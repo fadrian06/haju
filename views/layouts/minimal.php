@@ -3,7 +3,6 @@
 use App\Models\User;
 
 /**
- * @var string $root
  * @var string $title
  * @var string $content
  * @var User $user
@@ -18,8 +17,8 @@ use App\Models\User;
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
   <title><?= $title ?> - HAJU</title>
+  <base href="<?= str_replace('index.php', '', $_SERVER['SCRIPT_NAME']) ?>" />
   <?php render('components/open-graph-metas') ?>
-  <base href="<?= $root ?>/" />
   <link rel="icon" href="./assets/img/logo-mini.png" />
   <link rel="stylesheet" href="./vendor/twbs/bootstrap/dist/css/bootstrap.min.css" />
   <style>

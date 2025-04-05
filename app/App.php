@@ -11,9 +11,9 @@ use App\Repositories\Domain\SettingsRepository;
 use App\Repositories\Domain\UserRepository;
 use App\Repositories\Infraestructure\PDO\Connection;
 use flight\net\Route;
-use Illuminate\Container\Container;
 use Leaf\Http\Session;
 
+/** @deprecated */
 final class App extends Flight {
   public static function route(
     string $pattern,
@@ -38,46 +38,46 @@ final class App extends Flight {
 
   /** @deprecated */
   public static function db(): ?Connection {
-    return Container::getInstance()->get(Connection::class);
+    return container()->get(Connection::class);
   }
 
   /** @deprecated */
   public static function departmentRepository(): ?DepartmentRepository {
-    return Container::getInstance()->get(DepartmentRepository::class);
+    return container()->get(DepartmentRepository::class);
   }
 
   /** @deprecated */
   public static function userRepository(): ?UserRepository {
-    return Container::getInstance()->get(UserRepository::class);
+    return container()->get(UserRepository::class);
   }
 
   /** @deprecated */
   public static function settingsRepository(): ?SettingsRepository {
-    return Container::getInstance()->get(SettingsRepository::class);
+    return container()->get(SettingsRepository::class);
   }
 
   /** @deprecated */
   public static function consultationCauseCategoryRepository(): ?ConsultationCauseCategoryRepository {
-    return Container::getInstance()->get(ConsultationCauseCategoryRepository::class);
+    return container()->get(ConsultationCauseCategoryRepository::class);
   }
 
   /** @deprecated */
   public static function session(): ?Session {
-    return Container::getInstance()->get(Session::class);
+    return container()->get(Session::class);
   }
 
   /** @deprecated */
   public static function patientRepository(): ?PatientRepository {
-    return Container::getInstance()->get(PatientRepository::class);
+    return container()->get(PatientRepository::class);
   }
 
   /** @deprecated */
   public static function consultationCauseRepository(): ?ConsultationCauseRepository {
-    return Container::getInstance()->get(ConsultationCauseRepository::class);
+    return container()->get(ConsultationCauseRepository::class);
   }
 
   /** @deprecated */
   public static function doctorRepository(): ?DoctorRepository {
-    return Container::getInstance()->get(DoctorRepository::class);
+    return container()->get(DoctorRepository::class);
   }
 }

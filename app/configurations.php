@@ -17,34 +17,33 @@ use App\Repositories\Infraestructure\PDO\PDODepartmentRepository;
 use App\Repositories\Infraestructure\PDO\PDODoctorRepository;
 use App\Repositories\Infraestructure\PDO\PDOPatientRepository;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
-use Illuminate\Container\Container;
+use flight\Container;
 
-error_reporting(E_ALL & E_STRICT);
+error_reporting(E_ALL | E_STRICT);
 
 $_ENV += include __DIR__ . '/../.env.php';
 $_ENV += include __DIR__ . '/../.env.dist.php';
 
 date_default_timezone_set($_ENV['TIMEZONE']);
 
-App::set('root', str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']));
+/**
+ * - `''`: with _composer serve_ -> _localhost:61001_
+ * - `'/haju'`: with xampp -> _localhost/haju_
+ * - `'/faslatam.42web.io/htdocs/haju'`: hosting uri
+ */
+define('BASE_URI', str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']));
 
-App::set(
-  'fullRoot',
-  App::request()->scheme . '://' . App::request()->host . App::get('root')
+define(
+  'BASE_URL',
+  Flight::request()->scheme . '://' . $_SERVER['HTTP_HOST'] . BASE_URI
 );
 
-App::set('flight.views.path', 'views');
-App::view()->set('root', App::get('root'));
-App::view()->set('user', null);
-App::view()->preserveVars = false;
+Flight::set('flight.views.path', dirname(__DIR__) . '/views');
+Flight::set('flight.handle_errors', false);
+Flight::view()->path = dirname(__DIR__) . '/views';
+Flight::view()->preserveVars = false;
 
-$container = new class extends Container {
-  public function terminating(): void {
-  }
-
-  public function getNamespace(): void {
-  }
-};
+$container = container();
 
 $container->singleton(
   Connection::class,
@@ -62,7 +61,7 @@ $container->singleton(
   DepartmentRepository::class,
   static fn(): DepartmentRepository => new PDODepartmentRepository(
     $container->get(Connection::class),
-    App::get('fullRoot')
+    BASE_URL
   )
 );
 
@@ -70,7 +69,7 @@ $container->singleton(
   UserRepository::class,
   static fn(): UserRepository => new PDOUserRepository(
     $container->get(Connection::class),
-    App::get('fullRoot'),
+    BASE_URL,
     $container->get(DepartmentRepository::class)
   )
 );
@@ -86,7 +85,7 @@ $container->singleton(
   ConsultationCauseCategoryRepository::class,
   static fn(): ConsultationCauseCategoryRepository => new PDOConsultationCauseCategoryRepository(
     $container->get(Connection::class),
-    App::get('fullRoot')
+    BASE_URL
   )
 );
 
@@ -94,7 +93,7 @@ $container->singleton(
   ConsultationCauseRepository::class,
   static fn(): ConsultationCauseRepository => new PDOConsultationCauseRepository(
     $container->get(Connection::class),
-    App::get('fullRoot'),
+    BASE_URL,
     $container->get(ConsultationCauseCategoryRepository::class)
   )
 );
@@ -103,7 +102,7 @@ $container->singleton(
   DoctorRepository::class,
   static fn(): DoctorRepository => new PDODoctorRepository(
     $container->get(Connection::class),
-    App::get('fullRoot'),
+    BASE_URL,
     $container->get(UserRepository::class)
   )
 );
@@ -112,7 +111,7 @@ $container->singleton(
   PatientRepository::class,
   static fn(): PatientRepository => new PDOPatientRepository(
     $container->get(Connection::class),
-    App::get('fullRoot'),
+    BASE_URL,
     $container->get(UserRepository::class),
     $container->get(ConsultationCauseRepository::class),
     $container->get(DepartmentRepository::class),
@@ -120,5 +119,4 @@ $container->singleton(
   )
 );
 
-Container::setInstance($container);
-App::registerContainerHandler($container);
+Flight::registerContainerHandler($container);
