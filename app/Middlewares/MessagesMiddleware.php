@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace App\Middlewares;
 
-use App;
+use flight\template\View;
 use Leaf\Http\Session;
 
 final readonly class MessagesMiddleware {
-  public static function before(): void {
-    App::view()->set('error', App::session()->retrieve('error', null, true));
-    App::view()->set('message', App::session()->retrieve('message', null, true));
-    App::view()->set('scriptPath', App::session()->get('scriptPath', null, true));
-    App::view()->set('mustChangePassword', Session::get('mustChangePassword', false));
+  public function __construct(private Session $session, private View $view) {
+  }
+
+  public function before(): void {
+    $this->view->set('error', $this->session->retrieve('error', null, true));
+    $this->view->set('message', $this->session->retrieve('message', null, true));
+    $this->view->set('scriptPath', $this->session->get('scriptPath', null, true));
+    $this->view->set('mustChangePassword', $this->session->get('mustChangePassword', false));
   }
 }
