@@ -6,4 +6,4 @@ namespace App\Repositories\Exceptions;
 
 use Exception;
 
-class DuplicatedProfileImagesException extends Exception {}
+final class DuplicatedProfileImagesException extends Exception {}

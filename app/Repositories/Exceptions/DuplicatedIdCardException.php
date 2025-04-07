@@ -6,4 +6,4 @@ namespace App\Repositories\Exceptions;
 
 use Exception;
 
-class DuplicatedIdCardException extends Exception {}
+final class DuplicatedIdCardException extends Exception {}

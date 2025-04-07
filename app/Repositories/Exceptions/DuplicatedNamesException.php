@@ -6,5 +6,5 @@ namespace App\Repositories\Exceptions;
 
 use Exception;
 
-class DuplicatedNamesException extends Exception {
+final class DuplicatedNamesException extends Exception {
 }

@@ -6,4 +6,4 @@ namespace App\Repositories\Exceptions;
 
 use Exception;
 
-class DuplicatedEmailsException extends Exception {}
+final class DuplicatedEmailsException extends Exception {}

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Infraestructure\PDO;
 
-use App\Repositories\Exceptions\ConnectionException;
+use App\Repositories\Exceptions\RepositoryException;
 use DateTime;
 use PDO;
 use PDOException;
@@ -27,17 +27,17 @@ abstract class PDORepository {
       ->fetchColumn(0);
   }
 
-  /** @throws ConnectionException */
+  /** @throws RepositoryException */
   final protected function ensureIsConnected(): PDO {
     if (!$this->connection) {
-      throw new ConnectionException('DB is not connected');
+      throw new RepositoryException('DB is not connected');
     }
 
     try {
       $this->connection->instance()->query('SELECT * FROM users');
     } catch (PDOException $exception) {
       if (str_contains($exception->getMessage(), 'no such table: users')) {
-        throw new ConnectionException('DB is not installed correctly');
+        throw new RepositoryException('DB is not installed correctly');
       }
 
       throw $exception;
