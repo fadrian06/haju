@@ -17,6 +17,7 @@ interface Repository {
 
   /** @throws RepositoryException */
   public function getRowsCount(): int;
+
   /**
    * @return ?T
    * @throws RepositoryException

@@ -344,7 +344,7 @@ Flight::group('/api', static function () use (
 
       $causes = Container::getInstance()
         ->get(ConsultationCauseRepository::class)
-        ->getByCategory($category);
+        ->getAllByCategory($category);
 
       $data = $categoryMapper($category);
       $data['consultationCauses'] = array_map($causeMapper, $causes);

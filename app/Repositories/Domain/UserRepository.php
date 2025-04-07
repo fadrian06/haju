@@ -18,7 +18,6 @@ interface UserRepository extends Repository {
 
   /** @throws RepositoryException */
   public function getByIdCard(int $idCard): ?User;
-  public function getById(int $id): ?User;
 
   /**
    * @throws RepositoryException

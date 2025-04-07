@@ -8,7 +8,6 @@ use App\Models\Doctor;
 
 /** @extends Repository<Doctor> */
 interface DoctorRepository extends Repository {
-  public function getById(int $id): ?Doctor;
   public function getByIdCard(int $idCard): ?Doctor;
 
   /**

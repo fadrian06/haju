@@ -4,6 +4,5 @@ declare(strict_types=1);
 
 namespace App\Repositories\Exceptions;
 
-use Exception;
-
-final class DuplicatedProfileImagesException extends Exception {}
+final class DuplicatedProfileImagesException extends RepositoryException {
+}

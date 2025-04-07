@@ -36,7 +36,7 @@ extends PDORepository implements ConsultationCauseRepository {
       ->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper']);
   }
 
-  public function getByCategory(ConsultationCauseCategory $category): array {
+  public function getAllByCategory(ConsultationCauseCategory $category): array {
     $stmt = $this->ensureIsConnected()->prepare(sprintf(
       'SELECT %s FROM %s WHERE category_id = ?',
       self::FIELDS,

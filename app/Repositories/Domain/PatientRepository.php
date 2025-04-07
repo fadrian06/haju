@@ -10,7 +10,6 @@ use App\Repositories\Exceptions\DuplicatedNamesException;
 
 /** @extends Repository<Patient> */
 interface PatientRepository extends Repository {
-  public function getById(int $id): ?Patient;
   public function getByIdCard(int $id): ?Patient;
   public function getByHospitalizationId(int $id): ?Patient;
 
@@ -19,6 +18,7 @@ interface PatientRepository extends Repository {
    * @throws DuplicatedIdCardException
    */
   public function save(Patient $patient): void;
+
   public function saveConsultationOf(Patient $patient): void;
   public function saveHospitalizationOf(Patient $patient): void;
   public function setConsultationsById(Patient $patient, int $causeId): void;

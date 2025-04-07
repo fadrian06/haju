@@ -9,8 +9,6 @@ use App\Repositories\Exceptions\DuplicatedNamesException;
 
 /** @extends Repository<Department> */
 interface DepartmentRepository extends Repository {
-  public function getById(int $id): ?Department;
-
   /** @throws DuplicatedNamesException */
   public function save(Department $department): void;
 
