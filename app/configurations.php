@@ -46,7 +46,6 @@ Flight::view()->path = dirname(__DIR__) . '/views';
 Flight::view()->preserveVars = false;
 
 $container = container();
-
 $container->singleton(Session::class);
 $container->singleton(View::class, Flight::view());
 

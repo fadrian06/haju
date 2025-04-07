@@ -14,6 +14,7 @@ function container(): Container {
   return $container;
 }
 
+/** @deprecated */
 function render(string $viewPath, array $params = []): void {
   Flight::render($viewPath, $params);
 }
@@ -24,12 +25,15 @@ function renderPage(
   array $params = [],
   string $layout = 'base'
 ): void {
+  $params['title'] = $title;
+
   Flight::render("pages/{$page}", $params, 'content');
-  Flight::render("layouts/{$layout}", compact('title') + $params);
+  Flight::render("layouts/{$layout}", $params);
 }
 
+/** @deprecated */
 function renderComponent(string $componentPath, array $params = []): void {
-  render("components/{$componentPath}", $params);
+  Flight::render("components/{$componentPath}", $params);
 }
 
 function isActive(string ...$urls): bool {
