@@ -21,7 +21,7 @@ final class DepartmentWebController extends Controller {
     $departments = $this->departmentRepository->getAll();
     $departmentsNumber = count($departments);
 
-    App::renderPage(
+    renderPage(
       'departments',
       "Departamentos ({$departmentsNumber})",
       compact('departments'),
