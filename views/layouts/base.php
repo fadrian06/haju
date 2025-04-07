@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\User;
 use PharIo\Manifest\Url;
 
@@ -24,7 +26,7 @@ if (isset($user)) {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title><?= $title ?> - HAJU</title>
-  <?php render('components/open-graph-metas') ?>
+  <?php Flight::render('components/open-graph-metas') ?>
   <base href="<?= str_replace('index.php', '', $_SERVER['SCRIPT_NAME']) ?>" />
   <link rel="icon" href="./assets/img/logo-mini.png" />
   <link rel="stylesheet" href="./assets/fonts/fonts.css" />
@@ -47,7 +49,8 @@ if (isset($user)) {
     }
 
     body {
-      padding-right: 0 !important;;
+      padding-right: 0 !important;
+      ;
     }
   </style>
 </head>
@@ -72,7 +75,7 @@ if (isset($user)) {
       <?= $content ?>
     </div>
   </main>
-  <?php render('components/footer') ?>
+  <?php Flight::render('components/footer') ?>
   <script src="./vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./assets/vendors/sweetalert2/sweetalert2.min.js"></script>
   <script>

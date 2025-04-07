@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\ConsultationCause;
 
 /**
@@ -25,7 +27,7 @@ foreach ($consultationCauses as $consultationCause) {
       <?php foreach ($groupByLimit[$groupName] as $consultationCause) : ?>
         <label class="list-group-item d-flex align-items-center justify-content-between">
           <span class="user-select-none text-start"><?= $consultationCause->getFullName() ?></span>
-          <?php renderComponent('input-group', [
+          <?php Flight::render('components/input-group', [
             'type' => 'number',
             'name' => "limit_of[{$consultationCause->id}]",
             'placeholder' => 'Límite de casos semanales',

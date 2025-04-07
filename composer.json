@@ -8,17 +8,16 @@
     "faslatam/alpine-js": "^3.14",
     "flightphp/container": "^1.2",
     "flightphp/core": "^3.15",
+    "guzzlehttp/guzzle": "^7.9",
     "leafs/session": "^4.0",
     "phar-io/manifest": "^2.0",
     "twbs/bootstrap": "^5.3"
   },
   "autoload": {
     "psr-4": {
-      "App\\": "app"
+      "App\\": "app",
+      "HAJU\\": ["app", "src"]
     },
-    "classmap": [
-      "app/App.php"
-    ],
     "files": [
       "app/utils.php"
     ]
@@ -48,7 +47,6 @@
     "migrate:fresh": "php app/commands/migrate-fresh.php"
   },
   "require-dev": {
-    "guzzlehttp/guzzle": "^7.9",
     "phpmd/phpmd": "^2.15",
     "phpstan/extension-installer": "^1.4",
     "phpstan/phpstan": "^2.1",

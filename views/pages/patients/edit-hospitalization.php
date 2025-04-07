@@ -27,7 +27,8 @@ use Leaf\Http\Session;
   class="white_box d-flex flex-column align-items-center">
   <fieldset class="row w-100">
     <?php
-    render('components/input-group', [
+
+    Flight::render('components/input-group', [
       'variant' => 'input',
       'type' => 'date',
       'placeholder' => 'Fecha de ingreso',
@@ -36,7 +37,7 @@ use Leaf\Http\Session;
       'value' => Session::get('lastData', [])['admission_date'] ?? $hospitalization->admissionDate->format('Y-m-d')
     ]);
 
-    render('components/input-group', [
+    Flight::render('components/input-group', [
       'variant' => 'input',
       'type' => 'date',
       'placeholder' => 'Fecha de salida',
@@ -46,9 +47,9 @@ use Leaf\Http\Session;
       'value' => Session::get('lastData', [])['departure_date'] ?? date('Y-m-d')
     ]);
 
-    render('components/input-group', [
+    Flight::render('components/input-group', [
       'variant' => 'select',
-      'options' => array_map(fn (DepartureStatus $status): array => [
+      'options' => array_map(fn(DepartureStatus $status): array => [
         'value' => $status->value,
         'text' => $status->value,
         'selected' => (Session::get('lastData', [])['admission_status'] ?? $hospitalization->departureStatus) === $status,
@@ -60,9 +61,9 @@ use Leaf\Http\Session;
       'required' => true
     ]);
 
-    render('components/input-group', [
+    Flight::render('components/input-group', [
       'variant' => 'select',
-      'options' => array_map(fn (AdmissionDepartment $department): array => [
+      'options' => array_map(fn(AdmissionDepartment $department): array => [
         'value' => $department->value,
         'text' => $department->value,
         'selected' => $hospitalization->admissionDepartment === $department->value,
@@ -74,9 +75,9 @@ use Leaf\Http\Session;
       'required' => true
     ]);
 
-    render('components/input-group', [
+    Flight::render('components/input-group', [
       'variant' => 'select',
-      'options' => array_map(fn (Doctor $doctor): array => [
+      'options' => array_map(fn(Doctor $doctor): array => [
         'value' => $doctor->id,
         'text' => "v-$doctor->idCard ~ $doctor->firstName $doctor->firstLastName",
         'selected' => $hospitalization->doctor->isEqualTo($doctor),
@@ -87,7 +88,7 @@ use Leaf\Http\Session;
       'hidden' => false
     ]);
 
-    render('components/input-group', [
+    Flight::render('components/input-group', [
       'variant' => 'textarea',
       'placeholder' => 'Diagnósticos',
       'cols' => 6,

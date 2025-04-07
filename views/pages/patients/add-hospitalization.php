@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Doctor;
 use App\Models\Patient;
 use App\ValueObjects\AdmissionDepartment;
@@ -18,20 +20,16 @@ use App\ValueObjects\DepartureStatus;
 
 <form action="./hospitalizaciones" method="post" class="white_box d-flex flex-column align-items-center">
   <fieldset class="row w-100">
-    <?php
-
-    render('components/input-group', [
+    <?php Flight::render('components/input-group', [
       'variant' => 'select',
-      'options' => array_map(fn (Patient $patient): array => [
+      'options' => array_map(fn(Patient $patient): array => [
         'value' => $patient->id,
         'text' => "v-{$patient->idCard} ~ {$patient->getFullName()}"
       ], $patients),
       'placeholder' => 'Paciente',
       'name' => 'id_card',
       'cols' => 7
-    ]);
-
-    ?>
+    ]) ?>
 
     <div class="col d-flex flex-column text-center mb-4 mb-md-0">
       ¿El paciente no está registrado?
@@ -44,7 +42,7 @@ use App\ValueObjects\DepartureStatus;
 
     <?php
 
-    render('components/input-group', [
+    Flight::render('components/input-group', [
       'variant' => 'input',
       'type' => 'date',
       'placeholder' => 'Fecha de ingreso',
@@ -53,7 +51,7 @@ use App\ValueObjects\DepartureStatus;
       'value' => date('Y-m-d')
     ]);
 
-    render('components/input-group', [
+    Flight::render('components/input-group', [
       'variant' => 'input',
       'type' => 'date',
       'placeholder' => 'Fecha de salida',
@@ -63,9 +61,9 @@ use App\ValueObjects\DepartureStatus;
       'value' => ''
     ]);
 
-    render('components/input-group', [
+    Flight::render('components/input-group', [
       'variant' => 'select',
-      'options' => array_map(fn (DepartureStatus $status): array => [
+      'options' => array_map(fn(DepartureStatus $status): array => [
         'value' => $status->value,
         'text' => $status->value
       ], DepartureStatus::cases()),
@@ -76,9 +74,9 @@ use App\ValueObjects\DepartureStatus;
       'required' => false
     ]);
 
-    render('components/input-group', [
+    Flight::render('components/input-group', [
       'variant' => 'select',
-      'options' => array_map(fn (AdmissionDepartment $department): array => [
+      'options' => array_map(fn(AdmissionDepartment $department): array => [
         'value' => $department->value,
         'text' => $department->value
       ], AdmissionDepartment::cases()),
@@ -89,9 +87,9 @@ use App\ValueObjects\DepartureStatus;
       'required' => true
     ]);
 
-    render('components/input-group', [
+    Flight::render('components/input-group', [
       'variant' => 'select',
-      'options' => array_map(fn (Doctor $doctor): array => [
+      'options' => array_map(fn(Doctor $doctor): array => [
         'value' => $doctor->id,
         'text' => "v-$doctor->idCard ~ $doctor->firstName $doctor->firstLastName"
       ], $doctors),
@@ -101,7 +99,7 @@ use App\ValueObjects\DepartureStatus;
       'hidden' => false
     ]);
 
-    render('components/input-group', [
+    Flight::render('components/input-group', [
       'variant' => 'textarea',
       'placeholder' => 'Diagnósticos',
       'cols' => 6,

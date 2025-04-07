@@ -1,12 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
+use App\Repositories\Infraestructure\PDO\Connection;
 use App\ValueObjects\DateRange;
 
 $lastMonth = (new DateTimeImmutable)->sub(new DateInterval('P1M'))->format('Y-m-d');
 $currentDate = date('Y-m-d') . ' 23:59:59';
 $range = DateRange::tryFrom($_GET['rango'] ?? '');
 
-$stmt = App::db()->instance()->query(<<<sql
+$stmt = container()->get(Connection::class)->instance()->query(<<<sql
   SELECT consultations.cause_id, consultation_causes.short_name,
   consultation_causes.variant, consultation_causes.extended_name,
   COUNT(patient_id) as consultations
@@ -27,7 +30,7 @@ $params = [
 $stmt->execute($params);
 $frecuentCauses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$stmt = App::db()->instance()->query(<<<sql
+$stmt = container()->get(Connection::class)->instance()->query(<<<sql
   SELECT short_name, extended_name, variant, registered_date,
   COUNT(short_name) as consultations
   FROM (
@@ -75,7 +78,7 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       <?php
 
-      render('components/input-group', [
+      Flight::render('components/input-group', [
         'name' => 'fecha_inicio',
         'variant' => 'input',
         'placeholder' => 'Desde',
@@ -85,7 +88,7 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
         'required' => false
       ]);
 
-      render('components/input-group', [
+      Flight::render('components/input-group', [
         'name' => 'fecha_fin',
         'variant' => 'input',
         'placeholder' => 'Hasta',
@@ -100,7 +103,7 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       <div class="col-md-12 d-flex align-items-center justify-content-center flex-wrap gap-3">
         <?php foreach (DateRange::cases() as $index => $range): ?>
-          <?php render('components/input-group', [
+          <?php Flight::render('components/input-group', [
             'name' => 'rango',
             'variant' => 'radio',
             'checked' => ($_GET['rango'] ?? DateRange::Monthly->value) === $range->value,
@@ -130,7 +133,7 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       <?php
 
-      render('components/input-group', [
+      Flight::render('components/input-group', [
         'name' => 'id_causa',
         'variant' => 'select',
         'placeholder' => 'Causa de consulta',
@@ -143,7 +146,7 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
         'margin' => 0
       ]);
 
-      render('components/input-group', [
+      Flight::render('components/input-group', [
         'name' => 'fecha_inicio',
         'variant' => 'input',
         'placeholder' => 'Desde',
@@ -153,7 +156,7 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
         'required' => false
       ]);
 
-      render('components/input-group', [
+      Flight::render('components/input-group', [
         'name' => 'fecha_fin',
         'variant' => 'input',
         'placeholder' => 'Hasta',
@@ -168,7 +171,7 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       <div class="col-md-12 d-flex align-items-center justify-content-center flex-wrap gap-3">
         <?php foreach (DateRange::cases() as $index => $range): ?>
-          <?php render('components/input-group', [
+          <?php Flight::render('components/input-group', [
             'name' => 'rango',
             'variant' => 'radio',
             'checked' => ($_GET['rango'] ?? DateRange::Monthly->value) === $range->value,

@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace App\Controllers\Web;
 
-use App;
+use App\Models\Department;
 use App\Repositories\Domain\DepartmentRepository;
+use Flight;
+use flight\template\View;
 use Throwable;
 
 final class DepartmentWebController extends Controller {
-  private readonly DepartmentRepository $departmentRepository;
-
-  public function __construct() {
+  public function __construct(
+    private readonly DepartmentRepository $departmentRepository,
+    private readonly View $view,
+  ) {
     parent::__construct();
-
-    $this->departmentRepository = App::departmentRepository();
   }
 
   public function showDepartments(): void {
@@ -30,7 +31,9 @@ final class DepartmentWebController extends Controller {
   }
 
   public function handleToggleStatus(int $id): void {
-    $selectedDepartment = App::view()->get('department');
+    $selectedDepartment = $this->view->get('department');
+    assert($selectedDepartment instanceof Department);
+
     $department = $this->departmentRepository->getById($id);
     $department->toggleStatus();
 
@@ -40,7 +43,7 @@ final class DepartmentWebController extends Controller {
 
     $this->departmentRepository->save($department);
     self::setMessage("Departamento de {$department->name} {$department->getActiveStatusText()} exitósamente");
-    App::redirect($redirectUrl);
+    Flight::redirect($redirectUrl);
   }
 
   public function handleDepartmentEdition(int $id): void {
@@ -54,6 +57,6 @@ final class DepartmentWebController extends Controller {
       self::setError($error);
     }
 
-    App::redirect('/departamentos');
+    Flight::redirect('/departamentos');
   }
 }

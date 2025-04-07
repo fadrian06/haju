@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\User;
 use App\ValueObjects\Appointment;
 
@@ -108,27 +110,29 @@ use App\ValueObjects\Appointment;
       <h3 class="mb-4">Cambiar contraseña</h3>
       <div class="row">
         <?php
-          render('components/input-group', [
-            'variant' => 'input',
-            'type' => 'password',
-            'name' => 'old_password',
-            'placeholder' => 'Contraseña anterior',
-            'cols' => 12
-          ]);
 
-          render('components/input-group', [
-            'type' => 'password',
-            'name' => 'new_password',
-            'placeholder' => 'Nueva contraseña',
-            'cols' => 6
-          ]);
+        Flight::render('components/input-group', [
+          'variant' => 'input',
+          'type' => 'password',
+          'name' => 'old_password',
+          'placeholder' => 'Contraseña anterior',
+          'cols' => 12
+        ]);
 
-          render('components/input-group', [
-            'type' => 'password',
-            'name' => 'confirm_password',
-            'placeholder' => 'Confirmar contraseña',
-            'cols' => 6
-          ]);
+        Flight::render('components/input-group', [
+          'type' => 'password',
+          'name' => 'new_password',
+          'placeholder' => 'Nueva contraseña',
+          'cols' => 6
+        ]);
+
+        Flight::render('components/input-group', [
+          'type' => 'password',
+          'name' => 'confirm_password',
+          'placeholder' => 'Confirmar contraseña',
+          'cols' => 6
+        ]);
+
         ?>
       </div>
       <div class="text-center">
@@ -150,7 +154,7 @@ use App\ValueObjects\Appointment;
   </section>
 </section>
 
-<?php render('components/confirmation', [
+<?php Flight::render('components/confirmation', [
   'show' => false,
   'id' => 'disactivate-director-modal',
   'action' => "./usuarios/{$user->id}/desactivar",

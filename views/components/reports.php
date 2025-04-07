@@ -1,3 +1,9 @@
+<?php
+
+declare(strict_types=1);
+
+?>
+
 <section class="my-4 d-flex align-items-center">
   <h2>Reportes - </h2>
   <i class="ti-write ms-2 h2"></i>
@@ -37,9 +43,7 @@
         </small>
       </div>
       <form action="./reportes/epi-11" target="_blank" class="mt-3">
-        <?php
-
-        render('components/input-group', [
+        <?php Flight::render('components/input-group', [
           'type' => 'month',
           'name' => 'fecha',
           'placeholder' => 'Mes/Año',
@@ -49,9 +53,7 @@
           'labelStyle' => 'left: 0',
           'variant' => 'input',
           'margin' => 4
-        ]);
-
-        ?>
+        ]) ?>
 
         <button class="btn btn-sm btn-primary">Generar</button>
       </form>
@@ -116,9 +118,7 @@
         </small>
       </div>
       <form action="./reportes/epi-15" target="_blank" class="mt-3">
-        <?php
-
-        render('components/input-group', [
+        <?php Flight::render('components/input-group', [
           'type' => 'month',
           'name' => 'fecha',
           'placeholder' => 'Mes/Año',
@@ -127,9 +127,7 @@
           'title' => 'La fecha debe tener el formato AAAA-MM',
           'labelStyle' => 'left: 0',
           'variant' => 'input'
-        ]);
-
-        ?>
+        ]) ?>
 
         <button class="btn btn-sm btn-primary">Generar</button>
       </form>

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * @var ?int $cols
  * @var null|'input'|'textarea'|'select'|'file'|'checkbox' $variant
@@ -45,8 +47,7 @@ $oninput ??= null;
       id="<?= $id ?>"
       <?= $checked ? 'checked' : '' ?>
       <?= $hidden ? 'hidden' : '' ?>
-      value="<?= $value ?>"
-    />
+      value="<?= $value ?>" />
     <label class="form-check-label" for="<?= $id ?>">
       <?= $placeholder ?>
     </label>
@@ -69,8 +70,7 @@ $oninput ??= null;
         list="<?= $list ?? null ?>"
         <?= $pattern ? "pattern='$pattern'" : '' ?>
         <?= $title ? "data-bs-toggle='tooltip' title='$title'" : '' ?>
-        <?= $oninput ? "oninput='$oninput'" : '' ?>
-      />
+        <?= $oninput ? "oninput='$oninput'" : '' ?> />
     <?php elseif ($variant === 'textarea') : ?>
       <textarea
         class="form-control"
@@ -86,8 +86,7 @@ $oninput ??= null;
         class="form-control"
         <?= $required ? 'required' : '' ?>
         name="<?= $name ?>"
-        id="<?= $id ?>"
-      />
+        id="<?= $id ?>" />
     <?php else: ?>
       <select
         style="border-color: rgb(241, 243, 245)"

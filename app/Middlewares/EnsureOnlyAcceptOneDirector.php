@@ -4,13 +4,21 @@ declare(strict_types=1);
 
 namespace App\Middlewares;
 
-use App;
+use Flight;
+use flight\net\Request;
+use Leaf\Http\Session;
 
 final readonly class EnsureOnlyAcceptOneDirector {
-  public static function before(): void {
-    if (App::request()->data['secret_key']) {
-      self::checkSecretKey(App::request()->data['secret_key']);
-      App::session()->set('let_register_director', true);
+  private function __construct(
+    private Request $request,
+    private Session $session,
+  ) {
+  }
+
+  public function before(): void {
+    if ($this->request->data['secret_key']) {
+      self::checkSecretKey($this->request->data['secret_key']);
+      $this->session->set('let_register_director', true);
 
       exit(<<<'html'
       <script>
@@ -19,18 +27,18 @@ final readonly class EnsureOnlyAcceptOneDirector {
       html);
     }
 
-    if (App::session()->get('let_register_director')) {
+    if ($this->session->get('let_register_director')) {
       return;
     }
 
-    App::redirect('/ingresar');
+    Flight::redirect('/ingresar');
 
     exit;
   }
 
   private static function checkSecretKey(string $secretKey): void {
     if ($secretKey !== '1234') {
-      App::renderPage('login', 'Ingreso (1/2)', [
+      renderPage('login', 'Ingreso (1/2)', [
         'error' => 'Clave maestra incorrecta'
       ]);
 

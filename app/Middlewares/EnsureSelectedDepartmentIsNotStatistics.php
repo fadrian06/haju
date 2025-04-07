@@ -4,20 +4,26 @@ declare(strict_types=1);
 
 namespace App\Middlewares;
 
-use App;
+use App\Repositories\Domain\DepartmentRepository;
+use Flight;
 use Leaf\Http\Session;
 
 final readonly class EnsureSelectedDepartmentIsNotStatistics {
-  public static function before(): true {
-    $selectedDepartment = App::departmentRepository()->getById(Session::get('departmentId'));
+  public function __construct(
+    private DepartmentRepository $departmentRepository,
+    private Session $session,
+  ) {
+  }
+
+  public function before(): true {
+    $departmentId = $this->session->get('departmentId');
+    $selectedDepartment = $this->departmentRepository->getById($departmentId);
 
     if (!$selectedDepartment->isStatistics()) {
       return true;
     }
 
-    Session::set('error', 'No puedes registrar consultas desde el departamento de Estadística');
-    App::redirect('/');
-
-    exit;
+    $this->session->set('error', 'No puedes registrar consultas desde el departamento de Estadística');
+    Flight::redirect('/');
   }
 }

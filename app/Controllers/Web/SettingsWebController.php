@@ -6,34 +6,38 @@ namespace App\Controllers\Web;
 
 use App;
 use App\Models\User;
+use App\Repositories\Domain\ConsultationCauseRepository;
 use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Domain\SettingsRepository;
 use App\Repositories\Domain\UserRepository;
+use App\Repositories\Infraestructure\PDO\Connection;
 use App\ValueObjects\Appointment;
+use Flight;
 use Leaf\Http\Session;
 
 final class SettingsWebController extends Controller {
-  private readonly UserRepository $userRepository;
-  private readonly DepartmentRepository $departmentRepository;
-  private readonly SettingsRepository $settingsRepository;
-
-  public function __construct() {
+  public function __construct(
+    private readonly UserRepository $userRepository,
+    private readonly DepartmentRepository $departmentRepository,
+    private readonly SettingsRepository $settingsRepository,
+    private readonly ConsultationCauseRepository $consultationCauseRepository,
+    private readonly Connection $connection,
+  ) {
     parent::__construct();
-
-    $this->departmentRepository = App::departmentRepository();
-    $this->userRepository = App::userRepository();
-    $this->settingsRepository = App::settingsRepository();
   }
 
   public function showPermissions(): void {
     $departments = $this->departmentRepository->getAll();
     $users = $this->userRepository->getAll($this->loggedUser);
 
-    $filteredUsers = array_filter($users, fn(User $user): bool => $this->loggedUser->appointment === Appointment::Director
-      ? $user->appointment === Appointment::Coordinator
-      : $user->appointment === Appointment::Secretary);
+    $filteredUsers = array_filter(
+      $users,
+      fn(User $user): bool => $this->loggedUser->appointment->isDirector()
+        ? $user->appointment === Appointment::Coordinator
+        : $user->appointment === Appointment::Secretary
+    );
 
-    App::renderPage(
+    renderPage(
       'settings/permissions',
       'Roles y permisos',
       ['users' => $filteredUsers, ...compact('departments')],
@@ -57,13 +61,13 @@ final class SettingsWebController extends Controller {
 
     $this->userRepository->save($userRequested);
     self::setMessage('Asignaciones actualizadas exitósamente');
-    App::redirect('/configuracion/permisos');
+    Flight::redirect('/configuracion/permisos');
   }
 
   public function showBackups(): void {
     $this->ensureUserIsAuthorized();
 
-    App::renderPage(
+    renderPage(
       'settings/backups',
       'Respaldo y restauración',
       ['showRestore' => $this->settingsRepository->backupExists()],
@@ -72,7 +76,7 @@ final class SettingsWebController extends Controller {
   }
 
   public function showInstitutionConfigs(): void {
-    App::renderPage('settings/institution', 'Institución', [
+    renderPage('settings/institution', 'Institución', [
       'hospital' => $this->settingsRepository->getHospital()
     ], 'main');
   }
@@ -83,20 +87,20 @@ final class SettingsWebController extends Controller {
 
     self::setMessage('Base de datos respaldada exitósamente');
     Session::set('scriptPath', $dataUrl);
-    App::redirect('/configuracion/respaldo-restauracion');
+    Flight::redirect('/configuracion/respaldo-restauracion');
   }
 
   public function loadBackupFile(): void {
-    $script = file_get_contents(App::request()->files->script['tmp_name']);
+    $script = file_get_contents(Flight::request()->files->script['tmp_name']);
     $this->ensureUserIsAuthorized()->settingsRepository->restoreFromScript($script);
     self::setMessage('Base de datos restaurada exitósamente');
-    App::redirect('/salir');
+    Flight::redirect('/salir');
   }
 
   public function handleRestoreBackup(): void {
     $this->ensureUserIsAuthorized()->settingsRepository->restore();
     self::setMessage('Base de datos restaurada exitósamente');
-    App::redirect('/salir');
+    Flight::redirect('/salir');
   }
 
   public function handleInstitutionUpdate(): void {
@@ -114,13 +118,13 @@ final class SettingsWebController extends Controller {
     $this->settingsRepository->save($hospital);
 
     self::setMessage('Institución actualizada exitósamente');
-    App::redirect('/configuracion/institucion');
+    Flight::redirect('/configuracion/institucion');
   }
 
   public function showConsultationCausesConfigs(): void {
-    $consultationCauses = App::consultationCauseRepository()->getAll();
+    $consultationCauses = $this->consultationCauseRepository->getAll();
 
-    App::renderPage(
+    renderPage(
       'settings/consultation-causes',
       'Configurar causas de consulta',
       compact('consultationCauses'),
@@ -131,10 +135,10 @@ final class SettingsWebController extends Controller {
   public function handleConsultationCausesUpdate(): void {
     $limitOf = array_map(
       static fn(string $limit): int => (int) $limit,
-      array_filter(App::request()->data->limit_of)
+      array_filter(Flight::request()->data->limit_of)
     );
 
-    $pdo = App::db()->instance();
+    $pdo = $this->connection->instance();
     $pdo->beginTransaction();
 
     $stmt = $pdo->prepare('UPDATE consultation_causes SET weekly_cases_limit = :weeklyLimit WHERE id = :id');
@@ -148,7 +152,7 @@ final class SettingsWebController extends Controller {
 
     $pdo->commit();
     self::setMessage('Límites de casos semanales actualizados exitósamente');
-    App::redirect(App::request()->referrer);
+    Flight::redirect(Flight::request()->referrer);
   }
 
   public function showLogs(): void {
@@ -159,13 +163,13 @@ final class SettingsWebController extends Controller {
       $logs = array_filter(explode(';', file_get_contents($logsPath)));
     }
 
-    App::renderPage('logs', 'Logs de usuarios', compact('logs'), 'main');
+    renderPage('logs', 'Logs de usuarios', compact('logs'), 'main');
   }
 
   public function cleanLogs(): void {
     $logsPath = __DIR__ . '/../../logs/authentications.log';
     file_put_contents($logsPath, '');
-    App::redirect('/logs');
+    Flight::redirect('/logs');
   }
 
   private function ensureUserIsAuthorized(): static {
@@ -173,7 +177,7 @@ final class SettingsWebController extends Controller {
       !$this->loggedUser->appointment->isHigherThan(Appointment::Coordinator)
       || !$this->loggedUser->hasDepartment('Estadística')
     ) {
-      App::redirect('/');
+      Flight::redirect('/');
     }
 
     return $this;

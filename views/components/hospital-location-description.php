@@ -1,3 +1,9 @@
+<?php
+
+declare(strict_types=1);
+
+?>
+
 <div class="container py-5">
   <div class="row g-4">
     <!-- Encabezado -->
@@ -12,9 +18,9 @@
         <div class="card-body p-0">
           <div class="ratio ratio-16x9 position-relative">
             <div class="weather">
-              <?php renderComponent('hospital-weather') ?>
+              <?php Flight::render('components/hospital-weather') ?>
             </div>
-            <?php renderComponent('hospital-location') ?>
+            <?php Flight::render('components/hospital-location') ?>
           </div>
         </div>
         <div :class="`card-footer text-bg-${theme}`">

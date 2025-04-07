@@ -1,3 +1,9 @@
+<?php
+
+declare(strict_types=1);
+
+?>
+
 <div class="modal fade" id="registrate">
   <div class="modal-dialog modal-dialog-scrollable">
     <form
@@ -32,7 +38,7 @@
         </button>
       </header>
       <section class="modal-body">
-        <?php renderComponent('inputs/input', [
+        <?php Flight::render('components/inputs/input', [
           'name' => 'secret_key',
           'slot' => 'Clave maestra',
         ]) ?>

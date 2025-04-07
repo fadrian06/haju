@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Department;
 use App\Models\User;
 use App\ValueObjects\Appointment;
@@ -54,5 +56,12 @@ use App\ValueObjects\Appointment;
     <?php endif ?>
   </div>
 </section>
-<?php $user->appointment->isHigherThan(Appointment::Coordinator) && $department->name === 'Estadística' && render('components/charts') ?>
-<?php $user->appointment->isHigherThan(Appointment::Coordinator) && $department->name === 'Estadística' && render('components/reports') ?>
+<?php $user->appointment->isHigherThan(Appointment::Coordinator)
+  && $department->isStatistics()
+  && Flight::render('components/charts')
+?>
+
+<?php $user->appointment->isHigherThan(Appointment::Coordinator)
+  && $department->isStatistics()
+  && Flight::render('components/reports')
+?>

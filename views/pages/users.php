@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\User;
 use App\ValueObjects\Appointment;
 use App\ValueObjects\Gender;
@@ -78,34 +80,34 @@ $loggedUser = $user;
         <fieldset class="row">
           <summary class="fs-6 mb-2">Datos personales</summary>
           <?php
-          render('components/input-group', [
+          Flight::render('components/input-group', [
             'name' => 'first_name',
             'placeholder' => 'Primer nombre',
             'value' => $_SESSION['lastData']['first_name'] ?? ''
           ]);
 
-          render('components/input-group', [
+          Flight::render('components/input-group', [
             'name' => 'second_name',
             'placeholder' => 'Segundo nombre',
             'required' => false,
             'value' => $_SESSION['lastData']['second_name'] ?? ''
           ]);
 
-          render('components/input-group', [
+          Flight::render('components/input-group', [
             'name' => 'first_last_name',
             'placeholder' => 'Primer apellido',
             'required' => true,
             'value' => $_SESSION['lastData']['first_last_name'] ?? ''
           ]);
 
-          render('components/input-group', [
+          Flight::render('components/input-group', [
             'name' => 'second_last_name',
             'placeholder' => 'Segundo apellido',
             'required' => false,
             'value' => $_SESSION['lastData']['second_last_name'] ?? ''
           ]);
 
-          render('components/input-group', [
+          Flight::render('components/input-group', [
             'type' => 'number',
             'name' => 'id_card',
             'placeholder' => 'Cédula',
@@ -120,14 +122,14 @@ $loggedUser = $user;
                 })'
           ]);
 
-          render('components/input-group', [
+          Flight::render('components/input-group', [
             'type' => 'date',
             'name' => 'birth_date',
             'placeholder' => 'Fecha de nacimiento',
             'value' => $_SESSION['lastData']['birth_date'] ?? ''
           ]);
 
-          render('components/input-group', [
+          Flight::render('components/input-group', [
             'variant' => 'select',
             'name' => 'gender',
             'placeholder' => 'Género',
@@ -143,7 +145,7 @@ $loggedUser = $user;
             )
           ]);
 
-          render('components/input-group', [
+          Flight::render('components/input-group', [
             'variant' => 'select',
             'name' => 'instruction_level',
             'placeholder' => 'Nivel de instrucción',
@@ -162,7 +164,7 @@ $loggedUser = $user;
         <fieldset class="row">
           <summary class="fs-6 mb-2">Credenciales</summary>
           <?php
-          render('components/input-group', [
+          Flight::render('components/input-group', [
             'variant' => 'input',
             'type' => 'text',
             'name' => 'password',
@@ -172,7 +174,7 @@ $loggedUser = $user;
             'required' => false
           ]);
 
-          render('components/input-group', [
+          Flight::render('components/input-group', [
             'variant' => 'input',
             'type' => 'text',
             'name' => 'confirm_password',
@@ -204,7 +206,7 @@ $loggedUser = $user;
           <summary class="fs-6 mb-2">Datos de contacto</summary>
           <?php
 
-          render('components/input-group', [
+          Flight::render('components/input-group', [
             'type' => 'tel',
             'name' => 'phone',
             'placeholder' => 'Teléfono',
@@ -212,14 +214,14 @@ $loggedUser = $user;
             'value' => $_SESSION['lastData']['phone'] ?? ''
           ]);
 
-          render('components/input-group', [
+          Flight::render('components/input-group', [
             'type' => 'email',
             'name' => 'email',
             'placeholder' => 'Correo electrónico',
             'value' => $_SESSION['lastData']['email'] ?? ''
           ]);
 
-          render('components/input-group', [
+          Flight::render('components/input-group', [
             'variant' => 'textarea',
             'name' => 'address',
             'placeholder' => 'Dirección',
@@ -232,7 +234,7 @@ $loggedUser = $user;
         <fieldset class="row">
           <?php
 
-          render('components/input-group', [
+          Flight::render('components/input-group', [
             'variant' => 'file',
             'name' => 'profile_image',
             'placeholder' => 'Foto de perfil',
@@ -241,7 +243,7 @@ $loggedUser = $user;
 
           echo '<div class="col-md-2 text-center">O</div>';
 
-          render('components/input-group', [
+          Flight::render('components/input-group', [
             'variant' => 'input',
             'type' => 'url',
             'name' => 'profile_image_url',
@@ -250,7 +252,7 @@ $loggedUser = $user;
             'value' => $_SESSION['lastData']['profile_image_url'] ?? ''
           ]);
 
-          render('components/input-group', [
+          Flight::render('components/input-group', [
             'variant' => 'checkbox',
             'name' => 'is_active',
             'placeholder' => 'Estado <small>(activo/inactivo)</small>',

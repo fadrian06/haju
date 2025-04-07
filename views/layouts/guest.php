@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Leaf\Http\Session;
 
 ?>
@@ -26,9 +28,9 @@ use Leaf\Http\Session;
 </head>
 
 <body class="pb-5">
-  <?php renderComponent('headers/public') ?>
+  <?php Flight::render('components/headers/public') ?>
   <?= $content ?>
-  <?php renderComponent('footer') ?>
+  <?php Flight::render('components/footer') ?>
   <script src="./assets/dist/guest.js"></script>
 </body>
 

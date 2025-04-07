@@ -1,9 +1,10 @@
 <?php
 
 use App\Models\ConsultationCauseCategory;
+use App\Repositories\Infraestructure\PDO\Connection;
 use flight\template\View;
 
-$api = App::get('fullRoot');
+$api = Flight::get('fullRoot');
 $causes = json_decode(file_get_contents("{$api}/api/causas-consulta/"), true);
 
 /** @var array<int, ConsultationCauseCategory> */
@@ -30,7 +31,7 @@ if ($monthYear !== null) {
 
 ob_end_clean();
 
-$consultations = App::db()->instance()->query(<<<sql
+$consultations = container()->get(Connection::class)->instance()->query(<<<sql
   SELECT type, registered_date, cause_id FROM consultations
   WHERE registered_date BETWEEN '{$startDate}' AND '{$endDate}'
 sql)->fetchAll(PDO::FETCH_ASSOC);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\ConsultationCauseCategory;
 use App\Models\Department;
 use App\Models\Doctor;
@@ -81,7 +83,7 @@ use App\ValueObjects\ConsultationType;
     </div>
     <?php
 
-    render('components/input-group', [
+    Flight::render('components/input-group', [
       'variant' => 'select',
       'options' => array_map(fn(ConsultationCauseCategory $category): array => [
         'value' => $category->id,
@@ -92,7 +94,7 @@ use App\ValueObjects\ConsultationType;
       'name' => 'consultation_cause_category'
     ]);
 
-    render('components/input-group', [
+    Flight::render('components/input-group', [
       'variant' => 'select',
       'hidden' => true,
       'options' => [],
@@ -101,7 +103,7 @@ use App\ValueObjects\ConsultationType;
       'name' => 'consultation_cause'
     ]);
 
-    render('components/input-group', [
+    Flight::render('components/input-group', [
       'variant' => 'select',
       'hidden' => true,
       'options' => array_map(fn(ConsultationType $type): array => [
@@ -113,7 +115,7 @@ use App\ValueObjects\ConsultationType;
       'name' => 'consultation_type'
     ]);
 
-    render('components/input-group', [
+    Flight::render('components/input-group', [
       'variant' => 'select',
       'options' => array_map(fn(Department $department): array => [
         'value' => $department->id,
@@ -125,7 +127,7 @@ use App\ValueObjects\ConsultationType;
       'hidden' => false
     ]);
 
-    render('components/input-group', [
+    Flight::render('components/input-group', [
       'variant' => 'select',
       'options' => array_map(fn(Doctor $doctor): array => [
         'value' => $doctor->id,
@@ -153,7 +155,7 @@ use App\ValueObjects\ConsultationType;
   <button id="register-btn" class="btn btn-primary d-none btn-lg mt-4 px-5 rounded-pill">Registrar</button>
 </form>
 
-<?php render('forms/patient-register', ['action' => './pacientes?referido=/consultas/registrar']) ?>
+<?php Flight::render('forms/patient-register', ['action' => './pacientes?referido=/consultas/registrar']) ?>
 
 <script>
   const $consultationCauseSelect = document.querySelector('[name="consultation_cause"]')

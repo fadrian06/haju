@@ -72,7 +72,7 @@ foreach ($consultations as $consultation) {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title><?= $title ?> - HAJU</title>
-  <?php render('components/open-graph-metas') ?>
+  <?php Flight::render('components/open-graph-metas') ?>
   <base href="<?= str_replace('index.php', '', $_SERVER['SCRIPT_NAME']) ?>" />
   <link rel="icon" href="./assets/img/logo-mini.png" />
   <link rel="stylesheet" href="./assets/fonts/fonts.css" />
@@ -112,18 +112,18 @@ foreach ($consultations as $consultation) {
 
 <body>
   <?php if ($epidemic ?: false): ?>
-    <?php renderComponent('epidemic-alert', ['epidemic' => $epidemic]) ?>
+    <?php Flight::render('components/epidemic-alert', ['epidemic' => $epidemic]) ?>
   <?php endif ?>
-  <?php render('components/sidebar') ?>
+  <?php Flight::render('components/sidebar') ?>
   <section class="main_content pb-4 pt-0">
-    <?php render('components/header') ?>
+    <?php Flight::render('components/header') ?>
     <div class="main_content_iner row justify-content-center m-0 p-4">
       <?= $content ?>
     </div>
-    <?php render('components/footer') ?>
+    <?php Flight::render('components/footer') ?>
   </section>
   <?php if ($mustChangePassword && $showPasswordChangeModal): ?>
-    <?php render('components/confirmation', [
+    <?php Flight::render('components/confirmation', [
       'show' => true,
       'id' => 'change-password-confirmation',
       'action' => './perfil#seguridad',

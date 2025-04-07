@@ -18,7 +18,7 @@ use App\Models\User;
   <meta name="viewport" content="width=device-width" />
   <title><?= $title ?> - HAJU</title>
   <base href="<?= str_replace('index.php', '', $_SERVER['SCRIPT_NAME']) ?>" />
-  <?php render('components/open-graph-metas') ?>
+  <?php Flight::render('components/open-graph-metas') ?>
   <link rel="icon" href="./assets/img/logo-mini.png" />
   <link rel="stylesheet" href="./vendor/twbs/bootstrap/dist/css/bootstrap.min.css" />
   <style>

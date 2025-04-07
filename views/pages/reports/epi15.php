@@ -2,11 +2,98 @@
 
 declare(strict_types=1);
 
+use App\Models\ConsultationCause;
 use App\Models\ConsultationCauseCategory;
+use App\Repositories\Domain\ConsultationCauseRepository;
+use App\Repositories\Infraestructure\PDO\Connection;
 use flight\template\View;
+use GuzzleHttp\Client;
 
-$api = App::get('fullRoot');
-$causes = json_decode(file_get_contents("{$api}/api/causas-consulta/"), true);
+$categoryMapper = new class {
+  /**
+   * @return array{
+   *   id: int,
+   *   name: array{
+   *     short: string,
+   *     extended: string,
+   *   },
+   *   parentCategory: ?array{
+   *     id: int,
+   *     name: array{
+   *       short: string,
+   *       extended: string,
+   *     },
+   *     parentCategory: null,
+   *   }
+   * }
+   */
+  public function __invoke(ConsultationCauseCategory $category): array {
+    return [
+      'id' => $category->id,
+      'name' => [
+        'short' => $category->shortName,
+        'extended' => $category->extendedName,
+      ],
+      'parentCategory' => $category->parentCategory !== null
+        ? ($this)($category->parentCategory)
+        : null,
+    ];
+  }
+};
+
+$causeMapper = new class($categoryMapper(...)) {
+  public function __construct(private readonly Closure $categoryMapper) {
+  }
+
+  /**
+   * @return array{
+   *   id: int,
+   *   name: array{
+   *     short: string,
+   *     extended: string,
+   *   },
+   *   code: string,
+   *   category: array{
+   *     id: int,
+   *     name: array{
+   *       short: string,
+   *       extended: string,
+   *     },
+   *     parentCategory: ?array{
+   *       id: int,
+   *       name: array{
+   *         short: string,
+   *         extended: string,
+   *       },
+   *       parentCategory: null,
+   *     },
+   *   },
+   * }
+   */
+  public function __invoke(ConsultationCause $cause): array {
+    return [
+      'id' => $cause->id,
+      'name' => [
+        'short' => $cause->getFullName(),
+        'extended' => $cause->getFullName(abbreviated: false),
+      ],
+      'code' => $cause->code,
+      'category' => ($this->categoryMapper)($cause->category),
+    ];
+  }
+};
+
+$causes = container()
+  ->get(ConsultationCauseRepository::class)
+  ->getAllWithGenerator();
+
+$data = [];
+
+foreach ($causes as $cause) {
+  $data[] = $causeMapper($cause);
+}
+
+$causes = $data;
 
 /** @var array<int, ConsultationCauseCategory> */
 $categories = [];
@@ -36,7 +123,7 @@ $causeCounter = 1;
 $categoryCounter = 1;
 $printedParentCategories = [];
 
-$consultations = App::db()->instance()->query(<<<sql
+$consultations = container()->get(Connection::class)->instance()->query(<<<sql
   SELECT type, cause_id FROM consultations
   WHERE registered_date BETWEEN '{$startDate}' AND '{$endDate}'
 sql)->fetchAll(PDO::FETCH_ASSOC);
@@ -169,7 +256,10 @@ $monthName = [
           <?php $categories[$cause['category']['id']] = $cause['category'] ?>
           <tr>
             <td class="fw-bold" colspan="7" style="text-align: start">
-              <?php if ($cause['category']['parentCategory'] && !in_array($cause['category']['parentCategory'], $printedParentCategories, true)): ?>
+              <?php if (
+                is_array($cause['category']['parentCategory'])
+                && !in_array($cause['category']['parentCategory'], $printedParentCategories, true)
+              ): ?>
                 <?= $cause['category']['parentCategory']['name']['extended'] ?? $cause['category']['parentCategory']['name']['short'] ?>
                 <br />
                 <?php $printedParentCategories[] = $cause['category']['parentCategory'] ?>

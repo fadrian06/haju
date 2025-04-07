@@ -17,6 +17,7 @@ use App\Repositories\Infraestructure\PDO\PDODepartmentRepository;
 use App\Repositories\Infraestructure\PDO\PDODoctorRepository;
 use App\Repositories\Infraestructure\PDO\PDOPatientRepository;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
+use flight\net\Request;
 use flight\template\View;
 use Leaf\Http\Session;
 
@@ -48,6 +49,7 @@ Flight::view()->preserveVars = false;
 $container = container();
 $container->singleton(Session::class);
 $container->singleton(View::class, Flight::view());
+$container->singleton(Request::class, Flight::request());
 
 $container->singleton(
   Connection::class,

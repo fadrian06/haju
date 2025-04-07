@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\User;
 use Leaf\Http\Session;
 
@@ -14,12 +16,12 @@ $userId = Session::get('userId');
     class="btn btn-link py-2 px-0 px-lg-2 d-flex align-items-center"
     data-bs-toggle="dropdown"
     data-bs-display="static">
-    <?php renderComponent('icons/three-dots') ?>
+    <?php Flight::render('components/icons/three-dots') ?>
   </button>
   <ul class="dropdown-menu dropdown-menu-end py-0">
     <?php if ($userId): ?>
       <li>
-        <?php renderComponent('logout-link', [
+        <?php Flight::render('components/logout-link', [
           'class' => 'dropdown-item d-flex align-items-center p-3',
           'slot' => 'Cerrar sesión'
         ]) ?>

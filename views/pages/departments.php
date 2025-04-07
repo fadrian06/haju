@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Department;
 use App\Models\User;
 
@@ -61,30 +63,32 @@ use App\Models\User;
       </header>
       <section class="modal-body">
         <?php
-        render('components/input-group', [
+
+        Flight::render('components/input-group', [
           'name' => 'name',
           'placeholder' => 'Nombre del departamento',
           'cols' => 12
         ]);
 
-        render('components/input-group', [
+        Flight::render('components/input-group', [
           'variant' => 'file',
           'name' => 'department_icon',
           'placeholder' => 'Icono'
         ]);
 
-        render('components/input-group', [
+        Flight::render('components/input-group', [
           'variant' => 'checkbox',
           'name' => 'belongs_to_external_consultation',
           'placeholder' => 'Pertenece a Consulta Externa'
         ]);
 
-        render('components/input-group', [
+        Flight::render('components/input-group', [
           'variant' => 'checkbox',
           'name' => 'is_active',
           'placeholder' => 'Estado <small>(activo/inactivo)</small>',
           'checked' => true
         ]);
+
         ?>
       </section>
       <footer class="modal-footer">

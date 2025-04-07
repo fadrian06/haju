@@ -23,6 +23,7 @@ use App\Middlewares\EnsureUserIsNotAuthenticated;
 use App\Middlewares\LogLoginMiddleware;
 use App\Middlewares\MessagesMiddleware;
 use App\ValueObjects\Appointment;
+use flight\template\View;
 use Leaf\Http\Session;
 
 Flight::route('/', static function () {
@@ -103,7 +104,12 @@ Flight::group('', function (): void {
         Flight::route('GET /', [DoctorWebController::class, 'showEdit']);
         Flight::route('POST /', [DoctorWebController::class, 'handleEdition']);
       }, [EnsureCanEditDoctorMiddleware::class]);
-    }, [new AuthorizationMiddleware(Appointment::Coordinator)]);
+    }, [new AuthorizationMiddleware(
+      permitted: Appointment::Coordinator,
+      blocked: null,
+      view: container()->get(View::class),
+      session: container()->get(Session::class),
+    )]);
 
     Flight::route('GET /pacientes', [PatientWebController::class, 'showPatients']);
 
@@ -218,13 +224,23 @@ Flight::group('', function (): void {
         'GET /configuracion/causas-de-consulta',
         [SettingsWebController::class, 'showConsultationCausesConfigs']
       )
-        ->addMiddleware(new AuthorizationMiddleware(Appointment::Coordinator));
+        ->addMiddleware(new AuthorizationMiddleware(
+          permitted: Appointment::Coordinator,
+          session: container()->get(Session::class),
+          view: container()->get(View::class),
+          blocked: null,
+        ));
 
       Flight::route(
         'POST /configuracion/causas-de-consulta',
         [SettingsWebController::class, 'handleConsultationCausesUpdate']
       )
-        ->addMiddleware(new AuthorizationMiddleware(Appointment::Coordinator));
+        ->addMiddleware(new AuthorizationMiddleware(
+          permitted: Appointment::Coordinator,
+          session: container()->get(Session::class),
+          view: container()->get(View::class),
+          blocked: null,
+        ));
 
       Flight::group('/', function (): void {
         Flight::route(
@@ -256,8 +272,18 @@ Flight::group('', function (): void {
           'POST /configuracion/institucion',
           [SettingsWebController::class, 'handleInstitutionUpdate']
         );
-      }, [new AuthorizationMiddleware(Appointment::Director)]);
-    }, [new AuthorizationMiddleware(Appointment::Coordinator)]);
+      }, [new AuthorizationMiddleware(
+        permitted: Appointment::Director,
+        blocked: null,
+        view: container()->get(View::class),
+        session: container()->get(Session::class)
+      )]);
+    }, [new AuthorizationMiddleware(
+      permitted: Appointment::Coordinator,
+      blocked: null,
+      view: container()->get(View::class),
+      session: container()->get(Session::class)
+    )]);
   }, [EnsureOneSelectedDepartment::class, EnsureDepartmentIsActive::class]);
 
   Flight::route(

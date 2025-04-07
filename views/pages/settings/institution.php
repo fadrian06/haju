@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Hospital;
 
 /**
@@ -17,53 +19,55 @@ use App\Models\Hospital;
 <form method="post" class="white_box d-flex flex-column align-items-center">
   <fieldset class="row w-100">
     <?php
-      render('components/input-group', [
-        'value' => $hospital->name,
-        'name' => 'name',
-        'placeholder' => 'Nombre de la institución',
-      ]);
 
-      render('components/input-group', [
-        'value' => $hospital->asic,
-        'name' => 'asic',
-        'placeholder' => 'ASIC'
-      ]);
+    Flight::render('components/input-group', [
+      'value' => $hospital->name,
+      'name' => 'name',
+      'placeholder' => 'Nombre de la institución',
+    ]);
 
-      render('components/input-group', [
-        'value' => $hospital->type,
-        'name' => 'type',
-        'placeholder' => 'Tipo'
-      ]);
+    Flight::render('components/input-group', [
+      'value' => $hospital->asic,
+      'name' => 'asic',
+      'placeholder' => 'ASIC'
+    ]);
 
-      render('components/input-group', [
-        'value' => $hospital->place,
-        'name' => 'place',
-        'placeholder' => 'Lugar'
-      ]);
+    Flight::render('components/input-group', [
+      'value' => $hospital->type,
+      'name' => 'type',
+      'placeholder' => 'Tipo'
+    ]);
 
-      render('components/input-group', [
-        'value' => $hospital->municipality,
-        'name' => 'municipality',
-        'placeholder' => 'Municipio'
-      ]);
+    Flight::render('components/input-group', [
+      'value' => $hospital->place,
+      'name' => 'place',
+      'placeholder' => 'Lugar'
+    ]);
 
-      render('components/input-group', [
-        'value' => $hospital->parish,
-        'name' => 'parish',
-        'placeholder' => 'Parroquia'
-      ]);
+    Flight::render('components/input-group', [
+      'value' => $hospital->municipality,
+      'name' => 'municipality',
+      'placeholder' => 'Municipio'
+    ]);
 
-      render('components/input-group', [
-        'value' => $hospital->region,
-        'name' => 'region',
-        'placeholder' => 'Región'
-      ]);
+    Flight::render('components/input-group', [
+      'value' => $hospital->parish,
+      'name' => 'parish',
+      'placeholder' => 'Parroquia'
+    ]);
 
-      render('components/input-group', [
-        'value' => $hospital->healthDepartment,
-        'name' => 'health_department',
-        'placeholder' => 'Departamento de salud'
-      ]);
+    Flight::render('components/input-group', [
+      'value' => $hospital->region,
+      'name' => 'region',
+      'placeholder' => 'Región'
+    ]);
+
+    Flight::render('components/input-group', [
+      'value' => $hospital->healthDepartment,
+      'name' => 'health_department',
+      'placeholder' => 'Departamento de salud'
+    ]);
+
     ?>
   </fieldset>
   <button class="btn btn-primary btn-lg mt-4 px-5 rounded-pill">Guardar</button>

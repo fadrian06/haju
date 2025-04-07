@@ -4,14 +4,18 @@ declare(strict_types=1);
 
 namespace App\Middlewares;
 
-use App;
+use App\Repositories\Domain\UserRepository;
+use Flight;
 
 final readonly class ShowRegisterIfThereIsNoUsers {
-  public static function before(): void {
-    $users = App::userRepository()->getAll();
+  public function __construct(private UserRepository $userRepository) {
+  }
+
+  public function before(): void {
+    $users = $this->userRepository->getAll();
 
     if (!$users) {
-      App::redirect('/registrate');
+      Flight::redirect('/registrate');
 
       return;
     }

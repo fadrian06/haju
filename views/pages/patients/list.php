@@ -163,4 +163,5 @@ $onlyHospitalizedSwitchId = uniqid();
 <?php endif ?>
 
 <?php
-render('forms/patient-register', ['action' => './pacientes#registrar']);
+
+Flight::render('forms/patient-register', ['action' => './pacientes#registrar']);
