@@ -6,7 +6,7 @@
     "php": "^8.2",
     "bjeavons/zxcvbn-php": "^1.4",
     "faslatam/alpine-js": "^3.14",
-    "flightphp/container": "^1.2",
+    "flightphp/container": "^1.3",
     "flightphp/core": "^3.15",
     "guzzlehttp/guzzle": "^7.9",
     "leafs/session": "^4.0",
@@ -16,7 +16,10 @@
   "autoload": {
     "psr-4": {
       "App\\": "app",
-      "HAJU\\": ["app", "src"]
+      "HAJU\\": [
+        "app",
+        "src"
+      ]
     },
     "files": [
       "app/utils.php"
@@ -37,7 +40,8 @@
     "post-create-project-cmd": [
       "php -r \"if (!file_exists('.env.php')) copy('.env.dist.php', '.env.php');\"",
       "php -r \"if (!file_exists('phpcs.xml')) copy('phpcs.xml.dist', 'phpcs.xml');\"",
-      "php -r \"if (!file_exists('phpstan.neon')) copy('phpstan.dist.neon', 'phpstan.neon');\""
+      "php -r \"if (!file_exists('phpstan.neon')) copy('phpstan.dist.neon', 'phpstan.neon');\"",
+      "php -r \"if (!file_exists('phpunit.xml')) copy('phpunit.xml.dist', 'phpunit.xml');\""
     ],
     "ci": [
       "phpunit --no-progress --colors=never",
