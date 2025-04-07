@@ -9,7 +9,6 @@ use App\Models\Patient;
 use App\Repositories\Domain\ConsultationCauseCategoryRepository;
 use App\Repositories\Domain\ConsultationCauseRepository;
 use App\Repositories\Domain\PatientRepository;
-use Illuminate\Container\Container;
 use Leaf\Http\Session;
 
 Flight::route(
@@ -17,24 +16,24 @@ Flight::route(
   static fn() => Flight::json(['status' => 'ok'])
 );
 
-App::route(
+Flight::route(
   '/api/preferencias/tema/@theme',
   static function (string $theme): void {
     Session::set('theme', $theme);
   }
 );
 
-App::route('/api/verificar-clave-maestra', static function (): void {
-  $secretKey = App::request()->data['secret_key'];
+Flight::route('/api/verificar-clave-maestra', static function (): void {
+  $secretKey = Flight::request()->data['secret_key'];
 
   if ($secretKey !== '1234') {
-    App::json('Clave maestra incorrecta', 401);
+    Flight::json('Clave maestra incorrecta', 401);
   } else {
     Session::set('let_register_director', true);
   }
 });
 
-App::group('/api', function (): void {
+Flight::group('/api', function (): void {
   $categoryMapper = new class {
     /**
      * @return array{
@@ -313,45 +312,45 @@ App::group('/api', function (): void {
     }
   };
 
-  App::route(
+  Flight::route(
     '/causas-consulta/categorias',
     static function () use ($categoryMapper): void {
-      $categories = Container::getInstance()
+      $categories = container()
         ->get(ConsultationCauseCategoryRepository::class)
         ->getAll();
 
-      App::json(array_map($categoryMapper, $categories));
+      Flight::json(array_map($categoryMapper, $categories));
     }
   );
 
-  App::route(
+  Flight::route(
     '/causas-consulta/categorias/@id',
     static function (int $id) use ($categoryMapper, $causeMapper): void {
-      $category = Container::getInstance()
+      $category = container()
         ->get(ConsultationCauseCategoryRepository::class)
         ->getById($id);
 
       if ($category === null) {
-        App::notFound();
+        Flight::notFound();
 
         return;
       }
 
-      $causes = Container::getInstance()
+      $causes = container()
         ->get(ConsultationCauseRepository::class)
         ->getByCategory($category);
 
       $data = $categoryMapper($category);
       $data['consultationCauses'] = array_map($causeMapper, $causes);
 
-      App::json($data);
+      Flight::json($data);
     }
   );
 
-  App::route(
+  Flight::route(
     '/causas-consulta',
     static function () use ($causeMapper): void {
-      $causes = Container::getInstance()
+      $causes = container()
         ->get(ConsultationCauseRepository::class)
         ->getAllWithGenerator();
 
@@ -361,34 +360,34 @@ App::group('/api', function (): void {
         $data[] = $causeMapper($cause);
       }
 
-      App::json($data);
+      Flight::json($data);
     }
   );
 
-  App::route(
+  Flight::route(
     '/causas-consulta/@id',
     function (int $id) use ($causeMapper): void {
-      $cause = Container::getInstance()
+      $cause = container()
         ->get(ConsultationCauseRepository::class)
         ->getById($id);
 
-      App::json($causeMapper($cause));
+      Flight::json($causeMapper($cause));
     }
   );
 
-  App::route(
+  Flight::route(
     '/pacientes/@patientId:[0-9]+/causas-consulta',
     static function (int $patientId) use (
       $consultationMapper,
       $patientMapper
     ): void {
-      $patientRepository = Container::getInstance()
+      $patientRepository = container()
         ->get(PatientRepository::class);
 
       $patient = $patientRepository->getById($patientId);
 
       if ($patient === null) {
-        App::json(['error' => "Paciente #{$patientId} no encontrado"], 404);
+        Flight::json(['error' => "Paciente #{$patientId} no encontrado"], 404);
 
         return;
       }
@@ -400,23 +399,23 @@ App::group('/api', function (): void {
         $consultations[] = $consultationMapper($consultation);
       }
 
-      App::json($patientMapper($patient, $consultations));
+      Flight::json($patientMapper($patient, $consultations));
     }
   );
 
-  App::route(
+  Flight::route(
     '/pacientes/@patientId:[0-9]+/causas-consulta/@causeId:[0-9]+',
     static function (
       int $patientId,
       int $causeId
     ) use ($consultationMapper, $patientMapper): void {
-      $patientRepository = Container::getInstance()
+      $patientRepository = container()
         ->get(PatientRepository::class);
 
       $patient = $patientRepository->getById($patientId);
 
       if ($patient === null) {
-        App::json(['error' => "Paciente #{$patientId} no encontrado"], 404);
+        Flight::json(['error' => "Paciente #{$patientId} no encontrado"], 404);
 
         return;
       }
@@ -428,7 +427,7 @@ App::group('/api', function (): void {
         $consultations[] = $consultationMapper($consultation);
       }
 
-      App::json($patientMapper($patient, $consultations));
+      Flight::json($patientMapper($patient, $consultations));
     }
   );
 });
