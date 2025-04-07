@@ -24,7 +24,7 @@ use Flight;
 use PDO;
 use Throwable;
 
-final class PatientWebController extends Controller {
+final readonly class PatientWebController extends Controller {
   public function __construct(
     private readonly PatientRepository $patientRepository,
     private readonly ConsultationCauseCategoryRepository $consultationCauseCategoryRepository,

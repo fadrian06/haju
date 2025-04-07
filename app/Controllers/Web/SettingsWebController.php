@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controllers\Web;
 
-use App;
 use App\Models\User;
 use App\Repositories\Domain\ConsultationCauseRepository;
 use App\Repositories\Domain\DepartmentRepository;
@@ -15,7 +14,7 @@ use App\ValueObjects\Appointment;
 use Flight;
 use Leaf\Http\Session;
 
-final class SettingsWebController extends Controller {
+final readonly class SettingsWebController extends Controller {
   public function __construct(
     private readonly UserRepository $userRepository,
     private readonly DepartmentRepository $departmentRepository,

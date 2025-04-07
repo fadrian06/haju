@@ -9,7 +9,7 @@ use Error;
 use Flight;
 use ZxcvbnPhp\Zxcvbn;
 
-final class SessionWebController extends Controller {
+final readonly class SessionWebController extends Controller {
   private const INSECURE_PASSWORD_STRENGTH_LEVEL = 2;
 
   public function __construct(

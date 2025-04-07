@@ -11,10 +11,10 @@ use flight\util\Collection;
 use Leaf\Http\Session;
 use Throwable;
 
-abstract class Controller {
-  protected readonly ?User $loggedUser;
-  protected readonly Collection $data;
-  protected readonly Session $session;
+abstract readonly class Controller {
+  protected ?User $loggedUser;
+  protected Collection $data;
+  protected Session $session;
 
   public function __construct() {
     $this->loggedUser = Flight::view()->get('user');

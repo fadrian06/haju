@@ -10,7 +10,7 @@ use Flight;
 use flight\template\View;
 use Throwable;
 
-final class DepartmentWebController extends Controller {
+final readonly class DepartmentWebController extends Controller {
   public function __construct(
     private readonly DepartmentRepository $departmentRepository,
     private readonly View $view,

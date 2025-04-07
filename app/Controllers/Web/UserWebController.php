@@ -23,7 +23,7 @@ use PharIo\Manifest\InvalidEmailException;
 use Throwable;
 use ZxcvbnPhp\Zxcvbn;
 
-final class UserWebController extends Controller {
+final readonly class UserWebController extends Controller {
   private const INSECURE_PASSWORD_STRENGTH_LEVEL = 2;
 
   public function __construct(

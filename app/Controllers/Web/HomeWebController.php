@@ -10,7 +10,7 @@ use App\Repositories\Domain\DoctorRepository;
 use App\Repositories\Domain\PatientRepository;
 use App\Repositories\Domain\UserRepository;
 
-final class HomeWebController extends Controller {
+final readonly class HomeWebController extends Controller {
   public function __construct(
     private readonly UserRepository $userRepository,
     private readonly DepartmentRepository $departmentRepository,
