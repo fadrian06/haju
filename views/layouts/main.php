@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Models\User;
 use App\Repositories\Infraestructure\PDO\Connection;
+use flight\Container;
 
 /**
  * @var string $title
@@ -18,7 +19,7 @@ if (str_contains((string) $_SERVER['REQUEST_URI'], 'perfil')) {
   $showPasswordChangeModal = false;
 }
 
-$pdo = container()->get(Connection::class)->instance();
+$pdo = Container::getInstance()->get(Connection::class)->instance();
 $currentDate = new DateTimeImmutable;
 $oneWeekAgo = $currentDate->sub(new DateInterval('P1W'));
 
@@ -111,7 +112,7 @@ foreach ($consultations as $consultation) {
 </head>
 
 <body>
-  <?php if ($epidemic ?: false): ?>
+  <?php if ($epidemic): ?>
     <?php Flight::render('components/epidemic-alert', ['epidemic' => $epidemic]) ?>
   <?php endif ?>
   <?php Flight::render('components/sidebar') ?>

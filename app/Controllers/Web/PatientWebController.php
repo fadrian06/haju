@@ -26,17 +26,18 @@ use Throwable;
 
 final readonly class PatientWebController extends Controller {
   public function __construct(
-    private readonly PatientRepository $patientRepository,
-    private readonly ConsultationCauseCategoryRepository $consultationCauseCategoryRepository,
-    private readonly ConsultationCauseRepository $consultationCauseRepository,
-    private readonly DepartmentRepository $departmentRepository,
-    private readonly DoctorRepository $doctorRepository,
+    private PatientRepository $patientRepository,
+    private ConsultationCauseCategoryRepository $consultationCauseCategoryRepository,
+    private ConsultationCauseRepository $consultationCauseRepository,
+    private DepartmentRepository $departmentRepository,
+    private DoctorRepository $doctorRepository,
+    private Connection $connection,
   ) {
     parent::__construct();
   }
 
   public function showConsultations(): void {
-    $pdo = container()->get(Connection::class)->instance();
+    $pdo = $this->connection->instance();
 
     $stmt = $pdo->prepare(<<<sql
       SELECT id, type, registered_date, cause_id, department_id, doctor_id
@@ -205,7 +206,7 @@ final readonly class PatientWebController extends Controller {
           : ConsultationType::FirstTime,
         $this
           ->consultationCauseRepository
-          ->getById($this->data['consultation_cause']),
+          ->getById((int) $this->data['consultation_cause']),
         $this->departmentRepository->getById((int) $this->data['department']),
         $this->doctorRepository->getById((int) $this->data['doctor'])
       );
@@ -214,7 +215,7 @@ final readonly class PatientWebController extends Controller {
       $this->patientRepository->saveConsultationOf($patient);
       self::setMessage('Consulta registrada exitósamente');
     } catch (Throwable $error) {
-      self::setError($error);
+      parent::setError($error);
     }
 
     Flight::redirect(Flight::request()->referrer);
@@ -273,7 +274,7 @@ final readonly class PatientWebController extends Controller {
       return;
     }
 
-    $pdo = container()->get(Connection::class)->instance();
+    $pdo = $this->connection->instance();
 
     $pdo->beginTransaction();
     $stmt = $pdo->prepare('DELETE FROM patients WHERE id = ?');

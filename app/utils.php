@@ -2,18 +2,6 @@
 
 declare(strict_types=1);
 
-use flight\Container;
-
-function container(): Container {
-  static $container = null;
-
-  if ($container === null) {
-    $container = new Container;
-  }
-
-  return $container;
-}
-
 function renderPage(
   string $page,
   string $title,

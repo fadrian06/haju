@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 use App\Repositories\Infraestructure\PDO\Connection;
 use App\ValueObjects\DateRange;
+use flight\Container;
 
 $lastMonth = (new DateTimeImmutable)->sub(new DateInterval('P1M'))->format('Y-m-d');
 $currentDate = date('Y-m-d') . ' 23:59:59';
 $range = DateRange::tryFrom($_GET['rango'] ?? '');
 
-$stmt = container()->get(Connection::class)->instance()->query(<<<sql
+$stmt = Container::getInstance()->get(Connection::class)->instance()->query(<<<sql
   SELECT consultations.cause_id, consultation_causes.short_name,
   consultation_causes.variant, consultation_causes.extended_name,
   COUNT(patient_id) as consultations
@@ -30,7 +31,7 @@ $params = [
 $stmt->execute($params);
 $frecuentCauses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$stmt = container()->get(Connection::class)->instance()->query(<<<sql
+$stmt = Container::getInstance()->get(Connection::class)->instance()->query(<<<sql
   SELECT short_name, extended_name, variant, registered_date,
   COUNT(short_name) as consultations
   FROM (

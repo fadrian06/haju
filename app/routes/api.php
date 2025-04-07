@@ -9,6 +9,7 @@ use App\Models\Patient;
 use App\Repositories\Domain\ConsultationCauseCategoryRepository;
 use App\Repositories\Domain\ConsultationCauseRepository;
 use App\Repositories\Domain\PatientRepository;
+use flight\Container;
 use Leaf\Http\Session;
 
 $categoryMapper = new class {
@@ -320,7 +321,7 @@ Flight::group('/api', static function () use (
   Flight::route(
     '/causas-consulta/categorias',
     static function () use ($categoryMapper): void {
-      $categories = container()
+      $categories = Container::getInstance()
         ->get(ConsultationCauseCategoryRepository::class)
         ->getAll();
 
@@ -331,7 +332,7 @@ Flight::group('/api', static function () use (
   Flight::route(
     '/causas-consulta/categorias/@id',
     static function (int $id) use ($categoryMapper, $causeMapper): void {
-      $category = container()
+      $category = Container::getInstance()
         ->get(ConsultationCauseCategoryRepository::class)
         ->getById($id);
 
@@ -341,7 +342,7 @@ Flight::group('/api', static function () use (
         return;
       }
 
-      $causes = container()
+      $causes = Container::getInstance()
         ->get(ConsultationCauseRepository::class)
         ->getByCategory($category);
 
@@ -355,7 +356,7 @@ Flight::group('/api', static function () use (
   Flight::route(
     '/causas-consulta',
     static function () use ($causeMapper): void {
-      $causes = container()
+      $causes = Container::getInstance()
         ->get(ConsultationCauseRepository::class)
         ->getAllWithGenerator();
 
@@ -372,7 +373,7 @@ Flight::group('/api', static function () use (
   Flight::route(
     '/causas-consulta/@id',
     function (int $id) use ($causeMapper): void {
-      $cause = container()
+      $cause = Container::getInstance()
         ->get(ConsultationCauseRepository::class)
         ->getById($id);
 
@@ -386,7 +387,7 @@ Flight::group('/api', static function () use (
       $consultationMapper,
       $patientMapper
     ): void {
-      $patientRepository = container()
+      $patientRepository = Container::getInstance()
         ->get(PatientRepository::class);
 
       $patient = $patientRepository->getById($patientId);
@@ -414,7 +415,7 @@ Flight::group('/api', static function () use (
       int $patientId,
       int $causeId
     ) use ($consultationMapper, $patientMapper): void {
-      $patientRepository = container()
+      $patientRepository = Container::getInstance()
         ->get(PatientRepository::class);
 
       $patient = $patientRepository->getById($patientId);

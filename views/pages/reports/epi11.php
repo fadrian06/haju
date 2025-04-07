@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\ConsultationCauseCategory;
 use App\Repositories\Infraestructure\PDO\Connection;
+use flight\Container;
 use flight\template\View;
 
 $api = Flight::get('fullRoot');
@@ -31,7 +34,7 @@ if ($monthYear !== null) {
 
 ob_end_clean();
 
-$consultations = container()->get(Connection::class)->instance()->query(<<<sql
+$consultations = Container::getInstance()->get(Connection::class)->instance()->query(<<<sql
   SELECT type, registered_date, cause_id FROM consultations
   WHERE registered_date BETWEEN '{$startDate}' AND '{$endDate}'
 sql)->fetchAll(PDO::FETCH_ASSOC);
@@ -66,7 +69,10 @@ $printedParentCategories = [];
               class="fw-bold"
               colspan="<?= DAYS + 3 ?>"
               style="text-align: start">
-              <?php if ($cause['category']['parentCategory'] && !in_array($cause['category']['parentCategory'], $printedParentCategories, true)): ?>
+              <?php if (
+                is_array($cause['category']['parentCategory'])
+                && !in_array($cause['category']['parentCategory'], $printedParentCategories, true)
+              ): ?>
                 <?= $cause['category']['parentCategory']['name']['extended'] ?? $cause['category']['parentCategory']['name']['short'] ?>
                 <br />
                 <?php $printedParentCategories[] = $cause['category']['parentCategory'] ?>

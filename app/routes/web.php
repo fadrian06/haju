@@ -23,15 +23,16 @@ use App\Middlewares\EnsureUserIsNotAuthenticated;
 use App\Middlewares\LogLoginMiddleware;
 use App\Middlewares\MessagesMiddleware;
 use App\ValueObjects\Appointment;
+use flight\Container;
 use flight\template\View;
 use Leaf\Http\Session;
 
 Flight::route('/', static function () {
-  if (container()->get(Session::class)->has('userId')) {
+  if (Container::getInstance()->get(Session::class)->has('userId')) {
     return true;
   }
 
-  container()->get(LandingWebController::class)->showLanding();
+  Container::getInstance()->get(LandingWebController::class)->showLanding();
 });
 
 Flight::group('', static function (): void {
@@ -63,8 +64,8 @@ Flight::group('', static function (): void {
 }, [EnsureUserIsNotAuthenticated::class, MessagesMiddleware::class]);
 
 Flight::group('', function (): void {
-  Flight::route('/hospitalizaciones', [PatientWebController::class, 'showHospitalizations']);
-  Flight::route('/consultas', [PatientWebController::class, 'showConsultations']);
+  Flight::route('GET /hospitalizaciones', [PatientWebController::class, 'showHospitalizations']);
+  Flight::route('GET /consultas', [PatientWebController::class, 'showConsultations']);
 
   Flight::route(
     '/departamento/seleccionar',
@@ -107,8 +108,8 @@ Flight::group('', function (): void {
     }, [new AuthorizationMiddleware(
       permitted: Appointment::Coordinator,
       blocked: null,
-      view: container()->get(View::class),
-      session: container()->get(Session::class),
+      view: Container::getInstance()->get(View::class),
+      session: Container::getInstance()->get(Session::class),
     )]);
 
     Flight::route('GET /pacientes', [PatientWebController::class, 'showPatients']);
@@ -226,8 +227,8 @@ Flight::group('', function (): void {
       )
         ->addMiddleware(new AuthorizationMiddleware(
           permitted: Appointment::Coordinator,
-          session: container()->get(Session::class),
-          view: container()->get(View::class),
+          session: Container::getInstance()->get(Session::class),
+          view: Container::getInstance()->get(View::class),
           blocked: null,
         ));
 
@@ -237,8 +238,8 @@ Flight::group('', function (): void {
       )
         ->addMiddleware(new AuthorizationMiddleware(
           permitted: Appointment::Coordinator,
-          session: container()->get(Session::class),
-          view: container()->get(View::class),
+          session: Container::getInstance()->get(Session::class),
+          view: Container::getInstance()->get(View::class),
           blocked: null,
         ));
 
@@ -275,14 +276,14 @@ Flight::group('', function (): void {
       }, [new AuthorizationMiddleware(
         permitted: Appointment::Director,
         blocked: null,
-        view: container()->get(View::class),
-        session: container()->get(Session::class)
+        view: Container::getInstance()->get(View::class),
+        session: Container::getInstance()->get(Session::class)
       )]);
     }, [new AuthorizationMiddleware(
       permitted: Appointment::Coordinator,
       blocked: null,
-      view: container()->get(View::class),
-      session: container()->get(Session::class)
+      view: Container::getInstance()->get(View::class),
+      session: Container::getInstance()->get(Session::class)
     )]);
   }, [EnsureOneSelectedDepartment::class, EnsureDepartmentIsActive::class]);
 

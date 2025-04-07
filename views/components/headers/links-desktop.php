@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
+use flight\Container;
 use Leaf\Http\Session;
 
-$userId = container()->get(Session::class)->get('userId');
+$userId = Container::getInstance()->get(Session::class)->get('userId');
 
 ?>
 

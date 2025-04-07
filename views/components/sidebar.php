@@ -6,13 +6,14 @@ use App\Models\Department;
 use App\Models\User;
 use App\Repositories\Domain\PatientRepository;
 use App\ValueObjects\Appointment;
+use flight\Container;
 
 /**
  * @var User $user
  * @var Department $department
  */
 
-$patients = container()->get(PatientRepository::class)->getAll();
+$patients = Container::getInstance()->get(PatientRepository::class)->getAll();
 
 $backgrounds = [
   'Estadística' => 'white',

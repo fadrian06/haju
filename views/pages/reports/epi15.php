@@ -6,8 +6,8 @@ use App\Models\ConsultationCause;
 use App\Models\ConsultationCauseCategory;
 use App\Repositories\Domain\ConsultationCauseRepository;
 use App\Repositories\Infraestructure\PDO\Connection;
+use flight\Container;
 use flight\template\View;
-use GuzzleHttp\Client;
 
 $categoryMapper = new class {
   /**
@@ -83,7 +83,7 @@ $causeMapper = new class($categoryMapper(...)) {
   }
 };
 
-$causes = container()
+$causes = Container::getInstance()
   ->get(ConsultationCauseRepository::class)
   ->getAllWithGenerator();
 
@@ -123,7 +123,7 @@ $causeCounter = 1;
 $categoryCounter = 1;
 $printedParentCategories = [];
 
-$consultations = container()->get(Connection::class)->instance()->query(<<<sql
+$consultations = Container::getInstance()->get(Connection::class)->instance()->query(<<<sql
   SELECT type, cause_id FROM consultations
   WHERE registered_date BETWEEN '{$startDate}' AND '{$endDate}'
 sql)->fetchAll(PDO::FETCH_ASSOC);

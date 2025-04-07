@@ -12,15 +12,17 @@ use App\Repositories\Domain\UserRepository;
 use App\Repositories\Infraestructure\PDO\Connection;
 use App\ValueObjects\Appointment;
 use Flight;
+use flight\net\Request;
 use Leaf\Http\Session;
 
 final readonly class SettingsWebController extends Controller {
   public function __construct(
-    private readonly UserRepository $userRepository,
-    private readonly DepartmentRepository $departmentRepository,
-    private readonly SettingsRepository $settingsRepository,
-    private readonly ConsultationCauseRepository $consultationCauseRepository,
-    private readonly Connection $connection,
+    private UserRepository $userRepository,
+    private DepartmentRepository $departmentRepository,
+    private SettingsRepository $settingsRepository,
+    private ConsultationCauseRepository $consultationCauseRepository,
+    private Connection $connection,
+    private Request $request,
   ) {
     parent::__construct();
   }
@@ -134,7 +136,7 @@ final readonly class SettingsWebController extends Controller {
   public function handleConsultationCausesUpdate(): void {
     $limitOf = array_map(
       static fn(string $limit): int => (int) $limit,
-      array_filter(Flight::request()->data->limit_of)
+      array_filter($this->request->data->limit_of ?? [])
     );
 
     $pdo = $this->connection->instance();

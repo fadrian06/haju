@@ -87,7 +87,7 @@ use App\ValueObjects\ConsultationType;
       'variant' => 'select',
       'options' => array_map(fn(ConsultationCauseCategory $category): array => [
         'value' => $category->id,
-        'text' => $category->extendedName ?? $category->shortName
+        'text' => $category->extendedName ?: $category->shortName
       ], $consultationCauseCategories),
       'placeholder' => 'Categoría de causa de consulta',
       'cols' => 7,
