@@ -275,7 +275,7 @@ final readonly class UserWebController extends Controller {
     try {
       $user = $this->userRepository->getById($id);
 
-      if (!$user->registeredBy->isEqualTo($this->loggedUser)) {
+      if (!$user->appointment->isDirector()) {
         throw new Error('Acceso denegado');
       }
 

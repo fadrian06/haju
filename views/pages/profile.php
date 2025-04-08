@@ -22,7 +22,10 @@ use App\ValueObjects\Appointment;
 </section>
 <article class="white_box px-0 pb-0 row align-items-center">
   <picture class="col-md-2 d-flex align-items-center justify-content-center mb-2 mb-md-0">
-    <img style="max-height: 150px" class="img-fluid rounded-circle" src="<?= urldecode($user->profileImagePath->asString()) ?>" />
+    <img
+      style="max-height: 150px"
+      class="img-fluid rounded-circle"
+      src="<?= urldecode($user->profileImagePath->asString()) ?>" />
   </picture>
   <div class="profile-info col-md align-items-center">
     <header class="profile-info__main py-2 py-md-0 my-2 my-md-0 d-flex flex-column">
@@ -35,7 +38,7 @@ use App\ValueObjects\Appointment;
   <ul class="profile-info__secondary col-md-6">
     <li>
       <strong>Teléfono:</strong>
-      <a href="tel:+<?= $user->phone->toValidPhoneLink() ?>"><?= $user->phone ?></a>
+      <a href="tel:<?= $user->phone->toValidPhoneLink() ?>"><?= $user->phone ?></a>
     </li>
     <li>
       <strong>Correo:</strong>
@@ -101,13 +104,14 @@ use App\ValueObjects\Appointment;
     </form>
 
     <form class="col-md"></form>
-    <?php if ($user->appointment === Appointment::Director): ?>
+    <?php if ($user->appointment->isDirector()) : ?>
       <div class="col-md-12 text-end">
         <button
           class="mt-4 btn btn-danger rounded-pill"
           data-bs-toggle="modal"
           data-bs-target="#disactivate-director-modal">
-          <i class="ti-lock me-2"></i> Inhabilitar cuenta
+          <i class="ti-lock me-2"></i>
+          Inhabilitar cuenta
         </button>
       </div>
     <?php endif ?>

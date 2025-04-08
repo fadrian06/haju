@@ -16,7 +16,7 @@ use App\Models\User;
         <?php foreach ($user->getDepartment() as $department): ?>
           <a
             href="./departamento/seleccionar/<?= $department->id ?>"
-            class="col-md-4 <?= $department->isActive() ?: 'opacity-50' ?>">
+            class="col-md-4 text-decoration-none <?= $department->isActive() ?: 'opacity-50' ?>">
             <div class="btn btn-outline-primary card">
               <img
                 src="<?= $department->hasIcon()
