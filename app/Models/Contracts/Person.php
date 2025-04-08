@@ -60,7 +60,7 @@ abstract class Person extends Model {
 
   /** @throws InvalidNameException */
   final public function setSecondName(?string $secondName): static {
-    $this->secondName = $secondName !== null
+    $this->secondName = boolval($secondName)
       ? new Name($secondName, 'Segundo nombre')
       : null;
 
@@ -76,7 +76,7 @@ abstract class Person extends Model {
 
   /** @throws InvalidNameException */
   final public function setSecondLastName(?string $secondLastName): static {
-    $this->secondLastName = $secondLastName !== null
+    $this->secondLastName = boolval($secondLastName)
       ? new Name($secondLastName, 'Segundo apellido')
       : null;
 
@@ -113,23 +113,29 @@ abstract class Person extends Model {
   }
 
   public function __get(string $property): null|int|string {
+    $idCard = $this->idCard;
+    assert($idCard instanceof IdCard);
+
     return match ($property) {
       'firstName' => $this->firstName->__toString(),
       'secondName' => $this->secondName?->__toString(),
       'firstLastName' => $this->firstLastName->__toString(),
       'secondLastName' => $this->secondLastName?->__toString(),
-      'idCard' => $this->idCard->value,
+      'idCard' => $idCard->value,
       default => parent::__get($property)
     };
   }
 
   public function jsonSerialize(): array {
+    $idCard = $this->idCard;
+    assert($idCard instanceof IdCard);
+
     return parent::jsonSerialize() + [
       'firstName' => $this->firstName->__toString(),
       'secondName' => $this->secondName?->__toString(),
       'firstLastName' => $this->firstLastName->__toString(),
       'secondLastName' => $this->secondLastName?->__toString(),
-      'idCard' => $this->idCard->value,
+      'idCard' => $idCard->value,
       'fullName' => $this->getFullName(),
       'gender' => $this->gender->value,
     ];

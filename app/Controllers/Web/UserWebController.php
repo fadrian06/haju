@@ -206,20 +206,12 @@ final readonly class UserWebController extends Controller {
         );
       }
 
-      $this->loggedUser->setIdCard($this->data['id_card']);
+      $this->loggedUser->setIdCard(intval($this->data['id_card']));
       $this->loggedUser->instructionLevel = InstructionLevel::from($this->data['instruction_level']);
       $this->loggedUser->setFirstName($this->data['first_name']);
-
-      if (boolval($this->data['second_name'])) {
-        $this->loggedUser->setSecondName($this->data['second_name']);
-      }
-
+      $this->loggedUser->setSecondName($this->data['second_name']);
       $this->loggedUser->setFirstLastName($this->data['first_last_name']);
-
-      if (boolval($this->data['second_last_name'])) {
-        $this->loggedUser->setSecondLastName($this->data['second_last_name']);
-      }
-
+      $this->loggedUser->setSecondLastName($this->data['second_last_name']);
       $this->loggedUser->setAddress($this->data['address']);
       $this->loggedUser->birthDate = Date::from($this->data['birth_date'], '-');
       $this->loggedUser->gender = Gender::from($this->data['gender']);
