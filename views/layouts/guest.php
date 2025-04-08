@@ -18,9 +18,9 @@ $message = isset($message) ? strval($message) : null;
     theme: `<?= $session->get('theme', 'light') ?>`,
 
     setTheme(theme = 'light') {
-      this.theme = theme
-      fetch(`./api/preferencias/tema/${theme}`)
-    }
+      this.theme = theme;
+      fetch(`./api/preferencias/tema/${theme}`);
+    },
   }"
   data-bs-theme="<?= $session->get('theme', 'light') ?>"
   :data-bs-theme="theme">
