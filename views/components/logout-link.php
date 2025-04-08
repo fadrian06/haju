@@ -1,7 +1,6 @@
 <?php
 
 $class ??= '';
-$slot ??= '';
 
 ?>
 
@@ -21,5 +20,6 @@ $slot ??= '';
   "
   href="./salir"
   class="<?= $class ?>">
+  <i class="fa fa-right-from-bracket"></i>
   <?= $slot ?>
 </a>
