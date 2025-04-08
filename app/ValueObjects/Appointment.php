@@ -17,6 +17,10 @@ enum Appointment: string {
     };
   }
 
+  public function isSecretary(): bool {
+    return $this === self::Secretary;
+  }
+
   public function isDirector(): bool {
     return $this === self::Director;
   }

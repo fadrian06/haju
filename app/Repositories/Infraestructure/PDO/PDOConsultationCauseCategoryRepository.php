@@ -22,7 +22,7 @@ extends PDORepository implements ConsultationCauseCategoryRepository {
   public function getAll(): array {
     return $this->ensureIsConnected()
       ->query(sprintf('SELECT %s FROM %s WHERE id != 1', self::FIELDS, self::getTable()))
-      ->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper']);
+      ->fetchAll(PDO::FETCH_FUNC, $this->mapper(...));
   }
 
   public function getById(int $id): ?ConsultationCauseCategory {
@@ -34,7 +34,7 @@ extends PDORepository implements ConsultationCauseCategoryRepository {
 
     $stmt->execute([$id]);
 
-    return $stmt->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper'])[0] ?? null;
+    return $stmt->fetchAll(PDO::FETCH_FUNC, $this->mapper(...))[0] ?? null;
   }
 
   private function mapper(

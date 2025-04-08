@@ -63,7 +63,7 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
         $ids !== []
           ? sprintf('WHERE users.id NOT IN (%s)', implode(', ', $ids))
           : ''
-      ))->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper']);
+      ))->fetchAll(PDO::FETCH_FUNC, $this->mapper(...));
   }
 
   public function getByIdCard(int $idCard): ?User {
@@ -77,7 +77,7 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
 
     $stmt->execute([$idCard]);
 
-    return $stmt->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper'])[0] ?? null;
+    return $stmt->fetchAll(PDO::FETCH_FUNC, $this->mapper(...))[0] ?? null;
   }
 
   public function getById(int $id): ?User {
@@ -91,7 +91,7 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
 
     $stmt->execute([$id]);
 
-    return $stmt->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper'])[0] ?? null;
+    return $stmt->fetchAll(PDO::FETCH_FUNC, $this->mapper(...))[0] ?? null;
   }
 
   public function save(User $user): void {

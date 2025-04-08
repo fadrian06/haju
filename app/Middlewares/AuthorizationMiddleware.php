@@ -29,8 +29,6 @@ final readonly class AuthorizationMiddleware {
     ) {
       $this->session->set('error', 'Acceso no autorizado');
       Flight::redirect('/');
-
-      exit;
     }
   }
 }

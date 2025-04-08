@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 final class PhoneTest extends TestCase {
   #[Test]
   #[DataProvider('validPhones')]
-  public function accept_valid_phones(string $phone, string $expected): void {
+  public function acceptValidPhones(string $phone, string $expected): void {
     $phone = new Phone($phone);
 
     self::assertSame($phone->__toString(), $expected);
@@ -19,7 +19,7 @@ final class PhoneTest extends TestCase {
 
   #[Test]
   #[DataProvider('invalidPhones')]
-  public function throws_exception_for_invalid_phones(string $invalidPhone): void {
+  public function throwsExceptionForInvalidPhones(string $invalidPhone): void {
     self::expectException(InvalidPhoneException::class);
 
     new Phone($invalidPhone);

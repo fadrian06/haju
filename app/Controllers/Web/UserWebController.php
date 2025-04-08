@@ -139,17 +139,17 @@ final readonly class UserWebController extends Controller {
           compact('user')
         );
 
-        exit;
+        return;
       }
 
       self::setError('Cédula incorrecta');
       Flight::redirect('/recuperar');
 
-      exit;
+      return;
     }
 
     $user = $this->userRepository
-      ->getById($this->data['id'])
+      ->getById(intval($this->data['id']))
       ->setPassword($this->data['password']);
 
     $this->userRepository->save($user);
@@ -227,10 +227,13 @@ final readonly class UserWebController extends Controller {
     );
 
     if ($this->loggedUser->appointment === Appointment::Coordinator) {
-      $filteredUsers = array_filter($filteredUsers, fn(User $user): bool => $user->appointment->isHigherThan($this->loggedUser->appointment) || (
-        $user->appointment === Appointment::Secretary
-        && $user->registeredBy->isEqualTo($this->loggedUser)
-      ));
+      $filteredUsers = array_filter(
+        $filteredUsers,
+        fn(User $user): bool => $user->appointment->isHigherThan($this->loggedUser->appointment) || (
+          $user->appointment->isSecretary()
+          && $user->registeredBy->isEqualTo($this->loggedUser)
+        )
+      );
     }
 
     $usersNumber = count($filteredUsers);

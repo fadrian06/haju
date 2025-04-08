@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 final class AdultBirthDateTest extends TestCase {
   #[Test]
   #[DataProvider('validAdultBirthDates')]
-  public function accept_valid_adult_birth_dates(string $birthDate): void {
+  public function acceptValidAdultBirthDates(string $birthDate): void {
     $birthDate = AdultBirthDate::from($birthDate, '-');
 
     self::assertInstanceOf(AdultBirthDate::class, $birthDate);
@@ -24,7 +24,7 @@ final class AdultBirthDateTest extends TestCase {
 
   #[Test]
   #[DataProvider('invalidAdultBirthDates')]
-  public function throws_exception_for_invalid_adult_birth_dates(
+  public function throwsExceptionForInvalidAdultBirthDates(
     string $invalidBirthDate,
   ): void {
     self::expectException(InvalidDateException::class);

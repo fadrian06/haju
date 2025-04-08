@@ -15,7 +15,7 @@ final readonly class EnsureSelectedDepartmentIsNotStatistics {
   ) {
   }
 
-  public function before(): bool {
+  public function before() {
     $departmentId = $this->session->get('departmentId');
     $selectedDepartment = $this->departmentRepository->getById($departmentId);
 
@@ -25,7 +25,5 @@ final readonly class EnsureSelectedDepartmentIsNotStatistics {
 
     $this->session->set('error', 'No puedes registrar consultas desde el departamento de Estadística');
     Flight::redirect('/');
-
-    exit;
   }
 }

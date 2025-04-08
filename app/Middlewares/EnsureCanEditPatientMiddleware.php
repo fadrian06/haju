@@ -18,7 +18,7 @@ final readonly class EnsureCanEditPatientMiddleware {
   ) {
   }
 
-  public function before(array $params): true {
+  public function before(array $params): ?true {
     $patient = $this->patientRepository->getById($params['id']);
     $loggedUser = $this->view->get('user');
     assert($loggedUser instanceof User);
@@ -30,6 +30,6 @@ final readonly class EnsureCanEditPatientMiddleware {
     $this->session->set('error', 'Acceso no autorizado');
     Flight::redirect('/');
 
-    exit;
+    return null;
   }
 }

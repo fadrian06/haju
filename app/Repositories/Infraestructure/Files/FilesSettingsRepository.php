@@ -29,8 +29,7 @@ final readonly class FilesSettingsRepository implements SettingsRepository {
     );
   }
 
-  public function backupExists(): bool
-  {
+  public function backupExists(): bool {
     return match ($_ENV['DB_CONNECTION']) {
       DBDriver::SQLite => file_exists(str_replace('.db', '.backup.db', $_ENV['DB_DATABASE'])),
       DBDriver::MySQL => file_exists(__DIR__ . '/../../../database/backup.mysql.sql'),
@@ -76,10 +75,7 @@ final readonly class FilesSettingsRepository implements SettingsRepository {
     if ($_ENV['DB_CONNECTION'] === DBDriver::SQLite) {
       foreach (explode(';', $script) as $statement) {
         if ($statement) {
-          try {
-            $this->pdo->query($statement);
-          } catch (PDOException) {
-          }
+          $this->pdo->query($statement);
         }
       }
     }
