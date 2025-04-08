@@ -3,23 +3,20 @@
 declare(strict_types=1);
 
 use App\Models\User;
-use Leaf\Http\Session;
 
 /** @var ?User $user */
 
-$userId = Session::get('userId');
-
 ?>
 
-<li class="dropdown d-lg-none">
+<li class="dropdown d-md-none">
   <button
-    class="btn btn-link py-2 px-0 px-lg-2 d-flex align-items-center"
+    class="btn btn-link text-decoration-none py-2 px-0 px-lg-2 d-flex align-items-center"
     data-bs-toggle="dropdown"
     data-bs-display="static">
-    <?php Flight::render('components/icons/three-dots') ?>
+    <i class="fa fa-ellipsis"></i>
   </button>
   <ul class="dropdown-menu dropdown-menu-end py-0">
-    <?php if ($userId): ?>
+    <?php if ($user instanceof User) : ?>
       <li>
         <?php Flight::render('components/logout-link', [
           'class' => 'dropdown-item d-flex align-items-center p-3',
