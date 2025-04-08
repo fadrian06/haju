@@ -27,8 +27,10 @@ abstract readonly class Controller {
     ini_set('error_log', __DIR__ . '/../../logs/error.log');
 
     if ($error instanceof Throwable) {
-      error_log($error->getMessage());
+      error_log($error->__toString());
       error_log("\n\n");
+
+      $error = $error->getMessage();
     }
 
     Container::getInstance()->get(Session::class)->set('error', $error);
