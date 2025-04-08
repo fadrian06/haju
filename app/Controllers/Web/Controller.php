@@ -27,8 +27,7 @@ abstract readonly class Controller {
     ini_set('error_log', __DIR__ . '/../../logs/error.log');
 
     if ($error instanceof Throwable) {
-      $error = $error::class . ': ' . $error->getMessage();
-      error_log($error);
+      error_log($error->getMessage());
       error_log("\n\n");
     }
 
