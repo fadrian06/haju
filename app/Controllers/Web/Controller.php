@@ -24,8 +24,10 @@ abstract readonly class Controller {
   }
 
   final protected static function setError(Throwable|string $error): void {
+    ini_set('error_log', __DIR__ . '/../../logs/error.log');
+
     if ($error instanceof Throwable) {
-      $error = $error->getMessage();
+      $error = $error::class . ': ' . $error->getMessage();
       error_log($error);
       error_log("\n\n");
     }
