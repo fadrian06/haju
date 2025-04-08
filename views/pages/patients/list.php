@@ -38,11 +38,11 @@ $onlyHospitalizedSwitchId = uniqid();
 
       get filteredPatients() {
         return this.allPatients.filter(patient => {
-          const hasHospitalizations = patient.hospitalizations.length > 0;
+          const hasActiveHospitalizations = patient.hospitalizations.some(hospitalization => hospitalization.isFinished);
           const matchName = patient.fullName.toLowerCase().includes(this.patientName.toLowerCase());
 
           if (this.showHospitalized) {
-            return hasHospitalizations && matchName;
+            return hasActiveHospitalizations && matchName;
           }
 
           return matchName;
