@@ -18,7 +18,7 @@ $value ??= '';
 
 ?>
 
-<div class="form-floating position-relative" x-data="{ toggled: false }">
+<div class="position-relative" x-data="{ toggled: false }">
   <?php Flight::render('components/inputs/input', [
     'label' => $label,
     'type' => "toggled ? 'text' : 'password'",

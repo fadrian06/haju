@@ -32,6 +32,7 @@ $typeHasOneWord = str_contains(
     <?= !$required ?: 'required' ?>
     <?= !$model ?: "x-model='{$model}'" ?>
     <?= !$pattern ?: "pattern='{$pattern}'" ?>
+    <?= !$pattern ?: ":pattern='{$pattern}'" ?>
     title="<?= $title ?>"
     value="<?= $value ?>" />
   <label for="<?= $id ?>">

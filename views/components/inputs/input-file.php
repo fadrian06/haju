@@ -5,6 +5,7 @@ declare(strict_types=1);
 $required ??= true;
 $id = uniqid();
 $label ??= '';
+$name ??= '';
 
 ?>
 
@@ -15,6 +16,7 @@ $label ??= '';
   <?= $label ?>
 </label>
 <input
+  name="<?= $name ?>"
   type="file"
   class="form-control"
   id="<?= $id ?>"

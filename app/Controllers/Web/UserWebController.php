@@ -7,6 +7,7 @@ namespace App\Controllers\Web;
 use App\Models\User;
 use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Domain\UserRepository;
+use App\Repositories\Exceptions\DuplicatedNamesException;
 use App\ValueObjects\AdultBirthDate;
 use App\ValueObjects\Appointment;
 use App\ValueObjects\Date;
@@ -40,9 +41,21 @@ final readonly class UserWebController extends Controller {
 
   public function handleRegister(): void {
     [$appointment, $urlToRedirect, $urlWhenFail] = match (true) {
-      !$this->loggedUser => [Appointment::Director, '/ingresar', '/registrate'],
-      $this->loggedUser->appointment === Appointment::Director => [Appointment::Coordinator, '/usuarios', '/usuarios'],
-      $this->loggedUser->appointment === Appointment::Coordinator => [Appointment::Secretary, '/usuarios', '/usuarios']
+      !$this->loggedUser => [
+        Appointment::Director,
+        '/ingresar',
+        '/registrate'
+      ],
+      $this->loggedUser->appointment->isDirector() => [
+        Appointment::Coordinator,
+        '/usuarios',
+        '/usuarios'
+      ],
+      $this->loggedUser->appointment->isCoordinator() => [
+        Appointment::Secretary,
+        '/usuarios',
+        '/usuarios'
+      ]
     };
 
     $this->session->set('lastData', $this->data->getData());
@@ -53,16 +66,26 @@ final readonly class UserWebController extends Controller {
       }
 
       if (!in_array($this->data['gender'], Gender::values(), true)) {
-        throw new Error(sprintf('El género es requerido y válido (%s)', implode(', ', Gender::values())));
+        throw new Error(sprintf(
+          'El género es requerido y válido (%s)',
+          implode(', ', Gender::values()),
+        ));
       }
 
-      if (!in_array($this->data['instruction_level'], InstructionLevel::values(), true)) {
-        throw new Error(sprintf('El nivel de instrucción es requerido y válido (%s)', implode(', ', InstructionLevel::values())));
+      if (!in_array(
+        $this->data['instruction_level'],
+        InstructionLevel::values(),
+        true,
+      )) {
+        throw new Error(sprintf(
+          'El nivel de instrucción es requerido y válido (%s)',
+          implode(', ', InstructionLevel::values()),
+        ));
       }
 
       if (
         $this->loggedUser
-        && $this->loggedUser->appointment === Appointment::Director
+        && $this->loggedUser->appointment->isDirector()
         && $this->data['departments'] === []
       ) {
         throw new Error('Debe asignar al menos 1 departamento');
@@ -106,17 +129,19 @@ final readonly class UserWebController extends Controller {
       }
 
       $this->userRepository->save($user);
-      self::setMessage('Usuario registrado exitósamente');
-      Session::unset('lastData');
+      self::setMessage("{$user->getParsedAppointment()} registrado exitósamente");
+      $this->session->unset('lastData');
       Flight::redirect($urlToRedirect);
 
-      exit;
+      return;
     } catch (InvalidDateException) {
       self::setError('La fecha de nacimiento es requerida y válida');
     } catch (InvalidPhoneException) {
       self::setError('El teléfono es requerido y válido');
     } catch (InvalidEmailException) {
       self::setError('El correo es requerido y válido');
+    } catch (DuplicatedNamesException) {
+      self::setError('El nombre y apellido ya están registrados');
     } catch (Throwable $error) {
       self::setError($error);
     }

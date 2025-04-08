@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\Contracts;
 
-use DateTime;
+use DateTimeInterface;
 use JsonSerializable;
 
 /**
@@ -13,7 +13,7 @@ use JsonSerializable;
  */
 abstract class Model implements JsonSerializable {
   private ?int $id = null;
-  private ?DateTime $registeredDateTime = null;
+  private ?DateTimeInterface $registeredDateTime = null;
 
   final public function setId(int $id): static {
     if ($this->id === null) {
@@ -23,7 +23,7 @@ abstract class Model implements JsonSerializable {
     return $this;
   }
 
-  final public function setRegisteredDate(DateTime $datetime): static {
+  final public function setRegisteredDate(DateTimeInterface $datetime): static {
     if ($this->registeredDateTime === null) {
       $this->registeredDateTime = $datetime;
     }

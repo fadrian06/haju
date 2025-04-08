@@ -25,6 +25,10 @@ enum Appointment: string {
     return $this === self::Director;
   }
 
+  public function isCoordinator(): bool {
+    return $this === self::Coordinator;
+  }
+
   public function getParsed(Gender $gender): string {
     $step1 = str_replace($gender === Gender::Male ? '/a' : '/', '', $this->value);
 

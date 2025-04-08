@@ -6,6 +6,7 @@ $id = uniqid();
 $options ??= [];
 $required ??= true;
 $label ??= '';
+$name ??= '';
 
 static $isFirstRender = true;
 
@@ -13,9 +14,11 @@ static $isFirstRender = true;
 
 <div class="form-floating">
   <select
+    :data-bs-theme="theme"
     <?= !$required ?: 'required' ?>
     class="form-select"
-    id="<?= $id ?>">
+    id="<?= $id ?>"
+    name="<?= $name ?>">
     <option value="" selected disabled>Selecciona una opción</option>
     <?php foreach ($options as $option): ?>
       <option
