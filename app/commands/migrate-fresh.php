@@ -2,24 +2,16 @@
 
 declare(strict_types=1);
 
-use App\Repositories\Infraestructure\PDO\Connection;
+use flight\Container;
 
-$localVars = require_once __DIR__ . '/../../.env.php';
-$_ENV += is_array($localVars) ? $localVars : [];
+require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../configurations.php';
 
-$connection = new Connection(
-  $_ENV['DB_CONNECTION'],
-  $_ENV['DB_DATABASE'],
-  $_ENV['DB_HOST'],
-  $_ENV['DB_PORT'],
-  $_ENV['DB_USERNAME'],
-  $_ENV['DB_PASSWORD']
-);
-
+$pdo = Container::getInstance()->get(PDO::class);
 $initDbFilePath = dirname(__DIR__, 2) . "/database/init.{$_ENV['DB_CONNECTION']->value}.sql";
 
 foreach (explode(';', file_get_contents($initDbFilePath)) as $query) {
-  $connection->instance()->query($query);
+  $pdo->exec($query);
 }
 
 echo "DB installed correctly ✔";

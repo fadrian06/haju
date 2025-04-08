@@ -37,6 +37,8 @@ date_default_timezone_set($_ENV['TIMEZONE']);
  */
 define('BASE_URI', str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']));
 
+$_SERVER['HTTP_HOST'] ??= 'localhost:61001';
+
 /** `http://localhost:61001` */
 define(
   'BASE_URL',
@@ -64,6 +66,14 @@ $container->singleton(
     $_ENV['DB_PASSWORD']
   )
 );
+$container->singleton(PDO::class, static fn(): PDO => new PDO(
+  match ($_ENV['DB_CONNECTION']) {
+    DBDriver::MySQL => "mysql:host={$_ENV['DB_HOST']}; dbname={$_ENV['DB_DATABASE']}; charset=utf8; port={$_ENV['DB_PORT']}",
+    DBDriver::SQLite => "sqlite:{$_ENV['DB_DATABASE']}"
+  },
+  $_ENV['DB_USERNAME'],
+  $_ENV['DB_PASSWORD'],
+));
 
 $container->singleton(
   DepartmentRepository::class,
