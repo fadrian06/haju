@@ -108,7 +108,7 @@ implements PatientRepository {
 
     $consultations = [];
 
-    while ($consultationRecord = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    while (is_array($consultationRecord = $stmt->fetch(PDO::FETCH_ASSOC))) {
       $consultation = new Consultation(
         ConsultationType::from($consultationRecord['type']),
         $this->causeRepository->getById($consultationRecord['cause_id']),
@@ -141,13 +141,13 @@ implements PatientRepository {
     /** @var Hospitalization[] */
     $hospitalizations = [];
 
-    while ($hospitalizationRecord = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    while (is_array($hospitalizationRecord = $stmt->fetch(PDO::FETCH_ASSOC))) {
       $hospitalization = new Hospitalization(
         $patient,
         $this->doctorRepository->getById($hospitalizationRecord['doctor_id']),
         $hospitalizationRecord['admission_department'],
         new DateTimeImmutable($hospitalizationRecord['admission_date']),
-        $hospitalizationRecord['departure_date']
+        boolval($hospitalizationRecord['departure_date'])
           ? new DateTimeImmutable($hospitalizationRecord['departure_date'])
           : null,
         DepartureStatus::tryFrom($hospitalizationRecord['departure_status'] ?? ''),
@@ -177,7 +177,7 @@ implements PatientRepository {
 
     $consultations = [];
 
-    while ($consultationRecord = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    while (is_array($consultationRecord = $stmt->fetch(PDO::FETCH_ASSOC))) {
       $consultation = new Consultation(
         ConsultationType::from($consultationRecord['type']),
         $this->causeRepository->getById($consultationRecord['cause_id']),
