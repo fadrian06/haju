@@ -9,6 +9,9 @@ parameters:
     - tests
     - views
     - .env.dist.php
+    - .env.php
     - index.php
     - rector.php
   treatPhpDocTypesAsCertain: false
+  strictRules:
+    disallowedShortTernary: false
