@@ -1,22 +1,38 @@
 <?php
 
+declare(strict_types=1);
+
 $id = uniqid();
 $required ??= true;
-$slot ??= '';
 $name ??= '';
+$type ??= 'text';
+$label ??= '';
+$inputStyle ??= '';
+$model ??= '';
+$pattern ??= '';
+$title ??= '';
+$value ??= '';
 
 ?>
 
 <div class="form-floating">
   <input
+    style="<?= $inputStyle ?>"
+    type="<?= $type ?>"
+    :type="typeof <?= $type ?> !== 'undefined' && <?= $type ?>"
     id="<?= $id ?>"
     class="form-control"
     placeholder=" "
-    name="<?= $name ?>" />
+    name="<?= $name ?>"
+    <?= !$required ?: 'required' ?>
+    <?= !$model ?: "x-model='$model'" ?>
+    <?= !$pattern ?: "pattern='$pattern'" ?>
+    title="<?= $title ?>"
+    value="<?= $value ?>" />
   <label for="<?= $id ?>">
-    <?php if ($required): ?>
+    <?php if ($required) : ?>
       <sub class="text-danger fs-1">*</sub>
     <?php endif ?>
-    <?= $slot ?>
+    <?= $label ?>
   </label>
 </div>

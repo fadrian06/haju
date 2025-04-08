@@ -6,7 +6,7 @@ function renderPage(
   string $page,
   string $title,
   array $params = [],
-  string $layout = 'base'
+  string $layout = 'guest'
 ): void {
   $params['title'] = $title;
 

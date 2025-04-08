@@ -2,20 +2,27 @@
 
 declare(strict_types=1);
 
+use flight\Container;
 use Leaf\Http\Session;
+
+$session = Container::getInstance()->get(Session::class);
+$error = isset($error) ? strval($error) : null;
+$message = isset($message) ? strval($message) : null;
 
 ?>
 
 <!doctype html>
 <html
+  lang="es"
   x-data="{
-    theme: `<?= Session::get('theme', 'light') ?>`,
+    theme: `<?= $session->get('theme', 'light') ?>`,
 
     setTheme(theme = 'light') {
       this.theme = theme
       fetch(`./api/preferencias/tema/${theme}`)
     }
   }"
+  data-bs-theme="<?= $session->get('theme', 'light') ?>"
   :data-bs-theme="theme">
 
 <head>
@@ -27,11 +34,26 @@ use Leaf\Http\Session;
   <link rel="stylesheet" href="./assets/dist/guest.css" />
 </head>
 
-<body class="pb-5">
+<body class="pb-5 overflow-y-scroll">
   <?php Flight::render('components/headers/public') ?>
   <?= $content ?>
   <?php Flight::render('components/footer') ?>
+
   <script src="./assets/dist/guest.js"></script>
+
+  <script>
+    <?php if ($error): ?>
+      customSwal.fire({
+        title: '<?= $error ?>',
+        icon: 'error',
+      })
+    <?php elseif ($message): ?>
+      customSwal.fire({
+        title: '<?= $message ?>',
+        icon: 'success',
+      })
+    <?php endif ?>
+  </script>
 </body>
 
 </html>

@@ -17,10 +17,6 @@ main {
   --bs-body-bg: transparent;
 }
 
-body {
-  overflow-y: scroll;
-}
-
 body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast.shown),
 body.modal-open {
   padding-right: 0 !important;
@@ -214,23 +210,17 @@ body.modal-open {
 .card {
   --bs-card-spacer-y: 1rem;
   --bs-card-spacer-x: 1rem;
-  --bs-card-title-spacer-y: 0.5rem;
-  --bs-card-title-color: ;
-  --bs-card-subtitle-color: ;
+  --bs-card-title-spacer-y: .5rem;
   --bs-card-border-width: var(--bs-border-width);
   --bs-card-border-color: var(--bs-border-color-translucent);
   --bs-card-border-radius: var(--bs-border-radius);
-  --bs-card-box-shadow: ;
   --bs-card-inner-border-radius: calc(var(--bs-border-radius) - (var(--bs-border-width)));
-  --bs-card-cap-padding-y: 0.5rem;
+  --bs-card-cap-padding-y: .5rem;
   --bs-card-cap-padding-x: 1rem;
   --bs-card-cap-bg: #f7faff;
-  --bs-card-cap-color: ;
-  --bs-card-height: ;
-  --bs-card-color: ;
   --bs-card-bg: var(--bs-body-bg);
   --bs-card-img-overlay-padding: 1rem;
-  --bs-card-group-margin: 0.75rem;
+  --bs-card-group-margin: .75rem;
 }
 
 [data-bs-theme="dark"] .card {
@@ -248,7 +238,7 @@ body.modal-open {
   --bs-btn-active-color: white;
   --bs-btn-active-bg: #0a58ca;
   --bs-btn-active-border-color: #0a53be;
-  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 12.5%);
   --bs-btn-disabled-color: white;
   --bs-btn-disabled-bg: #0d6efd;
   --bs-btn-disabled-border-color: var(--bs-btn-bg);

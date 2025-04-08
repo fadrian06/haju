@@ -15,15 +15,15 @@ $id = uniqid();
       <button
         data-bs-target="#<?= $id ?>"
         data-bs-slide-to="<?= $index ?>"
-        class="<?= $index === 0 ? '' : 'active' ?>">
+        class="<?= $index ?: 'active' ?>">
       </button>
     <?php endforeach ?>
   </div>
   <div class="carousel-inner">
     <?php foreach (range(1, 3) as $index => $imageNumber) : ?>
-      <div class="carousel-item <?= $index === 0 ? '' : 'active' ?>">
+      <div class="carousel-item <?= $index ?: 'active' ?>">
         <img
-          loading="<?= $index === 0 ? 'lazy' : 'eager' ?>"
+          loading="<?= $index ? 'eager' : 'lazy' ?>"
           src="./assets/img/hospital-exterior-<?= $imageNumber ?>.jpg"
           height="350"
           class="object-fit-cover w-100"

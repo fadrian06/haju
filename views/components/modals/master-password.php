@@ -7,9 +7,7 @@ declare(strict_types=1);
 <div class="modal fade" id="registrate">
   <div class="modal-dialog modal-dialog-scrollable">
     <form
-      @submit="
-        $event.preventDefault();
-
+      @submit.prevent="
         const options = {
           method: 'post',
           body: new FormData($el),
@@ -38,9 +36,9 @@ declare(strict_types=1);
         </button>
       </header>
       <section class="modal-body">
-        <?php Flight::render('components/inputs/input', [
+        <?php Flight::render('components/inputs/input-password', [
           'name' => 'secret_key',
-          'slot' => 'Clave maestra',
+          'label' => 'Clave maestra',
         ]) ?>
       </section>
       <footer class="modal-footer">
