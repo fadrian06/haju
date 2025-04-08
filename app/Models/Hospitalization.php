@@ -41,4 +41,10 @@ final class Hospitalization extends Model {
   public function isFinished(): bool {
     return (bool) $this->departureDate;
   }
+
+  public function jsonSerialize(): array {
+    return parent::jsonSerialize() + [
+      'isFinished' => $this->isFinished(),
+    ];
+  }
 }
