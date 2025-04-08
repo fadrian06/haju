@@ -4,6 +4,24 @@ declare(strict_types=1);
 
 $id = uniqid();
 
+$hospitalImages = [
+  [
+    'src' => './assets/img/hospital-exterior-1.jpg',
+    'title' => '',
+    'description' => '',
+  ],
+  [
+    'src' => './assets/img/hospital-exterior-2.jpg',
+    'title' => '',
+    'description' => '',
+  ],
+  [
+    'src' => './assets/img/hospital-exterior-3.jpg',
+    'title' => '',
+    'description' => '',
+  ],
+];
+
 ?>
 
 <div
@@ -11,7 +29,7 @@ $id = uniqid();
   class="carousel slide carousel-fade"
   data-bs-ride="carousel">
   <div class="carousel-indicators">
-    <?php foreach (range(0, 2) as $index) : ?>
+    <?php foreach (array_keys($hospitalImages) as $index) : ?>
       <button
         data-bs-target="#<?= $id ?>"
         data-bs-slide-to="<?= $index ?>"
@@ -20,21 +38,19 @@ $id = uniqid();
     <?php endforeach ?>
   </div>
   <div class="carousel-inner">
-    <?php foreach (range(1, 3) as $index => $imageNumber) : ?>
-      <div class="carousel-item <?= $index ?: 'active' ?>">
+    <?php foreach ($hospitalImages as $index => $image) : ?>
+      <figure class="carousel-item <?= $index ?: 'active' ?>">
         <img
-          loading="<?= $index ? 'eager' : 'lazy' ?>"
-          src="./assets/img/hospital-exterior-<?= $imageNumber ?>.jpg"
+          loading="<?= $index ? 'lazy' : 'eager' ?>"
+          src="<?= $image['src'] ?>"
           height="350"
           class="object-fit-cover w-100"
-          alt='Exterior del hospital "Antonio José Uzcátegui"' />
-        <div class="carousel-caption w-100 d-none d-md-block">
-          <h5 class="d-none">Slide label</h5>
-          <p class="d-none">
-            Some representative placeholder content for the slide.
-          </p>
-        </div>
-      </div>
+          alt="<?= $image['title'] ?>" />
+        <figcaption class="carousel-caption w-100 d-none d-md-block">
+          <h5><?= $image['title'] ?></h5>
+          <p><?= $image['description'] ?></p>
+        </figcaption>
+      </figure>
     <?php endforeach ?>
   </div>
   <button

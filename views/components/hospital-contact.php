@@ -1,9 +1,14 @@
-<div class="container py-5">
+<?php
+
+declare(strict_types=1);
+
+?>
+
+<section class="container py-3">
   <div class="row g-4 row-cols-md-3 justify-content-center">
-    <!-- Encabezado -->
-    <div class="col-md-12 text-center mb-4">
+    <header class="col-md-12 text-center">
       <h2 class="display-5 text-danger">Contacto Hospitalario</h2>
       <p class="lead">Estamos disponibles las 24 horas para atenderte</p>
-    </div>
+    </header>
   </div>
-</div>
+</section>

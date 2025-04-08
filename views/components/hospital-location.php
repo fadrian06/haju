@@ -1,16 +1,25 @@
+<?php
+
+declare(strict_types=1);
+
+// phpcs:ignore Generic.Files.LineLength.MaxExceeded
+$iframeSrc = 'https://www.openstreetmap.org/export/embed.html?bbox=-71.28103494644166%2C8.965167775885362%2C-71.27273082733156%2C8.969883750535764&amp;layer=mapnik&amp;marker=8.967525770867361%2C-71.2768828868866';
+
+?>
+
 <img
-  src="./assets/img/hospital-location.png"
+  src="./resources/images/hospital-location.png"
   alt='Ubicación del Hospital "José Antonio Uzcátegui"'
-  class="d-none object-fit-cover w-100"
-/>
+  class="d-none object-fit-cover w-100" />
 
 <iframe
+  :style="theme === 'dark' && 'filter: invert(1)'"
   loading="eager"
-  height={350}
-  src="https://www.openstreetmap.org/export/embed.html?bbox=-71.28103494644166%2C8.965167775885362%2C-71.27273082733156%2C8.969883750535764&amp;layer=mapnik&amp;marker=8.967525770867361%2C-71.2768828868866"
+  height="350"
+  src="<?= $iframeSrc ?>"
   title='Ubicación del Hospital "José Antonio Uzcátegui"'
-  class="w-100"
-></iframe>
+  class="w-100">
+</iframe>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
