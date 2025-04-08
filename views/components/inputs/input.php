@@ -24,7 +24,7 @@ $typeHasOneWord = str_contains(
   <input
     style="<?= $inputStyle ?>"
     type="<?= $type ?>"
-    :type="<?= $typeHasOneWord ? $type : "typeof {$type} !== 'undefined' && {$type}" ?>"
+    :type="<?= $typeHasOneWord ? $type : "typeof {$type} !== 'undefined' ? {$type} : '{$type}'" ?>"
     id="<?= $id ?>"
     class="form-control"
     placeholder=" "
