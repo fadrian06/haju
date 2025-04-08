@@ -17,10 +17,10 @@ declare(strict_types=1);
       <div class="card shadow border-0 h-100">
         <div class="card-body p-0">
           <div class="ratio ratio-16x9 position-relative">
-            <div class="weather">
+            <?php Flight::render('components/hospital-location') ?>
+            <div class="weather end-0" style="max-width: 100px; left: unset">
               <?php Flight::render('components/hospital-weather') ?>
             </div>
-            <?php Flight::render('components/hospital-location') ?>
           </div>
         </div>
         <div :class="`card-footer text-bg-${theme}`">
