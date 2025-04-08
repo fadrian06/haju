@@ -40,11 +40,11 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
   SQL_JOINS;
 
   public function __construct(
-    Connection $connection,
+    PDO $pdo,
     string $baseUrl,
-    private readonly DepartmentRepository $departmentRepository
+    private readonly DepartmentRepository $departmentRepository,
   ) {
-    parent::__construct($connection, $baseUrl);
+    parent::__construct($pdo, $baseUrl);
   }
 
   protected static function getTable(): string {
@@ -137,7 +137,7 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
           $user->registeredBy?->id
         ]);
 
-      $user->setId((int) $this->connection->instance()->lastInsertId())
+      $user->setId((int) $this->pdo->lastInsertId())
         ->setRegisteredDate(self::parseDateTime($datetime));
 
       $this->assignDepartments($user);

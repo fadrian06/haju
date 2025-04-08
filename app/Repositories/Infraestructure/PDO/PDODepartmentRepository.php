@@ -68,7 +68,7 @@ implements DepartmentRepository {
         ]);
 
       $department
-        ->setId((int) $this->connection->instance()->lastInsertId())
+        ->setId((int) $this->pdo->lastInsertId())
         ->setRegisteredDate(self::parseDateTime($date));
     } catch (PDOException $exception) {
       if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: departments.name')) {

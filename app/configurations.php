@@ -55,17 +55,6 @@ $container->singleton(Session::class);
 $container->singleton(View::class, Flight::view());
 $container->singleton(Request::class, Flight::request());
 
-$container->singleton(
-  Connection::class,
-  static fn(): Connection => new Connection(
-    $_ENV['DB_CONNECTION'],
-    $_ENV['DB_DATABASE'],
-    $_ENV['DB_HOST'],
-    $_ENV['DB_PORT'],
-    $_ENV['DB_USERNAME'],
-    $_ENV['DB_PASSWORD']
-  )
-);
 $container->singleton(PDO::class, static fn(): PDO => new PDO(
   match ($_ENV['DB_CONNECTION']) {
     DBDriver::MySQL => "mysql:host={$_ENV['DB_HOST']}; dbname={$_ENV['DB_DATABASE']}; charset=utf8; port={$_ENV['DB_PORT']}",
@@ -78,7 +67,7 @@ $container->singleton(PDO::class, static fn(): PDO => new PDO(
 $container->singleton(
   DepartmentRepository::class,
   static fn(): DepartmentRepository => new PDODepartmentRepository(
-    $container->get(Connection::class),
+    $container->get(PDO::class),
     BASE_URL
   )
 );
@@ -86,7 +75,7 @@ $container->singleton(
 $container->singleton(
   UserRepository::class,
   static fn(): UserRepository => new PDOUserRepository(
-    $container->get(Connection::class),
+    $container->get(PDO::class),
     BASE_URL,
     $container->get(DepartmentRepository::class)
   )
@@ -95,14 +84,14 @@ $container->singleton(
 $container->singleton(
   SettingsRepository::class,
   static fn(): SettingsRepository => new FilesSettingsRepository(
-    $container->get(Connection::class)
+    $container->get(PDO::class)
   )
 );
 
 $container->singleton(
   ConsultationCauseCategoryRepository::class,
   static fn(): ConsultationCauseCategoryRepository => new PDOConsultationCauseCategoryRepository(
-    $container->get(Connection::class),
+    $container->get(PDO::class),
     BASE_URL
   )
 );
@@ -110,7 +99,7 @@ $container->singleton(
 $container->singleton(
   ConsultationCauseRepository::class,
   static fn(): ConsultationCauseRepository => new PDOConsultationCauseRepository(
-    $container->get(Connection::class),
+    $container->get(PDO::class),
     BASE_URL,
     $container->get(ConsultationCauseCategoryRepository::class)
   )
@@ -119,7 +108,7 @@ $container->singleton(
 $container->singleton(
   DoctorRepository::class,
   static fn(): DoctorRepository => new PDODoctorRepository(
-    $container->get(Connection::class),
+    $container->get(PDO::class),
     BASE_URL,
     $container->get(UserRepository::class)
   )
@@ -128,7 +117,7 @@ $container->singleton(
 $container->singleton(
   PatientRepository::class,
   static fn(): PatientRepository => new PDOPatientRepository(
-    $container->get(Connection::class),
+    $container->get(PDO::class),
     BASE_URL,
     $container->get(UserRepository::class),
     $container->get(ConsultationCauseRepository::class),

@@ -14,7 +14,7 @@ abstract class PDORepository {
   protected const DATE_FORMAT = 'Y-m-d';
 
   public function __construct(
-    protected readonly Connection $connection,
+    protected readonly PDO $pdo,
     protected readonly string $baseUrl,
   ) {
   }
@@ -29,12 +29,12 @@ abstract class PDORepository {
 
   /** @throws RepositoryException */
   final protected function ensureIsConnected(): PDO {
-    if (!$this->connection) {
+    if (!$this->pdo) {
       throw new RepositoryException('DB is not connected');
     }
 
     try {
-      $this->connection->instance()->query('SELECT * FROM users');
+      $this->pdo->query('SELECT * FROM users');
     } catch (PDOException $exception) {
       if (str_contains($exception->getMessage(), 'no such table: users')) {
         throw new RepositoryException('DB is not installed correctly');
@@ -43,7 +43,7 @@ abstract class PDORepository {
       throw $exception;
     }
 
-    return $this->connection->instance();
+    return $this->pdo;
   }
 
   final protected static function parseDateTime(string $raw): DateTime {

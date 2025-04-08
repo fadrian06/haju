@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use App\Models\User;
-use App\Repositories\Infraestructure\PDO\Connection;
 use flight\Container;
 
 /**
@@ -19,7 +18,7 @@ if (str_contains((string) $_SERVER['REQUEST_URI'], 'perfil')) {
   $showPasswordChangeModal = false;
 }
 
-$pdo = Container::getInstance()->get(Connection::class)->instance();
+$pdo = Container::getInstance()->get(PDO::class);
 $currentDate = new DateTimeImmutable;
 $oneWeekAgo = $currentDate->sub(new DateInterval('P1W'));
 

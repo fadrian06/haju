@@ -19,11 +19,11 @@ extends PDORepository implements ConsultationCauseRepository {
   sql;
 
   public function __construct(
-    Connection $connection,
+    PDO $pdo,
     string $baseUrl,
-    private readonly ConsultationCauseCategoryRepository $categoryRepository
+    private readonly ConsultationCauseCategoryRepository $categoryRepository,
   ) {
-    parent::__construct($connection, $baseUrl);
+    parent::__construct($pdo, $baseUrl);
   }
 
   protected static function getTable(): string {
@@ -52,7 +52,7 @@ extends PDORepository implements ConsultationCauseRepository {
     $stmt = $this->ensureIsConnected()
       ->query(sprintf('SELECT %s FROM %s', self::FIELDS, self::getTable()));
 
-    while ($cause = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    while (is_array($cause = $stmt->fetch(PDO::FETCH_ASSOC))) {
       yield $this->mapper(...$cause);
     }
   }

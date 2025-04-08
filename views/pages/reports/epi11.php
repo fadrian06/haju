@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use App\Models\ConsultationCause;
 use App\Models\ConsultationCauseCategory;
-use App\Repositories\Infraestructure\PDO\Connection;
 use App\Repositories\Domain\ConsultationCauseRepository;
 use flight\Container;
 use flight\template\View;
@@ -119,7 +118,7 @@ if ($monthYear !== null) {
 
 ob_end_clean();
 
-$consultations = Container::getInstance()->get(Connection::class)->instance()->query(<<<sql
+$consultations = Container::getInstance()->get(PDO::class)->query(<<<sql
   SELECT type, registered_date, cause_id FROM consultations
   WHERE registered_date BETWEEN '{$startDate}' AND '{$endDate}'
 sql)->fetchAll(PDO::FETCH_ASSOC);

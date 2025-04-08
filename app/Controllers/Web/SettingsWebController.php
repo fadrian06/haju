@@ -9,11 +9,11 @@ use App\Repositories\Domain\ConsultationCauseRepository;
 use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Domain\SettingsRepository;
 use App\Repositories\Domain\UserRepository;
-use App\Repositories\Infraestructure\PDO\Connection;
 use App\ValueObjects\Appointment;
 use Flight;
 use flight\net\Request;
 use Leaf\Http\Session;
+use PDO;
 
 final readonly class SettingsWebController extends Controller {
   public function __construct(
@@ -21,7 +21,7 @@ final readonly class SettingsWebController extends Controller {
     private DepartmentRepository $departmentRepository,
     private SettingsRepository $settingsRepository,
     private ConsultationCauseRepository $consultationCauseRepository,
-    private Connection $connection,
+    private PDO $pdo,
     private Request $request,
   ) {
     parent::__construct();
@@ -136,13 +136,16 @@ final readonly class SettingsWebController extends Controller {
   public function handleConsultationCausesUpdate(): void {
     $limitOf = array_map(
       static fn(string $limit): int => (int) $limit,
-      array_filter($this->request->data->limit_of ?? [])
+      array_filter($this->request->data->limit_of ?? [], 'boolval')
     );
 
-    $pdo = $this->connection->instance();
-    $pdo->beginTransaction();
+    $this->pdo->beginTransaction();
 
-    $stmt = $pdo->prepare('UPDATE consultation_causes SET weekly_cases_limit = :weeklyLimit WHERE id = :id');
+    $stmt = $this->pdo->prepare('
+      UPDATE consultation_causes
+      SET weekly_cases_limit = :weeklyLimit
+      WHERE id = :id
+    ');
 
     foreach ($limitOf as $consultationCauseId => $weeklyLimit) {
       $stmt->execute([
@@ -151,7 +154,7 @@ final readonly class SettingsWebController extends Controller {
       ]);
     }
 
-    $pdo->commit();
+    $this->pdo->commit();
     self::setMessage('Límites de casos semanales actualizados exitósamente');
     Flight::redirect(Flight::request()->referrer);
   }
@@ -161,7 +164,10 @@ final readonly class SettingsWebController extends Controller {
     $logs = [];
 
     if (file_exists($logsPath)) {
-      $logs = array_filter(explode(';', file_get_contents($logsPath)));
+      $logs = array_filter(
+        explode(';', file_get_contents($logsPath)),
+        'boolval'
+      );
     }
 
     renderPage('logs', 'Logs de usuarios', compact('logs'), 'main');

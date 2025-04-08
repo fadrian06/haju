@@ -31,15 +31,13 @@ final readonly class PatientWebController extends Controller {
     private ConsultationCauseRepository $consultationCauseRepository,
     private DepartmentRepository $departmentRepository,
     private DoctorRepository $doctorRepository,
-    private Connection $connection,
+    private PDO $pdo,
   ) {
     parent::__construct();
   }
 
   public function showConsultations(): void {
-    $pdo = $this->connection->instance();
-
-    $stmt = $pdo->prepare(<<<sql
+    $stmt = $this->pdo->prepare(<<<sql
       SELECT id, type, registered_date, cause_id, department_id, doctor_id
       FROM consultations
       ORDER BY registered_date DESC
@@ -275,12 +273,11 @@ final readonly class PatientWebController extends Controller {
       return;
     }
 
-    $pdo = $this->connection->instance();
-
-    $pdo->beginTransaction();
-    $stmt = $pdo->prepare('DELETE FROM patients WHERE id = ?');
+    $this->pdo->beginTransaction();
+    $stmt = $this->pdo->prepare('DELETE FROM patients WHERE id = ?');
     $stmt->execute([$patientId]);
-    $pdo->commit();
+
+    $this->pdo->commit();
 
     self::setMessage('Paciente eliminado exitósamente');
     Flight::redirect('/pacientes');

@@ -5,7 +5,6 @@ declare(strict_types=1);
 use App\Models\ConsultationCause;
 use App\Models\ConsultationCauseCategory;
 use App\Repositories\Domain\ConsultationCauseRepository;
-use App\Repositories\Infraestructure\PDO\Connection;
 use flight\Container;
 use flight\template\View;
 
@@ -123,7 +122,7 @@ $causeCounter = 1;
 $categoryCounter = 1;
 $printedParentCategories = [];
 
-$consultations = Container::getInstance()->get(Connection::class)->instance()->query(<<<sql
+$consultations = Container::getInstance()->get(PDO::class)->query(<<<sql
   SELECT type, cause_id FROM consultations
   WHERE registered_date BETWEEN '{$startDate}' AND '{$endDate}'
 sql)->fetchAll(PDO::FETCH_ASSOC);

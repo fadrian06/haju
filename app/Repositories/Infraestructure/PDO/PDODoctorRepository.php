@@ -25,11 +25,11 @@ implements DoctorRepository {
   SQL;
 
   public function __construct(
-    Connection $connection,
+    PDO $pdo,
     string $baseUrl,
-    private readonly UserRepository $userRepository
+    private readonly UserRepository $userRepository,
   ) {
-    parent::__construct($connection, $baseUrl);
+    parent::__construct($pdo, $baseUrl);
   }
 
   protected static function getTable(): string {
@@ -104,7 +104,7 @@ implements DoctorRepository {
         ]);
 
       $doctor
-        ->setId((int) $this->connection->instance()->lastInsertId())
+        ->setId((int) $this->pdo->lastInsertId())
         ->setRegisteredDate(parent::parseDateTime($datetime));
     } catch (PDOException $exception) {
       if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: patients.id_card')) {

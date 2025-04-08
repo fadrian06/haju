@@ -33,7 +33,7 @@ implements PatientRepository {
   SQL;
 
   public function __construct(
-    Connection $connection,
+    PDO $pdo,
     string $baseUrl,
     private readonly UserRepository $userRepository,
     private readonly ConsultationCauseRepository $causeRepository,
@@ -42,7 +42,7 @@ implements PatientRepository {
     private bool $withHospitalizations = false,
     private bool $withConsultations = false,
   ) {
-    parent::__construct($connection, $baseUrl);
+    parent::__construct($pdo, $baseUrl);
   }
 
   protected static function getTable(): string {
@@ -228,7 +228,7 @@ implements PatientRepository {
           $patient->registeredBy->id,
         ]);
 
-      $patient->setId((int) $this->connection->instance()->lastInsertId())
+      $patient->setId((int) $this->pdo->lastInsertId())
         ->setRegisteredDate(parent::parseDateTime($datetime));
     } catch (PDOException $exception) {
       if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: patients.id_card')) {
@@ -291,9 +291,9 @@ implements PatientRepository {
         $patient->setHospitalization(...$hospitalizations);
       }
 
-      $this->connection->instance()->commit();
+      $this->pdo->commit();
     } catch (PDOException) {
-      $this->connection->instance()->rollBack();
+      $this->pdo->rollBack();
     }
   }
 
