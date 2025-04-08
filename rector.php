@@ -25,8 +25,8 @@ return RectorConfig::configure()
     __DIR__ . '/app',
     __DIR__ . '/tests',
   ])
-  // ->withPhpSets(php82: true)
-  /*->withPreparedSets(
+  ->withPhpSets(php82: true)
+  ->withPreparedSets(
     deadCode: true,
     codeQuality: true,
     codingStyle: true,
@@ -38,9 +38,9 @@ return RectorConfig::configure()
     strictBooleans: true,
     rectorPreset: true,
     phpunitCodeQuality: true,
-  )*/
+  )
   ->withRootFiles()
-  /*->withSkip([
+  ->withSkip([
     EncapsedStringsToSprintfRector::class,
     RenameParamToMatchTypeRector::class,
     RenameVariableToMatchMethodCallReturnTypeRector::class,
@@ -57,6 +57,6 @@ return RectorConfig::configure()
     RenamePropertyToMatchTypeRector::class,
     DisallowedShortTernaryRuleFixerRector::class,
     PreferPHPUnitThisCallRector::class,
-  ])*/
+  ])
   ->withIndent(' ', 2)
   ->withImportNames();
