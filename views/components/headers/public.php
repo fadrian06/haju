@@ -11,7 +11,6 @@ declare(strict_types=1);
     </a>
     <menu class="p-0 m-0 nav align-items-center gap-3">
       <?php Flight::render('components/theme-toggler') ?>
-      <?php Flight::render('components/headers/links-mobile') ?>
       <?php Flight::render('components/headers/links-desktop') ?>
     </menu>
   </div>
