@@ -1,22 +1,38 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\User;
 
 /** @var User $user */
 
 ?>
 
-<h1>Seleccione un departamento:</h1>
-<?php foreach ($user->getDepartment() as $department): ?>
-  <a
-    href="./departamento/seleccionar/<?= $department->id ?>"
-    class="<?= $department->isInactive() ? 'pe-none opacity-50' : '' ?> mt-3 col-sm-2 col-md-4 m-h-100">
-    <article class="btn btn-outline-light card card-body text-center h-100 d-flex flex-col justify-content-between">
-      <img
-        class="img-fluid mb-3 rounded"
-        style="max-height: 150px; object-fit: contain"
-        src="<?= $department->hasIcon() ? urldecode($department->iconFilePath->asString()) : './assets/img/department.png' ?>" />
-      <h2 class="fs-3"><?= $department->name ?></h2>
-    </article>
-  </a>
-<?php endforeach ?>
+<main class="container bg-white rounded-3 my-4 py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 px-md-5 text-center">
+      <h1 class="mb-4">Seleccione un departamento</h1>
+      <div class="row row-gap-4">
+        <?php foreach ($user->getDepartment() as $department): ?>
+          <a
+            href="./departamento/seleccionar/<?= $department->id ?>"
+            class="col-md-4 <?= $department->isActive() ?: 'opacity-50' ?>">
+            <div class="btn btn-outline-primary card">
+              <img
+                src="<?= $department->hasIcon()
+                  ? urldecode($department->iconFilePath->asString())
+                  : './assets/img/department.png'
+                ?>"
+                alt="Icono del departamento de <?= $department ?>"
+                class="card-img-top object-fit-scale"
+                height="164" />
+              <div class="card-body">
+                <strong class="h2 card-title"><?= $department ?></strong>
+              </div>
+            </div>
+          </a>
+        <?php endforeach ?>
+      </div>
+    </div>
+  </div>
+</main>

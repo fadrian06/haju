@@ -9,11 +9,10 @@ use App\Models\Helpers\HasActiveStatus;
 use App\ValueObjects\Exceptions\InvalidNameException;
 use App\ValueObjects\LongName;
 use PharIo\Manifest\Url;
+use Stringable;
 
-/**
- * @property-read string $name
- */
-final class Department extends Model {
+/** @property-read string $name */
+final class Department extends Model implements Stringable {
   use HasActiveStatus;
 
   private LongName $name;
@@ -51,5 +50,9 @@ final class Department extends Model {
       'name' => (string) $this->name,
       default => parent::__get($property)
     };
+  }
+
+  public function __toString(): string {
+    return strval($this->name);
   }
 }
