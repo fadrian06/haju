@@ -13,13 +13,14 @@ final class IdCardTest extends TestCase {
   public function acceptvalidIdCards(int $idCard): void {
     $idCard = new IdCard($idCard);
 
-    $this->assertIsInt($idCard->value);
+    self::assertIsInt($idCard->value);
   }
 
   #[Test]
   #[DataProvider('invalidIdCards')]
   public function throwsExceptionForInvalidIdCards(int $invalidIdCard): void {
     self::expectException(InvalidArgumentException::class);
+
     new IdCard($invalidIdCard);
   }
 

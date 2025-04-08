@@ -14,13 +14,16 @@ final class AdultBirthDateTest extends TestCase {
   public function accept_valid_adult_birth_dates(string $birthDate): void {
     $birthDate = AdultBirthDate::from($birthDate, '-');
 
-    $this->assertInstanceOf(AdultBirthDate::class, $birthDate);
+    self::assertInstanceOf(AdultBirthDate::class, $birthDate);
   }
 
   #[Test]
   #[DataProvider('invalidAdultBirthDates')]
-  public function throws_exception_for_invalid_adult_birth_dates(string $invalidBirthDate): void {
+  public function throws_exception_for_invalid_adult_birth_dates(
+    string $invalidBirthDate,
+  ): void {
     self::expectException(InvalidDateException::class);
+
     AdultBirthDate::from($invalidBirthDate, '-');
   }
 
@@ -35,6 +38,7 @@ final class AdultBirthDateTest extends TestCase {
     $currentDate = new DateTimeImmutable;
     $childBirthDate = $currentDate->sub(new DateInterval('P17Y'));
     $childBirthDate2 = $currentDate->sub(new DateInterval('P1Y'));
+
     yield $childBirthDate->format('Y-m-d') => [$childBirthDate->format('Y-m-d')];
     yield $childBirthDate2->format('Y-m-d') => [$childBirthDate2->format('Y-m-d')];
   }
