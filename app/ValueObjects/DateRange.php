@@ -17,7 +17,7 @@ enum DateRange: string {
     return (new DateTimeImmutable)->sub(new DateInterval(match ($this) {
       self::Anual => 'P1Y',
       self::Monthly => 'P1M',
-      self::Weekly => 'P1W'
+      self::Weekly => 'P1W',
     }));
   }
 }
