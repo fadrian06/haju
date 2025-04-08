@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\ValueObjects;
 
 use App\ValueObjects\Exceptions\InvalidDateException;
-use DateTime;
+use DateTimeImmutable;
 use Stringable;
 
 readonly class Date implements Stringable {
@@ -19,7 +19,7 @@ readonly class Date implements Stringable {
   /** @throws InvalidDateException */
   final public function __construct(int $day, int $month, int $year) {
     $this->validate($day, $month, $year);
-    $date = DateTime::createFromFormat(self::FORMAT, "{$day}-{$month}-{$year}");
+    $date = DateTimeImmutable::createFromFormat(self::FORMAT, "{$day}-{$month}-{$year}");
     $this->timestamp = $date->getTimestamp();
     $this->day = (int) $date->format('d');
     $this->month = (int) $date->format('m');

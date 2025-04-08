@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App\Repositories\Infraestructure\PDO;
 
 use App\Repositories\Exceptions\RepositoryException;
-use DateTime;
+use DateTimeImmutable;
+use DateTimeInterface;
 use PDO;
 use PDOException;
 
@@ -46,8 +47,8 @@ abstract class PDORepository {
     return $this->pdo;
   }
 
-  final protected static function parseDateTime(string $raw): DateTime {
-    return DateTime::createFromFormat(self::DATETIME_FORMAT, $raw);
+  final protected static function parseDateTime(string $raw): DateTimeInterface {
+    return DateTimeImmutable::createFromFormat(self::DATETIME_FORMAT, $raw);
   }
 
   final protected static function getCurrentDatetime(): string {

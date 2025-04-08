@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use flight\Container;
+use flight\template\View;
+
 function renderPage(
   string $page,
   string $title,
@@ -9,9 +12,10 @@ function renderPage(
   string $layout = 'guest'
 ): void {
   $params['title'] = $title;
+  $view = Container::getInstance()->get(View::class);
 
-  Flight::render("pages/{$page}", $params, 'content');
-  Flight::render("layouts/{$layout}", $params);
+  $params['content'] = $view->fetch("pages/{$page}", $params);
+  $view->render("layouts/{$layout}", $params);
 }
 
 function isActive(string ...$urls): bool {

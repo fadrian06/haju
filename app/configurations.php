@@ -45,11 +45,6 @@ define(
   Flight::request()->scheme . '://' . $_SERVER['HTTP_HOST'] . BASE_URI
 );
 
-Flight::set('flight.views.path', dirname(__DIR__) . '/views');
-Flight::set('flight.handle_errors', false);
-Flight::view()->path = dirname(__DIR__) . '/views';
-Flight::view()->preserveVars = false;
-
 $container = Container::getInstance();
 $container->singleton(Session::class);
 $container->singleton(View::class, Flight::view());
@@ -127,3 +122,14 @@ $container->singleton(
 );
 
 Flight::registerContainerHandler($container);
+Flight::set('flight.views.path', dirname(__DIR__) . '/views');
+Flight::set('flight.handle_errors', false);
+Flight::view()->path = dirname(__DIR__) . '/views';
+Flight::view()->preserveVars = false;
+
+Flight::view()->set(
+  'user',
+  $container
+    ->get(UserRepository::class)
+    ->getById(intval($container->get(Session::class)->get('userId')))
+);

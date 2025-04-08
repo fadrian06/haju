@@ -2,8 +2,13 @@
 
 declare(strict_types=1);
 
+namespace Tests\Unit\ValueObjects;
+
 use App\ValueObjects\AdultBirthDate;
 use App\ValueObjects\Exceptions\InvalidDateException;
+use DateInterval;
+use DateTimeImmutable;
+use Iterator;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

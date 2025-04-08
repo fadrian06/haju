@@ -44,9 +44,11 @@
       "php -r \"if (!file_exists('phpunit.xml')) copy('phpunit.xml.dist', 'phpunit.xml');\""
     ],
     "ci": [
+      "composer check-platform-reqs --no-ansi",
       "phpunit --no-progress --colors=never",
       "phpstan --no-progress --no-ansi --memory-limit=512M",
-      "rector --dry-run --no-progress-bar --no-ansi"
+      "rector --dry-run --no-progress-bar --no-ansi",
+      "phpmd app views index.php rector.php tests text phpmd.xml"
     ],
     "migrate:fresh": "php app/commands/migrate-fresh.php",
     "format": [

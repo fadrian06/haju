@@ -18,7 +18,7 @@ enum ConsultationType: string {
   }
 
   /** @return array<int, static> */
-  public static function getCases(bool $excludeFirstTime = true): array {
+  public static function getCases(): array {
     return [self::Succesive, self::Associated];
   }
 }
