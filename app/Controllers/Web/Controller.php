@@ -65,7 +65,7 @@ abstract readonly class Controller {
       return $filePath['rel'];
     }
 
-    if (!$files[$fileParam]['size']) {
+    if ($files[$fileParam]['size'] === 0) {
       throw new Error($errorMessage);
     }
 

@@ -52,18 +52,18 @@ final readonly class UserWebController extends Controller {
         throw new Error('La contraseña y su confirmación no coinciden');
       }
 
-      if (!in_array($this->data['gender'], Gender::values())) {
+      if (!in_array($this->data['gender'], Gender::values(), true)) {
         throw new Error(sprintf('El género es requerido y válido (%s)', implode(', ', Gender::values())));
       }
 
-      if (!in_array($this->data['instruction_level'], InstructionLevel::values())) {
+      if (!in_array($this->data['instruction_level'], InstructionLevel::values(), true)) {
         throw new Error(sprintf('El nivel de instrucción es requerido y válido (%s)', implode(', ', InstructionLevel::values())));
       }
 
       if (
         $this->loggedUser
         && $this->loggedUser->appointment === Appointment::Director
-        && !$this->data['departments']
+        && $this->data['departments'] === []
       ) {
         throw new Error('Debe asignar al menos 1 departamento');
       }
@@ -129,8 +129,8 @@ final readonly class UserWebController extends Controller {
   }
 
   public function handlePasswordReset(): void {
-    if ($this->data['id_card']) {
-      $user = $this->userRepository->getByIdCard($this->data['id_card']);
+    if ($this->data['id_card'] !== null) {
+      $user = $this->userRepository->getByIdCard((int) $this->data['id_card']);
 
       if ($user) {
         renderPage(
@@ -171,7 +171,7 @@ final readonly class UserWebController extends Controller {
     try {
       $profileImageUrlPath = '';
 
-      if (Flight::request()->files['profile_image']['size']) {
+      if (Flight::request()->files['profile_image']['size'] > 0) {
         $profileImageUrlPath = self::ensureThatFileIsSaved(
           'profile_image',
           'profile_image_url',
@@ -184,9 +184,17 @@ final readonly class UserWebController extends Controller {
       $this->loggedUser->setIdCard($this->data['id_card']);
       $this->loggedUser->instructionLevel = InstructionLevel::from($this->data['instruction_level']);
       $this->loggedUser->setFirstName($this->data['first_name']);
-      $this->data['second_name'] && $this->loggedUser->setSecondName($this->data['second_name']);
+
+      if (boolval($this->data['second_name'])) {
+        $this->loggedUser->setSecondName($this->data['second_name']);
+      }
+
       $this->loggedUser->setFirstLastName($this->data['first_last_name']);
-      $this->data['second_last_name'] && $this->loggedUser->setSecondLastName($this->data['second_last_name']);
+
+      if (boolval($this->data['second_last_name'])) {
+        $this->loggedUser->setSecondLastName($this->data['second_last_name']);
+      }
+
       $this->loggedUser->setAddress($this->data['address']);
       $this->loggedUser->birthDate = Date::from($this->data['birth_date'], '-');
       $this->loggedUser->gender = Gender::from($this->data['gender']);
@@ -213,7 +221,10 @@ final readonly class UserWebController extends Controller {
       ? $this->departmentRepository->getAll()
       : [];
 
-    $filteredUsers = array_filter($users, fn(User $user): bool => $user->appointment->isLowerOrEqualThan($this->loggedUser->appointment));
+    $filteredUsers = array_filter(
+      $users,
+      fn(User $user): bool => $user->appointment->isLowerOrEqualThan($this->loggedUser->appointment)
+    );
 
     if ($this->loggedUser->appointment === Appointment::Coordinator) {
       $filteredUsers = array_filter($filteredUsers, fn(User $user): bool => $user->appointment->isHigherThan($this->loggedUser->appointment) || (

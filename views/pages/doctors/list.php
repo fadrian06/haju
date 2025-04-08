@@ -6,7 +6,7 @@ use App\Models\Doctor;
 use App\Models\User;
 use App\ValueObjects\Gender;
 
-$doctors = array_map(fn (Doctor $doctor) => $doctor, $doctors);
+$doctors = array_map(fn(Doctor $doctor) => $doctor, $doctors);
 $loggedUser = $user;
 assert($loggedUser instanceof User);
 
@@ -14,7 +14,10 @@ assert($loggedUser instanceof User);
 
 <section class="mb-4 d-inline-flex px-0 align-items-center justify-content-between">
   <h2>Doctores</h2>
-  <a data-bs-toggle="modal" href="#registrar" class="btn btn-primary rounded-pill d-flex align-items-center">
+  <a
+    data-bs-toggle="modal"
+    href="#registrar"
+    class="btn btn-primary rounded-pill d-flex align-items-center">
     <i class="px-2 ti-plus"></i>
     <span class="px-2">Registrar doctor</span>
   </a>
@@ -27,9 +30,9 @@ assert($loggedUser instanceof User);
 <ul class="list-unstyled row row-cols-sm-2 row-cols-md-3">
   <?php foreach ($doctors as $doctor) : ?>
     <li class="mb-4 d-flex align-items-stretch">
-      <article class="card card-body text-center <?= $doctor->canBeEditedBy($loggedUser) ? '' : 'pe-none opacity-50 user-select-none' ?>">
+      <article class="card card-body text-center <?= $doctor->canBeEditedBy($loggedUser) ?: 'pe-none opacity-50 user-select-none' ?>">
         <div class="dropdown position-relative">
-          <button style="right: 0" class="bg-transparent border-0 position-absolute" data-bs-toggle="dropdown">
+          <button class="end-0 bg-transparent border-0 position-absolute" data-bs-toggle="dropdown">
             <i class="ti-more"></i>
           </button>
           <div class="dropdown-menu">
@@ -40,7 +43,11 @@ assert($loggedUser instanceof User);
           </div>
         </div>
         <picture class="p-3">
-          <img class="img-fluid rounded-circle" src="./assets/img/client_img.png" style="height: 130px" title="<?= $doctor->getFullName() ?>" />
+          <img
+            class="img-fluid rounded-circle"
+            src="./assets/img/client_img.png"
+            style="height: 130px"
+            title="<?= $doctor->getFullName() ?>" />
         </picture>
         <h4 title="<?= $doctor->getFullName() ?>">
           <?= "{$doctor->firstName} {$doctor->firstLastName}" ?>

@@ -6,5 +6,5 @@ namespace App\Repositories\Exceptions;
 
 use Exception;
 
-abstract class RepositoryException extends Exception {
+class RepositoryException extends Exception {
 }

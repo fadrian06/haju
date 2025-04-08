@@ -46,9 +46,10 @@ final readonly class PatientWebController extends Controller {
     sql);
 
     $stmt->execute();
+
     $consultations = [];
 
-    while ($consultationRecord = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    while (is_array($consultationRecord = $stmt->fetch(PDO::FETCH_ASSOC))) {
       $consultation = new Consultation(
         ConsultationType::from($consultationRecord['type']),
         $this->consultationCauseRepository->getById($consultationRecord['cause_id']),
@@ -201,7 +202,7 @@ final readonly class PatientWebController extends Controller {
         ->getById((int) $this->data['id_card']);
 
       $consultation = new Consultation(
-        $this->data['consultation_type']
+        boolval($this->data['consultation_type'])
           ? ConsultationType::from($this->data['consultation_type'])
           : ConsultationType::FirstTime,
         $this
@@ -241,10 +242,10 @@ final readonly class PatientWebController extends Controller {
       $this->doctorRepository->getById((int) $this->data['doctor']),
       $this->data['admission_department'],
       new DateTimeImmutable($this->data['admission_date']),
-      $this->data['departure_date']
+      boolval($this->data['departure_date'])
         ? new DateTimeImmutable($this->data['departure_date'])
         : null,
-      $this->data['departure_status']
+      boolval($this->data['departure_status'])
         ? DepartureStatus::from($this->data['departure_status'])
         : null,
       $this->data['diagnoses'] ?: null

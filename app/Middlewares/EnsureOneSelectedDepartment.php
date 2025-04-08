@@ -24,8 +24,8 @@ final readonly class EnsureOneSelectedDepartment {
       $departments[] = $department;
     }
 
-    if ($departmentId) {
-      $department = $this->departmentRepository->getById($departmentId);
+    if ($departmentId !== null) {
+      $department = $this->departmentRepository->getById((int) $departmentId);
     }
 
     $this->view->set('canChangeDepartment', count($departments) !== 1);

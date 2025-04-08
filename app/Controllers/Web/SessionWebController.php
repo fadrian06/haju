@@ -33,10 +33,10 @@ final readonly class SessionWebController extends Controller {
     $user = $this->userRepository->getByIdCard((int) $this->data['id_card']);
 
     try {
-      if (!$this->data['id_card']) {
+      if ($this->data['id_card'] === null) {
         throw new Error('La cédula es requerida');
       }
-      if (!$this->data['password']) {
+      if ($this->data['password'] === null) {
         throw new Error('La contraseña es requerida');
       }
 

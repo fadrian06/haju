@@ -18,10 +18,10 @@ final readonly class AuthenticationMiddleware {
   }
 
   public function before(): void {
-    if (
-      !$this->session->get('userId')
-      || !$user = $this->userRepository->getById((int) $this->session->get('userId'))
-    ) {
+    $userId = $this->session->get('userId');
+    $user = $this->userRepository->getById((int) $userId);
+
+    if ($user === null) {
       Flight::redirect('/salir');
 
       return;

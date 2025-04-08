@@ -28,7 +28,7 @@ final readonly class DoctorWebController extends Controller {
 
   public function handleRegister(): void {
     try {
-      if (!in_array($this->data['gender'], Gender::values())) {
+      if (!in_array($this->data['gender'], Gender::values(), true)) {
         throw new Error(sprintf(
           'El género es requerido y válido (%s)',
           implode(', ', Gender::values())

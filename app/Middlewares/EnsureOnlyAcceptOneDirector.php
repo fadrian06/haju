@@ -16,8 +16,8 @@ final readonly class EnsureOnlyAcceptOneDirector {
   }
 
   public function before(): void {
-    if ($this->request->data['secret_key']) {
-      self::checkSecretKey($this->request->data['secret_key']);
+    if ($this->request->data['secret_key'] !== null) {
+      $this->checkSecretKey($this->request->data['secret_key']);
       $this->session->set('let_register_director', true);
 
       exit(<<<'html'
@@ -27,7 +27,7 @@ final readonly class EnsureOnlyAcceptOneDirector {
       html);
     }
 
-    if ($this->session->get('let_register_director')) {
+    if ($this->session->get('let_register_director', false) !== false) {
       return;
     }
 
@@ -36,7 +36,7 @@ final readonly class EnsureOnlyAcceptOneDirector {
     exit;
   }
 
-  private static function checkSecretKey(string $secretKey): void {
+  private function checkSecretKey(string $secretKey): void {
     if ($secretKey !== '1234') {
       renderPage('login', 'Ingreso (1/2)', [
         'error' => 'Clave maestra incorrecta'

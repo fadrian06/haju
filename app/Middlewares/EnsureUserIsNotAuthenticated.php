@@ -12,7 +12,7 @@ final readonly class EnsureUserIsNotAuthenticated {
     // ...
   }
 
-  public function before() {
+  public function before(): void {
     if ($this->session->has('userId')) {
       Flight::redirect('/');
 
