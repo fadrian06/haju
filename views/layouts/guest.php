@@ -34,7 +34,9 @@ $message = isset($message) ? strval($message) : null;
   <link rel="stylesheet" href="./assets/dist/guest.css" />
 </head>
 
-<body class="pb-5 overflow-y-scroll">
+<body
+  class="overflow-y-scroll min-vh-100 d-grid"
+  style="grid-template-rows: auto 1fr auto">
   <?php Flight::render('components/headers/public') ?>
   <?= $content ?>
   <?php Flight::render('components/footer') ?>

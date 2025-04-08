@@ -11,7 +11,7 @@ $session = Container::getInstance()->get(Session::class);
 
 ?>
 
-<main class="container bg-white rounded-3 my-4 py-4">
+<main class="container bg-white rounded-3 my-4 py-4 d-flex flex-column justify-content-center">
   <div class="row justify-content-center">
     <div class="col-11 col-md-8">
       <form
