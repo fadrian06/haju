@@ -11,6 +11,8 @@
         "source.json.sublime": "LSP-json",
         "source.json.biome": "LSP-json",
         "source.json.npm": "LSP-json",
+        "source.json": "LSP-biome",
+        "source.ts": "LSP-biome",
       },
       "LSP-intelephense": {
         "settings": {
