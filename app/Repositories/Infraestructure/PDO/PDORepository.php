@@ -15,7 +15,7 @@ abstract class PDORepository {
 
   public function __construct(
     protected readonly Connection $connection,
-    protected readonly string $baseUrl
+    protected readonly string $baseUrl,
   ) {
   }
 

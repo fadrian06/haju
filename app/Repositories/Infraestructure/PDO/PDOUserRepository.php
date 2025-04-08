@@ -22,7 +22,7 @@ use PDOException;
 use PharIo\Manifest\Email;
 use PharIo\Manifest\Url;
 
-class PDOUserRepository extends PDORepository implements UserRepository {
+final class PDOUserRepository extends PDORepository implements UserRepository {
   private const FIELDS = <<<sql
   users.id as id, first_name as firstName, second_name as secondName,
   first_last_name as firstLastName, second_last_name as secondLastName,

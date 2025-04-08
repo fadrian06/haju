@@ -14,7 +14,9 @@ use App\ValueObjects\Gender;
 use PDO;
 use PDOException;
 
-final class PDODoctorRepository extends PDORepository implements DoctorRepository {
+final class PDODoctorRepository
+extends PDORepository
+implements DoctorRepository {
   private const FIELDS = <<<SQL
     id, first_name as firstName, second_name as secondName,
     first_last_name as firstLastName, second_last_name as secondLastName,

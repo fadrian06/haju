@@ -11,7 +11,9 @@ use PDO;
 use PDOException;
 use PharIo\Manifest\Url;
 
-class PDODepartmentRepository extends PDORepository implements DepartmentRepository {
+final class PDODepartmentRepository
+extends PDORepository
+implements DepartmentRepository {
   private const FIELDS = <<<sql
     id, name, registered_date as registeredDateTime,
     belongs_to_external_consultation as belongsToExternalConsultation,

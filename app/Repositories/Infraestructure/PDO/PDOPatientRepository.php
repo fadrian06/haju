@@ -22,10 +22,13 @@ use DateTimeImmutable;
 use PDO;
 use PDOException;
 
-final class PDOPatientRepository extends PDORepository implements PatientRepository {
+final class PDOPatientRepository
+extends PDORepository
+implements PatientRepository {
   private const FIELDS = <<<SQL
-    id, first_name as firstName, second_name as secondName, first_last_name as firstLastName,
-    second_last_name as secondLastName, birth_date as birthDate, gender, id_card as idCard,
+    id, first_name as firstName, second_name as secondName,
+    first_last_name as firstLastName, second_last_name as secondLastName,
+    birth_date as birthDate, gender, id_card as idCard,
     registered_date as registeredDate, registered_by_id as registeredById
   SQL;
 
