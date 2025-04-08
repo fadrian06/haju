@@ -5,42 +5,39 @@ declare(strict_types=1);
 namespace App\ValueObjects;
 
 use App\ValueObjects\Exceptions\InvalidPhoneException;
+use libphonenumber\NumberParseException;
+use libphonenumber\PhoneNumber;
+use libphonenumber\PhoneNumberFormat;
+use libphonenumber\PhoneNumberUtil;
 use Stringable;
 
-class Phone implements Stringable {
-  private string $countryCode = '58';
-  private readonly string $simPrefix;
-  private readonly string $phoneNumber;
+final readonly class Phone implements Stringable {
+  private PhoneNumber $phoneNumber;
 
   /** @throws InvalidPhoneException */
   public function __construct(string $phone) {
-    if (preg_match('/^(0?(?<simPrefix>\d{3}))(\s|-)?(\d{3})(\s|-)?(\d{4})$/', $phone, $matches)) {
-      if (in_array($matches['simPrefix'], [416, 426, 414, 424])) {
-        $this->countryCode = '58';
-      }
-
-      $this->simPrefix = $matches['simPrefix'];
-      $this->phoneNumber = $matches[4] . $matches[6];
-
-      return;
+    if (strlen($phone) < 11) {
+      throw new InvalidPhoneException('Teléfono inválido');
     }
 
-    if (preg_match('/^\+(?<countryCode>\d{2,4})(\s|-)?(?<simPrefix>\d{3})(\s|-)?(\d{3})(\s|-)?(\d{4})$/', $phone, $matches)) {
-      $this->countryCode = $matches['countryCode'];
-      $this->simPrefix = $matches['simPrefix'];
-      $this->phoneNumber = $matches[5] . $matches[7];
-
-      return;
+    try {
+      $this->phoneNumber = PhoneNumberUtil::getInstance()->parse($phone, 'VE');
+    } catch (NumberParseException) {
+      throw new InvalidPhoneException('Teléfono inválido');
     }
-
-    throw new InvalidPhoneException("Teléfono inválido \"{$phone}\"");
   }
 
   public function __toString(): string {
-    return "+{$this->countryCode} {$this->simPrefix}-{$this->phoneNumber}";
+    return PhoneNumberUtil::getInstance()->format(
+      $this->phoneNumber,
+      PhoneNumberFormat::INTERNATIONAL,
+    );
   }
 
   public function toValidPhoneLink(): string {
-    return $this->countryCode . $this->simPrefix . $this->phoneNumber;
+    return PhoneNumberUtil::getInstance()->format(
+      $this->phoneNumber,
+      PhoneNumberFormat::E164,
+    );
   }
 }
