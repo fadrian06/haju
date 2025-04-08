@@ -21,48 +21,50 @@ assert($doctor instanceof Doctor);
       'name' => 'first_name',
       'placeholder' => 'Primer nombre',
       'cols' => 6,
-      'variant' => 'input',
-      'value' => $doctor->firstName
+      'value' => $doctor->firstName,
     ]);
 
     Flight::render('components/input-group', [
       'name' => 'second_name',
       'placeholder' => 'Segundo nombre',
       'required' => false,
-      'value' => $doctor->secondName
+      'value' => $doctor->secondName,
+      'cols' => 6,
     ]);
 
     Flight::render('components/input-group', [
       'name' => 'first_last_name',
       'placeholder' => 'Primer apellido',
-      'required' => true,
-      'value' => $doctor->firstLastName
+      'value' => $doctor->firstLastName,
+      'cols' => 6,
     ]);
 
     Flight::render('components/input-group', [
       'name' => 'second_last_name',
       'placeholder' => 'Segundo apellido',
       'required' => false,
-      'value' => $doctor->secondLastName
+      'value' => $doctor->secondLastName,
+      'cols' => 6,
     ]);
 
     Flight::render('components/input-group', [
       'type' => 'number',
       'name' => 'id_card',
       'placeholder' => 'Cédula',
-      'required' => true,
-      'value' => $doctor->idCard
+      'value' => $doctor->idCard,
+      'cols' => 6,
     ]);
 
     Flight::render('components/input-group', [
       'type' => 'date',
       'name' => 'birth_date',
       'placeholder' => 'Fecha de nacimiento',
-      'value' => $doctor->birthDate->getWithDashes()
+      'value' => $doctor->birthDate->getWithDashes(),
+      'cols' => 6,
     ]);
 
     Flight::render('components/input-group', [
-      'variant' => 'select',
+      'type' => 'select',
       'name' => 'gender',
       'placeholder' => 'Género',
       'options' => array_map(fn(Gender $gender): array => [
@@ -70,7 +72,6 @@ assert($doctor instanceof Doctor);
         'text' => $gender->value,
         'selected' => $doctor->gender === $gender
       ], Gender::cases()),
-      'cols' => 12
     ]);
 
     ?>

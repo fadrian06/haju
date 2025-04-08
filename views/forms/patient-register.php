@@ -25,49 +25,50 @@ $action ??= "./pacientes#$id";
             'name' => 'first_name',
             'placeholder' => 'Primer nombre',
             'cols' => 6,
-            'variant' => 'input'
           ]);
 
           Flight::render('components/input-group', [
             'name' => 'second_name',
             'placeholder' => 'Segundo nombre',
-            'required' => false
+            'required' => false,
+            'cols' => 6,
           ]);
 
           Flight::render('components/input-group', [
             'name' => 'first_last_name',
             'placeholder' => 'Primer apellido',
-            'required' => true
+            'cols' => 6,
           ]);
 
           Flight::render('components/input-group', [
             'name' => 'second_last_name',
             'placeholder' => 'Segundo apellido',
-            'required' => false
+            'required' => false,
+            'cols' => 6,
           ]);
 
           Flight::render('components/input-group', [
             'type' => 'number',
             'name' => 'id_card',
             'placeholder' => 'Cédula',
-            'required' => true
+            'cols' => 6,
           ]);
 
           Flight::render('components/input-group', [
             'type' => 'date',
             'name' => 'birth_date',
-            'placeholder' => 'Fecha de nacimiento'
+            'placeholder' => 'Fecha de nacimiento',
+            'cols' => 6,
           ]);
 
           Flight::render('components/input-group', [
-            'variant' => 'select',
+            'type' => 'select',
             'name' => 'gender',
             'placeholder' => 'Género',
             'options' => array_map(fn (Gender $gender): array => [
               'value' => $gender->value,
               'text' => $gender->value
             ], Gender::cases()),
-            'cols' => 12
           ]);
 
           ?>

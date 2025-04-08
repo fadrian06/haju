@@ -7,6 +7,7 @@ use App\Models\Hospitalization;
 use App\Models\Patient;
 use App\ValueObjects\AdmissionDepartment;
 use App\ValueObjects\DepartureStatus;
+use flight\Container;
 use Leaf\Http\Session;
 
 /**
@@ -14,6 +15,8 @@ use Leaf\Http\Session;
  * @var Hospitalization $hospitalization
  * @var Doctor[] $doctors
  */
+
+$session = Container::getInstance()->get(Session::class);
 
 ?>
 
@@ -29,40 +32,36 @@ use Leaf\Http\Session;
     <?php
 
     Flight::render('components/input-group', [
-      'variant' => 'input',
       'type' => 'date',
       'placeholder' => 'Fecha de ingreso',
       'cols' => 6,
       'name' => 'admission_date',
-      'value' => Session::get('lastData', [])['admission_date'] ?? $hospitalization->admissionDate->format('Y-m-d')
+      'value' => $session->get('lastData', [])['admission_date'] ?? $hospitalization->admissionDate->format('Y-m-d')
     ]);
 
     Flight::render('components/input-group', [
-      'variant' => 'input',
       'type' => 'date',
       'placeholder' => 'Fecha de salida',
       'cols' => 6,
       'name' => 'departure_date',
-      'required' => true,
-      'value' => Session::get('lastData', [])['departure_date'] ?? date('Y-m-d')
+      'value' => $session->get('lastData', [])['departure_date'] ?? date('Y-m-d'),
     ]);
 
     Flight::render('components/input-group', [
-      'variant' => 'select',
+      'type' => 'select',
       'options' => array_map(fn(DepartureStatus $status): array => [
         'value' => $status->value,
         'text' => $status->value,
-        'selected' => (Session::get('lastData', [])['admission_status'] ?? $hospitalization->departureStatus) === $status,
+        'selected' => ($session->get('lastData', [])['admission_status'] ?? $hospitalization->departureStatus) === $status,
       ], DepartureStatus::cases()),
       'placeholder' => 'Estado de salida',
       'cols' => 6,
       'name' => 'departure_status',
       'hidden' => false,
-      'required' => true
     ]);
 
     Flight::render('components/input-group', [
-      'variant' => 'select',
+      'type' => 'select',
       'options' => array_map(fn(AdmissionDepartment $department): array => [
         'value' => $department->value,
         'text' => $department->value,
@@ -72,11 +71,10 @@ use Leaf\Http\Session;
       'cols' => 6,
       'name' => 'admission_department',
       'hidden' => false,
-      'required' => true
     ]);
 
     Flight::render('components/input-group', [
-      'variant' => 'select',
+      'type' => 'select',
       'options' => array_map(fn(Doctor $doctor): array => [
         'value' => $doctor->id,
         'text' => "v-$doctor->idCard ~ $doctor->firstName $doctor->firstLastName",
@@ -85,16 +83,15 @@ use Leaf\Http\Session;
       'placeholder' => 'Seleccione un doctor',
       'cols' => 6,
       'name' => 'doctor',
-      'hidden' => false
+      'hidden' => false,
     ]);
 
     Flight::render('components/input-group', [
-      'variant' => 'textarea',
+      'type' => 'textarea',
       'placeholder' => 'Diagnósticos',
       'cols' => 6,
       'name' => 'diagnoses',
       'hidden' => false,
-      'required' => true
     ]);
 
     ?>

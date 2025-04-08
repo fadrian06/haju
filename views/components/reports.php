@@ -51,7 +51,6 @@ declare(strict_types=1);
           'pattern' => '\d{4}-\d{2}',
           'title' => 'La fecha debe tener el formato AAAA-MM',
           'labelStyle' => 'left: 0',
-          'variant' => 'input',
           'margin' => 4
         ]) ?>
 
@@ -126,7 +125,6 @@ declare(strict_types=1);
           'pattern' => '\d{4}-\d{2}',
           'title' => 'La fecha debe tener el formato AAAA-MM',
           'labelStyle' => 'left: 0',
-          'variant' => 'input'
         ]) ?>
 
         <button class="btn btn-sm btn-primary">Generar</button>

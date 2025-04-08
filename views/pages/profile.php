@@ -112,25 +112,23 @@ use App\ValueObjects\Appointment;
         <?php
 
         Flight::render('components/input-group', [
-          'variant' => 'input',
           'type' => 'password',
           'name' => 'old_password',
           'placeholder' => 'Contraseña anterior',
-          'cols' => 12
         ]);
 
         Flight::render('components/input-group', [
           'type' => 'password',
           'name' => 'new_password',
           'placeholder' => 'Nueva contraseña',
-          'cols' => 6
+          'cols' => 6,
         ]);
 
         Flight::render('components/input-group', [
           'type' => 'password',
           'name' => 'confirm_password',
           'placeholder' => 'Confirmar contraseña',
-          'cols' => 6
+          'cols' => 6,
         ]);
 
         ?>

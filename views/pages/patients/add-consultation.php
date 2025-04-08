@@ -84,27 +84,27 @@ use App\ValueObjects\ConsultationType;
     <?php
 
     Flight::render('components/input-group', [
-      'variant' => 'select',
+      'type' => 'select',
       'options' => array_map(fn(ConsultationCauseCategory $category): array => [
         'value' => $category->id,
         'text' => $category->extendedName ?: $category->shortName
       ], $consultationCauseCategories),
       'placeholder' => 'Categoría de causa de consulta',
       'cols' => 7,
-      'name' => 'consultation_cause_category'
+      'name' => 'consultation_cause_category',
     ]);
 
     Flight::render('components/input-group', [
-      'variant' => 'select',
+      'type' => 'select',
       'hidden' => true,
       'options' => [],
       'placeholder' => 'Causa de consulta',
       'cols' => 5,
-      'name' => 'consultation_cause'
+      'name' => 'consultation_cause',
     ]);
 
     Flight::render('components/input-group', [
-      'variant' => 'select',
+      'type' => 'select',
       'hidden' => true,
       'options' => array_map(fn(ConsultationType $type): array => [
         'value' => $type->value,
@@ -112,11 +112,11 @@ use App\ValueObjects\ConsultationType;
       ], ConsultationType::getCases()),
       'placeholder' => 'Tipo de consulta',
       'cols' => 6,
-      'name' => 'consultation_type'
+      'name' => 'consultation_type',
     ]);
 
     Flight::render('components/input-group', [
-      'variant' => 'select',
+      'type' => 'select',
       'options' => array_map(fn(Department $department): array => [
         'value' => $department->id,
         'text' => $department->name
@@ -124,11 +124,11 @@ use App\ValueObjects\ConsultationType;
       'placeholder' => 'Seleccione un departamento',
       'cols' => 6,
       'name' => 'department',
-      'hidden' => false
+      'hidden' => false,
     ]);
 
     Flight::render('components/input-group', [
-      'variant' => 'select',
+      'type' => 'select',
       'options' => array_map(fn(Doctor $doctor): array => [
         'value' => $doctor->id,
         'text' => "v-$doctor->idCard ~ $doctor->firstName $doctor->firstLastName"
@@ -136,7 +136,7 @@ use App\ValueObjects\ConsultationType;
       'placeholder' => 'Seleccione un doctor',
       'cols' => 6,
       'name' => 'doctor',
-      'hidden' => false
+      'hidden' => false,
     ]);
 
     ?>

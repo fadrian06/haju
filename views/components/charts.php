@@ -81,17 +81,15 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       Flight::render('components/input-group', [
         'name' => 'fecha_inicio',
-        'variant' => 'input',
         'placeholder' => 'Desde',
         'type' => 'date',
         'value' => $_GET['fecha_inicio'] ?? '',
         'cols' => 6,
-        'required' => false
+        'required' => false,
       ]);
 
       Flight::render('components/input-group', [
         'name' => 'fecha_fin',
-        'variant' => 'input',
         'placeholder' => 'Hasta',
         'type' => 'date',
         'value' => $_GET['fecha_fin'] ?? $currentDate,
@@ -103,13 +101,13 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
       ?>
 
       <div class="col-md-12 d-flex align-items-center justify-content-center flex-wrap gap-3">
-        <?php foreach (DateRange::cases() as $index => $range): ?>
+        <?php foreach (DateRange::cases() as $index => $dateRange): ?>
           <?php Flight::render('components/input-group', [
             'name' => 'rango',
-            'variant' => 'radio',
-            'checked' => ($_GET['rango'] ?? DateRange::Monthly->value) === $range->value,
-            'placeholder' => $range->value,
-            'value' => $range->value
+            'type' => 'radio',
+            'checked' => ($_GET['rango'] ?? DateRange::Monthly->value) === $dateRange->value,
+            'placeholder' => $dateRange->value,
+            'value' => $dateRange->value,
           ]) ?>
         <?php endforeach ?>
       </div>
@@ -136,10 +134,10 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       Flight::render('components/input-group', [
         'name' => 'id_causa',
-        'variant' => 'select',
+        'type' => 'select',
         'placeholder' => 'Causa de consulta',
         'options' => array_map(static fn(array $cause): array => [
-          'selected' => ($_GET['id_causa'] ?? $frecuentCauses[0]['cause_id']) == $cause['cause_id'],
+          'selected' => intval($_GET['id_causa'] ?? $frecuentCauses[0]['cause_id']) === intval($cause['cause_id']),
           'value' => $cause['cause_id'],
           'text' => $cause['extended_name'] ?? "{$cause['short_name']} {$cause['variant']}"
         ], $frecuentCauses),
@@ -149,35 +147,33 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       Flight::render('components/input-group', [
         'name' => 'fecha_inicio',
-        'variant' => 'input',
         'placeholder' => 'Desde',
         'type' => 'date',
         'value' => $_GET['fecha_inicio'] ?? '',
         'cols' => 6,
-        'required' => false
+        'required' => false,
       ]);
 
       Flight::render('components/input-group', [
         'name' => 'fecha_fin',
-        'variant' => 'input',
         'placeholder' => 'Hasta',
         'type' => 'date',
         'value' => $_GET['fecha_fin'] ?? $currentDate,
         'cols' => 6,
         'required' => false,
-        'max' => $currentDate
+        'max' => $currentDate,
       ]);
 
       ?>
 
       <div class="col-md-12 d-flex align-items-center justify-content-center flex-wrap gap-3">
-        <?php foreach (DateRange::cases() as $index => $range): ?>
+        <?php foreach (DateRange::cases() as $index => $dateRange): ?>
           <?php Flight::render('components/input-group', [
             'name' => 'rango',
-            'variant' => 'radio',
-            'checked' => ($_GET['rango'] ?? DateRange::Monthly->value) === $range->value,
-            'placeholder' => $range->value,
-            'value' => $range->value
+            'type' => 'radio',
+            'checked' => ($_GET['rango'] ?? DateRange::Monthly->value) === $dateRange->value,
+            'placeholder' => $dateRange->value,
+            'value' => $dateRange->value
           ]) ?>
         <?php endforeach ?>
       </div>
@@ -204,7 +200,7 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
       frecuentCauses: new Chart(document.getElementById('frecuent-causes'), {
         type: 'bar',
         data: {
-          labels: frecuentCauses.map(cause => (cause.extended_name || cause.short_name) + ' ' + (cause.variant || '')),
+          labels: frecuentCauses.map(cause => `${cause.extended_name || cause.short_name} ${cause.variant || ''}`),
           datasets: [{
             label: 'Número de casos',
             data: frecuentCauses.map(cause => cause.consultations),
@@ -253,7 +249,10 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     printBtns.frecuentCause.addEventListener(
       'click',
-      () => printCanvas(charts.frecuentCause.canvas, 'Frecuencia de ' + frecuentCause[0]?.short_name + ' ' + (frecuentCause[0]?.variant || ''))
+      () => printCanvas(
+        charts.frecuentCause.canvas,
+        `Frecuencia de ${frecuentCause[0]?.short_name} ${frecuentCause[0]?.variant || ''}`
+      )
     )
   })
 </script>

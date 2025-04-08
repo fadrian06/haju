@@ -29,40 +29,41 @@ use App\ValueObjects\InstructionLevel;
         <?php
 
         Flight::render('components/input-group', [
-          'variant' => 'input',
           'type' => 'number',
           'name' => 'id_card',
           'value' => $user->idCard,
-          'placeholder' => 'Cédula'
+          'placeholder' => 'Cédula',
+          'cols' => 6,
         ]);
 
         Flight::render('components/input-group', [
           'value' => $user->firstName,
           'name' => 'first_name',
           'placeholder' => 'Primer nombre',
-          'type' => 'text',
-          'variant' => 'input'
+          'cols' => 6,
         ]);
 
         Flight::render('components/input-group', [
           'value' => $user->secondName,
           'name' => 'second_name',
           'placeholder' => 'Segundo nombre',
-          'required' => false
+          'required' => false,
+          'cols' => 6,
         ]);
 
         Flight::render('components/input-group', [
           'value' => $user->firstLastName,
           'name' => 'first_last_name',
           'placeholder' => 'Primer apellido',
-          'required' => true
+          'cols' => 6,
         ]);
 
         Flight::render('components/input-group', [
           'value' => $user->secondLastName,
           'name' => 'second_last_name',
           'placeholder' => 'Segundo apellido',
-          'required' => false
+          'required' => false,
+          'cols' => 6,
         ]);
 
         Flight::render('components/input-group', [
@@ -70,36 +71,37 @@ use App\ValueObjects\InstructionLevel;
           'name' => 'birth_date',
           'placeholder' => 'Fecha de nacimiento',
           'type' => 'date',
-          'required' => true
+          'cols' => 6,
         ]);
 
         Flight::render('components/input-group', [
-          'variant' => 'select',
+          'type' => 'select',
           'name' => 'gender',
           'placeholder' => 'Género',
           'options' => array_map(fn(Gender $gender): array => [
             'value' => $gender->value,
             'text' => $gender->value,
             'selected' => $gender === $user->gender
-          ], Gender::cases())
+          ], Gender::cases()),
+          'cols' => 6,
         ]);
 
         Flight::render('components/input-group', [
-          'variant' => 'select',
+          'type' => 'select',
           'name' => 'instruction_level',
           'placeholder' => 'Nivel de instrucción',
           'options' => array_map(fn(InstructionLevel $instruction): array => [
             'value' => $instruction->value,
             'text' => $instruction->getLongValue(),
             'selected' => $instruction === $user->instructionLevel
-          ], InstructionLevel::cases())
+          ], InstructionLevel::cases()),
+          'cols' => 6,
         ]);
 
         Flight::render('components/input-group', [
-          'variant' => 'file',
+          'type' => 'file',
           'name' => 'profile_image',
           'placeholder' => 'Imagen de perfil',
-          'cols' => 12,
           'required' => false
         ]);
 
@@ -113,28 +115,26 @@ use App\ValueObjects\InstructionLevel;
       <?php
 
       Flight::render('components/input-group', [
-        'variant' => 'textarea',
+        'type' => 'textarea',
         'name' => 'address',
         'placeholder' => 'Dirección',
-        'cols' => 12,
         'value' => $user->address,
-        'required' => true
       ]);
 
       Flight::render('components/input-group', [
-        'variant' => 'input',
         'type' => 'tel',
         'name' => 'phone',
         'value' => $user->phone,
         'placeholder' => 'Teléfono',
-        'cols' => 6
+        'cols' => 6,
       ]);
 
       Flight::render('components/input-group', [
         'type' => 'email',
         'name' => 'email',
         'value' => $user->email->asString(),
-        'placeholder' => 'Correo'
+        'placeholder' => 'Correo',
+        'cols' => 6,
       ]);
 
       ?>

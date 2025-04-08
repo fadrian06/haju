@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Enums\InputGroupType;
+
 /**
- * @var ?int $cols
- * @var null|'input'|'textarea'|'select'|'file'|'checkbox' $variant
- * @var ?string $type
  * @var ?bool $required
  * @var ?bool $readonly
  * @var string $name
@@ -20,8 +19,36 @@ declare(strict_types=1);
  * @var ?string $title
  */
 
+$cols = isset($cols) ? intval($cols) : 12;
+assert($cols > 0 && $cols <= 12);
+
+$type = match (true) {
+  isset($type) && is_string($type) => InputGroupType::from($type),
+  isset($type) && $type instanceof InputGroupType => $type,
+  default => InputGroupType::TEXT,
+};
+
 $id = $name . random_int(0, mt_getrandmax());
-$variant ??= 'input';
+
+if (isset($variant)) {
+  $error = new Error('DEPRECATED INPUT-GROUP COMPONENT PARAM: variant');
+
+  $trace = join("\n  ", array_map(
+    static fn(array $call): string => ($call['file'] ?? '') . ':' . ($call['line'] ?? ''),
+    array_filter(
+      $error->getTrace(),
+      static fn(array $call): bool => str_contains($call['file'] ?? '', 'views'),
+    )
+  ));
+
+  file_put_contents(
+    __DIR__ . '/../../app/logs/deprecations.log',
+    $error->getMessage() . PHP_EOL . $trace,
+  );
+} else {
+  file_put_contents(__DIR__ . '/../../app/logs/deprecations.log', '');
+}
+
 $required ??= true;
 $min ??= 0;
 $type ??= 'text';
@@ -38,12 +65,12 @@ $oninput ??= null;
 
 ?>
 
-<?php if ($variant === 'checkbox' || $variant === 'radio'): ?>
+<?php if ($type === InputGroupType::CHECKBOX || $type === InputGroupType::RADIO): ?>
   <div class="form-check form-switch fs-6 d-flex gap-1 align-items-end">
     <input
       class="form-check-input"
       name="<?= $name ?>"
-      type="<?= $variant ?>"
+      type="<?= $type->value ?>"
       id="<?= $id ?>"
       <?= $checked ? 'checked' : '' ?>
       <?= $hidden ? 'hidden' : '' ?>
@@ -54,24 +81,7 @@ $oninput ??= null;
   </div>
 <?php else: ?>
   <div class="col-md-<?= $cols ?? 6 ?> <?= $hidden ? 'd-none' : '' ?> form-floating mb-<?= $margin ?>">
-    <?php if ($variant === 'input') : ?>
-      <input
-        style="height: 66px; <?= $type === 'date' ? 'padding-top: 1em; padding-bottom: 0' : '' ?>"
-        type="<?= $type ?>"
-        class="form-control <?= $readonly ? 'opacity-25' : '' ?>"
-        <?= $required ? 'required' : '' ?>
-        name="<?= $name ?>"
-        id="<?= $id ?>"
-        min="<?= $min ?>"
-        <?= $max ? "max='$max'" : '' ?>
-        placeholder="<?= $placeholder ?>"
-        value="<?= $value ?>"
-        <?= $readonly ? 'readonly' : '' ?>
-        list="<?= $list ?? null ?>"
-        <?= $pattern ? "pattern='$pattern'" : '' ?>
-        <?= $title ? "data-bs-toggle='tooltip' title='$title'" : '' ?>
-        <?= $oninput ? "oninput='$oninput'" : '' ?> />
-    <?php elseif ($variant === 'textarea') : ?>
+    <?php if ($type === InputGroupType::TEXTAREA) : ?>
       <textarea
         class="form-control"
         <?= $required ? 'required' : '' ?>
@@ -79,7 +89,7 @@ $oninput ??= null;
         id="<?= $id ?>"
         style="height: 66px"
         placeholder="<?= $placeholder ?>"><?= $value ?></textarea>
-    <?php elseif ($variant === 'file'): ?>
+    <?php elseif ($type === InputGroupType::FILE): ?>
       <input
         style="height: auto; padding-bottom: 0"
         type="file"
@@ -87,7 +97,7 @@ $oninput ??= null;
         <?= $required ? 'required' : '' ?>
         name="<?= $name ?>"
         id="<?= $id ?>" />
-    <?php else: ?>
+    <?php elseif ($type === InputGroupType::SELECT) : ?>
       <select
         style="border-color: rgb(241, 243, 245)"
         <?= $required ? 'required' : '' ?>
@@ -101,15 +111,35 @@ $oninput ??= null;
         </option>
         <?php foreach ($options as $option) : ?>
           <option
-            <?= !empty($option['selected']) ? 'selected' : '' ?>
+            <?= !@$option['selected'] ?: 'selected' ?>
             value="<?= $option['value'] ?>">
             <?= $option['text'] ?>
           </option>
         <?php endforeach ?>
       </select>
+    <?php else: ?>
+      <input
+        style="height: 66px; <?= $type === 'date' ? 'padding-top: 1em; padding-bottom: 0' : '' ?>"
+        type="<?= $type->value ?>"
+        class="form-control <?= $readonly ? 'opacity-25' : '' ?>"
+        <?= $required ? 'required' : '' ?>
+        name="<?= $name ?>"
+        id="<?= $id ?>"
+        min="<?= $min ?>"
+        <?= $max ? "max='$max'" : '' ?>
+        placeholder="<?= $placeholder ?>"
+        value="<?= $value ?>"
+        <?= $readonly ? 'readonly' : '' ?>
+        list="<?= $list ?? null ?>"
+        <?= $pattern ? "pattern='$pattern'" : '' ?>
+        <?= $title ? "data-bs-toggle='tooltip' title='$title'" : '' ?>
+        <?= $oninput ? "oninput='$oninput'" : '' ?> />
     <?php endif ?>
     <label for="<?= $id ?>" style="<?= $labelStyle ?? '' ?>">
-      <?= $placeholder . ($required ? '<sub class="text-danger ms-2" style="font-size: 2em">*</sub>' : '') ?>
+      <?= $placeholder ?>
+      <?php if ($required) : ?>
+        <sub class="text-danger ms-2" style="font-size: 2em">*</sub>
+      <?php endif ?>
     </label>
   </div>
 <?php endif ?>
