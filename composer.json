@@ -48,7 +48,10 @@
       "phpstan --no-progress --no-ansi --memory-limit=512M",
       "rector --dry-run --no-progress-bar --no-ansi"
     ],
-    "migrate:fresh": "php app/commands/migrate-fresh.php"
+    "migrate:fresh": "php app/commands/migrate-fresh.php",
+    "format": [
+      "rector"
+    ]
   },
   "require-dev": {
     "guzzlehttp/guzzle": "^7.9",
