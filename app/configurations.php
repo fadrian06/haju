@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Enums\DBDriver;
 use App\Repositories\Domain\ConsultationCauseCategoryRepository;
 use App\Repositories\Domain\ConsultationCauseRepository;
 use App\Repositories\Domain\DepartmentRepository;
