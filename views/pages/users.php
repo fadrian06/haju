@@ -6,6 +6,8 @@ use App\Models\User;
 use App\ValueObjects\Appointment;
 use App\ValueObjects\Gender;
 use App\ValueObjects\InstructionLevel;
+use flight\Container;
+use Leaf\Http\Session;
 
 /**
  * @var array<int, User> $users
@@ -13,6 +15,7 @@ use App\ValueObjects\InstructionLevel;
  */
 
 $loggedUser = $user;
+$session = Container::getInstance()->get(Session::class);
 
 ?>
 
@@ -72,7 +75,7 @@ $loggedUser = $user;
   <?php endforeach ?>
 </ul>
 
-<div class="modal modal-xl fade" id="registrar">
+<div class="modal fade" id="registrar">
   <div class="modal-dialog modal-dialog-scrollable">
     <form enctype="multipart/form-data" action="./usuarios#registrar" class="modal-content" method="post">
       <header class="modal-header">
@@ -82,14 +85,16 @@ $loggedUser = $user;
         </h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </header>
-      <section class="modal-body" x-data="{ idCard: '' }">
+      <section
+        class="modal-body"
+        x-data="{ idCard: '<?= $session->get('lastData')['id_card'] ?? '' ?>' }">
         <fieldset class="row row-gap-3 mb-3">
           <summary class="fs-6 mb-2">Datos personales</summary>
           <div class="col-md-6">
             <?php Flight::render('components/inputs/input', [
               'name' => 'first_name',
               'label' => 'Primer nombre',
-              'value' => $_SESSION['lastData']['first_name'] ?? '',
+              'value' => $session->get('lastData')['first_name'] ?? '',
             ]) ?>
           </div>
 
@@ -98,7 +103,7 @@ $loggedUser = $user;
               'name' => 'second_name',
               'label' => 'Segundo nombre',
               'required' => false,
-              'value' => $_SESSION['lastData']['second_name'] ?? '',
+              'value' => $session->get('lastData')['second_name'] ?? '',
             ]) ?>
           </div>
 
@@ -106,7 +111,7 @@ $loggedUser = $user;
             <?php Flight::render('components/inputs/input', [
               'name' => 'first_last_name',
               'label' => 'Primer apellido',
-              'value' => $_SESSION['lastData']['first_last_name'] ?? '',
+              'value' => $session->get('lastData')['first_last_name'] ?? '',
             ]) ?>
           </div>
 
@@ -115,7 +120,7 @@ $loggedUser = $user;
               'name' => 'second_last_name',
               'label' => 'Segundo apellido',
               'required' => false,
-              'value' => $_SESSION['lastData']['second_last_name'] ?? '',
+              'value' => $session->get('lastData')['second_last_name'] ?? '',
             ]) ?>
           </div>
 
@@ -124,7 +129,7 @@ $loggedUser = $user;
               'type' => 'number',
               'name' => 'id_card',
               'label' => 'Cédula',
-              'value' => $_SESSION['lastData']['id_card'] ?? '',
+              'value' => $session->get('lastData')['id_card'] ?? '',
               'model' => 'idCard',
             ]) ?>
           </div>
@@ -134,7 +139,7 @@ $loggedUser = $user;
               'type' => 'date',
               'name' => 'birth_date',
               'label' => 'Fecha de nacimiento',
-              'value' => $_SESSION['lastData']['birth_date'] ?? '',
+              'value' => $session->get('lastData')['birth_date'] ?? '',
             ]) ?>
           </div>
 
@@ -146,7 +151,7 @@ $loggedUser = $user;
                 static fn(Gender $gender): array => [
                   'value' => $gender->value,
                   'slot' => $gender->value,
-                  'selected' => ($_SESSION['lastData']['gender'] ?? '') === $gender->value,
+                  'selected' => ($session->get('lastData')['gender'] ?? '') === $gender->value,
                 ],
                 Gender::cases()
               ),
@@ -161,7 +166,7 @@ $loggedUser = $user;
                 static fn(InstructionLevel $instruction): array => [
                   'value' => $instruction->value,
                   'slot' => $instruction->getLongValue(),
-                  'selected' => ($_SESSION['lastData']['instruction_level'] ?? '') === $instruction->value,
+                  'selected' => ($session->get('lastData')['instruction_level'] ?? '') === $instruction->value,
                 ],
                 InstructionLevel::cases(),
               ),
@@ -201,7 +206,7 @@ $loggedUser = $user;
               <?php foreach ($user->getDepartment() as $department) : ?>
                 <option
                   value="<?= $department->id ?>"
-                  <?= in_array($department->id, $_SESSION['lastData']['departments'] ?? [], true) ? 'selected' : '' ?>>
+                  <?= in_array($department->id, $session->get('lastData')['departments'] ?? [], true) ? 'selected' : '' ?>>
                   <?= $department->name ?>
                 </option>
               <?php endforeach ?>
@@ -217,7 +222,7 @@ $loggedUser = $user;
               'name' => 'phone',
               'label' => 'Teléfono',
               'readonly' => false,
-              'value' => $_SESSION['lastData']['phone'] ?? '',
+              'value' => $session->get('lastData')['phone'] ?? '',
             ]) ?>
           </div>
 
@@ -226,7 +231,7 @@ $loggedUser = $user;
               'type' => 'email',
               'name' => 'email',
               'label' => 'Correo electrónico',
-              'value' => $_SESSION['lastData']['email'] ?? '',
+              'value' => $session->get('lastData')['email'] ?? '',
             ]) ?>
           </div>
 
@@ -234,11 +239,11 @@ $loggedUser = $user;
             <?php Flight::render('components/inputs/textarea', [
               'name' => 'address',
               'label' => 'Dirección',
-              'value' => $_SESSION['lastData']['address'] ?? '',
+              'value' => $session->get('lastData')['address'] ?? '',
             ]) ?>
           </div>
         </fieldset>
-        <fieldset class="row row-gap-3 mb-3">
+        <fieldset class="row row-gap-3 mb-3 align-items-center">
           <div class="col-md-5">
             <?php Flight::render('components/inputs/input-file', [
               'name' => 'profile_image',
@@ -253,7 +258,7 @@ $loggedUser = $user;
               'type' => 'url',
               'name' => 'profile_image_url',
               'label' => 'URL de la foto de perfil',
-              'value' => $_SESSION['lastData']['profile_image_url'] ?? '',
+              'value' => $session->get('lastData')['profile_image_url'] ?? '',
             ]) ?>
           </div>
 

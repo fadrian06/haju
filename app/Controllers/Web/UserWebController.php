@@ -18,7 +18,6 @@ use App\ValueObjects\InstructionLevel;
 use App\ValueObjects\Phone;
 use Error;
 use Flight;
-use Leaf\Http\Session;
 use PharIo\Manifest\Email;
 use PharIo\Manifest\InvalidEmailException;
 use Throwable;
@@ -121,7 +120,7 @@ final readonly class UserWebController extends Controller {
       $departments = [];
 
       foreach ($this->data['departments'] ?? [] as $departmentID) {
-        $departments[] = $this->departmentRepository->getById($departmentID);
+        $departments[] = $this->departmentRepository->getById(intval($departmentID));
       }
 
       if ($departments) {
