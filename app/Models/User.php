@@ -173,8 +173,7 @@ final class User extends Person implements Activable {
     };
   }
 
-  public function jsonSerialize(): array
-  {
+  public function jsonSerialize(): array {
     return parent::jsonSerialize() + [
       'isDirector' => $this->appointment->isDirector(),
     ];

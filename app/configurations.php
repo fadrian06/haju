@@ -133,3 +133,15 @@ Flight::view()->set(
     ->get(UserRepository::class)
     ->getById(intval($container->get(Session::class)->get('userId')))
 );
+
+Flight::view()->set(
+  'department',
+  $container
+    ->get(DepartmentRepository::class)
+    ->getById(intval($container->get(Session::class)->get('departmentId'))),
+);
+
+Flight::view()->set(
+  'canChangeDepartment',
+  Flight::view()->get('user')?->hasDepartments() ?: false
+);
