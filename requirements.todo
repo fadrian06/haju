@@ -60,8 +60,8 @@ Recomendaciones:
     ✔ Generar reporte de gráficas en PDF. @done (20/03/2025 23:33:17)
 
   Correcciones T4T3:
-    ☐ Lista de pacientes de hospitalización
-    ☐ Filtrar pacientes por enfermedades
-      ☐ Mostrar la información de los pacientes que generan alerta epidemia
-      ☐ Mostrar la información de los pacientes que generan las gráficas
+    ✔ Lista de pacientes de hospitalización @done (09/04/2025 08:27:13)
+    ✔ Filtrar pacientes por enfermedades @done (09/04/2025 09:15:43)
+      ✔ Mostrar la información de los pacientes que generan alerta epidemia @done (09/04/2025 08:39:34)
+      ✔ Mostrar la información de los pacientes que generan las gráficas @done (09/04/2025 09:15:42)
     ☐ En el formato PDF agregar metainformación.

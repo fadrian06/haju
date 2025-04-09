@@ -262,7 +262,8 @@ final readonly class PatientWebController extends Controller {
           ->consultationCauseRepository
           ->getById((int) $this->data['consultation_cause']),
         $this->departmentRepository->getById((int) $this->data['department']),
-        $this->doctorRepository->getById((int) $this->data['doctor'])
+        $this->doctorRepository->getById((int) $this->data['doctor']),
+        $patient,
       );
 
       $patient->setConsultations($consultation);

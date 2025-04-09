@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Models\User;
+use App\Repositories\Domain\PatientRepository;
 use flight\Container;
 
 /**
@@ -53,13 +54,16 @@ foreach ($consultations as $consultation) {
   $weeklyLimit = $causesGroupedByCauseId[$causeId]['weeklyLimit'];
 
   if ($consultationsCount > $weeklyLimit) {
-    $epidemic = ['cause' => [
-      'short_name' => str_replace(
-        '  ',
-        ' ',
-        ($consultation['extended_name'] ?? $consultation['short_name']) . ' ' . $consultation['variant']
-      )
-    ]];
+    $epidemic = [
+      'cause' => [
+        'short_name' => str_replace(
+          '  ',
+          ' ',
+          ($consultation['extended_name'] ?? $consultation['short_name']) . ' ' . $consultation['variant']
+        ),
+      ],
+      'patient' => Container::getInstance()->get(PatientRepository::class)->getById(intval($consultation['patient_id'])),
+    ];
   }
 }
 
