@@ -22,6 +22,7 @@ final readonly class SessionWebController extends Controller {
   public function logOut(): void {
     $this->session->unset('userId');
     $this->session->unset('department');
+    $this->session->unset('mustChangePassword');
     Flight::redirect('/ingresar');
   }
 
