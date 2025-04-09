@@ -17,4 +17,5 @@ enum InputGroupType: string {
   case PASSWORD = 'password';
   case TEL = 'tel';
   case EMAIL = 'email';
+  case URL = 'url';
 }

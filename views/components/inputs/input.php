@@ -12,9 +12,15 @@ $model ??= '';
 $pattern ??= '';
 $title ??= '';
 $value ??= '';
+$readonly ??= false;
 
 $typeHasOneWord = str_contains(
   str_replace(['?', ':'], ' ', strval($type)),
+  ' '
+);
+
+$valueHasOneWord = str_contains(
+  str_replace(['?', ':'], ' ', strval($value)),
   ' '
 );
 
@@ -33,8 +39,10 @@ $typeHasOneWord = str_contains(
     <?= !$model ?: "x-model='{$model}'" ?>
     <?= !$pattern ?: "pattern='{$pattern}'" ?>
     <?= !$pattern ?: ":pattern='{$pattern}'" ?>
+    <?= !$readonly ?: 'readonly' ?>
     title="<?= $title ?>"
-    value="<?= $value ?>" />
+    value="<?= $value ?>"
+    :value="<?= $valueHasOneWord ? $value : "typeof {$value} !== 'undefined' ? {$value} : '{$value}'" ?>" />
   <label for="<?= $id ?>">
     <?php if ($required) : ?>
       <sub class="text-danger fs-1">*</sub>

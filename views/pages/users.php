@@ -22,7 +22,7 @@ $loggedUser = $user;
     <i class="px-2 ti-plus"></i>
     <span class="px-2">
       Registrar
-      <?= $user->appointment === Appointment::Director ? 'coordinador/a' : 'secretario/a' ?>
+      <?= $user->appointment->isDirector() ? 'coordinador/a' : 'secretario/a' ?>
     </span>
   </a>
 </section>
@@ -30,20 +30,26 @@ $loggedUser = $user;
 <ul class="list-unstyled row row-cols-sm-2 row-cols-md-3">
   <?php foreach ($users as $member) : ?>
     <li class="mb-4 d-flex align-items-stretch">
-      <article class="card card-body text-center <?= !$member->registeredBy?->isEqualTo($loggedUser) ? 'pe-none opacity-50 user-select-none' : '' ?>">
+      <article class="card card-body text-center <?= $member->registeredBy?->isEqualTo($loggedUser) ?: 'pe-none opacity-50 user-select-none' ?>">
         <div class="dropdown position-relative">
           <button style="right: 0" class="bg-transparent border-0 position-absolute" data-bs-toggle="dropdown">
             <i class="ti-more"></i>
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="./usuarios/<?= $member->id ?>/<?= $member->isActive() ? 'desactivar' : 'activar' ?>">
+            <a
+              class="dropdown-item"
+              href="./usuarios/<?= $member->id ?>/<?= $member->isActive() ? 'desactivar' : 'activar' ?>">
               <i class="ti-<?= $member->isActive() ? 'un' : '' ?>lock"></i>
               <?= $member->isActive() ? 'Desactivar' : 'Activar' ?>
             </a>
           </div>
         </div>
         <picture class="p-3">
-          <img class="img-fluid rounded-circle" src="<?= urldecode($member->profileImagePath->asString()) ?>" style="height: 130px" title="<?= $member->getFullName() ?>" />
+          <img
+            class="img-fluid rounded-circle"
+            src="<?= urldecode($member->profileImagePath->asString()) ?>"
+            style="height: 130px"
+            title="<?= $member->getFullName() ?>" />
         </picture>
         <span class="custom-badge status-<?= $member->isActive() ? 'green' : 'red' ?> mx-4 mb-2">
           <?= $member->isActive() ? 'Activo' : 'Inactivo' ?>
@@ -72,118 +78,118 @@ $loggedUser = $user;
       <header class="modal-header">
         <h3 class="modal-title fs-5">
           Registrar
-          <?= $user->appointment === Appointment::Director ? 'coordinador/a' : 'secretario/a' ?>
+          <?= $user->appointment->isDirector() ? 'coordinador/a' : 'secretario/a' ?>
         </h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </header>
-      <section class="modal-body">
-        <fieldset class="row">
+      <section class="modal-body" x-data="{ idCard: '' }">
+        <fieldset class="row row-gap-3 mb-3">
           <summary class="fs-6 mb-2">Datos personales</summary>
-          <?php
-          Flight::render('components/input-group', [
-            'name' => 'first_name',
-            'placeholder' => 'Primer nombre',
-            'value' => $_SESSION['lastData']['first_name'] ?? ''
-          ]);
+          <div class="col-md-6">
+            <?php Flight::render('components/inputs/input', [
+              'name' => 'first_name',
+              'label' => 'Primer nombre',
+              'value' => $_SESSION['lastData']['first_name'] ?? '',
+            ]) ?>
+          </div>
 
-          Flight::render('components/input-group', [
-            'name' => 'second_name',
-            'placeholder' => 'Segundo nombre',
-            'required' => false,
-            'value' => $_SESSION['lastData']['second_name'] ?? ''
-          ]);
+          <div class="col-md-6">
+            <?php Flight::render('components/inputs/input', [
+              'name' => 'second_name',
+              'label' => 'Segundo nombre',
+              'required' => false,
+              'value' => $_SESSION['lastData']['second_name'] ?? '',
+            ]) ?>
+          </div>
 
-          Flight::render('components/input-group', [
-            'name' => 'first_last_name',
-            'placeholder' => 'Primer apellido',
-            'required' => true,
-            'value' => $_SESSION['lastData']['first_last_name'] ?? ''
-          ]);
+          <div class="col-md-6">
+            <?php Flight::render('components/inputs/input', [
+              'name' => 'first_last_name',
+              'label' => 'Primer apellido',
+              'value' => $_SESSION['lastData']['first_last_name'] ?? '',
+            ]) ?>
+          </div>
 
-          Flight::render('components/input-group', [
-            'name' => 'second_last_name',
-            'placeholder' => 'Segundo apellido',
-            'required' => false,
-            'value' => $_SESSION['lastData']['second_last_name'] ?? ''
-          ]);
+          <div class="col-md-6">
+            <?php Flight::render('components/inputs/input', [
+              'name' => 'second_last_name',
+              'label' => 'Segundo apellido',
+              'required' => false,
+              'value' => $_SESSION['lastData']['second_last_name'] ?? '',
+            ]) ?>
+          </div>
 
-          Flight::render('components/input-group', [
-            'type' => 'number',
-            'name' => 'id_card',
-            'placeholder' => 'Cédula',
-            'required' => true,
-            'value' => $_SESSION['lastData']['id_card'] ?? '',
-            'oninput' => '
-              this
-                .form
-                .querySelectorAll("[name=password],[name=confirm_password]")
-                .forEach(input => {
-                  input.setAttribute("value", event.target.value)
-                })'
-          ]);
+          <div class="col-md-6">
+            <?php Flight::render('components/inputs/input', [
+              'type' => 'number',
+              'name' => 'id_card',
+              'label' => 'Cédula',
+              'value' => $_SESSION['lastData']['id_card'] ?? '',
+              'model' => 'idCard',
+            ]) ?>
+          </div>
 
-          Flight::render('components/input-group', [
-            'type' => 'date',
-            'name' => 'birth_date',
-            'placeholder' => 'Fecha de nacimiento',
-            'value' => $_SESSION['lastData']['birth_date'] ?? ''
-          ]);
+          <div class="col-md-6">
+            <?php Flight::render('components/inputs/input', [
+              'type' => 'date',
+              'name' => 'birth_date',
+              'label' => 'Fecha de nacimiento',
+              'value' => $_SESSION['lastData']['birth_date'] ?? '',
+            ]) ?>
+          </div>
 
-          Flight::render('components/input-group', [
-            'variant' => 'select',
-            'name' => 'gender',
-            'placeholder' => 'Género',
-            'required' => true,
-            'value' => null,
-            'options' => array_map(
-              fn(Gender $gender): array => [
-                'value' => $gender->value,
-                'text' => $gender->value,
-                'selected' => ($_SESSION['lastData']['gender'] ?? '') === $gender->value
-              ],
-              Gender::cases()
-            )
-          ]);
+          <div class="col-md-6">
+            <?php Flight::render('components/inputs/select', [
+              'name' => 'gender',
+              'label' => 'Género',
+              'options' => array_map(
+                static fn(Gender $gender): array => [
+                  'value' => $gender->value,
+                  'slot' => $gender->value,
+                  'selected' => ($_SESSION['lastData']['gender'] ?? '') === $gender->value,
+                ],
+                Gender::cases()
+              ),
+            ]) ?>
+          </div>
 
-          Flight::render('components/input-group', [
-            'variant' => 'select',
-            'name' => 'instruction_level',
-            'placeholder' => 'Nivel de instrucción',
-            'value' => null,
-            'options' => array_map(
-              fn(InstructionLevel $instruction): array => [
-                'value' => $instruction->value,
-                'text' => $instruction->getLongValue(),
-                'selected' => ($_SESSION['lastData']['instruction_level'] ?? '') === $instruction->value
-              ],
-              InstructionLevel::cases()
-            )
-          ]);
-          ?>
+          <div class="col-md-6">
+            <?php Flight::render('components/inputs/select', [
+              'name' => 'instruction_level',
+              'label' => 'Nivel de instrucción',
+              'options' => array_map(
+                static fn(InstructionLevel $instruction): array => [
+                  'value' => $instruction->value,
+                  'slot' => $instruction->getLongValue(),
+                  'selected' => ($_SESSION['lastData']['instruction_level'] ?? '') === $instruction->value,
+                ],
+                InstructionLevel::cases(),
+              ),
+            ]) ?>
+          </div>
         </fieldset>
-        <fieldset class="row">
+        <fieldset class="row row-gap-3 mb-3">
           <summary class="fs-6 mb-2">Credenciales</summary>
-          <?php
-          Flight::render('components/input-group', [
-            'variant' => 'input',
-            'type' => 'text',
-            'name' => 'password',
-            'placeholder' => 'Contraseña',
-            'readonly' => true,
-            'value' => '',
-            'required' => false
-          ]);
 
-          Flight::render('components/input-group', [
-            'variant' => 'input',
-            'type' => 'text',
-            'name' => 'confirm_password',
-            'placeholder' => 'Confirmar contraseña',
-            'readonly' => true,
-            'value' => '',
-            'required' => false
-          ]);
-          ?>
+          <div class="col-md-6">
+            <?php Flight::render('components/inputs/input', [
+              'name' => 'password',
+              'label' => 'Contraseña',
+              'readonly' => true,
+              'required' => false,
+              'value' => 'idCard',
+            ]) ?>
+          </div>
+
+          <div class="col-md-6">
+            <?php Flight::render('components/inputs/input', [
+              'name' => 'confirm_password',
+              'label' => 'Confirmar contraseña',
+              'readonly' => true,
+              'value' => 'idCard',
+              'required' => false,
+            ]) ?>
+          </div>
         </fieldset>
         <?php if ($user->appointment->isHigherThan(Appointment::Coordinator)) : ?>
           <div class="col-md-12 mb-4">
@@ -202,64 +208,61 @@ $loggedUser = $user;
             </select>
           </div>
         <?php endif ?>
-        <fieldset class="row">
+        <fieldset class="row row-gap-3 mb-3">
           <summary class="fs-6 mb-2">Datos de contacto</summary>
-          <?php
 
-          Flight::render('components/input-group', [
-            'type' => 'tel',
-            'name' => 'phone',
-            'placeholder' => 'Teléfono',
-            'readonly' => false,
-            'value' => $_SESSION['lastData']['phone'] ?? ''
-          ]);
+          <div class="col-md-6">
+            <?php Flight::render('components/inputs/input', [
+              'type' => 'tel',
+              'name' => 'phone',
+              'label' => 'Teléfono',
+              'readonly' => false,
+              'value' => $_SESSION['lastData']['phone'] ?? '',
+            ]) ?>
+          </div>
 
-          Flight::render('components/input-group', [
-            'type' => 'email',
-            'name' => 'email',
-            'placeholder' => 'Correo electrónico',
-            'value' => $_SESSION['lastData']['email'] ?? ''
-          ]);
+          <div class="col-md-6">
+            <?php Flight::render('components/inputs/input', [
+              'type' => 'email',
+              'name' => 'email',
+              'label' => 'Correo electrónico',
+              'value' => $_SESSION['lastData']['email'] ?? '',
+            ]) ?>
+          </div>
 
-          Flight::render('components/input-group', [
-            'variant' => 'textarea',
-            'name' => 'address',
-            'placeholder' => 'Dirección',
-            'cols' => 12,
-            'value' => $_SESSION['lastData']['address'] ?? ''
-          ]);
-
-          ?>
+          <div class="col-md-12">
+            <?php Flight::render('components/inputs/textarea', [
+              'name' => 'address',
+              'label' => 'Dirección',
+              'value' => $_SESSION['lastData']['address'] ?? '',
+            ]) ?>
+          </div>
         </fieldset>
-        <fieldset class="row">
-          <?php
+        <fieldset class="row row-gap-3 mb-3">
+          <div class="col-md-5">
+            <?php Flight::render('components/inputs/input-file', [
+              'name' => 'profile_image',
+              'label' => 'Foto de perfil',
+            ]) ?>
+          </div>
 
-          Flight::render('components/input-group', [
-            'variant' => 'file',
-            'name' => 'profile_image',
-            'placeholder' => 'Foto de perfil',
-            'cols' => 5
-          ]);
+          <div class="col-md-2 text-center">O</div>
 
-          echo '<div class="col-md-2 text-center">O</div>';
+          <div class="col-md-5">
+            <?php Flight::render('components/inputs/input', [
+              'type' => 'url',
+              'name' => 'profile_image_url',
+              'label' => 'URL de la foto de perfil',
+              'value' => $_SESSION['lastData']['profile_image_url'] ?? '',
+            ]) ?>
+          </div>
 
-          Flight::render('components/input-group', [
-            'variant' => 'input',
-            'type' => 'url',
-            'name' => 'profile_image_url',
-            'placeholder' => 'URL de la foto de perfil',
-            'cols' => 5,
-            'value' => $_SESSION['lastData']['profile_image_url'] ?? ''
-          ]);
-
-          Flight::render('components/input-group', [
-            'variant' => 'checkbox',
+          <?php Flight::render('components/input-group', [
+            'type' => 'checkbox',
             'name' => 'is_active',
             'placeholder' => 'Estado <small>(activo/inactivo)</small>',
-            'checked' => true
-          ]);
-
-          ?>
+            'checked' => true,
+          ]) ?>
         </fieldset>
       </section>
       <footer class="modal-footer">
