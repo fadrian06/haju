@@ -68,7 +68,7 @@ $onlyHospitalizedSwitchId = uniqid();
       <label
         class="pe-auto list-group-item d-flex justify-content-between align-items-center"
         for="<?= $onlyHospitalizedSwitchId ?>">
-        <span class="user-select-none">Sólo hospitalizados</span>
+        <span>Sólo hospitalizados</span>
         <div class="form-check form-switch">
           <input
             class="form-check-input fs-3"

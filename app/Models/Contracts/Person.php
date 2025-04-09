@@ -11,7 +11,6 @@ use App\ValueObjects\Gender;
 use App\ValueObjects\IdCard;
 use App\ValueObjects\Name;
 
-/** @property-read int $idCard */
 abstract class Person extends Model {
   private Name $firstName;
   private ?Name $secondName = null;
@@ -113,29 +112,23 @@ abstract class Person extends Model {
   }
 
   public function __get(string $property): null|int|string {
-    $idCard = $this->idCard;
-    assert($idCard instanceof IdCard);
-
     return match ($property) {
       'firstName' => $this->firstName->__toString(),
       'secondName' => $this->secondName?->__toString(),
       'firstLastName' => $this->firstLastName->__toString(),
       'secondLastName' => $this->secondLastName?->__toString(),
-      'idCard' => $idCard->value,
+      'idCard' => $this->idCard->value,
       default => parent::__get($property)
     };
   }
 
   public function jsonSerialize(): array {
-    $idCard = $this->idCard;
-    assert($idCard instanceof IdCard);
-
     return parent::jsonSerialize() + [
       'firstName' => $this->firstName->__toString(),
       'secondName' => $this->secondName?->__toString(),
       'firstLastName' => $this->firstLastName->__toString(),
       'secondLastName' => $this->secondLastName?->__toString(),
-      'idCard' => $idCard->value,
+      'idCard' => $this->idCard->value,
       'fullName' => $this->getFullName(),
       'gender' => $this->gender->value,
     ];

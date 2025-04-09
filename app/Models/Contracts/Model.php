@@ -46,6 +46,7 @@ abstract class Model implements JsonSerializable {
     return [
       'id' => $this->id,
       'registeredDate' => $this->registeredDateTime?->format('d/m/Y'),
+      'registeredDateImperialFormat' => $this->registeredDateTime?->format('Y-m-d'),
     ];
   }
 }

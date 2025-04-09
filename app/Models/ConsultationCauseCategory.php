@@ -7,10 +7,6 @@ namespace App\Models;
 use App\Models\Contracts\Model;
 use App\ValueObjects\LongName;
 
-/**
- * @property-read string $shortName
- * @property-read ?string $extendedName
- */
 final class ConsultationCauseCategory extends Model {
   private LongName $shortName;
   private ?LongName $extendedName;
@@ -35,9 +31,17 @@ final class ConsultationCauseCategory extends Model {
 
   public function __get(string $property): null|int|string {
     return match ($property) {
-      'shortName' => (string) $this->shortName,
-      'extendedName' => (string) $this->extendedName,
+      'shortName' => $this->shortName->__toString(),
+      'extendedName' => $this->extendedName?->__toString(),
       default => parent::__get($property)
     };
+  }
+
+  public function jsonSerialize(): array {
+    return parent::jsonSerialize() + [
+      'shortName' => $this->shortName->__toString(),
+      'extendedName' => $this->extendedName?->__toString(),
+      'parentCategory' => $this->parentCategory,
+    ];
   }
 }

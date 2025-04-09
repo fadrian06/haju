@@ -8,8 +8,6 @@ use App\Models\Contracts\Model;
 use App\ValueObjects\LongName;
 
 /**
- * @property-read string $shortName
- * @property-read ?string $extendedName
  * @property-read ?string $variant
  * @property-read ?string $code
  * @property-read ?int $limit
@@ -68,11 +66,22 @@ final class ConsultationCause extends Model {
 
   public function __get(string $property): null|int|string {
     return match ($property) {
-      'shortName' => $this->shortName,
-      'extendedName' => $this->extendedName,
+      'shortName' => $this->shortName->__toString(),
+      'extendedName' => $this->extendedName?->__toString(),
       'code' => $this->code,
       'limit' => $this->limit,
       default => parent::__get($property)
     };
+  }
+
+  public function jsonSerialize(): array {
+    return parent::jsonSerialize() + [
+      'shortName' => $this->shortName->__toString(),
+      'extendedName' => $this->extendedName?->__toString(),
+      'variant' => $this->variant,
+      'code' => $this->code,
+      'limit' => $this->limit,
+      'category' => $this->category,
+    ];
   }
 }

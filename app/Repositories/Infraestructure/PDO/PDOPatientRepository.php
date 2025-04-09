@@ -113,7 +113,8 @@ implements PatientRepository {
         ConsultationType::from($consultationRecord['type']),
         $this->causeRepository->getById($consultationRecord['cause_id']),
         $this->departmentRepository->getById($consultationRecord['department_id']),
-        $this->doctorRepository->getById($consultationRecord['doctor_id'])
+        $this->doctorRepository->getById($consultationRecord['doctor_id']),
+        $patient,
       );
 
       $consultation
@@ -182,7 +183,8 @@ implements PatientRepository {
         ConsultationType::from($consultationRecord['type']),
         $this->causeRepository->getById($consultationRecord['cause_id']),
         $this->departmentRepository->getById($consultationRecord['department_id']),
-        $this->doctorRepository->getById($consultationRecord['doctor_id'])
+        $this->doctorRepository->getById($consultationRecord['doctor_id']),
+        $patient,
       );
 
       $consultation->setId($consultationRecord['id'])

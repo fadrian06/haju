@@ -62,6 +62,7 @@ $title ??= null;
 $margin ??= 4;
 $max ??= null;
 $oninput ??= null;
+$model ??= '';
 
 ?>
 
@@ -74,6 +75,7 @@ $oninput ??= null;
       id="<?= $id ?>"
       <?= $checked ? 'checked' : '' ?>
       <?= $hidden ? 'hidden' : '' ?>
+      <?= !$model ?: "x-model='{$model}'" ?>
       value="<?= $value ?>" />
     <label class="form-check-label" for="<?= $id ?>">
       <?= $placeholder ?>

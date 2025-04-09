@@ -12,7 +12,6 @@ use App\Repositories\Domain\ConsultationCauseRepository;
 use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Domain\DoctorRepository;
 use App\Repositories\Domain\PatientRepository;
-use App\Repositories\Infraestructure\PDO\Connection;
 use App\ValueObjects\ConsultationType;
 use App\ValueObjects\Date;
 use App\ValueObjects\DepartureStatus;
@@ -38,21 +37,30 @@ final readonly class PatientWebController extends Controller {
 
   public function showConsultations(): void {
     $stmt = $this->pdo->prepare(<<<sql
-      SELECT id, type, registered_date, cause_id, department_id, doctor_id
+      SELECT id, type, registered_date, cause_id, department_id, doctor_id, patient_id
       FROM consultations
       ORDER BY registered_date DESC
+      LIMIT 100
     sql);
 
     $stmt->execute();
 
     $consultations = [];
+    $patients = [];
 
     while (is_array($consultationRecord = $stmt->fetch(PDO::FETCH_ASSOC))) {
+      $patient = $patients[$consultationRecord['patient_id']] ?? $this
+        ->patientRepository
+        ->getById(intval($consultationRecord['patient_id']));
+
+      $patients[$consultationRecord['patient_id']] ??= $patient;
+
       $consultation = new Consultation(
         ConsultationType::from($consultationRecord['type']),
         $this->consultationCauseRepository->getById($consultationRecord['cause_id']),
         $this->departmentRepository->getById($consultationRecord['department_id']),
-        $this->doctorRepository->getById($consultationRecord['doctor_id'])
+        $this->doctorRepository->getById($consultationRecord['doctor_id']),
+        $patient,
       );
 
       $consultation->setId($consultationRecord['id'])
