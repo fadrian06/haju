@@ -45,6 +45,11 @@ final class Hospitalization extends Model {
   public function jsonSerialize(): array {
     return parent::jsonSerialize() + [
       'isFinished' => $this->isFinished(),
+      'admissionDateImperialFormat' => $this->admissionDate->format('Y-m-d'),
+      'admissionDate' => $this->admissionDate->format('d/m/Y'),
+      'admissionDepartment' => $this->admissionDepartment,
+      'patient' => $this->patient,
+      'doctor' => $this->doctor,
     ];
   }
 }

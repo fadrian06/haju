@@ -11,7 +11,6 @@ use App\ValueObjects\LongName;
 use PharIo\Manifest\Url;
 use Stringable;
 
-/** @property-read string $name */
 final class Department extends Model implements Stringable {
   use HasActiveStatus;
 
@@ -28,9 +27,11 @@ final class Department extends Model implements Stringable {
     $this->setName($name);
   }
 
-  public function isStatistics(): bool {
-    assert($this->name instanceof LongName);
+  public function isHospitalization(): bool {
+    return $this->name->__toString() === 'Hospitalización';
+  }
 
+  public function isStatistics(): bool {
     return $this->name->__toString() === 'Estadística';
   }
 

@@ -35,6 +35,53 @@ final readonly class PatientWebController extends Controller {
     parent::__construct();
   }
 
+  public function showHospitalizations(): void {
+    $stmt = $this->pdo->prepare(<<<sql
+      SELECT id, admission_department, admission_date, departure_date,
+      departure_status, diagnoses, registered_date, doctor_id, patient_id
+      FROM hospitalizations
+      WHERE departure_date IS NOT NULL
+      ORDER BY registered_date DESC
+    sql);
+
+    $stmt->execute();
+
+    /** @var Hospitalization[] */
+    $hospitalizations = [];
+
+    $patients = [];
+
+    while (is_array($hospitalizationRecord = $stmt->fetch(PDO::FETCH_ASSOC))) {
+      $patient = $patients[$hospitalizationRecord['patient_id']] ?? $this
+        ->patientRepository
+        ->getById(intval($hospitalizationRecord['patient_id']));
+
+      $patients[$hospitalizationRecord['patient_id']] ??= $patient;
+
+      $hospitalization = new Hospitalization(
+        $patient,
+        $this->doctorRepository->getById($hospitalizationRecord['doctor_id']),
+        $hospitalizationRecord['admission_department'],
+        new DateTimeImmutable($hospitalizationRecord['admission_date']),
+        boolval($hospitalizationRecord['departure_date'])
+          ? new DateTimeImmutable($hospitalizationRecord['departure_date'])
+          : null,
+        DepartureStatus::tryFrom($hospitalizationRecord['departure_status'] ?? ''),
+        $hospitalizationRecord['diagnoses'] ?: null
+      );
+
+
+      $hospitalization->setId($hospitalizationRecord['id'])
+        ->setRegisteredDate(DateTime::createFromFormat('Y-m-d H:i:s', $hospitalizationRecord['registered_date']));
+
+      $hospitalizations[] = $hospitalization;
+    }
+
+    renderPage('hospitalizations/list', 'Hospitalizaciones', [
+      'hospitalizations' => $hospitalizations,
+    ], 'main');
+  }
+
   public function showConsultations(): void {
     $stmt = $this->pdo->prepare(<<<sql
       SELECT id, type, registered_date, cause_id, department_id, doctor_id, patient_id
