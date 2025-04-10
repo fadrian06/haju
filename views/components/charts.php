@@ -24,10 +24,14 @@ $stmt = $pdo->query(<<<sql
   LIMIT 5
 sql);
 
+$startDate = ((@$_GET['fecha_inicio'] ?: $range?->getDate()->format('Y-m-d'))
+    ?: $lastMonth) . ' 00:00:00';
+
+$endDate = (@$_GET['fecha_fin'] ?: $currentDate);
+
 $params = [
-  ':start_date' => ((@$_GET['fecha_inicio'] ?: $range?->getDate()->format('Y-m-d'))
-    ?: $lastMonth) . ' 00:00:00',
-  ':end_date' => (@$_GET['fecha_fin'] ?: $currentDate) . ' 23:59:59'
+  ':start_date' => $startDate,
+  ':end_date' => $endDate,
 ];
 
 $stmt->execute($params);
@@ -89,6 +93,20 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <script>
   const frecuentCauses = JSON.parse('<?= json_encode($frecuentCauses) ?>')
   const frecuentCause = JSON.parse('<?= json_encode($frecuentCause) ?>')
+
+  const since = new Date(`<?= explode(' ', $startDate)[0] ?>`).toLocaleDateString('es-VE', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  })
+
+  const untilString = `<?= $endDate ?>`
+
+  const until = new Date(untilString).toLocaleDateString('es-VE', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  })
 </script>
 
 <section class="mb-4 d-flex align-items-center">
@@ -148,7 +166,7 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <h4>Por paciente:</h4>
 
-    <dl>
+    <dl id="frecuent-causes-patients-list">
       <?php foreach ($patientsByCause as $cause => $patients) : ?>
         <?php $added = [] ?>
 
@@ -283,16 +301,12 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       const browserTab = open()
       const script = document.createElement('script')
-      script.innerText = 'setTimeout(print, 1000)'
+      // script.innerText = 'setTimeout(print, 1000)'
+
+      const patientsList = document.querySelector('#frecuent-causes-patients-list').outerHTML
 
       browserTab.document.write(`
-        <base href="<?= str_replace('index.php', '', $_SERVER['SCRIPT_NAME']) ?>" />
-        <link rel="icon" href="./assets/img/favicon.svg" />
-        <title>${title}</title>
-        <center>
-          <h1>${title}</h1>
-          <img src="${image}" width="75%" />
-        </center>
+        <?php include __DIR__ . '/frecuent-causes-template.php' ?>
         ${script.outerHTML}
       `)
     }
