@@ -167,17 +167,15 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <h4>Por paciente:</h4>
 
     <dl id="frecuent-causes-patients-list">
-      <?php foreach ($patientsByCause as $cause => $patients) : ?>
+      <?php foreach ($patientsByCause as $cause => $causePatients) : ?>
         <?php $added = [] ?>
 
         <dt><?= $cause ?></dt>
         <dd>
-          <?= join(', ', array_map(
-            static function (Patient $patient): string {
-              return "<a href='./pacientes/{$patient->id}'>{$patient->getFullName()}</a>";
-            },
-            array_filter($patients, static function (Patient $patient) use (&$added): bool {
-              if (key_exists($patient->id, $added)) {
+          <?= implode(', ', array_map(
+            static fn (Patient $patient): string => "<a href='./pacientes/{$patient->id}'>{$patient->getFullName()}</a>",
+            array_filter($causePatients, static function (Patient $patient) use (&$added): bool {
+              if (array_key_exists($patient->id, $added)) {
                 return false;
               }
 
