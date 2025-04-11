@@ -11,7 +11,6 @@ use App\Repositories\Domain\PatientRepository;
 use App\Repositories\Domain\SettingsRepository;
 use App\Repositories\Domain\UserRepository;
 use App\Repositories\Infraestructure\Files\FilesSettingsRepository;
-use App\Repositories\Infraestructure\PDO\Connection;
 use App\Repositories\Infraestructure\PDO\PDOConsultationCauseCategoryRepository;
 use App\Repositories\Infraestructure\PDO\PDOConsultationCauseRepository;
 use App\Repositories\Infraestructure\PDO\PDODepartmentRepository;
@@ -22,28 +21,6 @@ use flight\Container;
 use flight\net\Request;
 use flight\template\View;
 use Leaf\Http\Session;
-
-error_reporting(E_ALL | E_STRICT);
-
-$_ENV += include __DIR__ . '/../.env.php';
-$_ENV += include __DIR__ . '/../.env.dist.php';
-
-date_default_timezone_set($_ENV['TIMEZONE']);
-
-/**
- * - `''`: with _composer serve_ -> _localhost:61001_
- * - `'/haju'`: with xampp -> _localhost/haju_
- * - `'/faslatam.42web.io/htdocs/haju'`: hosting uri
- */
-define('BASE_URI', str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']));
-
-$_SERVER['HTTP_HOST'] ??= 'localhost:61001';
-
-/** `http://localhost:61001` */
-define(
-  'BASE_URL',
-  Flight::request()->scheme . '://' . $_SERVER['HTTP_HOST'] . BASE_URI
-);
 
 $container = Container::getInstance();
 $container->singleton(Session::class);
@@ -122,26 +99,3 @@ $container->singleton(
 );
 
 Flight::registerContainerHandler($container);
-Flight::set('flight.views.path', dirname(__DIR__) . '/views');
-Flight::set('flight.handle_errors', false);
-Flight::view()->path = dirname(__DIR__) . '/views';
-Flight::view()->preserveVars = false;
-
-Flight::view()->set(
-  'user',
-  $container
-    ->get(UserRepository::class)
-    ->getById(intval($container->get(Session::class)->get('userId')))
-);
-
-Flight::view()->set(
-  'department',
-  $container
-    ->get(DepartmentRepository::class)
-    ->getById(intval($container->get(Session::class)->get('departmentId'))),
-);
-
-Flight::view()->set(
-  'canChangeDepartment',
-  Flight::view()->get('user')?->hasDepartments() ?: false
-);
