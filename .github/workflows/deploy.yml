@@ -26,9 +26,21 @@ jobs:
 
       - run: npm run build --if-present
 
-      - name: Cache Composer packages
-        id: composer-cache
-        uses: actions/cache@v3
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Update package list and add ondrej/php PPA
+        run: |
+          sudo add-apt-repository ppa:ondrej/php -y
+          sudo apt-get update
+
+      - name: Install pdo_sqlite
+        run: sudo apt-get install -y php8.2-sqlite3
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
         with:
           path: vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
