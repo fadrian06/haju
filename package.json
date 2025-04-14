@@ -16,6 +16,8 @@
   "scripts": {
     "build": "esbuild assets/src/*.ts --outdir=assets/dist --bundle --minify --loader:.woff2=copy --loader:.woff=copy --loader:.ttf=copy",
     "dev": "esbuild assets/src/*.ts --outdir=assets/dist --bundle --watch --sourcemap --loader:.woff2=copy --loader:.woff=copy --loader:.ttf=copy",
-    "prepare": "husky"
+    "prepare": "husky",
+    "ci": "biome ci ./ --colors=off",
+    "format": "biome format ./"
   }
 }

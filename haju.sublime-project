@@ -1,25 +1,25 @@
 {
   "folders": [
     {
-      "path": ".",
+      "path": "."
     }
   ],
   "settings": {
     "LSP": {
       "formatters": {
         "source.json.composer": "LSP-json",
-        "source.json.sublime": "LSP-json",
+        "source.json.sublime": "LSP-biome",
         "source.json.biome": "LSP-json",
         "source.json.npm": "LSP-json",
         "source.json": "LSP-biome",
-        "source.ts": "LSP-biome",
+        "source.ts": "LSP-biome"
       },
       "LSP-intelephense": {
         "settings": {
           "intelephense.environment.phpVersion": "8.2",
-          "intelephense.format.braces": "k&r",
-        },
-      },
+          "intelephense.format.braces": "k&r"
+        }
+      }
     },
     "SublimeLinter.linters.php.disable": false,
     "SublimeLinter.linters.phpstan.disable": false,
@@ -28,6 +28,6 @@
     "SublimeLinter.linters.rector.disable": false,
     "SublimeLinter.linters.ecs.disable": true,
     "SublimeLinter.linters.phpmd.disable": false,
-    "SublimeLinter.linters.phpmd.rulesets": "${project_path}/phpmd.xml",
-  },
+    "SublimeLinter.linters.phpmd.rulesets": "${project_path}/phpmd.xml"
+  }
 }

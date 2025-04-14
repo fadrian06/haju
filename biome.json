@@ -12,9 +12,7 @@
   "formatter": {
     "indentStyle": "space"
   },
-  "javascript": {
-    "formatter": {
-      "indentStyle": "space"
-    }
+  "files": {
+    "ignore": ["*.sublime-*", "vendor", "assets/vendors", "assets/dist"]
   }
 }
