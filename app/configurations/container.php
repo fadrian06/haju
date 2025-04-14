@@ -27,11 +27,10 @@ $container->singleton(Session::class);
 $container->singleton(View::class, Flight::view());
 $container->singleton(Request::class, Flight::request());
 
+assert($_ENV['DB_CONNECTION'] instanceof DBDriver);
+
 $container->singleton(PDO::class, static fn(): PDO => new PDO(
-  match ($_ENV['DB_CONNECTION']) {
-    DBDriver::MySQL => "mysql:host={$_ENV['DB_HOST']}; dbname={$_ENV['DB_DATABASE']}; charset=utf8; port={$_ENV['DB_PORT']}",
-    DBDriver::SQLite => "sqlite:{$_ENV['DB_DATABASE']}"
-  },
+  $_ENV['DB_CONNECTION']->getPDODsn(),
   $_ENV['DB_USERNAME'],
   $_ENV['DB_PASSWORD'],
 ));

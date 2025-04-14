@@ -7,4 +7,11 @@ namespace App\Enums;
 enum DBDriver: string {
   case MySQL = 'mysql';
   case SQLite = 'sqlite';
+
+  public function getPDODsn(): string {
+    return match ($this) {
+      self::MySQL => "mysql:host={$_ENV['DB_HOST']}; dbname={$_ENV['DB_DATABASE']}; charset=utf8; port={$_ENV['DB_PORT']}",
+      self::SQLite => "sqlite:{$_ENV['DB_DATABASE']}"
+    };
+  }
 }
