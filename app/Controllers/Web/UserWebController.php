@@ -18,6 +18,7 @@ use App\ValueObjects\InstructionLevel;
 use App\ValueObjects\Phone;
 use Error;
 use Flight;
+use Leaf\Http\Session;
 use PharIo\Manifest\Email;
 use PharIo\Manifest\InvalidEmailException;
 use Throwable;
@@ -27,9 +28,9 @@ final readonly class UserWebController extends Controller {
   private const INSECURE_PASSWORD_STRENGTH_LEVEL = 2;
 
   public function __construct(
-    private readonly DepartmentRepository $departmentRepository,
-    private readonly UserRepository $userRepository,
-    private readonly Zxcvbn $passwordValidator,
+    private DepartmentRepository $departmentRepository,
+    private UserRepository $userRepository,
+    private Zxcvbn $passwordValidator,
   ) {
     parent::__construct();
   }
@@ -57,7 +58,7 @@ final readonly class UserWebController extends Controller {
       ]
     };
 
-    $this->session->set('lastData', $this->data->getData());
+    Session::set('lastData', $this->data->getData());
 
     try {
       if ($this->data['password'] !== $this->data['confirm_password']) {
@@ -129,7 +130,7 @@ final readonly class UserWebController extends Controller {
 
       $this->userRepository->save($user);
       self::setMessage("{$user->getParsedAppointment()} registrado exitósamente");
-      $this->session->unset('lastData');
+      Session::unset('lastData');
       Flight::redirect($urlToRedirect);
 
       return;
@@ -306,7 +307,7 @@ final readonly class UserWebController extends Controller {
       $this->loggedUser->setPassword($this->data['new_password']);
       $this->userRepository->save($this->loggedUser);
       self::setMessage('Contraseña actualizada exitósamente');
-      $this->session->set('mustChangePassword', false);
+      Session::set('mustChangePassword', false);
     } catch (Throwable $error) {
       self::setError($error);
     }

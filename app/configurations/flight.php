@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
+use App\Models\User;
 use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Domain\UserRepository;
+use flight\Container;
 use Leaf\Http\Session;
 
 Flight::set('flight.views.path', dirname(__DIR__, 2) . '/views');
@@ -13,19 +15,27 @@ Flight::view()->preserveVars = false;
 
 Flight::view()->set(
   'user',
-  $container
+  Container::getInstance()
     ->get(UserRepository::class)
-    ->getById(intval($container->get(Session::class)->get('userId')))
+    ->getById(intval(Session::get('userId'))),
 );
 
 Flight::view()->set(
   'department',
-  $container
+  Container::getInstance()
     ->get(DepartmentRepository::class)
-    ->getById(intval($container->get(Session::class)->get('departmentId'))),
+    ->getById(intval(Session::get('departmentId'))),
 );
 
 Flight::view()->set(
   'canChangeDepartment',
-  Flight::view()->get('user')?->hasDepartments() ?: false
+  (static function (): bool {
+    $user = Flight::view()->get('user');
+
+    if ($user instanceof User) {
+      return $user->hasDepartments();
+    }
+
+    return false;
+  })(),
 );

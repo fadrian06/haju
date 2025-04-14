@@ -21,8 +21,10 @@ use flight\Container;
 use flight\net\Request;
 use flight\template\View;
 use Leaf\Http\Session;
+use Psr\Container\ContainerInterface;
 
 $container = Container::getInstance();
+$container->singleton(ContainerInterface::class, Container::class);
 $container->singleton(Session::class);
 $container->singleton(View::class, Flight::view());
 $container->singleton(Request::class, Flight::request());

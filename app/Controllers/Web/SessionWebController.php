@@ -7,22 +7,30 @@ namespace App\Controllers\Web;
 use App\Repositories\Domain\UserRepository;
 use Error;
 use Flight;
+use Leaf\Http\Session;
 use ZxcvbnPhp\Zxcvbn;
 
 final readonly class SessionWebController extends Controller {
   private const INSECURE_PASSWORD_STRENGTH_LEVEL = 2;
 
   public function __construct(
-    private readonly UserRepository $userRepository,
-    private readonly Zxcvbn $passwordValidator,
+    private UserRepository $userRepository,
+    private Zxcvbn $passwordValidator,
   ) {
     parent::__construct();
   }
 
   public function logOut(): void {
-    $this->session->unset('userId');
-    $this->session->unset('department');
-    $this->session->unset('mustChangePassword');
+    static $excludedKeys = ['error', 'message'];
+
+    foreach (array_keys(Session::all()) as $key) {
+      if (in_array($key, $excludedKeys, true)) {
+        continue;
+      }
+
+      Session::unset($key);
+    }
+
     Flight::redirect('/ingresar');
   }
 
@@ -45,17 +53,19 @@ final readonly class SessionWebController extends Controller {
         throw new Error('Cédula o contraseña incorrecta');
       }
 
-      $passwordStrength = $this->passwordValidator->passwordStrength($this->data['password']);
+      ['score' => $passwordStrengthLevel] = $this
+        ->passwordValidator
+        ->passwordStrength($this->data['password']);
 
       if (
-        $passwordStrength['score'] <= self::INSECURE_PASSWORD_STRENGTH_LEVEL
+        $passwordStrengthLevel <= self::INSECURE_PASSWORD_STRENGTH_LEVEL
         || $this->data['password'] === $this->data['id_card']
       ) {
-        $this->session->set('mustChangePassword', true);
+        Session::set('mustChangePassword', true);
       }
 
       $user->ensureThatIsActive()->ensureHasActiveDepartments();
-      $this->session->set('userId', $user->id);
+      Session::set('userId', $user->id);
       Flight::redirect('/departamento/seleccionar');
     } catch (Error $error) {
       self::setError($error);
@@ -80,7 +90,7 @@ final readonly class SessionWebController extends Controller {
   }
 
   public function saveChoice(int $id): void {
-    $this->session->set('departmentId', $id);
+    Session::set('departmentId', $id);
     Flight::redirect('/');
   }
 }

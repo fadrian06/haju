@@ -7,7 +7,6 @@ namespace App\Controllers\Web;
 use App\Models\User;
 use Error;
 use Flight;
-use flight\Container;
 use flight\util\Collection;
 use Leaf\Http\Session;
 use Throwable;
@@ -15,12 +14,10 @@ use Throwable;
 abstract readonly class Controller {
   protected ?User $loggedUser;
   protected Collection $data;
-  protected Session $session;
 
   public function __construct() {
     $this->loggedUser = Flight::view()->get('user');
     $this->data = Flight::request()->data;
-    $this->session = Container::getInstance()->get(Session::class);
   }
 
   final protected static function setError(Throwable|string $error): void {
@@ -33,11 +30,11 @@ abstract readonly class Controller {
       $error = $error->getMessage();
     }
 
-    Container::getInstance()->get(Session::class)->set('error', $error);
+    Session::set('error', $error);
   }
 
   final protected static function setMessage(string $message): void {
-    Container::getInstance()->get(Session::class)->set('message', $message);
+    Session::set('message', $message);
   }
 
   /**
