@@ -1,4 +1,4 @@
 #!/bin/sh
 
-composer validate --no-ansi
+composer validate --no-ansi --strict --check-lock
 composer --no-ansi ci
