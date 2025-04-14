@@ -1,4 +1,4 @@
-name: PHP Composer
+name: 🚀 Build and Deploy Workflow
 
 on:
   push:
@@ -11,46 +11,80 @@ permissions:
 
 jobs:
   build:
+    name: 🛠️ Build Application
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
 
-      - name: Use Node.js 22
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Install dependencies
-        run: npm install
-
-      - run: npm run build --if-present
-
-      - name: Cache Composer packages
+      - name: 📦 Cache Composer Packages
         id: composer-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v3
         with:
           path: vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-php-
 
-      - name: Install dependencies
+      - name: 🛠️ Set Up Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: 📂 Install Node.js Dependencies
+        run: npm ci
+
+      - name: 🧪 Run Node.js CI
+        run: npm run ci --if-present
+
+      - name: 📦 Install PHP Dependencies
         run: composer install --prefer-dist --no-progress
 
-      - name: Start PHP Development Server
-        run: composer run-script serve &
+      - name: 🌐 Start PHP Development Server
+        run: php -S localhost:61001 &
 
-      - name: Run db migrations
+      - name: 🗄️ Run Database Migrations
         run: composer run-script migrate:fresh
 
-      - name: Run ci suite
+      - name: ✅ Run PHP CI Suite
         run: composer run-script ci
 
-      - name: Install dependencies
+  web-deploy:
+    needs: build
+    name: 🎉 Deploy Application
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 📦 Cache Composer Packages
+        id: composer-cache
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: 🛠️ Set Up Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: 📂 Install Node.js Dependencies
+        run: npm ci
+
+      - name: 🏗️ Build Project
+        run: npm run build --if-present
+
+      - name: 📦 Install PHP Dependencies (Production)
         run: composer install --no-dev --prefer-dist --no-progress
 
-      - name: 📂 Sync files
+      - name: 📂 Sync Files to Server
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.ftp_server }}
@@ -61,26 +95,25 @@ jobs:
           exclude: |
             **/.git*
             **/.git*/**
-            **/node_modules/**
             **/.husky/**
-            **/docs/**
+            **/node_modules/**
+            **/resources/src/**
             **/tests/**
             .editorconfig
-            .gitignore
             .phpunit.result.cache
             biome.json
             composer.json
             composer.lock
-            haju.sublime-project
-            haju.sublime-workspace
+            LICENSE
             package-lock.json
             package.json
             phpcs.xml
             phpcs.xml.dist
+            phpmd.baseline.xml
             phpmd.xml
             phpstan-baseline.neon
             phpstan.dist.neon
             phpstan.neon
             phpunit.xml
+            phpunit.xml.dist
             rector.php
-            requirements.todo
