@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 use App\Models\ConsultationCause;
 
-/**
- * @var ConsultationCause[] $consultationCauses
- */
+/** @var ConsultationCause[] $consultationCauses */
+assert(isset($consultationCauses) && is_array($consultationCauses), new Error('$consultationCauses must be an array of ConsultationCause'));
 
 $groupByLimit = [
   'specified' => [],
@@ -14,7 +13,7 @@ $groupByLimit = [
 ];
 
 foreach ($consultationCauses as $consultationCause) {
-  $key = !$consultationCause->limit ? 'unspecified' : 'specified';
+  $key = $consultationCause->limit ? 'specified' : 'unspecified';
   $groupByLimit[$key][] = $consultationCause;
 }
 

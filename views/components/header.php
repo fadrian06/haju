@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Department;
 use App\Models\User;
 use App\ValueObjects\Appointment;
@@ -7,8 +9,10 @@ use App\ValueObjects\Appointment;
 /**
  * @var User $user
  * @var Department $department
- * @var bool $canChangeDepartment
  */
+assert(isset($user) && $user instanceof User, new Error('User not found'));
+assert(isset($department) && $department instanceof Department, new Error('Department not found'));
+$canChangeDepartment = isset($canChangeDepartment) ? boolval($canChangeDepartment) : throw new Error('Can change department not found');
 
 ?>
 

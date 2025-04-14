@@ -6,13 +6,12 @@ use App\Models\Patient;
 use App\Models\User;
 
 /**
- * @var array<int, Patient> $patients
- * @var ?string $error
- * @var ?string $message
+ * @var Patient[] $patients
  * @var User $user
  */
+assert(isset($patients) && is_array($patients), new Error('$patients must be an array'));
+assert(isset($user) && $user instanceof User, new Error('$user must be an instance of User'));
 
-$loggedUser = $user;
 $onlyHospitalizedSwitchId = uniqid();
 
 ?>
@@ -28,11 +27,10 @@ $onlyHospitalizedSwitchId = uniqid();
   </a>
 </section>
 
-<?php if ($patients !== null) : ?>
-  <section
-    x-data='{
+<section
+  x-data='{
       showHospitalized: false,
-      loggedUser: JSON.parse(`<?= json_encode($loggedUser) ?>`),
+      loggedUser: JSON.parse(`<?= json_encode($user) ?>`),
       allPatients: JSON.parse(`<?= json_encode($patients) ?>`),
       patientName: "",
 
@@ -53,114 +51,113 @@ $onlyHospitalizedSwitchId = uniqid();
         return this.loggedUser.id === patient.registeredBy.id || this.loggedUser.isDirector;
       },
     }'
-    class="white_box QA_section">
-    <header class="list_header serach_field-area2 w-100 mb-3">
-      <form @submit.prevent class="search_inner w-100">
-        <input type="search" placeholder="Buscar por nombre..." x-model="patientName" />
-        <button>
-          <i class="ti-search fs-2"></i>
-        </button>
-      </form>
+  class="white_box QA_section">
+  <header class="list_header serach_field-area2 w-100 mb-3">
+    <form @submit.prevent class="search_inner w-100">
+      <input type="search" placeholder="Buscar por nombre..." x-model="patientName" />
+      <button>
+        <i class="ti-search fs-2"></i>
+      </button>
+    </form>
 
-    </header>
-    <h3 class="my-4 fs-2">Filtrar por</h3>
-    <div class="list-group mb-3">
-      <label
-        class="pe-auto list-group-item d-flex justify-content-between align-items-center"
-        for="<?= $onlyHospitalizedSwitchId ?>">
-        <span>Sólo hospitalizados</span>
-        <div class="form-check form-switch">
-          <input
-            class="form-check-input fs-3"
-            id="<?= $onlyHospitalizedSwitchId ?>"
-            type="checkbox"
-            x-model="showHospitalized" />
-        </div>
-      </label>
-    </div>
-    <div class="QA_table table-responsive">
-      <table class="table text-center">
-        <thead>
+  </header>
+  <h3 class="my-4 fs-2">Filtrar por</h3>
+  <div class="list-group mb-3">
+    <label
+      class="pe-auto list-group-item d-flex justify-content-between align-items-center"
+      for="<?= $onlyHospitalizedSwitchId ?>">
+      <span>Sólo hospitalizados</span>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input fs-3"
+          id="<?= $onlyHospitalizedSwitchId ?>"
+          type="checkbox"
+          x-model="showHospitalized" />
+      </div>
+    </label>
+  </div>
+  <div class="QA_table table-responsive">
+    <table class="table text-center">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Nombre completo</th>
+          <th>Cédula</th>
+          <th>Fecha de nacimiento</th>
+          <th>Género</th>
+          <th>Registrado por</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <template
+          x-for="patient in (showHospitalized || patientName) ? filteredPatients : allPatients"
+          x-key="patient.id">
           <tr>
-            <th></th>
-            <th>Nombre completo</th>
-            <th>Cédula</th>
-            <th>Fecha de nacimiento</th>
-            <th>Género</th>
-            <th>Registrado por</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <template
-            x-for="patient in (showHospitalized || patientName) ? filteredPatients : allPatients"
-            x-key="patient.id">
-            <tr>
-              <form method="post" :action="`./pacientes/${patient.id}`">
-                <td class="p-2">
+            <form method="post" :action="`./pacientes/${patient.id}`">
+              <td class="p-2">
+                <a
+                  class="btn btn-secondary btn-sm text-white"
+                  :href="`./pacientes/${patient.id}`">
+                  Detalles
+                </a>
+              </td>
+              <td class="p-1">
+                <input
+                  :readonly="!patientCanBeEditedByLoggedUser(patient)"
+                  placeholder="Nombre del paciente"
+                  class="form-control"
+                  required
+                  name="full_name"
+                  :value="patient.fullName" />
+              </td>
+              <td class="p-1">
+                <input
+                  :readonly="!patientCanBeEditedByLoggedUser(patient)"
+                  type="number"
+                  placeholder="Cédula del paciente"
+                  class="form-control"
+                  required
+                  name="id_card"
+                  :value="patient.idCard" />
+              </td>
+              <td class="p-1">
+                <input
+                  :readonly="!patientCanBeEditedByLoggedUser(patient)"
+                  type="date"
+                  placeholder="Fecha de nacimiento"
+                  class="form-control"
+                  required
+                  name="birth_date"
+                  :value="patient.birthDate" />
+              </td>
+              <td x-text="patient.gender"></td>
+              <td
+                :title="patient.registeredBy.fullName"
+                x-text="patient.registeredBy.firstName">
+              </td>
+              <td class="p-2">
+                <div class="btn-group">
+                  <button
+                    x-show="patientCanBeEditedByLoggedUser(patient)"
+                    class="btn btn-sm btn-primary text-white">
+                    Actualizar
+                  </button>
                   <a
-                    class="btn btn-secondary btn-sm text-white"
-                    :href="`./pacientes/${patient.id}`">
-                    Detalles
+                    x-show="patient.canBeDeleted"
+                    :href="`./pacientes/${patient.id}/eliminar`"
+                    class="btn btn-sm btn-danger text-white">
+                    Eliminar
                   </a>
-                </td>
-                <td class="p-1">
-                  <input
-                    :readonly="!patientCanBeEditedByLoggedUser(patient)"
-                    placeholder="Nombre del paciente"
-                    class="form-control"
-                    required
-                    name="full_name"
-                    :value="patient.fullName" />
-                </td>
-                <td class="p-1">
-                  <input
-                    :readonly="!patientCanBeEditedByLoggedUser(patient)"
-                    type="number"
-                    placeholder="Cédula del paciente"
-                    class="form-control"
-                    required
-                    name="id_card"
-                    :value="patient.idCard" />
-                </td>
-                <td class="p-1">
-                  <input
-                    :readonly="!patientCanBeEditedByLoggedUser(patient)"
-                    type="date"
-                    placeholder="Fecha de nacimiento"
-                    class="form-control"
-                    required
-                    name="birth_date"
-                    :value="patient.birthDate" />
-                </td>
-                <td x-text="patient.gender"></td>
-                <td
-                  :title="patient.registeredBy.fullName"
-                  x-text="patient.registeredBy.firstName">
-                </td>
-                <td class="p-2">
-                  <div class="btn-group">
-                    <button
-                      x-show="patientCanBeEditedByLoggedUser(patient)"
-                      class="btn btn-sm btn-primary text-white">
-                      Actualizar
-                    </button>
-                    <a
-                      x-show="patient.canBeDeleted"
-                      :href="`./pacientes/${patient.id}/eliminar`"
-                      class="btn btn-sm btn-danger text-white">
-                      Eliminar
-                    </a>
-                  </div>
-                </td>
-              </form>
-            </tr>
-          </template>
-        </tbody>
-      </table>
-    </div>
-  </section>
-<?php endif ?>
+                </div>
+              </td>
+            </form>
+          </tr>
+        </template>
+      </tbody>
+    </table>
+  </div>
+</section>
 
 <?php
 

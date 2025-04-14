@@ -7,7 +7,6 @@ use App\Models\Hospitalization;
 use App\Models\Patient;
 use App\ValueObjects\AdmissionDepartment;
 use App\ValueObjects\DepartureStatus;
-use flight\Container;
 use Leaf\Http\Session;
 
 /**
@@ -15,8 +14,11 @@ use Leaf\Http\Session;
  * @var Hospitalization $hospitalization
  * @var Doctor[] $doctors
  */
+assert(isset($patient) && $patient instanceof Patient, new Error('$patient must be an instance of Patient'));
+assert(isset($hospitalization) && $hospitalization instanceof Hospitalization, new Error('$hospitalization must be an instance of Hospitalization'));
+assert(isset($doctors) && is_array($doctors), new Error('$doctors must be an array'));
 
-$session = Container::getInstance()->get(Session::class);
+$lastData = Session::get('lastData', []);
 
 ?>
 
@@ -36,7 +38,7 @@ $session = Container::getInstance()->get(Session::class);
       'placeholder' => 'Fecha de ingreso',
       'cols' => 6,
       'name' => 'admission_date',
-      'value' => $session->get('lastData', [])['admission_date'] ?? $hospitalization->admissionDate->format('Y-m-d')
+      'value' => $lastData['admission_date'] ?? $hospitalization->admissionDate->format('Y-m-d')
     ]);
 
     Flight::render('components/input-group', [
@@ -44,15 +46,15 @@ $session = Container::getInstance()->get(Session::class);
       'placeholder' => 'Fecha de salida',
       'cols' => 6,
       'name' => 'departure_date',
-      'value' => $session->get('lastData', [])['departure_date'] ?? date('Y-m-d'),
+      'value' => $lastData['departure_date'] ?? date('Y-m-d'),
     ]);
 
     Flight::render('components/input-group', [
       'type' => 'select',
-      'options' => array_map(fn(DepartureStatus $status): array => [
+      'options' => array_map(static fn(DepartureStatus $status): array => [
         'value' => $status->value,
         'text' => $status->value,
-        'selected' => ($session->get('lastData', [])['admission_status'] ?? $hospitalization->departureStatus) === $status,
+        'selected' => ($lastData['admission_status'] ?? $hospitalization->departureStatus) === $status,
       ], DepartureStatus::cases()),
       'placeholder' => 'Estado de salida',
       'cols' => 6,
@@ -62,7 +64,7 @@ $session = Container::getInstance()->get(Session::class);
 
     Flight::render('components/input-group', [
       'type' => 'select',
-      'options' => array_map(fn(AdmissionDepartment $department): array => [
+      'options' => array_map(static fn(AdmissionDepartment $department): array => [
         'value' => $department->value,
         'text' => $department->value,
         'selected' => $hospitalization->admissionDepartment === $department->value,
@@ -75,7 +77,7 @@ $session = Container::getInstance()->get(Session::class);
 
     Flight::render('components/input-group', [
       'type' => 'select',
-      'options' => array_map(fn(Doctor $doctor): array => [
+      'options' => array_map(static fn(Doctor $doctor): array => [
         'value' => $doctor->id,
         'text' => "v-$doctor->idCard ~ $doctor->firstName $doctor->firstLastName",
         'selected' => $hospitalization->doctor->isEqualTo($doctor),

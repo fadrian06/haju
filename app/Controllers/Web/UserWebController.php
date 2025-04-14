@@ -264,9 +264,9 @@ final readonly class UserWebController extends Controller {
   }
 
   public function handleToggleStatus(int $id): void {
-    try {
-      $user = $this->userRepository->getById($id);
+    $user = $this->userRepository->getById($id);
 
+    try {
       if (!$user->appointment->isDirector()) {
         throw new Error('Acceso denegado');
       }

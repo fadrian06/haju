@@ -9,10 +9,15 @@ use App\Models\Patient;
 use App\ValueObjects\ConsultationType;
 
 /**
- * @var array<int, Patient> $patients
- * @var array<int, ConsultationCauseCategory> $consultationCauseCategories
- * @var array<int, Department> $departments
+ * @var Patient[] $patients
+ * @var ConsultationCauseCategory[] $consultationCauseCategories
+ * @var Department[] $departments
+ * @var Doctor[] $doctors
  */
+assert(isset($patients) && is_array($patients), new Error('$patients must be an array'));
+assert(isset($consultationCauseCategories) && is_array($consultationCauseCategories), new Error('$consultationCauseCategories must be an array'));
+assert(isset($departments) && is_array($departments), new Error('$departments must be an array'));
+assert(isset($doctors) && is_array($doctors), new Error('$doctors must be an array'));
 
 ?>
 

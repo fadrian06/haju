@@ -4,28 +4,21 @@ declare(strict_types=1);
 
 namespace App\Middlewares;
 
-use App\Repositories\Domain\DepartmentRepository;
+use App\Models\Department;
 use flight\template\View;
-use Leaf\Http\Session;
 
 final readonly class EnsureOneSelectedDepartment {
-  public function __construct(
-    private Session $session,
-    private View $view,
-    private DepartmentRepository $departmentRepository,
-  ) {
+  public function __construct(private View $view) {
   }
 
   public function before(): void {
-    $departmentId = $this->session->get('departmentId');
+    $department = $this->view->get('department');
+    assert(is_null($department) || $department instanceof Department);
+
     $departments = [];
 
-    foreach ($this->view->get('user')->getDepartment() as $department) {
-      $departments[] = $department;
-    }
-
-    if ($departmentId !== null) {
-      $department = $this->departmentRepository->getById((int) $departmentId);
+    foreach ($this->view->get('user')->getDepartment() as $userDepartment) {
+      $departments[] = $userDepartment;
     }
 
     $this->view->set('canChangeDepartment', count($departments) !== 1);

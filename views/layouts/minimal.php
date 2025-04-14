@@ -1,12 +1,9 @@
 <?php
 
-use App\Models\User;
+declare(strict_types=1);
 
-/**
- * @var string $title
- * @var string $content
- * @var User $user
- */
+$title = isset($title) ? strval($title) : throw new Error('Title not set');
+$content = isset($content) ? strval($content) : throw new Error('Content not set');
 
 ?>
 

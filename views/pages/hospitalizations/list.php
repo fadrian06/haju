@@ -2,12 +2,16 @@
 
 declare(strict_types=1);
 
+use App\Models\Department;
 use App\Models\Hospitalization;
 use App\ValueObjects\DateRange;
 
 /**
  * @var Hospitalization[] $hospitalizations
+ * @var Department $department
  */
+assert(isset($hospitalizations) && is_array($hospitalizations), new Error('Expected $hospitalizations to be an array'));
+assert(isset($department) && $department instanceof Department, new Error('Expected $department to be an instance of Department'));
 
 ?>
 

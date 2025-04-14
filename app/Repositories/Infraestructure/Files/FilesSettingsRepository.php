@@ -113,6 +113,7 @@ final readonly class FilesSettingsRepository implements SettingsRepository {
       $rowsQuery = $this->pdo->query("SELECT * FROM {$table}");
       $rows = $rowsQuery->fetchAll(PDO::FETCH_ASSOC);
       $allValues = [];
+      $columnsList = '';
 
       foreach ($rows as $row) {
         $columns = array_keys($row);

@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\User;
 
 /** @var User $user */
+assert(isset($user) && $user instanceof User, new Error('User not set'));
 
 ?>
 
@@ -14,7 +17,11 @@ use App\Models\User;
     <input type="number" min="0" hidden name="id" value="<?= $user->id ?>" />
     <label class="input-group mb-3">
       <i class="input-group-text ti-key fs-1"></i>
-      <input type="password" name="password" class="form-control mb-0 w-auto h-100 py-0" placeholder="Nueva contraseña" />
+      <input
+        type="password"
+        name="password"
+        class="form-control mb-0 w-auto h-100 py-0"
+        placeholder="Nueva contraseña" />
     </label>
     <button class="btn_1">Cambiar</button>
   </form>

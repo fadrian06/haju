@@ -8,12 +8,15 @@ use App\ValueObjects\Appointment;
 
 /**
  * @var User $user
- * @var int $usersNumber
- * @var int $patientsNumber
- * @var int $departmentsNumber
- * @var int $consultationsNumber
  * @var Department $department
  */
+assert(isset($user) && $user instanceof User, new Error('User not set'));
+assert(isset($department) && $department instanceof Department, new Error('Department not set'));
+$usersNumber = isset($usersNumber) ? intval($usersNumber) : throw new Error('Users number not set');
+$patientsNumber = isset($patientsNumber) ? intval($patientsNumber) : throw new Error('Patients number not set');
+$departmentsNumber = isset($departmentsNumber) ? intval($departmentsNumber) : throw new Error('Departments number not set');
+$consultationsNumber = isset($consultationsNumber) ? intval($consultationsNumber) : throw new Error('Consultations number not set');
+$doctorsNumber = isset($doctorsNumber) ? intval($doctorsNumber) : throw new Error('Doctors number not set');
 
 ?>
 
@@ -56,12 +59,12 @@ use App\ValueObjects\Appointment;
     <?php endif ?>
   </div>
 </section>
-<?php $user->appointment->isHigherThan(Appointment::Coordinator)
-  && $department->isStatistics()
-  && Flight::render('components/charts')
-?>
 
-<?php $user->appointment->isHigherThan(Appointment::Coordinator)
-  && $department->isStatistics()
-  && Flight::render('components/reports')
+<?php
+
+if ($user->appointment->isHigherThan(Appointment::Coordinator) && $department->isStatistics()) {
+  Flight::render('components/charts');
+  Flight::render('components/reports');
+}
+
 ?>

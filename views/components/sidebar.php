@@ -12,6 +12,8 @@ use flight\Container;
  * @var User $user
  * @var Department $department
  */
+assert(isset($user) && $user instanceof User, new Error('User not set'));
+assert(isset($department) && $department instanceof Department, new Error('Department not set'));
 
 $patients = Container::getInstance()->get(PatientRepository::class)->getAll();
 

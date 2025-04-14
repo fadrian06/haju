@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-?>
+Flight::render('components/hospital-carousel');
+Flight::render('components/hospital-mission-and-vision');
+Flight::render('components/hospital-location-description');
+Flight::render('components/hospital-contact');
 
-<?php Flight::render('components/hospital-carousel') ?>
-<?php Flight::render('components/hospital-mission-and-vision') ?>
-<?php Flight::render('components/hospital-location-description') ?>
-<?php Flight::render('components/hospital-contact') ?>
+?>

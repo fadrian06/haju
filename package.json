@@ -7,15 +7,17 @@
     "@types/bootstrap": "^5.2.10",
     "alpinejs": "^3.14.9",
     "bootstrap": "^5.3.5",
+    "dotenv": "^16.5.0",
     "esbuild": "0.21.5",
+    "esbuild-sass-plugin": "^3.3.1",
     "husky": "^9.1.7",
     "metismenujs": "^1.4.0",
     "pure-css-loader": "^3.3.3",
     "sweetalert2": "^11.17.2"
   },
   "scripts": {
-    "build": "esbuild assets/src/*.ts --outdir=assets/dist --bundle --minify --loader:.woff2=copy --loader:.woff=copy --loader:.ttf=copy",
-    "dev": "esbuild assets/src/*.ts --outdir=assets/dist --bundle --watch --sourcemap --loader:.woff2=copy --loader:.woff=copy --loader:.ttf=copy",
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/dev.mjs",
     "prepare": "husky",
     "ci": "biome ci ./ --colors=off",
     "format": "biome format ./"

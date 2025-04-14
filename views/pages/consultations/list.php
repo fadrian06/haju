@@ -10,6 +10,8 @@ use App\ValueObjects\DateRange;
  * @var Consultation[] $consultations
  * @var Department $department
  */
+assert(isset($consultations) && is_array($consultations), new Error('Consultations not set'));
+assert(isset($department) && $department instanceof Department, new Error('Department not set'));
 
 ?>
 

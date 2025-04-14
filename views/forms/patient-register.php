@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\ValueObjects\Gender;
 
 $id ??= 'registrar';
-$action ??= "./pacientes#$id";
+$action ??= "./pacientes#{$id}";
 
 ?>
 
@@ -65,7 +65,7 @@ $action ??= "./pacientes#$id";
             'type' => 'select',
             'name' => 'gender',
             'placeholder' => 'Género',
-            'options' => array_map(fn (Gender $gender): array => [
+            'options' => array_map(static fn (Gender $gender): array => [
               'value' => $gender->value,
               'text' => $gender->value
             ], Gender::cases()),

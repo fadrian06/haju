@@ -2,12 +2,15 @@
 
 declare(strict_types=1);
 
-use flight\Container;
 use Leaf\Http\Session;
 
-$session = Container::getInstance()->get(Session::class);
 $error = isset($error) ? strval($error) : null;
 $message = isset($message) ? strval($message) : null;
+$title = isset($title) ? strval($title) : throw new Error('Title not set');
+
+$content = isset($content)
+  ? strval($content)
+  : throw new Error('Content not set');
 
 ?>
 
@@ -15,23 +18,23 @@ $message = isset($message) ? strval($message) : null;
 <html
   lang="es"
   x-data="{
-    theme: `<?= $session->get('theme', 'light') ?>`,
+    theme: `<?= Session::get('theme', 'light') ?>`,
 
     setTheme(theme = 'light') {
       this.theme = theme;
       fetch(`./api/preferencias/tema/${theme}`);
     },
   }"
-  data-bs-theme="<?= $session->get('theme', 'light') ?>"
+  data-bs-theme="<?= Session::get('theme', 'light') ?>"
   :data-bs-theme="theme">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
-  <title><?= $title ?> - HAJU</title>
+  <title><?= $title ?> - <?= $_ENV['APP_NAME'] ?? 'HAJU' ?></title>
   <base href="<?= str_replace('index.php', '', $_SERVER['SCRIPT_NAME']) ?>" />
-  <link rel="icon" href="./assets/img/favicon.svg" />
-  <link rel="stylesheet" href="./assets/dist/guest.css" />
+  <link rel="icon" href="./resources/images/favicon.svg" />
+  <link rel="stylesheet" href="./resources/dist/guest.css" />
 </head>
 
 <body
@@ -41,15 +44,15 @@ $message = isset($message) ? strval($message) : null;
   <?= $content ?>
   <?php Flight::render('components/footer') ?>
 
-  <script src="./assets/dist/guest.js"></script>
+  <script src="./resources/dist/guest.js"></script>
 
   <script>
-    <?php if ($error): ?>
+    <?php if ($error) : ?>
       customSwal.fire({
         title: '<?= $error ?>',
         icon: 'error',
       })
-    <?php elseif ($message): ?>
+    <?php elseif ($message) : ?>
       customSwal.fire({
         title: '<?= $message ?>',
         icon: 'success',

@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-$required ??= true;
-
 $isEdgeBrowser = str_contains(
   strtolower(strval($_SERVER['HTTP_USER_AGENT'])),
   'edg'
@@ -15,6 +13,8 @@ $model ??= '';
 $pattern ??= '';
 $title ??= '';
 $value ??= '';
+$required ??= true;
+$name ??= '';
 
 ?>
 

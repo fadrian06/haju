@@ -1,3 +1,9 @@
+<?php
+
+declare(strict_types=1);
+
+?>
+
 <!-- HTML Meta Tags -->
 <meta name="description" content="Sistema Automatizado para la Gestión Estadística del Hospital General Municipal José Antonio Uzcátegui">
 

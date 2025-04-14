@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Models\User;
 
 /** @var ?User $user */
+$user ??= null;
 
 ?>
 
@@ -13,12 +14,17 @@ use App\Models\User;
     'class' => 'd-none d-md-block',
     'slot' => 'Cerrar sesión'
   ]) ?>
-<?php else: ?>
-  <a class="d-flex align-items-center gap-1 text-decoration-none" href="./ingresar">
+<?php else : ?>
+  <a
+    class="d-flex align-items-center gap-1 text-decoration-none"
+    href="./ingresar">
     <i class="fa fa-right-to-bracket"></i>
     Iniciar sesión
   </a>
-  <a class="d-flex align-items-center gap-1 text-decoration-none" data-bs-toggle="modal" href="#registrate">
+  <a
+    class="d-flex align-items-center gap-1 text-decoration-none"
+    data-bs-toggle="modal"
+    href="#registrate">
     <i class="fa fa-user-plus"></i>
     Regístrate
   </a>

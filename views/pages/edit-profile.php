@@ -6,11 +6,8 @@ use App\Models\User;
 use App\ValueObjects\Gender;
 use App\ValueObjects\InstructionLevel;
 
-/**
- * @var User $user
- * @var ?string $error
- * @var ?string $message
- */
+/** @var User $user */
+assert(isset($user) && $user instanceof User, new Error('User not set'));
 
 ?>
 

@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "lib": ["ES2015", "DOM"]
+  },
+  "include": ["resources/src/*", "resources/src/**/*"]
+}

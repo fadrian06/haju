@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Models\User;
 
 /** @var User $user */
+assert(isset($user) && $user instanceof User, new Error('User not set'));
 
 ?>
 
@@ -20,9 +21,9 @@ use App\Models\User;
             <div class="btn btn-outline-primary card">
               <img
                 src="<?= $department->hasIcon()
-                  ? urldecode($department->iconFilePath->asString())
-                  : './assets/img/department.png'
-                ?>"
+                        ? urldecode($department->iconFilePath->asString())
+                        : './assets/img/department.png'
+                      ?>"
                 alt="Icono del departamento de <?= $department ?>"
                 class="card-img-top object-fit-scale"
                 height="164" />

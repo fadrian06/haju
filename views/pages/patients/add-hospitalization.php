@@ -11,6 +11,8 @@ use App\ValueObjects\DepartureStatus;
  * @var Patient[] $patients
  * @var Doctor[] $doctors
  */
+assert(isset($patients) && is_array($patients), new Error('$patients must be an array'));
+assert(isset($doctors) && is_array($doctors), new Error('$doctors must be an array'));
 
 ?>
 

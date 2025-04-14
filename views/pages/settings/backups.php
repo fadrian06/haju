@@ -1,11 +1,9 @@
 <?php
 
-/**
- * @var bool $showRestore
- * @var ?string $error
- * @var ?string $message
- * @var ?string $scriptPath
- */
+declare(strict_types=1);
+
+$showRestore = isset($showRestore) && boolval($showRestore);
+$scriptPath = isset($scriptPath) ? strval($scriptPath) : null;
 
 ?>
 

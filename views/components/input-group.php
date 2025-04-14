@@ -4,27 +4,31 @@ declare(strict_types=1);
 
 use App\Enums\InputGroupType;
 
-/**
- * @var ?bool $required
- * @var ?bool $readonly
- * @var string $name
- * @var string $placeholder
- * @var ?string $value
- * @var ?bool $checked
- * @var array<int, array{value: string, text: string, selected?: bool}> $options
- * @var ?bool $multiple
- * @var ?string $list
- * @var ?bool $hidden
- * @var ?string $pattern
- * @var ?string $title
- */
-
-$cols = isset($cols) ? intval($cols) : 12;
+/** @var array<int, array{value: string, text: string, selected?: bool}> $options */
+$name = isset($name) ? strval($name) : throw new Error('Name not found');
+$placeholder = isset($placeholder) ? strval($placeholder) : throw new Error('Placeholder not found');
+$type ??= 'text';
+$options = $type === 'select' && isset($options) && is_array($options) ? $options : throw new Error('Options not found');
+$required ??= true;
+$min ??= 0;
+$value ??= '';
+$checked ??= false;
+$multiple ??= false;
+$readonly ??= false;
+$hidden ??= false;
+$pattern = isset($pattern) ? strval($pattern) : null;
+$title = isset($title) ? strval($title) : null;
+$margin ??= 4;
+$max = isset($max) ? intval($max) : null;
+$oninput ??= null;
+$model ??= '';
+$list ??= '';
+$cols = isset($cols) ? intval($cols) : 6;
 assert($cols > 0 && $cols <= 12);
 
 $type = match (true) {
-  isset($type) && is_string($type) => InputGroupType::from($type),
-  isset($type) && $type instanceof InputGroupType => $type,
+  is_string($type) => InputGroupType::from($type),
+  $type instanceof InputGroupType => $type,
   default => InputGroupType::TEXT,
 };
 
@@ -33,7 +37,7 @@ $id = $name . random_int(0, mt_getrandmax());
 if (isset($variant)) {
   $error = new Error('DEPRECATED INPUT-GROUP COMPONENT PARAM: variant');
 
-  $trace = join("\n  ", array_map(
+  $trace = implode("\n  ", array_map(
     static fn(array $call): string => ($call['file'] ?? '') . ':' . ($call['line'] ?? ''),
     array_filter(
       $error->getTrace(),
@@ -48,21 +52,6 @@ if (isset($variant)) {
 } else {
   file_put_contents(__DIR__ . '/../../app/logs/deprecations.log', '');
 }
-
-$required ??= true;
-$min ??= 0;
-$type ??= 'text';
-$value ??= '';
-$checked ??= false;
-$multiple ??= false;
-$readonly ??= false;
-$hidden ??= false;
-$pattern ??= null;
-$title ??= null;
-$margin ??= 4;
-$max ??= null;
-$oninput ??= null;
-$model ??= '';
 
 ?>
 
@@ -82,7 +71,7 @@ $model ??= '';
     </label>
   </div>
 <?php else: ?>
-  <div class="col-md-<?= $cols ?? 6 ?> <?= $hidden ? 'd-none' : '' ?> form-floating mb-<?= $margin ?>">
+  <div class="col-md-<?= $cols ?> <?= $hidden ? 'd-none' : '' ?> form-floating mb-<?= $margin ?>">
     <?php if ($type === InputGroupType::TEXTAREA) : ?>
       <textarea
         class="form-control"
@@ -108,7 +97,10 @@ $model ??= '';
         id="<?= $id ?>"
         placeholder="<?= $placeholder ?>"
         <?= $multiple ? 'multiple' : '' ?>>
-        <option <?= !$value ? 'selected' : '' ?> disabled value="">
+        <option
+          <?= $value ?: 'selected' ?>
+          disabled
+          value="">
           Seleccione una opción
         </option>
         <?php foreach ($options as $option) : ?>
@@ -128,14 +120,14 @@ $model ??= '';
         name="<?= $name ?>"
         id="<?= $id ?>"
         min="<?= $min ?>"
-        <?= $max ? "max='$max'" : '' ?>
+        <?= $max === null ?: "max='{$max}'" ?>
         placeholder="<?= $placeholder ?>"
         value="<?= $value ?>"
-        <?= $readonly ? 'readonly' : '' ?>
-        list="<?= $list ?? null ?>"
-        <?= $pattern ? "pattern='$pattern'" : '' ?>
-        <?= $title ? "data-bs-toggle='tooltip' title='$title'" : '' ?>
-        <?= $oninput ? "oninput='$oninput'" : '' ?> />
+        <?= !$readonly ?: 'readonly' ?>
+        list="<?= $list ?>"
+        <?= $pattern === null ?: "pattern='{$pattern}'" ?>
+        <?= !$title ?: "data-bs-toggle='tooltip' title='{$title}'" ?>
+        <?= !$oninput ?: "oninput='{$oninput}'" ?> />
     <?php endif ?>
     <label for="<?= $id ?>" style="<?= $labelStyle ?? '' ?>">
       <?= $placeholder ?>

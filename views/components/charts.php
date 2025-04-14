@@ -45,9 +45,9 @@ $frecuentCauses = array_map(
 
     $patientIds = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
 
-    foreach ($patientIds as $id) {
-      $patient = $patients[$id] ?? Container::getInstance()->get(PatientRepository::class)->getById(intval($id));
-      $patients[$id] = $patient;
+    foreach ($patientIds as $patientId) {
+      $patient = $patients[$patientId] ?? Container::getInstance()->get(PatientRepository::class)->getById(intval($patientId));
+      $patients[$patientId] = $patient;
 
       $frecuentCause['patients'][] = [
         'id' => $patient->id,

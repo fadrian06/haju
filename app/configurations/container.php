@@ -32,9 +32,21 @@ $container->singleton(Request::class, Flight::request());
 assert($_ENV['DB_CONNECTION'] instanceof DBDriver);
 
 $container->singleton(PDO::class, static fn(): PDO => new PDO(
-  $_ENV['DB_CONNECTION']->getPDODsn(),
-  $_ENV['DB_USERNAME'],
-  $_ENV['DB_PASSWORD'],
+  match (strtolower($_ENV['DB_CONNECTION']->value)) {
+    'sqlite' => 'sqlite:'
+      . __DIR__
+      . '/../../database/'
+      . ($_ENV['DB_DATABASE'] ?? 'haju')
+      . '.db',
+    'mysql' => 'mysql:host='
+      . $_ENV['DB_HOST']
+      . ';dbname='
+      . $_ENV['DB_DATABASE']
+      . ';port='
+      . $_ENV['DB_PORT'],
+  },
+  $_ENV['DB_USERNAME'] ?? null,
+  $_ENV['DB_PASSWORD'] ?? null,
 ));
 
 $container->singleton(

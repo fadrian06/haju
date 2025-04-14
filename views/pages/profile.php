@@ -3,11 +3,9 @@
 declare(strict_types=1);
 
 use App\Models\User;
-use App\ValueObjects\Appointment;
 
-/**
- * @var User $user
- */
+/** @var User $user */
+assert(isset($user) && $user instanceof User, new Error('User not set'));
 
 ?>
 

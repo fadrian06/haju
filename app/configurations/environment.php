@@ -2,5 +2,12 @@
 
 declare(strict_types=1);
 
-$_ENV += include __DIR__ . '/../../.env.php';
-$_ENV += include __DIR__ . '/../../.env.dist.php';
+use App\Enums\DBDriver;
+use Symfony\Component\Dotenv\Dotenv;
+
+(new Dotenv)->load(
+  __DIR__ . '/../../.env.dist',
+  __DIR__ . '/../../.env'
+);
+
+$_ENV['DB_CONNECTION'] = DBDriver::from($_ENV['DB_CONNECTION']);

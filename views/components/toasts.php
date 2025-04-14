@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+/**
+ * @var string[] $errors
+ * @var string[] $success
+ */
 $errors ??= [];
 $success ??= [];
 

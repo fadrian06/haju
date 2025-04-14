@@ -5,7 +5,8 @@ declare(strict_types=1);
 use App\Models\Doctor;
 use App\ValueObjects\Gender;
 
-assert($doctor instanceof Doctor);
+/** @var Doctor $doctor */
+assert(isset($doctor) && $doctor instanceof Doctor, new Error('Doctor not found'));
 
 ?>
 
@@ -67,7 +68,7 @@ assert($doctor instanceof Doctor);
       'type' => 'select',
       'name' => 'gender',
       'placeholder' => 'Género',
-      'options' => array_map(fn(Gender $gender): array => [
+      'options' => array_map(static fn(Gender $gender): array => [
         'value' => $gender->value,
         'text' => $gender->value,
         'selected' => $doctor->gender === $gender

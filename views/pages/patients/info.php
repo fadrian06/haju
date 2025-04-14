@@ -3,12 +3,9 @@
 declare(strict_types=1);
 
 use App\Models\Patient;
-use App\Models\User;
 
-/**
- * @var User $user
- * @var Patient $patient
- */
+/** @var Patient $patient */
+assert(isset($patient) && $patient instanceof Patient, new Error('$patient must be an instance of Patient'));
 
 $causes = [];
 

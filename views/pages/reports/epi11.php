@@ -101,6 +101,10 @@ $monthYear = $_GET['fecha'] ?? null;
 
 ob_start();
 
+$startDate ??= null;
+$endDate ??= null;
+$daysOfMonth ??= null;
+
 if ($monthYear !== null) {
   [$year, $month] = explode('-', (string) $monthYear);
 
@@ -140,7 +144,7 @@ $printedParentCategories = [];
       </tr>
       <tr>
         <?php foreach (range(1, DAYS) as $day) : ?>
-          <th><?= str_pad("$day", 2, '0', STR_PAD_LEFT) ?></th>
+          <th><?= str_pad(strval($day), 2, '0', STR_PAD_LEFT) ?></th>
         <?php endforeach ?>
       </tr>
     </thead>

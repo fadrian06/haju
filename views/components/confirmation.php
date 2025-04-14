@@ -1,17 +1,13 @@
 <?php
 
-/**
- * @var ?bool $show
- * @var string $id
- * @var string $action
- * @var string $title
- * @var ?string $confirmText
- * @var null|string|false $denyText
- */
+declare(strict_types=1);
 
-$show ??= true;
+$show = isset($show) ? boolval($show) : true;
+$id = isset($id) ? strval($id) : throw new Error('id is required');
+$action = isset($action) ? strval($action) : throw new Error('action is required');
+$title = isset($title) ? strval($title) : throw new Error('title is required');
 $confirmText ??= 'Confirmar';
-$denyText ??= 'Cancelar';
+$denyText = isset($denyText) && $denyText === false ? false : 'Cancelar';
 
 ?>
 

@@ -2,20 +2,17 @@
 
 declare(strict_types=1);
 
-use App\Models\User;
 use App\Repositories\Domain\PatientRepository;
 use flight\Container;
 
-/**
- * @var string $title
- * @var string $content
- * @var User $user
- * @var bool $mustChangePassword
- */
-
+$error = isset($error) ? strval($error) : null;
+$message = isset($message) ? strval($message) : null;
+$title = isset($title) ? strval($title) : throw new Error('Title not set');
+$content = isset($content) ? strval($content) : throw new Error('Content not set');
+$mustChangePassword = isset($mustChangePassword) && boolval($mustChangePassword);
 $showPasswordChangeModal ??= $mustChangePassword;
 
-if (str_contains((string) $_SERVER['REQUEST_URI'], 'perfil')) {
+if (str_contains(strval($_SERVER['REQUEST_URI']), 'perfil')) {
   $showPasswordChangeModal = false;
 }
 

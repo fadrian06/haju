@@ -101,6 +101,9 @@ $monthYear = $_GET['fecha'] ?? null;
 
 ob_start();
 
+$startDate ??= null;
+$endDate ??= null;
+
 if ($monthYear !== null) {
   [$year, $month] = explode('-', (string) $monthYear);
 

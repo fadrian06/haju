@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 $class ??= '';
+$slot = isset($slot) ? strval($slot) : throw new Error('Slot not found');
 
 ?>
 

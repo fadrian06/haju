@@ -6,9 +6,12 @@ use App\Models\Doctor;
 use App\Models\User;
 use App\ValueObjects\Gender;
 
-$doctors = array_map(fn(Doctor $doctor) => $doctor, $doctors);
-$loggedUser = $user;
-assert($loggedUser instanceof User);
+/**
+ * @var User $user
+ * @var Doctor[] $doctors
+ */
+$doctors ??= [];
+assert(isset($user) && $user instanceof User, new Error('User not found'));
 
 ?>
 
@@ -30,7 +33,7 @@ assert($loggedUser instanceof User);
 <ul class="list-unstyled row row-cols-sm-2 row-cols-md-3">
   <?php foreach ($doctors as $doctor) : ?>
     <li class="mb-4 d-flex align-items-stretch">
-      <article class="card card-body text-center <?= $doctor->canBeEditedBy($loggedUser) ?: 'pe-none opacity-50 user-select-none' ?>">
+      <article class="card card-body text-center <?= $doctor->canBeEditedBy($user) ?: 'pe-none opacity-50 user-select-none' ?>">
         <div class="dropdown position-relative">
           <button class="end-0 bg-transparent border-0 position-absolute" data-bs-toggle="dropdown">
             <i class="ti-more"></i>
@@ -116,7 +119,7 @@ assert($loggedUser instanceof User);
             'type' => 'select',
             'name' => 'gender',
             'placeholder' => 'Género',
-            'options' => array_map(fn(Gender $gender): array => [
+            'options' => array_map(static fn(Gender $gender): array => [
               'value' => $gender->value,
               'text' => $gender->value
             ], Gender::cases()),

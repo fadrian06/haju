@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 use App\Models\Hospital;
 
-/**
- * @var Hospital $hospital
- * @var ?string $message
- * @var ?string $error
- */
+/** @var Hospital $hospital */
+assert(isset($hospital) && $hospital instanceof Hospital, new Error('Hospital not found'));
 
 ?>
 

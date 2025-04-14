@@ -7,7 +7,7 @@
 *.bkp
 *.dtmp
 ~*.xlsx
-.env.php
+.env
 *.db
 *.db-journal
 .phpunit.result.cache
