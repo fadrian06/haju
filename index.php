@@ -12,6 +12,7 @@ require_once __DIR__ . '/app/configurations/database.php';
 require_once __DIR__ . '/app/configurations/container.php';
 require_once __DIR__ . '/app/configurations/repositories.php';
 require_once __DIR__ . '/app/configurations/flight.php';
+require_once __DIR__ . '/app/configurations/views.php';
 require_once __DIR__ . '/app/routes/web.php';
 require_once __DIR__ . '/app/routes/api.php';
 
