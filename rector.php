@@ -20,6 +20,17 @@ use Rector\Strict\Rector\Ternary\DisallowedShortTernaryRuleFixerRector;
 use Rector\TypeDeclaration\Rector\BooleanAnd\BinaryOpNullableToInstanceofRector;
 
 return RectorConfig::configure()
+  ->withAttributesSets()
+  ->withAutoloadPaths([])
+  ->withBootstrapFiles([])
+  ->withCache()
+  ->withComposerBased()
+  // ->withConfiguredRule()
+  ->withDowngradeSets(php82: true)
+  ->withFluentCallNewLine()
+  ->withImportNames(removeUnusedImports: true)
+  ->withIndent(' ', 2)
+  ->withParallel()
   ->withPaths([
     __DIR__ . '/app',
     __DIR__ . '/tests',
@@ -39,6 +50,7 @@ return RectorConfig::configure()
     rectorPreset: true,
     phpunitCodeQuality: false,
   )
+  ->withRealPathReporting()
   ->withRootFiles()
   ->withSkip([
     EncapsedStringsToSprintfRector::class,
@@ -57,5 +69,5 @@ return RectorConfig::configure()
     RenamePropertyToMatchTypeRector::class,
     DisallowedShortTernaryRuleFixerRector::class,
   ])
-  ->withIndent(' ', 2)
-  ->withImportNames();
+  // ->withSkipPath()
+;

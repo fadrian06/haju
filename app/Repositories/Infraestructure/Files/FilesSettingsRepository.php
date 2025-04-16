@@ -8,7 +8,6 @@ use App\Enums\DBDriver;
 use App\Models\Hospital;
 use App\Repositories\Domain\SettingsRepository;
 use PDO;
-use PDOException;
 
 final readonly class FilesSettingsRepository implements SettingsRepository {
   public function __construct(private PDO $pdo) {
