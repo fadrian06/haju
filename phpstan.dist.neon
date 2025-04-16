@@ -13,3 +13,8 @@ parameters:
   treatPhpDocTypesAsCertain: false
   strictRules:
     disallowedShortTernary: false
+  excludePaths:
+    - vendor
+    - node_modules
+    - .git
+    - .idea

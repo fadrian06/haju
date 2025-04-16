@@ -69,5 +69,8 @@ return RectorConfig::configure()
     RenamePropertyToMatchTypeRector::class,
     DisallowedShortTernaryRuleFixerRector::class,
   ])
-  // ->withSkipPath()
+  ->withSkipPath(__DIR__ . '/vendor')
+  ->withSkipPath(__DIR__ . '/node_modules')
+  ->withSkipPath(__DIR__ . '/.git')
+  ->withSkipPath(__DIR__ . '/.idea')
 ;

@@ -46,7 +46,7 @@
       "phpmd app views index.php rector.php tests text phpmd.xml"
     ],
     "migrate:fresh": "php app/commands/migrate-fresh.php",
-    "format": ["rector"]
+    "format": ["rector", "phpcbf"]
   },
   "require-dev": {
     "guzzlehttp/guzzle": "^7.9",
