@@ -7,10 +7,11 @@ error_reporting(E_ALL);
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/app/constants.php';
 require_once __DIR__ . '/app/configurations/environment.php';
+require_once __DIR__ . '/app/configurations/authentication.php';
 require_once __DIR__ . '/app/configurations/database.php';
 require_once __DIR__ . '/app/configurations/container.php';
-require_once __DIR__ . '/app/configurations/flight.php';
 require_once __DIR__ . '/app/configurations/repositories.php';
+require_once __DIR__ . '/app/configurations/flight.php';
 require_once __DIR__ . '/app/routes/web.php';
 require_once __DIR__ . '/app/routes/api.php';
 

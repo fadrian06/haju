@@ -18,10 +18,6 @@ use App\Repositories\Infraestructure\PDO\PDOPatientRepository;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
 use Illuminate\Container\Container;
 
-require_once __DIR__ . '/../constants.php';
-require_once __DIR__ . '/container.php';
-require_once __DIR__ . '/database.php';
-
 Container::getInstance()->singleton(
   DepartmentRepository::class,
   static fn(): DepartmentRepository => new PDODepartmentRepository(

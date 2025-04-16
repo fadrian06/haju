@@ -8,10 +8,6 @@ use App\Repositories\Domain\UserRepository;
 use Illuminate\Container\Container;
 use Leaf\Http\Session;
 
-require_once __DIR__ . '/../constants.php';
-require_once __DIR__ . '/container.php';
-require_once __DIR__ . '/repositories.php';
-
 Flight::registerContainerHandler(Container::getInstance());
 
 Flight::set('flight.views.path', VIEWS_PATH);

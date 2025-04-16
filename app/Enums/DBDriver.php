@@ -10,17 +10,23 @@ enum DBDriver: string {
 
   public function getPdoDsn(): string {
     return match ($this) {
-      self::SQLite => 'sqlite:'
-        . __DIR__
-        . '/../../database/'
-        . ($_ENV['DB_DATABASE'] ?? 'haju')
-        . '.db',
+      self::SQLite => "sqlite:{$this->getDatabaseName()}",
       self::MySQL => 'mysql:host='
         . $_ENV['DB_HOST']
         . ';dbname='
-        . $_ENV['DB_DATABASE']
+        . $this->getDatabaseName()
         . ';port='
         . $_ENV['DB_PORT'],
+    };
+  }
+
+  public function getDatabaseName(): string {
+    return match ($this) {
+      self::SQLite => __DIR__
+        . '/../../database/'
+        . ($_ENV['DB_DATABASE'] ?? 'haju')
+        . '.db',
+      self::MySQL => $_ENV['DB_DATABASE'],
     };
   }
 }
