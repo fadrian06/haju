@@ -101,7 +101,11 @@ final readonly class UserWebController extends Controller {
       throw new Error(sprintf('El nivel de instrucción es requerido y válido (%s)', implode(', ', InstructionLevel::values())));
     }
 
-    if ($this->loggedUser && $this->loggedUser->appointment->isDirector() && empty($this->data['departments'])) {
+    if (
+      $this->loggedUser
+      && $this->loggedUser->appointment->isDirector()
+      && $this->data['departments'] === []
+    ) {
       throw new Error('Debe asignar al menos 1 departamento');
     }
   }
