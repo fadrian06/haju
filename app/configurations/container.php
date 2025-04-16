@@ -75,23 +75,21 @@ $container->singleton(
 
 $container->singleton(
   ConsultationCauseCategoryRepository::class,
-  static function (): ConsultationCauseCategoryRepository {
-    return new PDOConsultationCauseCategoryRepository(
-      Container::getInstance()->get(PDO::class),
-      BASE_URL
-    );
-  }
+  // phpcs:ignore Generic.Files.LineLength.TooLong
+  static fn(): ConsultationCauseCategoryRepository => new PDOConsultationCauseCategoryRepository(
+    Container::getInstance()->get(PDO::class),
+    BASE_URL
+  )
 );
 
 $container->singleton(
   ConsultationCauseRepository::class,
-  static function (): ConsultationCauseRepository {
-    return new PDOConsultationCauseRepository(
-      Container::getInstance()->get(PDO::class),
-      BASE_URL,
-      Container::getInstance()->get(ConsultationCauseCategoryRepository::class)
-    );
-  }
+  // phpcs:ignore Generic.Files.LineLength.TooLong
+  static fn(): ConsultationCauseRepository => new PDOConsultationCauseRepository(
+    Container::getInstance()->get(PDO::class),
+    BASE_URL,
+    Container::getInstance()->get(ConsultationCauseCategoryRepository::class)
+  )
 );
 
 $container->singleton(

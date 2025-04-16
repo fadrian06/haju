@@ -16,7 +16,6 @@ use App\ValueObjects\ConsultationType;
 use App\ValueObjects\Date;
 use App\ValueObjects\DepartureStatus;
 use App\ValueObjects\Gender;
-use DateTime;
 use DateTimeImmutable;
 use Error;
 use Flight;

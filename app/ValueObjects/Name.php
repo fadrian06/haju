@@ -10,13 +10,17 @@ use Stringable;
 readonly class Name implements Stringable {
   protected string $value;
 
-  /** @throws InvalidNameException */
+  /**
+   * @throws InvalidNameException
+   */
   public function __construct(string $value, string $field) {
     $this->validate($value, $field);
     $this->value = mb_convert_case($value, MB_CASE_TITLE);
   }
 
-  /** @throws InvalidNameException */
+  /**
+   * @throws InvalidNameException
+   */
   protected function validate(string $value, string $field): static {
     $value = mb_convert_case(str_replace('  ', ' ', $value), MB_CASE_LOWER);
     $pattern = '/^(del|de)?\s?[a-záéíóúñ]{3,}$/';
