@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 ?>
 
-<li class="dropdown" data-bs-toggle="tooltip" title="Cambiar tema">
+<li
+  class="dropdown"
+  data-bs-toggle="tooltip"
+  data-bs-placement="left"
+  title="Cambiar tema">
   <button
     type="button"
-    class="
-      btn btn-link text-decoration-none py-2 px-0 px-lg-2 dropdown-toggle
-      d-flex align-items-center
-    "
+    class="btn btn-outline-primary border-0 text-decoration-none py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center"
     data-bs-toggle="dropdown"
     data-bs-display="static">
     <i class="fa" :class="theme === 'light' ? 'fa-sun' : 'fa-moon'"></i>
