@@ -112,6 +112,7 @@
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
   width: 100px;
   height: 100px;
+  box-sizing: border-box;
 }
 
 .profile_box_1 .profile-cover-image {
@@ -180,6 +181,7 @@
   border-bottom: 3px solid transparent;
   transform: scale(1, 1);
   transition: all .5s linear;
+  box-sizing: border-box;
 }
 
 .profile-card-4 .profile-content::after {
@@ -193,6 +195,7 @@
   border-left: 3px solid transparent;
   border-top: 3px solid transparent;
   transition: all .5s linear;
+  box-sizing: border-box;
 }
 
 .profile-card-4:hover .profile-content:before {
@@ -213,6 +216,7 @@
   height: 100%;
   padding: 50% 4%;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .profile-card-4 .profile-content:hover {
@@ -280,16 +284,8 @@
 
 .pCard_card {
   height: 615px;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  -ms-border-radius: 30px;
-  -o-border-radius: 30px;
   border-radius: 30px;
   background-color: #f6fcfe;
-  -webkit-box-shadow: 0 20px 70px 0 rgba(0, 0, 0, 0.21);
-  -moz-box-shadow: 0 20px 70px 0 rgba(0, 0, 0, 0.21);
-  -ms-box-shadow: 0 20px 70px 0 rgba(0, 0, 0, 0.21);
-  -o-box-shadow: 0 20px 70px 0 rgba(0, 0, 0, 0.21);
   box-shadow: 0 20px 70px 0 rgba(0, 0, 0, 0.21);
   position: relative;
   overflow: hidden;
@@ -319,20 +315,8 @@
   background-size: cover;
   z-index: 3;
   text-align: center;
-  -webkit-border-top-left-radius: 30px;
-  -moz-border-top-left-radius: 30px;
-  -ms-border-top-left-radius: 30px;
-  -o-border-top-left-radius: 30px;
   border-top-left-radius: 30px;
-  -webkit-border-top-right-radius: 30px;
-  -moz-border-top-right-radius: 30px;
-  -ms-border-top-right-radius: 30px;
-  -o-border-top-right-radius: 30px;
   border-top-right-radius: 30px;
-  -webkit-transition: .5s ease-in-out;
-  -moz-transition: .5s ease-in-out;
-  -ms-transition: .5s ease-in-out;
-  -o-transition: .5s ease-in-out;
   transition: .5s ease-in-out;
 }
 
@@ -347,10 +331,6 @@
   left: 0;
   right: 0;
   color: #f1f7f9;
-  -webkit-transition: .5s ease-in-out;
-  -moz-transition: .5s ease-in-out;
-  -ms-transition: .5s ease-in-out;
-  -o-transition: .5s ease-in-out;
   transition: .5s ease-in-out;
 }
 
@@ -372,16 +352,8 @@
 }
 
 .pCard_card .pCard_up .pCard_add {
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
   border-radius: 50%;
   background-color: #ed145b;
-  -webkit-box-shadow: 0 5px 24px 0 rgba(0, 0, 0, 0.43);
-  -moz-box-shadow: 0 5px 24px 0 rgba(0, 0, 0, 0.43);
-  -ms-box-shadow: 0 5px 24px 0 rgba(0, 0, 0, 0.43);
-  -o-box-shadow: 0 5px 24px 0 rgba(0, 0, 0, 0.43);
   box-shadow: 0 5px 24px 0 rgba(0, 0, 0, 0.43);
   position: absolute;
   top: 392px;
@@ -391,18 +363,10 @@
   width: 88px;
   height: 88px;
   cursor: pointer;
-  -webkit-transition: .5s ease-in-out;
-  -moz-transition: .5s ease-in-out;
-  -ms-transition: .5s ease-in-out;
-  -o-transition: .5s ease-in-out;
   transition: .5s ease-in-out;
 }
 
 .pCard_on .pCard_up .pCard_add {
-  -webkit-transform: rotate(360deg) scale(0.5);
-  -moz-transform: rotate(360deg) scale(0.5);
-  -ms-transform: rotate(360deg) scale(0.5);
-  -o-transform: rotate(360deg) scale(0.5);
   transform: rotate(360deg) scale(0.5);
   top: 470px;
 }
@@ -414,29 +378,13 @@
   width: 100%;
   height: 178px;
   z-index: 2;
-  -webkit-border-bottom-left-radius: 30px;
-  -moz-border-bottom-left-radius: 30px;
-  -ms-border-bottom-left-radius: 30px;
-  -o-border-bottom-left-radius: 30px;
   border-bottom-left-radius: 30px;
-  -webkit-border-bottom-right-radius: 30px;
-  -moz-border-bottom-right-radius: 30px;
-  -ms-border-bottom-right-radius: 30px;
-  -o-border-bottom-right-radius: 30px;
   border-bottom-right-radius: 30px;
-  -webkit-transition: .5s ease-in-out;
-  -moz-transition: .5s ease-in-out;
-  -ms-transition: .5s ease-in-out;
-  -o-transition: .5s ease-in-out;
   transition: .5s ease-in-out;
 }
 
 .pCard_on .pCard_down {
   height: 100px;
-  -webkit-box-shadow: 0 0 30px #cfd8dc;
-  -moz-box-shadow: 0 0 30px #cfd8dc;
-  -ms-box-shadow: 0 0 30px #cfd8dc;
-  -o-box-shadow: 0 0 30px #cfd8dc;
   box-shadow: 0 0 30px #cfd8dc;
 }
 
@@ -446,10 +394,6 @@
   text-align: center;
   margin-top: 50px;
   font-size: 18px;
-  -webkit-transition: .5s ease-in-out;
-  -moz-transition: .5s ease-in-out;
-  -ms-transition: .5s ease-in-out;
-  -o-transition: .5s ease-in-out;
   transition: .5s ease-in-out;
 }
 
@@ -475,24 +419,12 @@
   line-height: 36px;
   margin: 10px;
   display: inline-block;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
   border-radius: 15px;
-  -webkit-transition: .3s ease-in-out;
-  -moz-transition: .3s ease-in-out;
-  -ms-transition: .3s ease-in-out;
-  -o-transition: .3s ease-in-out;
   transition: .3s ease-in-out;
   font-size: 15px;
 }
 
 .pCard_card .pCard_back a i:hover {
-  -webkit-transform: scale(1.2);
-  -moz-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  -o-transform: scale(1.2);
   transform: scale(1.2);
 }
 
@@ -557,7 +489,6 @@
 .profile-cart_2:hover::after {
   content: " ";
   clip-path: circle(100% at 50% 170%);
-  transition: 2s;
   display: block;
   min-height: 500px;
   transition: 2s;
@@ -586,7 +517,6 @@
   justify-content: center;
   display: flex;
   width: 100%;
-  font-family: poppins bold;
   color: rgba(30, 29, 29, 0.85);
   letter-spacing: 2px;
 }
@@ -598,7 +528,6 @@
   align-items: center;
   text-align: center;
   top: 50%;
-  font-family: poppins;
   font-weight: 500;
   margin: 0 20px;
   color: rgba(30, 29, 29, 0.85);
@@ -649,6 +578,7 @@
   background: #292343;
   margin-top: 80px;
   margin-left: 10px;
+  box-sizing: border-box;
 }
 
 .profile_card_5 .profile-name {

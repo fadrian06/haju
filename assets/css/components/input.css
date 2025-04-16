@@ -24,7 +24,6 @@
   width: auto;
   right: 25px;
   border: 0;
-  font-family: "font awesome 5 free";
   font-weight: 600;
   color: #cec1c2;
   transform: translateY(-50%);
@@ -41,7 +40,6 @@
   color: #222;
   text-align: left;
   margin: 0;
-  margin-bottom: 0;
   display: block;
   margin-bottom: 8px;
 }
@@ -64,6 +62,7 @@
   margin: 0;
   min-width: 20px;
   padding: 7px !important;
+  box-sizing: border-box;
 }
 
 .tagInput_field .bootstrap-tagsinput .badge {
@@ -74,23 +73,20 @@
   font-size: 12px;
   color: #16bbe5;
   font-weight: 400;
-  background: whitef;
+  background: white;
   border: 1px solid #16bbe5;
   border-radius: 30px;
   position: relative;
+  box-sizing: border-box;
 }
 
 .tagInput_field .bootstrap-tagsinput .badge [data-role="remove"]::after {
   font-size: 10px;
-  font-family: themify;
   content: "\e646";
   background: 0 0;
-  padding: 0;
   margin: 0;
-  margin-left: 0;
   background: 0 0;
   margin-left: 5px;
-  padding: 0;
   border: 1px solid transparent;
   padding: 2px;
 }

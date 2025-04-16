@@ -124,7 +124,6 @@
   top: 55%;
   transform: translateY(-50%);
   content: "\f0d8";
-  font-family: "font awesome 5 free";
   color: #cec1c2;
   font-weight: 600;
   font-size: 14px;
@@ -142,7 +141,6 @@
   top: 50%;
   transform: translateY(-50%);
   content: "\f0d7";
-  font-family: "font awesome 5 free";
   color: #cec1c2;
   font-weight: 600;
   font-size: 14px;

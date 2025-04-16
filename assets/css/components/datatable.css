@@ -15,7 +15,6 @@ table.dataTable.dtr-inline.collapsed
   top: 50%;
   transform: translateY(-50%);
   content: "\e61a";
-  font-family: themify;
   font-size: 8px;
   line-height: 14px;
   font-weight: 600;
@@ -44,7 +43,6 @@ table.dataTable {
 }
 
 .dataTables_paginate {
-  margin-top: 0;
   margin-top: 30px;
 }
 
@@ -56,7 +54,6 @@ table.dataTable {
   text-align: center !important;
   line-height: 32px;
   padding: 0 !important;
-  margin: 0 !important;
   margin: 0 5px !important;
 }
 

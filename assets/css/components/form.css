@@ -16,6 +16,7 @@
   background-color: #fef1f2;
   height: auto;
   line-height: 18px;
+  box-sizing: border-box;
 }
 
 .form_box .from_group {
@@ -88,6 +89,7 @@
   border-radius: 5px;
   border: 1px solid #f1f3f5;
   padding: 12px 20px;
+  box-sizing: border-box;
 }
 
 .form_group .single_form_item label {
@@ -101,6 +103,7 @@
   padding: 12px 20px;
   max-width: 85px;
   color: #9c9c9c;
+  box-sizing: border-box;
 }
 
 .form_group #CVV {
@@ -123,7 +126,6 @@
   color: #222;
   text-align: left;
   margin: 0;
-  margin-bottom: 0;
   display: block;
   margin-bottom: 8px;
 }
@@ -134,16 +136,15 @@
   color: #222;
   text-align: left;
   margin: 0;
-  margin-bottom: 0;
   display: block;
   margin-bottom: 8px;
 }
 
 .indvisual_form .input_wrap textarea {
   height: 100px;
-  padding: 0;
   line-height: 28px;
   padding: 13px 25px;
+  box-sizing: border-box;
 }
 
 .indvisual_form .input_wrap textarea.max_textarea {
@@ -159,13 +160,13 @@
   border: 1px solid #eee1e2;
   padding: 10px 25px;
   color: #7e7172;
-  font-weight: 500;
   font-size: 13px;
   width: 100%;
   display: block;
   margin-bottom: 21px;
   font-weight: 300;
   border-radius: 3px;
+  box-sizing: border-box;
 }
 
 .indvisual_form .nice_Select::placeholder,
@@ -191,15 +192,13 @@
   border: 1px solid #eee1e2;
   padding: 0 37px 0 20px;
   color: #7e7172;
-  font-weight: 500;
   font-size: 13px;
-  width: 100%;
   display: block;
-  margin-bottom: 21px;
+  margin-bottom: 0 0 21px;
   font-weight: 300;
   border-radius: 3px;
-  margin: 0;
   width: auto;
+  box-sizing: border-box;
 }
 
 .indvisual_form .nice-select.nice_Select2::after {
