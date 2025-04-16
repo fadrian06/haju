@@ -50,14 +50,18 @@ abstract class Person extends Model {
     return $this;
   }
 
-  /** @throws InvalidNameException */
+  /**
+   * @throws InvalidNameException
+   */
   final public function setFirstName(string $firstName): static {
     $this->firstName = new Name($firstName, 'Primer nombre');
 
     return $this;
   }
 
-  /** @throws InvalidNameException */
+  /**
+   * @throws InvalidNameException
+   */
   final public function setSecondName(?string $secondName): static {
     $this->secondName = boolval($secondName)
       ? new Name($secondName, 'Segundo nombre')
@@ -66,14 +70,18 @@ abstract class Person extends Model {
     return $this;
   }
 
-  /** @throws InvalidNameException */
+  /**
+   * @throws InvalidNameException
+   */
   final public function setFirstLastName(string $firstLastName): static {
     $this->firstLastName = new Name($firstLastName, 'Primer apellido');
 
     return $this;
   }
 
-  /** @throws InvalidNameException */
+  /**
+   * @throws InvalidNameException
+   */
   final public function setSecondLastName(?string $secondLastName): static {
     $this->secondLastName = boolval($secondLastName)
       ? new Name($secondLastName, 'Segundo apellido')
@@ -82,7 +90,9 @@ abstract class Person extends Model {
     return $this;
   }
 
-  /** @throws InvalidNameException */
+  /**
+   * @throws InvalidNameException
+   */
   public function setFullName(string $fullName): self {
     $fullName = explode(' ', $fullName);
 

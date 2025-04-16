@@ -14,9 +14,7 @@ use Flight;
 use Throwable;
 
 final readonly class DoctorWebController extends Controller {
-  public function __construct(
-    private readonly DoctorRepository $doctorRepository,
-  ) {
+  public function __construct(private DoctorRepository $doctorRepository) {
     parent::__construct();
   }
 

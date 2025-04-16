@@ -26,6 +26,7 @@ use Throwable;
 final readonly class PatientWebController extends Controller {
   public function __construct(
     private PatientRepository $patientRepository,
+    // phpcs:ignore Generic.Files.LineLength.TooLong
     private ConsultationCauseCategoryRepository $consultationCauseCategoryRepository,
     private ConsultationCauseRepository $consultationCauseRepository,
     private DepartmentRepository $departmentRepository,
@@ -36,27 +37,27 @@ final readonly class PatientWebController extends Controller {
   }
 
   public function showHospitalizations(): void {
-    $stmt = $this->pdo->prepare(<<<sql
+    $stmt = $this->pdo->prepare('
       SELECT id, admission_department, admission_date, departure_date,
       departure_status, diagnoses, registered_date, doctor_id, patient_id
       FROM hospitalizations
       WHERE departure_date IS NOT NULL
       ORDER BY registered_date DESC
-    sql);
+    ');
 
     $stmt->execute();
 
-    /** @var Hospitalization[] */
     $hospitalizations = [];
-
     $patients = [];
+    $hospitalizationRecord = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    while (is_array($hospitalizationRecord = $stmt->fetch(PDO::FETCH_ASSOC))) {
+    while (is_array($hospitalizationRecord)) {
       $patient = $patients[$hospitalizationRecord['patient_id']] ?? $this
         ->patientRepository
         ->getById(intval($hospitalizationRecord['patient_id']));
 
       $patients[$hospitalizationRecord['patient_id']] ??= $patient;
+      $departureStatus = $hospitalizationRecord['departure_status'] ?? '';
 
       $hospitalization = new Hospitalization(
         $patient,
@@ -66,15 +67,20 @@ final readonly class PatientWebController extends Controller {
         boolval($hospitalizationRecord['departure_date'])
           ? new DateTimeImmutable($hospitalizationRecord['departure_date'])
           : null,
-        DepartureStatus::tryFrom($hospitalizationRecord['departure_status'] ?? ''),
+        DepartureStatus::tryFrom($departureStatus),
         $hospitalizationRecord['diagnoses'] ?: null
       );
 
 
-      $hospitalization->setId($hospitalizationRecord['id'])
-        ->setRegisteredDate(DateTime::createFromFormat('Y-m-d H:i:s', $hospitalizationRecord['registered_date']));
+      $hospitalization
+        ->setId($hospitalizationRecord['id'])
+        ->setRegisteredDate(DateTimeImmutable::createFromFormat(
+          'Y-m-d H:i:s',
+          $hospitalizationRecord['registered_date']
+        ));
 
       $hospitalizations[] = $hospitalization;
+      $hospitalizationRecord = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     renderPage('hospitalizations/list', 'Hospitalizaciones', [
@@ -83,19 +89,21 @@ final readonly class PatientWebController extends Controller {
   }
 
   public function showConsultations(): void {
-    $stmt = $this->pdo->prepare(<<<sql
-      SELECT id, type, registered_date, cause_id, department_id, doctor_id, patient_id
+    $stmt = $this->pdo->prepare('
+      SELECT id, type, registered_date, cause_id, department_id, doctor_id,
+      patient_id
       FROM consultations
       ORDER BY registered_date DESC
       LIMIT 100
-    sql);
+    ');
 
     $stmt->execute();
 
     $consultations = [];
     $patients = [];
+    $consultationRecord = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    while (is_array($consultationRecord = $stmt->fetch(PDO::FETCH_ASSOC))) {
+    while (is_array($consultationRecord)) {
       $patient = $patients[$consultationRecord['patient_id']] ?? $this
         ->patientRepository
         ->getById(intval($consultationRecord['patient_id']));
@@ -104,16 +112,25 @@ final readonly class PatientWebController extends Controller {
 
       $consultation = new Consultation(
         ConsultationType::from($consultationRecord['type']),
-        $this->consultationCauseRepository->getById($consultationRecord['cause_id']),
-        $this->departmentRepository->getById($consultationRecord['department_id']),
+        $this
+          ->consultationCauseRepository
+          ->getById($consultationRecord['cause_id']),
+        $this
+          ->departmentRepository
+          ->getById($consultationRecord['department_id']),
         $this->doctorRepository->getById($consultationRecord['doctor_id']),
         $patient,
       );
 
-      $consultation->setId($consultationRecord['id'])
-        ->setRegisteredDate(DateTime::createFromFormat('Y-m-d H:i:s', $consultationRecord['registered_date']));
+      $consultation
+        ->setId($consultationRecord['id'])
+        ->setRegisteredDate(DateTimeImmutable::createFromFormat(
+          'Y-m-d H:i:s',
+          $consultationRecord['registered_date']
+        ));
 
       $consultations[] = $consultation;
+      $consultationRecord = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     renderPage('consultations/list', 'Consultas', [
@@ -125,7 +142,7 @@ final readonly class PatientWebController extends Controller {
     $idCard = Flight::request()->query['cedula'];
 
     if (is_numeric($idCard)) {
-      $patient = $this->patientRepository->getByIdCard((int) $idCard);
+      $patient = $this->patientRepository->getByIdCard(intval($idCard));
 
       if ($patient !== null) {
         Flight::redirect("/pacientes/{$patient->id}");
@@ -210,8 +227,8 @@ final readonly class PatientWebController extends Controller {
       $patient = $this->patientRepository->getById($patientId);
 
       $patient
-        ?->setFullName((string) $this->data['full_name'])
-        ->setIdCard((int) $this->data['id_card']);
+        ?->setFullName(strval($this->data['full_name']))
+        ->setIdCard(intval($this->data['id_card']));
 
       $patient->birthDate = Date::from($this->data['birth_date'], '-');
 
@@ -252,7 +269,7 @@ final readonly class PatientWebController extends Controller {
     try {
       $patient = $this
         ->patientRepository
-        ->getById((int) $this->data['id_card']);
+        ->getById(intval($this->data['id_card']));
 
       $consultation = new Consultation(
         boolval($this->data['consultation_type'])
@@ -260,9 +277,9 @@ final readonly class PatientWebController extends Controller {
           : ConsultationType::FirstTime,
         $this
           ->consultationCauseRepository
-          ->getById((int) $this->data['consultation_cause']),
-        $this->departmentRepository->getById((int) $this->data['department']),
-        $this->doctorRepository->getById((int) $this->data['doctor']),
+          ->getById(intval($this->data['consultation_cause'])),
+        $this->departmentRepository->getById(intval($this->data['department'])),
+        $this->doctorRepository->getById(intval($this->data['doctor'])),
         $patient,
       );
 
@@ -289,11 +306,11 @@ final readonly class PatientWebController extends Controller {
   }
 
   public function handleHospitalizationRegister(): void {
-    $patient = $this->patientRepository->getById((int) $this->data['id_card']);
+    $patient = $this->patientRepository->getById(intval($this->data['id_card']));
 
     $hospitalization = new Hospitalization(
       $patient,
-      $this->doctorRepository->getById((int) $this->data['doctor']),
+      $this->doctorRepository->getById(intval($this->data['doctor'])),
       $this->data['admission_department'],
       new DateTimeImmutable($this->data['admission_date']),
       boolval($this->data['departure_date'])
@@ -323,7 +340,11 @@ final readonly class PatientWebController extends Controller {
     }
 
     if (!$patient->canBeDeleted()) {
-      self::setMessage('Este paciente no puede ser eliminado (tiene consultas u hospitalizaciones asignadas)');
+      self::setMessage('
+        Este paciente no puede ser eliminado (tiene consultas u
+         hospitalizaciones asignadas)
+      ');
+
       Flight::redirect('/pacientes', 409);
 
       return;
@@ -375,21 +396,23 @@ final readonly class PatientWebController extends Controller {
 
       $this->patientRepository->setHospitalizations($patient);
       $hospitalization = $patient->getHospitalizationById($hospitalizationId);
+      $admissionDate = new DateTimeImmutable($this->data['admission_date']);
+      $departureDate = new DateTimeImmutable($this->data['departure_date']);
+      $departureStatus = DepartureStatus::from($this->data['departure_status']);
+      $admissionDepartment = $this->data['admission_department'];
 
       $hospitalization
-        ?->setAdmissionDate(new DateTimeImmutable($this->data['admission_date']))
-        ->setDepartureDate(new DateTimeImmutable($this->data['departure_date']))
-        ->setDepartureStatus(
-          DepartureStatus::from($this->data['departure_status'])
-        );
+        ?->setAdmissionDate($admissionDate)
+        ->setDepartureDate($departureDate)
+        ->setDepartureStatus($departureStatus);
 
       $hospitalization->diagnoses = $this->data['diagnoses'] ?? '';
 
       $hospitalization->doctor = $this
         ->doctorRepository
-        ->getById((int) $this->data['doctor']);
+        ->getById(intval($this->data['doctor']));
 
-      $hospitalization->admissionDepartment = $this->data['admission_department'];
+      $hospitalization->admissionDepartment = $admissionDepartment;
 
       $this->patientRepository->saveHospitalizationOf($patient);
       self::setMessage('Alta procesada exitósamente');

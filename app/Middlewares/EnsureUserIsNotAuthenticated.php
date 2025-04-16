@@ -9,7 +9,6 @@ use Leaf\Http\Session;
 
 final readonly class EnsureUserIsNotAuthenticated {
   public function __construct(private Session $session) {
-    // ...
   }
 
   public function before(): void {

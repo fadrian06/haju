@@ -28,7 +28,9 @@ abstract class PDORepository {
       ->fetchColumn(0);
   }
 
-  /** @throws RepositoryException */
+  /**
+   * @throws RepositoryException
+   */
   final protected function ensureIsConnected(): PDO {
     if (!$this->pdo) {
       throw new RepositoryException('DB is not connected');
@@ -47,7 +49,9 @@ abstract class PDORepository {
     return $this->pdo;
   }
 
-  final protected static function parseDateTime(string $raw): DateTimeInterface {
+  final protected static function parseDateTime(
+    string $raw,
+  ): DateTimeInterface {
     return DateTimeImmutable::createFromFormat(self::DATETIME_FORMAT, $raw);
   }
 

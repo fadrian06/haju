@@ -21,8 +21,7 @@ final class Consultation extends Model {
     return $this->type === ConsultationType::FirstTime;
   }
 
-  public function jsonSerialize(): array
-  {
+  public function jsonSerialize(): array {
     return parent::jsonSerialize() + [
       'type' => [
         'letter' => $this->type->value,

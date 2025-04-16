@@ -29,8 +29,11 @@ use PharIo\Manifest\Url;
 final class User extends Person implements Activable {
   use HasActiveStatus;
 
-  /** @var array<int, Department> */
+  /**
+   * @var Department[]
+   */
   private array $departments = [];
+
   private string $password;
   private string $address;
 
@@ -110,7 +113,10 @@ final class User extends Person implements Activable {
 
   public function getProfileImageRelPath(): string {
     return $this->profileImagePath instanceof Url
-      ? mb_substr($this->profileImagePath->asString(), strpos($this->profileImagePath->asString(), 'assets'))
+      ? mb_substr(
+        $this->profileImagePath->asString(),
+        strpos($this->profileImagePath->asString(), 'assets')
+      )
       : $this->profileImagePath;
   }
 
@@ -121,7 +127,9 @@ final class User extends Person implements Activable {
       }
     }
 
-    throw new Error('Este usuario no tiene departamentos asignados, o están inhabilitados');
+    throw new Error('
+      Este usuario no tiene departamentos asignados, o están inhabilitados
+    ');
   }
 
   public function getParsedAppointment(): string {
@@ -158,7 +166,9 @@ final class User extends Person implements Activable {
     return false;
   }
 
-  /** @return Generator<int, Department> */
+  /**
+   * @return Generator<int, Department>
+   */
   public function getDepartment(): Generator {
     foreach ($this->departments as $index => $department) {
       yield $index => $department;

@@ -75,19 +75,23 @@ $container->singleton(
 
 $container->singleton(
   ConsultationCauseCategoryRepository::class,
-  static fn(): ConsultationCauseCategoryRepository => new PDOConsultationCauseCategoryRepository(
-    $container->get(PDO::class),
-    BASE_URL
-  )
+  static function (): ConsultationCauseCategoryRepository {
+    return new PDOConsultationCauseCategoryRepository(
+      Container::getInstance()->get(PDO::class),
+      BASE_URL
+    );
+  }
 );
 
 $container->singleton(
   ConsultationCauseRepository::class,
-  static fn(): ConsultationCauseRepository => new PDOConsultationCauseRepository(
-    $container->get(PDO::class),
-    BASE_URL,
-    $container->get(ConsultationCauseCategoryRepository::class)
-  )
+  static function (): ConsultationCauseRepository {
+    return new PDOConsultationCauseRepository(
+      Container::getInstance()->get(PDO::class),
+      BASE_URL,
+      Container::getInstance()->get(ConsultationCauseCategoryRepository::class)
+    );
+  }
 );
 
 $container->singleton(

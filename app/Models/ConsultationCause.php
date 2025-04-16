@@ -26,7 +26,10 @@ final class ConsultationCause extends Model {
     ?string $code = null,
     private readonly ?int $limit = null
   ) {
-    $this->setName($shortName, $extendedName)->setVariant($variant)->setCode($code);
+    $this
+      ->setName($shortName, $extendedName)
+      ->setVariant($variant)
+      ->setCode($code);
   }
 
   public function getFullName(bool $abbreviated = true): string {
@@ -40,10 +43,13 @@ final class ConsultationCause extends Model {
       $fullName .= " {$this->variant}";
     }
 
-    return (string) $fullName;
+    return strval($fullName);
   }
 
-  public function setName(string $shortName, ?string $extendedName = null): self {
+  public function setName(
+    string $shortName,
+    ?string $extendedName = null
+  ): self {
     $this->shortName = new LongName($shortName, 'Nombre corto');
     $this->extendedName = $extendedName
       ? new LongName($extendedName, 'Nombre extendido')

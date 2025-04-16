@@ -41,48 +41,48 @@ final class Hospital {
   public function setAsic(string $asic): static {
     $this->asic = $asic;
 
-    return $this;;
+    return $this;
   }
 
   public function setType(string $type): static {
     $this->type = $type;
 
-    return $this;;
+    return $this;
   }
 
   public function setPlace(string $place): static {
     $this->place = $place;
 
-    return $this;;
+    return $this;
   }
 
   public function setParish(string $parish): static {
     $this->parish = $parish;
 
-    return $this;;
+    return $this;
   }
 
   public function setMunicipality(string $municipality): static {
     $this->municipality = $municipality;
 
-    return $this;;
+    return $this;
   }
 
   public function setHealthDepartment(string $healthDepartment): static {
     $this->healthDepartment = $healthDepartment;
 
-    return $this;;
+    return $this;
   }
 
   public function setRegion(string $region): static {
     $this->region = $region;
 
-    return $this;;
+    return $this;
   }
 
   public function __get(string $property): null|string {
     return match ($property) {
-      'name' => (string) $this->name,
+      'name' => strval($this->name),
       'asic' => $this->asic,
       'type' => $this->type,
       'place' => $this->place,

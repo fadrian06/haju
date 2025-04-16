@@ -14,7 +14,7 @@ use PharIo\Manifest\Url;
 final class PDODepartmentRepository
 extends PDORepository
 implements DepartmentRepository {
-  private const FIELDS = <<<sql
+  private const FIELDS = <<<'sql'
     id, name, registered_date as registeredDateTime,
     belongs_to_external_consultation as belongsToExternalConsultation,
     icon_file_path as iconFilePath, is_active as isActive
@@ -26,13 +26,21 @@ implements DepartmentRepository {
 
   public function getAll(): array {
     return $this->ensureIsConnected()
-      ->query(sprintf('SELECT %s FROM %s ORDER BY name', self::FIELDS, self::getTable()))
+      ->query(sprintf(
+        'SELECT %s FROM %s ORDER BY name',
+        self::FIELDS,
+        self::getTable()
+      ))
       ->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper']);
   }
 
   public function getById(int $id): ?Department {
     $stmt = $this->ensureIsConnected()
-      ->prepare(sprintf('SELECT %s FROM %s WHERE id = ?', self::FIELDS, self::getTable()));
+      ->prepare(sprintf(
+        'SELECT %s FROM %s WHERE id = ?',
+        self::FIELDS,
+        self::getTable()
+      ));
 
     $stmt->execute([$id]);
 
@@ -43,15 +51,26 @@ implements DepartmentRepository {
     try {
       if ($department->id) {
         $this->ensureIsConnected()
-          ->prepare(sprintf('UPDATE %s SET name = ?, is_active = ? WHERE id = ?', self::getTable()))
-          ->execute([$department->name, $department->isActive(), $department->id]);
+          ->prepare(sprintf(
+            'UPDATE %s SET name = ?, is_active = ? WHERE id = ?',
+            self::getTable()
+          ))
+          ->execute([
+            $department->name,
+            $department->isActive(),
+            $department->id
+          ]);
 
         return;
       }
 
       $query = sprintf(
-        'INSERT INTO %s (name, registered_date, icon_file_path, belongs_to_external_consultation, is_active)
-        VALUES (?, ?, ?, ?, ?)',
+        '
+          INSERT INTO %s (
+            name, registered_date, icon_file_path,
+            belongs_to_external_consultation, is_active
+          ) VALUES (?, ?, ?, ?, ?)
+        ',
         self::getTable()
       );
 
@@ -68,11 +87,16 @@ implements DepartmentRepository {
         ]);
 
       $department
-        ->setId((int) $this->pdo->lastInsertId())
+        ->setId(intval($this->pdo->lastInsertId()))
         ->setRegisteredDate(self::parseDateTime($date));
     } catch (PDOException $exception) {
-      if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: departments.name')) {
-        throw new DuplicatedNamesException("Departamento \"{$department->name}\" ya existe");
+      if (str_contains(
+        $exception->getMessage(),
+        'UNIQUE constraint failed: departments.name'
+      )) {
+        throw new DuplicatedNamesException("
+          Departamento \"{$department->name}\" ya existe
+        ");
       }
 
       throw $exception;
@@ -94,7 +118,9 @@ implements DepartmentRepository {
       $isActive
     );
 
-    $department->setId($id)->setRegisteredDate(self::parseDateTime($registeredDateTime));
+    $department
+      ->setId($id)
+      ->setRegisteredDate(self::parseDateTime($registeredDateTime));
 
     return $department;
   }

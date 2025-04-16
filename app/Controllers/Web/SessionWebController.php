@@ -39,7 +39,7 @@ final readonly class SessionWebController extends Controller {
   }
 
   public function handleLogin(): void {
-    $user = $this->userRepository->getByIdCard((int) $this->data['id_card']);
+    $user = $this->userRepository->getByIdCard(intval($this->data['id_card']));
 
     try {
       if ($this->data['id_card'] === null) {

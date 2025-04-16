@@ -6,7 +6,9 @@ namespace App\Repositories\Domain;
 
 use App\Models\Doctor;
 
-/** @extends Repository<Doctor> */
+/**
+ * @extends Repository<Doctor>
+ */
 interface DoctorRepository extends Repository {
   public function getByIdCard(int $idCard): ?Doctor;
 

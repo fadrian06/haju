@@ -19,7 +19,7 @@ final readonly class EnsureCanEditDoctorMiddleware {
   }
 
   public function before(array $params): ?true {
-    $doctor = $this->doctorRepository->getByIdCard((int) $params['idCard']);
+    $doctor = $this->doctorRepository->getByIdCard(intval($params['idCard']));
     $loggedUser = $this->view->get('user');
     assert($loggedUser instanceof User);
 

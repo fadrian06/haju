@@ -13,7 +13,7 @@ use PDO;
 
 final class PDOConsultationCauseRepository
 extends PDORepository implements ConsultationCauseRepository {
-  private const FIELDS = <<<sql
+  private const FIELDS = <<<'sql'
   id, short_name as shortName, extended_name as extendedName, variant, code,
   category_id as categoryId, weekly_cases_limit as weeklyLimit
   sql;
@@ -49,11 +49,16 @@ extends PDORepository implements ConsultationCauseRepository {
   }
 
   public function getAllWithGenerator(): Generator {
-    $stmt = $this->ensureIsConnected()
+    $stmt = $this
+      ->ensureIsConnected()
       ->query(sprintf('SELECT %s FROM %s', self::FIELDS, self::getTable()));
 
-    while (is_array($cause = $stmt->fetch(PDO::FETCH_ASSOC))) {
+    $cause = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    while (is_array($cause)) {
       yield $this->mapper(...$cause);
+
+      $cause = $stmt->fetch(PDO::FETCH_ASSOC);
     }
   }
 

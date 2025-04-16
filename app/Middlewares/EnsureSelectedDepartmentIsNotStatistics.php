@@ -23,7 +23,11 @@ final readonly class EnsureSelectedDepartmentIsNotStatistics {
       return true;
     }
 
-    $this->session->set('error', 'No puedes registrar consultas desde el departamento de Estadística');
+    $this->session->set(
+      'error',
+      'No puedes registrar consultas desde el departamento de Estadística'
+    );
+
     Flight::redirect('/');
 
     return null;

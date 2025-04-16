@@ -10,10 +10,14 @@ use App\ValueObjects\Gender;
 use Generator;
 
 final class Patient extends Person {
-  /** @var array<int, Consultation> */
+  /**
+   * @var Consultation[]
+   */
   private array $consultations = [];
 
-  /** @var array<int, Hospitalization> */
+  /**
+   * @var Hospitalization[]
+   */
   private array $hospitalizations = [];
 
   public function __construct(
@@ -60,7 +64,10 @@ final class Patient extends Person {
   }
 
   public function canBeEditedBy(User $user): bool {
-    // TODO: que el coordinador del secretario que registró al paciente también pueda editarlo
+    /*
+    TODO: que el coordinador del secretario que registró al paciente también
+    pueda editarlo
+     */
     if ($user->appointment->isDirector()) {
       return true;
     }
@@ -68,14 +75,18 @@ final class Patient extends Person {
     return $this->registeredBy->isEqualTo($user);
   }
 
-  /** @return Generator<int, Consultation> */
+  /**
+   * @return Generator<int, Consultation>
+   */
   public function getConsultation(): Generator {
     foreach ($this->consultations as $consultation) {
       yield $consultation;
     }
   }
 
-  /** @return Generator<int, Hospitalization> */
+  /**
+   * @return Generator<int, Hospitalization>
+   */
   public function getHospitalization(): Generator {
     foreach ($this->hospitalizations as $hospitalization) {
       yield $hospitalization;
@@ -98,18 +109,24 @@ final class Patient extends Person {
     return null;
   }
 
-  public function setHospitalization(Hospitalization ...$hospitalizations): self {
+  public function setHospitalization(
+    Hospitalization ...$hospitalizations
+  ): self {
     $this->hospitalizations = $hospitalizations;
 
     return $this;
   }
 
-  /** @return Hospitalization[] */
+  /**
+   * @return Hospitalization[]
+   */
   public function getHospitalizations(): array {
     return $this->hospitalizations;
   }
 
-  public function getHospitalizationById(int $hospitalizationId): ?Hospitalization {
+  public function getHospitalizationById(
+    int $hospitalizationId
+  ): ?Hospitalization {
     foreach ($this->hospitalizations as $hospitalization) {
       if ($hospitalization->id === $hospitalizationId) {
         return $hospitalization;

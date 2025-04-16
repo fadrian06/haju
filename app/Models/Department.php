@@ -16,7 +16,9 @@ final class Department extends Model implements Stringable {
 
   private LongName $name;
 
-  /** @throws InvalidNameException */
+  /**
+   * @throws InvalidNameException
+   */
   public function __construct(
     string $name,
     public readonly string|Url $iconFilePath,
@@ -35,7 +37,9 @@ final class Department extends Model implements Stringable {
     return $this->name->__toString() === 'Estadística';
   }
 
-  /** @throws InvalidNameException */
+  /**
+   * @throws InvalidNameException
+   */
   public function setName(string $name): static {
     $this->name = new LongName($name, 'Nombre del departamento');
 
@@ -43,17 +47,17 @@ final class Department extends Model implements Stringable {
   }
 
   public function hasIcon(): bool {
-    return (bool) $this->iconFilePath->asString();
+    return boolval($this->iconFilePath->asString());
   }
 
   public function __get(string $property): null|int|string {
     return match ($property) {
-      'name' => (string) $this->name,
+      'name' => $this->name->__toString(),
       default => parent::__get($property)
     };
   }
 
   public function __toString(): string {
-    return strval($this->name);
+    return $this->name->__toString();
   }
 }

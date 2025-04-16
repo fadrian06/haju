@@ -10,7 +10,9 @@ use App\ValueObjects\Gender;
 use Generator;
 
 final class Doctor extends Person {
-  /** @var array<int, Consultation> */
+  /**
+   * @var Consultation[]
+   */
   private array $consultations = [];
 
   public function __construct(
@@ -42,7 +44,9 @@ final class Doctor extends Person {
     return $this->registeredBy->isEqualTo($user);
   }
 
-  /** @return Generator<int, Consultation> */
+  /**
+   * @return Generator<int, Consultation>
+   */
   public function getConsultation(): Generator {
     foreach ($this->consultations as $consultation) {
       yield $consultation;

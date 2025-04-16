@@ -23,7 +23,7 @@ use PharIo\Manifest\Email;
 use PharIo\Manifest\Url;
 
 final class PDOUserRepository extends PDORepository implements UserRepository {
-  private const FIELDS = <<<sql
+  private const FIELDS = <<<'sql'
   users.id as id, first_name as firstName, second_name as secondName,
   first_last_name as firstLastName, second_last_name as secondLastName,
   birth_date as birthDateTimestamp, gender, appointments.name as appointment,
@@ -33,11 +33,11 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
   registered_by_id as registeredById
   sql;
 
-  private const JOINS = <<<SQL_JOINS
+  private const JOINS = <<<'sql'
     JOIN appointments JOIN instruction_levels
     ON users.appointment_id = appointments.id
     AND users.instruction_level_id = instruction_levels.id
-  SQL_JOINS;
+  sql;
 
   public function __construct(
     PDO $pdo,
@@ -63,7 +63,8 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
         $ids !== []
           ? sprintf('WHERE users.id NOT IN (%s)', implode(', ', $ids))
           : ''
-      ))->fetchAll(PDO::FETCH_FUNC, $this->mapper(...));
+      ))
+      ->fetchAll(PDO::FETCH_FUNC, $this->mapper(...));
   }
 
   public function getByIdCard(int $idCard): ?User {
@@ -103,14 +104,14 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
       }
 
       $query = sprintf(
-        <<<SQL
+        '
           INSERT INTO %s (
             first_name, second_name, first_last_name, second_last_name,
             birth_date, gender, appointment_id, instruction_level_id, id_card,
-            password, phone, email, address, profile_image_path, registered_date,
-            registered_by_id
+            password, phone, email, address, profile_image_path,
+            registered_date, registered_by_id
           ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        SQL,
+        ',
         self::getTable()
       );
 
@@ -137,29 +138,55 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
           $user->registeredBy?->id
         ]);
 
-      $user->setId((int) $this->pdo->lastInsertId())
+      $user
+        ->setId(intval($this->pdo->lastInsertId()))
         ->setRegisteredDate(self::parseDateTime($datetime));
 
       $this->assignDepartments($user);
     } catch (PDOException $exception) {
-      if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: users.id_card')) {
-        throw new DuplicatedIdCardException("Cédula \"{$user->idCard}\" ya existe");
+      if (str_contains(
+        $exception->getMessage(),
+        'UNIQUE constraint failed: users.id_card'
+      )) {
+        throw new DuplicatedIdCardException("
+          Cédula \"{$user->idCard}\" ya existe
+        ");
       }
 
-      if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: users.first_name')) {
-        throw new DuplicatedNamesException("Usuario \"{$user->getFullName()}\" ya existe");
+      if (str_contains(
+        $exception->getMessage(),
+        'UNIQUE constraint failed: users.first_name'
+      )) {
+        throw new DuplicatedNamesException("
+          Usuario \"{$user->getFullName()}\" ya existe
+        ");
       }
 
-      if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: users.phone')) {
-        throw new DuplicatedPhonesException("Teléfono \"{$user->phone}\" ya existe");
+      if (str_contains(
+        $exception->getMessage(),
+        'UNIQUE constraint failed: users.phone'
+      )) {
+        throw new DuplicatedPhonesException("
+          Teléfono \"{$user->phone}\" ya existe
+        ");
       }
 
-      if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: users.email')) {
-        throw new DuplicatedEmailsException("Correo \"{$user->email->asString()}\" ya existe");
+      if (str_contains(
+        $exception->getMessage(),
+        'UNIQUE constraint failed: users.email'
+      )) {
+        throw new DuplicatedEmailsException("
+          Correo \"{$user->email->asString()}\" ya existe
+        ");
       }
 
-      if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: users.avatar')) {
-        throw new DuplicatedProfileImagesException("Foto de perfil \"{$user->profileImagePath->asString()}\" ya existe");
+      if (str_contains(
+        $exception->getMessage(),
+        'UNIQUE constraint failed: users.avatar'
+      )) {
+        throw new DuplicatedProfileImagesException("
+          Foto de perfil \"{$user->profileImagePath->asString()}\" ya existe
+        ");
       }
 
       throw $exception;
@@ -167,7 +194,8 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
   }
 
   private function assignDepartments(User $user): self {
-    $this->ensureIsConnected()
+    $this
+      ->ensureIsConnected()
       ->prepare('DELETE FROM department_assignments WHERE user_id = ?')
       ->execute([$user->id]);
 
@@ -192,12 +220,12 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
 
   private function update(User $user): self {
     $sql = sprintf(
-      <<<SQL
+      '
         UPDATE %s SET first_name = ?, second_name = ?, first_last_name = ?,
         second_last_name = ?, birth_date = ?, gender = ?,
         phone = ?, email = ?, address = ?, password = ?,
         is_active = ?, id_card = ?, profile_image_path = ? WHERE id = ?
-      SQL,
+      ',
       self::getTable()
     );
 
@@ -216,7 +244,9 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
         $user->password,
         $user->isActive(),
         $user->idCard,
-        is_string($user->profileImagePath) ? $user->profileImagePath : $user->getProfileImageRelPath(),
+        is_string($user->profileImagePath)
+          ? $user->profileImagePath
+          : $user->getProfileImageRelPath(),
         $user->id
       ]);
 
@@ -230,7 +260,7 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
       return;
     }
 
-    $join = <<<SQL
+    $join = '
       SELECT departments.id, name, departments.registered_date as registeredDateTime,
       belongs_to_external_consultation as belongsToExternalConsultation,
       icon_file_path as iconFilePath, is_active as isActive
@@ -238,7 +268,7 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
       JOIN departments
       ON department_assignments.department_id = departments.id
       WHERE user_id = ?
-    SQL;
+    ';
 
     $stmt = $this->ensureIsConnected()->prepare($join);
     $stmt->execute([$user->id]);
@@ -290,7 +320,10 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
       $registeredById ? $this->getById($registeredById) : null
     );
 
-    $user->setId($id)->setRegisteredDate(self::parseDateTime($registeredDateTime));
+    $user
+      ->setId($id)
+      ->setRegisteredDate(self::parseDateTime($registeredDateTime));
+
     $this->setDepartments($user);
 
     return $user;

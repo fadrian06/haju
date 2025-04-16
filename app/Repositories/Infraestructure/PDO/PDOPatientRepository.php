@@ -25,12 +25,12 @@ use PDOException;
 final class PDOPatientRepository
 extends PDORepository
 implements PatientRepository {
-  private const FIELDS = <<<SQL
+  private const FIELDS = <<<'sql'
     id, first_name as firstName, second_name as secondName,
     first_last_name as firstLastName, second_last_name as secondLastName,
     birth_date as birthDate, gender, id_card as idCard,
     registered_date as registeredDate, registered_by_id as registeredById
-  SQL;
+  sql;
 
   public function __construct(
     PDO $pdo,
@@ -74,7 +74,11 @@ implements PatientRepository {
 
   public function getById(int $id): ?Patient {
     $stmt = $this->ensureIsConnected()
-      ->prepare(sprintf('SELECT %s FROM %s WHERE id = ?', self::FIELDS, self::getTable()));
+      ->prepare(sprintf(
+        'SELECT %s FROM %s WHERE id = ?',
+        self::FIELDS,
+        self::getTable()
+      ));
 
     $stmt->execute([$id]);
 
@@ -83,7 +87,11 @@ implements PatientRepository {
 
   public function getByIdCard(int $idCard): ?Patient {
     $stmt = $this->ensureIsConnected()
-      ->prepare(sprintf('SELECT %s FROM %s WHERE id_card = ?', self::FIELDS, self::getTable()));
+      ->prepare(sprintf(
+        'SELECT %s FROM %s WHERE id_card = ?',
+        self::FIELDS,
+        self::getTable()
+      ));
 
     $stmt->execute([$idCard]);
 
@@ -98,30 +106,36 @@ implements PatientRepository {
 
   public function setConsultationsById(Patient $patient, int $causeId): void {
     $stmt = $this->ensureIsConnected()
-      ->prepare(<<<sql
+      ->prepare('
         SELECT id, type, registered_date, cause_id, department_id, doctor_id
         FROM consultations
         WHERE patient_id = ? AND cause_id = ?
-      sql);
+      ');
 
     $stmt->execute([$patient->id, $causeId]);
 
     $consultations = [];
+    $consultationRecord = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    while (is_array($consultationRecord = $stmt->fetch(PDO::FETCH_ASSOC))) {
+    while (is_array($consultationRecord)) {
       $consultation = new Consultation(
         ConsultationType::from($consultationRecord['type']),
         $this->causeRepository->getById($consultationRecord['cause_id']),
-        $this->departmentRepository->getById($consultationRecord['department_id']),
+        $this
+          ->departmentRepository
+          ->getById($consultationRecord['department_id']),
         $this->doctorRepository->getById($consultationRecord['doctor_id']),
         $patient,
       );
 
+      $registeredDate = $consultationRecord['registered_date'];
+
       $consultation
         ->setId($consultationRecord['id'])
-        ->setRegisteredDate(parent::parseDateTime($consultationRecord['registered_date']));
+        ->setRegisteredDate(parent::parseDateTime($registeredDate));
 
       $consultations[] = $consultation;
+      $consultationRecord = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     $patient->setConsultations(...$consultations);
@@ -129,20 +143,23 @@ implements PatientRepository {
 
   public function setHospitalizations(Patient $patient): void {
     $stmt = $this->ensureIsConnected()
-      ->prepare(<<<sql
+      ->prepare('
         SELECT id, admission_department, admission_date, departure_date,
         departure_status, diagnoses, registered_date, doctor_id
         FROM hospitalizations
         WHERE patient_id = ?
         ORDER BY registered_date DESC
-      sql);
+      ');
 
     $stmt->execute([$patient->id]);
 
-    /** @var Hospitalization[] */
     $hospitalizations = [];
+    $hospitalizationRecord = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    while (is_array($hospitalizationRecord = $stmt->fetch(PDO::FETCH_ASSOC))) {
+    while (is_array($hospitalizationRecord)) {
+      $departureStatus = $hospitalizationRecord['departure_status'] ?? '';
+      $registeredDate = $hospitalizationRecord['registered_date'];
+
       $hospitalization = new Hospitalization(
         $patient,
         $this->doctorRepository->getById($hospitalizationRecord['doctor_id']),
@@ -151,15 +168,16 @@ implements PatientRepository {
         boolval($hospitalizationRecord['departure_date'])
           ? new DateTimeImmutable($hospitalizationRecord['departure_date'])
           : null,
-        DepartureStatus::tryFrom($hospitalizationRecord['departure_status'] ?? ''),
+        DepartureStatus::tryFrom($departureStatus),
         $hospitalizationRecord['diagnoses'] ?: null
       );
 
-
-      $hospitalization->setId($hospitalizationRecord['id'])
-        ->setRegisteredDate(parent::parseDateTime($hospitalizationRecord['registered_date']));
+      $hospitalization
+        ->setId($hospitalizationRecord['id'])
+        ->setRegisteredDate(parent::parseDateTime($registeredDate));
 
       $hospitalizations[] = $hospitalization;
+      $hospitalizationRecord = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     $patient->setHospitalization(...$hospitalizations);
@@ -167,30 +185,37 @@ implements PatientRepository {
 
   public function setConsultations(Patient $patient): void {
     $stmt = $this->ensureIsConnected()
-      ->prepare(<<<sql
+      ->prepare('
         SELECT id, type, registered_date, cause_id, department_id, doctor_id
         FROM consultations
         WHERE patient_id = ?
         ORDER BY registered_date DESC
-      sql);
+      ');
 
     $stmt->execute([$patient->id]);
 
     $consultations = [];
+    $consultationRecord = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    while (is_array($consultationRecord = $stmt->fetch(PDO::FETCH_ASSOC))) {
+    while (is_array($consultationRecord)) {
       $consultation = new Consultation(
         ConsultationType::from($consultationRecord['type']),
         $this->causeRepository->getById($consultationRecord['cause_id']),
-        $this->departmentRepository->getById($consultationRecord['department_id']),
+        $this
+          ->departmentRepository
+          ->getById($consultationRecord['department_id']),
         $this->doctorRepository->getById($consultationRecord['doctor_id']),
         $patient,
       );
 
-      $consultation->setId($consultationRecord['id'])
-        ->setRegisteredDate(parent::parseDateTime($consultationRecord['registered_date']));
+      $registeredDate = $consultationRecord['registered_date'];
+
+      $consultation
+        ->setId($consultationRecord['id'])
+        ->setRegisteredDate(parent::parseDateTime($registeredDate));
 
       $consultations[] = $consultation;
+      $consultationRecord = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     $patient->setConsultations(...$consultations);
@@ -205,12 +230,12 @@ implements PatientRepository {
       }
 
       $query = sprintf(
-        <<<SQL
+        '
           INSERT INTO %s (
             first_name, second_name, first_last_name, second_last_name,
             birth_date, gender, id_card, registered_date, registered_by_id
           ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        SQL,
+        ',
         self::getTable()
       );
 
@@ -230,14 +255,21 @@ implements PatientRepository {
           $patient->registeredBy->id,
         ]);
 
-      $patient->setId((int) $this->pdo->lastInsertId())
+      $patient
+        ->setId(intval($this->pdo->lastInsertId()))
         ->setRegisteredDate(parent::parseDateTime($datetime));
     } catch (PDOException $exception) {
-      if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: patients.id_card')) {
+      if (str_contains(
+        $exception->getMessage(),
+        'UNIQUE constraint failed: patients.id_card'
+      )) {
         throw new DuplicatedIdCardException("Cédula \"{$patient->idCard}\" ya existe");
       }
 
-      if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: patients.first_name')) {
+      if (str_contains(
+        $exception->getMessage(),
+        'UNIQUE constraint failed: patients.first_name'
+      )) {
         throw new DuplicatedNamesException("Usuario \"{$patient->getFullName()}\" ya existe");
       }
     }
@@ -247,7 +279,6 @@ implements PatientRepository {
     $this->ensureIsConnected()->beginTransaction();
 
     try {
-      /** @var Hospitalization[] */
       $hospitalizations = [];
       $registeredDate = parent::getCurrentDatetime();
 
@@ -256,8 +287,10 @@ implements PatientRepository {
           $this
             ->ensureIsConnected()
             ->prepare('
-              UPDATE hospitalizations SET admission_department = ?, admission_date = ?,
-              departure_date = ?, departure_status = ?, diagnoses = ?, patient_id = ?, doctor_id = ?
+              UPDATE hospitalizations
+              SET admission_department = ?, admission_date = ?,
+              departure_date = ?, departure_status = ?, diagnoses = ?,
+              patient_id = ?, doctor_id = ?
               WHERE id = ?
             ')
             ->execute([
@@ -274,22 +307,29 @@ implements PatientRepository {
           continue;
         }
 
-        $this->ensureIsConnected()
+        $params = [
+          $hospitalization->admissionDepartment,
+          $hospitalization->admissionDate->format(self::DATE_FORMAT),
+          $hospitalization->departureDate?->format(self::DATE_FORMAT),
+          $hospitalization->departureStatus?->value,
+          $hospitalization->diagnoses,
+          $hospitalization->patient->id,
+          $hospitalization->doctor->id,
+        ];
+
+        $this
+          ->ensureIsConnected()
           ->prepare("
             INSERT INTO hospitalizations (admission_department, admission_date,
             departure_date, departure_status, diagnoses, patient_id, doctor_id)
             VALUES (?, ?, ?, ?, ?, ?, ?)
-          ")->execute([
-            $hospitalization->admissionDepartment,
-            $hospitalization->admissionDate->format(self::DATE_FORMAT),
-            $hospitalization->departureDate?->format(self::DATE_FORMAT),
-            $hospitalization->departureStatus?->value,
-            $hospitalization->diagnoses,
-            $hospitalization->patient->id,
-            $hospitalization->doctor->id,
-          ]);
+          ")
+          ->execute($params);
 
-        $hospitalization->setRegisteredDate(parent::parseDateTime($registeredDate));
+        $hospitalization->setRegisteredDate(
+          parent::parseDateTime($registeredDate),
+        );
+
         $patient->setHospitalization(...$hospitalizations);
       }
 
@@ -310,30 +350,39 @@ implements PatientRepository {
 
     $registeredDate = parent::getCurrentDatetime();
 
-    $this->ensureIsConnected()
+    $params = [
+      $consultations[0]->type->value,
+      $registeredDate,
+      $patient->id,
+      $consultations[0]->cause->id,
+      $consultations[0]->department->id,
+      $consultations[0]->doctor->id
+    ];
+
+    $this
+      ->ensureIsConnected()
       ->prepare("
         INSERT INTO consultations (type, registered_date, patient_id, cause_id,
         department_id, doctor_id)
         VALUES (?, ?, ?, ?, ?, ?)
-      ")->execute([
-        $consultations[0]->type->value,
-        $registeredDate,
-        $patient->id,
-        $consultations[0]->cause->id,
-        $consultations[0]->department->id,
-        $consultations[0]->doctor->id
-      ]);
+      ")
+      ->execute($params);
 
-    $consultations[0]->setRegisteredDate(parent::parseDateTime($registeredDate));
+    $consultations[0]->setRegisteredDate(
+      parent::parseDateTime($registeredDate)
+    );
+
     $patient->setConsultations(...$consultations);
   }
 
   private function update(Patient $patient): self {
     $query = sprintf(
-      <<<sql
-        UPDATE %s SET first_name = ?, second_name = ?, first_last_name = ?, second_last_name = ?,
-        birth_date = ?, id_card = ? WHERE id = ?
-      sql,
+      '
+        UPDATE %s
+        SET first_name = ?, second_name = ?, first_last_name = ?,
+        second_last_name = ?, birth_date = ?, id_card = ?
+        WHERE id = ?
+      ',
       self::getTable()
     );
 
@@ -385,7 +434,9 @@ implements PatientRepository {
       $this->userRepository->getById($registeredById)
     );
 
-    $patient->setId($id)->setRegisteredDate(parent::parseDateTime($registeredDate));
+    $patient
+      ->setId($id)
+      ->setRegisteredDate(parent::parseDateTime($registeredDate));
 
     if ($this->withHospitalizations) {
       $this->setHospitalizations($patient);

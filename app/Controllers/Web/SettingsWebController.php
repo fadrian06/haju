@@ -84,7 +84,8 @@ final readonly class SettingsWebController extends Controller {
 
   public function handleCreateBackup(): void {
     $scriptPath = $this->ensureUserIsAuthorized()->settingsRepository->backup();
-    $dataUrl = 'data:text/plain;base64,' . base64_encode(file_get_contents($scriptPath));
+    $scriptPathEncoded = base64_encode(file_get_contents($scriptPath));
+    $dataUrl = "data:text/plain;base64,{$scriptPathEncoded}";
 
     self::setMessage('Base de datos respaldada exitósamente');
     Session::set('scriptPath', $dataUrl);
@@ -93,7 +94,11 @@ final readonly class SettingsWebController extends Controller {
 
   public function loadBackupFile(): void {
     $script = file_get_contents(Flight::request()->files->script['tmp_name']);
-    $this->ensureUserIsAuthorized()->settingsRepository->restoreFromScript($script);
+
+    $this
+      ->ensureUserIsAuthorized()
+      ->settingsRepository->restoreFromScript($script);
+
     self::setMessage('Base de datos restaurada exitósamente');
     Flight::redirect('/salir');
   }
@@ -135,7 +140,7 @@ final readonly class SettingsWebController extends Controller {
 
   public function handleConsultationCausesUpdate(): void {
     $limitOf = array_map(
-      static fn(string $limit): int => (int) $limit,
+      'intval',
       array_filter($this->request->data->limit_of ?? [], 'boolval')
     );
 

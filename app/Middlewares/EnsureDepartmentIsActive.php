@@ -20,7 +20,11 @@ final readonly class EnsureDepartmentIsActive {
       return true;
     }
 
-    $this->session->set('error', "El departamento de {$department->name} ha sido desactivado");
+    $this->session->set(
+      'error',
+      "El departamento de {$department->name} ha sido desactivado"
+    );
+
     Flight::redirect('/salir');
 
     return null;

@@ -39,7 +39,7 @@ final class Hospitalization extends Model {
   }
 
   public function isFinished(): bool {
-    return (bool) $this->departureDate;
+    return $this->departureDate !== null;
   }
 
   public function jsonSerialize(): array {

@@ -57,7 +57,10 @@ abstract readonly class Controller {
 
       $filePath = [
         'rel' => "assets/img/{$destinationFolder}/{$fileName}",
-        'abs' => dirname(__DIR__, 3) . "/assets/img/{$destinationFolder}/{$fileName}",
+        'abs' => (
+          dirname(__DIR__, 3)
+          . "/assets/img/{$destinationFolder}/{$fileName}"
+        ),
       ];
 
       file_put_contents($filePath['abs'], $image);
@@ -73,7 +76,10 @@ abstract readonly class Controller {
 
     $filePath = [
       'rel' => "assets/img/{$destinationFolder}/{$fileName}",
-      'abs' => dirname(__DIR__, 3) . "/assets/img/{$destinationFolder}/{$fileName}",
+      'abs' => (
+        dirname(__DIR__, 3)
+        . "/assets/img/{$destinationFolder}/{$fileName}"
+      ),
     ];
 
     copy($temporalFileAbsPath, $filePath['abs']);

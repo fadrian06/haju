@@ -13,8 +13,20 @@ final readonly class MessagesMiddleware {
 
   public function before(): void {
     $this->view->set('error', $this->session->retrieve('error', null, true));
-    $this->view->set('message', $this->session->retrieve('message', null, true));
-    $this->view->set('scriptPath', $this->session->get('scriptPath', null, true));
-    $this->view->set('mustChangePassword', $this->session->get('mustChangePassword', false));
+
+    $this->view->set(
+      'message',
+      $this->session->retrieve('message', null, true)
+    );
+
+    $this->view->set(
+      'scriptPath',
+      $this->session->get('scriptPath', null, true)
+    );
+
+    $this->view->set(
+      'mustChangePassword',
+      $this->session->get('mustChangePassword', false)
+    );
   }
 }

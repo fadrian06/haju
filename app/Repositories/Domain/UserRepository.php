@@ -12,11 +12,15 @@ use App\Repositories\Exceptions\DuplicatedIdCardException;
 use App\Repositories\Exceptions\DuplicatedNamesException;
 use App\Repositories\Exceptions\DuplicatedPhonesException;
 
-/** @extends Repository<User> */
+/**
+ * @extends Repository<User>
+ */
 interface UserRepository extends Repository {
   public function getAll(User ...$exclude): array;
 
-  /** @throws RepositoryException */
+  /**
+   * @throws RepositoryException
+   */
   public function getByIdCard(int $idCard): ?User;
 
   /**

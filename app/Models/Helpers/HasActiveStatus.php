@@ -21,7 +21,9 @@ trait HasActiveStatus {
     return $this->isActive === false;
   }
 
-  /** @return 'habilitado'|'inhabilitado' */
+  /**
+   * @return 'habilitado'|'inhabilitado'
+   */
   final public function getActiveStatusText(): string {
     return $this->isActive ? 'habilitado' : 'inhabilitado';
   }

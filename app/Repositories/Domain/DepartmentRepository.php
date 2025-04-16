@@ -7,9 +7,13 @@ namespace App\Repositories\Domain;
 use App\Models\Department;
 use App\Repositories\Exceptions\DuplicatedNamesException;
 
-/** @extends Repository<Department> */
+/**
+ * @extends Repository<Department>
+ */
 interface DepartmentRepository extends Repository {
-  /** @throws DuplicatedNamesException */
+  /**
+   * @throws DuplicatedNamesException
+   */
   public function save(Department $department): void;
 
   public function mapper(

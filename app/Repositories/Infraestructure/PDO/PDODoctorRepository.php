@@ -17,12 +17,12 @@ use PDOException;
 final class PDODoctorRepository
 extends PDORepository
 implements DoctorRepository {
-  private const FIELDS = <<<SQL
+  private const FIELDS = <<<'sql'
     id, first_name as firstName, second_name as secondName,
     first_last_name as firstLastName, second_last_name as secondLastName,
     birth_date as birthDate, gender, id_card as idCard,
     registered_date as registeredDate, registered_by_id as registeredById
-  SQL;
+  sql;
 
   public function __construct(
     PDO $pdo,
@@ -78,12 +78,12 @@ implements DoctorRepository {
       }
 
       $query = sprintf(
-        <<<SQL
+        '
           INSERT INTO %s (
             first_name, second_name, first_last_name, second_last_name,
             birth_date, gender, id_card, registered_date, registered_by_id
           ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        SQL,
+        ',
         self::getTable()
       );
 
@@ -104,25 +104,35 @@ implements DoctorRepository {
         ]);
 
       $doctor
-        ->setId((int) $this->pdo->lastInsertId())
+        ->setId(intval($this->pdo->lastInsertId()))
         ->setRegisteredDate(parent::parseDateTime($datetime));
     } catch (PDOException $exception) {
-      if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: patients.id_card')) {
-        throw new DuplicatedIdCardException("Cédula \"{$doctor->idCard}\" ya existe");
+      if (str_contains(
+        $exception->getMessage(),
+        'UNIQUE constraint failed: patients.id_card'
+      )) {
+        throw new DuplicatedIdCardException("
+          Cédula \"{$doctor->idCard}\" ya existe
+        ");
       }
 
-      if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: patients.first_name')) {
-        throw new DuplicatedNamesException("Usuario \"{$doctor->getFullName()}\" ya existe");
+      if (str_contains(
+        $exception->getMessage(),
+        'UNIQUE constraint failed: patients.first_name'
+      )) {
+        throw new DuplicatedNamesException("
+          Usuario \"{$doctor->getFullName()}\" ya existe
+        ");
       }
     }
   }
 
   private function update(Doctor $doctor): self {
     $query = sprintf(
-      <<<sql
+      '
         UPDATE %s SET first_name = ?, second_name = ?, first_last_name = ?,
         second_last_name = ?, birth_date = ?, id_card = ? WHERE id = ?
-      sql,
+      ',
       self::getTable()
     );
 
@@ -164,7 +174,9 @@ implements DoctorRepository {
       $this->userRepository->getById($registeredById)
     );
 
-    $doctor->setId($id)->setRegisteredDate(parent::parseDateTime($registeredDate));
+    $doctor
+      ->setId($id)
+      ->setRegisteredDate(parent::parseDateTime($registeredDate));
 
     return $doctor;
   }
