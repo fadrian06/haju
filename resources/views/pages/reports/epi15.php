@@ -5,8 +5,8 @@ declare(strict_types=1);
 use App\Models\ConsultationCause;
 use App\Models\ConsultationCauseCategory;
 use App\Repositories\Domain\ConsultationCauseRepository;
-use flight\Container;
 use flight\template\View;
+use Illuminate\Container\Container;
 
 $categoryMapper = new class {
   /**
@@ -94,7 +94,9 @@ foreach ($causes as $cause) {
 
 $causes = $data;
 
-/** @var array<int, ConsultationCauseCategory> */
+/**
+ * @var ConsultationCauseCategory[]
+ */
 $categories = [];
 
 $monthYear = $_GET['fecha'] ?? null;
@@ -105,7 +107,7 @@ $startDate ??= null;
 $endDate ??= null;
 
 if ($monthYear !== null) {
-  [$year, $month] = explode('-', (string) $monthYear);
+  [$year, $month] = explode('-', strval($monthYear));
 
   $daysOfMonth = match ($month) {
     '01', '03', '05', '07', '08', '10', '12' => 31,
@@ -173,7 +175,7 @@ $monthName = [
       <label style="flex-basis: 60px" class="input-group-text">MES</label>
       <input
         readonly
-        value="<?= $monthName[(int) explode('-', (string) $monthYear)[1]] ?>"
+        value="<?= $monthName[intval(explode('-', strval($monthYear))[1])] ?>"
         class="form-control" />
     </div>
     <div class="input-group mb-3">
@@ -181,7 +183,7 @@ $monthName = [
       <input
         type="number"
         readonly
-        value="<?= explode('-', (string) $monthYear)[0] ?>"
+        value="<?= explode('-', strval($monthYear))[0] ?>"
         class="form-control" />
     </div>
   </div>
@@ -234,7 +236,7 @@ $monthName = [
       </div>
     </div>
   </fieldset>
-  <table style="width: 100%" class="w3-table w3-centered w3-bordered table table-hover">
+  <table class="w3-table w3-centered w3-bordered table table-hover w-100">
     <thead>
       <tr>
         <th rowspan="3" colspan="2">ENFERMEDADES</th>
@@ -260,7 +262,11 @@ $monthName = [
             <td class="fw-bold" colspan="7" style="text-align: start">
               <?php if (
                 is_array($cause['category']['parentCategory'])
-                && !in_array($cause['category']['parentCategory'], $printedParentCategories, true)
+                && !in_array(
+                  $cause['category']['parentCategory'],
+                  $printedParentCategories,
+                  true
+                )
               ): ?>
                 <?= $cause['category']['parentCategory']['name']['extended'] ?? $cause['category']['parentCategory']['name']['short'] ?>
                 <br />
@@ -308,7 +314,12 @@ $monthName = [
         <td id="total-S" data-bs-toggle="tooltip" title="S"></td>
         <td id="total-X" data-bs-toggle="tooltip" title="X"></td>
         <td id="total-PX" data-bs-toggle="tooltip" title="P + X"></td>
-        <td id="total-A" data-bs-toggle="tooltip" title="Acumulado del año"></td>
+
+        <td
+          id="total-A"
+          data-bs-toggle="tooltip"
+          title="Acumulado del año">
+        </td>
       </tr>
     </tfoot>
   </table>
@@ -364,13 +375,31 @@ $monthName = [
       $s.innerText = typesByCause[causeId].S
       $x.innerText = typesByCause[causeId].X
       $px.innerText = typesByCause[causeId].P + typesByCause[causeId].X
-      $accumulated.innerText = typesByCause[causeId].P + typesByCause[causeId].S + typesByCause[causeId].X
+      $accumulated.innerText = (
+        typesByCause[causeId].P
+        + typesByCause[causeId].S + typesByCause[causeId].X
+      )
 
-      $totalP.innerText = parseInt($totalP.innerText || 0) + typesByCause[causeId].P
-      $totalS.innerText = parseInt($totalS.innerText || 0) + typesByCause[causeId].S
-      $totalX.innerText = parseInt($totalX.innerText || 0) + typesByCause[causeId].X
+      $totalP.innerText = (
+        parseInt($totalP.innerText || 0)
+        + typesByCause[causeId].P
+      )
 
-      $totalPX.innerText = parseInt($totalP.innerText) + parseInt($totalX.innerText)
+      $totalS.innerText = (
+        parseInt($totalS.innerText || 0)
+        + typesByCause[causeId].S
+      )
+
+      $totalX.innerText = (
+        parseInt($totalX.innerText || 0)
+        + typesByCause[causeId].X
+      )
+
+      $totalPX.innerText = (
+        parseInt($totalP.innerText)
+        + parseInt($totalX.innerText)
+      )
+
       $totalA.innerText = parseInt($totalP.innerText) +
         parseInt($totalS.innerText) +
         parseInt($totalX.innerText)

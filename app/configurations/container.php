@@ -17,17 +17,17 @@ use App\Repositories\Infraestructure\PDO\PDODepartmentRepository;
 use App\Repositories\Infraestructure\PDO\PDODoctorRepository;
 use App\Repositories\Infraestructure\PDO\PDOPatientRepository;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
-use flight\Container;
 use flight\net\Request;
 use flight\template\View;
+use Illuminate\Container\Container;
 use Leaf\Http\Session;
 use Psr\Container\ContainerInterface;
 
 $container = Container::getInstance();
 $container->singleton(ContainerInterface::class, Container::class);
 $container->singleton(Session::class);
-$container->singleton(View::class, Flight::view());
-$container->singleton(Request::class, Flight::request());
+$container->singleton(View::class, static fn(): View => Flight::view());
+$container->singleton(Request::class, static fn(): Request => Flight::request());
 
 assert($_ENV['DB_CONNECTION'] instanceof DBDriver);
 

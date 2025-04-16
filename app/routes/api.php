@@ -9,7 +9,7 @@ use App\Models\Patient;
 use App\Repositories\Domain\ConsultationCauseCategoryRepository;
 use App\Repositories\Domain\ConsultationCauseRepository;
 use App\Repositories\Domain\PatientRepository;
-use flight\Container;
+use Illuminate\Container\Container;
 use Leaf\Http\Session;
 
 $categoryMapper = new class {

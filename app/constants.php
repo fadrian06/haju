@@ -16,7 +16,7 @@ $_SERVER['HTTP_HOST'] ??= 'localhost:61001';
  */
 define(
   'BASE_URL',
-  Flight::request()->scheme . '://' . $_SERVER['HTTP_HOST'] . BASE_URI
+  request()->getScheme() . '://' . $_SERVER['HTTP_HOST'] . BASE_URI
 );
 
-const VIEWS_PATH = __DIR__ . '/../views';
+const VIEWS_PATH = __DIR__ . '/../resources/views';

@@ -6,14 +6,18 @@ use App\Models\Department;
 use App\Models\User;
 use App\Repositories\Domain\PatientRepository;
 use App\ValueObjects\Appointment;
-use flight\Container;
+use Illuminate\Container\Container;
 
 /**
  * @var User $user
  * @var Department $department
  */
 assert(isset($user) && $user instanceof User, new Error('User not set'));
-assert(isset($department) && $department instanceof Department, new Error('Department not set'));
+
+assert(
+  isset($department) && $department instanceof Department,
+  new Error('Department not set')
+);
 
 $patients = Container::getInstance()->get(PatientRepository::class)->getAll();
 

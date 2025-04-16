@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Repositories\Domain\PatientRepository;
-use flight\Container;
+use Illuminate\Container\Container;
 
 $error = isset($error) ? strval($error) : null;
 $message = isset($message) ? strval($message) : null;

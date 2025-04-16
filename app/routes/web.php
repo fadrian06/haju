@@ -23,8 +23,8 @@ use App\Middlewares\EnsureUserIsNotAuthenticated;
 use App\Middlewares\LogLoginMiddleware;
 use App\Middlewares\MessagesMiddleware;
 use App\ValueObjects\Appointment;
-use flight\Container;
 use flight\template\View;
+use Illuminate\Container\Container;
 use Leaf\Http\Session;
 
 Flight::route('/', static function () {

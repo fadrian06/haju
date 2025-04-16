@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Models\Patient;
 use App\Repositories\Domain\PatientRepository;
 use App\ValueObjects\DateRange;
-use flight\Container;
+use Illuminate\Container\Container;
 
 $lastMonth = (new DateTimeImmutable)->sub(new DateInterval('P1M'))->format('Y-m-d');
 $currentDate = date('Y-m-d') . ' 23:59:59';

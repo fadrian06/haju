@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Models\User;
 use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Domain\UserRepository;
-use flight\Container;
+use Illuminate\Container\Container;
 use Leaf\Http\Session;
 
 Flight::set('flight.views.path', VIEWS_PATH);

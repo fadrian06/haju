@@ -7,7 +7,7 @@ parameters:
   paths:
     - app
     - tests
-    - views
+    - resources/views
     - index.php
     - rector.php
   treatPhpDocTypesAsCertain: false

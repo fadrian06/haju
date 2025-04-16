@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use flight\Container;
+use Illuminate\Container\Container;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../configurations/environment.php';

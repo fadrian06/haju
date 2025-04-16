@@ -5,8 +5,8 @@ declare(strict_types=1);
 use App\Models\ConsultationCause;
 use App\Models\ConsultationCauseCategory;
 use App\Repositories\Domain\ConsultationCauseRepository;
-use flight\Container;
 use flight\template\View;
+use Illuminate\Container\Container;
 
 $categoryMapper = new class {
   /**
@@ -94,7 +94,9 @@ foreach ($causes as $cause) {
 
 $causes = $data;
 
-/** @var array<int, ConsultationCauseCategory> */
+/**
+ * @var ConsultationCauseCategory[]
+ */
 $categories = [];
 
 $monthYear = $_GET['fecha'] ?? null;
@@ -106,7 +108,7 @@ $endDate ??= null;
 $daysOfMonth ??= null;
 
 if ($monthYear !== null) {
-  [$year, $month] = explode('-', (string) $monthYear);
+  [$year, $month] = explode('-', strval($monthYear));
 
   $daysOfMonth = match ($month) {
     '01', '03', '05', '07', '08', '10', '12' => 31,
@@ -157,10 +159,7 @@ $printedParentCategories = [];
               class="fw-bold"
               colspan="<?= DAYS + 3 ?>"
               style="text-align: start">
-              <?php if (
-                is_array($cause['category']['parentCategory'])
-                && !in_array($cause['category']['parentCategory'], $printedParentCategories, true)
-              ): ?>
+              <?php if (is_array($cause['category']['parentCategory']) && !in_array($cause['category']['parentCategory'], $printedParentCategories, true)): ?>
                 <?= $cause['category']['parentCategory']['name']['extended'] ?? $cause['category']['parentCategory']['name']['short'] ?>
                 <br />
                 <?php $printedParentCategories[] = $cause['category']['parentCategory'] ?>
@@ -236,7 +235,11 @@ $printedParentCategories = [];
 
       const registeredDate = new Date(consultation.registered_date)
       const day = registeredDate.getDate()
-      const dayCell = document.getElementById(`cause-${consultation.cause_id}_day-${day}_type-${consultation.type}`)
+
+      const dayCell = document.getElementById(
+        `cause-${consultation.cause_id}_day-${day}_type-${consultation.type}`
+      )
+
       const totalCell = dayCell.parentElement.lastElementChild
 
       dayCell.innerText = parseInt(dayCell.innerText || 0) + 1
