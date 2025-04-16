@@ -12,10 +12,10 @@
 }
 
 .view_archive_btn i {
-  margin-right: 15px
+  margin-right: 15px;
 }
 
 .view_archive_btn:hover {
   color: #2e4765;
-  border: 1px solid #2e4765
+  border: 1px solid #2e4765;
 }

@@ -42,7 +42,7 @@ body.modal-open {
   height: 52.5px;
 }
 
-.input-group>.form-control {
+.input-group > .form-control {
   flex: 1;
 }
 
@@ -60,7 +60,7 @@ input[type="number"] {
   justify-content: space-between !important;
 }
 
-.header_iner~* {
+.header_iner ~ * {
   margin-top: 65px !important;
 }
 
@@ -130,7 +130,7 @@ input[type="number"] {
 }
 
 .timeline-item,
-.timeline-item>a {
+.timeline-item > a {
   position: relative;
   display: grid;
   gap: .25em;
@@ -145,7 +145,7 @@ input[type="number"] {
   border-radius: 50%;
   height: 1em;
   width: 1em;
-  content: '';
+  content: "";
 }
 
 .fileupload.btn {
@@ -162,7 +162,7 @@ input[type="number"] {
   cursor: pointer;
 }
 
-.form-floating>label {
+.form-floating > label {
   left: unset;
   height: unset;
 }
@@ -296,4 +296,25 @@ textarea {
 }
 
 .bg-light {
-  backgro
+  background-color: #eee !important;
+}
+
+.bg-focus {
+  background-color: #444054 !important;
+}
+
+.bg-primary {
+  background-color: #3f6ad8 !important;
+}
+
+.swal2-popup {
+  background: #364f6b;
+}
+
+.swal2-popup .swal2-title {
+  color: white;
+}
+
+.profile_info .profile_info_iner::before {
+  right: 20px;
+}

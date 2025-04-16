@@ -3,7 +3,7 @@
   border-radius: 0;
   padding-left: 0;
   padding-right: 30px;
-  color: #415094
+  color: #415094;
 }
 
 .nice_Select .nice-select-search-box {
@@ -26,7 +26,7 @@
   right: 18px;
   transform-origin: none;
   transition: all .1s ease-in-out;
-  margin-top: -22px
+  margin-top: -22px;
 }
 
 .nice_Select.open::after {
@@ -41,21 +41,21 @@
 }
 
 .nice_Select:hover {
-  border: 0
+  border: 0;
 }
 
 .nice_Select.open .list {
   min-width: 200px;
   left: 0;
-  overflow-y: auto
+  overflow-y: auto;
 }
 
 .nice_Select.open .list li:first-child {
-  color: #000
+  color: #000;
 }
 
 .nice_Select .current {
-  transition: all .4s ease 0s
+  transition: all .4s ease 0s;
 }
 
 .nice_Select .list {
@@ -65,13 +65,13 @@
   border-radius: 0 0 10px 10px;
   margin-top: 1px;
   z-index: 9999;
-  box-shadow: 0 10px 20px rgba(108, 39, 255, .3)
+  box-shadow: 0 10px 20px rgba(108, 39, 255, 0.3);
 }
 
 .nice_Select .list li {
   font-size: 12px;
   font-weight: 500;
-  text-transform: uppercase
+  text-transform: uppercase;
 }
 
 .nice_Select2 {
@@ -90,11 +90,11 @@
 
 .nice_Select2 .nice-select-search-box {
   width: 100%;
-  margin-top: 5px
+  margin-top: 5px;
 }
 
 .nice_Select2:after {
-  content: '\e62a';
+  content: "\e62a";
   font-family: themify;
   border: 0;
   transform: rotate(0deg);
@@ -104,19 +104,19 @@
   transform-origin: none;
   transition: all .1s ease-in-out;
   margin-top: -16px;
-  right: 30px
+  right: 30px;
 }
 
 .nice_Select2:active,
 .nice_Select2.open,
 .nice_Select2:focus {
-  border-color: #eaf0f4
+  border-color: #eaf0f4;
 }
 
 .nice_Select2.open::after {
   transform: rotate(180deg);
   margin-top: 8px;
-  right: 24px
+  right: 24px;
 }
 
 .nice_Select2:focus {
@@ -132,15 +132,15 @@
   min-width: 100%;
   margin-top: 5px;
   left: 0;
-  overflow-y: auto
+  overflow-y: auto;
 }
 
 .nice_Select2.open .list li:first-child {
-  color: #000
+  color: #000;
 }
 
 .nice_Select2 .current {
-  transition: all .4s ease 0s
+  transition: all .4s ease 0s;
 }
 
 .nice_Select2 .list {
@@ -150,11 +150,11 @@
   border-radius: 0 0 10px 10px;
   margin-top: 1px;
   z-index: 9999;
-  box-shadow: 0 10px 20px rgba(108, 39, 255, .3)
+  box-shadow: 0 10px 20px rgba(108, 39, 255, 0.3);
 }
 
 .nice_Select2 .list li {
   font-size: 12px;
   font-weight: 500;
-  text-transform: uppercase
+  text-transform: uppercase;
 }

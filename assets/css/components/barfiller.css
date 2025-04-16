@@ -4,7 +4,7 @@
   background: #eff1f7;
   position: relative;
   margin-bottom: 25px;
-  border-radius: 30px
+  border-radius: 30px;
 }
 
 .barfiller .fill {
@@ -13,11 +13,11 @@
   width: 0;
   height: 100%;
   z-index: 1;
-  border-radius: 30px
+  border-radius: 30px;
 }
 
 .barfiller .tipWrap {
-  display: none
+  display: none;
 }
 
 .barfiller .tip {
@@ -27,21 +27,21 @@
   color: #000;
   left: 0;
   position: absolute;
-  z-index: 2
+  z-index: 2;
 }
 
 .barfiller#bar1 .tip {
-  color: #089bab
+  color: #089bab;
 }
 
 .barfiller#bar2 .tip {
-  color: #28a745
+  color: #28a745;
 }
 
 .barfiller#bar3 .tip {
-  color: #ffc107
+  color: #ffc107;
 }
 
 .barfiller#bar4 .tip {
-  color: #dc3545
+  color: #dc3545;
 }

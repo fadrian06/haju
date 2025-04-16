@@ -4,7 +4,7 @@
   transform: translateY(-50%);
   font-size: 14px;
   color: #cec1c2;
-  right: 25px
+  right: 25px;
 }
 
 .common_date_picker input {
@@ -16,5 +16,5 @@
   font-size: 13px;
   color: #7e7172;
   padding: 0 25px;
-  font-weight: 300
+  font-weight: 300;
 }

@@ -15,69 +15,69 @@
   padding-top: 100px;
 }
 
-@media(max-width:991px) {
+@media (max-width: 991px) {
   .main_content {
-    padding: 90px 0 100px
+    padding: 90px 0 100px;
   }
 }
 
-@media(max-width:575.98px) {
+@media (max-width: 575.98px) {
   .main_content {
-    padding: 120px 0 100px
+    padding: 120px 0 100px;
   }
 }
 
-@media only screen and (min-width:576px) and (max-width:767px) {
+@media only screen and (min-width: 576px) and (max-width: 767px) {
   .main_content {
-    padding: 120px 0 100px
+    padding: 120px 0 100px;
   }
 }
 
-@media only screen and (min-width:768px) and (max-width:991px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
   .main_content {
-    padding: 120px 0 100px
+    padding: 120px 0 100px;
   }
 }
 
-@media only screen and (min-width:992px) and (max-width:1200px) {
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
   .main_content {
-    padding-left: 20%
+    padding-left: 20%;
   }
 }
 
 .main_content .main_content_iner {
   min-height: 68vh;
   transition: .5s;
-  margin: 20px 30px 30px
+  margin: 20px 30px 30px;
 }
 
-@media(max-width:991px) {
+@media (max-width: 991px) {
   .main_content .main_content_iner {
-    margin: 0
+    margin: 0;
   }
 }
 
-@media(min-width:1200px) and (max-width:1500px) {
+@media (min-width: 1200px) and (max-width: 1500px) {
   .main_content .main_content_iner.main_content_iner_padding {
-    padding: 0 30px
+    padding: 0 30px;
   }
 }
 
-@media only screen and (min-width:1440px) and (max-width:1679px) {
+@media only screen and (min-width: 1440px) and (max-width: 1679px) {
   .main_content .main_content_iner.main_content_iner_padding {
-    padding: 0 60px
+    padding: 0 60px;
   }
 }
 
-@media(min-width:1680px) {
+@media (min-width: 1680px) {
   .main_content .main_content_iner.main_content_iner_padding {
-    padding: 0 135px
+    padding: 0 135px;
   }
 }
 
-@media(max-width:575.98px) {
+@media (max-width: 575.98px) {
   .main_content .main_content_iner {
-    margin-bottom: 20px
+    margin-bottom: 20px;
   }
 }
 
@@ -86,7 +86,7 @@
   font-weight: 600;
   font-size: 22px;
   color: #2e4765;
-  line-height: 1.2
+  line-height: 1.2;
 }
 
 .main-title span {
@@ -94,5 +94,5 @@
   font-weight: 400;
   color: #a3a0fb;
   display: block;
-  margin-top: 6px
+  margin-top: 6px;
 }

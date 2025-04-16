@@ -8,14 +8,14 @@
   right: 0;
   font-size: 18px !important;
   background: #eff1f7 !important;
-  color: #141124
+  color: #141124;
 }
 
 .owl-carousel .owl-nav button.owl-prev {
-  right: 50px
+  right: 50px;
 }
 
 .owl-carousel .owl-nav button:hover {
   background: #16bbe5 !important;
-  color: white
+  color: white;
 }

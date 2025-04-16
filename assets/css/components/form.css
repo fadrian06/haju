@@ -4,7 +4,7 @@
   font-weight: 300;
   text-transform: capitalize;
   margin-bottom: 13px;
-  color: #7e7172
+  color: #7e7172;
 }
 
 .form_style .form-group input {
@@ -15,20 +15,20 @@
   padding: 15px 25px;
   background-color: #fef1f2;
   height: auto;
-  line-height: 18px
+  line-height: 18px;
 }
 
 .form_box .from_group {
   display: block;
   width: 100%;
-  margin-bottom: 23px
+  margin-bottom: 23px;
 }
 
 .form_box .from_group label {
   font-size: 14px;
   font-weight: 500;
   margin-bottom: 13px;
-  color: #707070
+  color: #707070;
 }
 
 .form_box .from_group .nice_Select,
@@ -47,7 +47,7 @@
 
 .form_box .from_group textarea {
   height: 115px;
-  line-height: 27px
+  line-height: 27px;
 }
 
 .form_box .from_group .bootstrap-tagsinput input {
@@ -57,7 +57,7 @@
   background-color: transparent;
 }
 
-.form_box .from_group .bootstrap-tagsinput .badge [data-role=remove]:after {
+.form_box .from_group .bootstrap-tagsinput .badge [data-role="remove"]:after {
   background-color: transparent;
 }
 
@@ -66,20 +66,20 @@
   padding: 9px 8px;
   line-height: 12px;
   font-weight: 500;
-  font-size: 13px
+  font-size: 13px;
 }
 
 .form_box .from_group .badge-info {
   color: white;
-  background-color: #2ec9b8
+  background-color: #2ec9b8;
 }
 
 .form_box .from_group .nice_Select {
-  line-height: 30px
+  line-height: 30px;
 }
 
 .form_group {
-  margin-top: 24px
+  margin-top: 24px;
 }
 
 .form_group input {
@@ -87,12 +87,12 @@
   background-color: #fef1f2;
   border-radius: 5px;
   border: 1px solid #f1f3f5;
-  padding: 12px 20px
+  padding: 12px 20px;
 }
 
 .form_group .single_form_item label {
   width: 100%;
-  display: block
+  display: block;
 }
 
 .form_group .single_form_item input {
@@ -100,21 +100,21 @@
   display: inline-block;
   padding: 12px 20px;
   max-width: 85px;
-  color: #9c9c9c
+  color: #9c9c9c;
 }
 
 .form_group #CVV {
-  max-width: 118px !important
+  max-width: 118px !important;
 }
 
 .form_group .nice_Select {
   background-color: #fef1f2;
   margin-right: 10px;
-  color: #9c9c9c
+  color: #9c9c9c;
 }
 
 .indvisual_form .btn_1.big_btn {
-  padding: 16px 36px
+  padding: 16px 36px;
 }
 
 .indvisual_form .chose_thumb_title {
@@ -125,7 +125,7 @@
   margin: 0;
   margin-bottom: 0;
   display: block;
-  margin-bottom: 8px
+  margin-bottom: 8px;
 }
 
 .indvisual_form .input_wrap label {
@@ -136,18 +136,18 @@
   margin: 0;
   margin-bottom: 0;
   display: block;
-  margin-bottom: 8px
+  margin-bottom: 8px;
 }
 
 .indvisual_form .input_wrap textarea {
   height: 100px;
   padding: 0;
   line-height: 28px;
-  padding: 13px 25px
+  padding: 13px 25px;
 }
 
 .indvisual_form .input_wrap textarea.max_textarea {
-  height: 290px
+  height: 290px;
 }
 
 .indvisual_form .nice_Select,
@@ -165,7 +165,7 @@
   display: block;
   margin-bottom: 21px;
   font-weight: 300;
-  border-radius: 3px
+  border-radius: 3px;
 }
 
 .indvisual_form .nice_Select::placeholder,
@@ -173,15 +173,15 @@
 .indvisual_form textarea::placeholder {
   color: #7e7172;
   font-weight: 300;
-  opacity: 1
+  opacity: 1;
 }
 
 .indvisual_form .nice_Select {
-  line-height: 30px
+  line-height: 30px;
 }
 
 .indvisual_form .nice_Select :after {
-  left: 22px
+  left: 22px;
 }
 
 .indvisual_form .nice-select.nice_Select2 {
@@ -199,9 +199,9 @@
   font-weight: 300;
   border-radius: 3px;
   margin: 0;
-  width: auto
+  width: auto;
 }
 
 .indvisual_form .nice-select.nice_Select2::after {
-  top: 20%
+  top: 20%;
 }

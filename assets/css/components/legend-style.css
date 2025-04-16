@@ -3,7 +3,7 @@
   font-size: 13px;
   font-weight: 400;
   text-transform: capitalize;
-  margin-right: 10px
+  margin-right: 10px;
 }
 
 .legend_style li span {
@@ -12,9 +12,9 @@
   height: 9px;
   border-radius: 50%;
   background: #4400eb;
-  margin-right: 4px
+  margin-right: 4px;
 }
 
 .legend_style li.inactive {
-  opacity: .29
+  opacity: 0.29;
 }

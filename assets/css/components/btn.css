@@ -1,13 +1,13 @@
 .btn-primary {
   color: white;
   background-color: #2daab8;
-  border-color: #2daab8
+  border-color: #2daab8;
 }
 
 .btn-primary:hover {
   color: white;
   background-color: #16bbe5;
-  border-color: #16bbe5
+  border-color: #16bbe5;
 }
 
 .btn_1 {
@@ -22,53 +22,53 @@
   font-weight: 500;
   border-radius: 5px;
   white-space: nowrap;
-  transition: .5s
+  transition: .5s;
 }
 
 .btn_1 i {
   font-size: 15px;
-  padding-right: 7px
+  padding-right: 7px;
 }
 
 .btn_1:hover {
   background-color: white;
   border: 1px solid #313f5a;
-  color: #2daab8
+  color: #2daab8;
 }
 
 .btn_1.light {
-  background-color: rgba(46, 71, 101, .1);
+  background-color: rgba(46, 71, 101, 0.1);
   border: 1px solid transparent;
-  color: #2e4765
+  color: #2e4765;
 }
 
 .btn_1.green {
-  background-color: rgba(46, 201, 184, .1);
+  background-color: rgba(46, 201, 184, 0.1);
   border: 1px solid transparent;
-  color: #2ec9b8
+  color: #2ec9b8;
 }
 
 .btn_1.sm {
   font-size: 12px;
-  padding: 6px 15px
+  padding: 6px 15px;
 }
 
 .btn_1.big_btn {
-  padding: 11px 36px
+  padding: 11px 36px;
 }
 
 .btn_1.form_big_btn_1 {
-  padding: 16px 62px
+  padding: 16px 62px;
 }
 
-@media(max-width:575.98px) {
+@media (max-width: 575.98px) {
   .btn_1.form_big_btn_1 {
-    padding: 16px 30px
+    padding: 16px 30px;
   }
 }
 
 .btn_1.big_btn2 {
-  padding: 11px 37px
+  padding: 11px 37px;
 }
 
 .btn_2 {
@@ -83,13 +83,13 @@
   border-radius: 5px;
   background-color: white;
   white-space: nowrap;
-  transition: .5s
+  transition: .5s;
 }
 
 .btn_2:hover {
   background-color: #2e4765;
   border: 1px solid #2e4765;
-  color: white
+  color: white;
 }
 
 .btn_3 {
@@ -104,17 +104,17 @@
   border-radius: 5px;
   background-color: white;
   white-space: nowrap;
-  transition: .5s
+  transition: .5s;
 }
 
 .btn_3.border_color_1 {
-  border: 1px solid #eee1e2
+  border: 1px solid #eee1e2;
 }
 
 .btn_3:hover {
   background-color: #2e4765;
   border: 1px solid #2e4765;
-  color: white
+  color: white;
 }
 
 .btn_4 {
@@ -127,13 +127,13 @@
   line-height: 20px;
   font-size: 13px;
   font-weight: 300;
-  transition: .5s
+  transition: .5s;
 }
 
 .btn_4:hover {
   background-color: #2e4765;
   border: 1px solid #2e4765;
-  color: white
+  color: white;
 }
 
 .btn_5 {
@@ -151,27 +151,27 @@
   background: white;
   text-shadow: none;
   opacity: 1;
-  color: #222
+  color: #222;
 }
 
 .btn_5:hover {
   background-color: #2e4765;
   border: 1px solid #2e4765;
   color: white;
-  opacity: 1
+  opacity: 1;
 }
 
 .btn_5.small_btn {
   padding: 11px 26px;
 }
 
-@media(max-width:575.98px) {
+@media (max-width: 575.98px) {
   .btn_5.small_btn {
     padding: 11px 19px;
   }
 }
 
-@media only screen and (min-width:576px) and (max-width:767px) {
+@media only screen and (min-width: 576px) and (max-width: 767px) {
   .btn_5.small_btn {
     padding: 11px 19px;
   }
@@ -189,13 +189,13 @@
   border-radius: 5px;
   background-color: white;
   white-space: nowrap;
-  transition: .5s
+  transition: .5s;
 }
 
 .btn_6:hover {
   background-color: #2e4765;
   border: 1px solid #2e4765;
-  color: white
+  color: white;
 }
 
 .sm_btn {
@@ -218,12 +218,12 @@
   background: white;
   transition: .3s;
   padding: 6px 20px;
-  border-radius: 3px
+  border-radius: 3px;
 }
 
 .white_btn:hover {
   background: #2daab8;
-  color: white
+  color: white;
 }
 
 .red_btn {
@@ -234,12 +234,12 @@
   background: #2daab8;
   transition: .3s;
   padding: 6px 20px;
-  border-radius: 3px
+  border-radius: 3px;
 }
 
 .red_btn:hover {
   background: white;
-  color: #7e7172
+  color: #7e7172;
 }
 
 .white_btn3 {
@@ -258,14 +258,14 @@
   text-shadow: none;
   opacity: 1;
   color: #222;
-  margin-right: 10px
+  margin-right: 10px;
 }
 
 .white_btn3:hover {
   background-color: #2e4765;
   border: 1px solid #2e4765;
   color: white;
-  opacity: 1
+  opacity: 1;
 }
 
 .status_btn {
@@ -279,15 +279,15 @@
   text-transform: capitalize;
   white-space: nowrap;
   min-width: 70px;
-  text-align: center
+  text-align: center;
 }
 
 .status_btn.yellow_btn {
-  background: #ffba00
+  background: #ffba00;
 }
 
 .status_btn:hover {
-  color: white
+  color: white;
 }
 
 .white_btn_line {
@@ -309,18 +309,18 @@
 .white_btn_line i {
   font-size: 13px;
   color: #7e7172;
-  margin-right: 6px
+  margin-right: 6px;
 }
 
 .white_btn_line:hover {
   background: #2daab8;
   color: white;
-  border: 1px solid #2daab8
+  border: 1px solid #2daab8;
 }
 
 .white_btn_line:hover i {
   color: white;
-  transition: .3s
+  transition: .3s;
 }
 
 .white_btn_line2 {
@@ -336,33 +336,33 @@
   transition: .3s;
   border-radius: 30px;
   line-height: 28px;
-  padding: 0 18px
+  padding: 0 18px;
 }
 
 .white_btn_line2:hover {
   background: #2daab8;
   color: white;
-  border: 1px solid #2daab8
+  border: 1px solid #2daab8;
 }
 
 .white_btn_line2:hover i {
   color: white;
-  transition: .3s
+  transition: .3s;
 }
 
-@media(max-width:575.98px) {
+@media (max-width: 575.98px) {
   .add_button {
     margin-top: 15px;
-    margin-left: 0
+    margin-left: 0;
   }
 }
 
 .title_btn {
-  margin-bottom: 20px
+  margin-bottom: 20px;
 }
 
 .title_btn ul li {
-  display: inline-block
+  display: inline-block;
 }
 
 .title_btn ul li a {
@@ -374,17 +374,17 @@
   border-radius: 5px;
   line-height: 25px;
   padding: 0 10px;
-  transition: .3s
+  transition: .3s;
 }
 
 .title_btn ul li a:hover {
   background: #a66dd4;
-  color: white
+  color: white;
 }
 
 .title_btn ul li a.active {
   background: #a66dd4;
-  color: white
+  color: white;
 }
 
 .close.white_btn2 {
@@ -403,12 +403,12 @@
   text-shadow: none;
   opacity: 1;
   color: #222;
-  margin-right: 10px
+  margin-right: 10px;
 }
 
 .close.white_btn2:hover {
   background-color: #2e4765;
   border: 1px solid #2e4765;
   color: white;
-  opacity: 1
+  opacity: 1;
 }

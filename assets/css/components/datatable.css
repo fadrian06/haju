@@ -1,10 +1,16 @@
 table.dataTable tbody th,
 table.dataTable tbody td {
-  vertical-align: middle
+  vertical-align: middle;
 }
 
-table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>td:first-child::before,
-table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>th:first-child::before {
+table.dataTable.dtr-inline.collapsed
+  > tbody
+  > tr[role="row"]
+  > td:first-child::before,
+table.dataTable.dtr-inline.collapsed
+  > tbody
+  > tr[role="row"]
+  > th:first-child::before {
   z-index: 9;
   top: 50%;
   transform: translateY(-50%);
@@ -14,13 +20,19 @@ table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>th:first-child::before {
   line-height: 14px;
   font-weight: 600;
   background-color: #fef1f2;
-  box-shadow: 6px 6px 12px rgba(0, 0, 0, .08), -6px -6px 12px white
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.08), -6px -6px 12px white;
 }
 
-table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td:first-child::before,
-table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child::before {
+table.dataTable.dtr-inline.collapsed
+  > tbody
+  > tr.parent
+  > td:first-child::before,
+table.dataTable.dtr-inline.collapsed
+  > tbody
+  > tr.parent
+  > th:first-child::before {
   content: "\e622";
-  box-shadow: inset 6px 6px 12px rgba(0, 0, 0, .08), inset -6px -6px 12px white
+  box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.08), inset -6px -6px 12px white;
 }
 
 table.dataTable {
@@ -28,12 +40,12 @@ table.dataTable {
   margin: 0 auto;
   clear: both;
   border-collapse: separate;
-  border-spacing: 0
+  border-spacing: 0;
 }
 
 .dataTables_paginate {
   margin-top: 0;
-  margin-top: 30px
+  margin-top: 30px;
 }
 
 .dataTables_paginate a {
@@ -45,31 +57,31 @@ table.dataTable {
   line-height: 32px;
   padding: 0 !important;
   margin: 0 !important;
-  margin: 0 5px !important
+  margin: 0 5px !important;
 }
 
 .dataTables_paginate a.current {
   background: #16bbe5 !important;
-  box-shadow: 0 5px 10px rgba(59, 118, 239, .3) !important;
+  box-shadow: 0 5px 10px rgba(59, 118, 239, 0.3) !important;
   border: 0 !important;
-  color: white !important
+  color: white !important;
 }
 
 .dataTables_paginate a:hover {
   background: #16bbe5 !important;
-  box-shadow: 0 5px 10px rgba(59, 118, 239, .3);
+  box-shadow: 0 5px 10px rgba(59, 118, 239, 0.3);
   border: 0 !important;
-  color: white !important
+  color: white !important;
 }
 
 .dataTables_paginate a:hover i {
-  color: white !important
+  color: white !important;
 }
 
 .dataTables_paginate a i {
   line-height: 32px;
   font-size: 12px;
-  color: #415094
+  color: #415094;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
@@ -77,7 +89,7 @@ table.dataTable {
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
   cursor: default;
   color: white !important;
-  border: 0
+  border: 0;
 }
 
 #DataTables_Table_0_info {
@@ -85,12 +97,12 @@ table.dataTable {
   color: #415094;
   font-weight: 400;
   margin-top: 35px;
-  padding-top: 0
+  padding-top: 0;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current,
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
   color: white !important;
   border: 1px solid #16bbe5;
-  background-color: #16bbe5 !important
+  background-color: #16bbe5 !important;
 }

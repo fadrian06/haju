@@ -4,14 +4,14 @@
   text-align: center;
   padding: 13px 0 17px;
   position: relative;
-  z-index: 1
+  z-index: 1;
 }
 
 .border_style span {
   padding: 0 25px;
   text-align: center;
   display: inline-block;
-  background-color: white
+  background-color: white;
 }
 
 .border_style:after {
@@ -22,5 +22,5 @@
   background-color: #bbc1c9;
   top: 24px;
   left: 0;
-  z-index: -1
+  z-index: -1;
 }
