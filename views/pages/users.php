@@ -108,109 +108,139 @@ $lastData = Session::get('lastData', []);
         <fieldset class="row row-gap-3 mb-3">
           <summary class="fs-6 mb-2">Datos personales</summary>
           <div class="col-md-6">
-            <?php Flight::render('components/inputs/input', [
-              'name' => 'first_name',
-              'label' => 'Primer nombre',
-              'value' => $lastData['first_name'] ?? '',
-            ]) ?>
+            <?php Flight::render(
+              'components/inputs/input',
+              [
+                'name' => 'first_name',
+                'label' => 'Primer nombre',
+                'value' => $lastData['first_name'] ?? '',
+              ],
+            ) ?>
           </div>
 
           <div class="col-md-6">
-            <?php Flight::render('components/inputs/input', [
-              'name' => 'second_name',
-              'label' => 'Segundo nombre',
-              'required' => false,
-              'value' => $lastData['second_name'] ?? '',
-            ]) ?>
+            <?php Flight::render(
+              'components/inputs/input',
+              [
+                'name' => 'second_name',
+                'label' => 'Segundo nombre',
+                'required' => false,
+                'value' => $lastData['second_name'] ?? '',
+              ],
+            ) ?>
           </div>
 
           <div class="col-md-6">
-            <?php Flight::render('components/inputs/input', [
-              'name' => 'first_last_name',
-              'label' => 'Primer apellido',
-              'value' => $lastData['first_last_name'] ?? '',
-            ]) ?>
+            <?php Flight::render(
+              'components/inputs/input',
+              [
+                'name' => 'first_last_name',
+                'label' => 'Primer apellido',
+                'value' => $lastData['first_last_name'] ?? '',
+              ],
+            ) ?>
           </div>
 
           <div class="col-md-6">
-            <?php Flight::render('components/inputs/input', [
-              'name' => 'second_last_name',
-              'label' => 'Segundo apellido',
-              'required' => false,
-              'value' => $lastData['second_last_name'] ?? '',
-            ]) ?>
+            <?php Flight::render(
+              'components/inputs/input',
+              [
+                'name' => 'second_last_name',
+                'label' => 'Segundo apellido',
+                'required' => false,
+                'value' => $lastData['second_last_name'] ?? '',
+              ],
+            ) ?>
           </div>
 
           <div class="col-md-6">
-            <?php Flight::render('components/inputs/input', [
-              'type' => 'number',
-              'name' => 'id_card',
-              'label' => 'Cédula',
-              'value' => $lastData['id_card'] ?? '',
-              'model' => 'idCard',
-            ]) ?>
+            <?php Flight::render(
+              'components/inputs/input',
+              [
+                'type' => 'number',
+                'name' => 'id_card',
+                'label' => 'Cédula',
+                'value' => $lastData['id_card'] ?? '',
+                'model' => 'idCard',
+              ],
+            ) ?>
           </div>
 
           <div class="col-md-6">
-            <?php Flight::render('components/inputs/input', [
-              'type' => 'date',
-              'name' => 'birth_date',
-              'label' => 'Fecha de nacimiento',
-              'value' => $lastData['birth_date'] ?? '',
-            ]) ?>
+            <?php Flight::render(
+              'components/inputs/input',
+              [
+                'type' => 'date',
+                'name' => 'birth_date',
+                'label' => 'Fecha de nacimiento',
+                'value' => $lastData['birth_date'] ?? '',
+              ],
+            ) ?>
           </div>
 
           <div class="col-md-6">
-            <?php Flight::render('components/inputs/select', [
-              'name' => 'gender',
-              'label' => 'Género',
-              'options' => array_map(
-                static fn(Gender $gender): array => [
-                  'value' => $gender->value,
-                  'slot' => $gender->value,
-                  'selected' => ($lastData['gender'] ?? '') === $gender->value,
-                ],
-                Gender::cases()
-              ),
-            ]) ?>
+            <?php Flight::render(
+              'components/inputs/select',
+              [
+                'name' => 'gender',
+                'label' => 'Género',
+                'options' => array_map(
+                  static fn(Gender $gender): array => [
+                    'value' => $gender->value,
+                    'slot' => $gender->value,
+                    'selected' => ($lastData['gender'] ?? '') === $gender->value,
+                  ],
+                  Gender::cases()
+                ),
+              ],
+            ) ?>
           </div>
 
           <div class="col-md-6">
-            <?php Flight::render('components/inputs/select', [
-              'name' => 'instruction_level',
-              'label' => 'Nivel de instrucción',
-              'options' => array_map(
-                static fn(InstructionLevel $instruction): array => [
-                  'value' => $instruction->value,
-                  'slot' => $instruction->getLongValue(),
-                  'selected' => ($lastData['instruction_level'] ?? '') === $instruction->value,
-                ],
-                InstructionLevel::cases(),
-              ),
-            ]) ?>
+            <?php Flight::render(
+              'components/inputs/select',
+              [
+                'name' => 'instruction_level',
+                'label' => 'Nivel de instrucción',
+                'options' => array_map(
+                  static fn(InstructionLevel $instruction): array => [
+                    'value' => $instruction->value,
+                    'slot' => $instruction->getLongValue(),
+                    'selected' => ($lastData['instruction_level'] ?? '') === $instruction->value,
+                  ],
+                  InstructionLevel::cases(),
+                ),
+              ],
+            ) ?>
           </div>
         </fieldset>
         <fieldset class="row row-gap-3 mb-3">
           <summary class="fs-6 mb-2">Credenciales</summary>
 
           <div class="col-md-6">
-            <?php Flight::render('components/inputs/input', [
-              'name' => 'password',
-              'label' => 'Contraseña',
-              'readonly' => true,
-              'required' => false,
-              'value' => 'idCard',
-            ]) ?>
+            <?php Flight::render(
+              'components/inputs/input',
+              [
+                'name' => 'password',
+                'label' => 'Contraseña',
+                'readonly' => true,
+                'required' => false,
+                'value' => 'idCard',
+              ],
+            ) ?>
           </div>
 
           <div class="col-md-6">
-            <?php Flight::render('components/inputs/input', [
-              'name' => 'confirm_password',
-              'label' => 'Confirmar contraseña',
-              'readonly' => true,
-              'value' => 'idCard',
-              'required' => false,
-            ]) ?>
+            <?php Flight::render(
+              'components/inputs/input',
+              [
+                'name' => 'confirm_password',
+                'label' => 'Confirmar contraseña',
+                'readonly' => true,
+                'value' => 'idCard',
+                'required' => false,
+              ],
+            ) ?>
           </div>
         </fieldset>
         <?php if ($user->appointment->isHigherThan(Appointment::Coordinator)) : ?>
@@ -219,7 +249,12 @@ $lastData = Session::get('lastData', []);
               Departamentos asignados
               <sub class="text-danger ms-2" style="font-size: 2em">*</sub>
             </label>
-            <select name="departments[]" id="departments" required multiple class="form-control">
+            <select
+              name="departments[]"
+              id="departments"
+              required
+              multiple
+              class="form-control">
               <?php foreach ($user->getDepartment() as $department) : ?>
                 <option
                   value="<?= $department->id ?>"
@@ -234,57 +269,75 @@ $lastData = Session::get('lastData', []);
           <summary class="fs-6 mb-2">Datos de contacto</summary>
 
           <div class="col-md-6">
-            <?php Flight::render('components/inputs/input', [
-              'type' => 'tel',
-              'name' => 'phone',
-              'label' => 'Teléfono',
-              'readonly' => false,
-              'value' => $lastData['phone'] ?? '',
-            ]) ?>
+            <?php Flight::render(
+              'components/inputs/input',
+              [
+                'type' => 'tel',
+                'name' => 'phone',
+                'label' => 'Teléfono',
+                'readonly' => false,
+                'value' => $lastData['phone'] ?? '',
+              ],
+            ) ?>
           </div>
 
           <div class="col-md-6">
-            <?php Flight::render('components/inputs/input', [
-              'type' => 'email',
-              'name' => 'email',
-              'label' => 'Correo electrónico',
-              'value' => $lastData['email'] ?? '',
-            ]) ?>
+            <?php Flight::render(
+              'components/inputs/input',
+              [
+                'type' => 'email',
+                'name' => 'email',
+                'label' => 'Correo electrónico',
+                'value' => $lastData['email'] ?? '',
+              ],
+            ) ?>
           </div>
 
           <div class="col-md-12">
-            <?php Flight::render('components/inputs/textarea', [
-              'name' => 'address',
-              'label' => 'Dirección',
-              'value' => $lastData['address'] ?? '',
-            ]) ?>
+            <?php Flight::render(
+              'components/inputs/textarea',
+              [
+                'name' => 'address',
+                'label' => 'Dirección',
+                'value' => $lastData['address'] ?? '',
+              ],
+            ) ?>
           </div>
         </fieldset>
         <fieldset class="row row-gap-3 mb-3 align-items-center">
           <div class="col-md-5">
-            <?php Flight::render('components/inputs/input-file', [
-              'name' => 'profile_image',
-              'label' => 'Foto de perfil',
-            ]) ?>
+            <?php Flight::render(
+              'components/inputs/input-file',
+              [
+                'name' => 'profile_image',
+                'label' => 'Foto de perfil',
+              ],
+            ) ?>
           </div>
 
           <div class="col-md-2 text-center">O</div>
 
           <div class="col-md-5">
-            <?php Flight::render('components/inputs/input', [
-              'type' => 'url',
-              'name' => 'profile_image_url',
-              'label' => 'URL de la foto de perfil',
-              'value' => $lastData['profile_image_url'] ?? '',
-            ]) ?>
+            <?php Flight::render(
+              'components/inputs/input',
+              [
+                'type' => 'url',
+                'name' => 'profile_image_url',
+                'label' => 'URL de la foto de perfil',
+                'value' => $lastData['profile_image_url'] ?? '',
+              ],
+            ) ?>
           </div>
 
-          <?php Flight::render('components/input-group', [
-            'type' => 'checkbox',
-            'name' => 'is_active',
-            'placeholder' => 'Estado <small>(activo/inactivo)</small>',
-            'checked' => true,
-          ]) ?>
+          <?php Flight::render(
+            'components/input-group',
+            [
+              'type' => 'checkbox',
+              'name' => 'is_active',
+              'placeholder' => 'Estado <small>(activo/inactivo)</small>',
+              'checked' => true,
+            ],
+          ) ?>
         </fieldset>
       </section>
       <footer class="modal-footer">

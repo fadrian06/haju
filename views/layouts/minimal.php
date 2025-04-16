@@ -3,7 +3,10 @@
 declare(strict_types=1);
 
 $title = isset($title) ? strval($title) : throw new Error('Title not set');
-$content = isset($content) ? strval($content) : throw new Error('Content not set');
+
+$content = isset($content)
+  ? strval($content)
+  : throw new Error('Content not set');
 
 ?>
 
@@ -17,7 +20,11 @@ $content = isset($content) ? strval($content) : throw new Error('Content not set
   <base href="<?= str_replace('index.php', '', $_SERVER['SCRIPT_NAME']) ?>" />
   <?php Flight::render('components/open-graph-metas') ?>
   <link rel="icon" href="./assets/img/logo-mini.png" />
-  <link rel="stylesheet" href="./vendor/twbs/bootstrap/dist/css/bootstrap.min.css" />
+
+  <link
+    rel="stylesheet"
+    href="./vendor/twbs/bootstrap/dist/css/bootstrap.min.css" />
+
   <style>
     .w3-bordered th,
     .w3-bordered td {
@@ -51,10 +58,18 @@ $content = isset($content) ? strval($content) : throw new Error('Content not set
       <?= $content ?>
     </div>
   </section>
-  <script src="./vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="./vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js">
+    // ...
+  </script>
+
   <script>
-    for (const tooltipTriggerEl of document.querySelectorAll('[data-bs-toggle="tooltip"]')) {
-      new bootstrap.Tooltip(tooltipTriggerEl)
+    const tooltipTriggers = document.querySelectorAll(
+      '[data-bs-toggle="tooltip"]'
+    )
+
+    for (const tooltipTrigger of tooltipTriggers) {
+      new bootstrap.Tooltip(tooltipTrigger)
     }
   </script>
 </body>

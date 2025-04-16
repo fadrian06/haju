@@ -8,8 +8,16 @@ use flight\Container;
 $error = isset($error) ? strval($error) : null;
 $message = isset($message) ? strval($message) : null;
 $title = isset($title) ? strval($title) : throw new Error('Title not set');
-$content = isset($content) ? strval($content) : throw new Error('Content not set');
-$mustChangePassword = isset($mustChangePassword) && boolval($mustChangePassword);
+
+$content = isset($content)
+  ? strval($content)
+  : throw new Error('Content not set');
+
+$mustChangePassword = (
+  isset($mustChangePassword)
+  && boolval($mustChangePassword)
+);
+
 $showPasswordChangeModal ??= $mustChangePassword;
 
 if (str_contains(strval($_SERVER['REQUEST_URI']), 'perfil')) {
@@ -20,9 +28,13 @@ $pdo = Container::getInstance()->get(PDO::class);
 $currentDate = new DateTimeImmutable;
 $oneWeekAgo = $currentDate->sub(new DateInterval('P1W'));
 
-// TODO: group by patient_id + cause_id to skip consultations of same patient and the same consultation cause
+/*
+TODO: group by patient_id + cause_id to skip consultations of same patient and
+the same consultation cause
+ */
 $stmt = $pdo->prepare('
-  SELECT short_name, variant, extended_name, weekly_cases_limit, cause_id, patient_id
+  SELECT short_name, variant, extended_name, weekly_cases_limit, cause_id,
+  patient_id
   FROM consultations
   JOIN consultation_causes
   ON consultations.cause_id = consultation_causes.id
@@ -44,10 +56,15 @@ foreach ($consultations as $consultation) {
     continue;
   }
 
+  $weeklyCasesLimit = $consultation['weekly_cases_limit'];
   $causeId = $consultation['cause_id'];
-  $causesGroupedByCauseId[$causeId]['weeklyLimit'] = $consultation['weekly_cases_limit'];
+  $causesGroupedByCauseId[$causeId]['weeklyLimit'] = $weeklyCasesLimit;
   $causesGroupedByCauseId[$causeId]['consultations'][] = $consultation;
-  $consultationsCount = count($causesGroupedByCauseId[$causeId]['consultations']);
+
+  $consultationsCount = count(
+    $causesGroupedByCauseId[$causeId]['consultations'],
+  );
+
   $weeklyLimit = $causesGroupedByCauseId[$causeId]['weeklyLimit'];
 
   if ($consultationsCount > $weeklyLimit) {
@@ -56,7 +73,9 @@ foreach ($consultations as $consultation) {
         'short_name' => str_replace(
           '  ',
           ' ',
-          ($consultation['extended_name'] ?? $consultation['short_name']) . ' ' . $consultation['variant']
+          ($consultation['extended_name'] ?? $consultation['short_name'])
+            . ' '
+            . $consultation['variant']
         ),
       ],
       'patient' => Container::getInstance()->get(PatientRepository::class)->getById(intval($consultation['patient_id'])),
@@ -78,8 +97,15 @@ foreach ($consultations as $consultation) {
   <link rel="icon" href="./assets/img/logo-mini.png" />
   <link rel="stylesheet" href="./assets/fonts/fonts.css" />
   <link rel="stylesheet" href="./assets/vendors/metismenu/metisMenu.min.css" />
-  <link rel="stylesheet" href="./vendor/twbs/bootstrap/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="./assets/vendors/themefy_icon/themify-icons.css" />
+
+  <link
+    rel="stylesheet"
+    href="./vendor/twbs/bootstrap/dist/css/bootstrap.min.css" />
+
+  <link
+    rel="stylesheet"
+    href="./assets/vendors/themefy_icon/themify-icons.css" />
+
   <link rel="stylesheet" href="./assets/css/reset.css" />
   <link rel="stylesheet" href="./assets/css/utils.css" />
   <link rel="stylesheet" href="./assets/css/components/btn.css" />
@@ -113,7 +139,10 @@ foreach ($consultations as $consultation) {
 
 <body>
   <?php if ($epidemic): ?>
-    <?php Flight::render('components/epidemic-alert', ['epidemic' => $epidemic]) ?>
+    <?php Flight::render(
+      'components/epidemic-alert',
+      ['epidemic' => $epidemic]
+    ) ?>
   <?php endif ?>
   <?php Flight::render('components/sidebar') ?>
   <section class="main_content pb-4 pt-0">
@@ -124,18 +153,25 @@ foreach ($consultations as $consultation) {
     <?php Flight::render('components/footer') ?>
   </section>
   <?php if ($mustChangePassword && $showPasswordChangeModal): ?>
-    <?php Flight::render('components/confirmation', [
-      'show' => true,
-      'id' => 'change-password-confirmation',
-      'action' => './perfil#seguridad',
-      'title' => 'Debe cambiar la contraseña por seguridad',
-      'confirmText' => 'Cambiarla',
-      'denyText' => false
-    ]) ?>
+    <?php Flight::render(
+      'components/confirmation',
+      [
+        'show' => true,
+        'id' => 'change-password-confirmation',
+        'action' => './perfil#seguridad',
+        'title' => 'Debe cambiar la contraseña por seguridad',
+        'confirmText' => 'Cambiarla',
+        'denyText' => false,
+      ],
+    ) ?>
   <?php endif ?>
   <script src="./assets/vendors/jquery/jquery.min.js"></script>
   <script src="./assets/vendors/metismenu/metisMenu.min.js"></script>
-  <script src="./vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="./vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js">
+    // ...
+  </script>
+
   <script src="./assets/vendors/sweetalert2/sweetalert2.min.js"></script>
   <script src="./assets/vendors/ResizeObserver.global.js"></script>
   <script src="./assets/vendors/chart.js"></script>

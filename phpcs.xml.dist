@@ -58,4 +58,12 @@
       <property name="spacing" value="0" />
     </properties>
   </rule>
+
+  <rule ref="Generic.Files.InlineHTML.Found">
+    <exclude-pattern>views</exclude-pattern>
+  </rule>
+
+  <rule ref="Generic.PHP.DisallowShortOpenTag.EchoFound">
+    <exclude-pattern>views</exclude-pattern>
+  </rule>
 </ruleset>
