@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@biomejs/biome": "1.7.2",
+    "@biomejs/biome": "1.9.4",
     "@fontsource/poppins": "^5.2.5",
     "@fontsource/rajdhani": "^5.2.5",
     "@fortawesome/fontawesome-free": "^6.7.2",
@@ -8,12 +8,12 @@
     "alpinejs": "^3.14.9",
     "bootstrap": "^5.3.5",
     "dotenv": "^16.5.0",
-    "esbuild": "0.21.5",
+    "esbuild": "^0.25.2",
     "esbuild-sass-plugin": "^3.3.1",
     "husky": "^9.1.7",
     "metismenujs": "^1.4.0",
     "pure-css-loader": "^3.3.3",
-    "sweetalert2": "^11.17.2",
+    "sweetalert2": "^11.19.1",
     "typescript": "^5.8.3"
   },
   "scripts": {
