@@ -6,7 +6,7 @@
   <arg name="tab-width" value="2" />
   <file>app</file>
   <file>tests</file>
-  <file>views</file>
+  <file>resources/views</file>
   <file>index.php</file>
   <file>rector.php</file>
   <exclude-pattern>vendor</exclude-pattern>

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 use App\Models\Patient;
 
-/** @var array{cause: array{short_name: string}, patient: Patient} $epidemic */
+/**
+ * @var array{cause: array{short_name: string}, patient: Patient} $epidemic
+ */
 assert(
   isset($epidemic)
     && is_array($epidemic)

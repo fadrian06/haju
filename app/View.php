@@ -33,7 +33,7 @@ final readonly class View {
 
       $container->singleton(
         ViewFinderInterface::class,
-        static fn() => new FileViewFinder(new Filesystem, [
+        static fn(): FileViewFinder => new FileViewFinder(new Filesystem, [
           __DIR__ . '/../resources/views',
         ])
       );

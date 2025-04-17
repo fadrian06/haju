@@ -11,20 +11,35 @@ use App\ValueObjects\Appointment;
  * @var Department $department
  */
 assert(isset($user) && $user instanceof User, new Error('User not found'));
-assert(isset($department) && $department instanceof Department, new Error('Department not found'));
-$canChangeDepartment = isset($canChangeDepartment) ? boolval($canChangeDepartment) : throw new Error('Can change department not found');
+
+assert(
+  isset($department) && $department instanceof Department,
+  new Error('Department not found')
+);
+
+$canChangeDepartment = isset($canChangeDepartment)
+  ? boolval($canChangeDepartment)
+  : throw new Error('Can change department not found');
 
 ?>
 
-<header class="header_iner d-flex align-items-center py-1 position-fixed top-0 end-0 w-100" style="height: 65px">
+<header
+  class="header_iner d-flex align-items-center py-1 position-fixed top-0 end-0 w-100"
+  style="height: 65px">
   <button class="sidebar_icon d-lg-none me-2">
     <i class="ti-menu"></i>
   </button>
   <h2 class="m-0 d-flex align-items-center">
-    <span class="d-none d-sm-block h3 m-0 text-nowrap">Departamento de <?= $department->name ?></span>
-    <span class="d-block d-sm-none h6 m-0 text-nowrap">Departamento de <?= $department->name ?></span>
+    <span class="d-none d-sm-block h3 m-0 text-nowrap">
+      Departamento de <?= $department->name ?>
+    </span>
+    <span class="d-block d-sm-none h6 m-0 text-nowrap">
+      Departamento de <?= $department->name ?>
+    </span>
     <?php if ($canChangeDepartment) : ?>
-      <a href="./departamento/seleccionar" class="ms-4 btn btn-outline-primary btn-sm">
+      <a
+        href="./departamento/seleccionar"
+        class="ms-4 btn btn-outline-primary btn-sm">
         Cambiar
       </a>
     <?php endif ?>
@@ -48,10 +63,15 @@ $canChangeDepartment = isset($canChangeDepartment) ? boolval($canChangeDepartmen
       </li>
     </ul> -->
     <div class="profile_info">
-      <img class="p-2" style="max-width: unset" src="<?= urldecode($user->profileImagePath->asString()) ?>" />
+      <img
+        class="p-2"
+        style="max-width: unset"
+        src="<?= urldecode($user->profileImagePath->asString()) ?>" />
       <div class="profile_info_iner">
         <p><?= $user->getParsedAppointment() ?></p>
-        <h5><?= "{$user->instructionLevel->value}. {$user->getFullName()}" ?></h5>
+        <h5>
+          <?= "{$user->instructionLevel->value}. {$user->getFullName()}" ?>
+        </h5>
         <div class="profile_info_details">
           <a href="./perfil">
             Mi perfil

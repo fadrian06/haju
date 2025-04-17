@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 use App\Models\User;
 
-/** @var User $user */
+/**
+ * @var User $user
+ */
 assert(isset($user) && $user instanceof User, new Error('User not set'));
 
 ?>
@@ -30,13 +32,17 @@ assert(isset($user) && $user instanceof User, new Error('User not set'));
       <h4 class="h3"><?= $user->getFullName() ?></h4>
       <small class="text-muted"><?= $user->getParsedAppointment() ?></small>
       <strong>Cédula: V-<?= $user->idCard ?></strong>
-      <small class="text-muted">Registrado el: <?= $user->registeredDate ?></small>
+      <small class="text-muted">
+        Registrado el: <?= $user->registeredDate ?>
+      </small>
     </header>
   </div>
   <ul class="profile-info__secondary col-md-6">
     <li>
       <strong>Teléfono:</strong>
-      <a href="tel:<?= $user->phone->toValidPhoneLink() ?>"><?= $user->phone ?></a>
+      <a href="tel:<?= $user->phone->toValidPhoneLink() ?>">
+        <?= $user->phone ?>
+      </a>
     </li>
     <li>
       <strong>Correo:</strong>
@@ -60,7 +66,10 @@ assert(isset($user) && $user instanceof User, new Error('User not set'));
   <ul class="nav nav-tabs row mx-0 px-0 mt-4">
     <li class="nav-item col px-0">
       <div class="row mx-0">
-        <button class="nav-link col-sm px-0 active" data-bs-toggle="tab" data-bs-target="#seguridad">
+        <button
+          class="nav-link col-sm px-0 active"
+          data-bs-toggle="tab"
+          data-bs-target="#seguridad">
           Seguridad
         </button>
       </div>

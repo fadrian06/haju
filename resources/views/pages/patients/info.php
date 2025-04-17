@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 use App\Models\Patient;
 
-/** @var Patient $patient */
-assert(isset($patient) && $patient instanceof Patient, new Error('$patient must be an instance of Patient'));
+/**
+ * @var Patient $patient
+ */
+assert(
+  isset($patient) && $patient instanceof Patient,
+  new Error('$patient must be an instance of Patient')
+);
 
 $causes = [];
 
@@ -47,10 +52,14 @@ $patientAvatar = @file_get_contents($avatarUrl)
           <h4 class="h3">Paciente: <?= $patient->getFullName() ?></h4>
           <strong>Cédula: V-<?= $patient->idCard ?></strong>
           <small class="text">Genero: <?= $patient->gender->value ?></small>
-          <small class="text-muted">Registrado el: <?= $patient->registeredDate ?></small>
+          <small class="text-muted">
+            Registrado el: <?= $patient->registeredDate ?>
+          </small>
         </div>
       </div>
-      <div class="row pt-3 mt-3 justify-content-end align-items-center" style="border-top: 2px dashed #ccc">
+      <div
+        class="row pt-3 mt-3 justify-content-end align-items-center"
+        style="border-top: 2px dashed #ccc">
         <picture class="col-4 d-none d-md-block text-center">
           <img
             src="<?= urldecode($patient->registeredBy->profileImagePath->asString()) ?>"
@@ -61,8 +70,12 @@ $patientAvatar = @file_get_contents($avatarUrl)
           <div class="col">
             <h6><?= $patient->registeredBy->getFullName() ?></h6>
             <span>V-<?= $patient->registeredBy->idCard ?></span>
-            <span class="d-block"><?= $patient->registeredBy->getParsedAppointment() ?></span>
-            <small class="text-muted"><?= $patient->registeredBy->phone ?></small>
+            <span class="d-block">
+              <?= $patient->registeredBy->getParsedAppointment() ?>
+            </span>
+            <small class="text-muted">
+              <?= $patient->registeredBy->phone ?>
+            </small>
             <small class="text-muted">
               <?= $patient->registeredBy->email->asString() ?>
             </small>
@@ -107,16 +120,28 @@ $patientAvatar = @file_get_contents($avatarUrl)
   <ul class="nav nav-tabs row mx-0 px-0">
     <li class="nav-item col px-0">
       <div class="row mx-0">
-        <button class="nav-link col-sm px-0 active" data-bs-toggle="tab" data-bs-target="#visitas">
+        <button
+          class="nav-link col-sm px-0 active"
+          data-bs-toggle="tab"
+          data-bs-target="#visitas">
           Visitas médicas
         </button>
-        <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#hospitalizaciones">
+        <button
+          class="nav-link col-sm px-0"
+          data-bs-toggle="tab"
+          data-bs-target="#hospitalizaciones">
           Hospitalizaciones
         </button>
-        <!-- <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#">
+        <!-- <button
+          class="nav-link col-sm px-0"
+          data-bs-toggle="tab"
+          data-bs-target="#">
           Antecedentes médicos
         </button> -->
-        <!-- <button class="nav-link col-sm px-0" data-bs-toggle="tab" data-bs-target="#">
+        <!-- <button
+          class="nav-link col-sm px-0"
+          data-bs-toggle="tab"
+          data-bs-target="#">
           Tratamientos
         </button> -->
       </div>
@@ -128,7 +153,10 @@ $patientAvatar = @file_get_contents($avatarUrl)
     <div class="row mx-0">
       <article class="col-md px-0 pe-md-2">
         <div class="white_box">
-          <h3>Visitas médicas <sub>(de la más reciente a la más antigua)</sub></h3>
+          <h3>
+            Visitas médicas
+            <sub>(de la más reciente a la más antigua)</sub>
+          </h3>
           <ul class="timeline mt-4">
             <?php if (!$patient->hasConsultations()): ?>
               No hay consultas registradas
@@ -137,10 +165,19 @@ $patientAvatar = @file_get_contents($avatarUrl)
 
             <?php foreach ($patient->getConsultation() as $consultation) : ?>
               <li class="timeline-item">
-                <a target="_blank" data-bs-toggle="tooltip" title="<?= $consultation->cause->category->extendedName ?? $consultation->cause->category->shortName ?>">
-                  <strong class="text-secondary"><?= $consultation->cause->getFullName() ?></strong>
-                  <span class="text-black-50 fw-semibold"><?= $consultation->type->getDescription() ?></span>
-                  <time class="small text-black-50"><?= $consultation->registeredDate ?></time>
+                <a
+                  target="_blank"
+                  data-bs-toggle="tooltip"
+                  title="<?= $consultation->cause->category->extendedName ?? $consultation->cause->category->shortName ?>">
+                  <strong class="text-secondary">
+                    <?= $consultation->cause->getFullName() ?>
+                  </strong>
+                  <span class="text-black-50 fw-semibold">
+                    <?= $consultation->type->getDescription() ?>
+                  </span>
+                  <time class="small text-black-50">
+                    <?= $consultation->registeredDate ?>
+                  </time>
                   <small class="small text-black-50">
                     Atendido por: <?= $consultation->doctor->getFullName() ?>
                   </small>
@@ -153,7 +190,9 @@ $patientAvatar = @file_get_contents($avatarUrl)
       <article class="col-md px-0 ps-md-2 mt-4 mt-md-0">
         <div class="white_box">
           <h3>Frecuentes</h3>
-          <canvas id="frecuent-consultation-causes" style="width: 100%"></canvas>
+          <canvas id="frecuent-consultation-causes" style="width: 100%">
+            <!-- ... -->
+          </canvas>
         </div>
       </article>
     </div>
@@ -167,8 +206,12 @@ $patientAvatar = @file_get_contents($avatarUrl)
           <ul class="timeline mt-4">
             <?php foreach ($patient->getHospitalization() as $hospitalization) : ?>
               <li class="timeline-item">
-                <strong class="text-secondary">Hospitalización #<?= $hospitalization->id ?></strong>
-                <time class="small text-black-50"><?= $hospitalization->registeredDate ?></time>
+                <strong class="text-secondary">
+                  Hospitalización #<?= $hospitalization->id ?>
+                </strong>
+                <time class="small text-black-50">
+                  <?= $hospitalization->registeredDate ?>
+                </time>
                 <span class="text-black-50 fw-semibold custom-badge status-<?= $hospitalization->isFinished() ? 'green' : 'red' ?>">
                   <?= $hospitalization->isFinished() ? 'Finalizada' : 'No finalizada' ?>
                 </span>
@@ -198,7 +241,13 @@ $patientAvatar = @file_get_contents($avatarUrl)
         labels: causesNames,
         datasets: [{
           data: causesCounters,
-          backgroundColor: ['#364f6b', '#e6e6e6', '#2daab8', '#0d6efd', '#eff1f7'],
+          backgroundColor: [
+            '#364f6b',
+            '#e6e6e6',
+            '#2daab8',
+            '#0d6efd',
+            '#eff1f7',
+          ],
           borderColor: 'black'
         }]
       }

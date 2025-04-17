@@ -19,16 +19,19 @@ $name ??= '';
 ?>
 
 <div class="position-relative" x-data="{ toggled: false }">
-  <?php Flight::render('components/inputs/input', [
-    'label' => $label,
-    'type' => "toggled ? 'text' : 'password'",
-    'name' => $name,
-    'required' => $required,
-    'model' => $model,
-    'pattern' => $pattern,
-    'title' => $title,
-    'value' => $value,
-  ]) ?>
+  <?php Flight::render(
+    'components/inputs/input',
+    [
+      'label' => $label,
+      'type' => "toggled ? 'text' : 'password'",
+      'name' => $name,
+      'required' => $required,
+      'model' => $model,
+      'pattern' => $pattern,
+      'title' => $title,
+      'value' => $value,
+    ]
+  ) ?>
 
   <?php if (!$isEdgeBrowser) : ?>
     <button

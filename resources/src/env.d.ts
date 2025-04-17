@@ -1,3 +1,4 @@
+declare const APP_NAME: string;
 declare const DB_CONNECTION: string;
 declare const DB_HOST: string;
 declare const DB_PORT: string;

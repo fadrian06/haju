@@ -2,10 +2,18 @@
 
 declare(strict_types=1);
 
+use App\Models\Department;
 use App\Models\User;
 
-/** @var User $user */
+/**
+ * @var User $user
+ */
 assert(isset($user) && $user instanceof User, new Error('User not set'));
+
+// phpcs:ignore Generic.Files.LineLength.TooLong
+$getDepartmentIconSrc = fn(Department $department): string => $department->hasIcon()
+  ? urldecode($department->iconFilePath->asString())
+  : './assets/img/department.png';
 
 ?>
 
@@ -20,10 +28,7 @@ assert(isset($user) && $user instanceof User, new Error('User not set'));
             class="col-md-4 text-decoration-none <?= $department->isActive() ?: 'opacity-50' ?>">
             <div class="btn btn-outline-primary card">
               <img
-                src="<?= $department->hasIcon()
-                        ? urldecode($department->iconFilePath->asString())
-                        : './assets/img/department.png'
-                      ?>"
+                src="<?= $getDepartmentIconSrc($department) ?>"
                 alt="Icono del departamento de <?= $department ?>"
                 class="card-img-top object-fit-scale"
                 height="164" />

@@ -5,7 +5,9 @@ declare(strict_types=1);
 use App\Models\Doctor;
 use App\ValueObjects\Gender;
 
-/** @var Doctor $doctor */
+/**
+ * @var Doctor $doctor
+ */
 assert(isset($doctor) && $doctor instanceof Doctor, new Error('Doctor not found'));
 
 ?>

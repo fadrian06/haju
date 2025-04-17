@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 use App\Models\Department;
 
-/** @var Department[] $departments */
+/**
+ * @var Department[] $departments
+ */
 assert(isset($departments) && is_array($departments), new Error('Departments not set'));
 
 ?>

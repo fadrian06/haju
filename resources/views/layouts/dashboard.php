@@ -34,7 +34,7 @@ $content = isset($content)
   <title><?= $title ?> - <?= $_ENV['APP_NAME'] ?? 'HAJU' ?></title>
   <base href="<?= str_replace('index.php', '', $_SERVER['SCRIPT_NAME']) ?>" />
   <link rel="icon" href="./resources/images/favicon.svg" />
-  <link rel="stylesheet" href="./resources/dist/guest.css" />
+  <link rel="stylesheet" href="./resources/dist/dashboard.css" />
   <style>
     body {
       grid-template-rows: auto 1fr auto;
@@ -43,11 +43,12 @@ $content = isset($content)
 </head>
 
 <body class="overflow-y-scroll min-vh-100 d-grid">
-  <?php Flight::render('components/headers/public') ?>
+  <?php Flight::render('components/sidebar') ?>
+  <?php Flight::render('components/headers/dashboard') ?>
   <?= $content ?>
   <?php Flight::render('components/footer') ?>
 
-  <script src="./resources/dist/guest.js"></script>
+  <script src="./resources/dist/dashboard.js"></script>
 
   <script>
     <?php if ($error) : ?>

@@ -35,42 +35,33 @@ Flight::route('/', static function () {
   Container::getInstance()->get(LandingWebController::class)->showLanding();
 });
 
-Flight::group('', static function (): void {
-  Flight::route('/salir', [SessionWebController::class, 'logOut']);
+Flight::route('/salir', [SessionWebController::class, 'logOut']);
 
-  Flight::group('', static function (): void {
-    Flight::route('GET /ingresar', [SessionWebController::class, 'showLogin']);
-
-    Flight::route(
-      'POST /ingresar',
-      [SessionWebController::class, 'handleLogin']
-    );
-
-    Flight::route(
-      'GET /recuperar',
-      [UserWebController::class, 'showPasswordReset']
-    );
-
-    Flight::route(
-      'POST /recuperar',
-      [UserWebController::class, 'handlePasswordReset']
-    );
+Flight::group('/', static function (): void {
+  Flight::group('/ingresar', static function (): void {
+    Flight::route('GET /', [SessionWebController::class, 'showLogin']);
+    Flight::route('POST /', [SessionWebController::class, 'handleLogin']);
   });
 
-  Flight::group('', static function (): void {
-    Flight::route(
-      'GET /registrate',
-      [UserWebController::class, 'showRegister']
-    );
+  Flight::route('/recuperar', static function (): void {
+    Flight::route('GET /', [UserWebController::class, 'showPasswordReset']);
+    Flight::route('POST /', [UserWebController::class, 'handlePasswordReset']);
+  });
 
-    Flight::route(
-      'POST /registrate',
-      [UserWebController::class, 'handleRegister']
-    );
+  Flight::group('/registrate', static function (): void {
+    Flight::route('GET /', [UserWebController::class, 'showRegister']);
+    Flight::route('POST /', [UserWebController::class, 'handleRegister']);
   }, [EnsureOnlyAcceptOneDirector::class]);
 }, [EnsureUserIsNotAuthenticated::class, MessagesMiddleware::class]);
 
-Flight::group('', function (): void {
+Flight::group('/', static function (): void {
+  Flight::group('/departamento/seleccionar', static function (): void {
+    Flight::route('/', [SessionWebController::class, 'showDepartments']);
+
+    Flight::route('/@id', [SessionWebController::class, 'saveChoice'])
+      ->addMiddleware(LogLoginMiddleware::class);
+  });
+
   Flight::route(
     'GET /hospitalizaciones',
     [PatientWebController::class, 'showHospitalizations']
@@ -81,21 +72,10 @@ Flight::group('', function (): void {
     [PatientWebController::class, 'showConsultations']
   );
 
-  Flight::route(
-    '/departamento/seleccionar',
-    [SessionWebController::class, 'showDepartments']
-  );
-
-  Flight::route(
-    '/departamento/seleccionar/@id',
-    [SessionWebController::class, 'saveChoice']
-  )
-    ->addMiddleware(LogLoginMiddleware::class);
-
   Flight::group(
-    '',
+    '/',
     static function (): void {
-      Flight::route('/', [HomeWebController::class, 'showIndex']);
+      Flight::route('GET /', [HomeWebController::class, 'showIndex']);
       Flight::route('GET /perfil', [UserWebController::class, 'showProfile']);
 
       Flight::route(
@@ -117,7 +97,11 @@ Flight::group('', function (): void {
         '/doctores',
         static function (): void {
           Flight::route('GET /', [DoctorWebController::class, 'showDoctors']);
-          Flight::route('POST /', [DoctorWebController::class, 'handleRegister']);
+
+          Flight::route('POST /', [
+            DoctorWebController::class,
+            'handleRegister'
+          ]);
 
           Flight::group('/@idCard', function (): void {
             Flight::route('GET /', [DoctorWebController::class, 'showEdit']);
