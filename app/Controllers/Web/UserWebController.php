@@ -54,7 +54,6 @@ final readonly class UserWebController extends Controller {
 
       $user = $this->createUser($appointment, $profileImageUrlPath);
       $this->assignDepartmentsToUser($user);
-
       $this->userRepository->save($user);
 
       self::setMessage("
@@ -90,15 +89,27 @@ final readonly class UserWebController extends Controller {
 
   private function validateData(): void {
     if ($this->data['password'] !== $this->data['confirm_password']) {
-      throw new Error('La contraseña y su confirmación no coinciden');
+      throw new Error('
+        La contraseña y su confirmación no coinciden
+      ');
     }
 
     if (!in_array($this->data['gender'], Gender::values(), true)) {
-      throw new Error(sprintf('El género es requerido y válido (%s)', implode(', ', Gender::values())));
+      throw new Error(sprintf(
+        'El género es requerido y válido (%s)',
+        implode(', ', Gender::values())
+      ));
     }
 
-    if (!in_array($this->data['instruction_level'], InstructionLevel::values(), true)) {
-      throw new Error(sprintf('El nivel de instrucción es requerido y válido (%s)', implode(', ', InstructionLevel::values())));
+    if (!in_array(
+      $this->data['instruction_level'],
+      InstructionLevel::values(),
+      true
+    )) {
+      throw new Error(sprintf(
+        'El nivel de instrucción es requerido y válido (%s)',
+        implode(', ', InstructionLevel::values())
+      ));
     }
 
     if (
@@ -120,7 +131,10 @@ final readonly class UserWebController extends Controller {
     );
   }
 
-  private function createUser(Appointment $appointment, string $profileImageUrlPath): User {
+  private function createUser(
+    Appointment $appointment,
+    string $profileImageUrlPath
+  ): User {
     return new User(
       $this->data['first_name'],
       $this->data['second_name'],
@@ -142,10 +156,10 @@ final readonly class UserWebController extends Controller {
   }
 
   private function assignDepartmentsToUser(User $user): void {
-    $departments = [];
-    foreach ($this->data['departments'] ?? [] as $departmentID) {
-      $departments[] = $this->departmentRepository->getById((int) $departmentID);
-    }
+    $departments = array_map(
+      $this->departmentRepository->getById(...),
+      $this->data['departments'] ?? [],
+    );
 
     if ($departments !== []) {
       $user->assignDepartments(...$departments);

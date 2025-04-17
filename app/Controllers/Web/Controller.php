@@ -30,11 +30,11 @@ abstract readonly class Controller {
       $error = $error->getMessage();
     }
 
-    Session::set('error', $error);
+    Session::set('error', mb_trim($error));
   }
 
   final protected static function setMessage(string $message): void {
-    Session::set('message', $message);
+    Session::set('message', mb_trim($message));
   }
 
   /**
