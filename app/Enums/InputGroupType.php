@@ -18,4 +18,28 @@ enum InputGroupType: string {
   case TEL = 'tel';
   case EMAIL = 'email';
   case URL = 'url';
+
+  public function isCheckbox(): bool {
+    return $this === self::CHECKBOX;
+  }
+
+  public function isRadio(): bool {
+    return $this === self::RADIO;
+  }
+
+  public function isTextarea(): bool {
+    return $this === self::TEXTAREA;
+  }
+
+  public function isFile(): bool {
+    return $this === self::FILE;
+  }
+
+  public function isSelect(): bool {
+    return $this === self::SELECT;
+  }
+
+  public function isDate(): bool {
+    return $this === self::DATE;
+  }
 }

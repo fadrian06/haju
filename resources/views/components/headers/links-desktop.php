@@ -15,7 +15,7 @@ $user ??= null;
   <?php Flight::render(
     'components/logout-link',
     [
-      'class' => 'd-none d-md-block',
+      'class' => 'btn btn-outline-primary border-0',
       'slot' => 'Cerrar sesión'
     ],
   ) ?>

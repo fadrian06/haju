@@ -19,4 +19,7 @@ define(
   request()->getScheme() . '://' . $_SERVER['HTTP_HOST'] . BASE_URI
 );
 
-const VIEWS_PATH = __DIR__ . '/../resources/views';
+const ROOT_PATH = __DIR__ . '/../';
+const APP_PATH = ROOT_PATH . '/app';
+const LOGS_PATH = APP_PATH . '/logs';
+const VIEWS_PATH = ROOT_PATH . '/resources/views';
