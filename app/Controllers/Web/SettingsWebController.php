@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers\Web;
 
-use App\Models\User;
+use App\OldModels\User;
 use App\Repositories\Domain\ConsultationCauseRepository;
 use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Domain\SettingsRepository;

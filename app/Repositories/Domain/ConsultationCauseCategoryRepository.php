@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Domain;
 
-use App\Models\ConsultationCauseCategory;
+use App\OldModels\ConsultationCauseCategory;
 
 /**
  * @implements Repository<ConsultationCauseCategory>

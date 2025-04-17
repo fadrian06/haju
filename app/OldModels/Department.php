@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Models;
+namespace App\OldModels;
 
-use App\Models\Contracts\Model;
-use App\Models\Helpers\HasActiveStatus;
+use App\OldModels\Contracts\Model;
+use App\OldModels\Helpers\HasActiveStatus;
 use App\ValueObjects\Exceptions\InvalidNameException;
 use App\ValueObjects\LongName;
 use PharIo\Manifest\Url;

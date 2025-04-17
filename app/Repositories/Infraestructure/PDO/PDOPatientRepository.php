@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Repositories\Infraestructure\PDO;
 
-use App\Models\Consultation;
-use App\Models\Hospitalization;
-use App\Models\Patient;
+use App\OldModels\Consultation;
+use App\OldModels\Hospitalization;
+use App\OldModels\Patient;
 use App\Repositories\Domain\ConsultationCauseRepository;
 use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Domain\DoctorRepository;

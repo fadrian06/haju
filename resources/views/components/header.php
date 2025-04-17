@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Models\Department;
-use App\Models\User;
+use App\OldModels\Department;
+use App\OldModels\User;
 use App\ValueObjects\Appointment;
 
 /**

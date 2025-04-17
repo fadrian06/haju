@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Infraestructure\PDO;
 
-use App\Models\User;
+use App\OldModels\User;
 use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Domain\UserRepository;
 use App\Repositories\Exceptions\DuplicatedEmailsException;

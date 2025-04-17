@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories\Infraestructure\Files;
 
 use App\Enums\DBDriver;
-use App\Models\Hospital;
+use App\OldModels\Hospital;
 use App\Repositories\Domain\SettingsRepository;
 use PDO;
 

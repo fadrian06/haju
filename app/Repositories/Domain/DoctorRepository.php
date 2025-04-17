@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Domain;
 
-use App\Models\Doctor;
+use App\OldModels\Doctor;
 
 /**
  * @extends Repository<Doctor>

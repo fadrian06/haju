@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Repositories\Domain;
 
-use App\Models\ConsultationCause;
-use App\Models\ConsultationCauseCategory;
+use App\OldModels\ConsultationCause;
+use App\OldModels\ConsultationCauseCategory;
 use Generator;
 
 /**

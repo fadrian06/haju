@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Models\Doctor;
-use App\Models\Patient;
+use App\OldModels\Doctor;
+use App\OldModels\Patient;
 use App\ValueObjects\AdmissionDepartment;
 use App\ValueObjects\DepartureStatus;
 

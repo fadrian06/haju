@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Middlewares;
 
-use App\Models\User;
+use App\OldModels\User;
 use flight\template\View;
 
 final readonly class LogLoginMiddleware {

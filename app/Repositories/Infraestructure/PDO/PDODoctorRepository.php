@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Infraestructure\PDO;
 
-use App\Models\Doctor;
+use App\OldModels\Doctor;
 use App\Repositories\Domain\DoctorRepository;
 use App\Repositories\Domain\UserRepository;
 use App\Repositories\Exceptions\DuplicatedIdCardException;

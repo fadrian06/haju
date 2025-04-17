@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Domain;
 
-use App\Models\Patient;
+use App\OldModels\Patient;
 use App\Repositories\Exceptions\DuplicatedIdCardException;
 use App\Repositories\Exceptions\DuplicatedNamesException;
 

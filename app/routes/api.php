@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use App\Models\Consultation;
-use App\Models\ConsultationCause;
-use App\Models\ConsultationCauseCategory;
-use App\Models\Patient;
+use App\OldModels\Consultation;
+use App\OldModels\ConsultationCause;
+use App\OldModels\ConsultationCauseCategory;
+use App\OldModels\Patient;
 use App\Repositories\Domain\ConsultationCauseCategoryRepository;
 use App\Repositories\Domain\ConsultationCauseRepository;
 use App\Repositories\Domain\PatientRepository;

@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Models\Consultation;
-use App\Models\Department;
+use App\OldModels\Consultation;
+use App\OldModels\Department;
 use App\ValueObjects\DateRange;
 
 /**

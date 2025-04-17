@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Models\Doctor;
-use App\Models\User;
+use App\OldModels\Doctor;
+use App\OldModels\User;
 use App\ValueObjects\Gender;
 
 /**

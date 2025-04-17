@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Models\Hospital;
+use App\OldModels\Hospital;
 
 /**
  * @var Hospital $hospital

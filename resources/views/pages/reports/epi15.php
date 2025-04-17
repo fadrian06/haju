@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Models\ConsultationCause;
-use App\Models\ConsultationCauseCategory;
+use App\OldModels\ConsultationCause;
+use App\OldModels\ConsultationCauseCategory;
 use App\Repositories\Domain\ConsultationCauseRepository;
 use flight\template\View;
 use Illuminate\Container\Container;

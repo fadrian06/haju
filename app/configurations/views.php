@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Models\User;
+use App\OldModels\User;
 use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Domain\UserRepository;
 use Illuminate\Container\Container;

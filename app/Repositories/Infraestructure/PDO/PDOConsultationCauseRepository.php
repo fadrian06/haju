@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Repositories\Infraestructure\PDO;
 
-use App\Models\ConsultationCause;
-use App\Models\ConsultationCauseCategory;
+use App\OldModels\ConsultationCause;
+use App\OldModels\ConsultationCauseCategory;
 use App\Repositories\Domain\ConsultationCauseCategoryRepository;
 use App\Repositories\Domain\ConsultationCauseRepository;
 use Generator;

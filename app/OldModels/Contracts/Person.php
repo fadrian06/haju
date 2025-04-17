@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Models\Contracts;
+namespace App\OldModels\Contracts;
 
 use App\ValueObjects\Date;
 use App\ValueObjects\Exceptions\InvalidDateException;

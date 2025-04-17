@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Models;
+namespace App\OldModels;
 
-use App\Models\Contracts\Person;
+use App\OldModels\Contracts\Person;
 use App\ValueObjects\Date;
 use App\ValueObjects\Gender;
 use Generator;

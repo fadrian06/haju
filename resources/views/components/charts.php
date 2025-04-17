@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Models\Patient;
+use App\OldModels\Patient;
 use App\Repositories\Domain\PatientRepository;
 use App\ValueObjects\DateRange;
 use Illuminate\Container\Container;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Models\ConsultationCause;
+use App\OldModels\ConsultationCause;
 
 /** @var ConsultationCause[] $consultationCauses */
 assert(isset($consultationCauses) && is_array($consultationCauses), new Error('$consultationCauses must be an array of ConsultationCause'));

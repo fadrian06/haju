@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controllers\Web;
 
-use App\Models\Consultation;
-use App\Models\Hospitalization;
-use App\Models\Patient;
+use App\OldModels\Consultation;
+use App\OldModels\Hospitalization;
+use App\OldModels\Patient;
 use App\Repositories\Domain\ConsultationCauseCategoryRepository;
 use App\Repositories\Domain\ConsultationCauseRepository;
 use App\Repositories\Domain\DepartmentRepository;

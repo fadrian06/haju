@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Domain;
 
-use App\Models\User;
+use App\OldModels\User;
 use App\Repositories\Exceptions\RepositoryException;
 use App\Repositories\Exceptions\DuplicatedAvatarsException;
 use App\Repositories\Exceptions\DuplicatedEmailsException;

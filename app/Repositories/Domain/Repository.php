@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Domain;
 
-use App\Models\Contracts\Model;
+use App\OldModels\Contracts\Model;
 use App\Repositories\Exceptions\RepositoryException;
 
 /**

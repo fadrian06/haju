@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Middlewares;
 
-use App\Models\Department;
+use App\OldModels\Department;
 use flight\template\View;
 
 final readonly class EnsureOneSelectedDepartment {

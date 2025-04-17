@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers\Web;
 
-use App\Models\Department;
+use App\OldModels\Department;
 use App\Repositories\Domain\DepartmentRepository;
 use Flight;
 use flight\template\View;

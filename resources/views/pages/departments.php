@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Models\Department;
+use App\OldModels\Department;
 
 /**
  * @var Department[] $departments

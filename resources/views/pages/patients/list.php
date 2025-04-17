@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Models\Patient;
-use App\Models\User;
+use App\OldModels\Patient;
+use App\OldModels\User;
 
 /**
  * @var Patient[] $patients

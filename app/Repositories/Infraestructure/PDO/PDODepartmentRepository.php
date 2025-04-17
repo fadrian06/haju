@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Infraestructure\PDO;
 
-use App\Models\Department;
+use App\OldModels\Department;
 use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Exceptions\DuplicatedNamesException;
 use PDO;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Infraestructure\PDO;
 
-use App\Models\ConsultationCauseCategory;
+use App\OldModels\ConsultationCauseCategory;
 use App\Repositories\Domain\ConsultationCauseCategoryRepository;
 use PDO;
 
