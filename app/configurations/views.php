@@ -9,20 +9,21 @@ use Illuminate\Container\Container;
 use Leaf\Http\Session;
 
 Flight::set('flight.views.path', VIEWS_PATH);
-
 Flight::view()->path = VIEWS_PATH;
 Flight::view()->preserveVars = false;
 
+$container = Container::getInstance();
+
 Flight::view()->set(
   'user',
-  Container::getInstance()
+  $container
     ->get(UserRepository::class)
     ->getById(intval(Session::get('userId'))),
 );
 
 Flight::view()->set(
   'department',
-  Container::getInstance()
+  $container
     ->get(DepartmentRepository::class)
     ->getById(intval(Session::get('departmentId'))),
 );

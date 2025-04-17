@@ -8,19 +8,17 @@ use Illuminate\Container\Container;
 use Leaf\Http\Session;
 use Psr\Container\ContainerInterface;
 
-Container::getInstance()->singleton(
+$laravelContainer = Container::getInstance();
+
+$laravelContainer->singleton(
   ContainerInterface::class,
-  Container::class
+  $laravelContainer::class
 );
 
-Container::getInstance()->singleton(Session::class);
+$laravelContainer->singleton(Session::class);
+$laravelContainer->singleton(View::class, static fn(): View => Flight::view());
 
-Container::getInstance()->singleton(
-  View::class,
-  static fn(): View => Flight::view()
-);
-
-Container::getInstance()->singleton(
+$laravelContainer->singleton(
   Request::class,
   static fn(): Request => Flight::request()
 );

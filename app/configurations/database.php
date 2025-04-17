@@ -8,7 +8,8 @@ use Illuminate\Database\Capsule\Manager;
 
 assert($_ENV['DB_CONNECTION'] instanceof DBDriver);
 
-$manager = new Manager(Container::getInstance());
+$container = Container::getInstance();
+$manager = new Manager($container);
 
 $manager->addConnection([
   'driver' => $_ENV['DB_CONNECTION']->value,
@@ -21,12 +22,11 @@ $manager->addConnection([
 $manager->setAsGlobal();
 $manager->bootEloquent();
 
-Container::getInstance()->singleton(
+$container->singleton(
   PDO::class,
   static fn(): PDO => $manager->connection()->getPdo()
 );
 
-db()->connection(Container::getInstance()->get(PDO::class));
-
+db()->connection($container->get(PDO::class));
 $reflectionProperty = new ReflectionProperty(auth(), 'db');
 $reflectionProperty->setValue(auth(), db());

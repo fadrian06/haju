@@ -18,66 +18,68 @@ use App\Repositories\Infraestructure\PDO\PDOPatientRepository;
 use App\Repositories\Infraestructure\PDO\PDOUserRepository;
 use Illuminate\Container\Container;
 
-Container::getInstance()->singleton(
+$container = Container::getInstance();
+
+$container->singleton(
   DepartmentRepository::class,
   static fn(): DepartmentRepository => new PDODepartmentRepository(
-    Container::getInstance()->get(PDO::class),
+    $container->get(PDO::class),
     BASE_URL
   )
 );
 
-Container::getInstance()->singleton(
+$container->singleton(
   UserRepository::class,
   static fn(): UserRepository => new PDOUserRepository(
-    Container::getInstance()->get(PDO::class),
+    $container->get(PDO::class),
     BASE_URL,
-    Container::getInstance()->get(DepartmentRepository::class)
+    $container->get(DepartmentRepository::class)
   )
 );
 
-Container::getInstance()->singleton(
+$container->singleton(
   SettingsRepository::class,
   static fn(): SettingsRepository => new FilesSettingsRepository(
-    Container::getInstance()->get(PDO::class)
+    $container->get(PDO::class)
   )
 );
 
-Container::getInstance()->singleton(
+$container->singleton(
   ConsultationCauseCategoryRepository::class,
   // phpcs:ignore Generic.Files.LineLength.TooLong
   static fn(): ConsultationCauseCategoryRepository => new PDOConsultationCauseCategoryRepository(
-    Container::getInstance()->get(PDO::class),
+    $container->get(PDO::class),
     BASE_URL
   )
 );
 
-Container::getInstance()->singleton(
+$container->singleton(
   ConsultationCauseRepository::class,
   // phpcs:ignore Generic.Files.LineLength.TooLong
   static fn(): ConsultationCauseRepository => new PDOConsultationCauseRepository(
-    Container::getInstance()->get(PDO::class),
+    $container->get(PDO::class),
     BASE_URL,
-    Container::getInstance()->get(ConsultationCauseCategoryRepository::class)
+    $container->get(ConsultationCauseCategoryRepository::class)
   )
 );
 
-Container::getInstance()->singleton(
+$container->singleton(
   DoctorRepository::class,
   static fn(): DoctorRepository => new PDODoctorRepository(
-    Container::getInstance()->get(PDO::class),
+    $container->get(PDO::class),
     BASE_URL,
-    Container::getInstance()->get(UserRepository::class)
+    $container->get(UserRepository::class)
   )
 );
 
-Container::getInstance()->singleton(
+$container->singleton(
   PatientRepository::class,
   static fn(): PatientRepository => new PDOPatientRepository(
-    Container::getInstance()->get(PDO::class),
+    $container->get(PDO::class),
     BASE_URL,
-    Container::getInstance()->get(UserRepository::class),
-    Container::getInstance()->get(ConsultationCauseRepository::class),
-    Container::getInstance()->get(DepartmentRepository::class),
-    Container::getInstance()->get(DoctorRepository::class)
+    $container->get(UserRepository::class),
+    $container->get(ConsultationCauseRepository::class),
+    $container->get(DepartmentRepository::class),
+    $container->get(DoctorRepository::class)
   )
 );
