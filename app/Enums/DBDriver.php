@@ -29,4 +29,14 @@ enum DBDriver: string {
       self::MySQL => $_ENV['DB_DATABASE'],
     };
   }
+
+  public function getInitDatabaseScript(): string {
+    $initDbFilePath = $this->getInitDatabaseScriptPath();
+
+    return file_get_contents($initDbFilePath);
+  }
+
+  private function getInitDatabaseScriptPath(): string {
+    return DATABASE_PATH . "/init.{$_ENV['DB_CONNECTION']->value}.sql";
+  }
 }

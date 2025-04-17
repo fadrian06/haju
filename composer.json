@@ -53,7 +53,7 @@
       "rector --dry-run --no-progress-bar --no-ansi",
       "phpmd app resources/views index.php rector.php tests text phpmd.xml"
     ],
-    "migrate:fresh": "php app/commands/migrate-fresh.php",
+    "migrate:fresh": "php scripts/migrate-fresh.php",
     "format": ["rector", "phpcbf"]
   },
   "require-dev": {
