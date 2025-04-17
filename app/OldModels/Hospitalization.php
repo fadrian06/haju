@@ -8,6 +8,9 @@ use App\OldModels\Contracts\Model;
 use App\ValueObjects\DepartureStatus;
 use DateTimeInterface;
 
+/**
+ * @deprecated
+ */
 final class Hospitalization extends Model {
   public function __construct(
     public readonly Patient $patient,

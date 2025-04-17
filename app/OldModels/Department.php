@@ -11,6 +11,9 @@ use App\ValueObjects\LongName;
 use PharIo\Manifest\Url;
 use Stringable;
 
+/**
+ * @deprecated
+ */
 final class Department extends Model implements Stringable {
   use HasActiveStatus;
 

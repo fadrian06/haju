@@ -9,6 +9,9 @@ use App\ValueObjects\Date;
 use App\ValueObjects\Gender;
 use Generator;
 
+/**
+ * @deprecated
+ */
 final class Patient extends Person {
   /**
    * @var Consultation[]

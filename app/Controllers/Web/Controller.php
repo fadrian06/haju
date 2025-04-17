@@ -21,7 +21,7 @@ abstract readonly class Controller {
   }
 
   final protected static function setError(Throwable|string $error): void {
-    ini_set('error_log', __DIR__ . '/../../logs/error.log');
+    ini_set('error_log', LOGS_PATH . '/errors.log');
 
     if ($error instanceof Throwable) {
       error_log($error->__toString());

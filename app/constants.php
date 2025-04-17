@@ -21,5 +21,6 @@ define(
 
 const ROOT_PATH = __DIR__ . '/..';
 const APP_PATH = ROOT_PATH . '/app';
-const LOGS_PATH = APP_PATH . '/logs';
+const STORAGE_PATH = ROOT_PATH . '/storage';
+const LOGS_PATH = STORAGE_PATH . '/logs';
 const VIEWS_PATH = ROOT_PATH . '/resources/views';

@@ -7,6 +7,9 @@ namespace App\OldModels;
 use App\OldModels\Contracts\Model;
 use App\ValueObjects\LongName;
 
+/**
+ * @deprecated
+ */
 final class ConsultationCauseCategory extends Model {
   private LongName $shortName;
   private ?LongName $extendedName;

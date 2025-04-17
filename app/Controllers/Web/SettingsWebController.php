@@ -165,7 +165,7 @@ final readonly class SettingsWebController extends Controller {
   }
 
   public function showLogs(): void {
-    $logsPath = __DIR__ . '/../../logs/authentications.log';
+    $logsPath = LOGS_PATH . '/authentications.log';
     $logs = [];
 
     if (file_exists($logsPath)) {
@@ -179,7 +179,7 @@ final readonly class SettingsWebController extends Controller {
   }
 
   public function cleanLogs(): void {
-    $logsPath = __DIR__ . '/../../logs/authentications.log';
+    $logsPath = LOGS_PATH . '/authentications.log';
     file_put_contents($logsPath, '');
     Flight::redirect('/logs');
   }

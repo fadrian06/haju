@@ -7,6 +7,9 @@ namespace App\OldModels;
 use App\OldModels\Contracts\Model;
 use App\ValueObjects\ConsultationType;
 
+/**
+ * @deprecated
+ */
 final class Consultation extends Model {
   public function __construct(
     public readonly ConsultationType $type,

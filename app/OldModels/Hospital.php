@@ -7,6 +7,7 @@ namespace App\OldModels;
 use App\ValueObjects\LongName;
 
 /**
+ * @deprecated
  * @property-read string $name
  * @property-read string $asic,
  * @property-read string $type,

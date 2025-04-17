@@ -8,6 +8,7 @@ use App\OldModels\Contracts\Model;
 use App\ValueObjects\LongName;
 
 /**
+ * @deprecated
  * @property-read ?string $variant
  * @property-read ?string $code
  * @property-read ?int $limit

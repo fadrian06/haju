@@ -23,6 +23,7 @@ use PharIo\Manifest\InvalidUrlException;
 use PharIo\Manifest\Url;
 
 /**
+ * @deprecated
  * @property-read string $password
  * @property-read string $address
  */
