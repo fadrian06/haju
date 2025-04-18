@@ -27,15 +27,15 @@ use flight\template\View;
 use Illuminate\Container\Container;
 use Leaf\Http\Session;
 
+Flight::route('GET /salir', SessionWebController::logOut(...));
+
 Flight::route('/', static function () {
-  if (Container::getInstance()->get(Session::class)->has('userId')) {
+  if (Session::has('userId')) {
     return true;
   }
 
-  Container::getInstance()->get(LandingWebController::class)->showLanding();
+  LandingWebController::showLanding();
 });
-
-Flight::route('/salir', [SessionWebController::class, 'logOut']);
 
 Flight::group('/', static function (): void {
   Flight::group('/ingresar', static function (): void {

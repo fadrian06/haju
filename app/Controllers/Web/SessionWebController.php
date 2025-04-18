@@ -20,15 +20,13 @@ final readonly class SessionWebController extends Controller {
     parent::__construct();
   }
 
-  public function logOut(): void {
+  public static function logOut(): void {
     static $excludedKeys = ['error', 'message'];
 
     foreach (array_keys(Session::all()) as $key) {
-      if (in_array($key, $excludedKeys, true)) {
-        continue;
+      if (!in_array($key, $excludedKeys, true)) {
+        Session::unset($key);
       }
-
-      Session::unset($key);
     }
 
     Flight::redirect('/ingresar');
