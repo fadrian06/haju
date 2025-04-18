@@ -73,7 +73,7 @@ Flight::group('/', static function (): void {
   );
 
   Flight::group(
-    '/',
+    '',
     static function (): void {
       Flight::route('GET /', [HomeWebController::class, 'showIndex']);
       Flight::route('GET /perfil', [UserWebController::class, 'showProfile']);
@@ -141,7 +141,7 @@ Flight::group('/', static function (): void {
         [PatientWebController::class, 'handleRegister']
       );
 
-      Flight::group('/consultas', function (): void {
+      Flight::group('/consultas', static function (): void {
         Flight::route(
           'GET /registrar',
           [PatientWebController::class, 'showConsultationRegister']
