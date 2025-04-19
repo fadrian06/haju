@@ -27,7 +27,8 @@ use PharIo\Manifest\Url;
  * @property-read string $password
  * @property-read string $address
  */
-final class User extends Person implements Activable {
+final class User extends Person implements Activable
+{
   use HasActiveStatus;
 
   /**
@@ -76,7 +77,8 @@ final class User extends Person implements Activable {
     $this->setPassword($password)->setAddress($address);
   }
 
-  public function setPassword(string $password): static {
+  public function setPassword(string $password): static
+  {
     if (!$password) {
       throw new InvalidArgumentException('La contraseña es requerida');
     }
@@ -90,7 +92,8 @@ final class User extends Person implements Activable {
     return $this;
   }
 
-  public function setAddress(string $address): static {
+  public function setAddress(string $address): static
+  {
     if (!$address) {
       throw new InvalidArgumentException('La dirección es requerida');
     }
@@ -100,11 +103,13 @@ final class User extends Person implements Activable {
     return $this;
   }
 
-  public function checkPassword(string $raw): bool {
+  public function checkPassword(string $raw): bool
+  {
     return password_verify($raw, $this->password);
   }
 
-  public function ensureThatIsActive(): static {
+  public function ensureThatIsActive(): static
+  {
     if (!$this->isActive) {
       throw new Error('Este usuario se encuentra desactivado');
     }
@@ -112,7 +117,8 @@ final class User extends Person implements Activable {
     return $this;
   }
 
-  public function getProfileImageRelPath(): string {
+  public function getProfileImageRelPath(): string
+  {
     return $this->profileImagePath instanceof Url
       ? mb_substr(
         $this->profileImagePath->asString(),
@@ -121,7 +127,8 @@ final class User extends Person implements Activable {
       : $this->profileImagePath;
   }
 
-  public function ensureHasActiveDepartments(): static {
+  public function ensureHasActiveDepartments(): static
+  {
     foreach ($this->departments as $department) {
       if ($department->isActive()) {
         return $this;
@@ -133,21 +140,25 @@ final class User extends Person implements Activable {
     ');
   }
 
-  public function getParsedAppointment(): string {
+  public function getParsedAppointment(): string
+  {
     return $this->appointment->getParsed($this->gender);
   }
 
-  public function assignDepartments(Department ...$departments): self {
+  public function assignDepartments(Department ...$departments): self
+  {
     $this->departments = $departments;
 
     return $this;
   }
 
-  public function hasDepartments(): bool {
+  public function hasDepartments(): bool
+  {
     return $this->departments !== [];
   }
 
-  public function hasDepartment(string|Department $department): bool {
+  public function hasDepartment(string|Department $department): bool
+  {
     if (is_string($department)) {
       foreach ($this->departments as $savedDepartment) {
         if ($savedDepartment->name === $department) {
@@ -170,13 +181,15 @@ final class User extends Person implements Activable {
   /**
    * @return Generator<int, Department>
    */
-  public function getDepartment(): Generator {
+  public function getDepartment(): Generator
+  {
     foreach ($this->departments as $index => $department) {
       yield $index => $department;
     }
   }
 
-  public function __get(string $property): null|int|string {
+  public function __get(string $property): null|int|string
+  {
     return match ($property) {
       'password' => $this->password,
       'address' => $this->address,
@@ -184,7 +197,8 @@ final class User extends Person implements Activable {
     };
   }
 
-  public function jsonSerialize(): array {
+  public function jsonSerialize(): array
+  {
     return parent::jsonSerialize() + [
       'isDirector' => $this->appointment->isDirector(),
     ];

@@ -10,7 +10,8 @@ use App\ValueObjects\LongName;
 /**
  * @deprecated
  */
-final class ConsultationCauseCategory extends Model {
+final class ConsultationCauseCategory extends Model
+{
   private LongName $shortName;
   private ?LongName $extendedName;
 
@@ -22,7 +23,8 @@ final class ConsultationCauseCategory extends Model {
     $this->setName($shortName, $extendedName);
   }
 
-  public function setName(string $short, ?string $extended = null): self {
+  public function setName(string $short, ?string $extended = null): self
+  {
     $this->shortName = new LongName($short, 'Nombre corto');
 
     $this->extendedName = $extended !== null
@@ -32,7 +34,8 @@ final class ConsultationCauseCategory extends Model {
     return $this;
   }
 
-  public function __get(string $property): null|int|string {
+  public function __get(string $property): null|int|string
+  {
     return match ($property) {
       'shortName' => $this->shortName->__toString(),
       'extendedName' => $this->extendedName?->__toString(),
@@ -40,7 +43,8 @@ final class ConsultationCauseCategory extends Model {
     };
   }
 
-  public function jsonSerialize(): array {
+  public function jsonSerialize(): array
+  {
     return parent::jsonSerialize() + [
       'shortName' => $this->shortName->__toString(),
       'extendedName' => $this->extendedName?->__toString(),

@@ -14,7 +14,8 @@ use Stringable;
 /**
  * @deprecated
  */
-final class Department extends Model implements Stringable {
+final class Department extends Model implements Stringable
+{
   use HasActiveStatus;
 
   private LongName $name;
@@ -32,35 +33,41 @@ final class Department extends Model implements Stringable {
     $this->setName($name);
   }
 
-  public function isHospitalization(): bool {
+  public function isHospitalization(): bool
+  {
     return $this->name->__toString() === 'Hospitalización';
   }
 
-  public function isStatistics(): bool {
+  public function isStatistics(): bool
+  {
     return $this->name->__toString() === 'Estadística';
   }
 
   /**
    * @throws InvalidNameException
    */
-  public function setName(string $name): static {
+  public function setName(string $name): static
+  {
     $this->name = new LongName($name, 'Nombre del departamento');
 
     return $this;
   }
 
-  public function hasIcon(): bool {
+  public function hasIcon(): bool
+  {
     return boolval($this->iconFilePath->asString());
   }
 
-  public function __get(string $property): null|int|string {
+  public function __get(string $property): null|int|string
+  {
     return match ($property) {
       'name' => $this->name->__toString(),
       default => parent::__get($property)
     };
   }
 
-  public function __toString(): string {
+  public function __toString(): string
+  {
     return $this->name->__toString();
   }
 }
