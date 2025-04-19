@@ -20,11 +20,13 @@ declare(strict_types=1);
             'type' => 'number',
             'name' => 'id_card',
             'label' => 'Cédula',
+            'required' => false,
           ]);
 
           Flight::render('components/inputs/input-password', [
             'name' => 'password',
             'label' => 'Contraseña',
+            'required' => false,
           ]);
 
           ?>

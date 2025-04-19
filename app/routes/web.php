@@ -24,10 +24,11 @@ use App\Middlewares\LogLoginMiddleware;
 use App\Middlewares\MessagesMiddleware;
 use App\ValueObjects\Appointment;
 use flight\template\View;
+use HAJU\Controllers\AuthController;
 use Illuminate\Container\Container;
 use Leaf\Http\Session;
 
-Flight::route('GET /salir', SessionWebController::logOut(...));
+Flight::route('GET /salir', AuthController::logout(...));
 
 Flight::route('/', static function () {
   if (Session::has('userId')) {
@@ -39,8 +40,8 @@ Flight::route('/', static function () {
 
 Flight::group('/', static function (): void {
   Flight::group('/ingresar', static function (): void {
-    Flight::route('GET /', [SessionWebController::class, 'showLogin']);
-    Flight::route('POST /', [SessionWebController::class, 'handleLogin']);
+    Flight::route('GET /', AuthController::showLogin(...));
+    Flight::route('POST /', AuthController::handleLogin(...));
   });
 
   Flight::route('/recuperar', static function (): void {

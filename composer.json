@@ -19,6 +19,7 @@
     "leafs/session": "^4.0",
     "phar-io/manifest": "^2.0",
     "symfony/dotenv": "^7.2",
+    "symfony/polyfill-php84": "^1.31",
     "twbs/bootstrap": "^5.3"
   },
   "autoload": {

@@ -46,7 +46,7 @@ final readonly class APIController {
 
   public static function showConsultationCauseCategoryDetails(int $id): void {
     $relations = ['parentCategory', 'causes'];
-    $category = ConsultationCauseCategory::with($relations)->find($id);
+    $category = ConsultationCauseCategory::with($relations)->findOrFail($id);
 
     Flight::json($category);
   }
@@ -58,13 +58,13 @@ final readonly class APIController {
   }
 
   public static function showConsultationCauseDetails(int $id): void {
-    $cause = ConsultationCause::with(['category'])->find($id);
+    $cause = ConsultationCause::with(['category'])->findOrFail($id);
 
     Flight::json($cause);
   }
 
   public static function showPatientDetails(int $id): void {
-    $patient = Patient::with('consultations')->find($id);
+    $patient = Patient::with('consultations')->findOrFail($id);
 
     Flight::json($patient);
   }

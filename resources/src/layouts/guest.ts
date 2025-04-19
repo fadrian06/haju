@@ -5,11 +5,14 @@ import "bootstrap/js/dist/modal";
 import Tooltip from "bootstrap/js/dist/tooltip";
 import Swal from "sweetalert2";
 import "../styles/customizations.scss";
+import { Toast } from "bootstrap";
 
-const tooltipElements = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-
-for (const element of Array.from(tooltipElements)) {
+for (const element of document.querySelectorAll('[data-bs-toggle="tooltip"]')) {
   new Tooltip(element);
+}
+
+for (const element of document.querySelectorAll(".toast")) {
+  new Toast(element).show();
 }
 
 globalThis.customSwal = Swal.mixin({

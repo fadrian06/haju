@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use HAJU\Errors\UserDoNotHaveActiveDepartmentsError;
+use HAJU\Errors\UserNotActiveError;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -34,7 +36,30 @@ final class User extends Model {
     return $this->hasMany(Doctor::class, 'registered_by_id');
   }
 
+  /**
+   * @return BelongsToMany<Department>
+   */
   public function departmentsAssigned(): BelongsToMany {
     return $this->belongsToMany(Department::class, 'department_assignments');
+  }
+
+  public function ensureThatIsActive(): self {
+    if (!$this->attributes['is_active']) {
+      throw new UserNotActiveError;
+    }
+
+    return $this;
+  }
+
+  public function ensureHasActiveDepartments(): self {
+    $disactivadedDepartment = $this
+      ->departmentsAssigned()
+      ->firstWhere('is_active', false);
+
+    if ($disactivadedDepartment) {
+      throw new UserDoNotHaveActiveDepartmentsError;
+    }
+
+    return $this;
   }
 }

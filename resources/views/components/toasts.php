@@ -2,16 +2,21 @@
 
 declare(strict_types=1);
 
+use HAJU\Enums\ToastPosition;
+
 /**
  * @var string[] $errors
- * @var string[] $success
  */
 $errors ??= [];
-$success ??= [];
+$success ??= '';
+
+$position = isset($position) && $position instanceof ToastPosition
+  ? $position
+  : ToastPosition::TOP_LEFT;
 
 ?>
 
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
+<div class="toast-container m-5 <?= $position->getBootstrapClasses() ?>">
   <?php foreach ($errors as $error) : ?>
     <div class="toast">
       <div class="toast-header text-danger">

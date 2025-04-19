@@ -2,15 +2,17 @@
 
 declare(strict_types=1);
 
+use HAJU\Enums\ToastPosition;
+use Leaf\Flash;
 use Leaf\Http\Session;
 
-$error = isset($error) ? strval($error) : null;
-$message = isset($message) ? strval($message) : null;
 $title = isset($title) ? strval($title) : throw new Error('Title not set');
 
 $content = isset($content)
   ? strval($content)
   : throw new Error('Content not set');
+
+$error = Flash::display('error');
 
 ?>
 
@@ -35,6 +37,8 @@ $content = isset($content)
   <base href="<?= str_replace('index.php', '', $_SERVER['SCRIPT_NAME']) ?>" />
   <link rel="icon" href="./resources/images/favicon.svg" />
   <link rel="stylesheet" href="./resources/dist/guest.css" />
+  <script src="./resources/dist/guest.js" defer></script>
+
   <style>
     body {
       grid-template-rows: auto 1fr auto;
@@ -47,21 +51,14 @@ $content = isset($content)
   <?= $content ?>
   <?php Flight::render('components/footer') ?>
 
-  <script src="./resources/dist/guest.js"></script>
-
-  <script>
-    <?php if ($error) : ?>
-      customSwal.fire({
-        title: '<?= $error ?>',
-        icon: 'error',
-      })
-    <?php elseif ($message) : ?>
-      customSwal.fire({
-        title: '<?= $message ?>',
-        icon: 'success',
-      })
-    <?php endif ?>
-  </script>
+  <?php Flight::render(
+    'components/toasts',
+    [
+      'errors' => $error ? [$error] : [],
+      'success' => Flash::display('success'),
+      'position' => ToastPosition::BOTTOM_RIGHT,
+    ]
+  ) ?>
 </body>
 
 </html>
