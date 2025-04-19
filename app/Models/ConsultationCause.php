@@ -2,18 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\Models;
+namespace HAJU\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-final class ConsultationCause extends Model {
-  public function category(): BelongsTo {
+final class ConsultationCause extends Model
+{
+  public function category(): BelongsTo
+  {
     return $this->belongsTo(ConsultationCauseCategory::class);
   }
 
-  public function consultations(): HasMany {
-    return $this->hasMany(Consultation::class, 'cause_id');
+  public function consultations(): HasMany
+  {
+    return $this->hasMany(Consultation::class);
   }
 }

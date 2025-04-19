@@ -16,4 +16,10 @@
 
   <rule ref="PSR1" />
   <rule ref="PSR2" />
+
+  <rule ref="Generic.WhiteSpace.ScopeIndent">
+    <properties>
+      <property name="indent" value="2" />
+    </properties>
+  </rule>
 </ruleset>

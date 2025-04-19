@@ -40,7 +40,9 @@
       "phpmd app resources/views index.php rector.php tests text phpmd.xml",
       "phpcs --no-colors"
     ],
-    "format": ["rector", "phpcbf"]
+    "format": ["rector", "phpcbf"],
+    "make:migration": "php app/Console/Command/make-migration.php",
+    "migrate:fresh": "php app/Console/Command/migrate-fresh.php"
   },
   "require-dev": {
     "guzzlehttp/guzzle": "^7.9",
