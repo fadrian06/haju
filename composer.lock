@@ -1849,16 +1849,16 @@
     },
     {
       "name": "leafs/leaf",
-      "version": "v4.1.1",
+      "version": "v4.1.2",
       "source": {
         "type": "git",
         "url": "https://github.com/leafsphp/leaf.git",
-        "reference": "53a72972a68224831edd1d3d51f51de7b2de7dc2"
+        "reference": "b9f4896c5b9437566f9791dc85ca315502939fa8"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/leafsphp/leaf/zipball/53a72972a68224831edd1d3d51f51de7b2de7dc2",
-        "reference": "53a72972a68224831edd1d3d51f51de7b2de7dc2",
+        "url": "https://api.github.com/repos/leafsphp/leaf/zipball/b9f4896c5b9437566f9791dc85ca315502939fa8",
+        "reference": "b9f4896c5b9437566f9791dc85ca315502939fa8",
         "shasum": ""
       },
       "require": {
@@ -1905,7 +1905,7 @@
       ],
       "support": {
         "issues": "https://github.com/leafsphp/leaf/issues",
-        "source": "https://github.com/leafsphp/leaf/tree/v4.1.1"
+        "source": "https://github.com/leafsphp/leaf/tree/v4.1.2"
       },
       "funding": [
         {
@@ -1917,7 +1917,7 @@
           "type": "open_collective"
         }
       ],
-      "time": "2025-03-26T10:50:09+00:00"
+      "time": "2025-04-14T13:46:14+00:00"
     },
     {
       "name": "leafs/password",
