@@ -24,7 +24,7 @@
     },
     "SublimeLinter.linters.php.disable": true,
     "SublimeLinter.linters.phpstan.disable": true,
-    "SublimeLinter.linters.phpcs.disable": true,
+    "SublimeLinter.linters.phpcs.disable": false,
     "SublimeLinter.linters.phpcsfixer.disable": true,
     "SublimeLinter.linters.rector.disable": true,
     "SublimeLinter.linters.ecs.disable": true,

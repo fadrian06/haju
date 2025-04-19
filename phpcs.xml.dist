@@ -14,57 +14,6 @@
   <exclude-pattern>.idea</exclude-pattern>
   <exclude-pattern>.git</exclude-pattern>
 
-  <rule ref="Generic">
-    <exclude name="Generic.Files.EndFileNoNewline.Found" />
-    <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
-    <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
-    <exclude name="Generic.PHP.UpperCaseConstant.Found" />
-    <exclude name="Generic.Functions.OpeningFunctionBraceBsdAllman.BraceOnSameLine" />
-    <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
-    <exclude name="Generic.Files.LowercasedFilename.NotFound" />
-    <exclude name="Generic.NamingConventions.AbstractClassNamePrefix.Missing" />
-    <exclude name="Generic.Commenting.DocComment.MissingShort" />
-    <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsedHeredocCloser" />
-    <exclude name="Generic.NamingConventions.TraitNameSuffix.Missing" />
-    <exclude name="Generic.NamingConventions.InterfaceNameSuffix.Missing" />
-  </rule>
-
-  <rule ref="Generic.PHP.ClosingPHPTag.NotFound">
-    <exclude-pattern>index.php</exclude-pattern>
-    <exclude-pattern>rector.php</exclude-pattern>
-    <exclude-pattern>app</exclude-pattern>
-    <exclude-pattern>scripts</exclude-pattern>
-  </rule>
-
-  <rule ref="Generic.Arrays.ArrayIndent">
-    <properties>
-      <property name="indent" value="2" />
-    </properties>
-  </rule>
-
-  <rule ref="Generic.WhiteSpace.ScopeIndent">
-    <properties>
-      <property name="indent" value="2" />
-    </properties>
-  </rule>
-
-  <rule ref="Generic.WhiteSpace.ArbitraryParenthesesSpacing">
-    <properties>
-      <property name="ignoreNewlines" value="true" />
-    </properties>
-  </rule>
-
-  <rule ref="Generic.Formatting.SpaceAfterNot">
-    <properties>
-      <property name="spacing" value="0" />
-    </properties>
-  </rule>
-
-  <rule ref="Generic.Files.InlineHTML.Found">
-    <exclude-pattern>views</exclude-pattern>
-  </rule>
-
-  <rule ref="Generic.PHP.DisallowShortOpenTag.EchoFound">
-    <exclude-pattern>views</exclude-pattern>
-  </rule>
+  <rule ref="PSR1" />
+  <rule ref="PSR2" />
 </ruleset>

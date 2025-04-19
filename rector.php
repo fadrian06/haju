@@ -52,23 +52,7 @@ return RectorConfig::configure()
   )
   ->withRealPathReporting()
   ->withRootFiles()
-  ->withSkip([
-    EncapsedStringsToSprintfRector::class,
-    RenameParamToMatchTypeRector::class,
-    RenameVariableToMatchMethodCallReturnTypeRector::class,
-    NullableCompareToNullRector::class,
-    FlipTypeControlToUseExclusiveTypeRector::class,
-    ExplicitBoolCompareRector::class,
-    BooleanInTernaryOperatorRuleFixerRector::class,
-    CompactToVariablesRector::class,
-    CatchExceptionNameMatchingTypeRector::class,
-    NewlineAfterStatementRector::class,
-    BooleanInBooleanNotRuleFixerRector::class,
-    BooleanInIfConditionRuleFixerRector::class,
-    BinaryOpNullableToInstanceofRector::class,
-    RenamePropertyToMatchTypeRector::class,
-    DisallowedShortTernaryRuleFixerRector::class,
-  ])
+  ->withSkip([])
   ->withSkipPath(__DIR__ . '/vendor')
   ->withSkipPath(__DIR__ . '/node_modules')
   ->withSkipPath(__DIR__ . '/.git')
