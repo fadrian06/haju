@@ -8,8 +8,8 @@
     "LSP": {
       "formatters": {
         "source.json.composer": "LSP-biome",
-        "source.json.sublime": "LSP-biome",
-        "source.json.biome": "LSP-json",
+        "source.json.sublime": "LSP-json",
+        "source.json.biome": "LSP-biome",
         "source.json.npm": "LSP-json",
         "source.json": "LSP-biome",
         "source.ts": "LSP-biome",
@@ -18,23 +18,43 @@
       "LSP-intelephense": {
         "settings": {
           "intelephense.environment.phpVersion": "8.2",
-          "intelephense.format.braces": "k&r",
+          "intelephense.format.braces": "per",
         },
       },
     },
-    "SublimeLinter.linters.php.disable": false,
-    "SublimeLinter.linters.phpstan.disable": false,
-    "SublimeLinter.linters.phpcs.disable": false,
+    "SublimeLinter.linters.php.disable": true,
+    "SublimeLinter.linters.phpstan.disable": true,
+    "SublimeLinter.linters.phpcs.disable": true,
     "SublimeLinter.linters.phpcsfixer.disable": true,
-    "SublimeLinter.linters.rector.disable": false,
+    "SublimeLinter.linters.rector.disable": true,
     "SublimeLinter.linters.ecs.disable": true,
-    "SublimeLinter.linters.phpmd.disable": false,
+    "SublimeLinter.linters.oxlint.disable": true,
+    "SublimeLinter.linters.phpmd.disable": true,
     "SublimeLinter.linters.phpmd.rulesets": "${project_path}/phpmd.xml",
+    "translate_tabs_to_spaces": true,
+    "tab_size": 2,
+    "default_line_ending": "unix",
+    "trim_trailing_white_space_on_save": "not_on_caret",
+    "ensure_newline_at_eof_on_save": true,
+    "lsp_code_actions_on_save": {
+      // "source.fixAll": true,
+      // "source.addMissingImports.ts": true,
+      // "source.fixAll.biome": true,
+      // "source.fixAll.eslint": true,
+      // "source.fixAll.ts": true,
+      // "source.organizeImports.biome": true,
+      // "source.organizeImports.ts": true,
+      // "source.removeUnused.ts": true,
+      // "source.removeUnusedImports.ts": true,
+      // "source.sortImports.ts": true,
+    },
+    "lsp_format_on_paste": true,
+    "lsp_format_on_save": true,
   },
   "connections": {
     "haju": {
       "type": "sqlite",
-      "database": "C:/xampp/htdocs/haju/database/haju.db"
+      "database": "C:/xampp/htdocs/haju/database/haju.db",
     },
-  }
+  },
 }

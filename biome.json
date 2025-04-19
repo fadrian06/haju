@@ -13,6 +13,6 @@
     "indentStyle": "space"
   },
   "files": {
-    "ignore": ["*.sublime-*", "vendor", "assets/vendors", "resources/dist"]
+    "ignore": ["*.sublime-*", "vendor", "resources/dist"]
   }
 }

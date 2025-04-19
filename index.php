@@ -2,20 +2,12 @@
 
 declare(strict_types=1);
 
+const ROOT_PATH = __DIR__;
+const APP_PATH = __DIR__ . '/app';
+const DATABASE_PATH = __DIR__ . '/database';
+const VIEWS_PATH = __DIR__ . '/resources/views';
+const LOGS_PATH = __DIR__ . '/storage/logs';
+
+require_once ROOT_PATH . '/vendor/autoload.php';
+
 error_reporting(E_ALL);
-
-require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/app/constants.php';
-require_once __DIR__ . '/app/configurations/environment.php';
-require_once __DIR__ . '/app/configurations/authentication.php';
-require_once __DIR__ . '/app/configurations/database.php';
-require_once __DIR__ . '/app/configurations/container.php';
-require_once __DIR__ . '/app/configurations/repositories.php';
-require_once __DIR__ . '/app/configurations/flight.php';
-require_once __DIR__ . '/app/configurations/views.php';
-require_once __DIR__ . '/app/routes/web.php';
-require_once __DIR__ . '/app/routes/api.php';
-
-date_default_timezone_set($_ENV['TIMEZONE']);
-
-Flight::start();
