@@ -31,4 +31,10 @@
     "SublimeLinter.linters.phpmd.disable": false,
     "SublimeLinter.linters.phpmd.rulesets": "${project_path}/phpmd.xml",
   },
+  "connections": {
+    "haju-sqlite": {
+      "type": "sqlite",
+      "database": "C:/xampp/htdocs/haju/database/haju.db"
+    },
+  }
 }
