@@ -17,5 +17,5 @@ try {
 
   Flight::start();
 } catch (Throwable $error) {
-  exit("<pre>$error</pre>");
+  exit("<pre>{$error}</pre>");
 }
