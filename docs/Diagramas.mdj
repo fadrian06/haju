@@ -67225,17 +67225,18 @@
 									"model": {
 										"$ref": "AAAAAAGWURPnd/s9Gk8="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1260,
+									"left": 1251,
 									"top": 1148,
+									"width": 19.5126953125,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
 									"hostEdge": {
 										"$ref": "AAAAAAGWURPnd/tADKA="
 									},
-									"edgePosition": 2
+									"edgePosition": 2,
+									"text": "0..*"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -67286,16 +67287,17 @@
 									"model": {
 										"$ref": "AAAAAAGWURPnd/s+lhU="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1306,
+									"left": 1303,
 									"top": 1094,
+									"width": 7.22998046875,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
 									"hostEdge": {
 										"$ref": "AAAAAAGWURPnd/tADKA="
-									}
+									},
+									"text": "1"
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -69772,7 +69774,8 @@
 								},
 								"reference": {
 									"$ref": "AAAAAAGWUEoWP5RPt1o="
-								}
+								},
+								"multiplicity": "0..*"
 							},
 							"end2": {
 								"_type": "UMLAssociationEnd",
@@ -69783,7 +69786,9 @@
 								"reference": {
 									"$ref": "AAAAAAGWUEw8dJT7E3U="
 								},
-								"aggregation": "composite"
+								"navigable": "navigable",
+								"aggregation": "composite",
+								"multiplicity": "1"
 							}
 						},
 						{
