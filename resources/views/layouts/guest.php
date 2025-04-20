@@ -30,7 +30,7 @@ $message = isset($message) ? strval($message) : null;
   <meta name="viewport" content="width=device-width" />
   <title><?= $title ?> - HAJU</title>
   <base href="<?= str_replace('index.php', '', $_SERVER['SCRIPT_NAME']) ?>" />
-  <link rel="icon" href="./assets/img/favicon.svg" />
+  <link rel="icon" href="./resources/images/favicon.svg" />
   <link rel="stylesheet" href="./assets/dist/guest.css" />
 </head>
 
