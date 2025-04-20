@@ -9,6 +9,8 @@ error_reporting(E_ALL);
 try {
   require_once __DIR__ . '/vendor/autoload.php';
 
+  ini_set('error_log', LOGS_PATH . '/php_errors.log');
+
   /**
    * - `''`: with _composer serve_ -> _localhost:61001_
    * - `'/haju'`: with xampp -> _localhost/haju_
