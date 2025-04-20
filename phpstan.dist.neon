@@ -7,7 +7,7 @@ parameters:
   paths:
     - app
     - tests
-    - views
+    - resources/views
     - .env.dist.php
     - .env.php
     - index.php

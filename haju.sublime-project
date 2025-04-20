@@ -9,7 +9,7 @@
       "formatters": {
         "source.json.composer": "LSP-biome",
         "source.json.sublime": "LSP-biome",
-        "source.json.biome": "LSP-json",
+        "source.json.biome": "LSP-biome",
         "source.json.npm": "LSP-json",
         "source.json": "LSP-biome",
         "source.ts": "LSP-biome",
