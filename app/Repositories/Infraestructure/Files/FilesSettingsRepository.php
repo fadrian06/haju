@@ -136,7 +136,7 @@ final readonly class FilesSettingsRepository implements SettingsRepository
               return 'null';
             }
 
-            return $this->pdo->quote($val);
+            return $this->pdo->quote(strval($val));
           },
           $values
         ));
