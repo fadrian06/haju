@@ -13,7 +13,7 @@ enum Appointment: string {
     return match ($this) {
       self::Director => 1,
       self::Coordinator => 2,
-      self::Secretary => 3
+      self::Secretary => 3,
     };
   }
 
@@ -45,7 +45,7 @@ enum Appointment: string {
 
   /** @return array<int, self> */
   public static function getLowersThan(self $role): array {
-    return array_filter(self::cases(), fn(self $case): bool => $case->getLevel() < $role->getLevel());
+    return array_filter(self::cases(), static fn(self $case): bool => $case->getLevel() < $role->getLevel());
   }
 
   public function getLevel(): int {
