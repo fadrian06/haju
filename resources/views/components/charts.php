@@ -7,7 +7,7 @@ use HAJU\Repositories\Domain\PatientRepository;
 use HAJU\Enums\DateRange;
 use flight\Container;
 
-$lastMonth = (new DateTimeImmutable)->sub(new DateInterval('P1M'))->format('Y-m-d');
+$lastMonth = (new DateTimeImmutable())->sub(new DateInterval('P1M'))->format('Y-m-d');
 $currentDate = date('Y-m-d') . ' 23:59:59';
 $range = DateRange::tryFrom($_GET['rango'] ?? '');
 $pdo = Container::getInstance()->get(PDO::class);

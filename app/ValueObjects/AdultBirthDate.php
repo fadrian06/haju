@@ -14,7 +14,7 @@ final readonly class AdultBirthDate extends Date
   {
     parent::validate($day, $month, $year);
 
-    $currentDate = new DateTimeImmutable;
+    $currentDate = new DateTimeImmutable();
     $validBirthDate = $currentDate->sub(new DateInterval('P18Y'));
 
     if ("{$year}-{$month}-{$day}" > $validBirthDate->format('Y-n-j')) {

@@ -75,11 +75,7 @@ final readonly class UserWebController extends Controller
         ));
       }
 
-      if (!in_array(
-        $this->data['instruction_level'],
-        InstructionLevel::values(),
-        true,
-      )) {
+      if (!in_array($this->data['instruction_level'], InstructionLevel::values(), true)) {
         throw new Error(sprintf(
           'El nivel de instrucción es requerido y válido (%s)',
           implode(', ', InstructionLevel::values()),

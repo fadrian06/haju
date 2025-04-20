@@ -37,8 +37,8 @@ if ($monthYear !== null) {
       : 28
   };
 
-  $startDate = (new View)->e("{$monthYear}-01");
-  $endDate = (new View)->e("{$monthYear}-{$daysOfMonth}");
+  $startDate = (new View())->e("{$monthYear}-01");
+  $endDate = (new View())->e("{$monthYear}-{$daysOfMonth}");
 }
 
 ob_end_clean();
@@ -180,9 +180,7 @@ $monthName = [
           <?php $categories[$cause['category']['id']] = $cause['category'] ?>
           <tr>
             <td class="fw-bold" colspan="7" style="text-align: start">
-              <?php if (is_array($cause['category']['parentCategory'])
-                && !in_array($cause['category']['parentCategory'], $printedParentCategories, true)
-              ) : ?>
+              <?php if (is_array($cause['category']['parentCategory']) && !in_array($cause['category']['parentCategory'], $printedParentCategories, true)) : ?>
                 <?= $cause['category']['parentCategory']['name']['extended'] ?? $cause['category']['parentCategory']['name']['short'] ?>
                 <br />
                 <?php $printedParentCategories[] = $cause['category']['parentCategory'] ?>

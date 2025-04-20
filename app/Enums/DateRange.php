@@ -16,7 +16,7 @@ enum DateRange: string
 
   public function getDate(): DateTimeInterface
   {
-    return (new DateTimeImmutable)->sub(new DateInterval(match ($this) {
+    return (new DateTimeImmutable())->sub(new DateInterval(match ($this) {
       self::Anual => 'P1Y',
       self::Monthly => 'P1M',
       self::Weekly => 'P1W',

@@ -20,7 +20,7 @@ if (str_contains((string) $_SERVER['REQUEST_URI'], 'perfil')) {
 }
 
 $pdo = Container::getInstance()->get(PDO::class);
-$currentDate = new DateTimeImmutable;
+$currentDate = new DateTimeImmutable();
 $oneWeekAgo = $currentDate->sub(new DateInterval('P1W'));
 
 // TODO: group by patient_id + cause_id to skip consultations of same patient and the same consultation cause

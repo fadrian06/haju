@@ -18,6 +18,7 @@ final readonly class AuthorizationMiddleware
     private Appointment $permitted,
     private ?Appointment $blocked = null,
   ) {
+    // ...
   }
 
   public function before(): void
@@ -25,9 +26,7 @@ final readonly class AuthorizationMiddleware
     $user = $this->view->get('user');
     assert($user instanceof User || is_null($user));
 
-    if (!$user?->appointment->isHigherThan($this->permitted)
-      || ($this->blocked && $user->appointment === $this->blocked)
-    ) {
+    if (!$user?->appointment->isHigherThan($this->permitted) || ($this->blocked && $user->appointment === $this->blocked)) {
       $this->session->set('error', 'Acceso no autorizado');
       Flight::redirect('/');
     }

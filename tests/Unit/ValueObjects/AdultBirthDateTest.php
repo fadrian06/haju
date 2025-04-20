@@ -36,7 +36,7 @@ final class AdultBirthDateTest extends TestCase
 
   public static function validAdultBirthDates(): Iterator
   {
-    $currentDate = new DateTimeImmutable;
+    $currentDate = new DateTimeImmutable();
     $adultBirthDate = $currentDate->sub(new DateInterval('P18Y'));
 
     yield $adultBirthDate->format('Y-m-d') => [$adultBirthDate->format('Y-m-d')];
@@ -44,7 +44,7 @@ final class AdultBirthDateTest extends TestCase
 
   public static function invalidAdultBirthDates(): Iterator
   {
-    $currentDate = new DateTimeImmutable;
+    $currentDate = new DateTimeImmutable();
     $childBirthDate = $currentDate->sub(new DateInterval('P17Y'));
     $childBirthDate2 = $currentDate->sub(new DateInterval('P1Y'));
 

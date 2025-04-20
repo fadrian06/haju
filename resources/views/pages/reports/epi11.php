@@ -37,8 +37,8 @@ if ($monthYear !== null) {
       : 28
   };
 
-  $startDate = (new View)->e("{$monthYear}-01");
-  $endDate = (new View)->e("{$monthYear}-{$daysOfMonth}");
+  $startDate = (new View())->e("{$monthYear}-01");
+  $endDate = (new View())->e("{$monthYear}-{$daysOfMonth}");
 }
 
 ob_end_clean();

@@ -15,6 +15,10 @@
   <rule ref="PSR1" />
   <rule ref="PSR2" />
 
+  <rule ref="PSR12">
+    <exclude name="PSR12.Classes.AnonClassDeclaration.SpaceAfterKeyword" />
+  </rule>
+
   <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
     <exclude-pattern>helpers.php</exclude-pattern>
   </rule>
