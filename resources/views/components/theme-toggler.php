@@ -1,3 +1,9 @@
+<?php
+
+declare(strict_types=1);
+
+?>
+
 <li class="dropdown" data-bs-toggle="tooltip" title="Cambiar tema">
   <button
     type="button"

@@ -1,3 +1,9 @@
+<?php
+
+declare(strict_types=1);
+
+?>
+
 <a
   class="weatherwidget-io"
   href="https://forecast7.com/es/8d97n71d27/tucani/"

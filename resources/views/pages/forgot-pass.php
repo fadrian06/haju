@@ -1,3 +1,9 @@
+<?php
+
+declare(strict_types=1);
+
+?>
+
 <section class="px-0 modal modal-content cs_modal w-auto">
   <header class="modal-header py-3">
     <h5>(1/2) Recuperar contraseña</h5>

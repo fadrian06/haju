@@ -4,6 +4,8 @@
   "license": "proprietary",
   "require": {
     "php": "^8.2",
+    "ext-pdo_mysql": "*",
+    "ext-pdo_sqlite": "*",
     "bjeavons/zxcvbn-php": "^1.4",
     "faslatam/alpine-js": "^3.14",
     "flightphp/container": "^1.3",
@@ -40,13 +42,14 @@
     ],
     "ci": [
       "composer check-platform-reqs --no-ansi",
+      "phpcs --no-colors",
       "phpunit --no-progress --colors=never",
       "phpstan --no-progress --no-ansi --memory-limit=512M",
       "rector --dry-run --no-progress-bar --no-ansi",
-      "phpmd app resources/views index.php rector.php tests text phpmd.xml"
+      "phpmd app resources/views routes tests .env.dist.php .env.php index.php rector.php text phpmd.xml"
     ],
     "migrate:fresh": "php app/commands/migrate-fresh.php",
-    "format": ["rector"]
+    "format": ["rector", "phpcbf"]
   },
   "require-dev": {
     "guzzlehttp/guzzle": "^7.9",

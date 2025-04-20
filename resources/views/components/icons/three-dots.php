@@ -1,3 +1,9 @@
+<?php
+
+declare(strict_types=1);
+
+?>
+
 <svg fill="currentColor" width="1em" height="1em">
   <title>Icono de tres puntos suspensivos</title>
   <path

@@ -2,85 +2,10 @@
 
 declare(strict_types=1);
 
-use HAJU\Models\ConsultationCause;
 use HAJU\Models\ConsultationCauseCategory;
 use HAJU\Repositories\Domain\ConsultationCauseRepository;
 use flight\Container;
 use flight\template\View;
-
-$categoryMapper = new class {
-  /**
-   * @return array{
-   *   id: int,
-   *   name: array{
-   *     short: string,
-   *     extended: string,
-   *   },
-   *   parentCategory: ?array{
-   *     id: int,
-   *     name: array{
-   *       short: string,
-   *       extended: string,
-   *     },
-   *     parentCategory: null,
-   *   }
-   * }
-   */
-  public function __invoke(ConsultationCauseCategory $category): array {
-    return [
-      'id' => $category->id,
-      'name' => [
-        'short' => $category->shortName,
-        'extended' => $category->extendedName,
-      ],
-      'parentCategory' => $category->parentCategory !== null
-        ? ($this)($category->parentCategory)
-        : null,
-    ];
-  }
-};
-
-$causeMapper = new class($categoryMapper(...)) {
-  public function __construct(private readonly Closure $categoryMapper) {
-  }
-
-  /**
-   * @return array{
-   *   id: int,
-   *   name: array{
-   *     short: string,
-   *     extended: string,
-   *   },
-   *   code: string,
-   *   category: array{
-   *     id: int,
-   *     name: array{
-   *       short: string,
-   *       extended: string,
-   *     },
-   *     parentCategory: ?array{
-   *       id: int,
-   *       name: array{
-   *         short: string,
-   *         extended: string,
-   *       },
-   *       parentCategory: null,
-   *     },
-   *   },
-   * }
-   */
-  public function __invoke(ConsultationCause $cause): array {
-    return [
-      'id' => $cause->id,
-      'name' => [
-        'short' => $cause->getFullName(),
-        'extended' => $cause->getFullName(abbreviated: false),
-      ],
-      'code' => $cause->code,
-      'category' => ($this->categoryMapper)($cause->category),
-    ];
-  }
-};
 
 $causes = Container::getInstance()
   ->get(ConsultationCauseRepository::class)
@@ -89,7 +14,7 @@ $causes = Container::getInstance()
 $data = [];
 
 foreach ($causes as $cause) {
-  $data[] = $causeMapper($cause);
+  $data[] = (CAUSE_MAPPER)->__invoke($cause);
 }
 
 $causes = $data;
@@ -123,7 +48,6 @@ $consultations = Container::getInstance()->get(PDO::class)->query(<<<sql
   WHERE registered_date BETWEEN '{$startDate}' AND '{$endDate}'
 sql)->fetchAll(PDO::FETCH_ASSOC);
 
-define('DAYS', $daysOfMonth);
 $causeCounter = 1;
 $printedParentCategories = [];
 
@@ -135,11 +59,11 @@ $printedParentCategories = [];
       <tr>
         <th rowspan="2">ENFERMEDADES</th>
         <th rowspan="2">Consultas</th>
-        <th colspan="<?= DAYS ?>">DÍAS DEL MES</th>
+        <th colspan="<?= $daysOfMonth ?>">DÍAS DEL MES</th>
         <th rowspan="2">TOTAL</th>
       </tr>
       <tr>
-        <?php foreach (range(1, DAYS) as $day) : ?>
+        <?php foreach (range(1, $daysOfMonth) as $day) : ?>
           <th><?= str_pad("$day", 2, '0', STR_PAD_LEFT) ?></th>
         <?php endforeach ?>
       </tr>
@@ -151,7 +75,7 @@ $printedParentCategories = [];
           <tr>
             <td
               class="fw-bold"
-              colspan="<?= DAYS + 3 ?>"
+              colspan="<?= $daysOfMonth + 3 ?>"
               style="text-align: start">
               <?php if (
                 is_array($cause['category']['parentCategory'])
@@ -170,7 +94,7 @@ $printedParentCategories = [];
             <?= $causeCounter++ . '. ' . $cause['name']['short'] ?>
           </th>
           <th>P</th>
-          <?php foreach (range(1, DAYS) as $day) : ?>
+          <?php foreach (range(1, $daysOfMonth) as $day) : ?>
             <td
               data-bs-toggle="tooltip"
               title="<?= "{$cause['name']['short']} ~ Primera vez ~ Día: " . $day ?>"
@@ -184,7 +108,7 @@ $printedParentCategories = [];
         </tr>
         <tr>
           <th>S</th>
-          <?php foreach (range(1, DAYS) as $day) : ?>
+          <?php foreach (range(1, $daysOfMonth) as $day) : ?>
             <td
               data-bs-toggle="tooltip"
               title="<?= "{$cause['name']['short']} ~ Sucesiva ~ Día: " . $day ?>"
@@ -198,7 +122,7 @@ $printedParentCategories = [];
         </tr>
         <tr>
           <th>X</th>
-          <?php foreach (range(1, DAYS) as $day) : ?>
+          <?php foreach (range(1, $daysOfMonth) as $day) : ?>
             <td
               data-bs-toggle="tooltip"
               title="<?= "{$cause['name']['short']} ~ Asociada ~ Día: " . $day ?>"

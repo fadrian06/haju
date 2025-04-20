@@ -1,21 +1,15 @@
 <?php
 
-/**
- * @var 'message'|'info'|'error' $type
- * @var string $text
- */
+declare(strict_types=1);
 
-if (!defined('TYPES')) {
-  define('TYPES', [
-    'message' => 'success',
-    'info' => 'info',
-    'error' => 'danger'
-  ]);
-}
+use HAJU\Enums\NotificationType;
+
+$text = isset($type) ? strval($type) : throw new Error('Text not set');
+$type = isset($type) && is_string($type) ? NotificationType::from(strval($type)) : throw new Error('Type not set');
 
 ?>
 
-<div class="alert alert-<?= TYPES[$type] ?> alert-dismissible fade show">
+<div class="alert alert-<?= $type->getBootstrapColor() ?> alert-dismissible fade show">
   <?= $text ?>
   <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 </div>
