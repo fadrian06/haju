@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Jenssegers\Date\Date;
+
 try {
   error_reporting(E_ALL);
 
@@ -14,6 +16,7 @@ try {
   require_once __DIR__ . '/app/routes/api.php';
 
   date_default_timezone_set($_ENV['TIMEZONE']);
+  Date::setLocale('es');
 
   Flight::start();
 } catch (Throwable $error) {
