@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 use HAJU\Models\User;
-use HAJU\ValueObjects\Appointment;
-use HAJU\ValueObjects\Gender;
-use HAJU\ValueObjects\InstructionLevel;
+use HAJU\Enums\Appointment;
+use HAJU\Enums\Gender;
+use HAJU\Enums\InstructionLevel;
 use flight\Container;
 use Leaf\Http\Session;
 

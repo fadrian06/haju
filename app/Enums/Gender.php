@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace HAJU\ValueObjects;
+namespace HAJU\Enums;
 
 enum Gender: string {
   use BackedEnum;

@@ -2,7 +2,7 @@
 
 use HAJU\Models\Department;
 use HAJU\Models\User;
-use HAJU\ValueObjects\Appointment;
+use HAJU\Enums\Appointment;
 
 /**
  * @var User $user

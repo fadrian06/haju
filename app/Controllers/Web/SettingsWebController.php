@@ -9,7 +9,7 @@ use HAJU\Repositories\Domain\ConsultationCauseRepository;
 use HAJU\Repositories\Domain\DepartmentRepository;
 use HAJU\Repositories\Domain\SettingsRepository;
 use HAJU\Repositories\Domain\UserRepository;
-use HAJU\ValueObjects\Appointment;
+use HAJU\Enums\Appointment;
 use Flight;
 use flight\net\Request;
 use Leaf\Http\Session;

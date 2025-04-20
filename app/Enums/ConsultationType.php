@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace HAJU\ValueObjects;
+namespace HAJU\Enums;
 
 enum ConsultationType: string {
   case FirstTime = 'P';

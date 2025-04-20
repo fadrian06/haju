@@ -10,7 +10,7 @@ use HAJU\Repositories\Domain\UserRepository;
 use HAJU\Repositories\Exceptions\DuplicatedIdCardException;
 use HAJU\Repositories\Exceptions\DuplicatedNamesException;
 use HAJU\ValueObjects\Date;
-use HAJU\ValueObjects\Gender;
+use HAJU\Enums\Gender;
 use PDO;
 use PDOException;
 

@@ -5,9 +5,9 @@ declare(strict_types=1);
 use HAJU\Models\Doctor;
 use HAJU\Models\Hospitalization;
 use HAJU\Models\Patient;
-use HAJU\ValueObjects\AdmissionDepartment;
-use HAJU\ValueObjects\DepartureStatus;
+use HAJU\Enums\DepartureStatus;
 use flight\Container;
+use HAJU\Enums\AdmissionDepartment;
 use Leaf\Http\Session;
 
 /**

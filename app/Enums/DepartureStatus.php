@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace HAJU\ValueObjects;
+namespace HAJU\Enums;
 
 enum DepartureStatus: string {
   case Healing = 'Curación';

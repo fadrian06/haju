@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use HAJU\Models\Doctor;
-use HAJU\ValueObjects\Gender;
+use HAJU\Enums\Gender;
 
 assert($doctor instanceof Doctor);
 

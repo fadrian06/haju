@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use HAJU\Models\Patient;
 use HAJU\Repositories\Domain\PatientRepository;
-use HAJU\ValueObjects\DateRange;
+use HAJU\Enums\DateRange;
 use flight\Container;
 
 $lastMonth = (new DateTimeImmutable)->sub(new DateInterval('P1M'))->format('Y-m-d');

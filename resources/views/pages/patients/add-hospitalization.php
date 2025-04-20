@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
+use HAJU\Enums\AdmissionDepartment;
 use HAJU\Models\Doctor;
 use HAJU\Models\Patient;
-use HAJU\ValueObjects\AdmissionDepartment;
-use HAJU\ValueObjects\DepartureStatus;
+use HAJU\Enums\DepartureStatus;
 
 /**
  * @var Patient[] $patients

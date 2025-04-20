@@ -6,7 +6,7 @@ namespace HAJU\Models;
 
 use HAJU\Models\Contracts\Person;
 use HAJU\ValueObjects\Date;
-use HAJU\ValueObjects\Gender;
+use HAJU\Enums\Gender;
 use Generator;
 
 final class Patient extends Person {

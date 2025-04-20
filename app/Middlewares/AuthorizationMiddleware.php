@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace HAJU\Middlewares;
 
 use HAJU\Models\User;
-use HAJU\ValueObjects\Appointment;
+use HAJU\Enums\Appointment;
 use Flight;
 use flight\template\View;
 use Leaf\Http\Session;

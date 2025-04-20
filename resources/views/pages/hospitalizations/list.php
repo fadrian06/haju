@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use HAJU\Models\Hospitalization;
-use HAJU\ValueObjects\DateRange;
+use HAJU\Enums\DateRange;
 
 /**
  * @var Hospitalization[] $hospitalizations

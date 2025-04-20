@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace HAJU\Models;
 
 use HAJU\Models\Contracts\Model;
-use HAJU\ValueObjects\ConsultationType;
+use HAJU\Enums\ConsultationType;
 
 final class Consultation extends Model {
   public function __construct(

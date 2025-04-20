@@ -6,7 +6,7 @@ use HAJU\Models\ConsultationCauseCategory;
 use HAJU\Models\Department;
 use HAJU\Models\Doctor;
 use HAJU\Models\Patient;
-use HAJU\ValueObjects\ConsultationType;
+use HAJU\Enums\ConsultationType;
 
 /**
  * @var array<int, Patient> $patients

@@ -8,7 +8,7 @@ use HAJU\Controllers\Web\Controller;
 use HAJU\Models\Doctor;
 use HAJU\Repositories\Domain\DoctorRepository;
 use HAJU\ValueObjects\Date;
-use HAJU\ValueObjects\Gender;
+use HAJU\Enums\Gender;
 use Error;
 use Flight;
 use Throwable;

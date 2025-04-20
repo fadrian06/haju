@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use HAJU\Models\Consultation;
 use HAJU\Models\Department;
-use HAJU\ValueObjects\DateRange;
+use HAJU\Enums\DateRange;
 
 /**
  * @var Consultation[] $consultations

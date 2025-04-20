@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use HAJU\Models\User;
-use HAJU\ValueObjects\Gender;
-use HAJU\ValueObjects\InstructionLevel;
+use HAJU\Enums\Gender;
+use HAJU\Enums\InstructionLevel;
 
 /**
  * @var User $user

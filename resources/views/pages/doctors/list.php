@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use HAJU\Models\Doctor;
 use HAJU\Models\User;
-use HAJU\ValueObjects\Gender;
+use HAJU\Enums\Gender;
 
 $doctors = array_map(fn(Doctor $doctor) => $doctor, $doctors);
 $loggedUser = $user;

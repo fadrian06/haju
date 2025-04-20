@@ -22,7 +22,7 @@ use HAJU\Middlewares\EnsureSelectedDepartmentIsNotStatistics;
 use HAJU\Middlewares\EnsureUserIsNotAuthenticated;
 use HAJU\Middlewares\LogLoginMiddleware;
 use HAJU\Middlewares\MessagesMiddleware;
-use HAJU\ValueObjects\Appointment;
+use HAJU\Enums\Appointment;
 use flight\Container;
 use flight\template\View;
 use Leaf\Http\Session;

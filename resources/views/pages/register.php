@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use HAJU\ValueObjects\Gender;
-use HAJU\ValueObjects\InstructionLevel;
+use HAJU\Enums\Gender;
+use HAJU\Enums\InstructionLevel;
 use flight\Container;
 use Leaf\Http\Session;
 

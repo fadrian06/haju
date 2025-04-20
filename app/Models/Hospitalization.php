@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace HAJU\Models;
 
 use HAJU\Models\Contracts\Model;
-use HAJU\ValueObjects\DepartureStatus;
+use HAJU\Enums\DepartureStatus;
 use DateTimeInterface;
 
 final class Hospitalization extends Model {

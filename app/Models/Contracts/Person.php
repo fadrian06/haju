@@ -7,7 +7,7 @@ namespace HAJU\Models\Contracts;
 use HAJU\ValueObjects\Date;
 use HAJU\ValueObjects\Exceptions\InvalidDateException;
 use HAJU\ValueObjects\Exceptions\InvalidNameException;
-use HAJU\ValueObjects\Gender;
+use HAJU\Enums\Gender;
 use HAJU\ValueObjects\IdCard;
 use HAJU\ValueObjects\Name;
 
