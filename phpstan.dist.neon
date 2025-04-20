@@ -3,15 +3,17 @@ includes:
   - phpstan-baseline.neon
 
 parameters:
-  level: 0
+  level: 1
   paths:
     - app
     - tests
-    - views
-    - .env.dist.php
-    - .env.php
+    - resources/views
     - index.php
     - rector.php
   treatPhpDocTypesAsCertain: false
   strictRules:
     disallowedShortTernary: false
+  excludePaths:
+    - vendor
+    - node_modules
+    - .git

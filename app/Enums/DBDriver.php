@@ -2,16 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Enums;
+namespace HAJU\Enums;
 
-enum DBDriver: string {
-  case MySQL = 'mysql';
-  case SQLite = 'sqlite';
+enum DBDriver: string
+{
+  case MYSQL = 'mysql';
+  case SQLITE = 'sqlite';
 
-  public function getPDODsn(): string {
+  public function getDatabaseName(): string
+  {
     return match ($this) {
-      self::MySQL => "mysql:host={$_ENV['DB_HOST']}; dbname={$_ENV['DB_DATABASE']}; charset=utf8; port={$_ENV['DB_PORT']}",
-      self::SQLite => "sqlite:{$_ENV['DB_DATABASE']}"
+      self::SQLITE => DATABASE_PATH . "/{$_ENV['DB_DATABASE']}.db",
+      self::MYSQL => $_ENV['DB_DATABASE'],
     };
   }
 }

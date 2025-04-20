@@ -5,48 +5,44 @@
   "require": {
     "php": "^8.2",
     "bjeavons/zxcvbn-php": "^1.4",
-    "faslatam/alpine-js": "^3.14",
-    "flightphp/container": "^1.3",
     "flightphp/core": "^3.15",
     "giggsey/libphonenumber-for-php-lite": "^9.0",
+    "illuminate/container": "^11.44",
+    "illuminate/database": "^11.44",
+    "jenssegers/blade": "^2.0",
+    "leafs/auth": "^4.1",
+    "leafs/form": "^3.2",
+    "leafs/leaf": "^4.1",
+    "leafs/password": "^1.0",
     "leafs/session": "^4.0",
-    "phar-io/manifest": "^2.0",
-    "twbs/bootstrap": "^5.3"
+    "symfony/dotenv": "^7.2"
   },
   "autoload": {
     "psr-4": {
-      "App\\": "app",
-      "HAJU\\": ["app", "src"]
-    },
-    "files": ["app/utils.php"]
+      "HAJU\\": ["app"]
+    }
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\": "tests"
+      "HAJU\\Tests\\": "tests"
     }
   },
   "scripts": {
-    "pre-install-cmd": "composer run post-create-project-cmd",
-    "pre-update-cmd": "composer run post-create-project-cmd",
     "serve": [
       "Composer\\Config::disableProcessTimeout",
       "php -S 0.0.0.0:61001"
-    ],
-    "post-create-project-cmd": [
-      "php -r \"if (!file_exists('.env.php')) copy('.env.dist.php', '.env.php');\"",
-      "php -r \"if (!file_exists('phpcs.xml')) copy('phpcs.xml.dist', 'phpcs.xml');\"",
-      "php -r \"if (!file_exists('phpstan.neon')) copy('phpstan.dist.neon', 'phpstan.neon');\"",
-      "php -r \"if (!file_exists('phpunit.xml')) copy('phpunit.xml.dist', 'phpunit.xml');\""
     ],
     "ci": [
       "composer check-platform-reqs --no-ansi",
       "phpunit --no-progress --colors=never",
       "phpstan --no-progress --no-ansi --memory-limit=512M",
       "rector --dry-run --no-progress-bar --no-ansi",
-      "phpmd app views index.php rector.php tests text phpmd.xml"
+      "phpmd app resources/views index.php rector.php tests text phpmd.xml",
+      "phpcs --no-colors"
     ],
-    "migrate:fresh": "php app/commands/migrate-fresh.php",
-    "format": ["rector"]
+    "format": ["rector", "phpcbf"],
+    "make:migration": "php app/Console/Command/make-migration.php",
+    "migrate:fresh": "php app/Console/Command/migrate-fresh.php"
   },
   "require-dev": {
     "guzzlehttp/guzzle": "^7.9",
@@ -58,7 +54,7 @@
     "phpstan/phpstan-strict-rules": "^2.0",
     "phpunit/phpunit": "^11.5",
     "rector/rector": "^2.0",
-    "spaze/phpstan-disallowed-calls": "^4.4",
+    "spaze/phpstan-disallowed-calls": "^4.5",
     "squizlabs/php_codesniffer": "^3.12",
     "staabm/phpstan-todo-by": "^0.2.0",
     "symfony/var-dumper": "^7.2"

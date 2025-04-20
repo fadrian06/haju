@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace App\Repositories\Domain;
 
-use App\Models\Department;
+use App\OldModels\Department;
 use App\Repositories\Exceptions\DuplicatedNamesException;
 
-/** @extends Repository<Department> */
+/**
+ * @extends Repository<Department>
+ */
 interface DepartmentRepository extends Repository {
-  /** @throws DuplicatedNamesException */
+  /**
+   * @throws DuplicatedNamesException
+   */
   public function save(Department $department): void;
 
   public function mapper(

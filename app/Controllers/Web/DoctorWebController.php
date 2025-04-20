@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controllers\Web;
 
 use App\Controllers\Web\Controller;
-use App\Models\Doctor;
+use App\OldModels\Doctor;
 use App\Repositories\Domain\DoctorRepository;
 use App\ValueObjects\Date;
 use App\ValueObjects\Gender;
@@ -14,9 +14,7 @@ use Flight;
 use Throwable;
 
 final readonly class DoctorWebController extends Controller {
-  public function __construct(
-    private readonly DoctorRepository $doctorRepository,
-  ) {
+  public function __construct(private DoctorRepository $doctorRepository) {
     parent::__construct();
   }
 

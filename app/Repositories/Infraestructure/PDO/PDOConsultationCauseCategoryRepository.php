@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Repositories\Infraestructure\PDO;
 
-use App\Models\ConsultationCauseCategory;
+use App\OldModels\ConsultationCauseCategory;
 use App\Repositories\Domain\ConsultationCauseCategoryRepository;
 use PDO;
 
 final class PDOConsultationCauseCategoryRepository
 extends PDORepository implements ConsultationCauseCategoryRepository {
-  private const FIELDS = <<<sql
+  private const FIELDS = <<<'sql'
   id, short_name as shortName, extended_name as extendedName,
   top_category_id as parentCategoryId
   sql;
@@ -21,7 +21,11 @@ extends PDORepository implements ConsultationCauseCategoryRepository {
 
   public function getAll(): array {
     return $this->ensureIsConnected()
-      ->query(sprintf('SELECT %s FROM %s WHERE id != 1', self::FIELDS, self::getTable()))
+      ->query(sprintf(
+        'SELECT %s FROM %s WHERE id != 1',
+        self::FIELDS,
+        self::getTable()
+      ))
       ->fetchAll(PDO::FETCH_FUNC, $this->mapper(...));
   }
 

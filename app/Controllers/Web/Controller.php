@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers\Web;
 
-use App\Models\User;
+use App\OldModels\User;
 use Error;
 use Flight;
 use flight\util\Collection;
@@ -21,7 +21,7 @@ abstract readonly class Controller {
   }
 
   final protected static function setError(Throwable|string $error): void {
-    ini_set('error_log', __DIR__ . '/../../logs/error.log');
+    ini_set('error_log', LOGS_PATH . '/errors.log');
 
     if ($error instanceof Throwable) {
       error_log($error->__toString());
@@ -30,11 +30,11 @@ abstract readonly class Controller {
       $error = $error->getMessage();
     }
 
-    Session::set('error', $error);
+    Session::set('error', mb_trim($error));
   }
 
   final protected static function setMessage(string $message): void {
-    Session::set('message', $message);
+    Session::set('message', mb_trim($message));
   }
 
   /**
@@ -57,7 +57,10 @@ abstract readonly class Controller {
 
       $filePath = [
         'rel' => "assets/img/{$destinationFolder}/{$fileName}",
-        'abs' => dirname(__DIR__, 3) . "/assets/img/{$destinationFolder}/{$fileName}",
+        'abs' => (
+          dirname(__DIR__, 3)
+          . "/assets/img/{$destinationFolder}/{$fileName}"
+        ),
       ];
 
       file_put_contents($filePath['abs'], $image);
@@ -73,7 +76,10 @@ abstract readonly class Controller {
 
     $filePath = [
       'rel' => "assets/img/{$destinationFolder}/{$fileName}",
-      'abs' => dirname(__DIR__, 3) . "/assets/img/{$destinationFolder}/{$fileName}",
+      'abs' => (
+        dirname(__DIR__, 3)
+        . "/assets/img/{$destinationFolder}/{$fileName}"
+      ),
     ];
 
     copy($temporalFileAbsPath, $filePath['abs']);

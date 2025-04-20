@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use flight\Container;
 use flight\template\View;
+use Illuminate\Container\Container;
 
 function renderPage(
   string $page,

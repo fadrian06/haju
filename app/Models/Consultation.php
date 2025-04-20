@@ -2,35 +2,30 @@
 
 declare(strict_types=1);
 
-namespace App\Models;
+namespace HAJU\Models;
 
-use App\Models\Contracts\Model;
-use App\ValueObjects\ConsultationType;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-final class Consultation extends Model {
-  public function __construct(
-    public readonly ConsultationType $type,
-    public readonly ConsultationCause $cause,
-    public readonly Department $department,
-    public readonly Doctor $doctor,
-    public readonly Patient $patient,
-  ) {
-  }
-
-  public function isFirstTime(): bool {
-    return $this->type === ConsultationType::FirstTime;
-  }
-
-  public function jsonSerialize(): array
+final class Consultation extends Model
+{
+  public function patient(): BelongsTo
   {
-    return parent::jsonSerialize() + [
-      'type' => [
-        'letter' => $this->type->value,
-        'description' => $this->type->getDescription(),
-      ],
-      'cause' => $this->cause,
-      'doctor' => $this->doctor,
-      'patient' => $this->patient,
-    ];
+    return $this->belongsTo(Patient::class);
+  }
+
+  public function cause(): BelongsTo
+  {
+    return $this->belongsTo(ConsultationCause::class);
+  }
+
+  public function department(): BelongsTo
+  {
+    return $this->belongsTo(Department::class);
+  }
+
+  public function doctor(): BelongsTo
+  {
+    return $this->belongsTo(Doctor::class);
   }
 }

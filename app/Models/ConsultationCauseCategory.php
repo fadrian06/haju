@@ -2,46 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\Models;
+namespace HAJU\Models;
 
-use App\Models\Contracts\Model;
-use App\ValueObjects\LongName;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-final class ConsultationCauseCategory extends Model {
-  private LongName $shortName;
-  private ?LongName $extendedName;
-
-  public function __construct(
-    string $shortName,
-    ?string $extendedName = null,
-    public readonly ?self $parentCategory = null
-  ) {
-    $this->setName($shortName, $extendedName);
+final class ConsultationCauseCategory extends Model
+{
+  public function causes(): HasMany
+  {
+    return $this->hasMany(ConsultationCause::class);
   }
 
-  public function setName(string $short, ?string $extended = null): self {
-    $this->shortName = new LongName($short, 'Nombre corto');
-
-    $this->extendedName = $extended !== null
-      ? new LongName($extended, 'Nombre extendido')
-      : null;
-
-    return $this;
-  }
-
-  public function __get(string $property): null|int|string {
-    return match ($property) {
-      'shortName' => $this->shortName->__toString(),
-      'extendedName' => $this->extendedName?->__toString(),
-      default => parent::__get($property)
-    };
-  }
-
-  public function jsonSerialize(): array {
-    return parent::jsonSerialize() + [
-      'shortName' => $this->shortName->__toString(),
-      'extendedName' => $this->extendedName?->__toString(),
-      'parentCategory' => $this->parentCategory,
-    ];
+  public function parentCategory(): BelongsTo
+  {
+    return $this->belongsTo(self::class);
   }
 }

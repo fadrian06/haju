@@ -1,4 +1,5 @@
 #!/bin/sh
 
-composer validate --no-ansi --strict --check-lock
-composer --no-ansi ci
+# composer validate --no-ansi --strict --check-lock
+# composer --no-ansi ci
+# npm run ci

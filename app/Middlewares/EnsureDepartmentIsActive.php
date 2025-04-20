@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Middlewares;
 
-use App\Models\Department;
+use App\OldModels\Department;
 use Flight;
 use flight\template\View;
 use Leaf\Http\Session;
@@ -20,7 +20,11 @@ final readonly class EnsureDepartmentIsActive {
       return true;
     }
 
-    $this->session->set('error', "El departamento de {$department->name} ha sido desactivado");
+    $this->session->set(
+      'error',
+      "El departamento de {$department->name} ha sido desactivado"
+    );
+
     Flight::redirect('/salir');
 
     return null;

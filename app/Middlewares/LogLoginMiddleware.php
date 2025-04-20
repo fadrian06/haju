@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Middlewares;
 
-use App\Models\User;
+use App\OldModels\User;
 use flight\template\View;
 
 final readonly class LogLoginMiddleware {
@@ -21,11 +21,14 @@ final readonly class LogLoginMiddleware {
     assert($loggedUser instanceof User);
 
     if ($loggedUser) {
-      file_put_contents(
-        self::LOG_FILE_PATH,
-        "El usuario {$loggedUser->getFullName()} se ha autenticado el " . date('d/m/Y H:i:s' . PHP_EOL . ';'),
-        FILE_APPEND
+      $data = (
+        "El usuario {$loggedUser->getFullName()} se ha autenticado el "
+        . date('d/m/Y H:i:s')
+        . PHP_EOL
+        . ';'
       );
+
+      file_put_contents(self::LOG_FILE_PATH, $data, FILE_APPEND);
     }
   }
 }

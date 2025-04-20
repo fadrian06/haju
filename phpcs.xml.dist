@@ -6,206 +6,32 @@
   <arg name="tab-width" value="2" />
   <file>app</file>
   <file>tests</file>
-  <file>views</file>
-
-  <rule ref="Generic">
-    <exclude name="Generic.PHP.ClosingPHPTag.NotFound" />
-    <exclude name="Generic.Files.EndFileNoNewline.Found" />
-    <exclude name="Generic.PHP.UpperCaseConstant.Found" />
-    <exclude name="Generic.Functions.OpeningFunctionBraceBsdAllman.BraceOnSameLine" />
-    <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
-    <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
-    <exclude name="Generic.Commenting.DocComment.MissingShort" />
-    <exclude name="Generic.Files.LowercasedFilename.NotFound" />
-    <exclude name="Generic.NamingConventions.AbstractClassNamePrefix.Missing" />
-    <exclude name="Generic.Commenting.DocComment.ContentAfterOpen" />
-    <exclude name="Generic.Commenting.DocComment.ContentBeforeClose" />
-    <exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" />
-    <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSame" />
-    <exclude name="Generic.Formatting.NoSpaceAfterCast.SpaceFound" />
-    <exclude name="Generic.Formatting.SpaceBeforeCast.NoSpace" />
-  </rule>
-
-  <rule ref="MySource">
-    <exclude name="MySource.Channels.IncludeSystem.NotIncludedCall" />
-    <exclude name="MySource.Channels.IncludeSystem.NotIncludedExtends" />
-    <exclude name="MySource.Commenting.FunctionComment.Missing" />
-    <exclude name="MySource.Commenting.FunctionComment.MissingParamTag" />
-    <exclude name="MySource.PHP.ReturnFunctionValue.NotAssigned" />
-    <exclude name="MySource.Commenting.FunctionComment.EmptyThrows" />
-    <exclude name="MySource.Commenting.FunctionComment.MissingReturn" />
-  </rule>
-
-  <rule ref="PEAR">
-    <exclude name="PEAR.Commenting.FileComment.Missing" />
-    <exclude name="PEAR.Commenting.FunctionComment.Missing" />
-    <exclude name="PEAR.Functions.FunctionDeclaration.BraceOnSameLine" />
-    <exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket" />
-    <exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
-    <exclude name="PEAR.Commenting.FunctionComment.MissingParamTag" />
-    <exclude name="PEAR.Commenting.ClassComment.MissingCategoryTag" />
-    <exclude name="PEAR.Commenting.ClassComment.MissingPackageTag" />
-    <exclude name="PEAR.Commenting.ClassComment.MissingAuthorTag" />
-    <exclude name="PEAR.Commenting.ClassComment.MissingLicenseTag" />
-    <exclude name="PEAR.Commenting.ClassComment.MissingLinkTag" />
-    <exclude name="PEAR.Classes.ClassDeclaration.OpenBraceNewLine" />
-    <exclude name="PEAR.NamingConventions.ValidVariableName.PrivateNoUnderscore" />
-    <exclude name="PEAR.Commenting.ClassComment.Missing" />
-    <exclude name="PEAR.Commenting.FunctionComment.MissingReturn" />
-    <exclude name="PEAR.WhiteSpace.ScopeIndent.IncorrectExact" />
-  </rule>
+  <file>resources/views</file>
+  <file>index.php</file>
+  <file>rector.php</file>
+  <exclude-pattern>vendor</exclude-pattern>
+  <exclude-pattern>node_modules</exclude-pattern>
+  <exclude-pattern>.idea</exclude-pattern>
+  <exclude-pattern>.git</exclude-pattern>
 
   <rule ref="PSR1" />
+  <rule ref="PSR2" />
 
-  <rule ref="PSR12">
-    <exclude name="PSR12.Classes.AnonClassDeclaration.SpaceAfterKeyword" />
-  </rule>
-
-  <rule ref="PSR2">
-    <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine" />
-  </rule>
-
-  <rule ref="Squiz">
-    <exclude name="Squiz.Commenting.FileComment.Missing" />
-    <exclude name="Squiz.Commenting.FunctionComment.Missing" />
-    <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.BraceOnSameLine" />
-    <exclude name="Squiz.Commenting.ClosingDeclarationComment.Missing" />
-    <exclude name="Squiz.WhiteSpace.FunctionClosingBraceSpace.SpacingBeforeClose" />
-    <exclude name="Squiz.Operators.ComparisonOperatorUsage.ImplicitTrue" />
-    <exclude name="Squiz.Arrays.ArrayDeclaration.SingleLineNotAllowed" />
-    <exclude name="Squiz.Objects.ObjectInstantiation.NotAssigned" />
-    <exclude name="Squiz.PHP.DisallowComparisonAssignment.AssignedComparison" />
-    <exclude name="Squiz.Commenting.FunctionComment.MissingParamTag" />
-    <exclude name="Squiz.Arrays.ArrayDeclaration.DoubleArrowNotAligned" />
-    <exclude name="Squiz.ControlStructures.InlineIfDeclaration.NotSingleLine" />
-    <exclude name="Squiz.PHP.DisallowInlineIf.Found" />
-    <exclude name="Squiz.Commenting.VariableComment.Missing" />
-    <exclude name="Squiz.Operators.ComparisonOperatorUsage.NotAllowed" />
-    <exclude name="Squiz.Commenting.LongConditionClosingComment.Missing" />
-    <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.Indent" />
-    <exclude name="Squiz.Strings.DoubleQuoteUsage.ContainsVar" />
-    <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.UseOneParamPerLine" />
-    <exclude name="Squiz.PHP.EmbeddedPhp.ShortOpenEchoNoSemicolon" />
-    <exclude name="Squiz.PHP.DisallowBooleanStatement.Found" />
-    <exclude name="Squiz.Files.FileExtension.ClassFound" />
-    <exclude name="Squiz.Commenting.ClassComment.TagNotAllowed" />
-    <exclude name="Squiz.Classes.ClassDeclaration.OpenBraceNewLine" />
-    <exclude name="Squiz.Commenting.FunctionComment.EmptyThrows" />
-    <exclude name="Squiz.Commenting.ClassComment.Missing" />
-    <exclude name="Squiz.Commenting.FunctionComment.MissingReturn" />
-    <exclude name="Squiz.Formatting.OperatorBracket.MissingBrackets" />
-  </rule>
-
-  <rule ref="Zend">
-    <exclude name="Zend.NamingConventions.ValidVariableName.PrivateNoUnderscore" />
-  </rule>
-
-  <rule ref="Squiz.Strings.ConcatenationSpacing">
+  <rule ref="Generic.WhiteSpace.ScopeIndent">
     <properties>
-      <property name="spacing" value="1" />
+      <property name="indent" value="2" />
     </properties>
   </rule>
 
-  <rule ref="PEAR.Functions.FunctionCallSignature">
+  <rule ref="Squiz.Functions.MultiLineFunctionDeclaration">
     <properties>
-      <property name="allowMultipleArguments" value="true" />
       <property name="indent" value="2" />
     </properties>
   </rule>
 
   <rule ref="PSR2.Methods.FunctionCallSignature">
     <properties>
-      <property name="allowMultipleArguments" value="false" />
       <property name="indent" value="2" />
     </properties>
-  </rule>
-
-  <rule ref="Generic.WhiteSpace.ScopeIndent">
-    <properties>
-      <property name="exact" value="true" />
-      <property name="indent" value="2" />
-    </properties>
-  </rule>
-
-  <rule ref="PEAR.WhiteSpace.ScopeIndent">
-    <properties>
-      <property name="exact" value="true" />
-      <property name="indent" value="2" />
-    </properties>
-  </rule>
-
-  <rule ref="Squiz.WhiteSpace.FunctionSpacing">
-    <properties>
-      <property name="spacing" value="1" />
-      <property name="spacingAfterLast" value="0" />
-      <property name="spacingBeforeFirst" value="0" />
-    </properties>
-  </rule>
-
-  <rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing">
-    <properties>
-      <property name="ignoreNewlines" value="true" />
-    </properties>
-  </rule>
-
-  <rule ref="Generic.Arrays.ArrayIndent">
-    <properties>
-      <property name="indent" value="2" />
-    </properties>
-  </rule>
-
-  <rule ref="Squiz.WhiteSpace.OperatorSpacing">
-    <properties>
-      <property name="ignoreNewlines" value="true" />
-    </properties>
-  </rule>
-
-  <rule ref="Squiz.WhiteSpace.MemberVarSpacing">
-    <properties>
-      <property name="spacing" value="0" />
-      <property name="spacingBeforeFirst" value="0" />
-    </properties>
-  </rule>
-
-  <rule ref="PEAR.WhiteSpace.ObjectOperatorIndent">
-    <properties>
-      <property name="indent" value="2" />
-    </properties>
-  </rule>
-
-  <rule ref="Generic.Formatting.SpaceAfterNot">
-    <properties>
-      <property name="spacing" value="0" />
-    </properties>
-  </rule>
-
-  <rule ref="PEAR.Functions.FunctionDeclaration">
-    <properties>
-      <property name="indent" value="2" />
-    </properties>
-  </rule>
-
-  <rule ref="Generic.Files.InlineHTML.Found">
-    <exclude-pattern>views</exclude-pattern>
-  </rule>
-
-  <rule ref="Squiz.Commenting.BlockComment.WrongStart">
-    <exclude-pattern>views</exclude-pattern>
-  </rule>
-
-  <rule ref="Squiz.Commenting.InlineComment.DocBlock">
-    <exclude-pattern>views</exclude-pattern>
-  </rule>
-
-  <rule ref="Generic.WhiteSpace.ScopeIndent.IncorrectExact">
-    <exclude-pattern>views</exclude-pattern>
-  </rule>
-
-  <rule ref="PEAR.WhiteSpace.ScopeIndent.IncorrectExact">
-    <exclude-pattern>views</exclude-pattern>
-  </rule>
-
-  <rule ref="Squiz.PHP.DisallowComparisonAssignment.AssignedBool">
-    <exclude-pattern>views</exclude-pattern>
   </rule>
 </ruleset>

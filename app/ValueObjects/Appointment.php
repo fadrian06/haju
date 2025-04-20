@@ -30,7 +30,11 @@ enum Appointment: string {
   }
 
   public function getParsed(Gender $gender): string {
-    $step1 = str_replace($gender === Gender::Male ? '/a' : '/', '', $this->value);
+    $step1 = str_replace(
+      $gender === Gender::Male ? '/a' : '/',
+      '',
+      $this->value
+    );
 
     return str_replace('oa', 'a', $step1);
   }
@@ -43,9 +47,14 @@ enum Appointment: string {
     return $this->getLevel() <= $appointment->getLevel();
   }
 
-  /** @return array<int, self> */
+  /**
+   * @return self[]
+   */
   public static function getLowersThan(self $role): array {
-    return array_filter(self::cases(), fn(self $case): bool => $case->getLevel() < $role->getLevel());
+    return array_filter(
+      self::cases(),
+      fn(self $case): bool => $case->getLevel() < $role->getLevel()
+    );
   }
 
   public function getLevel(): int {

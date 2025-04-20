@@ -14,7 +14,9 @@ use Stringable;
 final readonly class Phone implements Stringable {
   private PhoneNumber $phoneNumber;
 
-  /** @throws InvalidPhoneException */
+  /**
+   * @throws InvalidPhoneException
+   */
   public function __construct(string $phone) {
     if (strlen($phone) < 11) {
       throw new InvalidPhoneException('Teléfono inválido');

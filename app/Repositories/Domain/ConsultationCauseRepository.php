@@ -4,15 +4,21 @@ declare(strict_types=1);
 
 namespace App\Repositories\Domain;
 
-use App\Models\ConsultationCause;
-use App\Models\ConsultationCauseCategory;
+use App\OldModels\ConsultationCause;
+use App\OldModels\ConsultationCauseCategory;
 use Generator;
 
-/** @implements Repository<ConsultationCause> */
+/**
+ * @implements Repository<ConsultationCause>
+ */
 interface ConsultationCauseRepository extends Repository {
-  /** @return Generator<int, ConsultationCause> */
+  /**
+   * @return Generator<int, ConsultationCause>
+   */
   public function getAllWithGenerator(): Generator;
 
-  /** @return array<int, ConsultationCause> */
+  /**
+   * @return ConsultationCause[]
+   */
   public function getAllByCategory(ConsultationCauseCategory $category): array;
 }

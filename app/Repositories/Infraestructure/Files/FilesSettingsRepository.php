@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace App\Repositories\Infraestructure\Files;
 
 use App\Enums\DBDriver;
-use App\Models\Hospital;
+use App\OldModels\Hospital;
 use App\Repositories\Domain\SettingsRepository;
 use PDO;
-use PDOException;
 
 final readonly class FilesSettingsRepository implements SettingsRepository {
   public function __construct(private PDO $pdo) {
@@ -31,8 +30,15 @@ final readonly class FilesSettingsRepository implements SettingsRepository {
 
   public function backupExists(): bool {
     return match ($_ENV['DB_CONNECTION']) {
-      DBDriver::SQLite => file_exists(str_replace('.db', '.backup.db', $_ENV['DB_DATABASE'])),
-      DBDriver::MySQL => file_exists(__DIR__ . '/../../../database/backup.mysql.sql'),
+      DBDriver::SQLite => file_exists(str_replace(
+        '.db',
+        '.backup.db',
+        $_ENV['DB_DATABASE']
+      )),
+      DBDriver::MySQL => file_exists((
+        __DIR__
+        . '/../../../database/backup.mysql.sql'
+      )),
       default => false,
     };
   }
@@ -40,7 +46,11 @@ final readonly class FilesSettingsRepository implements SettingsRepository {
   public function backup(): string {
     switch ($_ENV['DB_CONNECTION']) {
       case DBDriver::SQLite:
-        copy($_ENV['DB_DATABASE'], str_replace('.db', '.backup.db', $_ENV['DB_DATABASE']));
+        copy($_ENV['DB_DATABASE'], str_replace(
+          '.db',
+          '.backup.db',
+          $_ENV['DB_DATABASE']
+        ));
         $script = $this->generateSqliteScript();
         $backupPath = str_replace('.db', '.backup.sql', $_ENV['DB_DATABASE']);
 
@@ -93,11 +103,17 @@ final readonly class FilesSettingsRepository implements SettingsRepository {
       'region' => $hospital->region
     ];
 
-    file_put_contents(__DIR__ . '/hospital.json', json_encode($data, JSON_PRETTY_PRINT));
+    file_put_contents(
+      __DIR__ . '/hospital.json',
+      json_encode($data, JSON_PRETTY_PRINT)
+    );
   }
 
   private function generateSqliteScript(): string {
-    $tablesQuery = $this->pdo->query("SELECT name FROM sqlite_master WHERE type='table'");
+    $tablesQuery = $this
+      ->pdo
+      ->query("SELECT name FROM sqlite_master WHERE type='table'");
+
     $tables = $tablesQuery->fetchAll(PDO::FETCH_COLUMN);
     $sqlScript = '';
 
@@ -106,13 +122,25 @@ final readonly class FilesSettingsRepository implements SettingsRepository {
         continue;
       }
 
-      $createTableQuery = $this->pdo->query("SELECT sql FROM sqlite_master WHERE type='table' AND name='{$table}'");
+      $createTableQuery = $this->pdo->query("
+        SELECT sql
+        FROM sqlite_master
+        WHERE type='table' AND name='{$table}'
+      ");
+
       $createTableSql = $createTableQuery->fetch(PDO::FETCH_COLUMN);
-      $createTableSql = str_replace('CREATE TABLE', 'CREATE TABLE IF NOT EXISTS', $createTableSql);
+
+      $createTableSql = str_replace(
+        'CREATE TABLE',
+        'CREATE TABLE IF NOT EXISTS',
+        $createTableSql
+      );
+
       $sqlScript .= $createTableSql . ";\n\n";
       $rowsQuery = $this->pdo->query("SELECT * FROM {$table}");
       $rows = $rowsQuery->fetchAll(PDO::FETCH_ASSOC);
       $allValues = [];
+      $columnsList = '';
 
       foreach ($rows as $row) {
         $columns = array_keys($row);
@@ -140,7 +168,10 @@ final readonly class FilesSettingsRepository implements SettingsRepository {
       }
 
       if ($allValues !== []) {
-        $sqlScript .= "INSERT INTO `{$table}` ({$columnsList}) VALUES " . implode(', ', $allValues) . ";\n";
+        $sqlScript .= "
+          INSERT INTO `{$table}` ({$columnsList})
+          VALUES " . implode(', ', $allValues) . ";\n
+        ";
       }
 
       $sqlScript .= "\n";

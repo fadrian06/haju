@@ -17,7 +17,9 @@ enum ConsultationType: string {
     };
   }
 
-  /** @return array<int, static> */
+  /**
+   * @return static[]
+   */
   public static function getCases(): array {
     return [self::Succesive, self::Associated];
   }

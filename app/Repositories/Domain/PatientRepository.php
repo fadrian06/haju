@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Repositories\Domain;
 
-use App\Models\Patient;
+use App\OldModels\Patient;
 use App\Repositories\Exceptions\DuplicatedIdCardException;
 use App\Repositories\Exceptions\DuplicatedNamesException;
 
-/** @extends Repository<Patient> */
+/**
+ * @extends Repository<Patient>
+ */
 interface PatientRepository extends Repository {
   public function getByIdCard(int $id): ?Patient;
   public function getByHospitalizationId(int $id): ?Patient;

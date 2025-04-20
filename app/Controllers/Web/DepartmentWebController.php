@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers\Web;
 
-use App\Models\Department;
+use App\OldModels\Department;
 use App\Repositories\Domain\DepartmentRepository;
 use Flight;
 use flight\template\View;
@@ -37,12 +37,20 @@ final readonly class DepartmentWebController extends Controller {
     $department = $this->departmentRepository->getById($id);
     $department->toggleStatus();
 
-    $redirectUrl = $department->isInactive() && $department->isEqualTo($selectedDepartment)
+    $redirectUrl = (
+      $department->isInactive()
+      && $department->isEqualTo($selectedDepartment)
+    )
       ? '/departamento/seleccionar'
       : '/departamentos';
 
     $this->departmentRepository->save($department);
-    self::setMessage("Departamento de {$department->name} {$department->getActiveStatusText()} exitósamente");
+
+    self::setMessage("
+      Departamento de {$department->name} {$department->getActiveStatusText()}
+       exitósamente
+    ");
+
     Flight::redirect($redirectUrl);
   }
 

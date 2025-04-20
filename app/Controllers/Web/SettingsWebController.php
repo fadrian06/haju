@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers\Web;
 
-use App\Models\User;
+use App\OldModels\User;
 use App\Repositories\Domain\ConsultationCauseRepository;
 use App\Repositories\Domain\DepartmentRepository;
 use App\Repositories\Domain\SettingsRepository;
@@ -84,7 +84,8 @@ final readonly class SettingsWebController extends Controller {
 
   public function handleCreateBackup(): void {
     $scriptPath = $this->ensureUserIsAuthorized()->settingsRepository->backup();
-    $dataUrl = 'data:text/plain;base64,' . base64_encode(file_get_contents($scriptPath));
+    $scriptPathEncoded = base64_encode(file_get_contents($scriptPath));
+    $dataUrl = "data:text/plain;base64,{$scriptPathEncoded}";
 
     self::setMessage('Base de datos respaldada exitósamente');
     Session::set('scriptPath', $dataUrl);
@@ -93,7 +94,11 @@ final readonly class SettingsWebController extends Controller {
 
   public function loadBackupFile(): void {
     $script = file_get_contents(Flight::request()->files->script['tmp_name']);
-    $this->ensureUserIsAuthorized()->settingsRepository->restoreFromScript($script);
+
+    $this
+      ->ensureUserIsAuthorized()
+      ->settingsRepository->restoreFromScript($script);
+
     self::setMessage('Base de datos restaurada exitósamente');
     Flight::redirect('/salir');
   }
@@ -135,7 +140,7 @@ final readonly class SettingsWebController extends Controller {
 
   public function handleConsultationCausesUpdate(): void {
     $limitOf = array_map(
-      static fn(string $limit): int => (int) $limit,
+      'intval',
       array_filter($this->request->data->limit_of ?? [], 'boolval')
     );
 
@@ -160,7 +165,7 @@ final readonly class SettingsWebController extends Controller {
   }
 
   public function showLogs(): void {
-    $logsPath = __DIR__ . '/../../logs/authentications.log';
+    $logsPath = LOGS_PATH . '/authentications.log';
     $logs = [];
 
     if (file_exists($logsPath)) {
@@ -174,7 +179,7 @@ final readonly class SettingsWebController extends Controller {
   }
 
   public function cleanLogs(): void {
-    $logsPath = __DIR__ . '/../../logs/authentications.log';
+    $logsPath = LOGS_PATH . '/authentications.log';
     file_put_contents($logsPath, '');
     Flight::redirect('/logs');
   }
