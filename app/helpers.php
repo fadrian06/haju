@@ -11,7 +11,7 @@ const CONFIGURATIONS_PATH = ROOT_PATH . '/config';
 const LOGS_PATH = ROOT_PATH . '/storage/logs';
 const ROUTES_PATH = ROOT_PATH . '/routes';
 const DATABASE_PATH = ROOT_PATH . '/database';
-const VIEWS_PATH = ROOT_PATH . '/views';
+const VIEWS_PATH = ROOT_PATH . '/resources/views';
 
 function renderPage(
   string $page,
