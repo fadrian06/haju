@@ -4,18 +4,21 @@ declare(strict_types=1);
 
 namespace HAJU\Enums;
 
-enum DBDriver: string {
+enum DBDriver: string
+{
   case MySQL = 'mysql';
   case SQLite = 'sqlite';
 
-  public function getPDODsn(): string {
+  public function getPDODsn(): string
+  {
     return match ($this) {
       self::MySQL => "mysql:host={$_ENV['DB_HOST']}; dbname={$_ENV['DB_DATABASE']}; charset=utf8; port={$_ENV['DB_PORT']}",
       self::SQLite => "sqlite:{$_ENV['DB_DATABASE']}"
     };
   }
 
-  public function getInitDbFile(): string {
+  public function getInitDbFile(): string
+  {
     $initDbFilePath = DATABASE_PATH . "/init.{$this->value}.sql";
 
     return file_get_contents($initDbFilePath);

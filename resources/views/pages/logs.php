@@ -7,10 +7,10 @@
 ?>
 
 <ul class="list-group mb-4">
-  <?php foreach ($logs as $log): ?>
+  <?php foreach ($logs as $log) : ?>
     <li class="list-group-item"><?= $log ?></li>
   <?php endforeach ?>
-  <?php if (!$logs): ?>
+  <?php if (!$logs) : ?>
     <li class="list-group-item">No hay logs</li>
   <?php endif ?>
 </ul>

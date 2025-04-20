@@ -15,7 +15,8 @@ use flight\net\Request;
 use Leaf\Http\Session;
 use PDO;
 
-final readonly class SettingsWebController extends Controller {
+final readonly class SettingsWebController extends Controller
+{
   public function __construct(
     private UserRepository $userRepository,
     private DepartmentRepository $departmentRepository,
@@ -27,7 +28,8 @@ final readonly class SettingsWebController extends Controller {
     parent::__construct();
   }
 
-  public function showPermissions(): void {
+  public function showPermissions(): void
+  {
     $departments = $this->departmentRepository->getAll();
     $users = $this->userRepository->getAll($this->loggedUser);
 
@@ -46,7 +48,8 @@ final readonly class SettingsWebController extends Controller {
     );
   }
 
-  public function handlePermissionAssignment(int $id): void {
+  public function handlePermissionAssignment(int $id): void
+  {
     $userRequested = $this->userRepository->getById($id);
     $userRequested->assignDepartments();
 
@@ -65,7 +68,8 @@ final readonly class SettingsWebController extends Controller {
     Flight::redirect('/configuracion/permisos');
   }
 
-  public function showBackups(): void {
+  public function showBackups(): void
+  {
     $this->ensureUserIsAuthorized();
 
     renderPage(
@@ -76,13 +80,15 @@ final readonly class SettingsWebController extends Controller {
     );
   }
 
-  public function showInstitutionConfigs(): void {
+  public function showInstitutionConfigs(): void
+  {
     renderPage('settings/institution', 'Institución', [
       'hospital' => $this->settingsRepository->getHospital()
     ], 'main');
   }
 
-  public function handleCreateBackup(): void {
+  public function handleCreateBackup(): void
+  {
     $scriptPath = $this->ensureUserIsAuthorized()->settingsRepository->backup();
     $dataUrl = 'data:text/plain;base64,' . base64_encode(file_get_contents($scriptPath));
 
@@ -91,20 +97,23 @@ final readonly class SettingsWebController extends Controller {
     Flight::redirect('/configuracion/respaldo-restauracion');
   }
 
-  public function loadBackupFile(): void {
+  public function loadBackupFile(): void
+  {
     $script = file_get_contents(Flight::request()->files->script['tmp_name']);
     $this->ensureUserIsAuthorized()->settingsRepository->restoreFromScript($script);
     self::setMessage('Base de datos restaurada exitósamente');
     Flight::redirect('/salir');
   }
 
-  public function handleRestoreBackup(): void {
+  public function handleRestoreBackup(): void
+  {
     $this->ensureUserIsAuthorized()->settingsRepository->restore();
     self::setMessage('Base de datos restaurada exitósamente');
     Flight::redirect('/salir');
   }
 
-  public function handleInstitutionUpdate(): void {
+  public function handleInstitutionUpdate(): void
+  {
     $hospital = $this->settingsRepository->getHospital();
 
     $hospital->setAsic($this->data['asic'])
@@ -122,7 +131,8 @@ final readonly class SettingsWebController extends Controller {
     Flight::redirect('/configuracion/institucion');
   }
 
-  public function showConsultationCausesConfigs(): void {
+  public function showConsultationCausesConfigs(): void
+  {
     $consultationCauses = $this->consultationCauseRepository->getAll();
 
     renderPage(
@@ -133,7 +143,8 @@ final readonly class SettingsWebController extends Controller {
     );
   }
 
-  public function handleConsultationCausesUpdate(): void {
+  public function handleConsultationCausesUpdate(): void
+  {
     $limitOf = array_map(
       static fn(string $limit): int => (int) $limit,
       array_filter($this->request->data->limit_of ?? [], 'boolval')
@@ -159,7 +170,8 @@ final readonly class SettingsWebController extends Controller {
     Flight::redirect(Flight::request()->referrer);
   }
 
-  public function showLogs(): void {
+  public function showLogs(): void
+  {
     $logsPath = LOGS_PATH . '/authentications.log';
     $logs = [];
 
@@ -173,17 +185,16 @@ final readonly class SettingsWebController extends Controller {
     renderPage('logs', 'Logs de usuarios', compact('logs'), 'main');
   }
 
-  public function cleanLogs(): void {
+  public function cleanLogs(): void
+  {
     $logsPath = LOGS_PATH . '/authentications.log';
     file_put_contents($logsPath, '');
     Flight::redirect('/logs');
   }
 
-  private function ensureUserIsAuthorized(): static {
-    if (
-      !$this->loggedUser->appointment->isHigherThan(Appointment::Coordinator)
-      || !$this->loggedUser->hasDepartment('Estadística')
-    ) {
+  private function ensureUserIsAuthorized(): static
+  {
+    if (!$this->loggedUser->appointment->isHigherThan(Appointment::Coordinator) || !$this->loggedUser->hasDepartment('Estadística')) {
       Flight::redirect('/');
     }
 

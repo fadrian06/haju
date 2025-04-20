@@ -8,14 +8,16 @@ use HAJU\Repositories\Domain\DepartmentRepository;
 use Flight;
 use Leaf\Http\Session;
 
-final readonly class EnsureSelectedDepartmentIsNotStatistics {
+final readonly class EnsureSelectedDepartmentIsNotStatistics
+{
   public function __construct(
     private DepartmentRepository $departmentRepository,
     private Session $session,
   ) {
   }
 
-  public function before(): ?true {
+  public function before(): ?true
+  {
     $departmentId = $this->session->get('departmentId');
     $selectedDepartment = $this->departmentRepository->getById($departmentId);
 

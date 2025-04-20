@@ -10,7 +10,8 @@ use Flight;
 use Leaf\Http\Session;
 use ZxcvbnPhp\Zxcvbn;
 
-final readonly class SessionWebController extends Controller {
+final readonly class SessionWebController extends Controller
+{
   private const INSECURE_PASSWORD_STRENGTH_LEVEL = 2;
 
   public function __construct(
@@ -20,7 +21,8 @@ final readonly class SessionWebController extends Controller {
     parent::__construct();
   }
 
-  public function logOut(): void {
+  public function logOut(): void
+  {
     static $excludedKeys = ['error', 'message'];
 
     foreach (array_keys(Session::all()) as $key) {
@@ -34,11 +36,13 @@ final readonly class SessionWebController extends Controller {
     Flight::redirect('/ingresar');
   }
 
-  public function showLogin(): void {
+  public function showLogin(): void
+  {
     renderPage('login', 'Ingreso (1/2)');
   }
 
-  public function handleLogin(): void {
+  public function handleLogin(): void
+  {
     $user = $this->userRepository->getByIdCard((int) $this->data['id_card']);
 
     try {
@@ -57,10 +61,7 @@ final readonly class SessionWebController extends Controller {
         ->passwordValidator
         ->passwordStrength($this->data['password']);
 
-      if (
-        $passwordStrengthLevel <= self::INSECURE_PASSWORD_STRENGTH_LEVEL
-        || $this->data['password'] === $this->data['id_card']
-      ) {
+      if ($passwordStrengthLevel <= self::INSECURE_PASSWORD_STRENGTH_LEVEL || $this->data['password'] === $this->data['id_card']) {
         Session::set('mustChangePassword', true);
       }
 
@@ -73,7 +74,8 @@ final readonly class SessionWebController extends Controller {
     }
   }
 
-  public function showDepartments(): void {
+  public function showDepartments(): void
+  {
     $departments = [];
 
     foreach ($this->loggedUser->getDepartment() as $department) {
@@ -89,7 +91,8 @@ final readonly class SessionWebController extends Controller {
     renderPage('select-department', 'Ingresar (2/2)');
   }
 
-  public function saveChoice(int $id): void {
+  public function saveChoice(int $id): void
+  {
     Session::set('departmentId', $id);
     Flight::redirect('/');
   }

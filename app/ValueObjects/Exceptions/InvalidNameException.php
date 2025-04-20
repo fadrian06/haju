@@ -6,5 +6,6 @@ namespace HAJU\ValueObjects\Exceptions;
 
 use InvalidArgumentException;
 
-class InvalidNameException extends InvalidArgumentException {
+class InvalidNameException extends InvalidArgumentException
+{
 }

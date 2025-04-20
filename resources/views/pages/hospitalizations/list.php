@@ -68,7 +68,7 @@ use HAJU\Enums\DateRange;
         class="form-control w-auto" />
     </div>
     <div class="list-group-item d-flex gap-3 align-items-center">
-      <?php foreach (DateRange::cases() as $dateRange): ?>
+      <?php foreach (DateRange::cases() as $dateRange) : ?>
         <?php Flight::render('components/input-group', [
           'name' => 'rango',
           'type' => 'radio',

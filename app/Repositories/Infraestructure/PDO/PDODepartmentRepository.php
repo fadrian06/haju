@@ -11,26 +11,28 @@ use PDO;
 use PDOException;
 use PharIo\Manifest\Url;
 
-final class PDODepartmentRepository
-extends PDORepository
-implements DepartmentRepository {
+final class PDODepartmentRepository extends PDORepository implements DepartmentRepository
+{
   private const FIELDS = <<<sql
     id, name, registered_date as registeredDateTime,
     belongs_to_external_consultation as belongsToExternalConsultation,
     icon_file_path as iconFilePath, is_active as isActive
   sql;
 
-  protected static function getTable(): string {
+  protected static function getTable(): string
+  {
     return 'departments';
   }
 
-  public function getAll(): array {
+  public function getAll(): array
+  {
     return $this->ensureIsConnected()
       ->query(sprintf('SELECT %s FROM %s ORDER BY name', self::FIELDS, self::getTable()))
       ->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper']);
   }
 
-  public function getById(int $id): ?Department {
+  public function getById(int $id): ?Department
+  {
     $stmt = $this->ensureIsConnected()
       ->prepare(sprintf('SELECT %s FROM %s WHERE id = ?', self::FIELDS, self::getTable()));
 
@@ -39,7 +41,8 @@ implements DepartmentRepository {
     return $stmt->fetchAll(PDO::FETCH_FUNC, [self::class, 'mapper'])[0] ?? null;
   }
 
-  public function save(Department $department): void {
+  public function save(Department $department): void
+  {
     try {
       if ($department->id) {
         $this->ensureIsConnected()

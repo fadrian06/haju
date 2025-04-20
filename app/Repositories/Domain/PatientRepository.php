@@ -9,7 +9,8 @@ use HAJU\Repositories\Exceptions\DuplicatedIdCardException;
 use HAJU\Repositories\Exceptions\DuplicatedNamesException;
 
 /** @extends Repository<Patient> */
-interface PatientRepository extends Repository {
+interface PatientRepository extends Repository
+{
   public function getByIdCard(int $id): ?Patient;
   public function getByHospitalizationId(int $id): ?Patient;
 

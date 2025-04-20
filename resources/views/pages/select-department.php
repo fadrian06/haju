@@ -13,7 +13,7 @@ use HAJU\Models\User;
     <div class="col-12 px-md-5 text-center">
       <h1 class="mb-4">Seleccione un departamento</h1>
       <div class="row row-gap-4">
-        <?php foreach ($user->getDepartment() as $department): ?>
+        <?php foreach ($user->getDepartment() as $department) : ?>
           <a
             href="./departamento/seleccionar/<?= $department->id ?>"
             class="col-md-4 text-decoration-none <?= $department->isActive() ?: 'opacity-50' ?>">

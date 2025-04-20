@@ -70,17 +70,14 @@ $printedParentCategories = [];
     </thead>
     <tbody>
       <?php foreach ($causes as $cause) : ?>
-        <?php if (!array_key_exists($cause['category']['id'], $categories)): ?>
+        <?php if (!array_key_exists($cause['category']['id'], $categories)) : ?>
           <?php $categories[$cause['category']['id']] = $cause['category'] ?>
           <tr>
             <td
               class="fw-bold"
               colspan="<?= $daysOfMonth + 3 ?>"
               style="text-align: start">
-              <?php if (
-                is_array($cause['category']['parentCategory'])
-                && !in_array($cause['category']['parentCategory'], $printedParentCategories, true)
-              ): ?>
+              <?php if (is_array($cause['category']['parentCategory']) && !in_array($cause['category']['parentCategory'], $printedParentCategories, true)) : ?>
                 <?= $cause['category']['parentCategory']['name']['extended'] ?? $cause['category']['parentCategory']['name']['short'] ?>
                 <br />
                 <?php $printedParentCategories[] = $cause['category']['parentCategory'] ?>

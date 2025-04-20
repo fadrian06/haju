@@ -7,9 +7,11 @@ namespace HAJU\Tests\Feature;
 use DOMDocument;
 use PHPUnit\Framework\Attributes\Test;
 
-final class LandingTest extends FeatureTestCase {
+final class LandingTest extends FeatureTestCase
+{
   #[Test]
-  public function itRendersLandingPage(): void {
+  public function itRendersLandingPage(): void
+  {
     $response = self::$client->get('./');
     $domDocument = new DOMDocument();
     @$domDocument->loadHTML($response->getBody()->getContents());

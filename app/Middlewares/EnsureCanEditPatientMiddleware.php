@@ -10,7 +10,8 @@ use Flight;
 use flight\template\View;
 use Leaf\Http\Session;
 
-final readonly class EnsureCanEditPatientMiddleware {
+final readonly class EnsureCanEditPatientMiddleware
+{
   public function __construct(
     private PatientRepository $patientRepository,
     private View $view,
@@ -18,7 +19,8 @@ final readonly class EnsureCanEditPatientMiddleware {
   ) {
   }
 
-  public function before(array $params): ?true {
+  public function before(array $params): ?true
+  {
     $patient = $this->patientRepository->getById($params['id']);
     $loggedUser = $this->view->get('user');
     assert($loggedUser instanceof User);

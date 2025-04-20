@@ -13,10 +13,12 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-final class AdultBirthDateTest extends TestCase {
+final class AdultBirthDateTest extends TestCase
+{
   #[Test]
   #[DataProvider('validAdultBirthDates')]
-  public function acceptValidAdultBirthDates(string $birthDate): void {
+  public function acceptValidAdultBirthDates(string $birthDate): void
+  {
     $birthDate = AdultBirthDate::from($birthDate, '-');
 
     self::assertInstanceOf(AdultBirthDate::class, $birthDate);
@@ -32,14 +34,16 @@ final class AdultBirthDateTest extends TestCase {
     AdultBirthDate::from($invalidBirthDate, '-');
   }
 
-  public static function validAdultBirthDates(): Iterator {
+  public static function validAdultBirthDates(): Iterator
+  {
     $currentDate = new DateTimeImmutable;
     $adultBirthDate = $currentDate->sub(new DateInterval('P18Y'));
 
     yield $adultBirthDate->format('Y-m-d') => [$adultBirthDate->format('Y-m-d')];
   }
 
-  public static function invalidAdultBirthDates(): Iterator {
+  public static function invalidAdultBirthDates(): Iterator
+  {
     $currentDate = new DateTimeImmutable;
     $childBirthDate = $currentDate->sub(new DateInterval('P17Y'));
     $childBirthDate2 = $currentDate->sub(new DateInterval('P1Y'));

@@ -24,7 +24,8 @@ use PharIo\Manifest\InvalidEmailException;
 use Throwable;
 use ZxcvbnPhp\Zxcvbn;
 
-final readonly class UserWebController extends Controller {
+final readonly class UserWebController extends Controller
+{
   private const INSECURE_PASSWORD_STRENGTH_LEVEL = 2;
 
   public function __construct(
@@ -35,11 +36,13 @@ final readonly class UserWebController extends Controller {
     parent::__construct();
   }
 
-  public function showRegister(): void {
+  public function showRegister(): void
+  {
     renderPage('register', 'Regístrate');
   }
 
-  public function handleRegister(): void {
+  public function handleRegister(): void
+  {
     [$appointment, $urlToRedirect, $urlWhenFail] = match (true) {
       !$this->loggedUser => [
         Appointment::Director,
@@ -83,11 +86,7 @@ final readonly class UserWebController extends Controller {
         ));
       }
 
-      if (
-        $this->loggedUser
-        && $this->loggedUser->appointment->isDirector()
-        && $this->data['departments'] === []
-      ) {
+      if ($this->loggedUser && $this->loggedUser->appointment->isDirector() && $this->data['departments'] === []) {
         throw new Error('Debe asignar al menos 1 departamento');
       }
 
@@ -149,11 +148,13 @@ final readonly class UserWebController extends Controller {
     Flight::redirect($urlWhenFail);
   }
 
-  public function showPasswordReset(): void {
+  public function showPasswordReset(): void
+  {
     renderPage('forgot-pass', 'Recuperar contraseña (1/2)');
   }
 
-  public function handlePasswordReset(): void {
+  public function handlePasswordReset(): void
+  {
     if ($this->data['id_card'] !== null) {
       $user = $this->userRepository->getByIdCard((int) $this->data['id_card']);
 
@@ -182,17 +183,20 @@ final readonly class UserWebController extends Controller {
     Flight::redirect('/ingresar');
   }
 
-  public function showProfile(): void {
+  public function showProfile(): void
+  {
     renderPage('profile', 'Mi perfil', [
       'showPasswordChangeModal' => false
     ], 'main');
   }
 
-  public function showEditProfile(): void {
+  public function showEditProfile(): void
+  {
     renderPage('edit-profile', 'Editar perfil', [], 'main');
   }
 
-  public function handleEditProfile(): void {
+  public function handleEditProfile(): void
+  {
     try {
       $profileImageUrlPath = '';
 
@@ -231,7 +235,8 @@ final readonly class UserWebController extends Controller {
     Flight::redirect('/perfil/editar');
   }
 
-  public function showUsers(): void {
+  public function showUsers(): void
+  {
     $users = $this->userRepository->getAll($this->loggedUser);
 
     $departments = $this->loggedUser->appointment === Appointment::Director
@@ -263,7 +268,8 @@ final readonly class UserWebController extends Controller {
     );
   }
 
-  public function handleToggleStatus(int $id): void {
+  public function handleToggleStatus(int $id): void
+  {
     try {
       $user = $this->userRepository->getById($id);
 
@@ -281,7 +287,8 @@ final readonly class UserWebController extends Controller {
     Flight::redirect($user->appointment === Appointment::Director ? '/salir' : '/usuarios');
   }
 
-  public function handlePasswordChange(): void {
+  public function handlePasswordChange(): void
+  {
     try {
       if (!$this->loggedUser->checkPassword($this->data['old_password'])) {
         throw new Error('La contraseña anterior es incorrecta');
@@ -297,10 +304,7 @@ final readonly class UserWebController extends Controller {
 
       $passwordStrength = $this->passwordValidator->passwordStrength($this->data['new_password']);
 
-      if (
-        $passwordStrength['score'] <= self::INSECURE_PASSWORD_STRENGTH_LEVEL
-        || $this->data['new_password'] === $this->loggedUser->idCard
-      ) {
+      if ($passwordStrength['score'] <= self::INSECURE_PASSWORD_STRENGTH_LEVEL || $this->data['new_password'] === $this->loggedUser->idCard) {
         throw new Error('Contraseña poco segura, por favor utilice números, símbolos y mayúsculas');
       }
 

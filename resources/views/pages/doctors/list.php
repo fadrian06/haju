@@ -23,7 +23,7 @@ assert($loggedUser instanceof User);
   </a>
 </section>
 
-<?php if (!$doctors): ?>
+<?php if (!$doctors) : ?>
   No hay doctores registrados
 <?php endif ?>
 

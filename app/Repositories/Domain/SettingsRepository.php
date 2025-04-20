@@ -6,7 +6,8 @@ namespace HAJU\Repositories\Domain;
 
 use HAJU\Models\Hospital;
 
-interface SettingsRepository {
+interface SettingsRepository
+{
   public function getHospital(): Hospital;
   public function backupExists(): bool;
   public function backup(): string;

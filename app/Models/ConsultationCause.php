@@ -12,7 +12,8 @@ use HAJU\ValueObjects\LongName;
  * @property-read ?string $code
  * @property-read ?int $limit
  */
-final class ConsultationCause extends Model {
+final class ConsultationCause extends Model
+{
   private LongName $shortName;
   private ?LongName $extendedName = null;
   private ?string $variant = null;
@@ -29,7 +30,8 @@ final class ConsultationCause extends Model {
     $this->setName($shortName, $extendedName)->setVariant($variant)->setCode($code);
   }
 
-  public function getFullName(bool $abbreviated = true): string {
+  public function getFullName(bool $abbreviated = true): string
+  {
     $fullName = $this->shortName;
 
     if (!$abbreviated && $this->extendedName) {
@@ -43,7 +45,8 @@ final class ConsultationCause extends Model {
     return (string) $fullName;
   }
 
-  public function setName(string $shortName, ?string $extendedName = null): self {
+  public function setName(string $shortName, ?string $extendedName = null): self
+  {
     $this->shortName = new LongName($shortName, 'Nombre corto');
     $this->extendedName = $extendedName
       ? new LongName($extendedName, 'Nombre extendido')
@@ -52,19 +55,22 @@ final class ConsultationCause extends Model {
     return $this;
   }
 
-  public function setCode(?string $code): self {
+  public function setCode(?string $code): self
+  {
     $this->code = $code;
 
     return $this;
   }
 
-  public function setVariant(?string $variant): self {
+  public function setVariant(?string $variant): self
+  {
     $this->variant = $variant;
 
     return $this;
   }
 
-  public function __get(string $property): null|int|string {
+  public function __get(string $property): null|int|string
+  {
     return match ($property) {
       'shortName' => $this->shortName->__toString(),
       'extendedName' => $this->extendedName?->__toString(),
@@ -74,7 +80,8 @@ final class ConsultationCause extends Model {
     };
   }
 
-  public function jsonSerialize(): array {
+  public function jsonSerialize(): array
+  {
     return parent::jsonSerialize() + [
       'shortName' => $this->shortName->__toString(),
       'extendedName' => $this->extendedName?->__toString(),

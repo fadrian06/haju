@@ -13,7 +13,7 @@ use HAJU\Models\User;
     'class' => 'd-none d-md-block',
     'slot' => 'Cerrar sesión'
   ]) ?>
-<?php else: ?>
+<?php else : ?>
   <a class="d-flex align-items-center gap-1 text-decoration-none" href="./ingresar">
     <i class="fa fa-right-to-bracket"></i>
     Iniciar sesión

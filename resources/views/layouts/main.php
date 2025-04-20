@@ -115,7 +115,7 @@ foreach ($consultations as $consultation) {
 </head>
 
 <body>
-  <?php if ($epidemic): ?>
+  <?php if ($epidemic) : ?>
     <?php Flight::render('components/epidemic-alert', ['epidemic' => $epidemic]) ?>
   <?php endif ?>
   <?php Flight::render('components/sidebar') ?>
@@ -126,7 +126,7 @@ foreach ($consultations as $consultation) {
     </div>
     <?php Flight::render('components/footer') ?>
   </section>
-  <?php if ($mustChangePassword && $showPasswordChangeModal): ?>
+  <?php if ($mustChangePassword && $showPasswordChangeModal) : ?>
     <?php Flight::render('components/confirmation', [
       'show' => true,
       'id' => 'change-password-confirmation',
@@ -150,12 +150,12 @@ foreach ($consultations as $consultation) {
       showConfirmButton: false
     })
 
-    <?php if ($error): ?>
+    <?php if ($error) : ?>
       swal.fire({
         title: '<?= $error ?>',
         icon: 'error'
       })
-    <?php elseif ($message): ?>
+    <?php elseif ($message) : ?>
       swal.fire({
         title: '<?= $message ?>',
         icon: 'success'

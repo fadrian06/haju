@@ -11,10 +11,12 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-final class PhoneTest extends TestCase {
+final class PhoneTest extends TestCase
+{
   #[Test]
   #[DataProvider('validPhones')]
-  public function acceptValidPhones(string $phone, string $expected): void {
+  public function acceptValidPhones(string $phone, string $expected): void
+  {
     $phone = new Phone($phone);
 
     self::assertSame($phone->__toString(), $expected);
@@ -22,13 +24,15 @@ final class PhoneTest extends TestCase {
 
   #[Test]
   #[DataProvider('invalidPhones')]
-  public function throwsExceptionForInvalidPhones(string $invalidPhone): void {
+  public function throwsExceptionForInvalidPhones(string $invalidPhone): void
+  {
     self::expectException(InvalidPhoneException::class);
 
     new Phone($invalidPhone);
   }
 
-  public static function validPhones(): Iterator {
+  public static function validPhones(): Iterator
+  {
     yield ['04149772694', '+58 414-9772694'];
     yield ['0414-977-2694', '+58 414-9772694'];
     yield ['0414 977 2694', '+58 414-9772694'];
@@ -38,7 +42,8 @@ final class PhoneTest extends TestCase {
     yield ['+584149772694', '+58 414-9772694'];
   }
 
-  public static function invalidPhones(): Iterator {
+  public static function invalidPhones(): Iterator
+  {
     yield ['25431'];
   }
 }

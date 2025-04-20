@@ -147,7 +147,7 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
       ?>
 
       <div class="col-md-12 d-flex align-items-center justify-content-center flex-wrap gap-3">
-        <?php foreach (DateRange::cases() as $index => $dateRange): ?>
+        <?php foreach (DateRange::cases() as $index => $dateRange) : ?>
           <?php Flight::render('components/input-group', [
             'name' => 'rango',
             'type' => 'radio',
@@ -238,7 +238,7 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
       ?>
 
       <div class="col-md-12 d-flex align-items-center justify-content-center flex-wrap gap-3">
-        <?php foreach (DateRange::cases() as $index => $dateRange): ?>
+        <?php foreach (DateRange::cases() as $index => $dateRange) : ?>
           <?php Flight::render('components/input-group', [
             'name' => 'rango',
             'type' => 'radio',

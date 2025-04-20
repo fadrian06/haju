@@ -11,7 +11,8 @@ use HAJU\Enums\Gender;
 use HAJU\ValueObjects\IdCard;
 use HAJU\ValueObjects\Name;
 
-abstract class Person extends Model {
+abstract class Person extends Model
+{
   private Name $firstName;
   private ?Name $secondName = null;
   private Name $firstLastName;
@@ -44,21 +45,24 @@ abstract class Person extends Model {
     }
   }
 
-  final public function setIdCard(int $idCard): static {
+  final public function setIdCard(int $idCard): static
+  {
     $this->idCard = new IdCard($idCard);
 
     return $this;
   }
 
   /** @throws InvalidNameException */
-  final public function setFirstName(string $firstName): static {
+  final public function setFirstName(string $firstName): static
+  {
     $this->firstName = new Name($firstName, 'Primer nombre');
 
     return $this;
   }
 
   /** @throws InvalidNameException */
-  final public function setSecondName(?string $secondName): static {
+  final public function setSecondName(?string $secondName): static
+  {
     $this->secondName = boolval($secondName)
       ? new Name($secondName, 'Segundo nombre')
       : null;
@@ -67,14 +71,16 @@ abstract class Person extends Model {
   }
 
   /** @throws InvalidNameException */
-  final public function setFirstLastName(string $firstLastName): static {
+  final public function setFirstLastName(string $firstLastName): static
+  {
     $this->firstLastName = new Name($firstLastName, 'Primer apellido');
 
     return $this;
   }
 
   /** @throws InvalidNameException */
-  final public function setSecondLastName(?string $secondLastName): static {
+  final public function setSecondLastName(?string $secondLastName): static
+  {
     $this->secondLastName = boolval($secondLastName)
       ? new Name($secondLastName, 'Segundo apellido')
       : null;
@@ -83,7 +89,8 @@ abstract class Person extends Model {
   }
 
   /** @throws InvalidNameException */
-  public function setFullName(string $fullName): self {
+  public function setFullName(string $fullName): self
+  {
     $fullName = explode(' ', $fullName);
 
     $firstName = $fullName[0] ?? null;
@@ -104,14 +111,16 @@ abstract class Person extends Model {
       ->setSecondLastName($secondLastName);
   }
 
-  final public function getFullName(): string {
+  final public function getFullName(): string
+  {
     $fullName = $this->firstName;
     $fullName .= ($this->secondName !== null) ? " {$this->secondName}" : '';
 
     return $fullName . " $this->firstLastName";
   }
 
-  public function __get(string $property): null|int|string {
+  public function __get(string $property): null|int|string
+  {
     return match ($property) {
       'firstName' => $this->firstName->__toString(),
       'secondName' => $this->secondName?->__toString(),
@@ -122,7 +131,8 @@ abstract class Person extends Model {
     };
   }
 
-  public function jsonSerialize(): array {
+  public function jsonSerialize(): array
+  {
     return parent::jsonSerialize() + [
       'firstName' => $this->firstName->__toString(),
       'secondName' => $this->secondName?->__toString(),

@@ -8,8 +8,10 @@ use HAJU\ValueObjects\Exceptions\InvalidDateException;
 use DateInterval;
 use DateTimeImmutable;
 
-final readonly class AdultBirthDate extends Date {
-  protected function validate(int $day, int $month, int $year): void {
+final readonly class AdultBirthDate extends Date
+{
+  protected function validate(int $day, int $month, int $year): void
+  {
     parent::validate($day, $month, $year);
 
     $currentDate = new DateTimeImmutable;

@@ -46,7 +46,8 @@ function renderPage(
   $view->render("layouts/{$layout}", $params);
 }
 
-function isActive(string ...$urls): bool {
+function isActive(string ...$urls): bool
+{
   foreach ($urls as $url) {
     if ($url === '/') {
       if (Flight::request()->url === $url) {
@@ -78,7 +79,8 @@ define('CATEGORY_MAPPER', new class {
    *   }
    * }
    */
-  public function __invoke(ConsultationCauseCategory $category): array {
+  public function __invoke(ConsultationCauseCategory $category): array
+  {
     return [
       'id' => $category->id,
       'name' => [
@@ -118,7 +120,8 @@ define('CAUSE_MAPPER', new class {
    *   },
    * }
    */
-  public function __invoke(ConsultationCause $cause): array {
+  public function __invoke(ConsultationCause $cause): array
+  {
     return [
       'id' => $cause->id,
       'name' => [
@@ -173,7 +176,8 @@ define('CONSULTATION_MAPPER', new class() {
    *   },
    * }
    */
-  public function __invoke(Consultation $consultation): array {
+  public function __invoke(Consultation $consultation): array
+  {
     $iconFilePath = $consultation->department->iconFilePath;
 
     return [
@@ -305,7 +309,8 @@ define('PATIENT_MAPPER', new class {
    *   },
    * }[] $consultations
    */
-  public function __invoke(Patient $patient, array $consultations): array {
+  public function __invoke(Patient $patient, array $consultations): array
+  {
     return [
       'id' => $patient->id,
       'names' => [

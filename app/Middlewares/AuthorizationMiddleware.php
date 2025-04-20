@@ -10,7 +10,8 @@ use Flight;
 use flight\template\View;
 use Leaf\Http\Session;
 
-final readonly class AuthorizationMiddleware {
+final readonly class AuthorizationMiddleware
+{
   public function __construct(
     private View $view,
     private Session $session,
@@ -19,12 +20,12 @@ final readonly class AuthorizationMiddleware {
   ) {
   }
 
-  public function before(): void {
+  public function before(): void
+  {
     $user = $this->view->get('user');
     assert($user instanceof User || is_null($user));
 
-    if (
-      !$user?->appointment->isHigherThan($this->permitted)
+    if (!$user?->appointment->isHigherThan($this->permitted)
       || ($this->blocked && $user->appointment === $this->blocked)
     ) {
       $this->session->set('error', 'Acceso no autorizado');

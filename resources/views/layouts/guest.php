@@ -44,12 +44,12 @@ $message = isset($message) ? strval($message) : null;
   <script src="./resources/dist/guest.js"></script>
 
   <script>
-    <?php if ($error): ?>
+    <?php if ($error) : ?>
       customSwal.fire({
         title: '<?= $error ?>',
         icon: 'error',
       })
-    <?php elseif ($message): ?>
+    <?php elseif ($message) : ?>
       customSwal.fire({
         title: '<?= $message ?>',
         icon: 'success',

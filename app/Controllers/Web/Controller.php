@@ -11,16 +11,19 @@ use flight\util\Collection;
 use Leaf\Http\Session;
 use Throwable;
 
-abstract readonly class Controller {
+abstract readonly class Controller
+{
   protected ?User $loggedUser;
   protected Collection $data;
 
-  public function __construct() {
+  public function __construct()
+  {
     $this->loggedUser = Flight::view()->get('user');
     $this->data = Flight::request()->data;
   }
 
-  final protected static function setError(Throwable|string $error): void {
+  final protected static function setError(Throwable|string $error): void
+  {
     ini_set('error_log', LOGS_PATH . '/error.log');
 
     if ($error instanceof Throwable) {
@@ -33,7 +36,8 @@ abstract readonly class Controller {
     Session::set('error', $error);
   }
 
-  final protected static function setMessage(string $message): void {
+  final protected static function setMessage(string $message): void
+  {
     Session::set('message', $message);
   }
 

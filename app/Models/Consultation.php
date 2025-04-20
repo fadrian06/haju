@@ -7,7 +7,8 @@ namespace HAJU\Models;
 use HAJU\Models\Contracts\Model;
 use HAJU\Enums\ConsultationType;
 
-final class Consultation extends Model {
+final class Consultation extends Model
+{
   public function __construct(
     public readonly ConsultationType $type,
     public readonly ConsultationCause $cause,
@@ -17,7 +18,8 @@ final class Consultation extends Model {
   ) {
   }
 
-  public function isFirstTime(): bool {
+  public function isFirstTime(): bool
+  {
     return $this->type === ConsultationType::FirstTime;
   }
 

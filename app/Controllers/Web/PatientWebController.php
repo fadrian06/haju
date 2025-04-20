@@ -23,7 +23,8 @@ use Flight;
 use PDO;
 use Throwable;
 
-final readonly class PatientWebController extends Controller {
+final readonly class PatientWebController extends Controller
+{
   public function __construct(
     private PatientRepository $patientRepository,
     private ConsultationCauseCategoryRepository $consultationCauseCategoryRepository,
@@ -35,7 +36,8 @@ final readonly class PatientWebController extends Controller {
     parent::__construct();
   }
 
-  public function showHospitalizations(): void {
+  public function showHospitalizations(): void
+  {
     $stmt = $this->pdo->prepare(<<<sql
       SELECT id, admission_department, admission_date, departure_date,
       departure_status, diagnoses, registered_date, doctor_id, patient_id
@@ -82,7 +84,8 @@ final readonly class PatientWebController extends Controller {
     ], 'main');
   }
 
-  public function showConsultations(): void {
+  public function showConsultations(): void
+  {
     $stmt = $this->pdo->prepare(<<<sql
       SELECT id, type, registered_date, cause_id, department_id, doctor_id, patient_id
       FROM consultations
@@ -121,7 +124,8 @@ final readonly class PatientWebController extends Controller {
     ], 'main');
   }
 
-  public function showPatients(): void {
+  public function showPatients(): void
+  {
     $idCard = Flight::request()->query['cedula'];
 
     if (is_numeric($idCard)) {
@@ -147,7 +151,8 @@ final readonly class PatientWebController extends Controller {
     ], 'main');
   }
 
-  public function showPatient(int $patientId): void {
+  public function showPatient(int $patientId): void
+  {
     try {
       $patient = $this->patientRepository->getById($patientId);
 
@@ -170,7 +175,8 @@ final readonly class PatientWebController extends Controller {
     }
   }
 
-  public function handleRegister(): void {
+  public function handleRegister(): void
+  {
     try {
       if (!in_array($this->data['gender'], Gender::values(), true)) {
         throw new Error(sprintf(
@@ -205,7 +211,8 @@ final readonly class PatientWebController extends Controller {
     Flight::redirect('/pacientes');
   }
 
-  public function handleEdition(int $patientId): void {
+  public function handleEdition(int $patientId): void
+  {
     try {
       $patient = $this->patientRepository->getById($patientId);
 
@@ -224,7 +231,8 @@ final readonly class PatientWebController extends Controller {
     Flight::redirect('/pacientes');
   }
 
-  public function showConsultationRegister(): void {
+  public function showConsultationRegister(): void
+  {
     $patients = $this->patientRepository->getAll();
 
     $consultationCauseCategories = $this
@@ -248,7 +256,8 @@ final readonly class PatientWebController extends Controller {
     ), 'main');
   }
 
-  public function handleConsultationRegister(): void {
+  public function handleConsultationRegister(): void
+  {
     try {
       $patient = $this
         ->patientRepository
@@ -276,7 +285,8 @@ final readonly class PatientWebController extends Controller {
     Flight::redirect(Flight::request()->referrer);
   }
 
-  public function showHospitalizationRegister(): void {
+  public function showHospitalizationRegister(): void
+  {
     $patients = $this->patientRepository->getAll();
     $doctors = $this->doctorRepository->getAll();
 
@@ -288,7 +298,8 @@ final readonly class PatientWebController extends Controller {
     );
   }
 
-  public function handleHospitalizationRegister(): void {
+  public function handleHospitalizationRegister(): void
+  {
     $patient = $this->patientRepository->getById((int) $this->data['id_card']);
 
     $hospitalization = new Hospitalization(
@@ -312,7 +323,8 @@ final readonly class PatientWebController extends Controller {
     Flight::redirect("/pacientes/{$patient->id}");
   }
 
-  public function deletePatient(int $patientId): void {
+  public function deletePatient(int $patientId): void
+  {
     $patient = $this->patientRepository->getById($patientId);
 
     if ($patient === null) {
@@ -339,7 +351,8 @@ final readonly class PatientWebController extends Controller {
     Flight::redirect('/pacientes');
   }
 
-  public function showEditHospitalization(int $hospitalizationId): void {
+  public function showEditHospitalization(int $hospitalizationId): void
+  {
     $patient = $this
       ->patientRepository
       ->getByHospitalizationId($hospitalizationId);
@@ -363,7 +376,8 @@ final readonly class PatientWebController extends Controller {
     );
   }
 
-  public function handleUpdateHospitalization(int $hospitalizationId): void {
+  public function handleUpdateHospitalization(int $hospitalizationId): void
+  {
     try {
       $patient = $this
         ->patientRepository

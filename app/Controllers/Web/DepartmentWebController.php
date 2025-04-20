@@ -10,7 +10,8 @@ use Flight;
 use flight\template\View;
 use Throwable;
 
-final readonly class DepartmentWebController extends Controller {
+final readonly class DepartmentWebController extends Controller
+{
   public function __construct(
     private readonly DepartmentRepository $departmentRepository,
     private readonly View $view,
@@ -18,7 +19,8 @@ final readonly class DepartmentWebController extends Controller {
     parent::__construct();
   }
 
-  public function showDepartments(): void {
+  public function showDepartments(): void
+  {
     $departments = $this->departmentRepository->getAll();
     $departmentsNumber = count($departments);
 
@@ -30,7 +32,8 @@ final readonly class DepartmentWebController extends Controller {
     );
   }
 
-  public function handleToggleStatus(int $id): void {
+  public function handleToggleStatus(int $id): void
+  {
     $selectedDepartment = $this->view->get('department');
     assert($selectedDepartment instanceof Department);
 
@@ -46,7 +49,8 @@ final readonly class DepartmentWebController extends Controller {
     Flight::redirect($redirectUrl);
   }
 
-  public function handleDepartmentEdition(int $id): void {
+  public function handleDepartmentEdition(int $id): void
+  {
     try {
       $departament = $this->departmentRepository->getById($id);
       $departament->setName($this->data['name']);

@@ -133,7 +133,7 @@ $patientAvatar = @file_get_contents($avatarUrl)
         <div class="white_box">
           <h3>Visitas médicas <sub>(de la más reciente a la más antigua)</sub></h3>
           <ul class="timeline mt-4">
-            <?php if (!$patient->hasConsultations()): ?>
+            <?php if (!$patient->hasConsultations()) : ?>
               No hay consultas registradas
               <a href="./consultas/registrar">Registrar una</a>
             <?php endif ?>
@@ -181,7 +181,7 @@ $patientAvatar = @file_get_contents($avatarUrl)
                     href="./hospitalizaciones/<?= $hospitalization->id ?>/alta">
                     Dar de alta
                   </a>
-                <?php else: ?>
+                <?php else : ?>
                   <span><?= $hospitalization->diagnoses ?></span>
                 <?php endif ?>
               </li>

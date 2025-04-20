@@ -4,5 +4,6 @@ declare(strict_types=1);
 
 namespace HAJU\Repositories\Exceptions;
 
-final class DuplicatedPhonesException extends RepositoryException {
+final class DuplicatedPhonesException extends RepositoryException
+{
 }

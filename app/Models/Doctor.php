@@ -9,7 +9,8 @@ use HAJU\ValueObjects\Date;
 use HAJU\Enums\Gender;
 use Generator;
 
-final class Doctor extends Person {
+final class Doctor extends Person
+{
   /** @var array<int, Consultation> */
   private array $consultations = [];
 
@@ -34,7 +35,8 @@ final class Doctor extends Person {
     );
   }
 
-  public function canBeEditedBy(User $user): bool {
+  public function canBeEditedBy(User $user): bool
+  {
     if ($user->appointment->isDirector()) {
       return true;
     }
@@ -43,13 +45,15 @@ final class Doctor extends Person {
   }
 
   /** @return Generator<int, Consultation> */
-  public function getConsultation(): Generator {
+  public function getConsultation(): Generator
+  {
     foreach ($this->consultations as $consultation) {
       yield $consultation;
     }
   }
 
-  public function setConsultations(Consultation ...$consultations): self {
+  public function setConsultations(Consultation ...$consultations): self
+  {
     $this->consultations = $consultations;
 
     return $this;

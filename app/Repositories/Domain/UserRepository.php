@@ -13,7 +13,8 @@ use HAJU\Repositories\Exceptions\DuplicatedNamesException;
 use HAJU\Repositories\Exceptions\DuplicatedPhonesException;
 
 /** @extends Repository<User> */
-interface UserRepository extends Repository {
+interface UserRepository extends Repository
+{
   public function getAll(User ...$exclude): array;
 
   /** @throws RepositoryException */

@@ -22,9 +22,8 @@ use DateTimeImmutable;
 use PDO;
 use PDOException;
 
-final class PDOPatientRepository
-extends PDORepository
-implements PatientRepository {
+final class PDOPatientRepository extends PDORepository implements PatientRepository
+{
   private const FIELDS = <<<SQL
     id, first_name as firstName, second_name as secondName,
     first_last_name as firstLastName, second_last_name as secondLastName,
@@ -45,25 +44,29 @@ implements PatientRepository {
     parent::__construct($pdo, $baseUrl);
   }
 
-  protected static function getTable(): string {
+  protected static function getTable(): string
+  {
     return 'patients';
   }
 
-  public function withHospitalizations(): PatientRepository {
+  public function withHospitalizations(): PatientRepository
+  {
     $patientRepository = clone $this;
     $patientRepository->withHospitalizations = true;
 
     return $patientRepository;
   }
 
-  public function withConsultations(): PatientRepository {
+  public function withConsultations(): PatientRepository
+  {
     $patientRepository = clone $this;
     $patientRepository->withConsultations = true;
 
     return $patientRepository;
   }
 
-  public function getAll(): array {
+  public function getAll(): array
+  {
     return $this->ensureIsConnected()
       ->query(sprintf(
         'SELECT %s FROM %s ORDER BY idCard',
@@ -72,7 +75,8 @@ implements PatientRepository {
       ))->fetchAll(PDO::FETCH_FUNC, $this->mapper(...));
   }
 
-  public function getById(int $id): ?Patient {
+  public function getById(int $id): ?Patient
+  {
     $stmt = $this->ensureIsConnected()
       ->prepare(sprintf('SELECT %s FROM %s WHERE id = ?', self::FIELDS, self::getTable()));
 
@@ -81,7 +85,8 @@ implements PatientRepository {
     return $stmt->fetchAll(PDO::FETCH_FUNC, $this->mapper(...))[0] ?? null;
   }
 
-  public function getByIdCard(int $idCard): ?Patient {
+  public function getByIdCard(int $idCard): ?Patient
+  {
     $stmt = $this->ensureIsConnected()
       ->prepare(sprintf('SELECT %s FROM %s WHERE id_card = ?', self::FIELDS, self::getTable()));
 
@@ -90,13 +95,15 @@ implements PatientRepository {
     return $stmt->fetchAll(PDO::FETCH_FUNC, $this->mapper(...))[0] ?? null;
   }
 
-  public function getConsultationsCount(): int {
+  public function getConsultationsCount(): int
+  {
     return $this->ensureIsConnected()
       ->query('SELECT count(id) FROM consultations')
       ->fetchColumn(0);
   }
 
-  public function setConsultationsById(Patient $patient, int $causeId): void {
+  public function setConsultationsById(Patient $patient, int $causeId): void
+  {
     $stmt = $this->ensureIsConnected()
       ->prepare(<<<sql
         SELECT id, type, registered_date, cause_id, department_id, doctor_id
@@ -127,7 +134,8 @@ implements PatientRepository {
     $patient->setConsultations(...$consultations);
   }
 
-  public function setHospitalizations(Patient $patient): void {
+  public function setHospitalizations(Patient $patient): void
+  {
     $stmt = $this->ensureIsConnected()
       ->prepare(<<<sql
         SELECT id, admission_department, admission_date, departure_date,
@@ -165,7 +173,8 @@ implements PatientRepository {
     $patient->setHospitalization(...$hospitalizations);
   }
 
-  public function setConsultations(Patient $patient): void {
+  public function setConsultations(Patient $patient): void
+  {
     $stmt = $this->ensureIsConnected()
       ->prepare(<<<sql
         SELECT id, type, registered_date, cause_id, department_id, doctor_id
@@ -196,7 +205,8 @@ implements PatientRepository {
     $patient->setConsultations(...$consultations);
   }
 
-  public function save(Patient $patient): void {
+  public function save(Patient $patient): void
+  {
     try {
       if ($patient->id) {
         $this->update($patient);
@@ -243,7 +253,8 @@ implements PatientRepository {
     }
   }
 
-  public function saveHospitalizationOf(Patient $patient): void {
+  public function saveHospitalizationOf(Patient $patient): void
+  {
     $this->ensureIsConnected()->beginTransaction();
 
     try {
@@ -299,7 +310,8 @@ implements PatientRepository {
     }
   }
 
-  public function saveConsultationOf(Patient $patient): void {
+  public function saveConsultationOf(Patient $patient): void
+  {
     $consultations = [];
 
     foreach ($patient->getConsultation() as $consultation) {
@@ -328,7 +340,8 @@ implements PatientRepository {
     $patient->setConsultations(...$consultations);
   }
 
-  private function update(Patient $patient): self {
+  private function update(Patient $patient): self
+  {
     $query = sprintf(
       <<<sql
         UPDATE %s SET first_name = ?, second_name = ?, first_last_name = ?, second_last_name = ?,
@@ -352,7 +365,8 @@ implements PatientRepository {
     return $this;
   }
 
-  public function getByHospitalizationId(int $id): ?Patient {
+  public function getByHospitalizationId(int $id): ?Patient
+  {
     $stmt = $this
       ->ensureIsConnected()
       ->prepare('SELECT patient_id FROM hospitalizations WHERE id = ?');

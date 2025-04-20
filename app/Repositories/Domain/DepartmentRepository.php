@@ -8,7 +8,8 @@ use HAJU\Models\Department;
 use HAJU\Repositories\Exceptions\DuplicatedNamesException;
 
 /** @extends Repository<Department> */
-interface DepartmentRepository extends Repository {
+interface DepartmentRepository extends Repository
+{
   /** @throws DuplicatedNamesException */
   public function save(Department $department): void;
 

@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace HAJU\Enums;
 
-enum InstructionLevel: string {
+enum InstructionLevel: string
+{
   use BackedEnum;
 
   case Doctor = 'Dr';
@@ -12,7 +13,8 @@ enum InstructionLevel: string {
   case TSU = 'TSU';
   case Graduate = 'Licdo';
 
-  public function getLongValue(): string {
+  public function getLongValue(): string
+  {
     return match ($this) {
       self::Doctor => 'Doctor/a',
       self::Engineer => 'Ingeniero/a',
@@ -21,7 +23,8 @@ enum InstructionLevel: string {
     };
   }
 
-  public function getId(): int {
+  public function getId(): int
+  {
     return match ($this) {
       self::Doctor => 1,
       self::Engineer => 2,

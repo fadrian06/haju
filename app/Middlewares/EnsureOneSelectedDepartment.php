@@ -8,7 +8,8 @@ use HAJU\Repositories\Domain\DepartmentRepository;
 use flight\template\View;
 use Leaf\Http\Session;
 
-final readonly class EnsureOneSelectedDepartment {
+final readonly class EnsureOneSelectedDepartment
+{
   public function __construct(
     private Session $session,
     private View $view,
@@ -16,7 +17,8 @@ final readonly class EnsureOneSelectedDepartment {
   ) {
   }
 
-  public function before(): void {
+  public function before(): void
+  {
     $departmentId = $this->session->get('departmentId');
     $departments = [];
 

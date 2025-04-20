@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace HAJU\Enums;
 
-enum ConsultationType: string {
+enum ConsultationType: string
+{
   case FirstTime = 'P';
   case Succesive = 'S';
   case Associated = 'X';
 
-  public function getDescription(): string {
+  public function getDescription(): string
+  {
     return match ($this) {
       self::Associated => 'Asociada',
       self::FirstTime => 'Primera vez',
@@ -18,7 +20,8 @@ enum ConsultationType: string {
   }
 
   /** @return array<int, static> */
-  public static function getCases(): array {
+  public static function getCases(): array
+  {
     return [self::Succesive, self::Associated];
   }
 }

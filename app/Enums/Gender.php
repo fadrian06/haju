@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace HAJU\Enums;
 
-enum Gender: string {
+enum Gender: string
+{
   use BackedEnum;
 
   case Male = 'Masculino';

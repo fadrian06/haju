@@ -11,11 +11,13 @@ use JsonSerializable;
  * @property-read ?int $id
  * @property-read ?string $registeredDate
  */
-abstract class Model implements JsonSerializable {
+abstract class Model implements JsonSerializable
+{
   private ?int $id = null;
   private ?DateTimeInterface $registeredDateTime = null;
 
-  final public function setId(int $id): static {
+  final public function setId(int $id): static
+  {
     if ($this->id === null) {
       $this->id = $id;
     }
@@ -23,7 +25,8 @@ abstract class Model implements JsonSerializable {
     return $this;
   }
 
-  final public function setRegisteredDate(DateTimeInterface $datetime): static {
+  final public function setRegisteredDate(DateTimeInterface $datetime): static
+  {
     if ($this->registeredDateTime === null) {
       $this->registeredDateTime = $datetime;
     }
@@ -31,18 +34,21 @@ abstract class Model implements JsonSerializable {
     return $this;
   }
 
-  final public function isEqualTo(self $model): bool {
+  final public function isEqualTo(self $model): bool
+  {
     return $this->id === $model->id;
   }
 
-  public function __get(string $property): null|int|string {
+  public function __get(string $property): null|int|string
+  {
     return match ($property) {
       'id' => $this->id,
       'registeredDate' => $this->registeredDateTime->format('d/m/Y')
     };
   }
 
-  public function jsonSerialize(): array {
+  public function jsonSerialize(): array
+  {
     return [
       'id' => $this->id,
       'registeredDate' => $this->registeredDateTime?->format('d/m/Y'),

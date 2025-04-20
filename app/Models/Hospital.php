@@ -16,7 +16,8 @@ use HAJU\ValueObjects\LongName;
  * @property-read string $healthDepartment
  * @property-read string $region
  */
-final class Hospital {
+final class Hospital
+{
   private LongName $name;
 
   public function __construct(
@@ -32,55 +33,71 @@ final class Hospital {
     $this->setName($name);
   }
 
-  public function setName(string $name): static {
+  public function setName(string $name): static
+  {
     $this->name = new LongName($name, 'Nombre');
 
     return $this;
   }
 
-  public function setAsic(string $asic): static {
+  public function setAsic(string $asic): static
+  {
     $this->asic = $asic;
 
-    return $this;;
+    return $this;
+    ;
   }
 
-  public function setType(string $type): static {
+  public function setType(string $type): static
+  {
     $this->type = $type;
 
-    return $this;;
+    return $this;
+    ;
   }
 
-  public function setPlace(string $place): static {
+  public function setPlace(string $place): static
+  {
     $this->place = $place;
 
-    return $this;;
+    return $this;
+    ;
   }
 
-  public function setParish(string $parish): static {
+  public function setParish(string $parish): static
+  {
     $this->parish = $parish;
 
-    return $this;;
+    return $this;
+    ;
   }
 
-  public function setMunicipality(string $municipality): static {
+  public function setMunicipality(string $municipality): static
+  {
     $this->municipality = $municipality;
 
-    return $this;;
+    return $this;
+    ;
   }
 
-  public function setHealthDepartment(string $healthDepartment): static {
+  public function setHealthDepartment(string $healthDepartment): static
+  {
     $this->healthDepartment = $healthDepartment;
 
-    return $this;;
+    return $this;
+    ;
   }
 
-  public function setRegion(string $region): static {
+  public function setRegion(string $region): static
+  {
     $this->region = $region;
 
-    return $this;;
+    return $this;
+    ;
   }
 
-  public function __get(string $property): null|string {
+  public function __get(string $property): null|string
+  {
     return match ($property) {
       'name' => (string) $this->name,
       'asic' => $this->asic,

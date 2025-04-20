@@ -9,7 +9,8 @@ use HAJU\ValueObjects\Date;
 use HAJU\Enums\Gender;
 use Generator;
 
-final class Patient extends Person {
+final class Patient extends Person
+{
   /** @var array<int, Consultation> */
   private array $consultations = [];
 
@@ -37,7 +38,8 @@ final class Patient extends Person {
     );
   }
 
-  public function isHospitalized(): bool {
+  public function isHospitalized(): bool
+  {
     foreach ($this->hospitalizations as $hospitalization) {
       if (!$hospitalization->isFinished()) {
         return true;
@@ -47,19 +49,23 @@ final class Patient extends Person {
     return false;
   }
 
-  public function canBeDeleted(): bool {
+  public function canBeDeleted(): bool
+  {
     return !$this->hasConsultations() && !$this->hasHospitalizations();
   }
 
-  public function hasHospitalizations(): bool {
+  public function hasHospitalizations(): bool
+  {
     return $this->hospitalizations !== [];
   }
 
-  public function hasConsultations(): bool {
+  public function hasConsultations(): bool
+  {
     return $this->consultations !== [];
   }
 
-  public function canBeEditedBy(User $user): bool {
+  public function canBeEditedBy(User $user): bool
+  {
     // TODO: que el coordinador del secretario que registró al paciente también pueda editarlo
     if ($user->appointment->isDirector()) {
       return true;
@@ -69,26 +75,30 @@ final class Patient extends Person {
   }
 
   /** @return Generator<int, Consultation> */
-  public function getConsultation(): Generator {
+  public function getConsultation(): Generator
+  {
     foreach ($this->consultations as $consultation) {
       yield $consultation;
     }
   }
 
   /** @return Generator<int, Hospitalization> */
-  public function getHospitalization(): Generator {
+  public function getHospitalization(): Generator
+  {
     foreach ($this->hospitalizations as $hospitalization) {
       yield $hospitalization;
     }
   }
 
-  public function setConsultations(Consultation ...$consultations): self {
+  public function setConsultations(Consultation ...$consultations): self
+  {
     $this->consultations = $consultations;
 
     return $this;
   }
 
-  public function getCauseById(int $causeId): ?ConsultationCause {
+  public function getCauseById(int $causeId): ?ConsultationCause
+  {
     foreach ($this->consultations as $consultation) {
       if ($consultation->cause->id === $causeId) {
         return $consultation->cause;
@@ -98,18 +108,21 @@ final class Patient extends Person {
     return null;
   }
 
-  public function setHospitalization(Hospitalization ...$hospitalizations): self {
+  public function setHospitalization(Hospitalization ...$hospitalizations): self
+  {
     $this->hospitalizations = $hospitalizations;
 
     return $this;
   }
 
   /** @return Hospitalization[] */
-  public function getHospitalizations(): array {
+  public function getHospitalizations(): array
+  {
     return $this->hospitalizations;
   }
 
-  public function getHospitalizationById(int $hospitalizationId): ?Hospitalization {
+  public function getHospitalizationById(int $hospitalizationId): ?Hospitalization
+  {
     foreach ($this->hospitalizations as $hospitalization) {
       if ($hospitalization->id === $hospitalizationId) {
         return $hospitalization;
@@ -119,7 +132,8 @@ final class Patient extends Person {
     return null;
   }
 
-  public function jsonSerialize(): array {
+  public function jsonSerialize(): array
+  {
     return parent::jsonSerialize() + [
       'consultations' => $this->consultations,
       'hospitalizations' => $this->hospitalizations,

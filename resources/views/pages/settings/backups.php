@@ -15,7 +15,7 @@
     <h2>Respaldar</h2>
   </a>
 </div>
-<?php if ($scriptPath): ?>
+<?php if ($scriptPath) : ?>
   <div class="col-sm p-2">
     <a href="<?= $scriptPath ?>" download="haju.sqlite.sql" class="btn w-100 btn-light shadow p-4">
       <i class="mb-3 ti-download fs-1"></i>

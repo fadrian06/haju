@@ -8,7 +8,8 @@ use HAJU\Models\Contracts\Model;
 use HAJU\Repositories\Exceptions\RepositoryException;
 
 /** @template T of Model */
-interface Repository {
+interface Repository
+{
   /**
    * @return array<int, T>
    * @throws RepositoryException

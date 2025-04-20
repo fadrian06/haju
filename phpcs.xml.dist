@@ -13,8 +13,27 @@
   <file>rector.php</file>
 
   <rule ref="PSR1" />
+  <rule ref="PSR2" />
 
   <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
     <exclude-pattern>helpers.php</exclude-pattern>
+  </rule>
+
+  <rule ref="Generic.WhiteSpace.ScopeIndent">
+    <properties>
+      <property name="indent" value="2" />
+    </properties>
+  </rule>
+
+  <rule ref="PSR2.Methods.FunctionCallSignature">
+    <properties>
+      <property name="indent" value="2" />
+    </properties>
+  </rule>
+
+  <rule ref="Squiz.Functions.MultiLineFunctionDeclaration">
+    <properties>
+      <property name="indent" value="2" />
+    </properties>
   </rule>
 </ruleset>

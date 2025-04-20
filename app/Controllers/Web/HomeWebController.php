@@ -10,7 +10,8 @@ use HAJU\Repositories\Domain\DoctorRepository;
 use HAJU\Repositories\Domain\PatientRepository;
 use HAJU\Repositories\Domain\UserRepository;
 
-final readonly class HomeWebController extends Controller {
+final readonly class HomeWebController extends Controller
+{
   public function __construct(
     private readonly UserRepository $userRepository,
     private readonly DepartmentRepository $departmentRepository,
@@ -20,7 +21,8 @@ final readonly class HomeWebController extends Controller {
     parent::__construct();
   }
 
-  public function showIndex(): void {
+  public function showIndex(): void
+  {
     $users = $this->userRepository->getAll($this->loggedUser);
 
     $filteredUsers = array_filter($users, fn(User $user): bool => $user->appointment->isLowerOrEqualThan($this->loggedUser->appointment));

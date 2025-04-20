@@ -20,7 +20,7 @@ foreach ($consultationCauses as $consultationCause) {
 
 ?>
 
-<?php foreach (array_keys($groupByLimit) as $groupName): ?>
+<?php foreach (array_keys($groupByLimit) as $groupName) : ?>
   <form method="post" class="text-center">
     <h2 class="mb-4">Límite de casos semanales</h2>
     <div class="list-group">

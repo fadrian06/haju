@@ -9,11 +9,14 @@ use Flight;
 use flight\template\View;
 use Leaf\Http\Session;
 
-final readonly class EnsureDepartmentIsActive {
-  public function __construct(private View $view, private Session $session) {
+final readonly class EnsureDepartmentIsActive
+{
+  public function __construct(private View $view, private Session $session)
+  {
   }
 
-  public function before(): ?true {
+  public function before(): ?true
+  {
     $department = $this->view->get('department');
 
     if (!$department instanceof Department || !$department->isInactive()) {

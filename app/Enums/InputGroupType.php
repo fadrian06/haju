@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace HAJU\Enums;
 
-enum InputGroupType: string {
+enum InputGroupType: string
+{
   case TEXTAREA = 'textarea';
   case SELECT = 'select';
   case FILE = 'file';

@@ -20,7 +20,7 @@ static $isFirstRender = true;
     id="<?= $id ?>"
     name="<?= $name ?>">
     <option value="" selected disabled>Selecciona una opción</option>
-    <?php foreach ($options as $option): ?>
+    <?php foreach ($options as $option) : ?>
       <option
         <?= !@$option['selected'] ?: 'selected' ?>
         value="<?= @$option['value'] ?>">

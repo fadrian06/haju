@@ -8,14 +8,16 @@ use Flight;
 use flight\net\Request;
 use Leaf\Http\Session;
 
-final readonly class EnsureOnlyAcceptOneDirector {
+final readonly class EnsureOnlyAcceptOneDirector
+{
   private function __construct(
     private Request $request,
     private Session $session,
   ) {
   }
 
-  public function before(): void {
+  public function before(): void
+  {
     if ($this->request->data['secret_key'] !== null) {
       if ($this->request->data['secret_key'] !== '1234') {
         renderPage('login', 'Ingreso (1/2)', [

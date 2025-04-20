@@ -23,7 +23,7 @@ use HAJU\Models\User;
           'slot' => 'Cerrar sesión'
         ]) ?>
       </li>
-    <?php else: ?>
+    <?php else : ?>
       <li>
         <a
           href="./ingresar"

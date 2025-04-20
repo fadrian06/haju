@@ -22,7 +22,8 @@ use PDOException;
 use PharIo\Manifest\Email;
 use PharIo\Manifest\Url;
 
-final class PDOUserRepository extends PDORepository implements UserRepository {
+final class PDOUserRepository extends PDORepository implements UserRepository
+{
   private const FIELDS = <<<sql
   users.id as id, first_name as firstName, second_name as secondName,
   first_last_name as firstLastName, second_last_name as secondLastName,
@@ -47,11 +48,13 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
     parent::__construct($pdo, $baseUrl);
   }
 
-  protected static function getTable(): string {
+  protected static function getTable(): string
+  {
     return 'users';
   }
 
-  public function getAll(User ...$exclude): array {
+  public function getAll(User ...$exclude): array
+  {
     $ids = array_map(fn(User $user): int => $user->id, $exclude);
 
     return $this->ensureIsConnected()
@@ -66,7 +69,8 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
       ))->fetchAll(PDO::FETCH_FUNC, $this->mapper(...));
   }
 
-  public function getByIdCard(int $idCard): ?User {
+  public function getByIdCard(int $idCard): ?User
+  {
     $stmt = $this->ensureIsConnected()
       ->prepare(sprintf(
         'SELECT %s FROM %s %s WHERE id_card = ?',
@@ -80,7 +84,8 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
     return $stmt->fetchAll(PDO::FETCH_FUNC, $this->mapper(...))[0] ?? null;
   }
 
-  public function getById(int $id): ?User {
+  public function getById(int $id): ?User
+  {
     $stmt = $this->ensureIsConnected()
       ->prepare(sprintf(
         'SELECT %s FROM %s %s WHERE users.id = ?',
@@ -94,7 +99,8 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
     return $stmt->fetchAll(PDO::FETCH_FUNC, $this->mapper(...))[0] ?? null;
   }
 
-  public function save(User $user): void {
+  public function save(User $user): void
+  {
     try {
       if ($user->id) {
         $this->assignDepartments($user)->update($user);
@@ -166,7 +172,8 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
     }
   }
 
-  private function assignDepartments(User $user): self {
+  private function assignDepartments(User $user): self
+  {
     $this->ensureIsConnected()
       ->prepare('DELETE FROM department_assignments WHERE user_id = ?')
       ->execute([$user->id]);
@@ -190,7 +197,8 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
     return $this;
   }
 
-  private function update(User $user): self {
+  private function update(User $user): self
+  {
     $sql = sprintf(
       <<<SQL
         UPDATE %s SET first_name = ?, second_name = ?, first_last_name = ?,
@@ -223,7 +231,8 @@ final class PDOUserRepository extends PDORepository implements UserRepository {
     return $this;
   }
 
-  private function setDepartments(User $user): void {
+  private function setDepartments(User $user): void
+  {
     if ($user->appointment === Appointment::Director) {
       $user->assignDepartments(...$this->departmentRepository->getAll());
 

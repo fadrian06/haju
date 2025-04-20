@@ -7,7 +7,8 @@ namespace HAJU\Repositories\Domain;
 use HAJU\Models\Doctor;
 
 /** @extends Repository<Doctor> */
-interface DoctorRepository extends Repository {
+interface DoctorRepository extends Repository
+{
   public function getByIdCard(int $idCard): ?Doctor;
 
   /**

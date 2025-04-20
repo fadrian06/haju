@@ -9,7 +9,8 @@ use HAJU\Models\ConsultationCauseCategory;
 use Generator;
 
 /** @implements Repository<ConsultationCause> */
-interface ConsultationCauseRepository extends Repository {
+interface ConsultationCauseRepository extends Repository
+{
   /** @return Generator<int, ConsultationCause> */
   public function getAllWithGenerator(): Generator;
 

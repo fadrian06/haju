@@ -9,11 +9,14 @@ use HAJU\Models\Hospital;
 use HAJU\Repositories\Domain\SettingsRepository;
 use PDO;
 
-final readonly class FilesSettingsRepository implements SettingsRepository {
-  public function __construct(private PDO $pdo) {
+final readonly class FilesSettingsRepository implements SettingsRepository
+{
+  public function __construct(private PDO $pdo)
+  {
   }
 
-  public function getHospital(): Hospital {
+  public function getHospital(): Hospital
+  {
     $info = json_decode(file_get_contents(__DIR__ . '/hospital.json'), true);
 
     return new Hospital(
@@ -28,7 +31,8 @@ final readonly class FilesSettingsRepository implements SettingsRepository {
     );
   }
 
-  public function backupExists(): bool {
+  public function backupExists(): bool
+  {
     return match ($_ENV['DB_CONNECTION']) {
       DBDriver::SQLite => file_exists(str_replace('.db', '.backup.db', $_ENV['DB_DATABASE'])),
       DBDriver::MySQL => file_exists(DATABASE_PATH . '/backup.mysql.sql'),
@@ -36,7 +40,8 @@ final readonly class FilesSettingsRepository implements SettingsRepository {
     };
   }
 
-  public function backup(): string {
+  public function backup(): string
+  {
     switch ($_ENV['DB_CONNECTION']) {
       case DBDriver::SQLite:
         copy($_ENV['DB_DATABASE'], str_replace('.db', '.backup.db', $_ENV['DB_DATABASE']));
@@ -48,14 +53,15 @@ final readonly class FilesSettingsRepository implements SettingsRepository {
           $script
         );
 
-        return $backupPath;
+          return $backupPath;
       case DBDriver::MySQL:
       default:
-        return '';
+          return '';
     }
   }
 
-  public function restore(): void {
+  public function restore(): void
+  {
     switch ($_ENV['DB_CONNECTION']) {
       case DBDriver::SQLite:
         $copy = str_replace('.db', '.backup.db', $_ENV['DB_DATABASE']);
@@ -63,14 +69,14 @@ final readonly class FilesSettingsRepository implements SettingsRepository {
         copy($copy, $_ENV['DB_DATABASE']);
         unlink($copy);
 
-        return;
+          return;
       case DBDriver::MySQL:
-
-        return;
+          return;
     }
   }
 
-  public function restoreFromScript(string $script): void {
+  public function restoreFromScript(string $script): void
+  {
     if ($_ENV['DB_CONNECTION'] === DBDriver::SQLite) {
       foreach (explode(';', $script) as $statement) {
         if ($statement) {
@@ -80,7 +86,8 @@ final readonly class FilesSettingsRepository implements SettingsRepository {
     }
   }
 
-  public function save(Hospital $hospital): void {
+  public function save(Hospital $hospital): void
+  {
     $data = [
       'name' => $hospital->name,
       'asic' => $hospital->asic,
@@ -95,7 +102,8 @@ final readonly class FilesSettingsRepository implements SettingsRepository {
     file_put_contents(__DIR__ . '/hospital.json', json_encode($data, JSON_PRETTY_PRINT));
   }
 
-  private function generateSqliteScript(): string {
+  private function generateSqliteScript(): string
+  {
     $tablesQuery = $this->pdo->query("SELECT name FROM sqlite_master WHERE type='table'");
     $tables = $tablesQuery->fetchAll(PDO::FETCH_COLUMN);
     $sqlScript = '';

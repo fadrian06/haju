@@ -10,7 +10,8 @@ use DateTimeInterface;
 use PDO;
 use PDOException;
 
-abstract class PDORepository {
+abstract class PDORepository
+{
   private const DATETIME_FORMAT = 'Y-m-d H:i:s';
   protected const DATE_FORMAT = 'Y-m-d';
 
@@ -22,14 +23,16 @@ abstract class PDORepository {
 
   abstract protected static function getTable(): string;
 
-  final public function getRowsCount(): int {
+  final public function getRowsCount(): int
+  {
     return $this->ensureIsConnected()
       ->query("SELECT count(id) FROM " . static::getTable())
       ->fetchColumn(0);
   }
 
   /** @throws RepositoryException */
-  final protected function ensureIsConnected(): PDO {
+  final protected function ensureIsConnected(): PDO
+  {
     if (!$this->pdo) {
       throw new RepositoryException('DB is not connected');
     }
@@ -47,11 +50,13 @@ abstract class PDORepository {
     return $this->pdo;
   }
 
-  final protected static function parseDateTime(string $raw): DateTimeInterface {
+  final protected static function parseDateTime(string $raw): DateTimeInterface
+  {
     return DateTimeImmutable::createFromFormat(self::DATETIME_FORMAT, $raw);
   }
 
-  final protected static function getCurrentDatetime(): string {
+  final protected static function getCurrentDatetime(): string
+  {
     return date(self::DATETIME_FORMAT);
   }
 }

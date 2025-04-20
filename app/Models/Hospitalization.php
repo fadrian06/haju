@@ -8,7 +8,8 @@ use HAJU\Models\Contracts\Model;
 use HAJU\Enums\DepartureStatus;
 use DateTimeInterface;
 
-final class Hospitalization extends Model {
+final class Hospitalization extends Model
+{
   public function __construct(
     public readonly Patient $patient,
     public Doctor $doctor,
@@ -20,29 +21,34 @@ final class Hospitalization extends Model {
   ) {
   }
 
-  public function setAdmissionDate(DateTimeInterface $admissionDate): self {
+  public function setAdmissionDate(DateTimeInterface $admissionDate): self
+  {
     $this->admissionDate = $admissionDate;
 
     return $this;
   }
 
-  public function setDepartureDate(DateTimeInterface $departureDate): self {
+  public function setDepartureDate(DateTimeInterface $departureDate): self
+  {
     $this->departureDate = $departureDate;
 
     return $this;
   }
 
-  public function setDepartureStatus(DepartureStatus $departureStatus): self {
+  public function setDepartureStatus(DepartureStatus $departureStatus): self
+  {
     $this->departureStatus = $departureStatus;
 
     return $this;
   }
 
-  public function isFinished(): bool {
+  public function isFinished(): bool
+  {
     return (bool) $this->departureDate;
   }
 
-  public function jsonSerialize(): array {
+  public function jsonSerialize(): array
+  {
     return parent::jsonSerialize() + [
       'isFinished' => $this->isFinished(),
       'admissionDateImperialFormat' => $this->admissionDate->format('Y-m-d'),

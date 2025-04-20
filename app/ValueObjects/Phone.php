@@ -11,11 +11,13 @@ use libphonenumber\PhoneNumberFormat;
 use libphonenumber\PhoneNumberUtil;
 use Stringable;
 
-final readonly class Phone implements Stringable {
+final readonly class Phone implements Stringable
+{
   private PhoneNumber $phoneNumber;
 
   /** @throws InvalidPhoneException */
-  public function __construct(string $phone) {
+  public function __construct(string $phone)
+  {
     if (strlen($phone) < 11) {
       throw new InvalidPhoneException('Teléfono inválido');
     }
@@ -27,14 +29,16 @@ final readonly class Phone implements Stringable {
     }
   }
 
-  public function __toString(): string {
+  public function __toString(): string
+  {
     return PhoneNumberUtil::getInstance()->format(
       $this->phoneNumber,
       PhoneNumberFormat::INTERNATIONAL,
     );
   }
 
-  public function toValidPhoneLink(): string {
+  public function toValidPhoneLink(): string
+  {
     return PhoneNumberUtil::getInstance()->format(
       $this->phoneNumber,
       PhoneNumberFormat::E164,

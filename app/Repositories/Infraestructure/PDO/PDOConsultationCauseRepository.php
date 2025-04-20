@@ -11,8 +11,8 @@ use HAJU\Repositories\Domain\ConsultationCauseRepository;
 use Generator;
 use PDO;
 
-final class PDOConsultationCauseRepository
-extends PDORepository implements ConsultationCauseRepository {
+final class PDOConsultationCauseRepository extends PDORepository implements ConsultationCauseRepository
+{
   private const FIELDS = <<<sql
   id, short_name as shortName, extended_name as extendedName, variant, code,
   category_id as categoryId, weekly_cases_limit as weeklyLimit
@@ -26,17 +26,20 @@ extends PDORepository implements ConsultationCauseRepository {
     parent::__construct($pdo, $baseUrl);
   }
 
-  protected static function getTable(): string {
+  protected static function getTable(): string
+  {
     return 'consultation_causes';
   }
 
-  public function getAll(): array {
+  public function getAll(): array
+  {
     return $this->ensureIsConnected()
       ->query(sprintf('SELECT %s FROM %s', self::FIELDS, self::getTable()))
       ->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper']);
   }
 
-  public function getAllByCategory(ConsultationCauseCategory $category): array {
+  public function getAllByCategory(ConsultationCauseCategory $category): array
+  {
     $stmt = $this->ensureIsConnected()->prepare(sprintf(
       'SELECT %s FROM %s WHERE category_id = ?',
       self::FIELDS,
@@ -48,7 +51,8 @@ extends PDORepository implements ConsultationCauseRepository {
     return $stmt->fetchAll(PDO::FETCH_FUNC, [$this, 'mapper']);
   }
 
-  public function getAllWithGenerator(): Generator {
+  public function getAllWithGenerator(): Generator
+  {
     $stmt = $this->ensureIsConnected()
       ->query(sprintf('SELECT %s FROM %s', self::FIELDS, self::getTable()));
 
@@ -57,7 +61,8 @@ extends PDORepository implements ConsultationCauseRepository {
     }
   }
 
-  public function getById(int $id): ?ConsultationCause {
+  public function getById(int $id): ?ConsultationCause
+  {
     $stmt = $this->ensureIsConnected()->prepare(sprintf(
       'SELECT %s FROM %s WHERE id = ?',
       self::FIELDS,

@@ -66,7 +66,7 @@ $model ??= '';
 
 ?>
 
-<?php if ($type === InputGroupType::CHECKBOX || $type === InputGroupType::RADIO): ?>
+<?php if ($type === InputGroupType::CHECKBOX || $type === InputGroupType::RADIO) : ?>
   <div class="form-check form-switch fs-6 d-flex gap-1 align-items-end">
     <input
       class="form-check-input"
@@ -81,7 +81,7 @@ $model ??= '';
       <?= $placeholder ?>
     </label>
   </div>
-<?php else: ?>
+<?php else : ?>
   <div class="col-md-<?= $cols ?? 6 ?> <?= $hidden ? 'd-none' : '' ?> form-floating mb-<?= $margin ?>">
     <?php if ($type === InputGroupType::TEXTAREA) : ?>
       <textarea
@@ -91,7 +91,7 @@ $model ??= '';
         id="<?= $id ?>"
         style="height: 66px"
         placeholder="<?= $placeholder ?>"><?= $value ?></textarea>
-    <?php elseif ($type === InputGroupType::FILE): ?>
+    <?php elseif ($type === InputGroupType::FILE) : ?>
       <input
         style="height: auto; padding-bottom: 0"
         type="file"
@@ -119,7 +119,7 @@ $model ??= '';
           </option>
         <?php endforeach ?>
       </select>
-    <?php else: ?>
+    <?php else : ?>
       <input
         style="height: 66px; <?= $type === 'date' ? 'padding-top: 1em; padding-bottom: 0' : '' ?>"
         type="<?= $type->value ?>"

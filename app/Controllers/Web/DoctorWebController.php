@@ -13,20 +13,23 @@ use Error;
 use Flight;
 use Throwable;
 
-final readonly class DoctorWebController extends Controller {
+final readonly class DoctorWebController extends Controller
+{
   public function __construct(
     private readonly DoctorRepository $doctorRepository,
   ) {
     parent::__construct();
   }
 
-  public function showDoctors(): void {
+  public function showDoctors(): void
+  {
     renderPage('doctors/list', 'Doctores', [
       'doctors' => $this->doctorRepository->getAll()
     ], 'main');
   }
 
-  public function handleRegister(): void {
+  public function handleRegister(): void
+  {
     try {
       if (!in_array($this->data['gender'], Gender::values(), true)) {
         throw new Error(sprintf(
@@ -55,13 +58,15 @@ final readonly class DoctorWebController extends Controller {
     Flight::redirect(Flight::request()->referrer);
   }
 
-  public function showEdit(int $idCard): void {
+  public function showEdit(int $idCard): void
+  {
     renderPage('doctors/edit', 'Editar doctor', [
       'doctor' => $this->doctorRepository->getByIdCard($idCard)
     ], 'main');
   }
 
-  public function handleEdition(int $idCard): void {
+  public function handleEdition(int $idCard): void
+  {
     try {
       $doctor = $this->doctorRepository->getByIdCard($idCard);
 

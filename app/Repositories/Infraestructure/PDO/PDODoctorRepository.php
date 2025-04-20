@@ -14,9 +14,8 @@ use HAJU\Enums\Gender;
 use PDO;
 use PDOException;
 
-final class PDODoctorRepository
-extends PDORepository
-implements DoctorRepository {
+final class PDODoctorRepository extends PDORepository implements DoctorRepository
+{
   private const FIELDS = <<<SQL
     id, first_name as firstName, second_name as secondName,
     first_last_name as firstLastName, second_last_name as secondLastName,
@@ -32,11 +31,13 @@ implements DoctorRepository {
     parent::__construct($pdo, $baseUrl);
   }
 
-  protected static function getTable(): string {
+  protected static function getTable(): string
+  {
     return 'doctors';
   }
 
-  public function getAll(): array {
+  public function getAll(): array
+  {
     return $this->ensureIsConnected()
       ->query(sprintf(
         'SELECT %s FROM %s ORDER BY idCard',
@@ -45,7 +46,8 @@ implements DoctorRepository {
       ))->fetchAll(PDO::FETCH_FUNC, $this->mapper(...));
   }
 
-  public function getById(int $id): ?Doctor {
+  public function getById(int $id): ?Doctor
+  {
     $stmt = $this->ensureIsConnected()->prepare(sprintf(
       'SELECT %s FROM %s WHERE id = ?',
       self::FIELDS,
@@ -57,7 +59,8 @@ implements DoctorRepository {
     return $stmt->fetchAll(PDO::FETCH_FUNC, $this->mapper(...))[0] ?? null;
   }
 
-  public function getByIdCard(int $idCard): ?Doctor {
+  public function getByIdCard(int $idCard): ?Doctor
+  {
     $stmt = $this->ensureIsConnected()->prepare(sprintf(
       'SELECT %s FROM %s WHERE id_card = ?',
       self::FIELDS,
@@ -69,7 +72,8 @@ implements DoctorRepository {
     return $stmt->fetchAll(PDO::FETCH_FUNC, $this->mapper(...))[0] ?? null;
   }
 
-  public function save(Doctor $doctor): void {
+  public function save(Doctor $doctor): void
+  {
     try {
       if ($doctor->id) {
         $this->update($doctor);
@@ -117,7 +121,8 @@ implements DoctorRepository {
     }
   }
 
-  private function update(Doctor $doctor): self {
+  private function update(Doctor $doctor): self
+  {
     $query = sprintf(
       <<<sql
         UPDATE %s SET first_name = ?, second_name = ?, first_last_name = ?,
