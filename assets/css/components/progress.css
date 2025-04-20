@@ -2,7 +2,7 @@
   height: 24px;
   background: 0 0;
   border-radius: 30px;
-  width: 256px
+  width: 256px;
 }
 
 .custom_striped_progressbar .progress-bar {
@@ -15,24 +15,24 @@
   font-weight: 300;
   background: 0 0;
   background-size: 100% 100%;
-  background-repeat: no-repeat
+  background-repeat: no-repeat;
 }
 
 .custom_striped_progressbar .progress-bar.green_bar {
   background-image: url(../img/progress/progress-bg.png);
-  background-size: cover
+  background-size: cover;
 }
 
 .custom_striped_progressbar .progress-bar.yellow_bar {
   background-image: url(../img/progress/design-progress-yellow.png);
-  background-size: cover
+  background-size: cover;
 }
 
 .custom_striped_progressbar .progress-bar.red_bar {
   background-image: url(../img/progress/design-progress-red.png);
-  background-size: cover
+  background-size: cover;
 }
 
 .wrapper .progress {
-  margin-bottom: 15px
+  margin-bottom: 15px;
 }

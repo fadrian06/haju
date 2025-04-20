@@ -6,23 +6,23 @@
   align-items: center;
   margin-bottom: 60px;
   -webkit-transition: .5s;
-  transition: .5s
+  transition: .5s;
 }
 
 .dashboard_part .notification_tab p {
   font-size: 16px;
-  color: #222
+  color: #222;
 }
 
 .dashboard_part .notification_tab p a {
-  color: #2e4765
+  color: #2e4765;
 }
 
 .dashboard_part .hide_icon {
-  cursor: pointer
+  cursor: pointer;
 }
 
 .dashboard_part .hide_icon i {
   color: #2e4765;
-  font-size: 10px
+  font-size: 10px;
 }

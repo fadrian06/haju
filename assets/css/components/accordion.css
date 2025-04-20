@@ -1,23 +1,23 @@
 .accordion_custom h4 {
   font-size: 18px;
   font-weight: 600;
-  margin-bottom: 40px
+  margin-bottom: 40px;
 }
 
 .accordion_custom .card {
   margin-bottom: 15px;
   border: 0;
-  overflow: visible
+  overflow: visible;
 }
 
 .accordion_custom .card .card-header {
   border: 0;
   padding: 0;
-  border-radius: 30px !important
+  border-radius: 30px !important;
 }
 
 .accordion_custom .card .card-header h2 {
-  padding: 0
+  padding: 0;
 }
 
 .accordion_custom .card .card-header h2 a {
@@ -30,7 +30,7 @@
   position: relative;
   padding: 13px 20px;
   background: #2daab8;
-  box-shadow: 0 5px 10px rgba(45, 170, 184, .7);
+  box-shadow: 0 5px 10px rgba(45, 170, 184, 0.7);
   color: white;
   -webkit-transition: .3s;
   -moz-transition: .3s;
@@ -39,7 +39,7 @@
   border: 0;
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
-  border-radius: 30px
+  border-radius: 30px;
 }
 
 .accordion_custom .card .card-header h2 a::before {
@@ -51,7 +51,7 @@
   font-family: themify;
   font-size: 14px;
   right: 30px;
-  color: white
+  color: white;
 }
 
 .accordion_custom .card .card-header h2 a.collapsed {
@@ -60,25 +60,25 @@
   box-shadow: none;
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
-  border-radius: 30px
+  border-radius: 30px;
 }
 
 .accordion_custom .card .card-header h2 a.collapsed::before {
   content: "\e61a";
-  color: #415094
+  color: #415094;
 }
 
 .accordion_custom .card .card-header h2 a:focus {
-  text-decoration: none
+  text-decoration: none;
 }
 
 .accordion_custom .card .card-body {
-  padding: 24px 20px 30px
+  padding: 24px 20px 30px;
 }
 
-@media(max-width:575.98px) {
+@media (max-width: 575.98px) {
   .accordion_custom .card .card-body {
-    padding: 15px
+    padding: 15px;
   }
 }
 
@@ -87,9 +87,9 @@
   line-height: 26px;
   color: #555;
   font-weight: 300;
-  margin-bottom: 28px
+  margin-bottom: 28px;
 }
 
 .accordion_custom .card .card-body p:last-child {
-  margin-bottom: 0
+  margin-bottom: 0;
 }

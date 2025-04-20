@@ -13,6 +13,7 @@
         "source.json.npm": "LSP-json",
         "source.json": "LSP-biome",
         "source.ts": "LSP-biome",
+        "source.css": "LSP-biome",
       },
       "LSP-intelephense": {
         "settings": {
@@ -39,7 +40,7 @@
   "connections": {
     "haju-sqlite": {
       "type": "sqlite",
-      "database": "C:/xampp/htdocs/haju/database/haju.db"
+      "database": "C:/xampp/htdocs/haju/database/haju.db",
     },
-  }
+  },
 }

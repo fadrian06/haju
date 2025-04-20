@@ -1,42 +1,42 @@
 .cs_modal .modal-content {
   background-color: #fef1f2;
-  padding: 0 30px
+  padding: 0 30px;
 }
 
-@media(max-width:575.98px) {
+@media (max-width: 575.98px) {
   .cs_modal .modal-content {
-    padding: 0 20px
+    padding: 0 20px;
   }
 }
 
 .cs_modal .modal-header {
   padding: 34px 0 30px 0;
   align-items: center;
-  border-bottom: 0 solid transparent
+  border-bottom: 0 solid transparent;
 }
 
 .cs_modal .modal-header h5 {
   margin-bottom: 0;
   font-size: 18px;
   font-weight: 500;
-  line-height: 25px
+  line-height: 25px;
 }
 
 .cs_modal .modal-header .close {
   padding: 0;
   margin: 0;
-  opacity: 1
+  opacity: 1;
 }
 
 .cs_modal .modal-header .close i {
   font-size: 14px;
-  color: #707070
+  color: #707070;
 }
 
 .cs_modal .modal-body {
   padding: 35px 30px;
   background: white;
-  border-radius: 5px
+  border-radius: 5px;
 }
 
 @media (max-width: 575.98px) {
@@ -52,7 +52,7 @@
   text-align: left;
   margin: 0;
   display: block;
-  margin-bottom: 8px
+  margin-bottom: 8px;
 }
 
 .cs_modal .modal-body .input_wrap label {
@@ -62,7 +62,7 @@
   text-align: left;
   margin: 0;
   display: block;
-  margin-bottom: 8px
+  margin-bottom: 8px;
 }
 
 .cs_modal .modal-body .input_wrap textarea {
@@ -91,53 +91,53 @@
 }
 
 .cs_modal .modal-body .nice_Select {
-  line-height: 30px
+  line-height: 30px;
 }
 
 .cs_modal .modal-body .nice_Select :after {
-  left: 22px
+  left: 22px;
 }
 
 .cs_modal .modal_btn {
   display: flex;
   justify-content: start;
-  align-items: center
+  align-items: center;
 }
 
 .cs_modal .modal_btn .btn_1 {
   padding: 16px 26px;
   margin: 0 5px;
-  text-align: center
+  text-align: center;
 }
 
 .cs_modal .modal-footer {
   border-top: 0 solid transparent;
-  padding: 30px 0 40px
+  padding: 30px 0 40px;
 }
 
 .cs_modal {
-  background-color: #fef1f2
+  background-color: #fef1f2;
 }
 
 .cs_modal .modal-header {
   background-color: #f7faff;
   padding: 23px 30px;
-  border-bottom: 0 solid transparent
+  border-bottom: 0 solid transparent;
 }
 
 .cs_modal .modal-header h5 {
   font-size: 22px;
-  font-weight: 600
+  font-weight: 600;
 }
 
 .cs_modal .modal-header span {
   font-size: 14px;
   color: #707070;
-  opacity: 1
+  opacity: 1;
 }
 
 .cs_modal .modal-body {
-  padding: 35px 30px
+  padding: 35px 30px;
 }
 
 .cs_modal .modal-body input,
@@ -155,19 +155,19 @@
 }
 
 .cs_modal .modal-body .nice_Select {
-  line-height: 29px
+  line-height: 29px;
 }
 
 .cs_modal .modal-body .nice_Select:after {
-  right: 22px
+  right: 22px;
 }
 
 .cs_modal .modal-body .nice_Select .list {
-  width: 100%
+  width: 100%;
 }
 
 .cs_modal .modal-body .form-group {
-  margin-bottom: 12px
+  margin-bottom: 12px;
 }
 
 .cs_modal .modal-body textarea {
@@ -185,24 +185,24 @@
   font-weight: 500;
   margin-top: 25px;
   color: #707070;
-  text-align: center
+  text-align: center;
 }
 
 .cs_modal .modal-body p a {
-  color: #2e4765
+  color: #2e4765;
 }
 
 .cs_modal .modal-body .btn_1 {
   width: 100%;
   display: block;
-  margin-top: 20px
+  margin-top: 20px;
 }
 
 .cs_modal .modal-body .social_login_btn .btn_1 {
   color: white;
   background-color: #3b5998;
   border: 1px solid #3b5998;
-  margin-top: 0
+  margin-top: 0;
 }
 
 .cs_modal .modal-body .social_login_btn .btn_1:hover {
@@ -210,12 +210,12 @@
 }
 
 .cs_modal .modal-body .social_login_btn .btn_1 i {
-  margin-right: 10px
+  margin-right: 10px;
 }
 
 .cs_modal .modal-body .social_login_btn .form-group:last-child .btn_1 {
   background-color: #4285f4;
-  border: 1px solid #4285f4
+  border: 1px solid #4285f4;
 }
 
 .cs_modal .modal-body .pass_forget_btn {
@@ -224,33 +224,33 @@
   font-size: 16px;
   text-align: center;
   font-weight: 500;
-  display: inline-block
+  display: inline-block;
 }
 
 .cs_modal .modal-body .pass_forget_btn:hover {
-  color: #2e4765
+  color: #2e4765;
 }
 
 @media (min-width: 991px) {
   .medium_modal_width .modal-dialog {
-    max-width: 780px
+    max-width: 780px;
   }
 }
 
 .result_modal_table_form .modal-body {
   margin: 30px 0;
-  padding: 120px 100px 104px !important
+  padding: 120px 100px 104px !important;
 }
 
-@media(max-width:991px) {
+@media (max-width: 991px) {
   .result_modal_table_form .modal-body {
-    padding: 30px !important
+    padding: 30px !important;
   }
 }
 
-@media only screen and (min-width:992px) and (max-width:1200px) {
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
   .result_modal_table_form .modal-body {
-    padding: 50px !important
+    padding: 50px !important;
   }
 }
 
@@ -266,7 +266,7 @@
   font-size: 12px;
   font-weight: 400;
   color: #222;
-  white-space: nowrap
+  white-space: nowrap;
 }
 
 .result_modal_table_form .table tbody th,
@@ -276,29 +276,29 @@
   color: #7e7172;
   font-weight: 300;
   border-bottom: 1px solid #eee1e2;
-  padding: 10px 25px !important
+  padding: 10px 25px !important;
 }
 
 .result_modal_table_form .result_header_modal {
-  margin-bottom: 45px
+  margin-bottom: 45px;
 }
 
 .result_modal_table_form .result_header_modal h2 {
   font-size: 36px;
   font-weight: 500;
   color: #222;
-  margin-bottom: 15px
+  margin-bottom: 15px;
 }
 
-@media(max-width:575.98px) {
+@media (max-width: 575.98px) {
   .result_modal_table_form .result_header_modal h2 {
-    font-size: 20px
+    font-size: 20px;
   }
 }
 
-@media only screen and (min-width:576px) and (max-width:767px) {
+@media only screen and (min-width: 576px) and (max-width: 767px) {
   .result_modal_table_form .result_header_modal h2 {
-    font-size: 20px
+    font-size: 20px;
   }
 }
 
@@ -306,7 +306,7 @@
   font-size: 14px;
   font-weight: 300;
   color: #7e7172;
-  line-height: 26px
+  line-height: 26px;
 }
 
 .result_modal_table_form .result_header_modal .passed_text {
@@ -314,26 +314,26 @@
   font-size: 18px;
   font-weight: 500;
   margin-top: 29px;
-  margin-bottom: 35px
+  margin-bottom: 35px;
 }
 
-@media(max-width:575.98px) {
+@media (max-width: 575.98px) {
   .result_modal_table_form .result_header_modal .passed_text {
     margin-top: 15px;
-    margin-bottom: 15px
+    margin-bottom: 15px;
   }
 }
 
-@media only screen and (min-width:576px) and (max-width:767px) {
+@media only screen and (min-width: 576px) and (max-width: 767px) {
   .result_modal_table_form .result_header_modal .passed_text {
     margin-top: 15px;
-    margin-bottom: 15px
+    margin-bottom: 15px;
   }
 }
 
-@media only screen and (min-width:768px) and (max-width:991px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
   .result_modal_table_form .result_header_modal .passed_text {
     margin-top: 15px;
-    margin-bottom: 15px
+    margin-bottom: 15px;
   }
 }

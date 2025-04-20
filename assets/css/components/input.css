@@ -5,11 +5,11 @@
   text-align: left;
   margin: 0;
   display: block;
-  margin-bottom: 8px
+  margin-bottom: 8px;
 }
 
 .input_form_persent {
-  position: relative
+  position: relative;
 }
 
 .input_form_persent:before {
@@ -28,11 +28,11 @@
   font-weight: 600;
   color: #cec1c2;
   transform: translateY(-50%);
-  font-size: 13px
+  font-size: 13px;
 }
 
 .tagInput_field {
-  margin-bottom: 21px
+  margin-bottom: 21px;
 }
 
 .tagInput_field label {
@@ -43,7 +43,7 @@
   margin: 0;
   margin-bottom: 0;
   display: block;
-  margin-bottom: 8px
+  margin-bottom: 8px;
 }
 
 .tagInput_field .bootstrap-tagsinput {
@@ -52,7 +52,7 @@
   padding: 9px 25px 4px;
   box-shadow: none;
   border-radius: 3px;
-  min-height: 50px
+  min-height: 50px;
 }
 
 .tagInput_field .bootstrap-tagsinput input {
@@ -63,7 +63,7 @@
   height: 0;
   margin: 0;
   min-width: 20px;
-  padding: 7px !important
+  padding: 7px !important;
 }
 
 .tagInput_field .bootstrap-tagsinput .badge {
@@ -77,10 +77,10 @@
   background: whitef;
   border: 1px solid #16bbe5;
   border-radius: 30px;
-  position: relative
+  position: relative;
 }
 
-.tagInput_field .bootstrap-tagsinput .badge [data-role=remove]::after {
+.tagInput_field .bootstrap-tagsinput .badge [data-role="remove"]::after {
   font-size: 10px;
   font-family: themify;
   content: "\e646";
@@ -92,18 +92,18 @@
   margin-left: 5px;
   padding: 0;
   border: 1px solid transparent;
-  padding: 2px
+  padding: 2px;
 }
 
-.tagInput_field .bootstrap-tagsinput .badge [data-role=remove]:hover::after {
+.tagInput_field .bootstrap-tagsinput .badge [data-role="remove"]:hover::after {
   background: #16bbe5;
   color: white;
-  border-color: #16bbe5
+  border-color: #16bbe5;
 }
 
 .tagInput_field span.badge.badge-info span {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  right: 8px
+  right: 8px;
 }

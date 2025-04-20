@@ -4,7 +4,7 @@
   color: #7e7172;
   line-height: 26px;
   position: relative;
-  padding-left: 15px
+  padding-left: 15px;
 }
 
 .common_list_style li:before {
@@ -14,8 +14,8 @@
   width: 3px;
   height: 3px;
   background: #7e7172;
-  content: '';
-  border-radius: 50%
+  content: "";
+  border-radius: 50%;
 }
 
 .list_header_btn_wrapper {
@@ -23,71 +23,71 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-right: 60px
+  margin-right: 60px;
 }
 
-@media(max-width:575.98px) {
+@media (max-width: 575.98px) {
   .list_header_btn_wrapper {
     display: block;
     margin-bottom: 15px;
-    margin-right: 0
+    margin-right: 0;
   }
 }
 
-@media only screen and (min-width:576px) and (max-width:767px) {
+@media only screen and (min-width: 576px) and (max-width: 767px) {
   .list_header_btn_wrapper {
     margin-right: 0;
-    margin-bottom: 15px
+    margin-bottom: 15px;
   }
 }
 
-@media only screen and (min-width:768px) and (max-width:991px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
   .list_header_btn_wrapper {
     margin-right: 0;
-    display: block
+    display: block;
   }
 }
 
-@media only screen and (min-width:992px) and (max-width:1200px) {
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
   .list_header_btn_wrapper {
     margin-right: 0;
-    display: block
+    display: block;
   }
 }
 
-@media only screen and (min-width:1200px) and (max-width:1439px) {
+@media only screen and (min-width: 1200px) and (max-width: 1439px) {
   .list_header_btn_wrapper {
-    margin-right: 30px
+    margin-right: 30px;
   }
 }
 
-@media only screen and (min-width:576px) and (max-width:767px) {
+@media only screen and (min-width: 576px) and (max-width: 767px) {
   .list_header_block {
-    display: block
+    display: block;
   }
 }
 
-@media only screen and (min-width:992px) and (max-width:1200px) {
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
   .list_header_block .success_faild_btn {
-    margin-top: 15px
+    margin-top: 15px;
   }
 }
 
-@media only screen and (min-width:1200px) and (max-width:1439px) {
+@media only screen and (min-width: 1200px) and (max-width: 1439px) {
   .list_header_block .serach_field_2 {
-    width: 300px
+    width: 300px;
   }
 }
 
-@media only screen and (min-width:576px) and (max-width:767px) {
+@media only screen and (min-width: 576px) and (max-width: 767px) {
   .list_header_block .serach_field_2 {
-    width: 380%
+    width: 380%;
   }
 }
 
-@media only screen and (min-width:576px) and (max-width:767px) {
+@media only screen and (min-width: 576px) and (max-width: 767px) {
   .list_header_block .box_right {
-    justify-content: space-between
+    justify-content: space-between;
   }
 }
 
@@ -95,53 +95,53 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
-  align-items: center
+  align-items: center;
 }
 
-@media(max-width:575.98px) {
+@media (max-width: 575.98px) {
   .list_header {
-    display: block
+    display: block;
   }
 }
 
 .list_header p {
   color: #222;
-  font-weight: 500
+  font-weight: 500;
 }
 
 .list_header .nice_Select {
-  margin-left: 15px
+  margin-left: 15px;
 }
 
-@media(max-width:575.98px) {
+@media (max-width: 575.98px) {
   .list_header .nice_Select {
-    margin-left: 10px
+    margin-left: 10px;
   }
 }
 
 .list_header .list_header_filter {
   display: flex;
-  align-items: center
+  align-items: center;
 }
 
-@media(max-width:575.98px) {
+@media (max-width: 575.98px) {
   .list_header .list_header_filter {
-    margin-top: 15px
+    margin-top: 15px;
   }
 }
 
 .list_header .list_header_filter img {
   width: 17px;
-  margin-right: 8px
+  margin-right: 8px;
 }
 
 .assign_list li {
   display: inline-block;
-  margin-right: 5px
+  margin-right: 5px;
 }
 
 .assign_list li:last-child {
-  margin-right: 0
+  margin-right: 0;
 }
 
 .assign_list li a img {
@@ -153,16 +153,16 @@
   transition: .2s;
   width: 23px;
   height: 23px;
-  transform: translateY(0px)
+  transform: translateY(0px);
 }
 
 .assign_list li a img:hover {
-  transform: translateY(-2px)
+  transform: translateY(-2px);
 }
 
 .student_list_img img {
   width: 50px;
-  height: 50px
+  height: 50px;
 }
 
 .discription_list_wrap p {
@@ -170,7 +170,7 @@
   font-weight: 300;
   color: #7e7172;
   line-height: 26px;
-  margin-bottom: 17px
+  margin-bottom: 17px;
 }
 
 .discription_list_wrap h5 {
@@ -178,5 +178,5 @@
   font-weight: 400;
   color: #222;
   margin-top: 19px;
-  margin-bottom: 14px
+  margin-bottom: 14px;
 }

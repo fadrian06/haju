@@ -3,12 +3,12 @@ body {
   padding: 0;
   margin: 0;
   font-size: 14px;
-  background: #eff1f7
+  background: #eff1f7;
 }
 
 a {
   text-decoration: none;
-  transition: .5s
+  transition: .5s;
 }
 
 h1,
@@ -20,35 +20,35 @@ h6 {
   color: #222;
   font-family: rajdhani, sans-serif;
   font-weight: 600;
-  line-height: 1.2
+  line-height: 1.2;
 }
 
 h2 {
-  font-size: 30px
+  font-size: 30px;
 }
 
 h3 {
-  font-size: 26px
+  font-size: 26px;
 }
 
 h4 {
-  font-size: 20px
+  font-size: 20px;
 }
 
 h5 {
   font-size: 16px;
   font-weight: 500;
-  line-height: 1.8
+  line-height: 1.8;
 }
 
 li {
-  list-style: none
+  list-style: none;
 }
 
 ul,
 ol {
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
 p {
@@ -57,14 +57,14 @@ p {
   margin-bottom: 0;
   color: #828bb2;
   font-family: poppins, sans-serif;
-  font-weight: 300
+  font-weight: 300;
 }
 
 a:focus,
 .button:focus,
 button:focus,
 .btn:focus {
-  transition: 1s
+  transition: 1s;
 }
 
 td:focus,
@@ -73,38 +73,38 @@ th:focus {
 }
 
 p a {
-  color: #7e7172
+  color: #7e7172;
 }
 
 p a:hover {
-  color: #2e4765
+  color: #2e4765;
 }
 
 .sidebar::-webkit-scrollbar-track,
 body::-webkit-scrollbar-track {
-  background-color: #ddd
+  background-color: #ddd;
 }
 
 .sidebar::-webkit-scrollbar,
 body::-webkit-scrollbar {
   width: 6px;
-  background-color: #ddd
+  background-color: #ddd;
 }
 
 .sidebar::-webkit-scrollbar-thumb,
 body::-webkit-scrollbar-thumb {
-  background-color: #f8dbdd
+  background-color: #f8dbdd;
 }
 
 body::-webkit-scrollbar {
-  width: 8px
+  width: 8px;
 }
 
 .table td,
 .table th {
   padding: .75rem;
   vertical-align: top;
-  border-top: 0
+  border-top: 0;
 }
 
 /*span {

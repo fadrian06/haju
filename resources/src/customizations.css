@@ -93,9 +93,11 @@ body.modal-open {
   --bs-font-sans-serif: "Poppins", sans-serif;
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
-  --bs-gradient: linear-gradient(180deg,
-      rgba(255, 255, 255, 0.15),
-      rgba(255, 255, 255, 0));
+  --bs-gradient: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0)
+  );
   --bs-body-font-family: var(--bs-font-sans-serif);
   --bs-body-font-size: 14px;
   --bs-body-font-weight: 400;
@@ -214,7 +216,10 @@ body.modal-open {
   --bs-card-border-width: var(--bs-border-width);
   --bs-card-border-color: var(--bs-border-color-translucent);
   --bs-card-border-radius: var(--bs-border-radius);
-  --bs-card-inner-border-radius: calc(var(--bs-border-radius) - (var(--bs-border-width)));
+  --bs-card-inner-border-radius: calc(
+    var(--bs-border-radius) -
+    (var(--bs-border-width))
+  );
   --bs-card-cap-padding-y: .5rem;
   --bs-card-cap-padding-x: 1rem;
   --bs-card-cap-bg: #f7faff;
