@@ -42,7 +42,7 @@
     ],
     "ci": [
       "composer check-platform-reqs --no-ansi",
-      "phpcs --no-colors",
+      "phpcs --no-colors -n",
       "phpunit --no-progress --colors=never",
       "phpstan --no-progress --no-ansi --memory-limit=512M",
       "rector --dry-run --no-progress-bar --no-ansi",
