@@ -9,7 +9,7 @@ const ROOT_PATH = __DIR__ . '/..';
 const APP_PATH = ROOT_PATH . '/app';
 const CONFIGURATIONS_PATH = ROOT_PATH . '/config';
 const LOGS_PATH = ROOT_PATH . '/storage/logs';
-const ROUTES_PATH = APP_PATH . '/routes';
+const ROUTES_PATH = ROOT_PATH . '/routes';
 const DATABASE_PATH = ROOT_PATH . '/database';
 const VIEWS_PATH = ROOT_PATH . '/views';
 
