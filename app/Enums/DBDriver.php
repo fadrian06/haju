@@ -14,4 +14,10 @@ enum DBDriver: string {
       self::SQLite => "sqlite:{$_ENV['DB_DATABASE']}"
     };
   }
+
+  public function getInitDbFile(): string {
+    $initDbFilePath = DATABASE_PATH . "/init.{$this->value}.sql";
+
+    return file_get_contents($initDbFilePath);
+  }
 }
