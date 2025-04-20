@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories\Infraestructure\PDO;
+namespace HAJU\Repositories\Infraestructure\PDO;
 
-use App\Repositories\Exceptions\RepositoryException;
+use HAJU\Repositories\Exceptions\RepositoryException;
 use DateTimeImmutable;
 use DateTimeInterface;
 use PDO;

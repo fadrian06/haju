@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Models;
+namespace HAJU\Models;
 
-use App\ValueObjects\LongName;
+use HAJU\ValueObjects\LongName;
 
 /**
  * @property-read string $name

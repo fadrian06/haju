@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use App\Models\Patient;
-use App\Repositories\Domain\PatientRepository;
-use App\ValueObjects\DateRange;
+use HAJU\Models\Patient;
+use HAJU\Repositories\Domain\PatientRepository;
+use HAJU\ValueObjects\DateRange;
 use flight\Container;
 
 $lastMonth = (new DateTimeImmutable)->sub(new DateInterval('P1M'))->format('Y-m-d');

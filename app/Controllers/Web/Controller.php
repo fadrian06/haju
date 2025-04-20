@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Controllers\Web;
+namespace HAJU\Controllers\Web;
 
-use App\Models\User;
+use HAJU\Models\User;
 use Error;
 use Flight;
 use flight\util\Collection;

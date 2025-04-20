@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use App\Models\Doctor;
-use App\Models\User;
-use App\ValueObjects\Gender;
+use HAJU\Models\Doctor;
+use HAJU\Models\User;
+use HAJU\ValueObjects\Gender;
 
 $doctors = array_map(fn(Doctor $doctor) => $doctor, $doctors);
 $loggedUser = $user;

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories\Domain;
+namespace HAJU\Repositories\Domain;
 
-use App\Models\Contracts\Model;
-use App\Repositories\Exceptions\RepositoryException;
+use HAJU\Models\Contracts\Model;
+use HAJU\Repositories\Exceptions\RepositoryException;
 
 /** @template T of Model */
 interface Repository {

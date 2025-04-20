@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\ValueObjects\Gender;
-use App\ValueObjects\InstructionLevel;
+use HAJU\ValueObjects\Gender;
+use HAJU\ValueObjects\InstructionLevel;
 use flight\Container;
 use Leaf\Http\Session;
 

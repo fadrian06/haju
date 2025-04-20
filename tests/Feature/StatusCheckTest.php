@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature;
+namespace HAJU\Tests\Feature;
 
 use PHPUnit\Framework\Attributes\Test;
 

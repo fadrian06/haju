@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Middlewares;
+namespace HAJU\Middlewares;
 
 use Flight;
 use Leaf\Http\Session;

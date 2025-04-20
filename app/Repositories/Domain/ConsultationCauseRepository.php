@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories\Domain;
+namespace HAJU\Repositories\Domain;
 
-use App\Models\ConsultationCause;
-use App\Models\ConsultationCauseCategory;
+use HAJU\Models\ConsultationCause;
+use HAJU\Models\ConsultationCauseCategory;
 use Generator;
 
 /** @implements Repository<ConsultationCause> */

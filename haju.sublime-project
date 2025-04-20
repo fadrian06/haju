@@ -27,6 +27,7 @@
     "SublimeLinter.linters.phpcsfixer.disable": true,
     "SublimeLinter.linters.rector.disable": false,
     "SublimeLinter.linters.ecs.disable": true,
+    "SublimeLinter.linters.oxlint.disable": true,
     "SublimeLinter.linters.phpmd.disable": false,
     "SublimeLinter.linters.phpmd.rulesets": "${project_path}/phpmd.xml",
   },

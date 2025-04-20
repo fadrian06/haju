@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Middlewares;
+namespace HAJU\Middlewares;
 
-use App\Repositories\Domain\DepartmentRepository;
+use HAJU\Repositories\Domain\DepartmentRepository;
 use Flight;
 use Leaf\Http\Session;
 

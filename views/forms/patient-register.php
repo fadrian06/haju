@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\ValueObjects\Gender;
+use HAJU\ValueObjects\Gender;
 
 $id ??= 'registrar';
 $action ??= "./pacientes#$id";

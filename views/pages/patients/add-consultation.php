@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use App\Models\ConsultationCauseCategory;
-use App\Models\Department;
-use App\Models\Doctor;
-use App\Models\Patient;
-use App\ValueObjects\ConsultationType;
+use HAJU\Models\ConsultationCauseCategory;
+use HAJU\Models\Department;
+use HAJU\Models\Doctor;
+use HAJU\Models\Patient;
+use HAJU\ValueObjects\ConsultationType;
 
 /**
  * @var array<int, Patient> $patients

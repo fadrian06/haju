@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories\Infraestructure\Files;
+namespace HAJU\Repositories\Infraestructure\Files;
 
-use App\Enums\DBDriver;
-use App\Models\Hospital;
-use App\Repositories\Domain\SettingsRepository;
+use HAJU\Enums\DBDriver;
+use HAJU\Models\Hospital;
+use HAJU\Repositories\Domain\SettingsRepository;
 use PDO;
 use PDOException;
 

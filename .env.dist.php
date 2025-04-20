@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Enums\DBDriver;
+use HAJU\Enums\DBDriver;
 
 require_once __DIR__ . '/vendor/autoload.php';
 

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Middlewares;
+namespace HAJU\Middlewares;
 
-use App\Models\User;
-use App\ValueObjects\Appointment;
+use HAJU\Models\User;
+use HAJU\ValueObjects\Appointment;
 use Flight;
 use flight\template\View;
 use Leaf\Http\Session;

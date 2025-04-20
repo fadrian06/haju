@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controllers\Web;
+namespace HAJU\Controllers\Web;
 
 final readonly class LandingWebController {
   public function showLanding(): void {

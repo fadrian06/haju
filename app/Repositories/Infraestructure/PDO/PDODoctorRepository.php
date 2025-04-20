@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories\Infraestructure\PDO;
+namespace HAJU\Repositories\Infraestructure\PDO;
 
-use App\Models\Doctor;
-use App\Repositories\Domain\DoctorRepository;
-use App\Repositories\Domain\UserRepository;
-use App\Repositories\Exceptions\DuplicatedIdCardException;
-use App\Repositories\Exceptions\DuplicatedNamesException;
-use App\ValueObjects\Date;
-use App\ValueObjects\Gender;
+use HAJU\Models\Doctor;
+use HAJU\Repositories\Domain\DoctorRepository;
+use HAJU\Repositories\Domain\UserRepository;
+use HAJU\Repositories\Exceptions\DuplicatedIdCardException;
+use HAJU\Repositories\Exceptions\DuplicatedNamesException;
+use HAJU\ValueObjects\Date;
+use HAJU\ValueObjects\Gender;
 use PDO;
 use PDOException;
 

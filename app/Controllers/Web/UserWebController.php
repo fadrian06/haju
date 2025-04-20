@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace App\Controllers\Web;
+namespace HAJU\Controllers\Web;
 
-use App\Models\User;
-use App\Repositories\Domain\DepartmentRepository;
-use App\Repositories\Domain\UserRepository;
-use App\Repositories\Exceptions\DuplicatedNamesException;
-use App\ValueObjects\AdultBirthDate;
-use App\ValueObjects\Appointment;
-use App\ValueObjects\Date;
-use App\ValueObjects\Exceptions\InvalidDateException;
-use App\ValueObjects\Exceptions\InvalidPhoneException;
-use App\ValueObjects\Gender;
-use App\ValueObjects\InstructionLevel;
-use App\ValueObjects\Phone;
+use HAJU\Models\User;
+use HAJU\Repositories\Domain\DepartmentRepository;
+use HAJU\Repositories\Domain\UserRepository;
+use HAJU\Repositories\Exceptions\DuplicatedNamesException;
+use HAJU\ValueObjects\AdultBirthDate;
+use HAJU\ValueObjects\Appointment;
+use HAJU\ValueObjects\Date;
+use HAJU\ValueObjects\Exceptions\InvalidDateException;
+use HAJU\ValueObjects\Exceptions\InvalidPhoneException;
+use HAJU\ValueObjects\Gender;
+use HAJU\ValueObjects\InstructionLevel;
+use HAJU\ValueObjects\Phone;
 use Error;
 use Flight;
 use Leaf\Http\Session;

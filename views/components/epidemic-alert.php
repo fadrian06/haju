@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Models\Patient;
+use HAJU\Models\Patient;
 
 /** @var array{cause: array{short_name: string}, patient: Patient} $epidemic */
 

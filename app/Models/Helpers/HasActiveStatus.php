@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Models\Helpers;
+namespace HAJU\Models\Helpers;
 
 trait HasActiveStatus {
   private bool $isActive = true;

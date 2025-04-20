@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Models\Hospital;
+use HAJU\Models\Hospital;
 
 /**
  * @var Hospital $hospital

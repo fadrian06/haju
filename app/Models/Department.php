@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Models;
+namespace HAJU\Models;
 
-use App\Models\Contracts\Model;
-use App\Models\Helpers\HasActiveStatus;
-use App\ValueObjects\Exceptions\InvalidNameException;
-use App\ValueObjects\LongName;
+use HAJU\Models\Contracts\Model;
+use HAJU\Models\Helpers\HasActiveStatus;
+use HAJU\ValueObjects\Exceptions\InvalidNameException;
+use HAJU\ValueObjects\LongName;
 use PharIo\Manifest\Url;
 use Stringable;
 

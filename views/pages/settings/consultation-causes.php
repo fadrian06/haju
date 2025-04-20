@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Models\ConsultationCause;
+use HAJU\Models\ConsultationCause;
 
 /**
  * @var ConsultationCause[] $consultationCauses

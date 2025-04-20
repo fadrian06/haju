@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use App\Models\User;
-use App\ValueObjects\Appointment;
-use App\ValueObjects\Gender;
-use App\ValueObjects\InstructionLevel;
+use HAJU\Models\User;
+use HAJU\ValueObjects\Appointment;
+use HAJU\ValueObjects\Gender;
+use HAJU\ValueObjects\InstructionLevel;
 use flight\Container;
 use Leaf\Http\Session;
 

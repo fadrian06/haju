@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Models\User;
+use HAJU\Models\User;
 
 /** @var User $user */
 

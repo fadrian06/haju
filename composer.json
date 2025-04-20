@@ -15,14 +15,13 @@
   },
   "autoload": {
     "psr-4": {
-      "App\\": "app",
-      "HAJU\\": ["app", "src"]
+      "HAJU\\": "app"
     },
     "files": ["app/utils.php"]
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\": "tests"
+      "HAJU\\Tests\\": "tests"
     }
   },
   "scripts": {

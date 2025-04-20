@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Middlewares;
+namespace HAJU\Middlewares;
 
-use App\Repositories\Domain\UserRepository;
+use HAJU\Repositories\Domain\UserRepository;
 use Flight;
 
 final readonly class ShowRegisterIfThereIsNoUsers {

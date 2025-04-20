@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories\Infraestructure\PDO;
+namespace HAJU\Repositories\Infraestructure\PDO;
 
-use App\Models\ConsultationCause;
-use App\Models\ConsultationCauseCategory;
-use App\Repositories\Domain\ConsultationCauseCategoryRepository;
-use App\Repositories\Domain\ConsultationCauseRepository;
+use HAJU\Models\ConsultationCause;
+use HAJU\Models\ConsultationCauseCategory;
+use HAJU\Repositories\Domain\ConsultationCauseCategoryRepository;
+use HAJU\Repositories\Domain\ConsultationCauseRepository;
 use Generator;
 use PDO;
 

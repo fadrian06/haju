@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Models;
+namespace HAJU\Models;
 
-use App\Models\Contracts\Model;
-use App\ValueObjects\LongName;
+use HAJU\Models\Contracts\Model;
+use HAJU\ValueObjects\LongName;
 
 /**
  * @property-read ?string $variant

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Enums;
+namespace HAJU\Enums;
 
 enum DBDriver: string {
   case MySQL = 'mysql';

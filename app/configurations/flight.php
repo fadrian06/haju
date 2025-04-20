@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use App\Models\User;
-use App\Repositories\Domain\DepartmentRepository;
-use App\Repositories\Domain\UserRepository;
+use HAJU\Models\User;
+use HAJU\Repositories\Domain\DepartmentRepository;
+use HAJU\Repositories\Domain\UserRepository;
 use flight\Container;
 use Leaf\Http\Session;
 

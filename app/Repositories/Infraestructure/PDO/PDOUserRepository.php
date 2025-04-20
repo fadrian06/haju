@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories\Infraestructure\PDO;
+namespace HAJU\Repositories\Infraestructure\PDO;
 
-use App\Models\User;
-use App\Repositories\Domain\DepartmentRepository;
-use App\Repositories\Domain\UserRepository;
-use App\Repositories\Exceptions\DuplicatedEmailsException;
-use App\Repositories\Exceptions\DuplicatedIdCardException;
-use App\Repositories\Exceptions\DuplicatedNamesException;
-use App\Repositories\Exceptions\DuplicatedPhonesException;
-use App\Repositories\Exceptions\DuplicatedProfileImagesException;
-use App\ValueObjects\AdultBirthDate;
-use App\ValueObjects\Appointment;
-use App\ValueObjects\Gender;
-use App\ValueObjects\InstructionLevel;
-use App\ValueObjects\Phone;
+use HAJU\Models\User;
+use HAJU\Repositories\Domain\DepartmentRepository;
+use HAJU\Repositories\Domain\UserRepository;
+use HAJU\Repositories\Exceptions\DuplicatedEmailsException;
+use HAJU\Repositories\Exceptions\DuplicatedIdCardException;
+use HAJU\Repositories\Exceptions\DuplicatedNamesException;
+use HAJU\Repositories\Exceptions\DuplicatedPhonesException;
+use HAJU\Repositories\Exceptions\DuplicatedProfileImagesException;
+use HAJU\ValueObjects\AdultBirthDate;
+use HAJU\ValueObjects\Appointment;
+use HAJU\ValueObjects\Gender;
+use HAJU\ValueObjects\InstructionLevel;
+use HAJU\ValueObjects\Phone;
 use PDO;
 use PDOException;
 use PharIo\Manifest\Email;

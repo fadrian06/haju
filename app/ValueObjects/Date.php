@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\ValueObjects;
+namespace HAJU\ValueObjects;
 
-use App\ValueObjects\Exceptions\InvalidDateException;
+use HAJU\ValueObjects\Exceptions\InvalidDateException;
 use DateTimeImmutable;
 use Stringable;
 

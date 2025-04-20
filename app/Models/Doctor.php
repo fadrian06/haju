@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Models;
+namespace HAJU\Models;
 
-use App\Models\Contracts\Person;
-use App\ValueObjects\Date;
-use App\ValueObjects\Gender;
+use HAJU\Models\Contracts\Person;
+use HAJU\ValueObjects\Date;
+use HAJU\ValueObjects\Gender;
 use Generator;
 
 final class Doctor extends Person {

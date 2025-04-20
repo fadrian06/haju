@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-use App\Enums\DBDriver;
-use App\Repositories\Domain\ConsultationCauseCategoryRepository;
-use App\Repositories\Domain\ConsultationCauseRepository;
-use App\Repositories\Domain\DepartmentRepository;
-use App\Repositories\Domain\DoctorRepository;
-use App\Repositories\Domain\PatientRepository;
-use App\Repositories\Domain\SettingsRepository;
-use App\Repositories\Domain\UserRepository;
-use App\Repositories\Infraestructure\Files\FilesSettingsRepository;
-use App\Repositories\Infraestructure\PDO\PDOConsultationCauseCategoryRepository;
-use App\Repositories\Infraestructure\PDO\PDOConsultationCauseRepository;
-use App\Repositories\Infraestructure\PDO\PDODepartmentRepository;
-use App\Repositories\Infraestructure\PDO\PDODoctorRepository;
-use App\Repositories\Infraestructure\PDO\PDOPatientRepository;
-use App\Repositories\Infraestructure\PDO\PDOUserRepository;
+use HAJU\Enums\DBDriver;
+use HAJU\Repositories\Domain\ConsultationCauseCategoryRepository;
+use HAJU\Repositories\Domain\ConsultationCauseRepository;
+use HAJU\Repositories\Domain\DepartmentRepository;
+use HAJU\Repositories\Domain\DoctorRepository;
+use HAJU\Repositories\Domain\PatientRepository;
+use HAJU\Repositories\Domain\SettingsRepository;
+use HAJU\Repositories\Domain\UserRepository;
+use HAJU\Repositories\Infraestructure\Files\FilesSettingsRepository;
+use HAJU\Repositories\Infraestructure\PDO\PDOConsultationCauseCategoryRepository;
+use HAJU\Repositories\Infraestructure\PDO\PDOConsultationCauseRepository;
+use HAJU\Repositories\Infraestructure\PDO\PDODepartmentRepository;
+use HAJU\Repositories\Infraestructure\PDO\PDODoctorRepository;
+use HAJU\Repositories\Infraestructure\PDO\PDOPatientRepository;
+use HAJU\Repositories\Infraestructure\PDO\PDOUserRepository;
 use flight\Container;
 use flight\net\Request;
 use flight\template\View;

@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Models\Hospitalization;
-use App\ValueObjects\DateRange;
+use HAJU\Models\Hospitalization;
+use HAJU\ValueObjects\DateRange;
 
 /**
  * @var Hospitalization[] $hospitalizations

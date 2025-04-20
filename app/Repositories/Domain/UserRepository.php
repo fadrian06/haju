@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories\Domain;
+namespace HAJU\Repositories\Domain;
 
-use App\Models\User;
-use App\Repositories\Exceptions\RepositoryException;
-use App\Repositories\Exceptions\DuplicatedAvatarsException;
-use App\Repositories\Exceptions\DuplicatedEmailsException;
-use App\Repositories\Exceptions\DuplicatedIdCardException;
-use App\Repositories\Exceptions\DuplicatedNamesException;
-use App\Repositories\Exceptions\DuplicatedPhonesException;
+use HAJU\Models\User;
+use HAJU\Repositories\Exceptions\RepositoryException;
+use HAJU\Repositories\Exceptions\DuplicatedAvatarsException;
+use HAJU\Repositories\Exceptions\DuplicatedEmailsException;
+use HAJU\Repositories\Exceptions\DuplicatedIdCardException;
+use HAJU\Repositories\Exceptions\DuplicatedNamesException;
+use HAJU\Repositories\Exceptions\DuplicatedPhonesException;
 
 /** @extends Repository<User> */
 interface UserRepository extends Repository {

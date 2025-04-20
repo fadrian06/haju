@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Models\User;
-use App\ValueObjects\Appointment;
+use HAJU\Models\User;
+use HAJU\ValueObjects\Appointment;
 
 /**
  * @var User $user

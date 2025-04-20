@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Models;
+namespace HAJU\Models;
 
-use App\Models\Contracts\Activable;
-use App\Models\Contracts\Person;
-use App\Models\Helpers\HasActiveStatus;
-use App\ValueObjects\AdultBirthDate;
-use App\ValueObjects\Appointment;
-use App\ValueObjects\Exceptions\InvalidDateException;
-use App\ValueObjects\Exceptions\InvalidPhoneException;
-use App\ValueObjects\Gender;
-use App\ValueObjects\InstructionLevel;
-use App\ValueObjects\Phone;
+use HAJU\Models\Contracts\Activable;
+use HAJU\Models\Contracts\Person;
+use HAJU\Models\Helpers\HasActiveStatus;
+use HAJU\ValueObjects\AdultBirthDate;
+use HAJU\ValueObjects\Appointment;
+use HAJU\ValueObjects\Exceptions\InvalidDateException;
+use HAJU\ValueObjects\Exceptions\InvalidPhoneException;
+use HAJU\ValueObjects\Gender;
+use HAJU\ValueObjects\InstructionLevel;
+use HAJU\ValueObjects\Phone;
 use Error;
 use Generator;
 use InvalidArgumentException;

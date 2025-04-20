@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit;
+namespace HAJU\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 

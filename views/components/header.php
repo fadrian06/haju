@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Department;
-use App\Models\User;
-use App\ValueObjects\Appointment;
+use HAJU\Models\Department;
+use HAJU\Models\User;
+use HAJU\ValueObjects\Appointment;
 
 /**
  * @var User $user

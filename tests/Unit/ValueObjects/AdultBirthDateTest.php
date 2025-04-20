@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\ValueObjects;
+namespace HAJU\Tests\Unit\ValueObjects;
 
-use App\ValueObjects\AdultBirthDate;
-use App\ValueObjects\Exceptions\InvalidDateException;
+use HAJU\ValueObjects\AdultBirthDate;
+use HAJU\ValueObjects\Exceptions\InvalidDateException;
 use DateInterval;
 use DateTimeImmutable;
 use Iterator;

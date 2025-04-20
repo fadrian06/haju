@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Models\Department;
-use App\Models\User;
+use HAJU\Models\Department;
+use HAJU\Models\User;
 
 /**
  * @var array<int, Department> $departments

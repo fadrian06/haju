@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\ValueObjects\Exceptions\InvalidPhoneException;
-use App\ValueObjects\Phone;
+use HAJU\ValueObjects\Exceptions\InvalidPhoneException;
+use HAJU\ValueObjects\Phone;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

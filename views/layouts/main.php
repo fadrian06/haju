@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Models\User;
-use App\Repositories\Domain\PatientRepository;
+use HAJU\Models\User;
+use HAJU\Repositories\Domain\PatientRepository;
 use flight\Container;
 
 /**

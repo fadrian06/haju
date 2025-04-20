@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories\Infraestructure\PDO;
+namespace HAJU\Repositories\Infraestructure\PDO;
 
-use App\Models\Consultation;
-use App\Models\Hospitalization;
-use App\Models\Patient;
-use App\Repositories\Domain\ConsultationCauseRepository;
-use App\Repositories\Domain\DepartmentRepository;
-use App\Repositories\Domain\DoctorRepository;
-use App\Repositories\Domain\PatientRepository;
-use App\Repositories\Domain\UserRepository;
-use App\Repositories\Exceptions\DuplicatedIdCardException;
-use App\Repositories\Exceptions\DuplicatedNamesException;
-use App\ValueObjects\ConsultationType;
-use App\ValueObjects\Date;
-use App\ValueObjects\DepartureStatus;
-use App\ValueObjects\Gender;
+use HAJU\Models\Consultation;
+use HAJU\Models\Hospitalization;
+use HAJU\Models\Patient;
+use HAJU\Repositories\Domain\ConsultationCauseRepository;
+use HAJU\Repositories\Domain\DepartmentRepository;
+use HAJU\Repositories\Domain\DoctorRepository;
+use HAJU\Repositories\Domain\PatientRepository;
+use HAJU\Repositories\Domain\UserRepository;
+use HAJU\Repositories\Exceptions\DuplicatedIdCardException;
+use HAJU\Repositories\Exceptions\DuplicatedNamesException;
+use HAJU\ValueObjects\ConsultationType;
+use HAJU\ValueObjects\Date;
+use HAJU\ValueObjects\DepartureStatus;
+use HAJU\ValueObjects\Gender;
 use DateTimeImmutable;
 use PDO;
 use PDOException;

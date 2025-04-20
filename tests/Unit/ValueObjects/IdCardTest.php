@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\ValueObjects\IdCard;
+use HAJU\ValueObjects\IdCard;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

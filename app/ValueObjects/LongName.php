@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\ValueObjects;
+namespace HAJU\ValueObjects;
 
-use App\ValueObjects\Exceptions\InvalidNameException;
+use HAJU\ValueObjects\Exceptions\InvalidNameException;
 
 final readonly class LongName extends Name {
   protected function validate(string $value, string $field): static {

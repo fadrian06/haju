@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use HAJU\Models\User;
 
 /**
  * @var string $title

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Models\Contracts;
+namespace HAJU\Models\Contracts;
 
 interface Activable {
   public function isActive(): bool;

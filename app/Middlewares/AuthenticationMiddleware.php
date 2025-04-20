@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Middlewares;
+namespace HAJU\Middlewares;
 
-use App\Models\User;
+use HAJU\Models\User;
 use Flight;
 use flight\template\View;
 

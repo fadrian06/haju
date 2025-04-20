@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories\Domain;
+namespace HAJU\Repositories\Domain;
 
-use App\Models\Department;
-use App\Repositories\Exceptions\DuplicatedNamesException;
+use HAJU\Models\Department;
+use HAJU\Repositories\Exceptions\DuplicatedNamesException;
 
 /** @extends Repository<Department> */
 interface DepartmentRepository extends Repository {

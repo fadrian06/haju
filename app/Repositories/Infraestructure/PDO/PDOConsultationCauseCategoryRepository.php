@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories\Infraestructure\PDO;
+namespace HAJU\Repositories\Infraestructure\PDO;
 
-use App\Models\ConsultationCauseCategory;
-use App\Repositories\Domain\ConsultationCauseCategoryRepository;
+use HAJU\Models\ConsultationCauseCategory;
+use HAJU\Repositories\Domain\ConsultationCauseCategoryRepository;
 use PDO;
 
 final class PDOConsultationCauseCategoryRepository

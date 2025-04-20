@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\ValueObjects\Exceptions;
+namespace HAJU\ValueObjects\Exceptions;
 
 use InvalidArgumentException;
 

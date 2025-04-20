@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories\Infraestructure\PDO;
+namespace HAJU\Repositories\Infraestructure\PDO;
 
-use App\Models\Department;
-use App\Repositories\Domain\DepartmentRepository;
-use App\Repositories\Exceptions\DuplicatedNamesException;
+use HAJU\Models\Department;
+use HAJU\Repositories\Domain\DepartmentRepository;
+use HAJU\Repositories\Exceptions\DuplicatedNamesException;
 use PDO;
 use PDOException;
 use PharIo\Manifest\Url;

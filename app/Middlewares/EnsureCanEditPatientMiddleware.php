@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Middlewares;
+namespace HAJU\Middlewares;
 
-use App\Models\User;
-use App\Repositories\Domain\PatientRepository;
+use HAJU\Models\User;
+use HAJU\Repositories\Domain\PatientRepository;
 use Flight;
 use flight\template\View;
 use Leaf\Http\Session;

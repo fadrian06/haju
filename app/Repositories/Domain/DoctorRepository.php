@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories\Domain;
+namespace HAJU\Repositories\Domain;
 
-use App\Models\Doctor;
+use HAJU\Models\Doctor;
 
 /** @extends Repository<Doctor> */
 interface DoctorRepository extends Repository {

@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Models\Patient;
-use App\Models\User;
+use HAJU\Models\Patient;
+use HAJU\Models\User;
 
 /**
  * @var User $user

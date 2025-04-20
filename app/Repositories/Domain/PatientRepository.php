@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories\Domain;
+namespace HAJU\Repositories\Domain;
 
-use App\Models\Patient;
-use App\Repositories\Exceptions\DuplicatedIdCardException;
-use App\Repositories\Exceptions\DuplicatedNamesException;
+use HAJU\Models\Patient;
+use HAJU\Repositories\Exceptions\DuplicatedIdCardException;
+use HAJU\Repositories\Exceptions\DuplicatedNamesException;
 
 /** @extends Repository<Patient> */
 interface PatientRepository extends Repository {

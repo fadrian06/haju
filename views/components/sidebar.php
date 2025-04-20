@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use App\Models\Department;
-use App\Models\User;
-use App\Repositories\Domain\PatientRepository;
-use App\ValueObjects\Appointment;
+use HAJU\Models\Department;
+use HAJU\Models\User;
+use HAJU\Repositories\Domain\PatientRepository;
+use HAJU\ValueObjects\Appointment;
 use flight\Container;
 
 /**

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use App\Models\User;
-use App\ValueObjects\Gender;
-use App\ValueObjects\InstructionLevel;
+use HAJU\Models\User;
+use HAJU\ValueObjects\Gender;
+use HAJU\ValueObjects\InstructionLevel;
 
 /**
  * @var User $user

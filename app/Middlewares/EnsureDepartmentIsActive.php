@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Middlewares;
+namespace HAJU\Middlewares;
 
-use App\Models\Department;
+use HAJU\Models\Department;
 use Flight;
 use flight\template\View;
 use Leaf\Http\Session;

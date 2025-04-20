@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Models;
+namespace HAJU\Models;
 
-use App\Models\Contracts\Model;
-use App\ValueObjects\ConsultationType;
+use HAJU\Models\Contracts\Model;
+use HAJU\ValueObjects\ConsultationType;
 
 final class Consultation extends Model {
   public function __construct(

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Enums\InputGroupType;
+use HAJU\Enums\InputGroupType;
 
 /**
  * @var ?bool $required

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Controllers\Web;
+namespace HAJU\Controllers\Web;
 
-use App\Models\Department;
-use App\Repositories\Domain\DepartmentRepository;
+use HAJU\Models\Department;
+use HAJU\Repositories\Domain\DepartmentRepository;
 use Flight;
 use flight\template\View;
 use Throwable;

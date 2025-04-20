@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\ValueObjects;
+namespace HAJU\ValueObjects;
 
-use App\ValueObjects\Exceptions\InvalidPhoneException;
+use HAJU\ValueObjects\Exceptions\InvalidPhoneException;
 use libphonenumber\NumberParseException;
 use libphonenumber\PhoneNumber;
 use libphonenumber\PhoneNumberFormat;

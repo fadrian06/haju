@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Models\Contracts;
+namespace HAJU\Models\Contracts;
 
-use App\ValueObjects\Date;
-use App\ValueObjects\Exceptions\InvalidDateException;
-use App\ValueObjects\Exceptions\InvalidNameException;
-use App\ValueObjects\Gender;
-use App\ValueObjects\IdCard;
-use App\ValueObjects\Name;
+use HAJU\ValueObjects\Date;
+use HAJU\ValueObjects\Exceptions\InvalidDateException;
+use HAJU\ValueObjects\Exceptions\InvalidNameException;
+use HAJU\ValueObjects\Gender;
+use HAJU\ValueObjects\IdCard;
+use HAJU\ValueObjects\Name;
 
 abstract class Person extends Model {
   private Name $firstName;

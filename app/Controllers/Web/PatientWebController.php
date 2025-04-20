@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace App\Controllers\Web;
+namespace HAJU\Controllers\Web;
 
-use App\Models\Consultation;
-use App\Models\Hospitalization;
-use App\Models\Patient;
-use App\Repositories\Domain\ConsultationCauseCategoryRepository;
-use App\Repositories\Domain\ConsultationCauseRepository;
-use App\Repositories\Domain\DepartmentRepository;
-use App\Repositories\Domain\DoctorRepository;
-use App\Repositories\Domain\PatientRepository;
-use App\ValueObjects\ConsultationType;
-use App\ValueObjects\Date;
-use App\ValueObjects\DepartureStatus;
-use App\ValueObjects\Gender;
+use HAJU\Models\Consultation;
+use HAJU\Models\Hospitalization;
+use HAJU\Models\Patient;
+use HAJU\Repositories\Domain\ConsultationCauseCategoryRepository;
+use HAJU\Repositories\Domain\ConsultationCauseRepository;
+use HAJU\Repositories\Domain\DepartmentRepository;
+use HAJU\Repositories\Domain\DoctorRepository;
+use HAJU\Repositories\Domain\PatientRepository;
+use HAJU\ValueObjects\ConsultationType;
+use HAJU\ValueObjects\Date;
+use HAJU\ValueObjects\DepartureStatus;
+use HAJU\ValueObjects\Gender;
 use DateTime;
 use DateTimeImmutable;
 use Error;

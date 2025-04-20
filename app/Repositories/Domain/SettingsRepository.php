@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories\Domain;
+namespace HAJU\Repositories\Domain;
 
-use App\Models\Hospital;
+use HAJU\Models\Hospital;
 
 interface SettingsRepository {
   public function getHospital(): Hospital;

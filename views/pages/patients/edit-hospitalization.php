@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use App\Models\Doctor;
-use App\Models\Hospitalization;
-use App\Models\Patient;
-use App\ValueObjects\AdmissionDepartment;
-use App\ValueObjects\DepartureStatus;
+use HAJU\Models\Doctor;
+use HAJU\Models\Hospitalization;
+use HAJU\Models\Patient;
+use HAJU\ValueObjects\AdmissionDepartment;
+use HAJU\ValueObjects\DepartureStatus;
 use flight\Container;
 use Leaf\Http\Session;
 

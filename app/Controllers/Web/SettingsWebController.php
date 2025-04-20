@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Controllers\Web;
+namespace HAJU\Controllers\Web;
 
-use App\Models\User;
-use App\Repositories\Domain\ConsultationCauseRepository;
-use App\Repositories\Domain\DepartmentRepository;
-use App\Repositories\Domain\SettingsRepository;
-use App\Repositories\Domain\UserRepository;
-use App\ValueObjects\Appointment;
+use HAJU\Models\User;
+use HAJU\Repositories\Domain\ConsultationCauseRepository;
+use HAJU\Repositories\Domain\DepartmentRepository;
+use HAJU\Repositories\Domain\SettingsRepository;
+use HAJU\Repositories\Domain\UserRepository;
+use HAJU\ValueObjects\Appointment;
 use Flight;
 use flight\net\Request;
 use Leaf\Http\Session;

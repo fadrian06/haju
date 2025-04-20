@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use App\Models\ConsultationCause;
-use App\Models\ConsultationCauseCategory;
-use App\Repositories\Domain\ConsultationCauseRepository;
+use HAJU\Models\ConsultationCause;
+use HAJU\Models\ConsultationCauseCategory;
+use HAJU\Repositories\Domain\ConsultationCauseRepository;
 use flight\Container;
 use flight\template\View;
 

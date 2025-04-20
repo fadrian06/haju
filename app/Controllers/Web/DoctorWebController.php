@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Controllers\Web;
+namespace HAJU\Controllers\Web;
 
-use App\Controllers\Web\Controller;
-use App\Models\Doctor;
-use App\Repositories\Domain\DoctorRepository;
-use App\ValueObjects\Date;
-use App\ValueObjects\Gender;
+use HAJU\Controllers\Web\Controller;
+use HAJU\Models\Doctor;
+use HAJU\Repositories\Domain\DoctorRepository;
+use HAJU\ValueObjects\Date;
+use HAJU\ValueObjects\Gender;
 use Error;
 use Flight;
 use Throwable;

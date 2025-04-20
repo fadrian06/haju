@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Controllers\Web;
+namespace HAJU\Controllers\Web;
 
-use App\Repositories\Domain\UserRepository;
+use HAJU\Repositories\Domain\UserRepository;
 use Error;
 use Flight;
 use Leaf\Http\Session;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\ValueObjects;
+namespace HAJU\ValueObjects;
 
 enum DepartureStatus: string {
   case Healing = 'Curación';

@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Models\Doctor;
-use App\ValueObjects\Gender;
+use HAJU\Models\Doctor;
+use HAJU\ValueObjects\Gender;
 
 assert($doctor instanceof Doctor);
 

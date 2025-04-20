@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use App\Models\Consultation;
-use App\Models\Department;
-use App\ValueObjects\DateRange;
+use HAJU\Models\Consultation;
+use HAJU\Models\Department;
+use HAJU\ValueObjects\DateRange;
 
 /**
  * @var Consultation[] $consultations
