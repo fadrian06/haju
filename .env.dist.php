@@ -14,4 +14,6 @@ return [
   'DB_USERNAME' => '',
   'DB_PASSWORD' => '',
   'TIMEZONE' => 'America/Caracas',
+  'LOCALE' => 'es',
+  'APP_NAME' => 'HAJU',
 ];

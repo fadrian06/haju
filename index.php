@@ -4,9 +4,17 @@ declare(strict_types=1);
 
 use Jenssegers\Date\Date;
 
-try {
-  error_reporting(E_ALL);
+const ROOT_PATH = __DIR__;
+const APP_PATH = ROOT_PATH . '/app';
+const CONFIGURATIONS_PATH = APP_PATH . '/configurations';
+const LOGS_PATH = APP_PATH . '/logs';
+const ROUTES_PATH = APP_PATH . '/routes';
+const DATABASE_PATH = ROOT_PATH . '/database';
+const VIEWS_PATH = ROOT_PATH . '/views';
 
+error_reporting(E_ALL);
+
+try {
   require_once __DIR__ . '/vendor/autoload.php';
 
   /**
@@ -31,7 +39,7 @@ try {
   require_once __DIR__ . '/app/routes/api.php';
 
   date_default_timezone_set($_ENV['TIMEZONE']);
-  Date::setLocale('es');
+  Date::setLocale($_ENV['LOCALE']);
 
   Flight::start();
 } catch (Throwable $error) {
