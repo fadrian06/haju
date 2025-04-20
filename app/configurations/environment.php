@@ -2,5 +2,5 @@
 
 declare(strict_types=1);
 
-$_ENV += include __DIR__ . '/../../.env.php';
-$_ENV += include __DIR__ . '/../../.env.dist.php';
+$_ENV += include ROOT_PATH . '/.env.php';
+$_ENV += include ROOT_PATH . '/.env.dist.php';

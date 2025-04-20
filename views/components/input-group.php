@@ -42,11 +42,11 @@ if (isset($variant)) {
   ));
 
   file_put_contents(
-    __DIR__ . '/../../app/logs/deprecations.log',
+    LOGS_PATH . '/deprecations.log',
     $error->getMessage() . PHP_EOL . $trace,
   );
 } else {
-  file_put_contents(__DIR__ . '/../../app/logs/deprecations.log', '');
+  file_put_contents(LOGS_PATH . '/deprecations.log', '');
 }
 
 $required ??= true;

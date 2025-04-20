@@ -8,7 +8,6 @@ use HAJU\Enums\DBDriver;
 use HAJU\Models\Hospital;
 use HAJU\Repositories\Domain\SettingsRepository;
 use PDO;
-use PDOException;
 
 final readonly class FilesSettingsRepository implements SettingsRepository {
   public function __construct(private PDO $pdo) {
@@ -32,7 +31,7 @@ final readonly class FilesSettingsRepository implements SettingsRepository {
   public function backupExists(): bool {
     return match ($_ENV['DB_CONNECTION']) {
       DBDriver::SQLite => file_exists(str_replace('.db', '.backup.db', $_ENV['DB_DATABASE'])),
-      DBDriver::MySQL => file_exists(__DIR__ . '/../../../database/backup.mysql.sql'),
+      DBDriver::MySQL => file_exists(DATABASE_PATH . '/backup.mysql.sql'),
       default => false,
     };
   }

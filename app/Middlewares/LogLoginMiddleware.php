@@ -8,7 +8,7 @@ use HAJU\Models\User;
 use flight\template\View;
 
 final readonly class LogLoginMiddleware {
-  private const LOG_FILE_PATH = __DIR__ . '/../logs/authentications.log';
+  private const LOG_FILE_PATH = LOGS_PATH . '/authentications.log';
 
   public function __construct(private View $view) {
     if (!file_exists(self::LOG_FILE_PATH)) {

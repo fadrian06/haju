@@ -8,9 +8,9 @@ use HAJU\Repositories\Domain\UserRepository;
 use flight\Container;
 use Leaf\Http\Session;
 
-Flight::set('flight.views.path', dirname(__DIR__, 2) . '/views');
+Flight::set('flight.views.path', VIEWS_PATH);
 Flight::set('flight.handle_errors', false);
-Flight::view()->path = dirname(__DIR__, 2) . '/views';
+Flight::view()->path = VIEWS_PATH;
 Flight::view()->preserveVars = false;
 
 Flight::view()->set(
