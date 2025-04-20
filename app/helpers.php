@@ -5,6 +5,14 @@ declare(strict_types=1);
 use flight\Container;
 use flight\template\View;
 
+const ROOT_PATH = __DIR__ . '/..';
+const APP_PATH = ROOT_PATH . '/app';
+const CONFIGURATIONS_PATH = APP_PATH . '/configurations';
+const LOGS_PATH = APP_PATH . '/logs';
+const ROUTES_PATH = APP_PATH . '/routes';
+const DATABASE_PATH = ROOT_PATH . '/database';
+const VIEWS_PATH = ROOT_PATH . '/views';
+
 function renderPage(
   string $page,
   string $title,
