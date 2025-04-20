@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use flight\Container;
-use flight\template\View;
 use HAJU\Models\Consultation;
 use HAJU\Models\ConsultationCause;
 use HAJU\Models\ConsultationCauseCategory;
@@ -40,8 +39,7 @@ function renderPage(
   string $layout = 'guest'
 ): void {
   $params['title'] = $title;
-  $view = Container::getInstance()->get(View::class);
-
+  $view = Flight::view();
   $params['content'] = $view->fetch("pages/{$page}", $params);
   $view->render("layouts/{$layout}", $params);
 }

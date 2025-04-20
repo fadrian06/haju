@@ -7,15 +7,12 @@ namespace HAJU\Controllers\Web;
 use HAJU\Models\Department;
 use HAJU\Repositories\Domain\DepartmentRepository;
 use Flight;
-use flight\template\View;
 use Throwable;
 
 final readonly class DepartmentWebController extends Controller
 {
-  public function __construct(
-    private readonly DepartmentRepository $departmentRepository,
-    private readonly View $view,
-  ) {
+  public function __construct(private DepartmentRepository $departmentRepository)
+  {
     parent::__construct();
   }
 
@@ -34,7 +31,7 @@ final readonly class DepartmentWebController extends Controller
 
   public function handleToggleStatus(int $id): void
   {
-    $selectedDepartment = $this->view->get('department');
+    $selectedDepartment = Flight::view()->get('department');
     assert($selectedDepartment instanceof Department);
 
     $department = $this->departmentRepository->getById($id);

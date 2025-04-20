@@ -2,10 +2,6 @@
 
 declare(strict_types=1);
 
-use HAJU\Models\Consultation;
-use HAJU\Models\ConsultationCause;
-use HAJU\Models\ConsultationCauseCategory;
-use HAJU\Models\Patient;
 use HAJU\Repositories\Domain\ConsultationCauseCategoryRepository;
 use HAJU\Repositories\Domain\ConsultationCauseRepository;
 use HAJU\Repositories\Domain\PatientRepository;

@@ -4,25 +4,23 @@ declare(strict_types=1);
 
 namespace HAJU\Middlewares;
 
+use Flight;
 use HAJU\Repositories\Domain\DepartmentRepository;
-use flight\template\View;
 use Leaf\Http\Session;
 
 final readonly class EnsureOneSelectedDepartment
 {
-  public function __construct(
-    private Session $session,
-    private View $view,
-    private DepartmentRepository $departmentRepository,
-  ) {
+  public function __construct(private DepartmentRepository $departmentRepository)
+  {
+    // ...
   }
 
   public function before(): void
   {
-    $departmentId = $this->session->get('departmentId');
+    $departmentId = Session::get('departmentId');
     $departments = [];
 
-    foreach ($this->view->get('user')->getDepartment() as $department) {
+    foreach (Flight::view()->get('user')->getDepartment() as $department) {
       $departments[] = $department;
     }
 
@@ -30,7 +28,7 @@ final readonly class EnsureOneSelectedDepartment
       $department = $this->departmentRepository->getById((int) $departmentId);
     }
 
-    $this->view->set('canChangeDepartment', count($departments) !== 1);
-    $this->view->set('department', $department);
+    Flight::view()->set('canChangeDepartment', count($departments) !== 1);
+    Flight::view()->set('department', $department);
   }
 }

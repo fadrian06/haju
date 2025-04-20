@@ -2,10 +2,8 @@
 
 declare(strict_types=1);
 
-use flight\Container;
 use Leaf\Http\Session;
 
-$session = Container::getInstance()->get(Session::class);
 $error = isset($error) ? strval($error) : null;
 $message = isset($message) ? strval($message) : null;
 
@@ -15,14 +13,14 @@ $message = isset($message) ? strval($message) : null;
 <html
   lang="es"
   x-data="{
-    theme: `<?= $session->get('theme', 'light') ?>`,
+    theme: `<?= Session::get('theme', 'light') ?>`,
 
     setTheme(theme = 'light') {
       this.theme = theme;
       fetch(`./api/preferencias/tema/${theme}`);
     },
   }"
-  data-bs-theme="<?= $session->get('theme', 'light') ?>"
+  data-bs-theme="<?= Session::get('theme', 'light') ?>"
   :data-bs-theme="theme">
 
 <head>

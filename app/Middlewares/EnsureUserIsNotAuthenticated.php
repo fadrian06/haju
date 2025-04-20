@@ -9,14 +9,9 @@ use Leaf\Http\Session;
 
 final readonly class EnsureUserIsNotAuthenticated
 {
-  public function __construct(private Session $session)
-  {
-    // ...
-  }
-
   public function before(): void
   {
-    if ($this->session->has('userId')) {
+    if (Session::has('userId')) {
       Flight::redirect('/');
 
       return;

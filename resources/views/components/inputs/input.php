@@ -24,13 +24,21 @@ $valueHasOneWord = str_contains(
   ' '
 );
 
+$alpineType = $typeHasOneWord
+  ? $type
+  : "typeof {$type} !== 'undefined' ? {$type} : '{$type}'";
+
+$alpineValue = $valueHasOneWord
+  ? $value
+  : "typeof {$value} !== 'undefined' ? {$value} : '{$value}'";
+
 ?>
 
 <div class="form-floating">
   <input
     style="<?= $inputStyle ?>"
     type="<?= $type ?>"
-    :type="<?= $typeHasOneWord ? $type : "typeof {$type} !== 'undefined' ? {$type} : '{$type}'" ?>"
+    :type="<?= $alpineType ?>"
     id="<?= $id ?>"
     class="form-control"
     placeholder=" "
@@ -42,7 +50,7 @@ $valueHasOneWord = str_contains(
     <?= !$readonly ?: 'readonly' ?>
     title="<?= $title ?>"
     value="<?= $value ?>"
-    :value="<?= $valueHasOneWord ? $value : "typeof {$value} !== 'undefined' ? {$value} : '{$value}'" ?>" />
+    <?= !$value ?: ":value='{$alpineValue}'" ?>>
   <label for="<?= $id ?>">
     <?php if ($required) : ?>
       <sub class="text-danger fs-1">*</sub>

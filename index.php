@@ -22,5 +22,21 @@ try {
 
   Flight::start();
 } catch (Throwable $error) {
-  exit("<pre>{$error}</pre>");
+  error_log($error->__toString());
+
+  $trace = $error->getTrace();
+
+  $filteredTrace = array_filter(
+    $trace,
+    static fn(array $call): bool => array_key_exists('file', $call) && !str_contains($call['file'] ?? '', 'vendor')
+  );
+
+  $mappedTrace = array_map(
+    static fn(array $call): string => @"{$call['file']}:{$call['line']}",
+    $filteredTrace
+  );
+
+  echo '<pre>', $error->getMessage(), PHP_EOL;
+  print_r($mappedTrace);
+  exit('</pre>');
 }

@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
+use flight\util\Collection;
 use HAJU\Enums\Gender;
 use HAJU\Enums\InstructionLevel;
-use flight\Container;
-use Leaf\Http\Session;
 
-$session = Container::getInstance()->get(Session::class);
+/**
+ * @var Collection $lastData
+ */
 
 ?>
 
@@ -28,7 +29,7 @@ $session = Container::getInstance()->get(Session::class);
               <?php Flight::render('components/inputs/input', [
                 'name' => 'first_name',
                 'label' => 'Primer nombre',
-                'value' => $session->get('lastData', [])['first_name'] ?? '',
+                'value' => $lastData['first_name'] ?? '',
               ]) ?>
             </div>
             <div class="col-md-6">
@@ -36,14 +37,14 @@ $session = Container::getInstance()->get(Session::class);
                 'name' => 'second_name',
                 'label' => 'Segundo nombre',
                 'required' => false,
-                'value' => $session->get('lastData', [])['second_name'] ?? '',
+                'value' => $lastData['second_name'] ?? '',
               ]) ?>
             </div>
             <div class="col-md-6">
               <?php Flight::render('components/inputs/input', [
                 'name' => 'first_last_name',
                 'label' => 'Primer apellido',
-                'value' => $session->get('lastData', [])['first_last_name'] ?? '',
+                'value' => $lastData['first_last_name'] ?? '',
               ]) ?>
             </div>
             <div class="col-md-6">
@@ -51,7 +52,7 @@ $session = Container::getInstance()->get(Session::class);
                 'name' => 'second_last_name',
                 'label' => 'Segundo apellido',
                 'required' => false,
-                'value' => $session->get('lastData', [])['second_last_name'] ?? '',
+                'value' => $lastData['second_last_name'] ?? '',
               ]) ?>
             </div>
             <div class="col-md-6">
@@ -59,7 +60,7 @@ $session = Container::getInstance()->get(Session::class);
                 'type' => 'date',
                 'name' => 'birth_date',
                 'label' => 'Fecha de nacimiento',
-                'value' => $session->get('lastData', [])['birth_date'] ?? '',
+                'value' => $lastData['birth_date'] ?? '',
               ]) ?>
             </div>
             <div class="col-md-6">
@@ -68,7 +69,7 @@ $session = Container::getInstance()->get(Session::class);
                 'options' => array_map(static fn(Gender $gender): array => [
                   'slot' => $gender->value,
                   'value' => $gender->value,
-                  'selected' => $gender->value === ($session->get('lastData', [])['gender'] ?? ''),
+                  'selected' => $gender->value === ($lastData['gender'] ?? ''),
                 ], Gender::cases()),
                 'label' => 'Género',
               ]) ?>
@@ -79,7 +80,7 @@ $session = Container::getInstance()->get(Session::class);
                 'options' => array_map(static fn(InstructionLevel $instruction): array => [
                   'slot' => $instruction->getLongValue(),
                   'value' => $instruction->value,
-                  'selected' => $instruction->value === ($session->get('lastData', [])['instruction_level'] ?? ''),
+                  'selected' => $instruction->value === ($lastData['instruction_level'] ?? ''),
                 ], InstructionLevel::cases()),
                 'label' => 'Nivel de instrucción',
               ]) ?>
@@ -101,14 +102,14 @@ $session = Container::getInstance()->get(Session::class);
                 'type' => 'number',
                 'name' => 'id_card',
                 'label' => 'Cédula',
-                'value' => $session->get('lastData', [])['id_card'] ?? '',
+                'value' => $lastData['id_card'] ?? '',
               ]) ?>
             </div>
             <div class="col-md-6">
               <?php Flight::render('components/inputs/input-password', [
                 'name' => 'password',
                 'label' => 'Contraseña',
-                'value' => $session->get('lastData', [])['password'] ?? '',
+                'value' => $lastData['password'] ?? '',
                 'model' => 'password',
               ]) ?>
             </div>
@@ -116,7 +117,7 @@ $session = Container::getInstance()->get(Session::class);
               <?php Flight::render('components/inputs/input-password', [
                 'name' => 'confirm_password',
                 'label' => 'Confirmar contraseña',
-                'value' => $session->get('lastData', [])['confirm_password'] ?? '',
+                'value' => $lastData['confirm_password'] ?? '',
                 'pattern' => 'password',
                 'title' => 'Ambas contraseñas deben coincidir',
               ]) ?>
@@ -129,7 +130,7 @@ $session = Container::getInstance()->get(Session::class);
                 'type' => 'tel',
                 'name' => 'phone',
                 'label' => 'Teléfono',
-                'value' => $session->get('lastData', [])['phone'] ?? '',
+                'value' => $lastData['phone'] ?? '',
               ]) ?>
             </div>
             <div class="col-md-6">
@@ -137,14 +138,14 @@ $session = Container::getInstance()->get(Session::class);
                 'type' => 'email',
                 'name' => 'email',
                 'label' => 'Correo electrónico',
-                'value' => $session->get('lastData', [])['email'] ?? '',
+                'value' => $lastData['email'] ?? '',
               ]) ?>
             </div>
             <div class="col-md-12">
               <?php Flight::render('components/inputs/textarea', [
                 'name' => 'address',
                 'label' => 'Dirección',
-                'value' => $session->get('lastData', [])['address'] ?? '',
+                'value' => $lastData['address'] ?? '',
               ]) ?>
             </div>
           </fieldset>

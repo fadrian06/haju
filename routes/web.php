@@ -21,14 +21,12 @@ use HAJU\Middlewares\EnsureOnlyAcceptOneDirector;
 use HAJU\Middlewares\EnsureSelectedDepartmentIsNotStatistics;
 use HAJU\Middlewares\EnsureUserIsNotAuthenticated;
 use HAJU\Middlewares\LogLoginMiddleware;
-use HAJU\Middlewares\MessagesMiddleware;
 use HAJU\Enums\Appointment;
 use flight\Container;
-use flight\template\View;
 use Leaf\Http\Session;
 
 Flight::route('/', static function () {
-  if (Container::getInstance()->get(Session::class)->has('userId')) {
+  if (Session::has('userId')) {
     return true;
   }
 
@@ -61,7 +59,7 @@ Flight::group('', static function (): void {
       [UserWebController::class, 'handleRegister']
     );
   }, [EnsureOnlyAcceptOneDirector::class]);
-}, [EnsureUserIsNotAuthenticated::class, MessagesMiddleware::class]);
+}, [EnsureUserIsNotAuthenticated::class]);
 
 Flight::group('', function (): void {
   Flight::route('GET /hospitalizaciones', [PatientWebController::class, 'showHospitalizations']);
@@ -108,8 +106,6 @@ Flight::group('', function (): void {
     }, [new AuthorizationMiddleware(
       permitted: Appointment::Coordinator,
       blocked: null,
-      view: Container::getInstance()->get(View::class),
-      session: Container::getInstance()->get(Session::class),
     )]);
 
     Flight::route('GET /pacientes', [PatientWebController::class, 'showPatients']);
@@ -227,8 +223,6 @@ Flight::group('', function (): void {
       )
         ->addMiddleware(new AuthorizationMiddleware(
           permitted: Appointment::Coordinator,
-          session: Container::getInstance()->get(Session::class),
-          view: Container::getInstance()->get(View::class),
           blocked: null,
         ));
 
@@ -238,8 +232,6 @@ Flight::group('', function (): void {
       )
         ->addMiddleware(new AuthorizationMiddleware(
           permitted: Appointment::Coordinator,
-          session: Container::getInstance()->get(Session::class),
-          view: Container::getInstance()->get(View::class),
           blocked: null,
         ));
 
@@ -276,14 +268,10 @@ Flight::group('', function (): void {
       }, [new AuthorizationMiddleware(
         permitted: Appointment::Director,
         blocked: null,
-        view: Container::getInstance()->get(View::class),
-        session: Container::getInstance()->get(Session::class)
       )]);
     }, [new AuthorizationMiddleware(
       permitted: Appointment::Coordinator,
       blocked: null,
-      view: Container::getInstance()->get(View::class),
-      session: Container::getInstance()->get(Session::class)
     )]);
   }, [EnsureOneSelectedDepartment::class, EnsureDepartmentIsActive::class]);
 
@@ -296,4 +284,4 @@ Flight::group('', function (): void {
     'GET /reportes/epi-15',
     [ReportsWebController::class, 'showEpi15']
   );
-}, [AuthenticationMiddleware::class, MessagesMiddleware::class]);
+}, [AuthenticationMiddleware::class]);

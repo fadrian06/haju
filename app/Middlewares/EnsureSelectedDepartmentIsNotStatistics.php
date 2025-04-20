@@ -10,22 +10,21 @@ use Leaf\Http\Session;
 
 final readonly class EnsureSelectedDepartmentIsNotStatistics
 {
-  public function __construct(
-    private DepartmentRepository $departmentRepository,
-    private Session $session,
-  ) {
+  public function __construct(private DepartmentRepository $departmentRepository)
+  {
+    // ...
   }
 
   public function before(): ?true
   {
-    $departmentId = $this->session->get('departmentId');
+    $departmentId = Session::get('departmentId');
     $selectedDepartment = $this->departmentRepository->getById($departmentId);
 
     if (!$selectedDepartment->isStatistics()) {
       return true;
     }
 
-    $this->session->set('error', 'No puedes registrar consultas desde el departamento de Estadística');
+    Session::set('error', 'No puedes registrar consultas desde el departamento de Estadística');
     Flight::redirect('/');
 
     return null;

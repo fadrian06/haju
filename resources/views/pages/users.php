@@ -2,20 +2,17 @@
 
 declare(strict_types=1);
 
+use flight\util\Collection;
 use HAJU\Models\User;
 use HAJU\Enums\Appointment;
 use HAJU\Enums\Gender;
 use HAJU\Enums\InstructionLevel;
-use flight\Container;
-use Leaf\Http\Session;
 
 /**
  * @var array<int, User> $users
  * @var User $user
+ * @var Collection $lastData
  */
-
-$loggedUser = $user;
-$session = Container::getInstance()->get(Session::class);
 
 ?>
 
@@ -87,14 +84,14 @@ $session = Container::getInstance()->get(Session::class);
       </header>
       <section
         class="modal-body"
-        x-data="{ idCard: '<?= $session->get('lastData')['id_card'] ?? '' ?>' }">
+        x-data="{ idCard: '<?= $lastData['id_card'] ?? '' ?>' }">
         <fieldset class="row row-gap-3 mb-3">
           <summary class="fs-6 mb-2">Datos personales</summary>
           <div class="col-md-6">
             <?php Flight::render('components/inputs/input', [
               'name' => 'first_name',
               'label' => 'Primer nombre',
-              'value' => $session->get('lastData')['first_name'] ?? '',
+              'value' => $lastData['first_name'] ?? '',
             ]) ?>
           </div>
 
@@ -103,7 +100,7 @@ $session = Container::getInstance()->get(Session::class);
               'name' => 'second_name',
               'label' => 'Segundo nombre',
               'required' => false,
-              'value' => $session->get('lastData')['second_name'] ?? '',
+              'value' => $lastData['second_name'] ?? '',
             ]) ?>
           </div>
 
@@ -111,7 +108,7 @@ $session = Container::getInstance()->get(Session::class);
             <?php Flight::render('components/inputs/input', [
               'name' => 'first_last_name',
               'label' => 'Primer apellido',
-              'value' => $session->get('lastData')['first_last_name'] ?? '',
+              'value' => $lastData['first_last_name'] ?? '',
             ]) ?>
           </div>
 
@@ -120,7 +117,7 @@ $session = Container::getInstance()->get(Session::class);
               'name' => 'second_last_name',
               'label' => 'Segundo apellido',
               'required' => false,
-              'value' => $session->get('lastData')['second_last_name'] ?? '',
+              'value' => $lastData['second_last_name'] ?? '',
             ]) ?>
           </div>
 
@@ -129,7 +126,7 @@ $session = Container::getInstance()->get(Session::class);
               'type' => 'number',
               'name' => 'id_card',
               'label' => 'Cédula',
-              'value' => $session->get('lastData')['id_card'] ?? '',
+              'value' => $lastData['id_card'] ?? '',
               'model' => 'idCard',
             ]) ?>
           </div>
@@ -139,7 +136,7 @@ $session = Container::getInstance()->get(Session::class);
               'type' => 'date',
               'name' => 'birth_date',
               'label' => 'Fecha de nacimiento',
-              'value' => $session->get('lastData')['birth_date'] ?? '',
+              'value' => $lastData['birth_date'] ?? '',
             ]) ?>
           </div>
 
@@ -151,7 +148,7 @@ $session = Container::getInstance()->get(Session::class);
                 static fn(Gender $gender): array => [
                   'value' => $gender->value,
                   'slot' => $gender->value,
-                  'selected' => ($session->get('lastData')['gender'] ?? '') === $gender->value,
+                  'selected' => ($lastData['gender'] ?? '') === $gender->value,
                 ],
                 Gender::cases()
               ),
@@ -166,7 +163,7 @@ $session = Container::getInstance()->get(Session::class);
                 static fn(InstructionLevel $instruction): array => [
                   'value' => $instruction->value,
                   'slot' => $instruction->getLongValue(),
-                  'selected' => ($session->get('lastData')['instruction_level'] ?? '') === $instruction->value,
+                  'selected' => ($lastData['instruction_level'] ?? '') === $instruction->value,
                 ],
                 InstructionLevel::cases(),
               ),
@@ -206,7 +203,7 @@ $session = Container::getInstance()->get(Session::class);
               <?php foreach ($user->getDepartment() as $department) : ?>
                 <option
                   value="<?= $department->id ?>"
-                  <?= in_array($department->id, $session->get('lastData')['departments'] ?? [], true) ? 'selected' : '' ?>>
+                  <?= in_array($department->id, $lastData['departments'] ?? [], true) ? 'selected' : '' ?>>
                   <?= $department->name ?>
                 </option>
               <?php endforeach ?>
@@ -222,7 +219,7 @@ $session = Container::getInstance()->get(Session::class);
               'name' => 'phone',
               'label' => 'Teléfono',
               'readonly' => false,
-              'value' => $session->get('lastData')['phone'] ?? '',
+              'value' => $lastData['phone'] ?? '',
             ]) ?>
           </div>
 
@@ -231,7 +228,7 @@ $session = Container::getInstance()->get(Session::class);
               'type' => 'email',
               'name' => 'email',
               'label' => 'Correo electrónico',
-              'value' => $session->get('lastData')['email'] ?? '',
+              'value' => $lastData['email'] ?? '',
             ]) ?>
           </div>
 
@@ -239,7 +236,7 @@ $session = Container::getInstance()->get(Session::class);
             <?php Flight::render('components/inputs/textarea', [
               'name' => 'address',
               'label' => 'Dirección',
-              'value' => $session->get('lastData')['address'] ?? '',
+              'value' => $lastData['address'] ?? '',
             ]) ?>
           </div>
         </fieldset>
@@ -258,7 +255,7 @@ $session = Container::getInstance()->get(Session::class);
               'type' => 'url',
               'name' => 'profile_image_url',
               'label' => 'URL de la foto de perfil',
-              'value' => $session->get('lastData')['profile_image_url'] ?? '',
+              'value' => $lastData['profile_image_url'] ?? '',
             ]) ?>
           </div>
 

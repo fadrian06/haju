@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace HAJU\Middlewares;
 
+use Flight;
 use HAJU\Models\User;
-use flight\template\View;
 
 final readonly class LogLoginMiddleware
 {
   private const LOG_FILE_PATH = LOGS_PATH . '/authentications.log';
 
-  public function __construct(private View $view)
+  public function __construct()
   {
     if (!file_exists(self::LOG_FILE_PATH)) {
       file_put_contents(self::LOG_FILE_PATH, '');
@@ -20,7 +20,7 @@ final readonly class LogLoginMiddleware
 
   public function after(): void
   {
-    $loggedUser = $this->view->get('user');
+    $loggedUser = Flight::view()->get('user');
     assert($loggedUser instanceof User);
 
     if ($loggedUser) {

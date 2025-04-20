@@ -11,7 +11,6 @@ use HAJU\Repositories\Domain\SettingsRepository;
 use HAJU\Repositories\Domain\UserRepository;
 use HAJU\Enums\Appointment;
 use Flight;
-use flight\net\Request;
 use Leaf\Http\Session;
 use PDO;
 
@@ -23,7 +22,6 @@ final readonly class SettingsWebController extends Controller
     private SettingsRepository $settingsRepository,
     private ConsultationCauseRepository $consultationCauseRepository,
     private PDO $pdo,
-    private Request $request,
   ) {
     parent::__construct();
   }
@@ -147,7 +145,7 @@ final readonly class SettingsWebController extends Controller
   {
     $limitOf = array_map(
       static fn(string $limit): int => (int) $limit,
-      array_filter($this->request->data->limit_of ?? [], 'boolval')
+      array_filter(Flight::request()->data->limit_of ?? [], 'boolval')
     );
 
     $this->pdo->beginTransaction();

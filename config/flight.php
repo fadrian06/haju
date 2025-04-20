@@ -6,12 +6,14 @@ use HAJU\Models\User;
 use HAJU\Repositories\Domain\DepartmentRepository;
 use HAJU\Repositories\Domain\UserRepository;
 use flight\Container;
+use flight\util\Collection;
 use Leaf\Http\Session;
 
 Flight::set('flight.views.path', VIEWS_PATH);
 Flight::set('flight.handle_errors', false);
 Flight::view()->path = VIEWS_PATH;
 Flight::view()->preserveVars = false;
+Flight::registerContainerHandler(Container::getInstance());
 
 Flight::view()->set(
   'user',
@@ -39,3 +41,9 @@ Flight::view()->set(
     return false;
   })(),
 );
+
+Flight::view()->set('lastData', new Collection(Session::get('lastData', [])));
+Flight::view()->set('error', Session::retrieve('error', null, true));
+Flight::view()->set('message', Session::retrieve('message', null, true));
+Flight::view()->set('scriptPath', Session::get('scriptPath', null, true));
+Flight::view()->set('mustChangePassword', Session::get('mustChangePassword', false));

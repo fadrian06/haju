@@ -11,6 +11,7 @@
   <file>.env.php</file>
   <file>index.php</file>
   <file>rector.php</file>
+  <exclude-pattern>vendor</exclude-pattern>
 
   <rule ref="PSR1" />
   <rule ref="PSR2" />

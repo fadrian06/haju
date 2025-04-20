@@ -18,16 +18,8 @@ use HAJU\Repositories\Infraestructure\PDO\PDODoctorRepository;
 use HAJU\Repositories\Infraestructure\PDO\PDOPatientRepository;
 use HAJU\Repositories\Infraestructure\PDO\PDOUserRepository;
 use flight\Container;
-use flight\net\Request;
-use flight\template\View;
-use Leaf\Http\Session;
-use Psr\Container\ContainerInterface;
 
 $container = Container::getInstance();
-$container->singleton(ContainerInterface::class, Container::class);
-$container->singleton(Session::class);
-$container->singleton(View::class, Flight::view());
-$container->singleton(Request::class, Flight::request());
 
 assert($_ENV['DB_CONNECTION'] instanceof DBDriver);
 
@@ -98,5 +90,3 @@ $container->singleton(
     $container->get(DoctorRepository::class)
   )
 );
-
-Flight::registerContainerHandler($container);
