@@ -31,7 +31,7 @@ $message = isset($message) ? strval($message) : null;
   <title><?= $title ?> - HAJU</title>
   <base href="<?= str_replace('index.php', '', $_SERVER['SCRIPT_NAME']) ?>" />
   <link rel="icon" href="./resources/images/favicon.svg" />
-  <link rel="stylesheet" href="./assets/dist/guest.css" />
+  <link rel="stylesheet" href="./resources/dist/guest.css" />
 </head>
 
 <body
@@ -41,7 +41,7 @@ $message = isset($message) ? strval($message) : null;
   <?= $content ?>
   <?php Flight::render('components/footer') ?>
 
-  <script src="./assets/dist/guest.js"></script>
+  <script src="./resources/dist/guest.js"></script>
 
   <script>
     <?php if ($error): ?>

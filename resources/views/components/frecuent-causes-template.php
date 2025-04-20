@@ -12,7 +12,7 @@ declare(strict_types=1);
     <title>${title}</title>
     <base href="<?= str_replace('index.php', '', $_SERVER['SCRIPT_NAME']) ?>" />
     <style>
-      @import './assets/dist/guest.css';
+      @import './resources/dist/guest.css';
     </style>
   </head>
   <body class="bg-white container">
