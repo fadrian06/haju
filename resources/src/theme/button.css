@@ -1,6 +1,6 @@
 .btn_1 {
-  background-color: #2DAAB8;
-  border: 1px solid #2DAAB8;
+  background-color: #2daab8;
+  border: 1px solid #2daab8;
   color: #fff;
   display: inline-block;
   padding: 11px 23px;
@@ -24,21 +24,21 @@
 .btn_1:hover {
   background-color: #fff;
   border: 1px solid #313f5a;
-  color: #2DAAB8;
+  color: #2daab8;
 }
 
 /* line 24, H:/admin_project/hospital/scss/_button.scss */
 .btn_1.light {
   background-color: rgba(46, 71, 101, 0.1);
   border: 1px solid transparent;
-  color: #2E4765;
+  color: #2e4765;
 }
 
 /* line 29, H:/admin_project/hospital/scss/_button.scss */
 .btn_1.green {
   background-color: rgba(46, 201, 184, 0.1);
   border: 1px solid transparent;
-  color: #2EC9B8;
+  color: #2ec9b8;
 }
 
 /* line 34, H:/admin_project/hospital/scss/_button.scss */
@@ -71,8 +71,8 @@
 
 /* line 51, H:/admin_project/hospital/scss/_button.scss */
 .btn_2 {
-  color: #2E4765;
-  border: 1px solid #2E4765;
+  color: #2e4765;
+  border: 1px solid #2e4765;
   display: inline-block;
   padding: 11px 23px;
   text-transform: capitalize;
@@ -88,8 +88,8 @@
 
 /* line 64, H:/admin_project/hospital/scss/_button.scss */
 .btn_2:hover {
-  background-color: #2E4765;
-  border: 1px solid #2E4765;
+  background-color: #2e4765;
+  border: 1px solid #2e4765;
   color: #fff;
 }
 
@@ -117,8 +117,8 @@
 
 /* line 87, H:/admin_project/hospital/scss/_button.scss */
 .btn_3:hover {
-  background-color: #2E4765;
-  border: 1px solid #2E4765;
+  background-color: #2e4765;
+  border: 1px solid #2e4765;
   color: #fff;
 }
 
@@ -139,8 +139,8 @@
 
 /* line 104, H:/admin_project/hospital/scss/_button.scss */
 .btn_4:hover {
-  background-color: #2E4765;
-  border: 1px solid #2E4765;
+  background-color: #2e4765;
+  border: 1px solid #2e4765;
   color: #fff;
 }
 
@@ -166,8 +166,8 @@
 
 /* line 127, H:/admin_project/hospital/scss/_button.scss */
 .btn_5:hover {
-  background-color: #2E4765 !important;
-  border: 1px solid #2E4765 !important;
+  background-color: #2e4765 !important;
+  border: 1px solid #2e4765 !important;
   color: #fff;
   opacity: 1 !important;
 }
@@ -210,8 +210,8 @@
 
 /* line 156, H:/admin_project/hospital/scss/_button.scss */
 .btn_6:hover {
-  background-color: #2E4765;
-  border: 1px solid #2E4765;
+  background-color: #2e4765;
+  border: 1px solid #2e4765;
   color: #fff;
 }
 
@@ -248,8 +248,8 @@
 
 /* line 185, H:/admin_project/hospital/scss/_button.scss */
 .view_archive_btn:hover {
-  color: #2E4765;
-  border: 1px solid #2E4765;
+  color: #2e4765;
+  border: 1px solid #2e4765;
 }
 
 /* line 191, H:/admin_project/hospital/scss/_button.scss */
@@ -266,7 +266,7 @@
 
 /* line 200, H:/admin_project/hospital/scss/_button.scss */
 .white_btn:hover {
-  background: #2DAAB8;
+  background: #2daab8;
   color: #fff;
 }
 
@@ -276,7 +276,7 @@
   color: #fff;
   font-size: 12px;
   font-weight: 400;
-  background: #2DAAB8;
+  background: #2daab8;
   transition: .3s;
   padding: 6px 20px;
   border-radius: 3px;
@@ -311,8 +311,8 @@
 
 /* line 237, H:/admin_project/hospital/scss/_button.scss */
 .close.white_btn2:hover {
-  background-color: #2E4765 !important;
-  border: 1px solid #2E4765 !important;
+  background-color: #2e4765 !important;
+  border: 1px solid #2e4765 !important;
   color: #fff;
   opacity: 1 !important;
 }
@@ -340,8 +340,8 @@
 
 /* line 261, H:/admin_project/hospital/scss/_button.scss */
 .white_btn3:hover {
-  background-color: #2E4765 !important;
-  border: 1px solid #2E4765 !important;
+  background-color: #2e4765 !important;
+  border: 1px solid #2e4765 !important;
   color: #fff;
   opacity: 1 !important;
 }
@@ -420,7 +420,7 @@
 
 /* line 326, H:/admin_project/hospital/scss/_button.scss */
 .dropdown.show .dropdown-toggle.lms_drop_1 {
-  background: #2DAAB8;
+  background: #2daab8;
   padding: 4px 15px;
   border-radius: 3px;
   font-size: 12px;
@@ -432,7 +432,7 @@
   width: 102px;
   border: 0;
   color: #fff;
-  border: 1px solid #2DAAB8;
+  border: 1px solid #2daab8;
 }
 
 /* line 340, H:/admin_project/hospital/scss/_button.scss */
@@ -459,7 +459,7 @@
 
 /* line 356, H:/admin_project/hospital/scss/_button.scss */
 .dropdown .dropdown-menu .dropdown-item:hover {
-  color: #2DAAB8;
+  color: #2daab8;
   background: transparent;
 }
 
@@ -494,9 +494,9 @@
 
 /* line 385, H:/admin_project/hospital/scss/_button.scss */
 .white_btn_line:hover {
-  background: #2DAAB8;
+  background: #2daab8;
   color: #fff;
-  border: 1px solid #2DAAB8;
+  border: 1px solid #2daab8;
 }
 
 /* line 389, H:/admin_project/hospital/scss/_button.scss */
@@ -525,9 +525,9 @@
 
 /* line 410, H:/admin_project/hospital/scss/_button.scss */
 .white_btn_line2:hover {
-  background: #2DAAB8;
+  background: #2daab8;
   color: #fff !important;
-  border: 1px solid #2DAAB8;
+  border: 1px solid #2daab8;
 }
 
 /* line 414, H:/admin_project/hospital/scss/_button.scss */
@@ -537,13 +537,19 @@
 }
 
 /* line 422, H:/admin_project/hospital/scss/_button.scss */
-table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child::before,
-table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child::before {
+table.dataTable.dtr-inline.collapsed
+  > tbody
+  > tr[role="row"]
+  > td:first-child::before,
+table.dataTable.dtr-inline.collapsed
+  > tbody
+  > tr[role="row"]
+  > th:first-child::before {
   z-index: 9;
   top: 50%;
   transform: translateY(-50%);
   content: "\e61a";
-  font-family: 'themify';
+  font-family: "themify";
   font-size: 8px;
   line-height: 14px;
   font-weight: 600;
@@ -552,8 +558,14 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child::
 }
 
 /* line 438, H:/admin_project/hospital/scss/_button.scss */
-table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child::before,
-table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th:first-child::before {
+table.dataTable.dtr-inline.collapsed
+  > tbody
+  > tr.parent
+  > td:first-child::before,
+table.dataTable.dtr-inline.collapsed
+  > tbody
+  > tr.parent
+  > th:first-child::before {
   content: "\e622";
   box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.08), inset -6px -6px 12px white;
 }
@@ -590,7 +602,8 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th:first-child::befor
 }
 
 /* line 478, H:/admin_project/hospital/scss/_button.scss */
-.CRM_dropdown.dropdown .dropdown-toggle:hover, .CRM_dropdown.dropdown .dropdown-toggle:focus {
+.CRM_dropdown.dropdown .dropdown-toggle:hover,
+.CRM_dropdown.dropdown .dropdown-toggle:focus {
   color: #fff;
   border: 1px solid transparent;
   box-shadow: none;
@@ -616,7 +629,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th:first-child::befor
 
 /* line 505, H:/admin_project/hospital/scss/_button.scss */
 .CRM_dropdown.dropdown .dropdown-menu .dropdown-item:hover {
-  color: #2E4765;
+  color: #2e4765;
 }
 
 /* line 512, H:/admin_project/hospital/scss/_button.scss */

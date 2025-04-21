@@ -1,5 +1,6 @@
 /* line 4, H:/admin_project/hospital/scss/_form_style.scss */
-.form_style .form-group label, .form_style .form-group p {
+.form_style .form-group label,
+.form_style .form-group p {
   font-size: 14px;
   font-weight: 300;
   text-transform: capitalize;

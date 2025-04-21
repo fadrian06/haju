@@ -25,7 +25,8 @@ h6,
   }
 }
 
-:root, [data-bs-theme="light"] {
+:root,
+[data-bs-theme="light"] {
   --bs-light-rgb: var(--bs-body-bg-rgb);
   --bs-dark-rgb: 0, 0, 0;
 }

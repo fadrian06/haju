@@ -1,5 +1,13 @@
-.CRM_dropdown.dropdown .dropdown-toggle:hover, .CRM_dropdown.dropdown .dropdown-toggle:focus {
-  background: -webkit-gradient(linear, left top, right top, from(#7C32FF), color-stop(70%, #A235EC), to(#C738D8));
-  background: -o-linear-gradient(left, #7C32FF 0%, #A235EC 70%, #C738D8 100%);
-  background: linear-gradient(90deg, #7C32FF 0%, #A235EC 70%, #C738D8 100%);
+.CRM_dropdown.dropdown .dropdown-toggle:hover,
+.CRM_dropdown.dropdown .dropdown-toggle:focus {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#7c32ff),
+    color-stop(70%, #a235ec),
+    to(#c738d8)
+  );
+  background: -o-linear-gradient(left, #7c32ff 0%, #a235ec 70%, #c738d8 100%);
+  background: linear-gradient(90deg, #7c32ff 0%, #a235ec 70%, #c738d8 100%);
 }

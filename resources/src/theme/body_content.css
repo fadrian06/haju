@@ -8,7 +8,7 @@
   font-family: "Rajdhani", sans-serif;
   font-weight: 600;
   font-size: 22px;
-  color: #2E4765;
+  color: #2e4765;
   line-height: 1.2;
 }
 
@@ -16,7 +16,7 @@
 .main-title span {
   font-size: 12px;
   font-weight: 400;
-  color: #A3A0FB;
+  color: #a3a0fb;
   display: block;
   margin-top: 6px;
 }
@@ -73,7 +73,7 @@
 
 /* line 65, H:/admin_project/hospital/scss/_body_content.scss */
 .legend_style li.inactive {
-  opacity: .29;
+  opacity: 0.29;
 }
 
 /* line 70, H:/admin_project/hospital/scss/_body_content.scss */
@@ -93,7 +93,7 @@
   background: #fff;
   font-size: 11px;
   text-transform: capitalize;
-  color: #706F9A;
+  color: #706f9a;
   border-radius: 5px;
   line-height: 25px;
   padding: 0 10px;
@@ -102,13 +102,13 @@
 
 /* line 86, H:/admin_project/hospital/scss/_body_content.scss */
 .title_btn ul li a:hover {
-  background: #A66DD4;
+  background: #a66dd4;
   color: #fff;
 }
 
 /* line 90, H:/admin_project/hospital/scss/_body_content.scss */
 .title_btn ul li a.active {
-  background: #A66DD4;
+  background: #a66dd4;
   color: #fff;
 }
 
@@ -121,7 +121,7 @@
 /* line 103, H:/admin_project/hospital/scss/_body_content.scss */
 .radial_footer .radial_footer_inner .left_footer h5 {
   font-size: 13px;
-  color: #43425D;
+  color: #43425d;
   font-weight: 500;
   margin-bottom: 0px;
   position: relative;
@@ -132,7 +132,7 @@
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: #A4A1FB;
+  background: #a4a1fb;
   display: inline-block;
   position: absolute;
   left: -15px;
@@ -142,15 +142,15 @@
 /* line 120, H:/admin_project/hospital/scss/_body_content.scss */
 .radial_footer .radial_footer_inner .left_footer p {
   font-size: 12px;
-  color: #4D4F5C;
-  opacity: .5;
+  color: #4d4f5c;
+  opacity: 0.5;
   font-weight: 400;
   margin-bottom: 0;
 }
 
 /* line 129, H:/admin_project/hospital/scss/_body_content.scss */
 .radial_footer .radial_bottom {
-  border-top: 1px solid #EFEFEF;
+  border-top: 1px solid #efefef;
   text-align: center;
   padding-top: 15px;
   margin-top: 4px;
@@ -159,6 +159,6 @@
 /* line 135, H:/admin_project/hospital/scss/_body_content.scss */
 .radial_footer .radial_bottom p a {
   font-size: 12px;
-  color: #3B86FF;
+  color: #3b86ff;
   font-weight: 600;
 }

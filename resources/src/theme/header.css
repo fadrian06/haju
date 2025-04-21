@@ -143,7 +143,7 @@
   top: 0;
   height: 9px;
   width: 9px;
-  background-color: #2E4765;
+  background-color: #2e4765;
   border-radius: 50%;
 }
 
@@ -213,7 +213,7 @@
 /* line 143, H:/admin_project/hospital/scss/_header.scss */
 .header_iner .header_right .header_notification_warp li a {
   font-size: 20px;
-  color: #929BB5;
+  color: #929bb5;
   position: relative;
   margin-right: 29px;
   display: inline-block;
@@ -235,7 +235,7 @@
 
 /* line 175, H:/admin_project/hospital/scss/_header.scss */
 .header_iner .nice_Select {
-  color: #929BB5;
+  color: #929bb5;
 }
 
 /* line 179, H:/admin_project/hospital/scss/_header.scss */
@@ -262,7 +262,7 @@
 .profile_info .profile_info_iner {
   position: absolute;
   right: 0;
-  background-color: #2E4765;
+  background-color: #2e4765;
   text-align: right;
   width: 215px;
   padding: 30px 30px 20px;
@@ -279,14 +279,14 @@
 /* line 205, H:/admin_project/hospital/scss/_header.scss */
 .profile_info .profile_info_iner::before {
   position: absolute;
-  content: '';
+  content: "";
   width: 0;
   height: 0;
   border-style: solid;
   top: -14px;
   right: 10px;
   border-width: 0 15px 20px 15px;
-  border-color: transparent transparent #2E4765 transparent;
+  border-color: transparent transparent #2e4765 transparent;
 }
 
 /* line 216, H:/admin_project/hospital/scss/_header.scss */
@@ -403,8 +403,8 @@
   padding-left: 82px;
   border: 0;
   padding-right: 15px;
-  border-bottom: 1px solid #F4F7FC;
-  background: #F5F7FD;
+  border-bottom: 1px solid #f4f7fc;
+  background: #f5f7fd;
   border-radius: 30px;
 }
 
@@ -412,7 +412,7 @@
 .serach_field-area .search_inner input::placeholder {
   font-size: 16px;
   font-weight: 400;
-  color: #818E94;
+  color: #818e94;
   font-family: "Poppins", sans-serif;
 }
 
@@ -437,7 +437,7 @@
 /* line 323, H:/admin_project/hospital/scss/_header.scss */
 .serach_field-area .search_inner button i {
   font-size: 14px;
-  color: #818E94;
+  color: #818e94;
 }
 
 /* line 332, H:/admin_project/hospital/scss/_header.scss */
@@ -462,8 +462,8 @@
   padding-left: 82px;
   border: 0;
   padding-right: 15px;
-  border-bottom: 1px solid #F4F7FC;
-  background: #F5F7FD;
+  border-bottom: 1px solid #f4f7fc;
+  background: #f5f7fd;
   border-radius: 30px;
 }
 
@@ -471,7 +471,7 @@
 .serach_field-area2 .search_inner input::placeholder {
   font-size: 16px;
   font-weight: 400;
-  color: #818E94;
+  color: #818e94;
   font-family: "Poppins", sans-serif;
 }
 
@@ -496,7 +496,7 @@
 /* line 372, H:/admin_project/hospital/scss/_header.scss */
 .serach_field-area2 .search_inner button i {
   font-size: 14px;
-  color: #818E94;
+  color: #818e94;
 }
 
 /* line 382, H:/admin_project/hospital/scss/_header.scss */
@@ -542,7 +542,7 @@
   width: 100%;
   border-radius: 5px;
   padding-left: 55px;
-  border: 1px solid #2DAAB8;
+  border: 1px solid #2daab8;
   padding-right: 15px;
 }
 
@@ -574,7 +574,7 @@
 /* line 428, H:/admin_project/hospital/scss/_header.scss */
 .serach_field_2 .search_inner button i {
   font-size: 12px;
-  color: #2DAAB8;
+  color: #2daab8;
 }
 
 /* line 432, H:/admin_project/hospital/scss/_header.scss */
@@ -582,8 +582,8 @@
   position: absolute;
   width: 1px;
   height: 24px;
-  content: '';
-  background: #2DAAB8;
+  content: "";
+  background: #2daab8;
   top: 50%;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
@@ -602,7 +602,8 @@ table.dataTable {
 }
 
 /* line 463, H:/admin_project/hospital/scss/_header.scss */
-.table td, .table th {
+.table td,
+.table th {
   padding: .75rem;
   vertical-align: top;
   border-top: 0 !important;

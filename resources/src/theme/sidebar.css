@@ -12,8 +12,8 @@
   overflow: hidden;
   overflow-y: auto;
   transition: 0.5s;
-  background: #FFFFFF;
-  box-shadow: 0 0 40px #EFF1F7;
+  background: #ffffff;
+  box-shadow: 0 0 40px #eff1f7;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
@@ -99,11 +99,11 @@
 .sidebar .single_sidebar_tittle a::before {
   position: absolute;
   right: 0;
-  background: #2E4765;
+  background: #2e4765;
   width: 0px;
   top: 0;
   bottom: 0;
-  content: '';
+  content: "";
   opacity: 0;
   transition: .3s;
   right: 0px;
@@ -112,7 +112,7 @@
 
 /* line 87, H:/admin_project/hospital/scss/_sidebar.scss */
 .sidebar .single_sidebar_tittle a.current_active i {
-  color: #2E4765;
+  color: #2e4765;
 }
 
 /* line 90, H:/admin_project/hospital/scss/_sidebar.scss */
@@ -180,7 +180,7 @@
 
 /* line 137, H:/admin_project/hospital/scss/_sidebar.scss */
 .sidebar .single_sidebar_tittle:hover i {
-  color: #2E4765;
+  color: #2e4765;
 }
 
 /* line 142, H:/admin_project/hospital/scss/_sidebar.scss */
@@ -313,12 +313,14 @@
 }
 
 /* line 238, H:/admin_project/hospital/scss/_sidebar.scss */
-.sidebar_widget .date_range .start_date, .sidebar_widget .date_range .end_date {
+.sidebar_widget .date_range .start_date,
+.sidebar_widget .date_range .end_date {
   width: 115px;
 }
 
 /* line 240, H:/admin_project/hospital/scss/_sidebar.scss */
-.sidebar_widget .date_range .start_date input, .sidebar_widget .date_range .end_date input {
+.sidebar_widget .date_range .start_date input,
+.sidebar_widget .date_range .end_date input {
   width: 100%;
   border: 1px solid #e4e8ec;
   color: #7e7172;
@@ -329,7 +331,8 @@
 }
 
 /* line 249, H:/admin_project/hospital/scss/_sidebar.scss */
-.sidebar_widget .date_range .start_date ::placeholder, .sidebar_widget .date_range .end_date ::placeholder {
+.sidebar_widget .date_range .start_date ::placeholder,
+.sidebar_widget .date_range .end_date ::placeholder {
   color: #7e7172;
 }
 
@@ -338,7 +341,7 @@
 .sidebar #sidebar_menu li.side_menu_title span {
   font-size: 20px;
   font-weight: 700;
-  color: #2DAAB8;
+  color: #2daab8;
   font-family: "Rajdhani", sans-serif;
   padding: 15px 25px 5px 30px;
   display: block;
@@ -348,7 +351,7 @@
 .sidebar #sidebar_menu li a {
   font-size: 16px;
   font-weight: 400;
-  color: #676B84;
+  color: #676b84;
   padding: 15px 25px 15px 30px;
   background: #fff;
   transition: .3s;
@@ -373,7 +376,7 @@
 .sidebar #sidebar_menu li a i {
   font-size: 15px;
   margin-right: 12px;
-  color: #A5ADC6;
+  color: #a5adc6;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
@@ -387,19 +390,19 @@
 
 /* line 324, H:/admin_project/hospital/scss/_sidebar.scss */
 .sidebar #sidebar_menu li.mm-active > a {
-  color: #16BBE5;
+  color: #16bbe5;
 }
 
 /* line 328, H:/admin_project/hospital/scss/_sidebar.scss */
 .sidebar #sidebar_menu li.mm-active.metis_dropmenu > a {
   padding-top: 29px;
   padding-bottom: 30px;
-  color: #A5ADC6;
+  color: #a5adc6;
 }
 
 /* line 335, H:/admin_project/hospital/scss/_sidebar.scss */
 .sidebar #sidebar_menu li.mm-active > a i {
-  color: #A5ADC6;
+  color: #a5adc6;
 }
 
 /* line 338, H:/admin_project/hospital/scss/_sidebar.scss */
@@ -429,7 +432,7 @@
 /* line 358, H:/admin_project/hospital/scss/_sidebar.scss */
 .sidebar #sidebar_menu li ul li a {
   font-size: 13px;
-  color: #676B84;
+  color: #676b84;
   font-weight: 400;
   padding: 0;
   white-space: nowrap;
@@ -444,7 +447,7 @@
 
 /* line 369, H:/admin_project/hospital/scss/_sidebar.scss */
 .sidebar #sidebar_menu li ul li a.active {
-  color: #16BBE5;
+  color: #16bbe5;
 }
 
 /* line 373, H:/admin_project/hospital/scss/_sidebar.scss */
@@ -558,18 +561,21 @@
 }
 
 /* line 467, H:/admin_project/hospital/scss/_sidebar.scss */
-.sidebar::-webkit-scrollbar-track, body::-webkit-scrollbar-track {
+.sidebar::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
   background-color: #ddd;
 }
 
 /* line 472, H:/admin_project/hospital/scss/_sidebar.scss */
-.sidebar::-webkit-scrollbar, body::-webkit-scrollbar {
+.sidebar::-webkit-scrollbar,
+body::-webkit-scrollbar {
   width: 6px;
   background-color: #ddd;
 }
 
 /* line 477, H:/admin_project/hospital/scss/_sidebar.scss */
-.sidebar::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+.sidebar::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
   background-color: #f8dbdd;
 }
 

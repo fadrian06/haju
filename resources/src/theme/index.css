@@ -43,7 +43,7 @@
 
 /* line 17, H:/admin_project/hospital/scss/_breadcrumb.scss */
 .breadcrumb_content .active {
-  color: #2E4765;
+  color: #2e4765;
 }
 
 /* line 20, H:/admin_project/hospital/scss/_breadcrumb.scss */
@@ -108,22 +108,22 @@
 
 /* line 57, H:/admin_project/hospital/scss/_breadcrumb.scss */
 .breadcrumb_content .sa_breadcrumb_iner a:hover {
-  color: #2E4765;
+  color: #2e4765;
 }
 
 /* line 58, H:/admin_project/hospital/scss/_breadcrumb.scss */
 .breadcrumb_content .sa_breadcrumb_iner a:hover:after {
-  background-color: #2E4765;
+  background-color: #2e4765;
 }
 
 /* line 63, H:/admin_project/hospital/scss/_breadcrumb.scss */
 .breadcrumb_content .sa_breadcrumb_iner a:last-child {
-  color: #2E4765;
+  color: #2e4765;
 }
 
 /* line 65, H:/admin_project/hospital/scss/_breadcrumb.scss */
 .breadcrumb_content .sa_breadcrumb_iner a:last-child:after {
-  background-color: #2E4765;
+  background-color: #2e4765;
 }
 
 /********* breadcrumd css end **********/
@@ -275,14 +275,14 @@ canvas#highlights {
 .income_servay .count_content h3 {
   font-size: 30px;
   font-weight: 600;
-  color: #2E4765;
+  color: #2e4765;
   line-height: 1;
   margin-bottom: 5px;
 }
 
 /* line 64, H:/admin_project/hospital/scss/_lms_category.scss */
 .income_servay .count_content h3 span {
-  color: #2E4765;
+  color: #2e4765;
   font-weight: 600;
   line-height: 1;
 }
@@ -291,7 +291,7 @@ canvas#highlights {
 .income_servay .count_content p {
   font-size: 14px;
   font-weight: 400;
-  color: #B2B5C0;
+  color: #b2b5c0;
   line-height: 1;
 }
 
@@ -324,14 +324,14 @@ canvas#highlights {
 .staf_list_wrapper .single_staf h4 {
   font-size: 22px;
   font-weight: 600;
-  color: #2E4765;
+  color: #2e4765;
   margin-bottom: 3px;
 }
 
 /* line 102, H:/admin_project/hospital/scss/_lms_category.scss */
 .staf_list_wrapper .single_staf p {
   font-size: 14px;
-  color: #818E94;
+  color: #818e94;
   font-weight: 500;
 }
 
@@ -340,12 +340,12 @@ canvas#highlights {
   width: 39px;
   height: 39px;
   border-radius: 7px;
-  background: #EFF1F7;
+  background: #eff1f7;
   position: absolute;
   top: -89px;
   right: 0;
   font-size: 18px !important;
-  background: #EFF1F7 !important;
+  background: #eff1f7 !important;
   color: #141124;
 }
 
@@ -356,13 +356,13 @@ canvas#highlights {
 
 /* line 126, H:/admin_project/hospital/scss/_lms_category.scss */
 .owl-carousel .owl-nav button:hover {
-  background: #16BBE5 !important;
+  background: #16bbe5 !important;
   color: #fff;
 }
 
 /* line 135, H:/admin_project/hospital/scss/_lms_category.scss */
 .Activity_timeline ul {
-  border-left: 1px solid #ECFDFF;
+  border-left: 1px solid #ecfdff;
 }
 
 /* line 137, H:/admin_project/hospital/scss/_lms_category.scss */
@@ -378,7 +378,7 @@ canvas#highlights {
 
 /* line 143, H:/admin_project/hospital/scss/_lms_category.scss */
 .Activity_timeline ul li .activity_bell {
-  background: #3BB0BD;
+  background: #3bb0bd;
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -397,14 +397,14 @@ canvas#highlights {
 .Activity_timeline ul li .activity_wrap h6 {
   font-size: 18px;
   font-weight: 600;
-  color: #2E4765;
+  color: #2e4765;
 }
 
 /* line 160, H:/admin_project/hospital/scss/_lms_category.scss */
 .Activity_timeline ul li .activity_wrap p {
   font-size: 14px;
   line-height: 28px;
-  color: #818E94;
+  color: #818e94;
   font-weight: 400;
 }
 
@@ -419,7 +419,7 @@ canvas#highlights {
 .barfiller {
   width: 100%;
   height: 10px;
-  background: #EFF1F7;
+  background: #eff1f7;
   position: relative;
   margin-bottom: 25px;
   border-radius: 30px;
@@ -477,7 +477,8 @@ canvas#highlights {
 }
 
 /* line 3, H:/admin_project/hospital/scss/_summer_note.scss */
-.note-editor.note-frame .note-popover .note-popover-content, .note-editor.note-frame .note-toolbar {
+.note-editor.note-frame .note-popover .note-popover-content,
+.note-editor.note-frame .note-toolbar {
   padding: 4px 15px 8px 15px;
   margin: 0;
   border-radius: 5px 5px 0 0;
@@ -485,7 +486,8 @@ canvas#highlights {
 }
 
 /* line 12, H:/admin_project/hospital/scss/_summer_note.scss */
-.note-editor.note-frame .note-btn i, .note-editor.note-frame .note-current-fontname {
+.note-editor.note-frame .note-btn i,
+.note-editor.note-frame .note-current-fontname {
   color: #7e7172;
   font-size: 12px;
 }
@@ -602,19 +604,20 @@ canvas#highlights {
 /* line 31, H:/admin_project/hospital/scss/_common_component.scss */
 .gj-picker-md table tr td.today div {
   color: #fff;
-  background: #16BBE5;
+  background: #16bbe5;
   border-radius: 50%;
 }
 
 /* line 36, H:/admin_project/hospital/scss/_common_component.scss */
 .gj-picker-md table tr td.gj-cursor-pointer div:hover {
   border-radius: 50%;
-  background: #16BBE5;
+  background: #16bbe5;
   color: #fff;
 }
 
 /* line 42, H:/admin_project/hospital/scss/_common_component.scss */
-.gj-picker-md div[role="navigator"] div:first-child, .gj-picker-md div[role="navigator"] div:last-child {
+.gj-picker-md div[role="navigator"] div:first-child,
+.gj-picker-md div[role="navigator"] div:last-child {
   max-width: 42px;
   background: #fef1f2;
   color: #000;
@@ -626,7 +629,8 @@ canvas#highlights {
 }
 
 /* line 51, H:/admin_project/hospital/scss/_common_component.scss */
-.gj-picker-md div[role="navigator"] div:first-child i, .gj-picker-md div[role="navigator"] div:last-child i {
+.gj-picker-md div[role="navigator"] div:first-child i,
+.gj-picker-md div[role="navigator"] div:last-child i {
   font-weight: 900;
   font-size: 14px;
 }
@@ -733,7 +737,7 @@ canvas#highlights {
   width: 3px;
   height: 3px;
   background: #7e7172;
-  content: '';
+  content: "";
   border-radius: 50%;
 }
 
@@ -774,7 +778,8 @@ canvas#highlights {
 }
 
 /* line 179, H:/admin_project/hospital/scss/_common_component.scss */
-.result_modal_table_form .table tbody th, .result_modal_table_form .table tbody td {
+.result_modal_table_form .table tbody th,
+.result_modal_table_form .table tbody td {
   color: #7e7172;
   font-size: 13px !important;
   color: #7e7172;
@@ -946,10 +951,10 @@ canvas#highlights {
   line-height: 30px;
   padding: 0 30px 0 20px;
   font-size: 12px;
-  color: #16BBE5;
+  color: #16bbe5;
   font-weight: 400;
   background: #ffff;
-  border: 1px solid #16BBE5;
+  border: 1px solid #16bbe5;
   border-radius: 30px;
   position: relative;
 }
@@ -957,7 +962,7 @@ canvas#highlights {
 /* line 329, H:/admin_project/hospital/scss/_common_component.scss */
 .tagInput_field .bootstrap-tagsinput .badge [data-role="remove"]::after {
   font-size: 10px;
-  font-family: 'themify';
+  font-family: "themify";
   content: "\e646";
   background: none;
   padding: 0;
@@ -972,9 +977,9 @@ canvas#highlights {
 
 /* line 343, H:/admin_project/hospital/scss/_common_component.scss */
 .tagInput_field .bootstrap-tagsinput .badge [data-role="remove"]:hover::after {
-  background: #16BBE5;
+  background: #16bbe5;
   color: #fff;
-  border-color: #16BBE5;
+  border-color: #16bbe5;
 }
 
 /* line 348, H:/admin_project/hospital/scss/_common_component.scss */
@@ -1050,7 +1055,8 @@ canvas#highlights {
   border-radius: 50%;
   vertical-align: -6px;
   margin-right: 15px;
-  transition: background-color 150ms 200ms, transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
+  transition: background-color 150ms 200ms, transform 350ms
+    cubic-bezier(0.78, -1.22, 0.17, 1.89);
 }
 
 /* line 419, H:/admin_project/hospital/scss/_common_component.scss */
@@ -1059,7 +1065,7 @@ canvas#highlights {
   width: 0px;
   height: 1px;
   border-radius: 2px;
-  background: #16BBE5;
+  background: #16bbe5;
   position: absolute;
   transform: rotate(38deg);
   top: 13px;
@@ -1077,7 +1083,7 @@ canvas#highlights {
   width: 0;
   height: 1px;
   border-radius: 2px;
-  background: #16BBE5;
+  background: #16bbe5;
   position: absolute;
   transform: rotate(305deg);
   top: 12.8px;
@@ -1106,9 +1112,9 @@ canvas#highlights {
 
 /* line 469, H:/admin_project/hospital/scss/_common_component.scss */
 .custom_lms_radio_2 input[type="radio"]:checked + label span {
-  background-color: #16BBE5;
+  background-color: #16bbe5;
   transform: scale(1);
-  border-color: #16BBE5;
+  border-color: #16bbe5;
 }
 
 /* line 474, H:/admin_project/hospital/scss/_common_component.scss */
@@ -1127,9 +1133,9 @@ canvas#highlights {
 
 /* line 487, H:/admin_project/hospital/scss/_common_component.scss */
 .custom_lms_radio_2 input[type="radio"]:checked + label:hover span {
-  background-color: #16BBE5;
+  background-color: #16bbe5;
   transform: scale(1.25);
-  border-color: #16BBE5;
+  border-color: #16bbe5;
 }
 
 /* line 492, H:/admin_project/hospital/scss/_common_component.scss */
@@ -1209,7 +1215,9 @@ canvas#highlights {
 }
 
 /* line 563, H:/admin_project/hospital/scss/_common_component.scss */
-.indvisual_form .nice_Select, .indvisual_form input, .indvisual_form textarea {
+.indvisual_form .nice_Select,
+.indvisual_form input,
+.indvisual_form textarea {
   height: 50px;
   line-height: 50px;
   background-color: #fff;
@@ -1226,7 +1234,9 @@ canvas#highlights {
 }
 
 /* line 577, H:/admin_project/hospital/scss/_common_component.scss */
-.indvisual_form .nice_Select::placeholder, .indvisual_form input::placeholder, .indvisual_form textarea::placeholder {
+.indvisual_form .nice_Select::placeholder,
+.indvisual_form input::placeholder,
+.indvisual_form textarea::placeholder {
   color: #7e7172;
   font-weight: 300;
   opacity: 1;
@@ -1305,7 +1315,7 @@ canvas#highlights {
 .dataTables_paginate a {
   width: 32px;
   height: 32px;
-  background: #FFFFFF !important;
+  background: #ffffff !important;
   border-radius: 3px !important;
   text-align: center !important;
   line-height: 32px;
@@ -1316,7 +1326,7 @@ canvas#highlights {
 
 /* line 40, H:/admin_project/hospital/scss/_projects.scss */
 .dataTables_paginate a.current {
-  background: #16BBE5 !important;
+  background: #16bbe5 !important;
   box-shadow: 0px 5px 10px rgba(59, 118, 239, 0.3) !important;
   border: 0 !important;
   color: #fff !important;
@@ -1324,7 +1334,7 @@ canvas#highlights {
 
 /* line 46, H:/admin_project/hospital/scss/_projects.scss */
 .dataTables_paginate a:hover {
-  background: #16BBE5 !important;
+  background: #16bbe5 !important;
   box-shadow: 0px 5px 10px rgba(59, 118, 239, 0.3);
   border: 0 !important;
   color: #fff !important;
@@ -1343,7 +1353,9 @@ canvas#highlights {
 }
 
 /* line 62, H:/admin_project/hospital/scss/_projects.scss */
-.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
   cursor: default;
   color: #fff !important;
   border: 0;
@@ -1359,10 +1371,11 @@ canvas#highlights {
 }
 
 /* line 74, H:/admin_project/hospital/scss/_projects.scss */
-.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
   color: #fff !important;
-  border: 1px solid #16BBE5;
-  background-color: #16BBE5 !important;
+  border: 1px solid #16bbe5;
+  background-color: #16bbe5 !important;
 }
 
 /* line 1, H:/admin_project/hospital/scss/_pie.scss */
@@ -1510,7 +1523,8 @@ canvas#highlights {
 }
 
 /* line 109, H:/admin_project/hospital/scss/_profilebox.scss */
-.card-profile .card-links .fa:focus, .card-profile .card-links .fa:hover {
+.card-profile .card-links .fa:focus,
+.card-profile .card-links .fa:hover {
   text-decoration: none;
 }
 
@@ -1995,7 +2009,7 @@ canvas#highlights {
 /* line 537, H:/admin_project/hospital/scss/_profilebox.scss */
 .profile-cart_2::after {
   content: " ";
-  background-image: linear-gradient(135deg, #2DAAB8 10%, #2DAAB8 100%);
+  background-image: linear-gradient(135deg, #2daab8 10%, #2daab8 100%);
   clip-path: circle(50% at 50% 1%);
   display: block;
   min-height: 500px;
@@ -2131,7 +2145,8 @@ canvas#highlights {
 }
 
 /* line 660, H:/admin_project/hospital/scss/_profilebox.scss */
-.profile_card_5 .msg-btn, .profile_card_5 .follow-btn {
+.profile_card_5 .msg-btn,
+.profile_card_5 .follow-btn {
   background: #03bfbc;
   border: 1px solid #03bfbc;
   padding: 10px 25px;
@@ -2196,7 +2211,7 @@ canvas#highlights {
   height: 100%;
   width: 100%;
   z-index: 3;
-  opacity: .2;
+  opacity: 0.2;
 }
 
 /* line 21, H:/admin_project/hospital/scss/_chart_box.scss */
@@ -2240,7 +2255,7 @@ canvas#highlights {
 
 /* line 52, H:/admin_project/hospital/scss/_chart_box.scss */
 .icon-wrapper .icon-wrapper-bg.bg-light {
-  opacity: .08;
+  opacity: 0.08;
 }
 
 /* line 55, H:/admin_project/hospital/scss/_chart_box.scss */
@@ -2289,7 +2304,7 @@ canvas#highlights {
   position: relative;
   position: relative;
   padding: 13px 20px;
-  background: #2DAAB8;
+  background: #2daab8;
   box-shadow: 0px 5px 10px rgba(45, 170, 184, 0.7);
   color: #fff;
   -webkit-transition: 0.3s;
@@ -2309,7 +2324,7 @@ canvas#highlights {
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  font-family: 'themify';
+  font-family: "themify";
   font-size: 14px;
   right: 30px;
   color: #fff;
@@ -2317,7 +2332,7 @@ canvas#highlights {
 
 /* line 47, H:/admin_project/hospital/scss/_faq.scss */
 .accordion_custom .card .card-header h2 a.collapsed {
-  background: #F5F7FB;
+  background: #f5f7fb;
   color: #415094;
   box-shadow: none;
   -webkit-border-radius: 30px;
@@ -2435,7 +2450,14 @@ canvas#highlights {
 }
 
 /* line 123, H:/admin_project/hospital/scss/_faq.scss */
-.messages_box_area .messages_list ul li a .message_pre_left .message_preview_thumb img {
+.messages_box_area
+  .messages_list
+  ul
+  li
+  a
+  .message_pre_left
+  .message_preview_thumb
+  img {
   width: 50px;
   height: 50px;
 }
@@ -2457,7 +2479,7 @@ canvas#highlights {
 .messages_box_area .messages_list ul li a .message_pre_left p {
   font-size: 13px;
   font-weight: 300;
-  color: #676B84;
+  color: #676b84;
   margin-bottom: 0;
 }
 
@@ -2527,12 +2549,19 @@ canvas#highlights {
 }
 
 /* line 190, H:/admin_project/hospital/scss/_faq.scss */
-.messages_box_area .messages_chat .single_message_chat .message_content_view.red_border {
-  border: 1px solid #2DAAB8;
+.messages_box_area
+  .messages_chat
+  .single_message_chat
+  .message_content_view.red_border {
+  border: 1px solid #2daab8;
 }
 
 /* line 193, H:/admin_project/hospital/scss/_faq.scss */
-.messages_box_area .messages_chat .single_message_chat .message_content_view span {
+.messages_box_area
+  .messages_chat
+  .single_message_chat
+  .message_content_view
+  span {
   display: block;
   margin: 17px 0 17px 0;
 }
@@ -2541,7 +2570,7 @@ canvas#highlights {
 .messages_box_area .messages_chat .single_message_chat .message_content_view p {
   font-size: 13px;
   font-weight: 300;
-  color: #676B84;
+  color: #676b84;
   line-height: 26px;
 }
 
@@ -2553,13 +2582,22 @@ canvas#highlights {
 }
 
 /* line 210, H:/admin_project/hospital/scss/_faq.scss */
-.messages_box_area .messages_chat .single_message_chat .message_pre_left .message_preview_thumb img {
+.messages_box_area
+  .messages_chat
+  .single_message_chat
+  .message_pre_left
+  .message_preview_thumb
+  img {
   width: 50px;
   height: 50px;
 }
 
 /* line 215, H:/admin_project/hospital/scss/_faq.scss */
-.messages_box_area .messages_chat .single_message_chat .message_pre_left .messges_info {
+.messages_box_area
+  .messages_chat
+  .single_message_chat
+  .message_pre_left
+  .messges_info {
   padding-left: 20px;
 }
 
@@ -2575,7 +2613,7 @@ canvas#highlights {
 .messages_box_area .messages_chat .single_message_chat .message_pre_left p {
   font-size: 12px;
   font-weight: 300;
-  color: #676B84;
+  color: #676b84;
   margin-bottom: 0;
 }
 
@@ -2622,7 +2660,10 @@ canvas#highlights {
 }
 
 /* line 254, H:/admin_project/hospital/scss/_faq.scss */
-.messages_box_area .messages_chat .single_message_chat.sender_message .message_pre_left {
+.messages_box_area
+  .messages_chat
+  .single_message_chat.sender_message
+  .message_pre_left {
   margin-bottom: 20px;
   display: flex;
   align-items: center;
@@ -2630,7 +2671,10 @@ canvas#highlights {
 }
 
 /* line 260, H:/admin_project/hospital/scss/_faq.scss */
-.messages_box_area .messages_chat .single_message_chat.sender_message .messges_info {
+.messages_box_area
+  .messages_chat
+  .single_message_chat.sender_message
+  .messges_info {
   padding-left: 0px;
   padding-right: 20px;
   text-align: right;
@@ -2654,7 +2698,7 @@ canvas#highlights {
 
 /* line 276, H:/admin_project/hospital/scss/_faq.scss */
 .messages_box_area .messages_chat .message_send_field input {
-  color: #676B84;
+  color: #676b84;
   font-size: 13px;
   height: 40px;
   width: 100%;
@@ -2666,7 +2710,7 @@ canvas#highlights {
 
 /* line 285, H:/admin_project/hospital/scss/_faq.scss */
 .messages_box_area .messages_chat .message_send_field input::placeholder {
-  color: #676B84;
+  color: #676b84;
   font-weight: 300;
   opacity: 1;
 }
@@ -2700,7 +2744,7 @@ canvas#highlights {
 
 /* line 17, H:/admin_project/hospital/scss/_mailbox.scss */
 .email-sidebar ul li.active {
-  background: #2DAAB8;
+  background: #2daab8;
   box-shadow: 0 0.625rem 1.875rem 0 rgba(45, 170, 184, 0.3);
   color: #fff !important;
 }
@@ -2722,7 +2766,7 @@ canvas#highlights {
 
 /* line 32, H:/admin_project/hospital/scss/_mailbox.scss */
 .email-sidebar ul li a:hover {
-  background: #2DAAB8;
+  background: #2daab8;
   box-shadow: 0 0.625rem 1.875rem 0 rgba(22, 187, 229, 0.3);
   color: #fff !important;
 }
@@ -2784,7 +2828,7 @@ canvas#highlights {
 /* line 44, ../../../../../../xampp/htdocs/CRM_frontend/admin/public/frontend/scss/_predefine.scss */
 /* line 92, H:/admin_project/hospital/scss/_mailbox.scss */
 .primary_checkbox input:checked ~ .checkmark {
-  background: #16BBE5 !important;
+  background: #16bbe5 !important;
   box-shadow: 0px 5px 10px rgba(59, 118, 239, 0.3) !important;
   transition: .3s;
 }
@@ -2799,7 +2843,7 @@ canvas#highlights {
   top: 0px;
   left: 3px;
   text-indent: 1px;
-  color: #828BB2;
+  color: #828bb2;
   background-color: transparent;
   border: 0px;
   -webkit-transform: rotate(8deg);
@@ -2827,7 +2871,7 @@ canvas#highlights {
   height: 18px;
   background: transparent;
   border-radius: 50px;
-  border: 1px solid #828BB2;
+  border: 1px solid #828bb2;
   transition: .3s;
   transform: scale(1);
 }

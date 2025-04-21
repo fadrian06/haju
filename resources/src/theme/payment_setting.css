@@ -41,7 +41,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #BBC1C9;
+  border: 1px solid #bbc1c9;
   border-left: 0px solid transparent;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -49,7 +49,7 @@
 
 /* line 35, H:/admin_project/hospital/scss/_payment_setting.scss */
 .payment_methord .payment_methord_logo .single_logo_iner:first-child {
-  border-left: 1px solid #BBC1C9;
+  border-left: 1px solid #bbc1c9;
   border-radius: 5px 0 0 5px;
 }
 
@@ -65,7 +65,7 @@
 
 /* line 45, H:/admin_project/hospital/scss/_payment_setting.scss */
 .payment_methord .payment_methord_logo .single_logo_iner.active {
-  border: 1px solid #2E4765 !important;
+  border: 1px solid #2e4765 !important;
 }
 
 /* line 54, H:/admin_project/hospital/scss/_payment_setting.scss */
@@ -78,7 +78,7 @@
   width: 100%;
   background-color: #fef1f2;
   border-radius: 5px;
-  border: 1px solid #F1F3F5;
+  border: 1px solid #f1f3f5;
   padding: 12px 20px;
 }
 
@@ -94,7 +94,7 @@
   display: inline-block;
   padding: 12px 20px;
   max-width: 85px;
-  color: #9C9C9C;
+  color: #9c9c9c;
 }
 
 /* line 76, H:/admin_project/hospital/scss/_payment_setting.scss */
@@ -106,13 +106,13 @@
 .form_group .nice_Select {
   background-color: #fef1f2;
   margin-right: 10px;
-  color: #9C9C9C;
+  color: #9c9c9c;
 }
 
 /* line 86, H:/admin_project/hospital/scss/_payment_setting.scss */
 .checkbox label {
   margin-bottom: 0;
   margin-top: 25px;
-  color: #9C9C9C;
+  color: #9c9c9c;
   margin-left: 8px;
 }
