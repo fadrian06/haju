@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 ?>
 
-<header class="py-2 sticky-top">
+<header class="py-2 sticky-top" :class="`text-bg-${theme}`">
   <div class="container d-flex justify-content-between align-items-center">
     <a href="./">
       <?php Flight::render('components/hospital-logo') ?>

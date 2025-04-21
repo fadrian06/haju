@@ -2,6 +2,7 @@ import "@fontsource/poppins/latin.css";
 import "@fontsource/rajdhani/latin.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "sweetalert2/dist/sweetalert2.min.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import "metismenujs/style";
 import "./customizations.css";
 // import "./theme/index.css";

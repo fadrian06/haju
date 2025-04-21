@@ -172,7 +172,7 @@ $patientAvatar = @file_get_contents($avatarUrl)
               <li class="timeline-item">
                 <strong class="text-secondary">Hospitalización #<?= $hospitalization->id ?></strong>
                 <time class="small text-black-50"><?= $hospitalization->registeredDate ?></time>
-                <span class="text-black-50 fw-semibold custom-badge status-<?= $hospitalization->isFinished() ? 'green' : 'red' ?>">
+                <span class="text-black-50 fw-semibold badge text-bg-<?= $hospitalization->isFinished() ? 'success' : 'danger' ?>">
                   <?= $hospitalization->isFinished() ? 'Finalizada' : 'No finalizada' ?>
                 </span>
                 <?php if (!$hospitalization->isFinished()) : ?>

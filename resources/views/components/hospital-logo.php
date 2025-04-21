@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use Leaf\Http\Session;
 
+$class ??= '';
+
 ?>
 
 <img
@@ -13,4 +15,5 @@ use Leaf\Http\Session;
   data-bs-toggle="tooltip"
   height="50"
   title='Hospital "Antonio José Uzcátegui"'
-  alt='Logo de HAJU (Hospital "Antonio José Uzcátegui")' />
+  alt='Logo de HAJU (Hospital "Antonio José Uzcátegui")'
+  class="<?= $class ?>" />

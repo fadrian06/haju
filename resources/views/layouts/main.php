@@ -93,8 +93,6 @@ foreach ($consultations as $consultation) {
   <link rel="icon" href="./resources/images/favicon.svg" />
   <link rel="stylesheet" href="./resources/dist/main.css" />
   <link rel="stylesheet" href="./assets/vendors/themefy_icon/themify-icons.css" />
-  <link rel="stylesheet" href="./assets/css/reset.css" />
-  <link rel="stylesheet" href="./assets/css/utils.css" />
   <link rel="stylesheet" href="./assets/css/components/btn.css" />
   <link rel="stylesheet" href="./assets/css/components/sidebar.css" />
   <link rel="stylesheet" href="./assets/css/components/main.css" />
@@ -109,7 +107,7 @@ foreach ($consultations as $consultation) {
   <link rel="stylesheet" href="./assets/css/custom.css" />
 </head>
 
-<body>
+<body class="bg-secondary-subtle">
   <?php if ($epidemic) : ?>
     <?php Flight::render('components/epidemic-alert', ['epidemic' => $epidemic]) ?>
   <?php endif ?>

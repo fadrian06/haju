@@ -38,17 +38,13 @@ $patientsListId = uniqid();
     class="logo m-0 d-flex align-items-center justify-content-between"
     style="background: <?= $backgrounds[$department->name] ?? 'white' ?>">
     <picture class="p-2">
-      <img
-        class="img-fluid"
-        src="./assets/img/logo@light.png"
-        data-bs-toggle="tooltip"
-        title='Hospital "José Antonio Uzcátegui"' />
+      <?php Flight::render('components/hospital-logo', ['class' => 'img-fluid']) ?>
     </picture>
     <div class="sidebar_close_icon d-flex align-items-center d-lg-none">
-      <i class="ti-close"></i>
+      <i class="fa fa-close position-static"></i>
     </div>
   </header>
-  <menu class="m-0 p-0 pb-5" id="sidebar_menu">
+  <menu class="m-0 p-0 pb-5 list-unstyled" id="sidebar_menu">
     <li class="side_menu_title">
       <span>Panel de Administración</span>
     </li>
@@ -63,7 +59,7 @@ $patientsListId = uniqid();
         <img src="./assets/img/icons/patient.svg" />
         <span>Pacientes</span>
       </a>
-      <ul class="pe-2">
+      <ul class="pe-2 list-unstyled">
         <li class="<?= isActive('/pacientes') ? 'mm-active' : '' ?>">
           <a href="./pacientes">
             <i class="ti-list"></i>
@@ -135,7 +131,7 @@ $patientsListId = uniqid();
           <img src="./assets/img/icons/user-md.svg" />
           <span>Doctores</span>
         </a>
-        <ul class="pe-2">
+        <ul class="pe-2 list-unstyled">
           <li class="<?= isActive('/doctores') ? 'mm-active' : '' ?>">
             <a href="./doctores">
               <i class="ti-list"></i>
@@ -158,7 +154,7 @@ $patientsListId = uniqid();
           <img src="./assets/img/icons/users.svg" />
           <span>Usuarios</span>
         </a>
-        <ul class="pe-2">
+        <ul class="pe-2 list-unstyled">
           <li class="<?= isActive('/usuarios') ? 'mm-active' : '' ?>">
             <a href="./usuarios">
               <i class="ti-list"></i>
@@ -190,7 +186,7 @@ $patientsListId = uniqid();
             <img src="./assets/img/icons/gears.svg" />
             <span>Configuraciones</span>
           </a>
-          <ul class="pe-2">
+          <ul class="pe-2 list-unstyled">
             <?php if ($user->appointment === Appointment::Director) : ?>
               <li class="<?= isActive('/configuracion/institucion') ? 'mm-active' : '' ?>">
                 <a href="./configuracion/institucion">

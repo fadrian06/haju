@@ -1,20 +1,5 @@
-html {
-  scroll-behavior: smooth;
-  overflow-y: scroll;
-}
-
-summary {
-  display: initial;
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-body.modal-open {
-  padding-right: 0 !important;
+a {
+  text-decoration: none;
 }
 
 .input-group {
@@ -25,53 +10,8 @@ body.modal-open {
   flex: 1;
 }
 
-input[type="number"] {
-  -moz-appearance: textfield;
-  appearance: textfield;
-}
-
-.mm-collapse,
-.mm-collapsing {
-  padding-left: 45px !important;
-}
-
-.header_iner {
-  justify-content: space-between !important;
-}
-
-.header_iner~* {
-  margin-top: 65px !important;
-}
-
-.sidebar_close_icon i {
-  position: unset;
-}
-
 .sidebar_icon {
-  position: unset;
-  top: 50%;
-  -webkit-transform: unset;
-  -moz-transform: unset;
-  -ms-transform: unset;
-  -o-transform: unset;
   transform: unset;
-  right: auto;
-  left: 20px;
-  background: transparent;
-  border: none;
-}
-
-.main_content {
-  padding-bottom: 0;
-}
-
-.main_content,
-.main_content_iner {
-  min-height: unset !important;
-}
-
-.footer_part {
-  padding-top: 0;
 }
 
 .profile-info__main {
@@ -91,12 +31,8 @@ input[type="number"] {
   flex-direction: column;
 }
 
-[data-bs-toggle="tab"] {
-  border-bottom: medium solid transparent !important;
-}
-
 [data-bs-toggle="tab"].active {
-  border-bottom-color: var(--bs-primary) !important;
+  border-bottom: medium solid var(--bs-primary) !important;
 }
 
 .timeline {
@@ -127,20 +63,6 @@ input[type="number"] {
   content: "";
 }
 
-.fileupload.btn {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  background: rgba(33, 33, 33, 0.5);
-  border-radius: 0;
-  padding: 3px 10px;
-  border: none;
-}
-
-.pointer {
-  cursor: pointer;
-}
-
 .form-floating>label {
   left: unset;
   height: unset;
@@ -149,10 +71,6 @@ input[type="number"] {
 textarea {
   line-height: initial !important;
   overflow-y: hidden;
-}
-
-.profile_info_iner {
-  pointer-events: painted;
 }
 
 .single_quick_activity {
@@ -167,35 +85,6 @@ textarea {
 
 .single_quick_activity:nth-child(even):hover {
   transform: scale(1.025) rotate(-1deg);
-}
-
-.custom-badge {
-  border-radius: 4px;
-  display: inline-block;
-  font-size: 12px;
-  min-width: 95px;
-  padding: 1px 10px;
-  text-align: center;
-}
-
-.status-green {
-  background-color: #e5faf3;
-  border: 1px solid #00ce7c;
-  color: #00ce7c;
-}
-
-.status-green:hover {
-  background-color: #aff0d9;
-}
-
-.status-red {
-  background-color: #ffe5e6;
-  border: 1px solid #fe0000;
-  color: #fe0000;
-}
-
-.status-red:hover {
-  background-color: #ff9fa3;
 }
 
 .QA_section .QA_table thead th {

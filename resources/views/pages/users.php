@@ -51,7 +51,7 @@ use HAJU\Enums\InstructionLevel;
             style="height: 130px"
             title="<?= $member->getFullName() ?>" />
         </picture>
-        <span class="custom-badge status-<?= $member->isActive() ? 'green' : 'red' ?> mx-4 mb-2">
+        <span class="badge text-bg-<?= $member->isActive() ? 'success' : 'danger' ?> mx-4 mb-2">
           <?= $member->isActive() ? 'Activo' : 'Inactivo' ?>
         </span>
         <h4 title="<?= $member->getFullName() ?>">

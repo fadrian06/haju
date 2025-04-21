@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use HAJU\Models\Department;
 use HAJU\Models\User;
 use HAJU\Enums\Appointment;
@@ -12,9 +14,9 @@ use HAJU\Enums\Appointment;
 
 ?>
 
-<header class="header_iner d-flex align-items-center py-1 position-fixed top-0 end-0 w-100" style="height: 65px">
-  <button class="sidebar_icon d-lg-none me-2">
-    <i class="ti-menu"></i>
+<header class="header_iner d-flex align-items-center justify-content-between py-1 sticky-top top-0 end-0 w-100">
+  <button class="sidebar_icon d-lg-none me-2 position-static btn" data-bs-toggle="tooltip" title="Abrir menú de navegación">
+    <i class="fa fa-bars-staggered"></i>
   </button>
   <h2 class="m-0 d-flex align-items-center">
     <span class="d-none d-sm-block h3 m-0 text-nowrap">Departamento de <?= $department->name ?></span>

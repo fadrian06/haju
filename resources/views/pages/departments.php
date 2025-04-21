@@ -41,7 +41,7 @@ use HAJU\Models\User;
               style="height: 130px; object-fit: contain;"
               title="<?= $department->name ?>" />
           </picture>
-          <span class="custom-badge status-<?= $department->isActive() ? 'green' : 'red' ?> mx-4 mb-2">
+          <span class="badge text-bg-<?= $department->isActive() ? 'success' : 'danger' ?> mx-4 mb-2">
             <?= $department->isActive() ? 'Activo' : 'Inactivo' ?>
           </span>
           <h4><?= $department->name ?></h4>

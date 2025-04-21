@@ -50,7 +50,7 @@ $alpineValue = $valueHasOneWord
     <?= !$readonly ?: 'readonly' ?>
     title="<?= $title ?>"
     value="<?= $value ?>"
-    <?= !$value ?: ":value='{$alpineValue}'" ?>>
+    <?= !$value ?: ":value=\"{$alpineValue}\"" ?>>
   <label for="<?= $id ?>">
     <?php if ($required) : ?>
       <sub class="text-danger fs-1">*</sub>
