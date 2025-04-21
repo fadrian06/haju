@@ -233,10 +233,3 @@ $patientsListId = uniqid();
     <?php endif ?>
   </menu>
 </aside>
-
-<script>
-  document.addEventListener(
-    'DOMContentLoaded',
-    () => $('#sidebar_menu').metisMenu()
-  )
-</script>

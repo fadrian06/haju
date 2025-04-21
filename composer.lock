@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "7b490d55d6b80228142cb58c708db9b5",
+  "content-hash": "badefc2d10a475079a1d4abeabdfd400",
   "packages": [
     {
       "name": "bjeavons/zxcvbn-php",
@@ -130,38 +130,6 @@
         }
       ],
       "time": "2024-02-09T16:56:22+00:00"
-    },
-    {
-      "name": "faslatam/alpine-js",
-      "version": "3.14.9",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/fadrian06/AlpineJS.git",
-        "reference": "439c63f4b2f4b9eb4c1b99639590e6e2076317d6"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/fadrian06/AlpineJS/zipball/439c63f4b2f4b9eb4c1b99639590e6e2076317d6",
-        "reference": "439c63f4b2f4b9eb4c1b99639590e6e2076317d6",
-        "shasum": ""
-      },
-      "type": "library",
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "fadrian06",
-          "email": "franyeradriansanchez@gmail.com"
-        }
-      ],
-      "description": "AlpineJS composer package",
-      "support": {
-        "issues": "https://github.com/fadrian06/AlpineJS/issues",
-        "source": "https://github.com/fadrian06/AlpineJS/tree/3.14.9"
-      },
-      "time": "2025-03-13T04:59:38+00:00"
     },
     {
       "name": "flightphp/container",
@@ -1294,56 +1262,6 @@
         }
       ],
       "time": "2024-09-25T14:20:29+00:00"
-    },
-    {
-      "name": "twbs/bootstrap",
-      "version": "v5.3.5",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/twbs/bootstrap.git",
-        "reference": "85f23534bd2de8041354b297516cf21959091b31"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/twbs/bootstrap/zipball/85f23534bd2de8041354b297516cf21959091b31",
-        "reference": "85f23534bd2de8041354b297516cf21959091b31",
-        "shasum": ""
-      },
-      "replace": {
-        "twitter/bootstrap": "self.version"
-      },
-      "type": "library",
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "Mark Otto",
-          "email": "markdotto@gmail.com"
-        },
-        {
-          "name": "Jacob Thornton",
-          "email": "jacobthornton@gmail.com"
-        }
-      ],
-      "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
-      "homepage": "https://getbootstrap.com/",
-      "keywords": [
-        "JS",
-        "css",
-        "framework",
-        "front-end",
-        "mobile-first",
-        "responsive",
-        "sass",
-        "web"
-      ],
-      "support": {
-        "issues": "https://github.com/twbs/bootstrap/issues",
-        "source": "https://github.com/twbs/bootstrap/tree/v5.3.5"
-      },
-      "time": "2025-04-04T18:20:30+00:00"
     }
   ],
   "packages-dev": [
@@ -5077,7 +4995,9 @@
   "prefer-stable": false,
   "prefer-lowest": false,
   "platform": {
-    "php": "^8.2"
+    "php": "^8.2",
+    "ext-pdo_mysql": "*",
+    "ext-pdo_sqlite": "*"
   },
   "platform-dev": {},
   "plugin-api-version": "2.6.0"

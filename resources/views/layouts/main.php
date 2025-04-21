@@ -133,9 +133,8 @@ foreach ($consultations as $consultation) {
     ]) ?>
   <?php endif ?>
   <script src="./assets/vendors/jquery/jquery.min.js"></script>
-  <script src="./assets/vendors/metismenu/metisMenu.min.js"></script>
   <script src="./assets/vendors/chart.js"></script>
-  <script src="./resources/dist/main.js"></script>
+  <script src="./resources/dist/main.js" defer></script>
   <script src="./assets/js/custom.js" defer></script>
 
   <script>
