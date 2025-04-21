@@ -48,7 +48,7 @@ final class Department extends Model implements Stringable
 
   public function hasIcon(): bool
   {
-    return (bool) $this->iconFilePath->asString();
+    return $this->iconFilePath->asString() !== '';
   }
 
   public function __get(string $property): null|int|string

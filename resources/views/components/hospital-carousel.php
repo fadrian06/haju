@@ -46,7 +46,7 @@ $hospitalImages = [
           height="350"
           class="object-fit-cover w-100"
           alt="<?= $image['title'] ?>" />
-        <figcaption class="carousel-caption w-100 d-none d-md-block">
+        <figcaption class="carousel-caption w-100">
           <h5><?= $image['title'] ?></h5>
           <p><?= $image['description'] ?></p>
         </figcaption>

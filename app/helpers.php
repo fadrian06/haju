@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use flight\Container;
 use HAJU\Models\Consultation;
 use HAJU\Models\ConsultationCause;
 use HAJU\Models\ConsultationCauseCategory;
+use HAJU\Models\Department;
 use HAJU\Models\Patient;
 
 const ROOT_PATH = __DIR__ . '/..';
@@ -57,6 +57,13 @@ function isActive(string ...$urls): bool
   }
 
   return false;
+}
+
+function getDepartmentIconUrl(Department $department): string
+{
+  return $department->hasIcon()
+    ? urldecode($department->iconFilePath->asString())
+    : './assets/img/department.png';
 }
 
 define('CATEGORY_MAPPER', new class {

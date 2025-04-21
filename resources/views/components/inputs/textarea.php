@@ -13,7 +13,7 @@ $name ??= '';
 <div class="form-floating">
   <textarea
     id="<?= $id ?>"
-    class="form-control bg-transparent"
+    class="form-control"
     placeholder=" "
     <?= !$required ?: 'required' ?>
     name="<?= $name ?>"><?= $value ?></textarea>

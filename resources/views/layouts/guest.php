@@ -33,7 +33,7 @@ $message = isset($message) ? strval($message) : null;
 </head>
 
 <body
-  class="overflow-y-scroll min-vh-100 d-grid"
+  class="overflow-y-scroll min-vh-100 d-grid pe-0"
   style="grid-template-rows: auto 1fr auto">
   <?php Flight::render('components/headers/public') ?>
   <?= $content ?>

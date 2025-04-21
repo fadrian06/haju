@@ -17,7 +17,7 @@ $name ??= '';
     data-bs-theme="<?= Session::get('theme', 'light') ?>"
     :data-bs-theme="theme"
     <?= !$required ?: 'required' ?>
-    class="form-select bg-white"
+    class="form-select"
     id="<?= $id ?>"
     name="<?= $name ?>">
     <option value="" selected disabled>Selecciona una opción</option>

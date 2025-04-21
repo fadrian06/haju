@@ -13,13 +13,6 @@ h6,
   font-family: Rajdhani, sans-serif;
 }
 
-body {
-  &.modal-open {
-    padding-right: 0 !important;
-    overflow-y: scroll !important;
-  }
-}
-
 .form-floating {
   & .form-select,
   & .form-control:not(input[type="file"]) {
@@ -32,13 +25,11 @@ body {
   }
 }
 
-[data-bs-theme="dark"] {
-  & .bg-white {
-    background-color: black !important;
-    color: white;
-  }
+:root, [data-bs-theme="light"] {
+  --bs-light-rgb: var(--bs-body-bg-rgb);
+  --bs-dark-rgb: 0, 0, 0;
+}
 
-  & .card {
-    --bs-card-cap-bg: #111;
-  }
+[data-bs-theme="dark"] {
+  --bs-body-bg: black;
 }

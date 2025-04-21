@@ -5,16 +5,16 @@ declare(strict_types=1);
 ?>
 
 <section class="container py-5">
-  <div class="row g-3 row-cols-md-2">
+  <div class="row g-5 row-cols-md-2">
     <header class="col-md-12 text-center">
       <h2 class="display-5 text-primary">Nuestro Compromiso</h2>
       <p class="lead">Conoce los principios que guían nuestra labor diaria</p>
     </header>
 
-    <div class="pb-5 pb-md-0">
+    <div>
       <article class="card h-100 shadow-lg border-0">
-        <header class="card-header text-bg-primary bg-gradient">
-          <i class="fa fa-heartbeat fa-2x me-3"></i>
+        <header class="card-header text-bg-primary bg-gradient d-flex align-items-center gap-3">
+          <i class="fa fa-heartbeat fa-2x"></i>
           <h3 class="mb-0 d-inline-block">Misión</h3>
         </header>
         <footer class="card-footer fs-5 h-100">
@@ -30,8 +30,8 @@ declare(strict_types=1);
 
     <div>
       <article class="card h-100 shadow-lg border-0">
-        <header class="card-header text-bg-info text-white bg-gradient">
-          <i class="fa fa-eye fa-2x me-3"></i>
+        <header class="card-header text-bg-info bg-gradient d-flex align-items-center gap-3">
+          <i class="fa fa-eye fa-2x"></i>
           <h3 class="mb-0 d-inline-block">Visión</h3>
         </header>
         <footer class="card-footer fs-5 h-100">

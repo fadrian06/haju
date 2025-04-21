@@ -12,12 +12,12 @@ use HAJU\Enums\InstructionLevel;
 
 ?>
 
-<main class="container bg-white rounded-3 my-4 py-4 d-flex flex-column justify-content-center">
+<main class="container rounded-3 my-4 py-4 d-flex flex-column justify-content-center">
   <div class="row justify-content-center">
     <div class="col-11 col-md-8">
       <form
         method="post"
-        class="card bg-transparent text-center"
+        class="card text-center"
         enctype="multipart/form-data">
         <div class="card-header border-bottom-0 py-3 px-4">
           <h1 class="card-title fw-bold h5 m-0">Regístrate como director</h1>

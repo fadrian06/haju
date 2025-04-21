@@ -30,7 +30,7 @@ declare(strict_types=1);
             location.href = './registrate';
           });
       "
-      class="modal-content bg-white"
+      class="modal-content"
       method="post">
       <header class="modal-header">
         <h3 class="modal-title fs-5">Introduce la clave maestra</h3>
@@ -52,9 +52,11 @@ declare(strict_types=1);
             x-show="isLoading"
             class="spinner spinner-border spinner-border-sm">
           </span>
+          <i class="fa fa-arrow-right"></i>
           Continuar
         </button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          <i class="fa fa-stop"></i>
           Cancelar
         </button>
       </footer>
