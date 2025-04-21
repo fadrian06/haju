@@ -7,9 +7,10 @@ declare(strict_types=1);
 <li class="dropdown" data-bs-toggle="tooltip" title="Cambiar tema">
   <button
     type="button"
-    class="btn btn-link text-decoration-none py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center"
+    class="btn btn-link text-decoration-none p-2 dropdown-toggle d-flex align-items-center"
     data-bs-toggle="dropdown"
     data-bs-display="static">
+    <span class="visually-hidden">Cambiar tema</span>
     <i class="fa" :class="theme === 'light' ? 'fa-sun' : 'fa-moon'"></i>
   </button>
   <menu class="dropdown-menu dropdown-menu-end py-0">

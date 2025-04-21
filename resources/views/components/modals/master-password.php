@@ -7,18 +7,23 @@ declare(strict_types=1);
 <div class="modal fade" id="registrate">
   <div class="modal-dialog modal-dialog-scrollable">
     <form
+      x-data="{ isLoading: false }"
       @submit.prevent="
         const options = {
           method: 'post',
           body: new FormData($el),
         };
 
+        isLoading = true;
+
         fetch('./api/verificar-clave-maestra', options)
           .then(async response => {
             if (!response.ok) {
+              isLoading = false;
+
               return customSwal.fire({
                 title: await response.json(),
-                icon: 'error'
+                icon: 'error',
               });
             }
 
@@ -42,7 +47,13 @@ declare(strict_types=1);
         ]) ?>
       </section>
       <footer class="modal-footer">
-        <button class="btn btn-primary">Continuar</button>
+        <button :disabled="isLoading" class="btn btn-primary">
+          <span
+            x-show="isLoading"
+            class="spinner spinner-border spinner-border-sm">
+          </span>
+          Continuar
+        </button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Cancelar
         </button>
