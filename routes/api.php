@@ -24,7 +24,7 @@ Flight::group('/api', static function (): void {
   Flight::route('/verificar-clave-maestra', static function (): void {
     $secretKey = Flight::request()->data['secret_key'];
 
-    if ($secretKey !== '1234') {
+    if ($secretKey !== $_ENV['SECRET_KEY']) {
       Flight::json('Clave maestra incorrecta', 401);
     } else {
       Session::set('let_register_director', true);

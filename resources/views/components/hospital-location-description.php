@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 ?>
 
-<section class="container py-3">
+<section class="container py-5">
   <div class="row row-cols-lg-2 gap-3">
     <header class="col-lg-12 text-center">
       <h2 class="display-5 text-success">Ubicación Estratégica</h2>

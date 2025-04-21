@@ -14,4 +14,5 @@ return [
   'TIMEZONE' => 'America/Caracas',
   'LOCALE' => 'es',
   'APP_NAME' => 'HAJU',
+  'SECRET_KEY' => '1234',
 ];

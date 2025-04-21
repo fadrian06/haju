@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 ?>
 
-<section class="container py-3">
-  <div class="row g-3 row-cols-sm-2">
-    <header class="col-sm-12 text-center">
+<section class="container py-5">
+  <div class="row g-3 row-cols-md-2">
+    <header class="col-md-12 text-center">
       <h2 class="display-5 text-primary">Nuestro Compromiso</h2>
       <p class="lead">Conoce los principios que guían nuestra labor diaria</p>
     </header>
 
-    <div>
+    <div class="pb-5 pb-md-0">
       <article class="card h-100 shadow-lg border-0">
         <header class="card-header text-bg-primary bg-gradient">
           <i class="fa fa-heartbeat fa-2x me-3"></i>

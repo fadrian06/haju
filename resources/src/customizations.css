@@ -13,10 +13,6 @@ h6,
   font-family: Rajdhani, sans-serif;
 }
 
-main {
-  --bs-body-bg: transparent;
-}
-
 body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast.shown),
 body.modal-open {
   padding-right: 0 !important;

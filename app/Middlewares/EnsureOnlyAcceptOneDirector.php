@@ -12,7 +12,7 @@ final readonly class EnsureOnlyAcceptOneDirector
   public function before(): void
   {
     if (Flight::request()->data['secret_key'] !== null) {
-      if (Flight::request()->data['secret_key'] !== '1234') {
+      if (Flight::request()->data['secret_key'] !== $_ENV['SECRET_KEY']) {
         renderPage('login', 'Ingreso (1/2)', [
           'error' => 'Clave maestra incorrecta'
         ]);
