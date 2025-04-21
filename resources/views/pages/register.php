@@ -17,7 +17,7 @@ use HAJU\Enums\InstructionLevel;
     <div class="col-11 col-md-8">
       <form
         method="post"
-        class="card text-center"
+        class="card bg-transparent text-center"
         enctype="multipart/form-data">
         <div class="card-header border-bottom-0 py-3 px-4">
           <h1 class="card-title fw-bold h5 m-0">Regístrate como director</h1>
@@ -94,8 +94,7 @@ use HAJU\Enums\InstructionLevel;
           </fieldset>
           <fieldset
             class="row pb-4 row-gap-4 border-bottom"
-            x-data="{ password: '' }"
-          >
+            x-data="{ password: '' }">
             <legend class="h5 mb-2 text-start">Credenciales de ingreso</legend>
             <div class="col-md-12">
               <?php Flight::render('components/inputs/input', [

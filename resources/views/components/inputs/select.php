@@ -2,21 +2,22 @@
 
 declare(strict_types=1);
 
+use Leaf\Http\Session;
+
 $id = uniqid();
 $options ??= [];
 $required ??= true;
 $label ??= '';
 $name ??= '';
 
-static $isFirstRender = true;
-
 ?>
 
 <div class="form-floating">
   <select
+    data-bs-theme="<?= Session::get('theme', 'light') ?>"
     :data-bs-theme="theme"
     <?= !$required ?: 'required' ?>
-    class="form-select"
+    class="form-select bg-white"
     id="<?= $id ?>"
     name="<?= $name ?>">
     <option value="" selected disabled>Selecciona una opción</option>
@@ -35,17 +36,3 @@ static $isFirstRender = true;
     <?= $label ?>
   </label>
 </div>
-
-<?php if ($isFirstRender) : ?>
-  <style>
-    .form-floating .form-select {
-      min-height: 66px;
-    }
-
-    .form-select:focus {
-      box-shadow: unset;
-    }
-  </style>
-
-  <?php $isFirstRender = false ?>
-<?php endif ?>

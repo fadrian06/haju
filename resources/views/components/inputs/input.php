@@ -40,7 +40,7 @@ $alpineValue = $valueHasOneWord
     type="<?= $type ?>"
     :type="<?= $alpineType ?>"
     id="<?= $id ?>"
-    class="form-control"
+    class="form-control bg-transparent"
     placeholder=" "
     name="<?= $name ?>"
     <?= !$required ?: 'required' ?>

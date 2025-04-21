@@ -30,7 +30,7 @@ declare(strict_types=1);
             location.href = './registrate';
           });
       "
-      class="modal-content"
+      class="modal-content bg-white"
       method="post">
       <header class="modal-header">
         <h3 class="modal-title fs-5">Introduce la clave maestra</h3>

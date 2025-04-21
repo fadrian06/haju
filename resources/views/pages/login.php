@@ -7,7 +7,7 @@ declare(strict_types=1);
 <main class="container bg-white rounded-3 my-4 py-4 d-flex flex-column justify-content-center">
   <div class="row justify-content-center">
     <div class="col-11 col-md-5">
-      <form method="post" class="card text-center">
+      <form method="post" class="card bg-transparent text-center">
         <div class="card-header border-bottom-0 py-3 px-4">
           <h1 class="card-title fw-bold h5 m-0">
             Introduce tus credenciales para continuar
