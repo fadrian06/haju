@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 $class ??= '';
 
 ?>
 
 <a
-  @click="
-    $event.preventDefault();
+  @click.prevent="
     customSwal.fire({
       title: '¿Estás seguro que deseas cerrar sesión?',
       icon: 'question',
@@ -21,5 +22,5 @@ $class ??= '';
   href="./salir"
   class="<?= $class ?>">
   <i class="fa fa-right-from-bracket"></i>
-  <?= $slot ?>
+  Cerrar sesión
 </a>

@@ -39,8 +39,6 @@ $message = isset($message) ? strval($message) : null;
   <?= $content ?>
   <?php Flight::render('components/footer') ?>
 
-  <script src="./resources/dist/guest.js"></script>
-
   <script>
     <?php if ($error) : ?>
       customSwal.fire({
@@ -54,6 +52,8 @@ $message = isset($message) ? strval($message) : null;
       })
     <?php endif ?>
   </script>
+
+  <script src="./resources/dist/guest.js" defer></script>
 </body>
 
 </html>

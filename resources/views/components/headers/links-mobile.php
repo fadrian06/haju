@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 use HAJU\Models\User;
 
-/** @var ?User $user */
+/**
+ * @var ?User $user
+ */
 
 ?>
 
@@ -19,15 +21,14 @@ use HAJU\Models\User;
     <?php if ($user instanceof User) : ?>
       <li>
         <?php Flight::render('components/logout-link', [
-          'class' => 'dropdown-item d-flex align-items-center p-3',
-          'slot' => 'Cerrar sesión'
+          'class' => 'dropdown-item d-flex align-items-center gap-1 p-3',
         ]) ?>
       </li>
     <?php else : ?>
       <li>
         <a
           href="./ingresar"
-          class="dropdown-item d-flex align-items-center p-3">
+          class="dropdown-item d-flex align-items-center gap-1 p-3">
           Iniciar sesión
         </a>
       </li>
@@ -35,7 +36,7 @@ use HAJU\Models\User;
         <a
           data-bs-toggle="modal"
           href="#registrate"
-          class="dropdown-item d-flex align-items-center p-3">
+          class="dropdown-item d-flex align-items-center gap-1 p-3">
           Regístrate
         </a>
       </li>
