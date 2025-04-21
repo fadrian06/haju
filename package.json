@@ -18,6 +18,6 @@
     "dev": "esbuild resources/src/*.ts --outdir=resources/dist --bundle --watch --sourcemap --loader:.woff2=copy --loader:.woff=copy --loader:.ttf=copy --loader:.eot=copy --loader:.svg=dataurl",
     "prepare": "husky",
     "ci": "biome ci ./ --colors=off",
-    "format": "biome format ./"
+    "format": "biome format ./ --write"
   }
 }
