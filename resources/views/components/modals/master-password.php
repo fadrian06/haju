@@ -52,7 +52,7 @@ declare(strict_types=1);
             x-show="isLoading"
             class="spinner spinner-border spinner-border-sm">
           </span>
-          <i class="fa fa-arrow-right"></i>
+          <span x-show="!isLoading" class="fa fa-arrow-right"></span>
           Continuar
         </button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
