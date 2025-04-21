@@ -12,7 +12,6 @@ use flight\Container;
  * @var User $user
  * @var Department $department
  */
-
 $patients = Container::getInstance()->get(PatientRepository::class)->getAll();
 
 $backgrounds = [
@@ -26,7 +25,7 @@ $patientsListId = uniqid();
 ?>
 
 <datalist id="<?= $patientsListId ?>">
-  <?php foreach ($patients ?? [] as $patient) : ?>
+  <?php foreach ($patients as $patient) : ?>
     <option value="<?= $patient->idCard ?>"></option>
   <?php endforeach ?>
 </datalist>
