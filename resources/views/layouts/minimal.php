@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use HAJU\Models\User;
 
 /**
@@ -20,7 +22,7 @@ use HAJU\Models\User;
   <base href="<?= str_replace('index.php', '', $_SERVER['SCRIPT_NAME']) ?>" />
   <?php Flight::render('components/open-graph-metas') ?>
   <link rel="icon" href="./assets/img/logo-mini.png" />
-  <link rel="stylesheet" href="./vendor/twbs/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./resources/dist/minimal.css" />
   <style>
     .w3-bordered th,
     .w3-bordered td {
@@ -54,12 +56,8 @@ use HAJU\Models\User;
       <?= $content ?>
     </div>
   </section>
-  <script src="./vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    for (const tooltipTriggerEl of document.querySelectorAll('[data-bs-toggle="tooltip"]')) {
-      new bootstrap.Tooltip(tooltipTriggerEl)
-    }
-  </script>
+
+  <script src="./resources/dist/minimal.js" defer></script>
 </body>
 
 </html>
