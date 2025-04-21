@@ -1,0 +1,272 @@
+/******** main content css here *********/
+/* line 2, H:/admin_project/hospital/scss/_main_content.scss */
+.main_content {
+  padding-left: 270px;
+  width: 100%;
+  padding-top: 0px !important;
+  transition: .5s;
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 90px;
+  overflow: hidden;
+}
+
+/* line 12, H:/admin_project/hospital/scss/_main_content.scss */
+.main_content.main_content_padding_hide {
+  padding-left: 0px;
+  padding-top: 100px !important;
+}
+
+@media (max-width: 991px) {
+  /* line 2, H:/admin_project/hospital/scss/_main_content.scss */
+  .main_content {
+    padding: 90px 0 100px 0;
+  }
+}
+
+@media (max-width: 575.98px) {
+  /* line 2, H:/admin_project/hospital/scss/_main_content.scss */
+  .main_content {
+    padding: 120px 0 100px 0;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  /* line 2, H:/admin_project/hospital/scss/_main_content.scss */
+  .main_content {
+    padding: 120px 0 100px 0;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* line 2, H:/admin_project/hospital/scss/_main_content.scss */
+  .main_content {
+    padding: 120px 0 100px 0;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 2, H:/admin_project/hospital/scss/_main_content.scss */
+  .main_content {
+    padding-left: 20%;
+  }
+}
+
+/* line 33, H:/admin_project/hospital/scss/_main_content.scss */
+.main_content .main_content_iner {
+  min-height: 68vh;
+  transition: .5s;
+  margin: 20px 30px 30px 30px;
+}
+
+@media (max-width: 991px) {
+  /* line 33, H:/admin_project/hospital/scss/_main_content.scss */
+  .main_content .main_content_iner {
+    margin: 0;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1500px) {
+  /* line 42, H:/admin_project/hospital/scss/_main_content.scss */
+  .main_content .main_content_iner.main_content_iner_padding {
+    padding: 0 30px 0 30px;
+  }
+}
+
+@media only screen and (min-width: 1440px) and (max-width: 1679px) {
+  /* line 42, H:/admin_project/hospital/scss/_main_content.scss */
+  .main_content .main_content_iner.main_content_iner_padding {
+    padding: 0 60px 0 60px;
+  }
+}
+
+@media (min-width: 1680px) {
+  /* line 42, H:/admin_project/hospital/scss/_main_content.scss */
+  .main_content .main_content_iner.main_content_iner_padding {
+    padding: 0 135px 0 135px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  /* line 33, H:/admin_project/hospital/scss/_main_content.scss */
+  .main_content .main_content_iner {
+    margin-bottom: 20px;
+  }
+}
+
+/* line 62, H:/admin_project/hospital/scss/_main_content.scss */
+.address_book_hint p {
+  font-size: 14px;
+  line-height: 26px;
+  margin-bottom: 8px;
+}
+
+/* line 69, H:/admin_project/hospital/scss/_main_content.scss */
+.single_element h4 {
+  margin-bottom: 30px;
+}
+
+/* line 72, H:/admin_project/hospital/scss/_main_content.scss */
+.single_element .quick_activity_wrap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 575.98px) {
+  /* line 72, H:/admin_project/hospital/scss/_main_content.scss */
+  .single_element .quick_activity_wrap {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 15px;
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  /* line 72, H:/admin_project/hospital/scss/_main_content.scss */
+  .single_element .quick_activity_wrap {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* line 72, H:/admin_project/hospital/scss/_main_content.scss */
+  .single_element .quick_activity_wrap {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* line 72, H:/admin_project/hospital/scss/_main_content.scss */
+  .single_element .quick_activity_wrap {
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 30px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1500px) {
+  /* line 72, H:/admin_project/hospital/scss/_main_content.scss */
+  .single_element .quick_activity_wrap {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* line 100, H:/admin_project/hospital/scss/_main_content.scss */
+.single_element .single_quick_activity {
+  background-color: #fff;
+  border-radius: 10px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  padding: 43px 30px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+/* line 108, H:/admin_project/hospital/scss/_main_content.scss */
+.single_element .single_quick_activity::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  content: '';
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  background-size: cover;
+  background-image: url(../img/diamond.png);
+}
+
+@media (max-width: 575.98px) {
+  /* line 100, H:/admin_project/hospital/scss/_main_content.scss */
+  .single_element .single_quick_activity {
+    padding: 20px 15px;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  /* line 100, H:/admin_project/hospital/scss/_main_content.scss */
+  .single_element .single_quick_activity {
+    padding: 20px 15px;
+  }
+}
+
+/* line 136, H:/admin_project/hospital/scss/_main_content.scss */
+.single_element .single_quick_activity .icon {
+  width: 60px;
+  height: 60px;
+  flex-basis: 60px;
+  text-align: right;
+}
+
+/* line 141, H:/admin_project/hospital/scss/_main_content.scss */
+.single_element .single_quick_activity .icon img {
+  width: 100%;
+}
+
+/* line 145, H:/admin_project/hospital/scss/_main_content.scss */
+.single_element .single_quick_activity .count_content {
+  margin-left: 30px;
+  flex-basis: 50%;
+  text-align: left;
+}
+
+/* line 149, H:/admin_project/hospital/scss/_main_content.scss */
+.single_element .single_quick_activity .count_content.count_content2 {
+  width: 100%;
+  text-align: center;
+  flex-basis: 100%;
+  margin: 0 !important;
+}
+
+/* line 154, H:/admin_project/hospital/scss/_main_content.scss */
+.single_element .single_quick_activity .count_content.count_content2 .blue_color {
+  color: #16BBE5 !important;
+}
+
+/* line 157, H:/admin_project/hospital/scss/_main_content.scss */
+.single_element .single_quick_activity .count_content.count_content2 .red_color {
+  color: #EA5D5D !important;
+}
+
+/* line 160, H:/admin_project/hospital/scss/_main_content.scss */
+.single_element .single_quick_activity .count_content.count_content2 .yellow_color {
+  color: #FCAD73 !important;
+}
+
+/* line 163, H:/admin_project/hospital/scss/_main_content.scss */
+.single_element .single_quick_activity .count_content.count_content2 .green_color {
+  color: #2DAAB8 !important;
+}
+
+/* line 168, H:/admin_project/hospital/scss/_main_content.scss */
+.single_element .single_quick_activity h3 {
+  font-size: 45px;
+  margin-bottom: 0;
+  font-weight: 600;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  color: #2E4765;
+  margin-bottom: 0px;
+  font-family: "Rajdhani", sans-serif;
+  line-height: 1;
+}
+
+/* line 178, H:/admin_project/hospital/scss/_main_content.scss */
+.single_element .single_quick_activity p {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  font-size: 19px;
+  font-weight: 500;
+  color: #B2B5C0;
+  font-family: "Rajdhani", sans-serif;
+  line-height: 1;
+}

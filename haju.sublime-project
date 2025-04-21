@@ -13,11 +13,17 @@
         "source.json.npm": "LSP-json",
         "source.json": "LSP-biome",
         "source.ts": "LSP-biome",
-        "source.css": "LSP-biome",
+        "source.css": "LSP-css",
+        "source.js": "LSP-biome",
       },
       "LSP-intelephense": {
         "settings": {
           "intelephense.environment.phpVersion": "8.2",
+        },
+      },
+      "LSP-css": {
+        "settings": {
+          "css.lint.importStatement": "ignore",
         },
       },
     },

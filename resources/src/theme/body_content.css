@@ -1,0 +1,164 @@
+/* line 1, H:/admin_project/hospital/scss/_body_content.scss */
+.body_content {
+  display: flex;
+}
+
+/* line 6, H:/admin_project/hospital/scss/_body_content.scss */
+.main-title h3 {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  color: #2E4765;
+  line-height: 1.2;
+}
+
+/* line 16, H:/admin_project/hospital/scss/_body_content.scss */
+.main-title span {
+  font-size: 12px;
+  font-weight: 400;
+  color: #A3A0FB;
+  display: block;
+  margin-top: 6px;
+}
+
+/* line 24, H:/admin_project/hospital/scss/_body_content.scss */
+.box_header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  align-items: center;
+}
+
+@media (max-width: 575.98px) {
+  /* line 29, H:/admin_project/hospital/scss/_body_content.scss */
+  .box_header.box_header_block {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  /* line 34, H:/admin_project/hospital/scss/_body_content.scss */
+  .box_header.box_header_block .main-title {
+    margin-bottom: 15px;
+  }
+}
+
+/* line 41, H:/admin_project/hospital/scss/_body_content.scss */
+.box_header .title_info p {
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 0;
+  color: #a3a0fb;
+}
+
+/* line 51, H:/admin_project/hospital/scss/_body_content.scss */
+.legend_style li {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 400;
+  text-transform: capitalize;
+  margin-right: 10px;
+}
+
+/* line 57, H:/admin_project/hospital/scss/_body_content.scss */
+.legend_style li span {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #4400eb;
+  margin-right: 4px;
+}
+
+/* line 65, H:/admin_project/hospital/scss/_body_content.scss */
+.legend_style li.inactive {
+  opacity: .29;
+}
+
+/* line 70, H:/admin_project/hospital/scss/_body_content.scss */
+.title_btn {
+  margin-bottom: 20px;
+}
+
+/* line 73, H:/admin_project/hospital/scss/_body_content.scss */
+.title_btn ul li {
+  display: inline-block;
+}
+
+/* line 75, H:/admin_project/hospital/scss/_body_content.scss */
+.title_btn ul li a {
+  display: inline-block;
+  padding: 4px;
+  background: #fff;
+  font-size: 11px;
+  text-transform: capitalize;
+  color: #706F9A;
+  border-radius: 5px;
+  line-height: 25px;
+  padding: 0 10px;
+  transition: .3s;
+}
+
+/* line 86, H:/admin_project/hospital/scss/_body_content.scss */
+.title_btn ul li a:hover {
+  background: #A66DD4;
+  color: #fff;
+}
+
+/* line 90, H:/admin_project/hospital/scss/_body_content.scss */
+.title_btn ul li a.active {
+  background: #A66DD4;
+  color: #fff;
+}
+
+/* line 100, H:/admin_project/hospital/scss/_body_content.scss */
+.radial_footer .radial_footer_inner .left_footer {
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+
+/* line 103, H:/admin_project/hospital/scss/_body_content.scss */
+.radial_footer .radial_footer_inner .left_footer h5 {
+  font-size: 13px;
+  color: #43425D;
+  font-weight: 500;
+  margin-bottom: 0px;
+  position: relative;
+}
+
+/* line 109, H:/admin_project/hospital/scss/_body_content.scss */
+.radial_footer .radial_footer_inner .left_footer h5 span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #A4A1FB;
+  display: inline-block;
+  position: absolute;
+  left: -15px;
+  top: 6px;
+}
+
+/* line 120, H:/admin_project/hospital/scss/_body_content.scss */
+.radial_footer .radial_footer_inner .left_footer p {
+  font-size: 12px;
+  color: #4D4F5C;
+  opacity: .5;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+/* line 129, H:/admin_project/hospital/scss/_body_content.scss */
+.radial_footer .radial_bottom {
+  border-top: 1px solid #EFEFEF;
+  text-align: center;
+  padding-top: 15px;
+  margin-top: 4px;
+}
+
+/* line 135, H:/admin_project/hospital/scss/_body_content.scss */
+.radial_footer .radial_bottom p a {
+  font-size: 12px;
+  color: #3B86FF;
+  font-weight: 600;
+}

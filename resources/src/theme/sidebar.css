@@ -1,0 +1,586 @@
+/************ sidebar css here ************/
+/* line 2, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar {
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 99;
+  padding-bottom: 50px;
+  position: fixed;
+  width: 270px;
+  z-index: 999;
+  overflow: hidden;
+  overflow-y: auto;
+  transition: 0.5s;
+  background: #FFFFFF;
+  box-shadow: 0 0 40px #EFF1F7;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 18, H:/admin_project/hospital/scss/_sidebar.scss */
+  .sidebar.hide_vertical_menu {
+    left: -20%;
+  }
+}
+
+@media (min-width: 1201px) {
+  /* line 18, H:/admin_project/hospital/scss/_sidebar.scss */
+  .sidebar.hide_vertical_menu {
+    left: -270px;
+  }
+}
+
+@media (max-width: 991px) {
+  /* line 2, H:/admin_project/hospital/scss/_sidebar.scss */
+  .sidebar {
+    left: -280px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    top: 0;
+    width: 280px;
+    background: #fff;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 2, H:/admin_project/hospital/scss/_sidebar.scss */
+  .sidebar {
+    width: 20%;
+  }
+}
+
+/* line 37, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar .logo {
+  margin: 30px;
+  background: #fff;
+  padding: 33px 30px;
+  border-radius: 7px;
+}
+
+/* line 42, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar .logo img {
+  width: 100%;
+}
+
+@media (max-width: 991px) {
+  /* line 37, H:/admin_project/hospital/scss/_sidebar.scss */
+  .sidebar .logo {
+    padding: 30px;
+  }
+}
+
+/* line 52, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar .single_sidebar_tittle i {
+  font-size: 18px;
+  margin-right: 12px;
+  color: #f8dbdd;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+/* line 58, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar .single_sidebar_tittle a {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #222222;
+  padding: 10px 25px 10px 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  transition: .3s;
+  position: relative;
+  z-index: 0;
+  border-top: 1px solid transparent;
+  background: transparent;
+}
+
+/* line 73, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar .single_sidebar_tittle a::before {
+  position: absolute;
+  right: 0;
+  background: #2E4765;
+  width: 0px;
+  top: 0;
+  bottom: 0;
+  content: '';
+  opacity: 0;
+  transition: .3s;
+  right: 0px;
+  visibility: hidden;
+}
+
+/* line 87, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar .single_sidebar_tittle a.current_active i {
+  color: #2E4765;
+}
+
+/* line 90, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar .single_sidebar_tittle a.current_active::before {
+  opacity: 1;
+  width: 3px;
+  visibility: visible;
+}
+
+/* line 96, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar .single_sidebar_tittle a:hover::before {
+  opacity: 1;
+  right: 0;
+  visibility: visible;
+  width: 3px;
+}
+
+/* line 102, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar .single_sidebar_tittle a.normal_title {
+  padding: 28px 25px 18px 40px;
+  background: #fff7f8;
+  border-top: 1px solid #eee1e2;
+}
+
+/* line 106, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar .single_sidebar_tittle a.normal_title:after {
+  position: absolute;
+  right: 40px;
+  top: 55%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  content: "\f0d8";
+  font-family: "Font Awesome 5 Free";
+  color: #cec1c2;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* line 117, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar .single_sidebar_tittle a.normal_title.collapsed {
+  padding: 10px 25px 10px 40px;
+  background: #fff;
+  border-top: 1px solid transparent;
+}
+
+/* line 121, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar .single_sidebar_tittle a.normal_title.collapsed:after {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  content: "\f0d7";
+  font-family: "Font Awesome 5 Free";
+  color: #cec1c2;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* line 135, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar .single_sidebar_tittle:hover {
+  background-color: #192434;
+}
+
+/* line 137, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar .single_sidebar_tittle:hover i {
+  color: #2E4765;
+}
+
+/* line 142, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar .single_menu_item {
+  padding-left: 36px;
+  margin: 6px 0;
+  line-height: 21px;
+}
+
+/* line 146, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar .single_menu_item:hover {
+  padding-left: 55px !important;
+}
+
+/* line 152, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar .sidebar_iner ul li {
+  list-style: none;
+}
+
+/* line 154, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar .sidebar_iner ul li .submenu {
+  background: #fff7f8;
+  padding: 0px 0px 0px 70px !important;
+  border-bottom: 1px solid #eee1e2;
+}
+
+/* line 159, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar .sidebar_iner ul li .submenu li a {
+  font-size: 13px;
+  line-height: 36px;
+  color: #7e7172;
+  font-weight: 400;
+}
+
+/* line 165, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar .sidebar_iner ul li .submenu li:last-child {
+  padding-bottom: 18px;
+}
+
+@media (max-width: 991px) {
+  /* line 178, H:/admin_project/hospital/scss/_sidebar.scss */
+  .active_sidebar {
+    left: 0;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* line 183, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar_close_icon i {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  text-align: center;
+  line-height: 40px;
+  position: absolute;
+  right: 30px;
+  font-size: 25px;
+  top: 29px;
+  cursor: pointer;
+  color: #222222;
+}
+
+/* line 198, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar_widget .white_box {
+  padding: 30px;
+}
+
+@media (max-width: 991px) {
+  /* line 198, H:/admin_project/hospital/scss/_sidebar.scss */
+  .sidebar_widget .white_box {
+    padding: 25px 15px;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1439px) {
+  /* line 198, H:/admin_project/hospital/scss/_sidebar.scss */
+  .sidebar_widget .white_box {
+    padding: 15px;
+  }
+}
+
+@media only screen and (min-width: 1440px) and (max-width: 1679px) {
+  /* line 198, H:/admin_project/hospital/scss/_sidebar.scss */
+  .sidebar_widget .white_box {
+    padding: 25px 15px;
+  }
+}
+
+/* line 209, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar_widget .white_box .btn_2 {
+  margin-top: 25px;
+  width: 100%;
+  text-align: center;
+  padding: 16px 25px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 209, H:/admin_project/hospital/scss/_sidebar.scss */
+  .sidebar_widget .white_box .btn_2 {
+    padding: 12px 7px;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1439px) {
+  /* line 218, H:/admin_project/hospital/scss/_sidebar.scss */
+  .sidebar_widget .white_box .btn_1 {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+}
+
+/* line 225, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar_widget .date_range {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 6px 0 18px;
+}
+
+/* line 230, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar_widget .date_range .btn_3 {
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+/* line 235, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar_widget .date_range i {
+  display: none;
+}
+
+/* line 238, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar_widget .date_range .start_date, .sidebar_widget .date_range .end_date {
+  width: 115px;
+}
+
+/* line 240, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar_widget .date_range .start_date input, .sidebar_widget .date_range .end_date input {
+  width: 100%;
+  border: 1px solid #e4e8ec;
+  color: #7e7172;
+  font-size: 13px;
+  padding: 11px 20px;
+  border-radius: 5px;
+  font-weight: 300;
+}
+
+/* line 249, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar_widget .date_range .start_date ::placeholder, .sidebar_widget .date_range .end_date ::placeholder {
+  color: #7e7172;
+}
+
+/************ sidebar css end ************/
+/* line 262, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar #sidebar_menu li.side_menu_title span {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2DAAB8;
+  font-family: "Rajdhani", sans-serif;
+  padding: 15px 25px 5px 30px;
+  display: block;
+}
+
+/* line 271, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar #sidebar_menu li a {
+  font-size: 16px;
+  font-weight: 400;
+  color: #676B84;
+  padding: 15px 25px 15px 30px;
+  background: #fff;
+  transition: .3s;
+  position: relative;
+  z-index: 0;
+  display: grid;
+  grid-template-columns: 26px auto;
+  grid-gap: 15px;
+  align-items: center;
+  position: relative;
+  background: transparent;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 271, H:/admin_project/hospital/scss/_sidebar.scss */
+  .sidebar #sidebar_menu li a {
+    padding: 18px 25px 18px 30px;
+  }
+}
+
+/* line 302, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar #sidebar_menu li a i {
+  font-size: 15px;
+  margin-right: 12px;
+  color: #A5ADC6;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+/* line 315, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar #sidebar_menu li a:hover::before {
+  width: 6px;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* line 324, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar #sidebar_menu li.mm-active > a {
+  color: #16BBE5;
+}
+
+/* line 328, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar #sidebar_menu li.mm-active.metis_dropmenu > a {
+  padding-top: 29px;
+  padding-bottom: 30px;
+  color: #A5ADC6;
+}
+
+/* line 335, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar #sidebar_menu li.mm-active > a i {
+  color: #A5ADC6;
+}
+
+/* line 338, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar #sidebar_menu li.mm-active > a::before {
+  opacity: 1;
+  width: 6px;
+  visibility: visible;
+}
+
+/* line 345, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar #sidebar_menu li ul {
+  padding: 0px 0px 0px 70px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 345, H:/admin_project/hospital/scss/_sidebar.scss */
+  .sidebar #sidebar_menu li ul {
+    padding: 0px 0px 0px 55px;
+  }
+}
+
+/* line 354, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar #sidebar_menu li ul li:last-child a {
+  padding-bottom: 30px;
+}
+
+/* line 358, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar #sidebar_menu li ul li a {
+  font-size: 13px;
+  color: #676B84;
+  font-weight: 400;
+  padding: 0;
+  white-space: nowrap;
+  padding: 0;
+  padding: 10px 0 !important;
+}
+
+/* line 366, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar #sidebar_menu li ul li a::before {
+  display: none;
+}
+
+/* line 369, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar #sidebar_menu li ul li a.active {
+  color: #16BBE5;
+}
+
+/* line 373, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar #sidebar_menu li ul li ul {
+  padding-left: 5px;
+}
+
+/* line 383, H:/admin_project/hospital/scss/_sidebar.scss */
+.admin_profile_Wrap {
+  margin-bottom: 30px;
+}
+
+/* line 387, H:/admin_project/hospital/scss/_sidebar.scss */
+.admin_profile_Wrap ul li {
+  background: #fff7f8;
+  border-top: 1px solid #eee1e2;
+  border-bottom: 1px solid #eee1e2;
+  padding: 30px 0 30px 30px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 387, H:/admin_project/hospital/scss/_sidebar.scss */
+  .admin_profile_Wrap ul li {
+    padding: 30px 0 30px 20px;
+  }
+}
+
+/* line 398, H:/admin_project/hospital/scss/_sidebar.scss */
+.admin_profile_Wrap ul li a {
+  display: block;
+}
+
+/* line 403, H:/admin_project/hospital/scss/_sidebar.scss */
+.admin_profile_Wrap ul li a .admin_profile_inner .thumb img {
+  width: 50px;
+  height: 50px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* line 409, H:/admin_project/hospital/scss/_sidebar.scss */
+.admin_profile_Wrap ul li a .admin_profile_inner .welcome_rext {
+  margin-left: 15px;
+}
+
+/* line 411, H:/admin_project/hospital/scss/_sidebar.scss */
+.admin_profile_Wrap ul li a .admin_profile_inner .welcome_rext h5 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #222222;
+  margin-bottom: 1px;
+  white-space: nowrap;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 411, H:/admin_project/hospital/scss/_sidebar.scss */
+  .admin_profile_Wrap ul li a .admin_profile_inner .welcome_rext h5 {
+    font-size: 12px;
+  }
+}
+
+/* line 421, H:/admin_project/hospital/scss/_sidebar.scss */
+.admin_profile_Wrap ul li a .admin_profile_inner .welcome_rext span {
+  display: block;
+  font-size: 12px;
+  color: #7e7172;
+  font-weight: 300;
+  white-space: nowrap;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 421, H:/admin_project/hospital/scss/_sidebar.scss */
+  .admin_profile_Wrap ul li a .admin_profile_inner .welcome_rext span {
+    font-size: 11px;
+  }
+}
+
+/* line 434, H:/admin_project/hospital/scss/_sidebar.scss */
+.admin_profile_Wrap ul li ul {
+  padding-left: 70px;
+}
+
+/* line 437, H:/admin_project/hospital/scss/_sidebar.scss */
+.admin_profile_Wrap ul li ul li {
+  padding: 0;
+  border: 0;
+}
+
+/* line 440, H:/admin_project/hospital/scss/_sidebar.scss */
+.admin_profile_Wrap ul li ul li a {
+  font-size: 13px;
+  color: #7e7172;
+  font-weight: 400;
+  padding-bottom: 17px;
+}
+
+/* line 447, H:/admin_project/hospital/scss/_sidebar.scss */
+.admin_profile_Wrap ul li ul li:last-child a {
+  padding-bottom: 0;
+}
+
+/* line 452, H:/admin_project/hospital/scss/_sidebar.scss */
+.admin_profile_Wrap ul li ul li:first-child a {
+  margin-top: 29px;
+}
+
+/* line 460, H:/admin_project/hospital/scss/_sidebar.scss */
+.admin_profile_Wrap .metismenu .has-arrow::after {
+  top: 38%;
+}
+
+/* line 467, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar::-webkit-scrollbar-track, body::-webkit-scrollbar-track {
+  background-color: #ddd;
+}
+
+/* line 472, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar::-webkit-scrollbar, body::-webkit-scrollbar {
+  width: 6px;
+  background-color: #ddd;
+}
+
+/* line 477, H:/admin_project/hospital/scss/_sidebar.scss */
+.sidebar::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+  background-color: #f8dbdd;
+}
+
+/* line 483, H:/admin_project/hospital/scss/_sidebar.scss */
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 490, H:/admin_project/hospital/scss/_sidebar.scss */
+  .metismenu .has-arrow::after {
+    right: 25px;
+  }
+}

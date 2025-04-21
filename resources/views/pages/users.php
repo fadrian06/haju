@@ -30,7 +30,7 @@ use HAJU\Enums\InstructionLevel;
 <ul class="list-unstyled row row-cols-sm-2 row-cols-md-3">
   <?php foreach ($users as $member) : ?>
     <li class="mb-4 d-flex align-items-stretch">
-      <article class="card card-body text-center <?= $member->registeredBy?->isEqualTo($loggedUser) ?: 'pe-none opacity-50 user-select-none' ?>">
+      <article class="card card-body text-center <?= $member->registeredBy?->isEqualTo($user) ?: 'pe-none opacity-50 user-select-none' ?>">
         <div class="dropdown position-relative">
           <button style="right: 0" class="bg-transparent border-0 position-absolute" data-bs-toggle="dropdown">
             <i class="ti-more"></i>
@@ -278,12 +278,6 @@ use HAJU\Enums\InstructionLevel;
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    if (location.href.endsWith('#registrar')) {
-      new bootstrap.Modal('#registrar').show()
-    }
-  })
-
   /** @type {HTMLInputElement} */
   const $profileFileInput = document.querySelector('[name=profile_image]')
 

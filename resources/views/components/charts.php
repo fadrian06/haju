@@ -25,7 +25,7 @@ $stmt = $pdo->query(<<<sql
 sql);
 
 $startDate = ((@$_GET['fecha_inicio'] ?: $range?->getDate()->format('Y-m-d'))
-    ?: $lastMonth) . ' 00:00:00';
+  ?: $lastMonth) . ' 00:00:00';
 
 $endDate = (@$_GET['fecha_fin'] ?: $currentDate);
 
@@ -138,10 +138,10 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
         'name' => 'fecha_fin',
         'placeholder' => 'Hasta',
         'type' => 'date',
-        'value' => $_GET['fecha_fin'] ?? $currentDate,
+        'value' => $_GET['fecha_fin'] ?? (new DateTimeImmutable($currentDate))->format('Y-m-d'),
         'cols' => 6,
         'required' => false,
-        'max' => $currentDate
+        'max' => (new DateTimeImmutable($currentDate))->format('Y-m-d'),
       ]);
 
       ?>
@@ -173,7 +173,7 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <dt><?= $cause ?></dt>
         <dd>
           <?= implode(', ', array_map(
-            static fn (Patient $patient): string => "<a href='./pacientes/{$patient->id}'>{$patient->getFullName()}</a>",
+            static fn(Patient $patient): string => "<a href='./pacientes/{$patient->id}'>{$patient->getFullName()}</a>",
             array_filter($causePatients, static function (Patient $patient) use (&$added): bool {
               if (array_key_exists($patient->id, $added)) {
                 return false;
@@ -182,7 +182,7 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
               $added[$patient->id] = $patient;
 
               return true;
-            },)
+            })
           )) ?>
         </dd>
       <?php endforeach ?>
@@ -229,10 +229,10 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
         'name' => 'fecha_fin',
         'placeholder' => 'Hasta',
         'type' => 'date',
-        'value' => $_GET['fecha_fin'] ?? $currentDate,
+        'value' => $_GET['fecha_fin'] ?? (new DateTimeImmutable($currentDate))->format('Y-m-d'),
         'cols' => 6,
         'required' => false,
-        'max' => $currentDate,
+        'max' => (new DateTimeImmutable($currentDate))->format('Y-m-d'),
       ]);
 
       ?>

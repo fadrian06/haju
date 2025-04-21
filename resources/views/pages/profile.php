@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use HAJU\Models\User;
-use HAJU\Enums\Appointment;
 
 /**
  * @var User $user

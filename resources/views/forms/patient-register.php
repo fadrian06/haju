@@ -83,11 +83,3 @@ $action ??= "./pacientes#$id";
     </form>
   </div>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    if (location.href.endsWith('#<?= $id ?>')) {
-      new bootstrap.Modal('#<?= $id ?>').show()
-    }
-  })
-</script>

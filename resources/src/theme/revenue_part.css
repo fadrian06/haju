@@ -1,0 +1,41 @@
+/* line 2, H:/admin_project/hospital/scss/_revenue_part.scss */
+.revenue_part .btn_2 {
+  padding: 8px 13px;
+  margin-left: 30px;
+}
+
+/* line 7, H:/admin_project/hospital/scss/_revenue_part.scss */
+.revenue_part .courses_price .btn_1 {
+  padding: 13px 32px;
+  line-height: 16px;
+  height: auto;
+  width: auto;
+}
+
+/* line 15, H:/admin_project/hospital/scss/_revenue_part.scss */
+.revenue_part .courses_details span {
+  font-size: 16px;
+  font-weight: 600;
+  color: #7e7172;
+  margin-top: 3px;
+}
+
+/* line 23, H:/admin_project/hospital/scss/_revenue_part.scss */
+.revenue_part .courses_duration {
+  position: relative;
+  padding-left: 25px;
+}
+
+/* line 26, H:/admin_project/hospital/scss/_revenue_part.scss */
+.revenue_part .courses_duration h6 {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+/* line 29, H:/admin_project/hospital/scss/_revenue_part.scss */
+.revenue_part .courses_duration h6 i {
+  color: #2E4765;
+  position: absolute;
+  left: 0;
+  top: 2px;
+}

@@ -1,0 +1,118 @@
+/* line 2, H:/admin_project/hospital/scss/_payment_setting.scss */
+.payment_methord h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+/* line 7, H:/admin_project/hospital/scss/_payment_setting.scss */
+.payment_methord .payment_mathord_content {
+  background-color: #fff;
+  padding: 30px;
+}
+
+/* line 10, H:/admin_project/hospital/scss/_payment_setting.scss */
+.payment_methord .payment_mathord_content h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 28px 0 7px;
+}
+
+/* line 15, H:/admin_project/hospital/scss/_payment_setting.scss */
+.payment_methord .payment_mathord_content .btn_1 {
+  margin-top: 28px;
+}
+
+/* line 19, H:/admin_project/hospital/scss/_payment_setting.scss */
+.payment_methord .nav-tabs {
+  border-bottom: 0 solid transparent;
+}
+
+/* line 22, H:/admin_project/hospital/scss/_payment_setting.scss */
+.payment_methord .payment_methord_logo {
+  display: flex;
+  align-items: center;
+}
+
+/* line 26, H:/admin_project/hospital/scss/_payment_setting.scss */
+.payment_methord .payment_methord_logo .single_logo_iner {
+  width: 188px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #BBC1C9;
+  border-left: 0px solid transparent;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+/* line 35, H:/admin_project/hospital/scss/_payment_setting.scss */
+.payment_methord .payment_methord_logo .single_logo_iner:first-child {
+  border-left: 1px solid #BBC1C9;
+  border-radius: 5px 0 0 5px;
+}
+
+/* line 39, H:/admin_project/hospital/scss/_payment_setting.scss */
+.payment_methord .payment_methord_logo .single_logo_iner:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
+/* line 42, H:/admin_project/hospital/scss/_payment_setting.scss */
+.payment_methord .payment_methord_logo .single_logo_iner img {
+  max-width: 100px;
+}
+
+/* line 45, H:/admin_project/hospital/scss/_payment_setting.scss */
+.payment_methord .payment_methord_logo .single_logo_iner.active {
+  border: 1px solid #2E4765 !important;
+}
+
+/* line 54, H:/admin_project/hospital/scss/_payment_setting.scss */
+.form_group {
+  margin-top: 24px;
+}
+
+/* line 56, H:/admin_project/hospital/scss/_payment_setting.scss */
+.form_group input {
+  width: 100%;
+  background-color: #fef1f2;
+  border-radius: 5px;
+  border: 1px solid #F1F3F5;
+  padding: 12px 20px;
+}
+
+/* line 64, H:/admin_project/hospital/scss/_payment_setting.scss */
+.form_group .single_form_item label {
+  width: 100%;
+  display: block;
+}
+
+/* line 68, H:/admin_project/hospital/scss/_payment_setting.scss */
+.form_group .single_form_item input {
+  width: auto;
+  display: inline-block;
+  padding: 12px 20px;
+  max-width: 85px;
+  color: #9C9C9C;
+}
+
+/* line 76, H:/admin_project/hospital/scss/_payment_setting.scss */
+.form_group #CVV {
+  max-width: 118px !important;
+}
+
+/* line 79, H:/admin_project/hospital/scss/_payment_setting.scss */
+.form_group .nice_Select {
+  background-color: #fef1f2;
+  margin-right: 10px;
+  color: #9C9C9C;
+}
+
+/* line 86, H:/admin_project/hospital/scss/_payment_setting.scss */
+.checkbox label {
+  margin-bottom: 0;
+  margin-top: 25px;
+  color: #9C9C9C;
+  margin-left: 8px;
+}

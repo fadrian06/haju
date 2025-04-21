@@ -1,0 +1,57 @@
+/************** footer css ****************/
+/* line 2, H:/admin_project/hospital/scss/_footer.scss */
+.footer_part {
+  text-align: center;
+  padding-bottom: 40px;
+  padding-top: 6px;
+  background: transparent;
+  padding-left: 270px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+  /* line 2, H:/admin_project/hospital/scss/_footer.scss */
+  .footer_part {
+    padding-left: 0 !important;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 2, H:/admin_project/hospital/scss/_footer.scss */
+  .footer_part {
+    padding-left: 20%;
+  }
+}
+
+/* line 22, H:/admin_project/hospital/scss/_footer.scss */
+.footer_part .footer_iner.text-center {
+  background: #FFFFFF;
+  padding: 27px 0;
+  margin: 0 15px;
+  border-radius: 10px;
+}
+
+/* line 28, H:/admin_project/hospital/scss/_footer.scss */
+.footer_part p {
+  font-size: 12px;
+  font-weight: 300;
+  color: #818E94;
+}
+
+/* line 32, H:/admin_project/hospital/scss/_footer.scss */
+.footer_part p span {
+  margin: 0 10px;
+}
+
+/* line 35, H:/admin_project/hospital/scss/_footer.scss */
+.footer_part p a {
+  color: #2E4765;
+}
+
+/* line 37, H:/admin_project/hospital/scss/_footer.scss */
+.footer_part p a:hover {
+  text-decoration: underline;
+}

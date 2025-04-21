@@ -5,6 +5,7 @@ declare(strict_types=1);
 use HAJU\Models\User;
 use HAJU\Repositories\Domain\PatientRepository;
 use flight\Container;
+use Leaf\Http\Session;
 
 /**
  * @var string $title
@@ -15,7 +16,7 @@ use flight\Container;
 
 $showPasswordChangeModal ??= $mustChangePassword;
 
-if (str_contains((string) $_SERVER['REQUEST_URI'], 'perfil')) {
+if (str_contains(strval($_SERVER['REQUEST_URI']), 'perfil')) {
   $showPasswordChangeModal = false;
 }
 
@@ -33,12 +34,11 @@ $stmt = $pdo->prepare('
 ');
 
 $stmt->execute([
-  ':start_date' => $oneWeekAgo->format('Y-m-d') . ' 00:00:00',
-  ':end_date' => $currentDate->format('Y-m-d') . ' 23:59:59'
+  ':start_date' => "{$oneWeekAgo->format('Y-m-d')} 00:00:00",
+  ':end_date' => "{$currentDate->format('Y-m-d')} 23:59:59",
 ]);
 
 $consultations = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 $causesGroupedByCauseId = [];
 $epidemic = false;
 
@@ -62,7 +62,9 @@ foreach ($consultations as $consultation) {
           ($consultation['extended_name'] ?? $consultation['short_name']) . ' ' . $consultation['variant']
         ),
       ],
-      'patient' => Container::getInstance()->get(PatientRepository::class)->getById(intval($consultation['patient_id'])),
+      'patient' => Container::getInstance()
+        ->get(PatientRepository::class)
+        ->getById(intval($consultation['patient_id'])),
     ];
   }
 }
@@ -70,18 +72,27 @@ foreach ($consultations as $consultation) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html
+  lang="es"
+  x-data="{
+    theme: `<?= Session::get('theme', 'light') ?>`,
+
+    setTheme(theme = 'light') {
+      this.theme = theme;
+      fetch(`./api/preferencias/tema/${theme}`);
+    },
+  }"
+  data-bs-theme="<?= Session::get('theme', 'light') ?>"
+  :data-bs-theme="theme">
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width" />
   <title><?= $title ?> - HAJU</title>
   <?php Flight::render('components/open-graph-metas') ?>
   <base href="<?= str_replace('index.php', '', $_SERVER['SCRIPT_NAME']) ?>" />
-  <link rel="icon" href="./assets/img/logo-mini.png" />
-  <link rel="stylesheet" href="./assets/fonts/fonts.css" />
-  <link rel="stylesheet" href="./assets/vendors/metismenu/metisMenu.min.css" />
-  <link rel="stylesheet" href="./vendor/twbs/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="icon" href="./resources/images/favicon.svg" />
+  <link rel="stylesheet" href="./resources/dist/main.css" />
   <link rel="stylesheet" href="./assets/vendors/themefy_icon/themify-icons.css" />
   <link rel="stylesheet" href="./assets/css/reset.css" />
   <link rel="stylesheet" href="./assets/css/utils.css" />
@@ -96,22 +107,7 @@ foreach ($consultations as $consultation) {
   <link rel="stylesheet" href="./assets/css/components/box.css" />
   <link rel="stylesheet" href="./assets/css/components/section.css" />
   <link rel="stylesheet" href="./assets/css/components/search-field.css" />
-  <link rel="stylesheet" href="./assets/vendors/sweetalert2/default.min.css" />
-  <script defer src="./vendor/faslatam/alpine-js/dist/cdn.min.js"></script>
   <link rel="stylesheet" href="./assets/css/custom.css" />
-  <style>
-    .main_content {
-      min-height: 100vh !important;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      grid-template-columns: 100%;
-      align-items: start;
-    }
-
-    body {
-      padding-right: 0 !important;
-    }
-  </style>
 </head>
 
 <body>
@@ -138,31 +134,24 @@ foreach ($consultations as $consultation) {
   <?php endif ?>
   <script src="./assets/vendors/jquery/jquery.min.js"></script>
   <script src="./assets/vendors/metismenu/metisMenu.min.js"></script>
-  <script src="./vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="./assets/vendors/sweetalert2/sweetalert2.min.js"></script>
-  <script src="./assets/vendors/ResizeObserver.global.js"></script>
   <script src="./assets/vendors/chart.js"></script>
-  <script>
-    const swal = Swal.mixin({
-      // toast: true,
-      // position: 'top-right',
-      showCloseButton: true,
-      showConfirmButton: false
-    })
+  <script src="./resources/dist/main.js"></script>
+  <script src="./assets/js/custom.js" defer></script>
 
+  <script>
     <?php if ($error) : ?>
-      swal.fire({
+      customSwal.fire({
         title: '<?= $error ?>',
-        icon: 'error'
+        icon: 'error',
       })
     <?php elseif ($message) : ?>
-      swal.fire({
+      customSwal.fire({
         title: '<?= $message ?>',
-        icon: 'success'
+        icon: 'success',
       })
     <?php endif ?>
   </script>
-  <script src="./assets/js/custom.js"></script>
+
 </body>
 
 </html>

@@ -1,12 +1,15 @@
-import "@fontsource/poppins/400.css";
-import "@fontsource/rajdhani/700.css";
-import "@fortawesome/fontawesome-free/css/all.min.css";
+import "@fontsource/poppins/latin.css";
+import "@fontsource/rajdhani/latin.css";
+import "../../node_modules/metismenujs/dist/metismenujs.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "sweetalert2/dist/sweetalert2.min.css";
 import "./customizations.css";
+// import "./theme/index.css";
 
 import "alpinejs/dist/cdn.min";
-import { Toast, Tooltip } from "bootstrap";
+import "../../node_modules/metismenujs/dist/metismenujs.min";
+import "sweetalert2/dist/sweetalert2.all.min";
+import { Modal, Toast, Tooltip } from "bootstrap";
 import Swal from "sweetalert2";
 
 globalThis.customSwal = Swal.mixin({
@@ -28,4 +31,8 @@ for (const element of document.querySelectorAll(".toast")) {
   const toast = new Toast(element);
 
   toast.show();
+}
+
+if (location.href.endsWith("#registrar")) {
+  new Modal("#registrar").show();
 }

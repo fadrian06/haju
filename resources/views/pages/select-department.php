@@ -19,13 +19,13 @@ use HAJU\Models\User;
           <a
             href="./departamento/seleccionar/<?= $department->id ?>"
             class="col-md-4 text-decoration-none <?= $department->isActive() ?: 'opacity-50' ?>">
-            <div class="btn btn-outline-primary card">
+            <div class="btn btn-outline-primary card h-100">
               <img
                 src="<?= getDepartmentIconUrl($department) ?>"
                 alt="Icono del departamento de <?= $department ?>"
                 class="card-img-top object-fit-scale"
                 height="164" />
-              <div class="card-body">
+              <div class="card-body d-flex flex-column align-items-center justify-content-center">
                 <strong class="h2 card-title"><?= $department ?></strong>
               </div>
             </div>

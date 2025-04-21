@@ -134,11 +134,3 @@ assert($loggedUser instanceof User);
     </form>
   </div>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    if (location.href.endsWith('#registrar')) {
-      new bootstrap.Modal('#registrar').show()
-    }
-  })
-</script>

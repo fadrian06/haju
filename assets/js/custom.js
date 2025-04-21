@@ -1,28 +1,6 @@
-for (const tooltipTriggerEl of document.querySelectorAll(
-  '[data-bs-toggle="tooltip"]',
-)) {
-  new bootstrap.Tooltip(tooltipTriggerEl);
-}
-
-/*$(document).ready(function () {
-  $('#bar1').barfiller({ barColor: '#089bab', duration: 3000 })
-  $('#bar2').barfiller({ barColor: '#28a745 ', duration: 3000 })
-  $('#bar3').barfiller({ barColor: '#ffc107 ', duration: 3000 })
-  $('#bar4').barfiller({ barColor: '#dc3545 ', duration: 3000 })
-})*/
-
 $(".close_icon").on("click", function () {
   $(this).parents(".hide_content");
 });
-
-// $('.nice_Select').niceSelect()
-// $('.nice_Select2').niceSelect()
-// $('.default_sel').niceSelect()
-
-/*$(document).ready(function () {
-  $('#start_datepicker').datepicker()
-  $('#end_datepicker').datepicker()
-})*/
 
 const delay = 500;
 
@@ -81,20 +59,6 @@ $("#checkAll").click(() => {
   $("input:checkbox").not(this).prop("checked", this.checked);
 });
 
-/*$('#summernote').summernote({
-  placeholder:
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-  tabsize: 2,
-  height: 195
-})*/
-
-/*$('.lms_summernote').summernote({
-  placeholder:
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-  tabsize: 2,
-  height: 188
-})*/
-
 $(".input-file").each(function () {
   const $input = $(this);
   const $label = $input.next(".js-labelFile");
@@ -130,27 +94,6 @@ $(".input-file2").each(function () {
       : $label.removeClass("has-file").html(labelVal);
   });
 });
-
-// $('#meta_keywords').tagsinput()
-
-/*$('.sraf_active').owlCarousel({
-  loop: true,
-  margin: 30,
-  items: 1,
-  autoplay: true,
-  navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
-  nav: true,
-  dots: true,
-  autoplayHoverPause: true,
-  autoplaySpeed: 800,
-  responsive: {
-    0: { items: 2 },
-    767: { items: 3 },
-    992: { items: 3 },
-    1200: { items: 4 },
-    1600: { items: 5 }
-  }
-})*/
 
 if ($(".lms_table_active").length) {
   $(".lms_table_active").DataTable({

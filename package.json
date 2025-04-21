@@ -10,12 +10,11 @@
     "esbuild": "0.21.5",
     "husky": "^9.1.7",
     "metismenujs": "^1.4.0",
-    "pure-css-loader": "^3.3.3",
     "sweetalert2": "^11.19.1"
   },
   "scripts": {
-    "build": "esbuild resources/src/*.ts --outdir=resources/dist --bundle --minify --sourcemap --loader:.woff2=copy --loader:.woff=copy --loader:.ttf=copy",
-    "dev": "esbuild resources/src/*.ts --outdir=resources/dist --bundle --watch --sourcemap --loader:.woff2=copy --loader:.woff=copy --loader:.ttf=copy",
+    "build": "esbuild resources/src/*.ts --outdir=resources/dist --bundle --minify --sourcemap --loader:.woff2=copy --loader:.woff=copy --loader:.ttf=copy --loader:.eot=copy --loader:.svg=dataurl",
+    "dev": "esbuild resources/src/*.ts --outdir=resources/dist --bundle --watch --sourcemap --loader:.woff2=copy --loader:.woff=copy --loader:.ttf=copy --loader:.eot=copy --loader:.svg=dataurl",
     "prepare": "husky",
     "ci": "biome ci ./ --colors=off",
     "format": "biome format ./"

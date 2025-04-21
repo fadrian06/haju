@@ -1,0 +1,609 @@
+/******** header css here *********/
+/* line 2, H:/admin_project/hospital/scss/_header.scss */
+.header_iner {
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  padding: 30px;
+  position: relative;
+  border-radius: 0px;
+}
+
+@media (max-width: 575.98px) {
+  /* line 2, H:/admin_project/hospital/scss/_header.scss */
+  .header_iner {
+    justify-content: flex-end !important;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  /* line 2, H:/admin_project/hospital/scss/_header.scss */
+  .header_iner {
+    justify-content: flex-end !important;
+  }
+}
+
+@media (max-width: 991px) {
+  /* line 2, H:/admin_project/hospital/scss/_header.scss */
+  .header_iner {
+    padding: 20px;
+    margin: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* line 2, H:/admin_project/hospital/scss/_header.scss */
+  .header_iner {
+    margin: 0 10px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  /* line 2, H:/admin_project/hospital/scss/_header.scss */
+  .header_iner {
+    margin: 0;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  /* line 2, H:/admin_project/hospital/scss/_header.scss */
+  .header_iner {
+    margin: 0;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  /* line 2, H:/admin_project/hospital/scss/_header.scss */
+  .header_iner {
+    margin-bottom: 20px;
+  }
+}
+
+/* line 48, H:/admin_project/hospital/scss/_header.scss */
+.header_iner .page_tittle h3 {
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: capitalize;
+  color: #222222;
+  margin-bottom: 2px;
+}
+
+@media (max-width: 991px) {
+  /* line 48, H:/admin_project/hospital/scss/_header.scss */
+  .header_iner .page_tittle h3 {
+    margin-right: 15px;
+  }
+}
+
+/* line 58, H:/admin_project/hospital/scss/_header.scss */
+.header_iner .page_tittle .page_subtitle {
+  font-size: 12px;
+  font-weight: 300;
+  color: #7e7172;
+  margin-bottom: 0;
+}
+
+/* line 63, H:/admin_project/hospital/scss/_header.scss */
+.header_iner .page_tittle .page_subtitle .page_subtitle_inenr {
+  color: #7e7172;
+}
+
+/* line 65, H:/admin_project/hospital/scss/_header.scss */
+.header_iner .page_tittle .page_subtitle .page_subtitle_inenr.active_subcat {
+  color: #fe1724;
+  white-space: nowrap;
+}
+
+/* line 69, H:/admin_project/hospital/scss/_header.scss */
+.header_iner .page_tittle .page_subtitle .page_subtitle_inenr i {
+  margin-left: 10px;
+  margin-right: 7px;
+  font-size: 12px;
+}
+
+/* line 74, H:/admin_project/hospital/scss/_header.scss */
+.header_iner .page_tittle .page_subtitle .page_subtitle_inenr svg {
+  position: relative;
+  margin: 0 7px 0 10px;
+  top: -1px;
+}
+
+@media (max-width: 575.98px) {
+  /* line 74, H:/admin_project/hospital/scss/_header.scss */
+  .header_iner .page_tittle .page_subtitle .page_subtitle_inenr svg {
+    margin: 0 2px 0 2px;
+  }
+}
+
+/* line 86, H:/admin_project/hospital/scss/_header.scss */
+.header_iner .btn_1 {
+  margin: 0 30px;
+}
+
+@media (max-width: 991px) {
+  /* line 89, H:/admin_project/hospital/scss/_header.scss */
+  .header_iner .notification {
+    margin: 0 10px;
+  }
+}
+
+/* line 93, H:/admin_project/hospital/scss/_header.scss */
+.header_iner .notification i {
+  color: #707070;
+  position: relative;
+  font-size: 20px;
+}
+
+/* line 97, H:/admin_project/hospital/scss/_header.scss */
+.header_iner .notification i:after {
+  position: absolute;
+  content: "";
+  right: -1px;
+  top: 0;
+  height: 9px;
+  width: 9px;
+  background-color: #2E4765;
+  border-radius: 50%;
+}
+
+@media (max-width: 767.98px) {
+  /* line 109, H:/admin_project/hospital/scss/_header.scss */
+  .header_iner .serach_field-area {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* line 109, H:/admin_project/hospital/scss/_header.scss */
+  .header_iner .serach_field-area {
+    width: auto;
+    left: 40px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* line 109, H:/admin_project/hospital/scss/_header.scss */
+  .header_iner .serach_field-area {
+    width: auto;
+    margin-right: 70px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 109, H:/admin_project/hospital/scss/_header.scss */
+  .header_iner .serach_field-area {
+    width: auto;
+    margin-right: 70px;
+  }
+}
+
+/* line 127, H:/admin_project/hospital/scss/_header.scss */
+.header_iner .header_right .header_notification_warp {
+  margin-right: 50px;
+  margin-left: 40px;
+}
+
+@media (max-width: 575.98px) {
+  /* line 127, H:/admin_project/hospital/scss/_header.scss */
+  .header_iner .header_right .header_notification_warp {
+    margin-right: 25px;
+    margin-left: 20px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* line 127, H:/admin_project/hospital/scss/_header.scss */
+  .header_iner .header_right .header_notification_warp {
+    margin-right: 35px;
+    margin-left: 25px;
+  }
+}
+
+/* line 138, H:/admin_project/hospital/scss/_header.scss */
+.header_iner .header_right .header_notification_warp li {
+  display: inline-block;
+}
+
+/* line 140, H:/admin_project/hospital/scss/_header.scss */
+.header_iner .header_right .header_notification_warp li:last-child a {
+  margin-right: 0;
+}
+
+/* line 143, H:/admin_project/hospital/scss/_header.scss */
+.header_iner .header_right .header_notification_warp li a {
+  font-size: 20px;
+  color: #929BB5;
+  position: relative;
+  margin-right: 29px;
+  display: inline-block;
+}
+
+@media (max-width: 575.98px) {
+  /* line 166, H:/admin_project/hospital/scss/_header.scss */
+  .header_iner .header_right .select_style {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  /* line 166, H:/admin_project/hospital/scss/_header.scss */
+  .header_iner .header_right .select_style {
+    display: none !important;
+  }
+}
+
+/* line 175, H:/admin_project/hospital/scss/_header.scss */
+.header_iner .nice_Select {
+  color: #929BB5;
+}
+
+/* line 179, H:/admin_project/hospital/scss/_header.scss */
+.profile_info {
+  position: relative;
+}
+
+/* line 183, H:/admin_project/hospital/scss/_header.scss */
+.profile_info img {
+  max-width: 69px;
+  max-height: 69px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+@media (max-width: 991px) {
+  /* line 183, H:/admin_project/hospital/scss/_header.scss */
+  .profile_info img {
+    max-width: 30px;
+  }
+}
+
+/* line 193, H:/admin_project/hospital/scss/_header.scss */
+.profile_info .profile_info_iner {
+  position: absolute;
+  right: 0;
+  background-color: #2E4765;
+  text-align: right;
+  width: 215px;
+  padding: 30px 30px 20px;
+  opacity: 0;
+  visibility: hidden;
+  top: 77px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/* line 205, H:/admin_project/hospital/scss/_header.scss */
+.profile_info .profile_info_iner::before {
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  top: -14px;
+  right: 10px;
+  border-width: 0 15px 20px 15px;
+  border-color: transparent transparent #2E4765 transparent;
+}
+
+/* line 216, H:/admin_project/hospital/scss/_header.scss */
+.profile_info .profile_info_iner a {
+  display: block;
+}
+
+/* line 220, H:/admin_project/hospital/scss/_header.scss */
+.profile_info .profile_info_iner p {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+/* line 224, H:/admin_project/hospital/scss/_header.scss */
+.profile_info .profile_info_iner h5 {
+  font-size: 12px;
+  color: #fff;
+}
+
+/* line 230, H:/admin_project/hospital/scss/_header.scss */
+.profile_info:hover .profile_info_iner {
+  opacity: 1;
+  visibility: visible;
+  top: 77px;
+}
+
+/* line 236, H:/admin_project/hospital/scss/_header.scss */
+.profile_info .profile_info_details {
+  margin-top: 20px;
+  border-top: 1px solid #79838b;
+  padding-top: 10px;
+}
+
+/* line 240, H:/admin_project/hospital/scss/_header.scss */
+.profile_info .profile_info_details a {
+  color: #fff;
+  font-size: 13px;
+  display: block;
+  padding: 10px 0;
+}
+
+/* line 245, H:/admin_project/hospital/scss/_header.scss */
+.profile_info .profile_info_details a:hover {
+  color: #fff;
+}
+
+/* line 247, H:/admin_project/hospital/scss/_header.scss */
+.profile_info .profile_info_details a:hover i {
+  color: #fff;
+}
+
+/* line 252, H:/admin_project/hospital/scss/_header.scss */
+.profile_info .profile_info_details i {
+  color: #cccccc;
+  font-size: 12px;
+  margin-left: 20px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+/* line 260, H:/admin_project/hospital/scss/_header.scss */
+.sidebar_icon {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: auto;
+  left: 20px;
+}
+
+@media (max-width: 575.98px) {
+  /* line 260, H:/admin_project/hospital/scss/_header.scss */
+  .sidebar_icon {
+    right: auto;
+    left: 20px;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  /* line 260, H:/admin_project/hospital/scss/_header.scss */
+  .sidebar_icon {
+    right: auto;
+    left: 20px;
+  }
+}
+
+/* line 275, H:/admin_project/hospital/scss/_header.scss */
+.sidebar_icon i {
+  font-size: 20px;
+}
+
+/******** header css end *********/
+/* line 284, H:/admin_project/hospital/scss/_header.scss */
+.serach_field-area {
+  width: 480px;
+  position: relative;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 284, H:/admin_project/hospital/scss/_header.scss */
+  .serach_field-area {
+    width: 400px;
+  }
+}
+
+/* line 292, H:/admin_project/hospital/scss/_header.scss */
+.serach_field-area .search_inner input {
+  color: #000;
+  font-size: 17px;
+  height: 55px;
+  width: 100%;
+  padding-left: 82px;
+  border: 0;
+  padding-right: 15px;
+  border-bottom: 1px solid #F4F7FC;
+  background: #F5F7FD;
+  border-radius: 30px;
+}
+
+/* line 303, H:/admin_project/hospital/scss/_header.scss */
+.serach_field-area .search_inner input::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  color: #818E94;
+  font-family: "Poppins", sans-serif;
+}
+
+/* line 309, H:/admin_project/hospital/scss/_header.scss */
+.serach_field-area .search_inner input:focus {
+  outline: none;
+}
+
+/* line 313, H:/admin_project/hospital/scss/_header.scss */
+.serach_field-area .search_inner button {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: transparent;
+  font-size: 12px;
+  border: 0;
+  padding-left: 40px;
+  padding-right: 11px;
+}
+
+/* line 323, H:/admin_project/hospital/scss/_header.scss */
+.serach_field-area .search_inner button i {
+  font-size: 14px;
+  color: #818E94;
+}
+
+/* line 332, H:/admin_project/hospital/scss/_header.scss */
+.serach_field-area2 {
+  width: 480px;
+  position: relative;
+}
+
+@media (max-width: 991px) {
+  /* line 332, H:/admin_project/hospital/scss/_header.scss */
+  .serach_field-area2 {
+    width: auto;
+  }
+}
+
+/* line 341, H:/admin_project/hospital/scss/_header.scss */
+.serach_field-area2 .search_inner input {
+  color: #000;
+  font-size: 17px;
+  height: 55px;
+  width: 100%;
+  padding-left: 82px;
+  border: 0;
+  padding-right: 15px;
+  border-bottom: 1px solid #F4F7FC;
+  background: #F5F7FD;
+  border-radius: 30px;
+}
+
+/* line 352, H:/admin_project/hospital/scss/_header.scss */
+.serach_field-area2 .search_inner input::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  color: #818E94;
+  font-family: "Poppins", sans-serif;
+}
+
+/* line 358, H:/admin_project/hospital/scss/_header.scss */
+.serach_field-area2 .search_inner input:focus {
+  outline: none;
+}
+
+/* line 362, H:/admin_project/hospital/scss/_header.scss */
+.serach_field-area2 .search_inner button {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: transparent;
+  font-size: 12px;
+  border: 0;
+  padding-left: 40px;
+  padding-right: 11px;
+}
+
+/* line 372, H:/admin_project/hospital/scss/_header.scss */
+.serach_field-area2 .search_inner button i {
+  font-size: 14px;
+  color: #818E94;
+}
+
+/* line 382, H:/admin_project/hospital/scss/_header.scss */
+.serach_field_2 {
+  width: 430px;
+  position: relative;
+  margin-right: 0px;
+}
+
+@media (max-width: 575.98px) {
+  /* line 382, H:/admin_project/hospital/scss/_header.scss */
+  .serach_field_2 {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  /* line 382, H:/admin_project/hospital/scss/_header.scss */
+  .serach_field_2 {
+    width: 190px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* line 382, H:/admin_project/hospital/scss/_header.scss */
+  .serach_field_2 {
+    width: 230px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* line 382, H:/admin_project/hospital/scss/_header.scss */
+  .serach_field_2 {
+    width: 300px;
+  }
+}
+
+/* line 399, H:/admin_project/hospital/scss/_header.scss */
+.serach_field_2 .search_inner input {
+  color: #000;
+  font-size: 13px;
+  height: 40px;
+  width: 100%;
+  border-radius: 5px;
+  padding-left: 55px;
+  border: 1px solid #2DAAB8;
+  padding-right: 15px;
+}
+
+/* line 408, H:/admin_project/hospital/scss/_header.scss */
+.serach_field_2 .search_inner input::placeholder {
+  font-size: 13px;
+  font-weight: 300;
+  color: #7e7172;
+}
+
+/* line 413, H:/admin_project/hospital/scss/_header.scss */
+.serach_field_2 .search_inner input:focus {
+  outline: none;
+}
+
+/* line 417, H:/admin_project/hospital/scss/_header.scss */
+.serach_field_2 .search_inner button {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: transparent;
+  font-size: 12px;
+  border: 0;
+  padding-left: 19px;
+  padding-right: 11px;
+}
+
+/* line 428, H:/admin_project/hospital/scss/_header.scss */
+.serach_field_2 .search_inner button i {
+  font-size: 12px;
+  color: #2DAAB8;
+}
+
+/* line 432, H:/admin_project/hospital/scss/_header.scss */
+.serach_field_2 .search_inner button::before {
+  position: absolute;
+  width: 1px;
+  height: 24px;
+  content: '';
+  background: #2DAAB8;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: 0;
+}
+
+/* line 450, H:/admin_project/hospital/scss/_header.scss */
+table.dataTable {
+  width: 100% !important;
+  margin: 0 auto;
+  clear: both;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* line 463, H:/admin_project/hospital/scss/_header.scss */
+.table td, .table th {
+  padding: .75rem;
+  vertical-align: top;
+  border-top: 0 !important;
+}
