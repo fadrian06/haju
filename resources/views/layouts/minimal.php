@@ -20,8 +20,7 @@ use HAJU\Models\User;
   <meta name="viewport" content="width=device-width" />
   <title><?= $title ?> - HAJU</title>
   <base href="<?= str_replace('index.php', '', $_SERVER['SCRIPT_NAME']) ?>" />
-  <?php Flight::render('components/open-graph-metas') ?>
-  <link rel="icon" href="./assets/img/logo-mini.png" />
+  <link rel="icon" href="./resources/images/favicon.svg" />
   <link rel="stylesheet" href="./resources/dist/minimal.css" />
   <style>
     .w3-bordered th,

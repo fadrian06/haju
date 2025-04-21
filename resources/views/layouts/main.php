@@ -89,7 +89,6 @@ foreach ($consultations as $consultation) {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
   <title><?= $title ?> - HAJU</title>
-  <?php Flight::render('components/open-graph-metas') ?>
   <base href="<?= str_replace('index.php', '', $_SERVER['SCRIPT_NAME']) ?>" />
   <link rel="icon" href="./resources/images/favicon.svg" />
   <link rel="stylesheet" href="./resources/dist/main.css" />
