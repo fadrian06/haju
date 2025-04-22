@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "sweetalert2/dist/sweetalert2.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "metismenujs/style";
+import "pure-css-loader/dist/loader-default.css";
 import "./customizations.css";
 // import "./theme/index.css";
 

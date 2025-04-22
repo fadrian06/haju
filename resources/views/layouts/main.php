@@ -108,6 +108,7 @@ foreach ($consultations as $consultation) {
 </head>
 
 <body class="bg-secondary-subtle">
+  <?php Flight::render('components/page-loader') ?>
   <?php if ($epidemic) : ?>
     <?php Flight::render('components/epidemic-alert', ['epidemic' => $epidemic]) ?>
   <?php endif ?>
