@@ -45,7 +45,7 @@ a {
 }
 
 .timeline-item,
-.timeline-item>a {
+.timeline-item > a {
   position: relative;
   display: grid;
   gap: .25em;
@@ -63,7 +63,7 @@ a {
   content: "";
 }
 
-.form-floating>label {
+.form-floating > label {
   left: unset;
   height: unset;
 }

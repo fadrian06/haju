@@ -15,8 +15,12 @@ use HAJU\Enums\Appointment;
 ?>
 
 <header class="header_iner d-flex align-items-center justify-content-between py-1 sticky-top top-0 end-0 w-100">
-  <button class="sidebar_icon d-lg-none me-2 position-static btn" data-bs-toggle="tooltip" title="Abrir menú de navegación">
-    <i class="fa fa-bars-staggered"></i>
+  <button
+    data-bs-toggle="offcanvas"
+    data-bs-target="#sidebar"
+    class="border-0 btn d-lg-none fa fa-bars-staggered fa-2x"
+    @mouseenter="$el.classList.add('fa-beat')"
+    @mouseleave="$el.classList.remove('fa-beat')">
   </button>
   <h2 class="m-0 d-flex align-items-center">
     <span class="d-none d-sm-block h3 m-0 text-nowrap">Departamento de <?= $department->name ?></span>
@@ -27,24 +31,7 @@ use HAJU\Enums\Appointment;
       </a>
     <?php endif ?>
   </h2>
-  <div class="serach_field-area m-0">
-    <!-- <form class="search_inner">
-      <div class="search_field">
-        <input required type="search" placeholder="Buscar...">
-      </div>
-      <button>
-        <img src="./assets/img/icon/icon_search.svg" />
-      </button>
-    </form> -->
-  </div>
   <div class="ms-2 header_right d-flex justify-content-between align-items-center">
-    <!-- <ul class="header_notification_warp d-flex align-items-center">
-      <li>
-        <a href="./notificaciones">
-          <img src="./assets/img/icon/bell.svg" />
-        </a>
-      </li>
-    </ul> -->
     <div class="profile_info">
       <img class="p-2" style="max-width: unset" src="<?= urldecode($user->profileImagePath->asString()) ?>" />
       <div class="profile_info_iner">

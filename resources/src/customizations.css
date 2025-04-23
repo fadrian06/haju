@@ -34,3 +34,16 @@ h6,
 [data-bs-theme="dark"] {
   --bs-body-bg: black;
 }
+
+#sidebar {
+  max-width: 75vw;
+}
+
+@media (min-width: 992px) {
+  #sidebar {
+    --bs-offcanvas-width: 26%;
+
+    visibility: initial;
+    transform: initial;
+  }
+}

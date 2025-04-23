@@ -9,8 +9,6 @@ import "./customizations.css";
 // import "./theme/index.css";
 
 import "alpinejs/dist/cdn.min";
-import "../../node_modules/metismenujs/dist/metismenujs.min";
-import "sweetalert2/dist/sweetalert2.all.min";
 import { Modal, Toast, Tooltip } from "bootstrap";
 import { MetisMenu } from "metismenujs";
 import Swal from "sweetalert2";
@@ -20,8 +18,6 @@ globalThis.customSwal = Swal.mixin({
   customClass: {
     confirmButton: "btn btn-primary mx-2",
     denyButton: "btn btn-danger mx-2",
-    popup: "bg-white border",
-    title: "bg-white",
   },
   buttonsStyling: false,
 });
@@ -40,4 +36,4 @@ if (location.href.endsWith("#registrar")) {
   new Modal("#registrar").show();
 }
 
-new MetisMenu("#sidebar_menu");
+new MetisMenu("#sidebar-navigation");
