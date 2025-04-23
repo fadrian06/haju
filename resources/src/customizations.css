@@ -14,14 +14,13 @@ h6,
 }
 
 .form-floating {
-
   & .form-select,
   & .form-control:not(input[type="file"]) {
     min-height: 70px;
   }
 
-  &>textarea:focus~label::after,
-  &>textarea:not(:placeholder-shown)~label::after {
+  & > textarea:focus ~ label::after,
+  & > textarea:not(:placeholder-shown) ~ label::after {
     background: transparent;
   }
 }

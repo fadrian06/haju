@@ -47,7 +47,6 @@
 }
 
 .single_element .single_quick_activity {
-  background-color: white;
   border-radius: 10px;
   -webkit-transition: .5s;
   transition: .5s;
@@ -109,31 +108,19 @@
   margin: 0 !important;
 }
 
-.single_element
-  .single_quick_activity
-  .count_content.count_content2
-  .blue_color {
+.single_element .single_quick_activity .count_content.count_content2 .blue_color {
   color: #16bbe5 !important;
 }
 
-.single_element
-  .single_quick_activity
-  .count_content.count_content2
-  .red_color {
+.single_element .single_quick_activity .count_content.count_content2 .red_color {
   color: #ea5d5d !important;
 }
 
-.single_element
-  .single_quick_activity
-  .count_content.count_content2
-  .yellow_color {
+.single_element .single_quick_activity .count_content.count_content2 .yellow_color {
   color: #fcad73 !important;
 }
 
-.single_element
-  .single_quick_activity
-  .count_content.count_content2
-  .green_color {
+.single_element .single_quick_activity .count_content.count_content2 .green_color {
   color: #2daab8 !important;
 }
 

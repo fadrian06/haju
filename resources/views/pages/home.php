@@ -23,7 +23,7 @@ use Leaf\Http\Session;
     <?php if ($user->appointment->isHigherThan(Appointment::Coordinator)) : ?>
       <a
         href="./usuarios"
-        class="single_quick_activity d-flex text-bg-<?= Session::get('theme', 'light') ?>"
+        class="single_quick_activity d-flex"
         :class="`text-bg-${theme}`">
         <img class="icon" src="./resources/icons/man.svg" />
         <div class="count_content">
@@ -34,7 +34,7 @@ use Leaf\Http\Session;
       <?php if ($user->appointment === Appointment::Director) : ?>
         <a
           href="./departamentos"
-          class="single_quick_activity d-flex text-bg-<?= Session::get('theme', 'light') ?>"
+          class="single_quick_activity d-flex"
           :class="`text-bg-${theme}`">
           <img class="icon" src="./resources/icons/hospital-o.svg" />
           <div class="count_content">
@@ -47,7 +47,7 @@ use Leaf\Http\Session;
     <?php if ($user->appointment->isHigherThan(Appointment::Secretary)) : ?>
       <a
         href="./pacientes"
-        class="single_quick_activity d-flex text-bg-<?= Session::get('theme', 'light') ?>"
+        class="single_quick_activity d-flex"
         :class="`text-bg-${theme}`">
         <img class="icon" src="./resources/icons/wheel.svg" />
         <div class="count_content">
@@ -58,7 +58,7 @@ use Leaf\Http\Session;
       </a>
       <a
         href="./doctores"
-        class="single_quick_activity d-flex text-bg-<?= Session::get('theme', 'light') ?>"
+        class="single_quick_activity d-flex"
         :class="`text-bg-${theme}`">
         <img class="icon" src="./resources/icons/cap.svg" />
         <div class="count_content">
