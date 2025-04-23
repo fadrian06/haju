@@ -72,6 +72,17 @@ function getUserAvatarUrl(User $user): string
   return urldecode($user->profileImagePath->asString());
 }
 
+function fillWithHtmlSpaces(string $content, int $spaces): string
+{
+  $characters = str_split($content);
+
+  for ($index = count($characters) + 1; $index <= $spaces; ++$index) {
+    $characters[] = '&nbsp;';
+  }
+
+  return implode('', $characters);
+}
+
 define('CATEGORY_MAPPER', new class {
   /**
    * @return array{

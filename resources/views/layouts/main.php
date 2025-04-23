@@ -115,7 +115,7 @@ foreach ($consultations as $consultation) {
   <?php Flight::render('components/sidebar') ?>
   <div id="dashboard" class="min-vh-100 d-grid align-items-start">
     <?php Flight::render('components/headers/private') ?>
-    <div class="container py-5">
+    <div class="container pt-4 px-2 px-lg-4 pb-5">
       <?= $content ?>
     </div>
     <?php Flight::render('components/footer') ?>

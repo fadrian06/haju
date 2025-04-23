@@ -15,59 +15,73 @@ use HAJU\Enums\Appointment;
  * @var Department $department
  */
 
+$cards = [
+  [
+    'title' => 'Usuarios',
+    'icon' => 'fa-user-tie',
+    'number' => $usersNumber,
+    'link' => './usuarios',
+    'background' => 'info',
+  ],
+  [
+    'title' => 'Pacientes',
+    'icon' => 'fa-wheelchair',
+    'number' => $patientsNumber,
+    'link' => './pacientes',
+    'background' => 'success',
+  ],
+  [
+    'title' => 'Consultas',
+    'icon' => 'fa-stethoscope',
+    'number' => $consultationsNumber,
+    'link' => './consultas',
+    'background' => 'warning',
+  ],
+  [
+    'title' => 'Doctores',
+    'icon' => 'fa-user-md',
+    'number' => $doctorsNumber,
+    'link' => './doctores',
+    'background' => 'danger',
+  ],
+  [
+    'title' => 'Departamentos',
+    'icon' => 'fa-hospital',
+    'number' => $departmentsNumber,
+    'link' => './departamentos',
+    'background' => 'primary',
+  ],
+  [
+    'title' => 'Hospitalizaciones',
+    'icon' => 'fa-bed-pulse',
+    'number' => 0,
+    'link' => './hospitalizaciones',
+    'background' => 'secondary',
+  ],
+];
+
 ?>
 
-<section class="single_element">
-  <div class="quick_activity_wrap">
-    <?php if ($user->appointment->isHigherThan(Appointment::Coordinator)) : ?>
+<section class="row row-cols-md-2 g-3 mb-5">
+  <?php foreach ($cards as $card) : ?>
+    <div class="col">
       <a
-        href="./usuarios"
-        class="single_quick_activity d-flex"
-        :class="`text-bg-${theme}`">
-        <img class="icon" src="./resources/icons/man.svg" />
-        <div class="count_content">
-          <h3><?= $usersNumber ?></h3>
-          <p>Usuario<?= $usersNumber !== 1 ? 's' : '' ?></p>
+        href="<?= $card['link'] ?>"
+        class="card border-0 shadow-lg btn btn-outline-<?= $card['background'] ?> d-flex flex-row align-items-center gap-3">
+        <span
+          style="flex-basis: 100px"
+          class="text-<?= $card['background'] ?>-emphasis fa <?= $card['icon'] ?> fa-4x"></span>
+        <div class="d-flex flex-column text-start">
+          <strong class="display-1 fw-bolder">
+            <?= $card['number'] ?>
+          </strong>
+          <h2><?= $card['title'] ?></h2>
         </div>
       </a>
-      <?php if ($user->appointment === Appointment::Director) : ?>
-        <a
-          href="./departamentos"
-          class="single_quick_activity d-flex"
-          :class="`text-bg-${theme}`">
-          <img class="icon" src="./resources/icons/hospital-o.svg" />
-          <div class="count_content">
-            <h3><?= $departmentsNumber ?></h3>
-            <p>Departamento<?= $departmentsNumber !== 1 ? 's' : '' ?></p>
-          </div>
-        </a>
-      <?php endif ?>
-    <?php endif ?>
-    <?php if ($user->appointment->isHigherThan(Appointment::Secretary)) : ?>
-      <a
-        href="./pacientes"
-        class="single_quick_activity d-flex"
-        :class="`text-bg-${theme}`">
-        <img class="icon" src="./resources/icons/wheel.svg" />
-        <div class="count_content">
-          <h3><?= $patientsNumber ?></h3>
-          <p>Paciente<?= $patientsNumber !== 1 ? 's' : '' ?></p>
-          <p><?= $consultationsNumber ?> Consulta<?= $consultationsNumber === 1 ? '' : 's' ?></p>
-        </div>
-      </a>
-      <a
-        href="./doctores"
-        class="single_quick_activity d-flex"
-        :class="`text-bg-${theme}`">
-        <img class="icon" src="./resources/icons/cap.svg" />
-        <div class="count_content">
-          <h3><?= $doctorsNumber ?></h3>
-          <p>Doctor<?= $doctorsNumber !== 1 ? 'es' : '' ?></p>
-        </div>
-      </a>
-    <?php endif ?>
-  </div>
+    </div>
+  <?php endforeach ?>
 </section>
+
 <?php $user->appointment->isHigherThan(Appointment::Coordinator)
   && $department->isStatistics()
   && Flight::render('components/charts')
