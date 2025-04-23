@@ -7,6 +7,7 @@ use HAJU\Models\ConsultationCause;
 use HAJU\Models\ConsultationCauseCategory;
 use HAJU\Models\Department;
 use HAJU\Models\Patient;
+use HAJU\Models\User;
 
 const ROOT_PATH = __DIR__ . '/..';
 const APP_PATH = ROOT_PATH . '/app';
@@ -64,6 +65,11 @@ function getDepartmentIconUrl(Department $department): string
   return $department->hasIcon()
     ? urldecode($department->iconFilePath->asString())
     : './assets/img/department.png';
+}
+
+function getUserAvatarUrl(User $user): string
+{
+  return urldecode($user->profileImagePath->asString());
 }
 
 define('CATEGORY_MAPPER', new class {

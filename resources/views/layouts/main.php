@@ -113,13 +113,13 @@ foreach ($consultations as $consultation) {
     <?php Flight::render('components/epidemic-alert', ['epidemic' => $epidemic]) ?>
   <?php endif ?>
   <?php Flight::render('components/sidebar') ?>
-  <section class="main_content pb-4 pt-0">
-    <?php Flight::render('components/header') ?>
-    <div class="main_content_iner row justify-content-center m-0 p-4">
+  <div id="dashboard" class="min-vh-100 d-grid align-items-start">
+    <?php Flight::render('components/headers/private') ?>
+    <div class="container py-5">
       <?= $content ?>
     </div>
     <?php Flight::render('components/footer') ?>
-  </section>
+  </div>
   <?php if ($mustChangePassword && $showPasswordChangeModal) : ?>
     <?php Flight::render('components/confirmation', [
       'show' => true,

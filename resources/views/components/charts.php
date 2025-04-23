@@ -118,7 +118,7 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <hr id="causas-mas-frecuentes" />
 
-<div class="white_box">
+<div class="card card-body p-5">
   <h3 class="d-flex gap-3 align-items-center justify-content-between flex-wrap">
     <form class="row align-items-center row-gap-3" action="#causas-mas-frecuentes">
       <span class="col-md-12">Causas de consulta más frecuentes</span>
@@ -196,7 +196,7 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <hr id="causa-mas-frecuente" />
 
-<div class="mt-2 white_box">
+<div class="mt-2 card card-body p-5">
   <h3 class="d-flex gap-3 align-items-center justify-content-between flex-wrap">
     <form class="row align-items-center row-gap-3" action="#causa-mas-frecuente">
       <span class="col-md-3">Casos de</span>

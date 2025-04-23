@@ -14,13 +14,14 @@ h6,
 }
 
 .form-floating {
+
   & .form-select,
   & .form-control:not(input[type="file"]) {
     min-height: 70px;
   }
 
-  & > textarea:focus ~ label::after,
-  & > textarea:not(:placeholder-shown) ~ label::after {
+  &>textarea:focus~label::after,
+  &>textarea:not(:placeholder-shown)~label::after {
     background: transparent;
   }
 }
@@ -46,4 +47,14 @@ h6,
     visibility: initial;
     transform: initial;
   }
+}
+
+@media (min-width: 992px) {
+  #dashboard {
+    padding-left: 26%;
+  }
+}
+
+#dashboard {
+  grid-template-rows: auto 1fr auto;
 }

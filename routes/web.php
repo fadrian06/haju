@@ -66,7 +66,7 @@ Flight::group('', function (): void {
   Flight::route('GET /consultas', [PatientWebController::class, 'showConsultations']);
 
   Flight::route(
-    '/departamento/seleccionar',
+    'GET /departamento/seleccionar',
     [SessionWebController::class, 'showDepartments']
   );
 

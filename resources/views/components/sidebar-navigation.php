@@ -19,14 +19,14 @@ use HAJU\Models\User;
 
   Flight::render('components/sidebar-link', [
     'href' => './',
-    'iconSrc' => './resources/icons/house.svg',
+    'iconClass' => 'fa fa-home',
     'title' => 'Inicio',
     'isActive' => isActive('/'),
   ]);
 
   Flight::render('components/sidebar-link', [
-    'iconSrc' => './resources/icons/patient.svg',
     'title' => 'Pacientes',
+    'iconClass' => 'fa fa-hospital-user',
     'isActive' => isActive('/pacientes', '/consultas/registrar', '/hospitalizaciones/registrar'),
     'subItems' => [
       [
@@ -62,20 +62,20 @@ use HAJU\Models\User;
 
   Flight::render('components/sidebar-link', [
     'href' => './hospitalizaciones',
-    'iconSrc' => './resources/icons/hospitalizations.svg',
+    'iconClass' => 'fa fa-bed-pulse',
     'title' => 'Hospitalizaciones',
     'isActive' => isActive('/hospitalizaciones'),
   ]);
 
   Flight::render('components/sidebar-link', [
     'href' => './consultas',
-    'iconSrc' => './resources/icons/stethoscope.svg',
+    'iconClass' => 'fa fa-stethoscope',
     'title' => 'Consultas',
     'isActive' => isActive('/consultas'),
   ]);
 
   Flight::render('components/sidebar-link', [
-    'iconSrc' => './resources/icons/user-md.svg',
+    'iconClass' => 'fa fa-user-md',
     'title' => 'Doctores',
     'isActive' => isActive('/doctores'),
     'show' => $user->appointment->isHigherThan(Appointment::Coordinator),
@@ -97,7 +97,7 @@ use HAJU\Models\User;
   ]);
 
   Flight::render('components/sidebar-link', [
-    'iconSrc' => './resources/icons/users.svg',
+    'iconClass' => 'fa fa-users',
     'title' => 'Usuarios',
     'isActive' => isActive('/usuarios'),
     'subItems' => [
@@ -119,15 +119,15 @@ use HAJU\Models\User;
 
   Flight::render('components/sidebar-link', [
     'href' => './departamentos',
-    'iconSrc' => './resources/icons/hospital.svg',
+    'iconClass' => 'fa fa-hospital',
     'title' => 'Departamentos',
     'isActive' => isActive('/departamentos'),
     'show' => $user->appointment->isDirector(),
   ]);
 
   Flight::render('components/sidebar-link', [
-    'iconSrc' => './resources/icons/gears.svg',
     'title' => 'Configuraciones',
+    'iconClass' => 'fa fa-gears',
     'isActive' => isActive(
       '/configuracion',
       '/configuracion/institucion',

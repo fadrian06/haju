@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
+use HAJU\Enums\IconPosition;
+
 $class ??= '';
+$iconPosition ??= IconPosition::START;
 
 ?>
 
@@ -21,6 +24,11 @@ $class ??= '';
   "
   href="./salir"
   class="<?= $class ?>">
-  <i class="fa fa-right-from-bracket"></i>
-  Cerrar sesión
+  <?php if ($iconPosition === IconPosition::START) : ?>
+    <i class="fa fa-right-from-bracket"></i>
+    Cerrar sesión
+  <?php else : ?>
+    Cerrar sesión
+    <i class="fa fa-right-from-bracket"></i>
+  <?php endif ?>
 </a>
