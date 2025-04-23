@@ -5,7 +5,6 @@ declare(strict_types=1);
 use HAJU\Models\Department;
 use HAJU\Models\User;
 use HAJU\Enums\Appointment;
-use Leaf\Http\Session;
 
 /**
  * @var User $user
