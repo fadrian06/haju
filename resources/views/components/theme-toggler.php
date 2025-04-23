@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 ?>
 
-<li class="dropdown" data-bs-toggle="tooltip" title="Cambiar tema">
+<li class="dropdown" data-bs-toggle="tooltip" title="Cambiar tema" data-bs-placement="left">
   <button
     type="button"
     class="btn btn-link text-decoration-none p-2 dropdown-toggle d-flex align-items-center"
