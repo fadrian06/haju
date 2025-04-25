@@ -57,3 +57,8 @@ h6,
 #dashboard {
   grid-template-rows: auto 1fr auto;
 }
+
+th {
+  vertical-align: middle;
+  white-space: nowrap;
+}
