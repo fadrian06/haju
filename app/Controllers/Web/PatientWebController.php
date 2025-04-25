@@ -42,8 +42,7 @@ final readonly class PatientWebController extends Controller
       SELECT id, admission_department, admission_date, departure_date,
       departure_status, diagnoses, registered_date, doctor_id, patient_id
       FROM hospitalizations
-      WHERE departure_date IS NOT NULL
-      ORDER BY registered_date DESC
+      ORDER BY admission_date DESC
     sql);
 
     $stmt->execute();
