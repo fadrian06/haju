@@ -141,6 +141,7 @@ abstract class Person extends Model
       'idCard' => $this->idCard->value,
       'fullName' => $this->getFullName(),
       'gender' => $this->gender->value,
+      'birthDate' => $this->birthDate->getWithDashes(),
     ];
   }
 }
