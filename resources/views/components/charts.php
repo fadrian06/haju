@@ -109,7 +109,7 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
   })
 </script>
 
-<section class="mb-4 d-flex align-items-center">
+<section class="container mb-4 d-flex align-items-center">
   <h2>Resúmenes - </h2>
   <i class="ti-pie-chart ms-2 h2"></i>
   <i class="ti-bar-chart-alt ms-2 h2"></i>
@@ -118,7 +118,7 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <hr id="causas-mas-frecuentes" />
 
-<div class="card card-body p-5">
+<div class="container card card-body">
   <h3 class="d-flex gap-3 align-items-center justify-content-between flex-wrap">
     <form class="row align-items-center row-gap-3" action="#causas-mas-frecuentes">
       <span class="col-md-12">Causas de consulta más frecuentes</span>
@@ -158,9 +158,11 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php endforeach ?>
       </div>
 
-      <button class="btn btn-primary btn-lg px-5 rounded-pill col-md-12">
-        Consultar
-      </button>
+      <div class="col-md-12">
+        <button class="btn btn-primary btn-lg w-100">
+          Consultar
+        </button>
+      </div>
     </form>
     <canvas class="w-100" id="frecuent-causes"></canvas>
 
@@ -173,7 +175,7 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <dt><?= $cause ?></dt>
         <dd>
           <?= implode(', ', array_map(
-            static fn(Patient $patient): string => "<a href='./pacientes/{$patient->id}'>{$patient->getFullName()}</a>",
+            static fn(Patient $patient): string => "<a class='text-decoration-underline' href='./pacientes/{$patient->id}'>{$patient->getFullName()}</a>",
             array_filter($causePatients, static function (Patient $patient) use (&$added): bool {
               if (array_key_exists($patient->id, $added)) {
                 return false;
@@ -196,7 +198,7 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <hr id="causa-mas-frecuente" />
 
-<div class="mt-2 card card-body p-5">
+<div class="container mt-2 card card-body">
   <h3 class="d-flex gap-3 align-items-center justify-content-between flex-wrap">
     <form class="row align-items-center row-gap-3" action="#causa-mas-frecuente">
       <span class="col-md-3">Casos de</span>
@@ -249,9 +251,11 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php endforeach ?>
       </div>
 
-      <button class="btn btn-primary btn-lg px-5 rounded-pill col-md-12">
-        Consultar
-      </button>
+      <div class="col-md-12">
+        <button class="btn btn-primary btn-lg w-100">
+          Consultar
+        </button>
+      </div>
     </form>
     <canvas class="w-100" id="frecuent-cause"></canvas>
     <button class="btn btn-primary btn-lg w-100" id="print-frecuent-cause">
