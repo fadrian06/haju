@@ -14,15 +14,15 @@ use HAJU\Enums\InstructionLevel;
 
 ?>
 
-<section class="mb-4 d-flex px-0 align-items-center justify-content-between">
+<section class="container mb-4 d-flex align-items-center justify-content-between">
   <h2 class="m-0">Editar perfil</h2>
-  <a href="./perfil" class="btn btn-primary rounded-pill d-flex align-items-center">
+  <a href="./perfil" class="btn btn-primary d-flex align-items-center">
     <span class="px-2">Volver</span>
     <i class="px-2 ti-back-left"></i>
   </a>
 </section>
-<form enctype="multipart/form-data" method="post" class="d-flex px-0 flex-column align-items-center">
-  <section class="white_box">
+<form enctype="multipart/form-data" method="post" class="container d-flex px-0 flex-column align-items-center">
+  <section class="card card-body">
     <h3>Información básica</h3>
     <div class="row mt-4">
       <fieldset class="mt-4 mt-md-0 col-md row row-cols-md-2">
@@ -109,7 +109,7 @@ use HAJU\Enums\InstructionLevel;
       </fieldset>
     </div>
   </section>
-  <section class="white_box mt-4">
+  <section class="card card-body w-100 mt-4">
     <h3>Información de contacto</h3>
     <fieldset class="row mt-4">
       <?php
@@ -140,5 +140,5 @@ use HAJU\Enums\InstructionLevel;
       ?>
     </fieldset>
   </section>
-  <button class="btn btn-primary btn-lg mt-4 px-5 rounded-pill">Guardar</button>
+  <button class="btn btn-primary w-100 mt-4">Guardar</button>
 </form>

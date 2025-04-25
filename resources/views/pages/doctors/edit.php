@@ -9,11 +9,11 @@ assert($doctor instanceof Doctor);
 
 ?>
 
-<section class="mb-4 d-inline-flex px-0 align-items-center justify-content-between">
+<section class="container mb-4 d-flex px-0 align-items-center justify-content-between">
   <h2>Editar doctor</h2>
 </section>
 
-<form method="post" class="white_box d-flex flex-column align-items-center">
+<form method="post" class="container card card-body d-flex flex-column align-items-center">
   <fieldset class="row w-100">
     <?php
 
@@ -76,5 +76,5 @@ assert($doctor instanceof Doctor);
 
     ?>
   </fieldset>
-  <button class="btn btn-primary btn-lg mt-4 px-5 rounded-pill">Actualizar</button>
+  <button class="btn btn-primary w-100">Actualizar</button>
 </form>

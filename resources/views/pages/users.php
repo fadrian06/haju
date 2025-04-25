@@ -16,10 +16,10 @@ use HAJU\Enums\InstructionLevel;
 
 ?>
 
-<section class="mb-4 d-inline-flex px-0 align-items-center justify-content-between">
+<section class="container mb-4 d-flex px-0 align-items-center justify-content-between">
   <h2>Usuarios</h2>
-  <a data-bs-toggle="modal" href="#registrar" class="btn btn-primary rounded-pill d-flex align-items-center">
-    <i class="px-2 ti-plus"></i>
+  <a data-bs-toggle="modal" href="#registrar" class="btn btn-primary d-flex align-items-center">
+    <i class="px-2 fa fa-plus"></i>
     <span class="px-2">
       Registrar
       <?= $user->appointment->isDirector() ? 'coordinador/a' : 'secretario/a' ?>
@@ -27,50 +27,52 @@ use HAJU\Enums\InstructionLevel;
   </a>
 </section>
 
-<ul class="list-unstyled row row-cols-sm-2 row-cols-md-3">
-  <?php foreach ($users as $member) : ?>
-    <li class="mb-4 d-flex align-items-stretch">
-      <article class="card card-body text-center <?= $member->registeredBy?->isEqualTo($user) ?: 'pe-none opacity-50 user-select-none' ?>">
-        <div class="dropdown position-relative">
-          <button style="right: 0" class="bg-transparent border-0 position-absolute" data-bs-toggle="dropdown">
-            <i class="ti-more"></i>
-          </button>
-          <div class="dropdown-menu">
-            <a
-              class="dropdown-item"
-              href="./usuarios/<?= $member->id ?>/<?= $member->isActive() ? 'desactivar' : 'activar' ?>">
-              <i class="ti-<?= $member->isActive() ? 'un' : '' ?>lock"></i>
-              <?= $member->isActive() ? 'Desactivar' : 'Activar' ?>
-            </a>
+<div class="container">
+  <ul class="list-unstyled row row-cols-sm-2 row-cols-md-3">
+    <?php foreach ($users as $member) : ?>
+      <li class="mb-4 d-flex align-items-stretch">
+        <article class="card card-body text-center <?= $member->registeredBy?->isEqualTo($user) ?: 'pe-none opacity-50 user-select-none' ?>">
+          <div class="dropdown position-relative">
+            <button style="right: 0" class="bg-transparent border-0 position-absolute" data-bs-toggle="dropdown">
+              <i class="ti-more"></i>
+            </button>
+            <div class="dropdown-menu">
+              <a
+                class="dropdown-item"
+                href="./usuarios/<?= $member->id ?>/<?= $member->isActive() ? 'desactivar' : 'activar' ?>">
+                <i class="ti-<?= $member->isActive() ? 'un' : '' ?>lock"></i>
+                <?= $member->isActive() ? 'Desactivar' : 'Activar' ?>
+              </a>
+            </div>
           </div>
-        </div>
-        <picture class="p-3">
-          <img
-            class="img-fluid rounded-circle"
-            src="<?= urldecode($member->profileImagePath->asString()) ?>"
-            style="height: 130px"
-            title="<?= $member->getFullName() ?>" />
-        </picture>
-        <span class="badge text-bg-<?= $member->isActive() ? 'success' : 'danger' ?> mx-4 mb-2">
-          <?= $member->isActive() ? 'Activo' : 'Inactivo' ?>
-        </span>
-        <h4 title="<?= $member->getFullName() ?>">
-          <?= "{$member->firstName} {$member->firstLastName}" ?>
-        </h4>
-        <span><?= $member->getParsedAppointment() ?></span>
-        <small class="text-muted">
-          <i class="ti-pin2"></i>
-          <?= $member->address ?>
-        </small>
-        <?php if ($member->registeredBy !== null) : ?>
-          <small class="text-muted" title="<?= $member->registeredBy->getFullName() ?>">
-            Registrado por: <?= $member->registeredBy->firstName ?>
+          <picture class="p-3">
+            <img
+              class="img-fluid rounded-circle"
+              src="<?= urldecode($member->profileImagePath->asString()) ?>"
+              style="height: 130px"
+              title="<?= $member->getFullName() ?>" />
+          </picture>
+          <span class="badge text-bg-<?= $member->isActive() ? 'success' : 'danger' ?> mx-4 mb-2">
+            <?= $member->isActive() ? 'Activo' : 'Inactivo' ?>
+          </span>
+          <h4 title="<?= $member->getFullName() ?>">
+            <?= "{$member->firstName} {$member->firstLastName}" ?>
+          </h4>
+          <span><?= $member->getParsedAppointment() ?></span>
+          <small class="text-muted">
+            <i class="ti-pin2"></i>
+            <?= $member->address ?>
           </small>
-        <?php endif ?>
-      </article>
-    </li>
-  <?php endforeach ?>
-</ul>
+          <?php if ($member->registeredBy !== null) : ?>
+            <small class="text-muted" title="<?= $member->registeredBy->getFullName() ?>">
+              Registrado por: <?= $member->registeredBy->firstName ?>
+            </small>
+          <?php endif ?>
+        </article>
+      </li>
+    <?php endforeach ?>
+  </ul>
+</div>
 
 <div class="modal fade" id="registrar">
   <div class="modal-dialog modal-dialog-scrollable">

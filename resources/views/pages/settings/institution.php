@@ -12,11 +12,11 @@ use HAJU\Models\Hospital;
 
 ?>
 
-<section class="mb-4 d-inline-flex px-0 align-items-center justify-content-between">
+<section class="container mb-4 d-flex align-items-center justify-content-between">
   <h2>Configuración de la institución</h2>
 </section>
 
-<form method="post" class="white_box d-flex flex-column align-items-center">
+<form method="post" class="container card card-body d-flex flex-column align-items-center">
   <fieldset class="row w-100">
     <?php
 
@@ -70,5 +70,5 @@ use HAJU\Models\Hospital;
 
     ?>
   </fieldset>
-  <button class="btn btn-primary btn-lg mt-4 px-5 rounded-pill">Guardar</button>
+  <button class="btn btn-primary w-100">Guardar</button>
 </form>

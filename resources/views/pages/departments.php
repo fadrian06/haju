@@ -14,11 +14,11 @@ use HAJU\Models\User;
 
 ?>
 
-<section class="mb-4 d-sm-flex px-0 align-items-center justify-content-between">
+<section class="container mb-4 d-sm-flex align-items-center justify-content-between">
   <h2>Departamentos</h2>
 </section>
 
-<?php if ($departments !== []) : ?>
+<div class="container">
   <ul class="list-unstyled row row-cols-sm-2 row-cols-md-3">
     <?php foreach ($departments as $department) : ?>
       <li class="mb-4 d-flex align-items-stretch">
@@ -52,4 +52,4 @@ use HAJU\Models\User;
       </li>
     <?php endforeach ?>
   </ul>
-<?php endif ?>
+</div>

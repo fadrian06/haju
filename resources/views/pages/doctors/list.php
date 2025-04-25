@@ -12,13 +12,13 @@ assert($loggedUser instanceof User);
 
 ?>
 
-<section class="mb-4 d-inline-flex px-0 align-items-center justify-content-between">
+<section class="container mb-4 d-flex px-0 align-items-center justify-content-between">
   <h2>Doctores</h2>
   <a
     data-bs-toggle="modal"
     href="#registrar"
-    class="btn btn-primary rounded-pill d-flex align-items-center">
-    <i class="px-2 ti-plus"></i>
+    class="btn btn-primary d-flex align-items-center">
+    <i class="px-2 fa fa-plus"></i>
     <span class="px-2">Registrar doctor</span>
   </a>
 </section>
@@ -27,38 +27,40 @@ assert($loggedUser instanceof User);
   No hay doctores registrados
 <?php endif ?>
 
-<ul class="list-unstyled row row-cols-sm-2 row-cols-md-3">
-  <?php foreach ($doctors as $doctor) : ?>
-    <li class="mb-4 d-flex align-items-stretch">
-      <article class="card card-body text-center <?= $doctor->canBeEditedBy($loggedUser) ?: 'pe-none opacity-50 user-select-none' ?>">
-        <div class="dropdown position-relative">
-          <button class="end-0 bg-transparent border-0 position-absolute" data-bs-toggle="dropdown">
-            <i class="ti-more"></i>
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="./doctores/<?= $doctor->idCard ?>">
-              <i class="ti-pencil"></i>
-              Editar
-            </a>
+<div class="container">
+  <ul class="list-unstyled row row-cols-sm-2 row-cols-md-3">
+    <?php foreach ($doctors as $doctor) : ?>
+      <li class="mb-4 d-flex align-items-stretch">
+        <article class="card card-body text-center <?= $doctor->canBeEditedBy($loggedUser) ?: 'pe-none opacity-50 user-select-none' ?>">
+          <div class="dropdown position-relative">
+            <button class="end-0 bg-transparent border-0 position-absolute" data-bs-toggle="dropdown">
+              <i class="ti-more"></i>
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="./doctores/<?= $doctor->idCard ?>">
+                <i class="ti-pencil"></i>
+                Editar
+              </a>
+            </div>
           </div>
-        </div>
-        <picture class="p-3">
-          <img
-            class="img-fluid rounded-circle"
-            src="./assets/img/client_img.png"
-            style="height: 130px"
-            title="<?= $doctor->getFullName() ?>" />
-        </picture>
-        <h4 title="<?= $doctor->getFullName() ?>">
-          <?= "{$doctor->firstName} {$doctor->firstLastName}" ?>
-        </h4>
-        <small class="text-muted" title="<?= $doctor->registeredBy->getFullName() ?>">
-          Registrado por: <?= $doctor->registeredBy->firstName ?>
-        </small>
-      </article>
-    </li>
-  <?php endforeach ?>
-</ul>
+          <picture class="p-3">
+            <img
+              class="img-fluid rounded-circle"
+              src="./assets/img/client_img.png"
+              style="height: 130px"
+              title="<?= $doctor->getFullName() ?>" />
+          </picture>
+          <h4 title="<?= $doctor->getFullName() ?>">
+            <?= "{$doctor->firstName} {$doctor->firstLastName}" ?>
+          </h4>
+          <small class="text-muted" title="<?= $doctor->registeredBy->getFullName() ?>">
+            Registrado por: <?= $doctor->registeredBy->firstName ?>
+          </small>
+        </article>
+      </li>
+    <?php endforeach ?>
+  </ul>
+</div>
 
 <div class="modal fade" id="registrar">
   <div class="modal-dialog modal-dialog-scrollable">
