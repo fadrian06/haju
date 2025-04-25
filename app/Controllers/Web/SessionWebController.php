@@ -23,7 +23,7 @@ final readonly class SessionWebController extends Controller
 
   public function logOut(): void
   {
-    static $excludedKeys = ['error', 'message'];
+    static $excludedKeys = ['error', 'message', 'theme'];
 
     foreach (array_keys(Session::all()) as $key) {
       if (in_array($key, $excludedKeys, true)) {
