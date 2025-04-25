@@ -5,7 +5,7 @@ declare(strict_types=1);
 use HAJU\Enums\DBDriver;
 
 return [
-  'DB_CONNECTION' => DBDriver::SQLite,
+  'DB_CONNECTION' => DBDriver::SQLITE,
   'DB_HOST' => 'localhost',
   'DB_PORT' => 3306,
   'DB_DATABASE' => DATABASE_PATH . '/haju.db',

@@ -13,6 +13,7 @@ final readonly class FilesSettingsRepository implements SettingsRepository
 {
   public function __construct(private PDO $pdo)
   {
+    // ...
   }
 
   public function getHospital(): Hospital
@@ -34,8 +35,8 @@ final readonly class FilesSettingsRepository implements SettingsRepository
   public function backupExists(): bool
   {
     return match ($_ENV['DB_CONNECTION']) {
-      DBDriver::SQLite => file_exists(str_replace('.db', '.backup.db', $_ENV['DB_DATABASE'])),
-      DBDriver::MySQL => file_exists(DATABASE_PATH . '/backup.mysql.sql'),
+      DBDriver::SQLITE => file_exists(str_replace('.db', '.backup.db', $_ENV['DB_DATABASE'])),
+      DBDriver::MYSQL => file_exists(DATABASE_PATH . '/backup.mysql.sql'),
       default => false,
     };
   }
@@ -43,7 +44,7 @@ final readonly class FilesSettingsRepository implements SettingsRepository
   public function backup(): string
   {
     switch ($_ENV['DB_CONNECTION']) {
-      case DBDriver::SQLite:
+      case DBDriver::SQLITE:
         copy($_ENV['DB_DATABASE'], str_replace('.db', '.backup.db', $_ENV['DB_DATABASE']));
         $script = $this->generateSqliteScript();
         $backupPath = str_replace('.db', '.backup.sql', $_ENV['DB_DATABASE']);
@@ -53,31 +54,32 @@ final readonly class FilesSettingsRepository implements SettingsRepository
           $script
         );
 
-          return $backupPath;
-      case DBDriver::MySQL:
+        return $backupPath;
+      case DBDriver::MYSQL:
+        // ...
       default:
-          return '';
+        return '';
     }
   }
 
   public function restore(): void
   {
     switch ($_ENV['DB_CONNECTION']) {
-      case DBDriver::SQLite:
+      case DBDriver::SQLITE:
         $copy = str_replace('.db', '.backup.db', $_ENV['DB_DATABASE']);
 
         copy($copy, $_ENV['DB_DATABASE']);
         unlink($copy);
 
-          return;
-      case DBDriver::MySQL:
-          return;
+        return;
+      case DBDriver::MYSQL:
+        return;
     }
   }
 
   public function restoreFromScript(string $script): void
   {
-    if ($_ENV['DB_CONNECTION'] === DBDriver::SQLite) {
+    if ($_ENV['DB_CONNECTION'] === DBDriver::SQLITE) {
       foreach (explode(';', $script) as $statement) {
         if ($statement) {
           $this->pdo->query($statement);

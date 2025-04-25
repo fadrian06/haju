@@ -6,14 +6,14 @@ namespace HAJU\Enums;
 
 enum DBDriver: string
 {
-  case MySQL = 'mysql';
-  case SQLite = 'sqlite';
+  case MYSQL = 'mysql';
+  case SQLITE = 'sqlite';
 
   public function getPdoDsn(): string
   {
     return match ($this) {
-      self::MySQL => "mysql:host={$_ENV['DB_HOST']}; dbname={$_ENV['DB_DATABASE']}; charset=utf8; port={$_ENV['DB_PORT']}",
-      self::SQLite => "sqlite:{$_ENV['DB_DATABASE']}",
+      self::MYSQL => "mysql:host={$_ENV['DB_HOST']}; dbname={$_ENV['DB_DATABASE']}; charset=utf8; port={$_ENV['DB_PORT']}",
+      self::SQLITE => "sqlite:{$_ENV['DB_DATABASE']}",
     };
   }
 
