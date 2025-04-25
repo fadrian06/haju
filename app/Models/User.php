@@ -177,6 +177,19 @@ final class User extends Person implements Activable
     }
   }
 
+  public function getDirector(): self
+  {
+    if ($this->registeredBy?->appointment->isDirector()) {
+      return $this->registeredBy;
+    }
+
+    if ($this->registeredBy?->registeredBy?->appointment->isDirector()) {
+      return $this->registeredBy->registeredBy;
+    }
+
+    return $this;
+  }
+
   public function __get(string $property): null|int|string
   {
     return match ($property) {

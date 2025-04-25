@@ -65,7 +65,10 @@ $frecuentCauses = array_map(
   $stmt->fetchAll(PDO::FETCH_ASSOC)
 );
 
+$consultationsTotal = 0;
+
 foreach ($patientsByCause as $cause => &$causePatients) {
+  $consultationsTotal += count($causePatients);
   usort($causePatients, static fn(Patient $a, Patient $b): int => strnatcmp($a->getFullName(), $b->getFullName()));
 }
 
@@ -170,7 +173,14 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </button>
       </div>
     </form>
-    <canvas class="w-100" id="frecuent-causes"></canvas>
+    <div class="row">
+      <div class="col-md-8">
+        <canvas class="w-100" id="frecuent-causes"></canvas>
+      </div>
+      <div class="col-md-4">
+        <canvas class="w-100" id="frecuent-causes-pie"></canvas>
+      </div>
+    </div>
 
     <h4>Por paciente:</h4>
 
@@ -322,9 +332,22 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
             data: frecuentCauses.map(cause => cause.consultations),
             backgroundColor: ['#364f6b', '#e6e6e6', '#2daab8', '#0d6efd', '#eff1f7'],
             borderColor: 'black',
-          }]
-        }
+          }],
+        },
       }),
+      frecuentCausePie: new Chart(document.getElementById('frecuent-causes-pie'), {
+        type: 'pie',
+        data: {
+          labels: frecuentCauses.map(cause => `${cause.extended_name || cause.short_name} ${cause.variant || ''}`),
+          datasets: [{
+            label: 'Número de casos',
+            data: frecuentCauses.map(cause => cause.consultations),
+            backgroundColor: ['#364f6b', '#e6e6e6', '#2daab8', '#0d6efd', '#eff1f7'],
+            borderColor: 'black',
+          }],
+        },
+      }),
+
       frecuentCause: new Chart(document.getElementById('frecuent-cause'), {
         type: 'line',
         data: {
@@ -334,14 +357,13 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
             data: frecuentCause.map(cause => cause.consultations),
             backgroundColor: '#344f6b',
             borderColor: document.documentElement.dataset.bsTheme === 'light' ? 'black' : 'white',
-          }]
-        }
-      })
+          }],
+        },
+      }),
     }
 
     function printCanvas(canvas, title = '') {
-      const image = canvas.toDataURL('image/png', 1)
-
+      const images = canvas.map(canva => canva.toDataURL('image/png', 1))
       const browserTab = open()
       const script = document.createElement('script')
       // script.innerText = 'setTimeout(print, 1000)'
@@ -356,13 +378,16 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     printBtns.frecuentCauses.addEventListener(
       'click',
-      () => printCanvas(charts.frecuentCauses.canvas, 'Causas de consulta más frecuentes')
+      () => printCanvas(
+        [charts.frecuentCauses.canvas, charts.frecuentCausePie.canvas],
+        'Causas de consulta más frecuentes'
+      )
     )
 
     printBtns.frecuentCause.addEventListener(
       'click',
       () => printCanvas(
-        charts.frecuentCause.canvas,
+        [charts.frecuentCause.canvas],
         `Frecuencia de ${frecuentCause[0]?.short_name} ${frecuentCause[0]?.variant || ''}`
       )
     )
