@@ -10,7 +10,7 @@ $iframeSrc = 'https://www.openstreetmap.org/export/embed.html?bbox=-71.281034946
 <img
   src="./resources/images/hospital-location.png"
   alt='Ubicación del Hospital "José Antonio Uzcátegui"'
-  class="d-none object-fit-cover w-100" />
+  class="d-none object-fit-contain w-100" />
 
 <iframe
   :style="theme === 'dark' && 'filter: invert(1)'"
