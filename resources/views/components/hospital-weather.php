@@ -26,7 +26,7 @@ declare(strict_types=1);
 
       $js.id = id;
       $js.src = "https://weatherwidget.io/js/widget.min.js";
-      $fjs?.parentNode?.insertBefore(js, $fjs);
+      $fjs?.parentNode?.insertBefore($js, $fjs);
       $anchor.classList.remove('d-none');
     }
   });
