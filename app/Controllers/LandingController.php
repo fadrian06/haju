@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace HAJU\Controllers;
 
-final readonly class LandingWebController
+final readonly class LandingController
 {
   public function showLanding(): void
   {

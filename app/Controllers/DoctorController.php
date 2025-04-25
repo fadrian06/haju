@@ -13,7 +13,7 @@ use Error;
 use Flight;
 use Throwable;
 
-final readonly class DoctorWebController extends Controller
+final readonly class DoctorController extends Controller
 {
   public function __construct(
     private readonly DoctorRepository $doctorRepository,

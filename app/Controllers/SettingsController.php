@@ -14,7 +14,7 @@ use Flight;
 use Leaf\Http\Session;
 use PDO;
 
-final readonly class SettingsWebController extends Controller
+final readonly class SettingsController extends Controller
 {
   public function __construct(
     private UserRepository $userRepository,

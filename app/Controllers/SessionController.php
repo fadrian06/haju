@@ -10,7 +10,7 @@ use Flight;
 use Leaf\Http\Session;
 use ZxcvbnPhp\Zxcvbn;
 
-final readonly class SessionWebController extends Controller
+final readonly class SessionController extends Controller
 {
   private const INSECURE_PASSWORD_STRENGTH_LEVEL = 2;
 

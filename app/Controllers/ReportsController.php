@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace HAJU\Controllers;
 
-final class ReportsWebController
+final class ReportsController
 {
   public function showEpi11(): void
   {

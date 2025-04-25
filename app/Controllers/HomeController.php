@@ -10,7 +10,7 @@ use HAJU\Repositories\Domain\DoctorRepository;
 use HAJU\Repositories\Domain\PatientRepository;
 use HAJU\Repositories\Domain\UserRepository;
 
-final readonly class HomeWebController extends Controller
+final readonly class HomeController extends Controller
 {
   public function __construct(
     private readonly UserRepository $userRepository,

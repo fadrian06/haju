@@ -9,7 +9,7 @@ use HAJU\Repositories\Domain\DepartmentRepository;
 use Flight;
 use Throwable;
 
-final readonly class DepartmentWebController extends Controller
+final readonly class DepartmentController extends Controller
 {
   public function __construct(private DepartmentRepository $departmentRepository)
   {
