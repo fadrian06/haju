@@ -13,15 +13,15 @@ declare(strict_types=1);
 
     <div class="col-lg-7">
       <article class="card shadow-lg border-0 h-100">
-        <header class="ratio ratio-16x9 position-relative">
+        <header class="ratio ratio-4x3 position-relative">
           <?php Flight::render('components/hospital-location') ?>
-          <div class="weather end-0" style="max-width: 100px; left: unset">
+          <div class="position-absolute end-0" style="max-width: 100px; left: unset">
             <?php Flight::render('components/hospital-weather') ?>
           </div>
         </header>
         <footer class="card-footer h-100">
-          <div class="row">
-            <div class="col-md-5 d-flex gap-3">
+          <div class="row row-cols-lg-2 row-gap-2 py-2">
+            <div class="col d-flex gap-3">
               <i class="fa fa-map-marker-alt fa-2x text-success"></i>
               <div>
                 <h5>Dirección</h5>
@@ -31,18 +31,11 @@ declare(strict_types=1);
                 </small>
               </div>
             </div>
-            <div class="col-md-3 d-flex gap-3">
+            <div class="col d-flex gap-3">
               <i class="fa fa-road fa-2x text-primary"></i>
               <div>
                 <h5>Accesos</h5>
                 <small>Cerca de la Carretera Panamericana</small>
-              </div>
-            </div>
-            <div class="col-md-4 d-flex gap-3">
-              <i class="fa fa-car-side fa-2x text-info"></i>
-              <div>
-                <h5>Estacionamiento</h5>
-                <small>Coches y motocicletas</small>
               </div>
             </div>
           </div>

@@ -5,7 +5,7 @@ declare(strict_types=1);
 ?>
 
 <section class="container py-5">
-  <div class="row g-5 row-cols-md-2">
+  <div class="row row-gap-5 row-cols-md-2">
     <header class="col-md-12 text-center">
       <h2 class="display-5 text-primary">Nuestro Compromiso</h2>
       <p class="lead">Conoce los principios que guían nuestra labor diaria</p>
