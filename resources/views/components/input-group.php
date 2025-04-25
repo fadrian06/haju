@@ -90,6 +90,7 @@ $model ??= '';
         name="<?= $name ?>"
         id="<?= $id ?>"
         style="height: 66px"
+        <?= !$model ?: "x-model='{$model}'" ?>
         placeholder="<?= $placeholder ?>"><?= $value ?></textarea>
     <?php elseif ($type === InputGroupType::FILE) : ?>
       <input
@@ -107,6 +108,7 @@ $model ??= '';
         name="<?= $name ?>"
         id="<?= $id ?>"
         placeholder="<?= $placeholder ?>"
+        <?= !$model ?: "x-model='{$model}'" ?>
         <?= $multiple ? 'multiple' : '' ?>>
         <option <?= !$value ? 'selected' : '' ?> disabled value="">
           Seleccione una opción
@@ -133,6 +135,7 @@ $model ??= '';
         value="<?= $value ?>"
         <?= $readonly ? 'readonly' : '' ?>
         list="<?= $list ?? null ?>"
+        <?= !$model ?: "x-model='{$model}'" ?>
         <?= $pattern ? "pattern='$pattern'" : '' ?>
         <?= $title ? "data-bs-toggle='tooltip' title='$title'" : '' ?>
         <?= $oninput ? "oninput='$oninput'" : '' ?> />

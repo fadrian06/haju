@@ -5,6 +5,7 @@ declare(strict_types=1);
 use HAJU\Models\Consultation;
 use HAJU\Models\Department;
 use HAJU\Enums\DateRange;
+use HAJU\Models\ConsultationCauseCategory;
 
 /**
  * @var Consultation[] $consultations
@@ -28,6 +29,8 @@ use HAJU\Enums\DateRange;
 <section
   x-data='{
     patientName: "",
+    causeId: "",
+    categoryId: "",
     type: "",
     allConsultations: JSON.parse(`<?= json_encode($consultations) ?>`),
     startDate: "",
@@ -55,6 +58,14 @@ use HAJU\Enums\DateRange;
           match = match && consultationDate <= endDate;
         }
 
+        if (this.causeId) {
+          match = match && consultation.cause.id.toString() === this.causeId.toString();
+        }
+
+        if (this.categoryId) {
+          match = match && consultation.cause.category.id.toString() === this.categoryId.toString();
+        }
+
         return match;
       });
     },
@@ -65,6 +76,34 @@ use HAJU\Enums\DateRange;
     'model' => 'patientName',
     'label' => 'Buscar por paciente...'
   ]) ?>
+
+  <div class="row">
+    <?php
+
+    Flight::render('components/input-group', [
+      'type' => 'select',
+      'options' => array_map(static fn(ConsultationCauseCategory $category): array => [
+        'value' => $category->id,
+        'text' => $category->extendedName ?: $category->shortName
+      ], $consultationCauseCategories),
+      'placeholder' => 'Categoría de causa de consulta',
+      'cols' => 7,
+      'name' => 'consultation_cause_category',
+      'model' => 'categoryId',
+    ]);
+
+    Flight::render('components/input-group', [
+      'type' => 'select',
+      'hidden' => true,
+      'options' => [],
+      'placeholder' => 'Causa de consulta',
+      'cols' => 5,
+      'name' => 'consultation_cause',
+      'model' => 'causeId',
+    ]);
+
+    ?>
+  </div>
 
   <h3 class="my-4 fs-2">Filtrar por</h3>
   <div class="list-group list-group-flush mb-3">
@@ -118,7 +157,7 @@ use HAJU\Enums\DateRange;
       </thead>
       <tbody>
         <template
-          x-for="consultation in (patientName || type || startDate || endDate) ? filteredConsultations : allConsultations"
+          x-for="consultation in (patientName || type || startDate || endDate || categoryId || causeId) ? filteredConsultations : allConsultations"
           x-key="consultation.id">
           <tr>
             <td x-text="consultation.registeredDate"></td>
@@ -139,3 +178,28 @@ use HAJU\Enums\DateRange;
     </table>
   </div>
 </section>
+
+<script>
+  const $consultationCauseSelect = document.querySelector('[name="consultation_cause"]')
+  const causesByCategory = {}
+
+  document.querySelector('[name="consultation_cause_category"]').addEventListener('change', async event => {
+    if (!causesByCategory[event.target.value]) {
+      const response = await fetch(`./api/causas-consulta/categorias/${event.target.value}`)
+      const {
+        consultationCauses
+      } = await response.json()
+
+      causesByCategory[event.target.value] = consultationCauses
+    }
+
+    let html = '<option selected disabled>Seleccione una opción</option>'
+
+    for (const cause of causesByCategory[event.target.value]) {
+      html += `<option value="${cause.id}">${cause.name.extended || cause.name.short}</option>`
+    }
+
+    $consultationCauseSelect.innerHTML = html
+    $consultationCauseSelect.parentElement.classList.remove('d-none')
+  })
+</script>

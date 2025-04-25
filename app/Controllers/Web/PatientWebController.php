@@ -120,6 +120,7 @@ final readonly class PatientWebController extends Controller
 
     renderPage('consultations/list', 'Consultas', [
       'consultations' => $consultations,
+      'consultationCauseCategories' => $this->consultationCauseCategoryRepository->getAll(),
     ], 'main');
   }
 

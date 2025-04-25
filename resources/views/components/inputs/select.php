@@ -9,6 +9,7 @@ $options ??= [];
 $required ??= true;
 $label ??= '';
 $name ??= '';
+$model ??= '';
 
 ?>
 
@@ -19,6 +20,7 @@ $name ??= '';
     <?= !$required ?: 'required' ?>
     class="form-select"
     id="<?= $id ?>"
+    <?= !$model ?: "x-model='{$model}'" ?>
     name="<?= $name ?>">
     <option value="" selected disabled>Selecciona una opción</option>
     <?php foreach ($options as $option) : ?>
