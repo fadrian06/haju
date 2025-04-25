@@ -1,0 +1,713 @@
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  /* line 1, H:/admin_project/hospital/scss/_common_component.scss */
+  .lms_sm_block {
+    display: block;
+  }
+}
+
+@media (max-width: 575.98px) {
+  /* line 8, H:/admin_project/hospital/scss/_common_component.scss */
+  .lms_xs_small_btn a {
+    padding: 11px 20px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  /* line 14, H:/admin_project/hospital/scss/_common_component.scss */
+  .mb_xs_20px {
+    margin-bottom: 20px;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  /* line 19, H:/admin_project/hospital/scss/_common_component.scss */
+  .mb_sm_20px {
+    margin-bottom: 20px;
+  }
+}
+
+/* line 24, H:/admin_project/hospital/scss/_common_component.scss */
+.lms_supper_text {
+  vertical-align: super !important;
+}
+
+/* line 27, H:/admin_project/hospital/scss/_common_component.scss */
+.gj-picker-md {
+  border: 1px solid #fef1f2;
+  padding: 10px;
+}
+
+/* line 31, H:/admin_project/hospital/scss/_common_component.scss */
+.gj-picker-md table tr td.today div {
+  color: #fff;
+  background: #16bbe5;
+  border-radius: 50%;
+}
+
+/* line 36, H:/admin_project/hospital/scss/_common_component.scss */
+.gj-picker-md table tr td.gj-cursor-pointer div:hover {
+  border-radius: 50%;
+  background: #16bbe5;
+  color: #fff;
+}
+
+/* line 42, H:/admin_project/hospital/scss/_common_component.scss */
+.gj-picker-md div[role="navigator"] div:first-child,
+.gj-picker-md div[role="navigator"] div:last-child {
+  max-width: 42px;
+  background: #fef1f2;
+  color: #000;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 44px;
+  height: 42px;
+  font-weight: 900;
+}
+
+/* line 51, H:/admin_project/hospital/scss/_common_component.scss */
+.gj-picker-md div[role="navigator"] div:first-child i,
+.gj-picker-md div[role="navigator"] div:last-child i {
+  font-weight: 900;
+  font-size: 14px;
+}
+
+/* line 60, H:/admin_project/hospital/scss/_common_component.scss */
+.dropdown-menu.show .dropdown-toggle.lms_drop_1::after {
+  color: #fff !important;
+}
+
+/* line 64, H:/admin_project/hospital/scss/_common_component.scss */
+.dropdown-menu.option_width {
+  min-width: 102px;
+}
+
+/* line 68, H:/admin_project/hospital/scss/_common_component.scss */
+.dropdown.show .dropdown-toggle.lms_drop_1::after {
+  color: #fff;
+}
+
+/* line 75, H:/admin_project/hospital/scss/_common_component.scss */
+.lms_common_header .lms_common_title h4 {
+  margin-bottom: 3px;
+}
+
+/* line 78, H:/admin_project/hospital/scss/_common_component.scss */
+.lms_common_header .lms_common_title p {
+  font-size: 12px;
+  font-weight: 300;
+  color: #7e7172;
+  margin-bottom: 0;
+}
+
+/* line 87, H:/admin_project/hospital/scss/_common_component.scss */
+.common_line_separator {
+  display: inline-block;
+  width: 2px;
+  height: 11px;
+  background: #b9b3b3;
+  margin: 0 7px 0 7px;
+}
+
+/* line 94, H:/admin_project/hospital/scss/_common_component.scss */
+.h-120px {
+  height: 120px !important;
+}
+
+/* line 97, H:/admin_project/hospital/scss/_common_component.scss */
+.h-260px {
+  height: 260px !important;
+}
+
+@media (max-width: 991px) {
+  /* line 97, H:/admin_project/hospital/scss/_common_component.scss */
+  .h-260px {
+    height: 160px !important;
+  }
+}
+
+/* line 103, H:/admin_project/hospital/scss/_common_component.scss */
+.h-230px {
+  height: 230px !important;
+}
+
+@media (max-width: 991px) {
+  /* line 103, H:/admin_project/hospital/scss/_common_component.scss */
+  .h-230px {
+    height: 160px !important;
+  }
+}
+
+/* line 111, H:/admin_project/hospital/scss/_common_component.scss */
+.discription_list_wrap p {
+  font-size: 13px;
+  font-weight: 300;
+  color: #7e7172;
+  line-height: 26px;
+  margin-bottom: 17px;
+}
+
+/* line 118, H:/admin_project/hospital/scss/_common_component.scss */
+.discription_list_wrap h5 {
+  font-size: 12px;
+  font-weight: 400;
+  color: #222222;
+  margin-top: 19px;
+  margin-bottom: 14px;
+}
+
+/* line 128, H:/admin_project/hospital/scss/_common_component.scss */
+.common_list_style li {
+  font-size: 13px;
+  font-weight: 300;
+  color: #7e7172;
+  line-height: 26px;
+  position: relative;
+  padding-left: 15px;
+}
+
+/* line 135, H:/admin_project/hospital/scss/_common_component.scss */
+.common_list_style li:before {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 3px;
+  height: 3px;
+  background: #7e7172;
+  content: "";
+  border-radius: 50%;
+}
+
+/* line 150, H:/admin_project/hospital/scss/_common_component.scss */
+.result_modal_table_form .modal-body {
+  margin: 30px 0;
+  padding: 120px 100px 104px 100px !important;
+}
+
+@media (max-width: 991px) {
+  /* line 150, H:/admin_project/hospital/scss/_common_component.scss */
+  .result_modal_table_form .modal-body {
+    padding: 30px !important;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 150, H:/admin_project/hospital/scss/_common_component.scss */
+  .result_modal_table_form .modal-body {
+    padding: 50px 50px !important;
+  }
+}
+
+/* line 163, H:/admin_project/hospital/scss/_common_component.scss */
+.result_modal_table_form .table thead th {
+  border-bottom: 0 solid transparent;
+  background-color: #fef1f2;
+  padding: 17px 30px;
+  line-height: 16px;
+  border: 0px solid transparent;
+  border-top-color: transparent;
+  border-top-style: solid;
+  border-top-width: 0px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #222222;
+  white-space: nowrap;
+}
+
+/* line 179, H:/admin_project/hospital/scss/_common_component.scss */
+.result_modal_table_form .table tbody th,
+.result_modal_table_form .table tbody td {
+  color: #7e7172;
+  font-size: 13px !important;
+  color: #7e7172;
+  font-weight: 300;
+  border-bottom: 1px solid #eee1e2;
+  padding: 10px 25px !important;
+}
+
+/* line 189, H:/admin_project/hospital/scss/_common_component.scss */
+.result_modal_table_form .result_header_modal {
+  margin-bottom: 45px;
+}
+
+/* line 192, H:/admin_project/hospital/scss/_common_component.scss */
+.result_modal_table_form .result_header_modal h2 {
+  font-size: 36px;
+  font-weight: 500;
+  color: #222222;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 575.98px) {
+  /* line 192, H:/admin_project/hospital/scss/_common_component.scss */
+  .result_modal_table_form .result_header_modal h2 {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  /* line 192, H:/admin_project/hospital/scss/_common_component.scss */
+  .result_modal_table_form .result_header_modal h2 {
+    font-size: 20px;
+  }
+}
+
+/* line 204, H:/admin_project/hospital/scss/_common_component.scss */
+.result_modal_table_form .result_header_modal p {
+  font-size: 14px;
+  font-weight: 300;
+  color: #7e7172;
+  line-height: 26px;
+}
+
+/* line 210, H:/admin_project/hospital/scss/_common_component.scss */
+.result_modal_table_form .result_header_modal .passed_text {
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 29px;
+  margin-bottom: 35px;
+}
+
+@media (max-width: 575.98px) {
+  /* line 210, H:/admin_project/hospital/scss/_common_component.scss */
+  .result_modal_table_form .result_header_modal .passed_text {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  /* line 210, H:/admin_project/hospital/scss/_common_component.scss */
+  .result_modal_table_form .result_header_modal .passed_text {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* line 210, H:/admin_project/hospital/scss/_common_component.scss */
+  .result_modal_table_form .result_header_modal .passed_text {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+}
+
+/* line 237, H:/admin_project/hospital/scss/_common_component.scss */
+.student_list_img img {
+  width: 50px;
+  height: 50px;
+}
+
+/* line 243, H:/admin_project/hospital/scss/_common_component.scss */
+.common_date_picker input {
+  width: 100%;
+  border: 1px solid #eee1e2;
+  border-radius: 3px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 13px;
+  color: #7e7172;
+  padding: 0px 25px;
+  font-weight: 300;
+}
+
+/* line 256, H:/admin_project/hospital/scss/_common_component.scss */
+.website_settings_wrap .modal-body {
+  padding: 0 !important;
+}
+
+/* line 260, H:/admin_project/hospital/scss/_common_component.scss */
+.input_form_persent {
+  position: relative;
+}
+
+/* line 262, H:/admin_project/hospital/scss/_common_component.scss */
+.input_form_persent:before {
+  content: "\f295";
+  border-bottom: 0;
+  border-right: 0;
+  display: block;
+  margin-top: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  right: 25px;
+  border: 0;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  color: #cec1c2;
+  transform: translateY(-50%);
+  font-size: 13px;
+}
+
+/* line 286, H:/admin_project/hospital/scss/_common_component.scss */
+.tagInput_field {
+  margin-bottom: 21px;
+}
+
+/* line 288, H:/admin_project/hospital/scss/_common_component.scss */
+.tagInput_field label {
+  font-size: 12px;
+  font-weight: 300;
+  color: #222222;
+  text-align: left;
+  margin: 0;
+  margin-bottom: 0px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* line 298, H:/admin_project/hospital/scss/_common_component.scss */
+.tagInput_field .bootstrap-tagsinput {
+  text-align: left;
+  border: 1px solid #eee1e2;
+  padding: 9px 25px 4px 25px;
+  box-shadow: none;
+  border-radius: 3px;
+  min-height: 50px;
+}
+
+/* line 305, H:/admin_project/hospital/scss/_common_component.scss */
+.tagInput_field .bootstrap-tagsinput input {
+  border: none !important;
+  width: auto !important;
+  display: inline-block !important;
+  background-color: transparent !important;
+  height: 0;
+  margin: 0;
+  min-width: 20px;
+  padding: 7px !important;
+}
+
+/* line 316, H:/admin_project/hospital/scss/_common_component.scss */
+.tagInput_field .bootstrap-tagsinput .badge {
+  margin: 0 5px 5px 0;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 30px 0 20px;
+  font-size: 12px;
+  color: #16bbe5;
+  font-weight: 400;
+  background: #ffff;
+  border: 1px solid #16bbe5;
+  border-radius: 30px;
+  position: relative;
+}
+
+/* line 329, H:/admin_project/hospital/scss/_common_component.scss */
+.tagInput_field .bootstrap-tagsinput .badge [data-role="remove"]::after {
+  font-size: 10px;
+  font-family: "themify";
+  content: "\e646";
+  background: none;
+  padding: 0;
+  margin: 0;
+  margin-left: 0px;
+  background: transparent;
+  margin-left: 5px;
+  padding: 0;
+  border: 1px solid transparent;
+  padding: 2px;
+}
+
+/* line 343, H:/admin_project/hospital/scss/_common_component.scss */
+.tagInput_field .bootstrap-tagsinput .badge [data-role="remove"]:hover::after {
+  background: #16bbe5;
+  color: #fff;
+  border-color: #16bbe5;
+}
+
+/* line 348, H:/admin_project/hospital/scss/_common_component.scss */
+.tagInput_field span.badge.badge-info span {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 8px;
+}
+
+/* line 357, H:/admin_project/hospital/scss/_common_component.scss */
+.custom_striped_progressbar .progress {
+  height: 24px;
+  background: transparent;
+  border-radius: 30px;
+  width: 256px;
+}
+
+/* line 364, H:/admin_project/hospital/scss/_common_component.scss */
+.custom_striped_progressbar .progress-bar {
+  position: relative;
+  border-radius: 30px;
+  text-align: left;
+  font-size: 15px;
+  padding-left: 15px;
+  color: #fff;
+  font-weight: 300;
+  background: transparent;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+/* line 375, H:/admin_project/hospital/scss/_common_component.scss */
+.custom_striped_progressbar .progress-bar.green_bar {
+  background-image: url(../img/progress/progress-bg.png);
+  background-size: cover;
+}
+
+/* line 379, H:/admin_project/hospital/scss/_common_component.scss */
+.custom_striped_progressbar .progress-bar.yellow_bar {
+  background-image: url(../img/progress/design-progress-yellow.png);
+  background-size: cover;
+}
+
+/* line 384, H:/admin_project/hospital/scss/_common_component.scss */
+.custom_striped_progressbar .progress-bar.red_bar {
+  background-image: url(../img/progress/design-progress-red.png);
+  background-size: cover;
+}
+
+/* line 394, H:/admin_project/hospital/scss/_common_component.scss */
+.custom_lms_radio_2 label {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  font-size: 13px;
+  font-weight: 300;
+  color: #7e7172;
+  margin-left: 0;
+  padding-bottom: 15px;
+  margin-top: 0;
+}
+
+/* line 405, H:/admin_project/hospital/scss/_common_component.scss */
+.custom_lms_radio_2 label span {
+  display: inline-block;
+  position: relative;
+  background-color: transparent;
+  width: 20px;
+  height: 20px;
+  transform-origin: center;
+  border: 1px solid #eee2e3;
+  border-radius: 50%;
+  vertical-align: -6px;
+  margin-right: 15px;
+  transition: background-color 150ms 200ms, transform 350ms
+    cubic-bezier(0.78, -1.22, 0.17, 1.89);
+}
+
+/* line 419, H:/admin_project/hospital/scss/_common_component.scss */
+.custom_lms_radio_2 label span:before {
+  content: "";
+  width: 0px;
+  height: 1px;
+  border-radius: 2px;
+  background: #16bbe5;
+  position: absolute;
+  transform: rotate(38deg);
+  top: 13px;
+  left: 9px;
+  transition: width 50ms ease 50ms;
+  transform-origin: 0% 0%;
+  top: 9.69px;
+  left: 4.99px;
+  border-radius: 0;
+}
+
+/* line 436, H:/admin_project/hospital/scss/_common_component.scss */
+.custom_lms_radio_2 label span:after {
+  content: "";
+  width: 0;
+  height: 1px;
+  border-radius: 2px;
+  background: #16bbe5;
+  position: absolute;
+  transform: rotate(305deg);
+  top: 12.8px;
+  left: 7.48px;
+  transition: width 50ms ease;
+  transform-origin: 0% 0%;
+  border-radius: 0;
+}
+
+/* line 453, H:/admin_project/hospital/scss/_common_component.scss */
+.custom_lms_radio_2 label:hover span:before {
+  width: 4px;
+  transition: width 100ms ease;
+}
+
+/* line 458, H:/admin_project/hospital/scss/_common_component.scss */
+.custom_lms_radio_2 label:hover span:after {
+  width: 10px;
+  transition: width 150ms ease 100ms;
+}
+
+/* line 465, H:/admin_project/hospital/scss/_common_component.scss */
+.custom_lms_radio_2 input[type="radio"] {
+  display: none;
+}
+
+/* line 469, H:/admin_project/hospital/scss/_common_component.scss */
+.custom_lms_radio_2 input[type="radio"]:checked + label span {
+  background-color: #16bbe5;
+  transform: scale(1);
+  border-color: #16bbe5;
+}
+
+/* line 474, H:/admin_project/hospital/scss/_common_component.scss */
+.custom_lms_radio_2 input[type="radio"]:checked + label span:after {
+  width: 10px;
+  background: #fff;
+  transition: width 150ms ease 100ms;
+}
+
+/* line 480, H:/admin_project/hospital/scss/_common_component.scss */
+.custom_lms_radio_2 input[type="radio"]:checked + label span:before {
+  width: 4px;
+  background: #fff;
+  transition: width 150ms ease 100ms;
+}
+
+/* line 487, H:/admin_project/hospital/scss/_common_component.scss */
+.custom_lms_radio_2 input[type="radio"]:checked + label:hover span {
+  background-color: #16bbe5;
+  transform: scale(1.25);
+  border-color: #16bbe5;
+}
+
+/* line 492, H:/admin_project/hospital/scss/_common_component.scss */
+.custom_lms_radio_2 input[type="radio"]:checked + label:hover span:after {
+  width: 10px;
+  background: #fff;
+  transition: width 150ms ease 100ms;
+}
+
+/* line 497, H:/admin_project/hospital/scss/_common_component.scss */
+.custom_lms_radio_2 input[type="radio"]:checked + label:hover span:before {
+  width: 4px;
+  background: #fff;
+  transition: width 150ms ease 100ms;
+}
+
+/* line 510, H:/admin_project/hospital/scss/_common_component.scss */
+.import_topic_wrapper.modal_btn {
+  display: grid !important;
+  grid-gap: 10px;
+  grid-template-columns: 3fr 9fr;
+  align-items: end;
+}
+
+/* line 515, H:/admin_project/hospital/scss/_common_component.scss */
+.import_topic_wrapper.modal_btn .btn_1 {
+  margin: 0 !important;
+}
+
+@media (max-width: 575.98px) {
+  /* line 510, H:/admin_project/hospital/scss/_common_component.scss */
+  .import_topic_wrapper.modal_btn {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* line 528, H:/admin_project/hospital/scss/_common_component.scss */
+.indvisual_form .btn_1.big_btn {
+  padding: 16px 36px;
+}
+
+/* line 531, H:/admin_project/hospital/scss/_common_component.scss */
+.indvisual_form .chose_thumb_title {
+  font-size: 12px;
+  font-weight: 300;
+  color: #222222;
+  text-align: left;
+  margin: 0;
+  margin-bottom: 0px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* line 542, H:/admin_project/hospital/scss/_common_component.scss */
+.indvisual_form .input_wrap label {
+  font-size: 12px;
+  font-weight: 300;
+  color: #222222;
+  text-align: left;
+  margin: 0;
+  margin-bottom: 0px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* line 552, H:/admin_project/hospital/scss/_common_component.scss */
+.indvisual_form .input_wrap textarea {
+  height: 100px;
+  padding: 0;
+  line-height: 28px;
+  padding: 13px 25px;
+}
+
+/* line 557, H:/admin_project/hospital/scss/_common_component.scss */
+.indvisual_form .input_wrap textarea.max_textarea {
+  height: 290px;
+}
+
+/* line 563, H:/admin_project/hospital/scss/_common_component.scss */
+.indvisual_form .nice_Select,
+.indvisual_form input,
+.indvisual_form textarea {
+  height: 50px;
+  line-height: 50px;
+  background-color: #fff;
+  border: 1px solid #eee1e2;
+  padding: 10px 25px;
+  color: #7e7172;
+  font-weight: 500;
+  font-size: 13px;
+  width: 100%;
+  display: block;
+  margin-bottom: 21px;
+  font-weight: 300;
+  border-radius: 3px;
+}
+
+/* line 577, H:/admin_project/hospital/scss/_common_component.scss */
+.indvisual_form .nice_Select::placeholder,
+.indvisual_form input::placeholder,
+.indvisual_form textarea::placeholder {
+  color: #7e7172;
+  font-weight: 300;
+  opacity: 1;
+}
+
+/* line 583, H:/admin_project/hospital/scss/_common_component.scss */
+.indvisual_form .nice_Select {
+  line-height: 30px;
+}
+
+/* line 585, H:/admin_project/hospital/scss/_common_component.scss */
+.indvisual_form .nice_Select :after {
+  left: 22px;
+}
+
+/* line 589, H:/admin_project/hospital/scss/_common_component.scss */
+.indvisual_form .nice-select.nice_Select2 {
+  height: 30px;
+  line-height: 30px;
+  background-color: #fff;
+  border: 1px solid #eee1e2;
+  padding: 0 37px 0 20px;
+  color: #7e7172;
+  font-weight: 500;
+  font-size: 13px;
+  width: 100%;
+  display: block;
+  margin-bottom: 21px;
+  font-weight: 300;
+  border-radius: 3px;
+  margin: 0;
+  width: auto;
+}
+
+/* line 605, H:/admin_project/hospital/scss/_common_component.scss */
+.indvisual_form .nice-select.nice_Select2::after {
+  top: 20%;
+}

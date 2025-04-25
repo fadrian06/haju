@@ -1,0 +1,27 @@
+.min_400 {
+  min-height: 380px;
+}
+
+@media (min-width: 1900px) {
+  /* line 1, H:/admin_project/hospital/scss/_pie.scss */
+  .min_400 {
+    min-height: 450px;
+  }
+}
+
+/* line 7, H:/admin_project/hospital/scss/_pie.scss */
+.min_430 {
+  min-height: 430px;
+}
+
+@media (min-width: 1900px) {
+  /* line 7, H:/admin_project/hospital/scss/_pie.scss */
+  .min_430 {
+    min-height: 460px;
+  }
+}
+
+/* line 13, H:/admin_project/hospital/scss/_pie.scss */
+.mb-55 {
+  margin-bottom: 55px;
+}

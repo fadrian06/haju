@@ -1,0 +1,446 @@
+/* line 2, H:/admin_project/hospital/scss/_faq.scss */
+.accordion_custom h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+/* line 7, H:/admin_project/hospital/scss/_faq.scss */
+.accordion_custom .card {
+  margin-bottom: 15px;
+  border: 0;
+  overflow: visible;
+}
+
+/* line 11, H:/admin_project/hospital/scss/_faq.scss */
+.accordion_custom .card .card-header {
+  border: 0;
+  padding: 0;
+  border-radius: 30px !important;
+}
+
+/* line 15, H:/admin_project/hospital/scss/_faq.scss */
+.accordion_custom .card .card-header h2 {
+  padding: 0;
+}
+
+/* line 18, H:/admin_project/hospital/scss/_faq.scss */
+.accordion_custom .card .card-header h2 a {
+  padding: 0;
+  font-size: 14px;
+  font-weight: 500;
+  width: 100%;
+  text-align: left;
+  position: relative;
+  position: relative;
+  padding: 13px 20px;
+  background: #2daab8;
+  box-shadow: 0px 5px 10px rgba(45, 170, 184, 0.7);
+  color: #fff;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  border: 0;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+}
+
+/* line 36, H:/admin_project/hospital/scss/_faq.scss */
+.accordion_custom .card .card-header h2 a::before {
+  content: "\e622";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: "themify";
+  font-size: 14px;
+  right: 30px;
+  color: #fff;
+}
+
+/* line 47, H:/admin_project/hospital/scss/_faq.scss */
+.accordion_custom .card .card-header h2 a.collapsed {
+  background: #f5f7fb;
+  color: #415094;
+  box-shadow: none;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+}
+
+/* line 52, H:/admin_project/hospital/scss/_faq.scss */
+.accordion_custom .card .card-header h2 a.collapsed::before {
+  content: "\e61a";
+  color: #415094;
+}
+
+/* line 57, H:/admin_project/hospital/scss/_faq.scss */
+.accordion_custom .card .card-header h2 a:focus {
+  text-decoration: none;
+}
+
+/* line 63, H:/admin_project/hospital/scss/_faq.scss */
+.accordion_custom .card .card-body {
+  padding: 24px 20px 30px 20px;
+}
+
+@media (max-width: 575.98px) {
+  /* line 63, H:/admin_project/hospital/scss/_faq.scss */
+  .accordion_custom .card .card-body {
+    padding: 15px;
+  }
+}
+
+/* line 68, H:/admin_project/hospital/scss/_faq.scss */
+.accordion_custom .card .card-body p {
+  font-size: 14px;
+  line-height: 26px;
+  color: #555555;
+  font-weight: 300;
+  margin-bottom: 28px;
+}
+
+/* line 74, H:/admin_project/hospital/scss/_faq.scss */
+.accordion_custom .card .card-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* line 83, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area {
+  display: grid;
+  grid-template-columns: 4fr 8fr;
+  grid-gap: 30px;
+}
+
+@media (max-width: 575.98px) {
+  /* line 83, H:/admin_project/hospital/scss/_faq.scss */
+  .messages_box_area {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 991px) {
+  /* line 83, H:/admin_project/hospital/scss/_faq.scss */
+  .messages_box_area {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 83, H:/admin_project/hospital/scss/_faq.scss */
+  .messages_box_area {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1500px) {
+  /* line 83, H:/admin_project/hospital/scss/_faq.scss */
+  .messages_box_area {
+    grid-template-columns: 6fr 6fr;
+  }
+}
+
+@media only screen and (min-width: 1440px) and (max-width: 1679px) {
+  /* line 83, H:/admin_project/hospital/scss/_faq.scss */
+  .messages_box_area {
+    grid-template-columns: 5fr 7fr;
+  }
+}
+
+/* line 103, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area .messages_list .serach_field_2 {
+  width: 100%;
+}
+
+/* line 106, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area .messages_list ul {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+/* line 110, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area .messages_list ul li a {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #eee1e2;
+  padding: 20px 0;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+/* line 117, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area .messages_list ul li a .message_pre_left {
+  display: flex;
+  align-items: center;
+}
+
+/* line 123, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area
+  .messages_list
+  ul
+  li
+  a
+  .message_pre_left
+  .message_preview_thumb
+  img {
+  width: 50px;
+  height: 50px;
+}
+
+/* line 128, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area .messages_list ul li a .message_pre_left .messges_info {
+  padding-left: 20px;
+}
+
+/* line 131, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area .messages_list ul li a .message_pre_left h4 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #222222;
+  margin-bottom: 6px;
+}
+
+/* line 137, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area .messages_list ul li a .message_pre_left p {
+  font-size: 13px;
+  font-weight: 300;
+  color: #676b84;
+  margin-bottom: 0;
+}
+
+/* line 145, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area .messages_list ul li a .messge_time span {
+  font-size: 12px;
+  font-weight: 300;
+  color: #cec1c2;
+  white-space: nowrap;
+}
+
+/* line 153, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area .messages_list ul li:hover a {
+  padding-left: 10px;
+  padding-right: 10px;
+  background: rgba(255, 247, 248, 0.6);
+}
+
+/* line 163, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area .messages_chat .messge_time span {
+  white-space: nowrap;
+}
+
+/* line 167, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area .messages_chat .single_message_chat {
+  margin-bottom: 50px;
+  padding-right: 20%;
+}
+
+@media (max-width: 575.98px) {
+  /* line 167, H:/admin_project/hospital/scss/_faq.scss */
+  .messages_box_area .messages_chat .single_message_chat {
+    padding-right: 0%;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 991px) {
+  /* line 167, H:/admin_project/hospital/scss/_faq.scss */
+  .messages_box_area .messages_chat .single_message_chat {
+    padding-right: 0%;
+    margin-bottom: 30px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1500px) {
+  /* line 167, H:/admin_project/hospital/scss/_faq.scss */
+  .messages_box_area .messages_chat .single_message_chat {
+    padding-right: 0%;
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 167, H:/admin_project/hospital/scss/_faq.scss */
+  .messages_box_area .messages_chat .single_message_chat {
+    padding-right: 0%;
+    margin-bottom: 30px;
+  }
+}
+
+/* line 186, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area .messages_chat .single_message_chat .message_content_view {
+  background: #fff7f8;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+/* line 190, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area
+  .messages_chat
+  .single_message_chat
+  .message_content_view.red_border {
+  border: 1px solid #2daab8;
+}
+
+/* line 193, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area
+  .messages_chat
+  .single_message_chat
+  .message_content_view
+  span {
+  display: block;
+  margin: 17px 0 17px 0;
+}
+
+/* line 197, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area .messages_chat .single_message_chat .message_content_view p {
+  font-size: 13px;
+  font-weight: 300;
+  color: #676b84;
+  line-height: 26px;
+}
+
+/* line 204, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area .messages_chat .single_message_chat .message_pre_left {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+/* line 210, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area
+  .messages_chat
+  .single_message_chat
+  .message_pre_left
+  .message_preview_thumb
+  img {
+  width: 50px;
+  height: 50px;
+}
+
+/* line 215, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area
+  .messages_chat
+  .single_message_chat
+  .message_pre_left
+  .messges_info {
+  padding-left: 20px;
+}
+
+/* line 218, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area .messages_chat .single_message_chat .message_pre_left h4 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #222222;
+  margin-bottom: 2px;
+}
+
+/* line 224, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area .messages_chat .single_message_chat .message_pre_left p {
+  font-size: 12px;
+  font-weight: 300;
+  color: #676b84;
+  margin-bottom: 0;
+}
+
+/* line 231, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area .messages_chat .single_message_chat.sender_message {
+  padding-right: 0%;
+  padding-left: 20%;
+}
+
+@media (max-width: 575.98px) {
+  /* line 231, H:/admin_project/hospital/scss/_faq.scss */
+  .messages_box_area .messages_chat .single_message_chat.sender_message {
+    padding-right: 0%;
+    padding-left: 0%;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 991px) {
+  /* line 231, H:/admin_project/hospital/scss/_faq.scss */
+  .messages_box_area .messages_chat .single_message_chat.sender_message {
+    padding-right: 0%;
+    padding-left: 0%;
+    margin-bottom: 30px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1500px) {
+  /* line 231, H:/admin_project/hospital/scss/_faq.scss */
+  .messages_box_area .messages_chat .single_message_chat.sender_message {
+    padding-right: 0%;
+    padding-left: 0%;
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 231, H:/admin_project/hospital/scss/_faq.scss */
+  .messages_box_area .messages_chat .single_message_chat.sender_message {
+    padding-right: 0%;
+    padding-left: 0%;
+    margin-bottom: 30px;
+  }
+}
+
+/* line 254, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area
+  .messages_chat
+  .single_message_chat.sender_message
+  .message_pre_left {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* line 260, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area
+  .messages_chat
+  .single_message_chat.sender_message
+  .messges_info {
+  padding-left: 0px;
+  padding-right: 20px;
+  text-align: right;
+}
+
+/* line 267, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area .messages_chat .message_send_field {
+  padding-top: 50px;
+  display: grid;
+  grid-template-columns: auto 110px;
+  grid-gap: 10px;
+}
+
+@media (max-width: 575.98px) {
+  /* line 267, H:/admin_project/hospital/scss/_faq.scss */
+  .messages_box_area .messages_chat .message_send_field {
+    grid-template-columns: 1fr;
+    margin-top: 20px;
+  }
+}
+
+/* line 276, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area .messages_chat .message_send_field input {
+  color: #676b84;
+  font-size: 13px;
+  height: 40px;
+  width: 100%;
+  border-radius: 5px;
+  padding-left: 25px;
+  border: 1px solid #eee1e2;
+  padding-right: 15px;
+}
+
+/* line 285, H:/admin_project/hospital/scss/_faq.scss */
+.messages_box_area .messages_chat .message_send_field input::placeholder {
+  color: #676b84;
+  font-weight: 300;
+  opacity: 1;
+}

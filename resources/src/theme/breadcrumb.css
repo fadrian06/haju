@@ -1,0 +1,111 @@
+.breadcrumb_content {
+  background-color: #fff;
+  padding: 19px 30px;
+  line-height: 22px;
+}
+
+@media (max-width: 991px) {
+  /* line 2, H:/admin_project/hospital/scss/_breadcrumb.scss */
+  .breadcrumb_content {
+    padding: 25px 15px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* line 2, H:/admin_project/hospital/scss/_breadcrumb.scss */
+  .breadcrumb_content {
+    display: block !important;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 2, H:/admin_project/hospital/scss/_breadcrumb.scss */
+  .breadcrumb_content {
+    display: block !important;
+  }
+}
+
+/* line 17, H:/admin_project/hospital/scss/_breadcrumb.scss */
+.breadcrumb_content .active {
+  color: #2e4765;
+}
+
+/* line 20, H:/admin_project/hospital/scss/_breadcrumb.scss */
+.breadcrumb_content h2 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+@media (max-width: 575.98px) {
+  /* line 20, H:/admin_project/hospital/scss/_breadcrumb.scss */
+  .breadcrumb_content h2 {
+    margin-bottom: 15px;
+    padding: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* line 20, H:/admin_project/hospital/scss/_breadcrumb.scss */
+  .breadcrumb_content h2 {
+    margin-bottom: 15px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 20, H:/admin_project/hospital/scss/_breadcrumb.scss */
+  .breadcrumb_content h2 {
+    margin-bottom: 15px;
+  }
+}
+
+/* line 36, H:/admin_project/hospital/scss/_breadcrumb.scss */
+.breadcrumb_content .sa_breadcrumb_iner a {
+  position: relative;
+  color: #7e7172;
+  padding-left: 30px;
+}
+
+/* line 40, H:/admin_project/hospital/scss/_breadcrumb.scss */
+.breadcrumb_content .sa_breadcrumb_iner a:after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 3px;
+  clip-path: polygon(0 0, 100% 55%, 0 100%);
+  background-color: #7e7172;
+  width: 10px;
+  height: 10px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+/* line 51, H:/admin_project/hospital/scss/_breadcrumb.scss */
+.breadcrumb_content .sa_breadcrumb_iner a:first-child {
+  padding-left: 0;
+}
+
+/* line 53, H:/admin_project/hospital/scss/_breadcrumb.scss */
+.breadcrumb_content .sa_breadcrumb_iner a:first-child:after {
+  display: none;
+}
+
+/* line 57, H:/admin_project/hospital/scss/_breadcrumb.scss */
+.breadcrumb_content .sa_breadcrumb_iner a:hover {
+  color: #2e4765;
+}
+
+/* line 58, H:/admin_project/hospital/scss/_breadcrumb.scss */
+.breadcrumb_content .sa_breadcrumb_iner a:hover:after {
+  background-color: #2e4765;
+}
+
+/* line 63, H:/admin_project/hospital/scss/_breadcrumb.scss */
+.breadcrumb_content .sa_breadcrumb_iner a:last-child {
+  color: #2e4765;
+}
+
+/* line 65, H:/admin_project/hospital/scss/_breadcrumb.scss */
+.breadcrumb_content .sa_breadcrumb_iner a:last-child:after {
+  background-color: #2e4765;
+}

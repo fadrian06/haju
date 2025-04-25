@@ -1,0 +1,100 @@
+.assign_list li {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+/* line 5, H:/admin_project/hospital/scss/_projects.scss */
+.assign_list li:last-child {
+  margin-right: 0;
+}
+
+/* line 9, H:/admin_project/hospital/scss/_projects.scss */
+.assign_list li a img {
+  width: 100%;
+  border-radius: 50%;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+  width: 23px;
+  height: 23px;
+  transform: translateY(0px);
+}
+
+/* line 17, H:/admin_project/hospital/scss/_projects.scss */
+.assign_list li a img:hover {
+  transform: translateY(-2px);
+}
+
+/* line 27, H:/admin_project/hospital/scss/_projects.scss */
+.dataTables_paginate {
+  margin-top: 0;
+  margin-top: 30px;
+}
+
+/* line 30, H:/admin_project/hospital/scss/_projects.scss */
+.dataTables_paginate a {
+  width: 32px;
+  height: 32px;
+  background: #ffffff !important;
+  border-radius: 3px !important;
+  text-align: center !important;
+  line-height: 32px;
+  padding: 0 !important;
+  margin: 0 !important;
+  margin: 0 5px !important;
+}
+
+/* line 40, H:/admin_project/hospital/scss/_projects.scss */
+.dataTables_paginate a.current {
+  background: #16bbe5 !important;
+  box-shadow: 0px 5px 10px rgba(59, 118, 239, 0.3) !important;
+  border: 0 !important;
+  color: #fff !important;
+}
+
+/* line 46, H:/admin_project/hospital/scss/_projects.scss */
+.dataTables_paginate a:hover {
+  background: #16bbe5 !important;
+  box-shadow: 0px 5px 10px rgba(59, 118, 239, 0.3);
+  border: 0 !important;
+  color: #fff !important;
+}
+
+/* line 51, H:/admin_project/hospital/scss/_projects.scss */
+.dataTables_paginate a:hover i {
+  color: #fff !important;
+}
+
+/* line 55, H:/admin_project/hospital/scss/_projects.scss */
+.dataTables_paginate a i {
+  line-height: 32px;
+  font-size: 12px;
+  color: #415094;
+}
+
+/* line 62, H:/admin_project/hospital/scss/_projects.scss */
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+  cursor: default;
+  color: #fff !important;
+  border: 0;
+}
+
+/* line 67, H:/admin_project/hospital/scss/_projects.scss */
+#DataTables_Table_0_info {
+  font-size: 14px;
+  color: #415094;
+  font-weight: 400;
+  margin-top: 35px;
+  padding-top: 0;
+}
+
+/* line 74, H:/admin_project/hospital/scss/_projects.scss */
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  color: #fff !important;
+  border: 1px solid #16bbe5;
+  background-color: #16bbe5 !important;
+}
