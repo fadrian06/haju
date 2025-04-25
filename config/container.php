@@ -24,7 +24,7 @@ $container = Container::getInstance();
 assert($_ENV['DB_CONNECTION'] instanceof DBDriver);
 
 $container->singleton(PDO::class, static fn(): PDO => new PDO(
-  $_ENV['DB_CONNECTION']->getPDODsn(),
+  $_ENV['DB_CONNECTION']->getPdoDsn(),
   $_ENV['DB_USERNAME'],
   $_ENV['DB_PASSWORD'],
 ));

@@ -13,7 +13,7 @@ assert($_ENV['DB_CONNECTION'] instanceof DBDriver);
 
 $pdo = Container::getInstance()->get(PDO::class);
 
-foreach (explode(';', $_ENV['DB_CONNECTION']->getInitDbFile()) as $query) {
+foreach ($_ENV['DB_CONNECTION']->getInitDbQueries() as $query) {
   $pdo->exec($query);
 }
 
