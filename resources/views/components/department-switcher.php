@@ -11,7 +11,10 @@ use HAJU\Models\Department;
 ?>
 
 <h2 class="m-0 d-flex gap-3 align-items-center">
-  <span>Departamento de <?= $department ?></span>
+  <strong>
+    <span class="d-none d-md-inline">Departamento de</span>
+    <?= $department ?>
+  </strong>
   <a
     href="./departamento/seleccionar"
     class="btn btn-outline-primary btn-sm d-flex justify-content-center align-items-center"
