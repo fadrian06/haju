@@ -36,6 +36,8 @@ $params = [
 
 $stmt->execute($params);
 $patients = [];
+
+/** @var array<string, Patient[]> */
 $patientsByCause = [];
 
 $frecuentCauses = array_map(
@@ -62,6 +64,10 @@ $frecuentCauses = array_map(
   },
   $stmt->fetchAll(PDO::FETCH_ASSOC)
 );
+
+foreach ($patientsByCause as $cause => &$causePatients) {
+  usort($causePatients, static fn(Patient $a, Patient $b): int => strnatcmp($a->getFullName(), $b->getFullName()));
+}
 
 $stmt = $pdo->query(<<<sql
   SELECT short_name, extended_name, variant, registered_date,
@@ -258,6 +264,41 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
       </div>
     </form>
     <canvas class="w-100" id="frecuent-cause"></canvas>
+
+    <h4>Por paciente:</h4>
+
+    <dl id="frecuent-cause-patients-list">
+      <?php foreach ($patientsByCause as $cause => $causePatients) : ?>
+        <?php
+
+        $frecuentCauseName = ($frecuentCause[0]['extended_name'] ?? $frecuentCause[0]['short_name']) . ' ' . $frecuentCause[0]['variant'];
+
+        if ($cause !== $frecuentCauseName) {
+          continue;
+        }
+
+        $added = [];
+
+        ?>
+
+        <dt><?= $cause ?></dt>
+        <dd>
+          <?= implode(', ', array_map(
+            static fn(Patient $patient): string => "<a class='text-decoration-underline fs-6' href='./pacientes/{$patient->id}'>{$patient->getFullName()}</a>",
+            array_filter($causePatients, static function (Patient $patient) use (&$added): bool {
+              if (array_key_exists($patient->id, $added)) {
+                return false;
+              }
+
+              $added[$patient->id] = $patient;
+
+              return true;
+            })
+          )) ?>
+        </dd>
+      <?php endforeach ?>
+    </dl>
+
     <button class="btn btn-primary btn-lg w-100" id="print-frecuent-cause">
       Imprimir
     </button>
@@ -292,7 +333,7 @@ $frecuentCause = $stmt->fetchAll(PDO::FETCH_ASSOC);
             label: 'Número de casos',
             data: frecuentCause.map(cause => cause.consultations),
             backgroundColor: '#344f6b',
-            borderColor: 'black'
+            borderColor: document.documentElement.dataset.bsTheme === 'light' ? 'black' : 'white',
           }]
         }
       })
