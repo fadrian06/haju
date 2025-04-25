@@ -132,6 +132,15 @@ final class Patient extends Person
     return null;
   }
 
+  /** @return Hospitalization[] */
+  public function getUnfinishedHospitalizations(): array
+  {
+    return array_filter(
+      $this->hospitalizations,
+      static fn(Hospitalization $hospitalization): bool => !$hospitalization->isFinished()
+    );
+  }
+
   public function jsonSerialize(): array
   {
     return parent::jsonSerialize() + [
@@ -139,6 +148,8 @@ final class Patient extends Person
       'hospitalizations' => $this->hospitalizations,
       'registeredBy' => $this->registeredBy,
       'canBeDeleted' => $this->canBeDeleted(),
+      'numberOfHospitalizations' => count($this->hospitalizations),
+      'numberOfUnfinishedHospitalizations' => count($this->getUnfinishedHospitalizations()),
     ];
   }
 }

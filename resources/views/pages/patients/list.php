@@ -17,13 +17,13 @@ $onlyHospitalizedSwitchId = uniqid();
 
 ?>
 
-<section class="mb-4 d-inline-flex align-items-center justify-content-between">
+<section class="container mb-4 d-flex align-items-center justify-content-between">
   <h2>Pacientes</h2>
   <a
     data-bs-toggle="modal"
     href="#registrar"
-    class="btn btn-primary rounded-pill d-flex align-items-center">
-    <i class="px-2 ti-plus"></i>
+    class="btn btn-primary d-flex align-items-center">
+    <i class="px-2 fa fa-plus"></i>
     <span class="px-2">Registrar paciente</span>
   </a>
 </section>
@@ -42,9 +42,7 @@ $onlyHospitalizedSwitchId = uniqid();
 
       get filteredPatients() {
         return this.allPatients.filter(patient => {
-          const hasActiveHospitalizations = patient
-            .hospitalizations
-            .some(hospitalization => hospitalization.isFinished);
+          const hasActiveHospitalizations = patient.numberOfUnfinishedHospitalizations > 0;
 
           const matchName = patient
             .fullName
@@ -63,16 +61,12 @@ $onlyHospitalizedSwitchId = uniqid();
         return this.loggedUser.id === patient.registeredBy.id || this.loggedUser.isDirector;
       },
     }'
-  class="white_box QA_section">
-  <header class="list_header serach_field-area2 w-100 mb-3">
-    <form @submit.prevent class="search_inner w-100">
-      <input type="search" placeholder="Buscar por nombre..." x-model="patientName" />
-      <button>
-        <i class="ti-search fs-2"></i>
-      </button>
-    </form>
-
-  </header>
+  class="container card card-body">
+  <?php Flight::render('components/inputs/input', [
+    'type' => 'search',
+    'model' => 'patientName',
+    'label' => 'Buscar por nombre...'
+  ]) ?>
   <h3 class="my-4 fs-2">Filtrar por</h3>
   <div class="list-group mb-3">
     <label
@@ -88,7 +82,7 @@ $onlyHospitalizedSwitchId = uniqid();
       </div>
     </label>
   </div>
-  <div class="QA_table table-responsive">
+  <div class="table-responsive">
     <table class="table text-center">
       <thead>
         <tr>
