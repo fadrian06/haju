@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace HAJU\Controllers\Web;
+namespace HAJU\Controllers;
 
 final class ReportsWebController
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace HAJU\Controllers\Web;
+namespace HAJU\Controllers;
 
 use HAJU\Models\User;
 use HAJU\Repositories\Domain\ConsultationCauseRepository;

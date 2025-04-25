@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace HAJU\Controllers\Web;
+namespace HAJU\Controllers;
 
-use HAJU\Controllers\Web\Controller;
+use HAJU\Controllers\Controller;
 use HAJU\Models\Doctor;
 use HAJU\Repositories\Domain\DoctorRepository;
 use HAJU\ValueObjects\Date;

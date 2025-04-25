@@ -17,4 +17,4 @@ foreach (explode(';', $_ENV['DB_CONNECTION']->getInitDbFile()) as $query) {
   $pdo->exec($query);
 }
 
-echo "DB installed correctly ✔";
+exit("DB installed correctly ✔");

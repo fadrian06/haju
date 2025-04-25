@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-use HAJU\Controllers\Web\DepartmentWebController;
-use HAJU\Controllers\Web\DoctorWebController;
-use HAJU\Controllers\Web\HomeWebController;
-use HAJU\Controllers\Web\LandingWebController;
-use HAJU\Controllers\Web\PatientWebController;
-use HAJU\Controllers\Web\ReportsWebController;
-use HAJU\Controllers\Web\SessionWebController;
-use HAJU\Controllers\Web\SettingsWebController;
-use HAJU\Controllers\Web\UserWebController;
+use HAJU\Controllers\DepartmentWebController;
+use HAJU\Controllers\DoctorWebController;
+use HAJU\Controllers\HomeWebController;
+use HAJU\Controllers\LandingWebController;
+use HAJU\Controllers\PatientWebController;
+use HAJU\Controllers\ReportsWebController;
+use HAJU\Controllers\SessionWebController;
+use HAJU\Controllers\SettingsWebController;
+use HAJU\Controllers\UserWebController;
 use HAJU\Middlewares\AuthenticationMiddleware;
 use HAJU\Middlewares\AuthorizationMiddleware;
 use HAJU\Middlewares\EnsureCanEditDoctorMiddleware;
