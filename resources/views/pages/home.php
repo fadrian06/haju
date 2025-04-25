@@ -44,20 +44,6 @@ $cards = [
     'link' => './doctores',
     'background' => 'danger',
   ],
-  [
-    'title' => 'Departamentos',
-    'icon' => 'fa-hospital',
-    'number' => $departmentsNumber,
-    'link' => './departamentos',
-    'background' => 'primary',
-  ],
-  [
-    'title' => 'Hospitalizaciones',
-    'icon' => 'fa-bed-pulse',
-    'number' => 0,
-    'link' => './hospitalizaciones',
-    'background' => 'secondary',
-  ],
 ];
 
 ?>
