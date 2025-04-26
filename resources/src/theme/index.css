@@ -1,23 +1,47 @@
+/* Normal desktop :1200px. */
+/* Normal desktop :992px. */
+/* Tablet desktop :768px. */
+/* small mobile :320px. */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,700&family=Rajdhani:wght@300;400;500;600;700&display=swap");
 @import "extends.css";
-@import "reset.css";
-@import "button.css";
-@import "header.css";
-@import "sidebar.css";
-@import "body_content.css";
-@import "main_content.css";
-@import "dashboard_part.css";
-@import "form_style.css";
-@import "revenue_part.css";
-@import "payment_setting.css";
-@import "footer.css";
-@import "breadcrumb.css";
-@import "bar-chart.css";
-@import "lms_category.css";
-@import "summer_note.css";
-@import "common_component.css";
-@import "projects.css";
-@import "pie.css";
-@import "profilebox.css";
-@import "chart_box.css";
-@import "faq.css";
-@import "mailbox.css";
+
+/**************** common css start ****************/
+/*@import "reset.css";*/
+
+/******** base color css ********/
+/*@import "button.css";*/
+
+/******** header css here *********/
+/*@import "header.css";*/
+
+/************ sidebar css here ************/
+/*@import "sidebar.css";*/
+/*@import "body_content.css";*/
+
+/******** main content css here *********/
+/*@import "main_content.css";*/
+/******** main content css end *********/
+
+/*@import "dashboard_part.css";*/
+/*@import "form_style.css";*/
+/*@import "revenue_part.css";*/
+/*@import "payment_setting.css";*/
+
+/************** footer css ****************/
+/*@import "footer.css";*/
+/************** footer css end ****************/
+
+/********* breadcrumd css here **********/
+/*@import "breadcrumb.css";*/
+/********* breadcrumd css end **********/
+
+/*@import "bar-chart.css";*/
+/*@import "lms_category.css";*/
+/*@import "summer_note.css";*/
+/*@import "common_component.css";*/
+/*@import "projects.css";*/
+/*@import "pie.css";*/
+/*@import "profilebox.css";*/
+/*@import "chart_box.css";*/
+/*@import "faq.css";*/
+/*@import "mailbox.css";*/

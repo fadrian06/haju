@@ -450,19 +450,19 @@
 
 /* line 375, H:/admin_project/hospital/scss/_common_component.scss */
 .custom_striped_progressbar .progress-bar.green_bar {
-  background-image: url(../img/progress/progress-bg.png);
+  /*  background-image: url(../img/progress/progress-bg.png);*/
   background-size: cover;
 }
 
 /* line 379, H:/admin_project/hospital/scss/_common_component.scss */
 .custom_striped_progressbar .progress-bar.yellow_bar {
-  background-image: url(../img/progress/design-progress-yellow.png);
+  /*  background-image: url(../img/progress/design-progress-yellow.png);*/
   background-size: cover;
 }
 
 /* line 384, H:/admin_project/hospital/scss/_common_component.scss */
 .custom_striped_progressbar .progress-bar.red_bar {
-  background-image: url(../img/progress/design-progress-red.png);
+  /*  background-image: url(../img/progress/design-progress-red.png);*/
   background-size: cover;
 }
 

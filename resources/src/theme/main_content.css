@@ -1,4 +1,3 @@
-/******** main content css here *********/
 /* line 2, H:/admin_project/hospital/scss/_main_content.scss */
 .main_content {
   padding-left: 270px;
@@ -178,11 +177,9 @@
   content: "";
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
-  -webkit-transition: 0.5s;
   transition: 0.5s;
   background-size: cover;
-  background-image: url(../img/diamond.png);
+  background-image: url("../../images/diamond.png");
 }
 
 @media (max-width: 575.98px) {

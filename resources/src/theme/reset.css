@@ -1,3 +1,4 @@
+/* line 3, H:/admin_project/hospital/scss/_reset.scss */
 body {
   font-family: "Poppins", sans-serif;
   padding: 0;
@@ -7,126 +8,151 @@ body {
 }
 
 @media (min-width: 1200px) {
+  /* line 12, H:/admin_project/hospital/scss/_reset.scss */
   .container {
     max-width: 1310px;
   }
 }
 
+/* line 16, H:/admin_project/hospital/scss/_reset.scss */
 .body_white_bg {
   background: #fff;
 }
 
+/* line 19, H:/admin_project/hospital/scss/_reset.scss */
 .br_5 {
   border-radius: 5px;
 }
 
+/* line 22, H:/admin_project/hospital/scss/_reset.scss */
 .border_bottom_1px {
   border-bottom: 1px solid #efefef;
 }
 
+/* line 25, H:/admin_project/hospital/scss/_reset.scss */
 .message_submit_form:focus {
   outline: none;
 }
 
+/* line 28, H:/admin_project/hospital/scss/_reset.scss */
 input:hover,
 input:focus {
   outline: none !important;
   box-shadow: 0px 0px 0px 0px transparent !important;
 }
 
+/* line 32, H:/admin_project/hospital/scss/_reset.scss */
 :focus {
   outline: -webkit-focus-ring-color auto 0;
 }
 
+/* line 35, H:/admin_project/hospital/scss/_reset.scss */
 .custom-file-input:focus ~ .custom-file-label {
   border-color: transparent;
   box-shadow: none;
 }
 
+/* line 39, H:/admin_project/hospital/scss/_reset.scss */
 .form-control {
   border-color: #bbc1c9;
 }
 
+/* line 42, H:/admin_project/hospital/scss/_reset.scss */
 .form-control:focus {
   box-shadow: 0 0 0 0rem transparent !important;
   border-color: #bbc1c9;
 }
 
+/* line 46, H:/admin_project/hospital/scss/_reset.scss */
 .dropdown-menu {
   margin: 0;
   padding: 0;
 }
 
+/* line 50, H:/admin_project/hospital/scss/_reset.scss */
 .section_padding {
   padding: 120px 0px;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 50, H:/admin_project/hospital/scss/_reset.scss */
   .section_padding {
     padding: 80px 0px;
   }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* line 50, H:/admin_project/hospital/scss/_reset.scss */
   .section_padding {
     padding: 70px 0px;
   }
 }
 
 @media (max-width: 575.98px) {
+  /* line 50, H:/admin_project/hospital/scss/_reset.scss */
   .section_padding {
     padding: 70px 0px;
   }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
+  /* line 50, H:/admin_project/hospital/scss/_reset.scss */
   .section_padding {
     padding: 70px 0px;
   }
 }
 
+/* line 65, H:/admin_project/hospital/scss/_reset.scss */
 .padding_top {
   padding-top: 120px;
 }
 
 @media (max-width: 991px) {
+  /* line 65, H:/admin_project/hospital/scss/_reset.scss */
   .padding_top {
     padding-top: 70px;
   }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 65, H:/admin_project/hospital/scss/_reset.scss */
   .padding_top {
     padding-top: 80px;
   }
 }
 
+/* line 74, H:/admin_project/hospital/scss/_reset.scss */
 .padding_bottom {
   padding-bottom: 120px;
 }
 
 @media (max-width: 991px) {
+  /* line 74, H:/admin_project/hospital/scss/_reset.scss */
   .padding_bottom {
     padding-bottom: 70px;
   }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 74, H:/admin_project/hospital/scss/_reset.scss */
   .padding_bottom {
     padding-bottom: 80px;
   }
 }
 
+/* line 84, H:/admin_project/hospital/scss/_reset.scss */
 a {
   text-decoration: none;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
+/* line 87, H:/admin_project/hospital/scss/_reset.scss */
 a:hover {
   text-decoration: none;
 }
 
+/* line 93, H:/admin_project/hospital/scss/_reset.scss */
 h1,
 h2,
 h3,
@@ -139,34 +165,41 @@ h6 {
   line-height: 1.2;
 }
 
+/* line 99, H:/admin_project/hospital/scss/_reset.scss */
 h2 {
   font-size: 30px;
 }
 
+/* line 102, H:/admin_project/hospital/scss/_reset.scss */
 h3 {
   font-size: 26px;
 }
 
+/* line 105, H:/admin_project/hospital/scss/_reset.scss */
 h4 {
   font-size: 20px;
 }
 
+/* line 108, H:/admin_project/hospital/scss/_reset.scss */
 h5 {
   font-size: 16px;
   font-weight: 500;
   line-height: 1.8;
 }
 
+/* line 113, H:/admin_project/hospital/scss/_reset.scss */
 li {
   list-style: none;
 }
 
+/* line 116, H:/admin_project/hospital/scss/_reset.scss */
 ul,
 ol {
   margin: 0;
   padding: 0;
 }
 
+/* line 120, H:/admin_project/hospital/scss/_reset.scss */
 p {
   line-height: 24px;
   font-size: 14px;
@@ -176,6 +209,7 @@ p {
   font-weight: 300;
 }
 
+/* line 129, H:/admin_project/hospital/scss/_reset.scss */
 a:focus,
 .button:focus,
 button:focus,
@@ -187,122 +221,149 @@ button:focus,
   transition: 1s;
 }
 
+/* line 135, H:/admin_project/hospital/scss/_reset.scss */
 .p_30 {
   padding: 30px;
 }
 
 @media (max-width: 991px) {
+  /* line 135, H:/admin_project/hospital/scss/_reset.scss */
   .p_30 {
     padding: 20px;
   }
 }
 
+/* line 141, H:/admin_project/hospital/scss/_reset.scss */
 .p_20 {
   padding: 20px;
 }
 
+/* line 144, H:/admin_project/hospital/scss/_reset.scss */
 .p_15 {
   padding: 20px 20px 15px;
 }
 
+/* line 147, H:/admin_project/hospital/scss/_reset.scss */
 .pb_20 {
   padding-bottom: 20px;
 }
 
+/* line 150, H:/admin_project/hospital/scss/_reset.scss */
 .mt_60 {
   margin-top: 60px;
 }
 
 @media (max-width: 991px) {
+  /* line 150, H:/admin_project/hospital/scss/_reset.scss */
   .mt_60 {
     margin-top: 30px;
   }
 }
 
+/* line 156, H:/admin_project/hospital/scss/_reset.scss */
 .mt_25 {
   margin-top: 25px;
 }
 
+/* line 160, H:/admin_project/hospital/scss/_reset.scss */
 .mt_30 {
   margin-top: 30px;
 }
 
 @media (max-width: 991px) {
+  /* line 160, H:/admin_project/hospital/scss/_reset.scss */
   .mt_30 {
     margin-top: 15px;
   }
 }
 
+/* line 167, H:/admin_project/hospital/scss/_reset.scss */
 .mt_10 {
   margin-top: 10px;
 }
 
+/* line 170, H:/admin_project/hospital/scss/_reset.scss */
 .mb_15 {
   margin-bottom: 15px;
 }
 
+/* line 173, H:/admin_project/hospital/scss/_reset.scss */
 .mb_15_imp {
   margin-bottom: 13px !important;
 }
 
+/* line 176, H:/admin_project/hospital/scss/_reset.scss */
 .mb_20 {
   margin-bottom: 20px !important;
 }
 
+/* line 179, H:/admin_project/hospital/scss/_reset.scss */
 .mb_20_imp {
   margin-bottom: 20px;
 }
 
+/* line 182, H:/admin_project/hospital/scss/_reset.scss */
 .mb_25 {
   margin-bottom: 20px;
 }
 
+/* line 185, H:/admin_project/hospital/scss/_reset.scss */
 .mb_50 {
   margin-bottom: 50px;
 }
 
 @media (max-width: 575.98px) {
+  /* line 185, H:/admin_project/hospital/scss/_reset.scss */
   .mb_50 {
     margin-bottom: 30px;
   }
 }
 
+/* line 191, H:/admin_project/hospital/scss/_reset.scss */
 .mt_50 {
   margin-top: 50px;
 }
 
 @media (max-width: 575.98px) {
+  /* line 191, H:/admin_project/hospital/scss/_reset.scss */
   .mt_50 {
     margin-top: 25px;
   }
 }
 
+/* line 197, H:/admin_project/hospital/scss/_reset.scss */
 .mt_20 {
   margin-top: 20px;
 }
 
+/* line 200, H:/admin_project/hospital/scss/_reset.scss */
 .mb_10 {
   margin-bottom: 10px !important;
 }
 
+/* line 204, H:/admin_project/hospital/scss/_reset.scss */
 th:focus,
 td:focus {
   outline: -webkit-focus-ring-color auto 0;
 }
 
+/* line 208, H:/admin_project/hospital/scss/_reset.scss */
 table.dataTable tbody th,
 table.dataTable tbody td {
   vertical-align: middle;
 }
 
+/* line 211, H:/admin_project/hospital/scss/_reset.scss */
 .mt_40 {
   margin-top: 40px;
 }
 
+/* line 214, H:/admin_project/hospital/scss/_reset.scss */
 .section_bg {
   background-color: #fef1f2;
 }
 
+/* line 217, H:/admin_project/hospital/scss/_reset.scss */
 .cs_checkbox {
   display: block;
   position: relative;
@@ -316,6 +377,7 @@ table.dataTable tbody td {
   user-select: none;
 }
 
+/* line 228, H:/admin_project/hospital/scss/_reset.scss */
 .cs_checkbox input {
   position: absolute;
   opacity: 0;
@@ -324,6 +386,7 @@ table.dataTable tbody td {
   width: 0;
 }
 
+/* line 235, H:/admin_project/hospital/scss/_reset.scss */
 .cs_checkbox .checkmark {
   position: absolute;
   top: 0;
@@ -334,10 +397,12 @@ table.dataTable tbody td {
   border: 1px solid #e4e8ec;
 }
 
+/* line 246, H:/admin_project/hospital/scss/_reset.scss */
 .section_tittle {
   text-align: center;
 }
 
+/* line 248, H:/admin_project/hospital/scss/_reset.scss */
 .section_tittle h2 {
   font-size: 36px;
   margin-bottom: 25px;
@@ -345,6 +410,7 @@ table.dataTable tbody td {
 }
 
 @media (max-width: 991px) {
+  /* line 248, H:/admin_project/hospital/scss/_reset.scss */
   .section_tittle h2 {
     margin-bottom: 15px;
     font-size: 25px;
@@ -352,28 +418,33 @@ table.dataTable tbody td {
 }
 
 @media (max-width: 991px) {
+  /* line 248, H:/admin_project/hospital/scss/_reset.scss */
   .section_tittle h2 {
     font-size: 30px;
   }
 }
 
+/* line 260, H:/admin_project/hospital/scss/_reset.scss */
 .section_tittle p {
   margin-bottom: 72px;
 }
 
 @media (max-width: 991px) {
+  /* line 260, H:/admin_project/hospital/scss/_reset.scss */
   .section_tittle p {
     margin-bottom: 40px;
   }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 260, H:/admin_project/hospital/scss/_reset.scss */
   .section_tittle p {
     margin-bottom: 50px;
   }
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
+/* line 271, H:/admin_project/hospital/scss/_reset.scss */
 .cs_checkbox:after {
   content: "";
   position: absolute;
@@ -381,6 +452,7 @@ table.dataTable tbody td {
 }
 
 /* Show the checkmark when checked */
+/* line 278, H:/admin_project/hospital/scss/_reset.scss */
 .cs_checkbox input:checked ~ .checkmark:after {
   display: block;
   left: 6px;
@@ -396,15 +468,18 @@ table.dataTable tbody td {
   content: "";
 }
 
+/* line 293, H:/admin_project/hospital/scss/_reset.scss */
 .cs_checkbox span {
   padding: 0 !important;
 }
 
+/* line 299, H:/admin_project/hospital/scss/_reset.scss */
 .custom_checkbox tr th:first-child,
 .custom_checkbox tr td:first-child {
   padding: 16px 0 16px 0 !important;
 }
 
+/* line 304, H:/admin_project/hospital/scss/_reset.scss */
 .border_1px {
   border-right: 1px solid rgba(130, 139, 178, 0.3);
   height: 40px;
@@ -412,6 +487,7 @@ table.dataTable tbody td {
   margin-left: 8px;
 }
 
+/* line 310, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select {
   border: 0;
   border-radius: 0px;
@@ -420,15 +496,18 @@ table.dataTable tbody td {
   color: #415094;
 }
 
+/* line 316, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select .nice-select-search-box {
   width: 200px !important;
 }
 
+/* line 319, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select.bgLess {
   background: transparent;
   border: 0 !important;
 }
 
+/* line 323, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select:after {
   content: "\e62a";
   font-family: "themify";
@@ -446,6 +525,7 @@ table.dataTable tbody td {
   margin-top: -22px;
 }
 
+/* line 340, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select.open::after {
   -webkit-transform: rotate(180deg);
   -moz-transform: rotate(180deg);
@@ -457,25 +537,30 @@ table.dataTable tbody td {
   right: 12px;
 }
 
+/* line 350, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select:focus {
   box-shadow: none;
   border: 0 !important;
 }
 
+/* line 354, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select:hover {
   border: 0;
 }
 
+/* line 357, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select.open .list {
   min-width: 200px;
   left: 0;
   overflow-y: auto;
 }
 
+/* line 361, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select.open .list li:first-child {
   color: #000;
 }
 
+/* line 365, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select .current {
   -webkit-transition: all 0.4s ease 0s;
   -moz-transition: all 0.4s ease 0s;
@@ -483,6 +568,7 @@ table.dataTable tbody td {
   transition: all 0.4s ease 0s;
 }
 
+/* line 371, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select .list {
   width: 100%;
   left: auto;
@@ -493,12 +579,14 @@ table.dataTable tbody td {
   box-shadow: 0px 10px 20px rgba(108, 39, 255, 0.3);
 }
 
+/* line 379, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select .list li {
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
 }
 
+/* line 387, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select2 {
   border: 0;
   border-radius: 0px;
@@ -516,11 +604,13 @@ table.dataTable tbody td {
   text-transform: capitalize;
 }
 
+/* line 402, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select2 .nice-select-search-box {
   width: 100% !important;
   margin-top: 5px;
 }
 
+/* line 406, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select2:after {
   content: "\e62a";
   font-family: "themify";
@@ -539,12 +629,14 @@ table.dataTable tbody td {
   right: 30px;
 }
 
+/* line 424, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select2:active,
 .nice_Select2.open,
 .nice_Select2:focus {
   border-color: #eaf0f4;
 }
 
+/* line 427, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select2.open::after {
   -webkit-transform: rotate(180deg);
   -moz-transform: rotate(180deg);
@@ -556,15 +648,18 @@ table.dataTable tbody td {
   right: 24px;
 }
 
+/* line 437, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select2:focus {
   box-shadow: none;
   border: 1px solid #eaf0f4 !important;
 }
 
+/* line 441, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select2:hover {
   border: 1px solid #eaf0f4 !important;
 }
 
+/* line 444, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select2.open .list {
   min-width: 100%;
   margin-top: 5px;
@@ -572,10 +667,12 @@ table.dataTable tbody td {
   overflow-y: auto;
 }
 
+/* line 449, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select2.open .list li:first-child {
   color: #000;
 }
 
+/* line 453, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select2 .current {
   -webkit-transition: all 0.4s ease 0s;
   -moz-transition: all 0.4s ease 0s;
@@ -583,6 +680,7 @@ table.dataTable tbody td {
   transition: all 0.4s ease 0s;
 }
 
+/* line 459, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select2 .list {
   width: 100%;
   left: auto;
@@ -593,41 +691,48 @@ table.dataTable tbody td {
   box-shadow: 0px 10px 20px rgba(108, 39, 255, 0.3);
 }
 
+/* line 467, H:/admin_project/hospital/scss/_reset.scss */
 .nice_Select2 .list li {
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
 }
 
+/* line 479, H:/admin_project/hospital/scss/_reset.scss */
 .white_box {
   background-color: #fff;
   padding: 20px;
 }
 
 @media (max-width: 991px) {
+  /* line 479, H:/admin_project/hospital/scss/_reset.scss */
   .white_box {
     padding: 20px 20px;
   }
 }
 
 @media (max-width: 575.98px) {
+  /* line 479, H:/admin_project/hospital/scss/_reset.scss */
   .white_box {
     padding: 25px 15px;
   }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 479, H:/admin_project/hospital/scss/_reset.scss */
   .white_box {
     padding: 30px 20px;
   }
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1439px) {
+  /* line 479, H:/admin_project/hospital/scss/_reset.scss */
   .white_box {
     padding: 30px 20px;
   }
 }
 
+/* line 494, H:/admin_project/hospital/scss/_reset.scss */
 .white_box h3 {
   font-size: 16px;
   font-weight: 500;
@@ -637,38 +742,45 @@ table.dataTable tbody td {
 }
 
 @media (max-width: 991px) {
+  /* line 494, H:/admin_project/hospital/scss/_reset.scss */
   .white_box h3 {
     margin-bottom: 10px;
   }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 494, H:/admin_project/hospital/scss/_reset.scss */
   .white_box h3 {
     margin-bottom: 10px;
   }
 }
 
+/* line 506, H:/admin_project/hospital/scss/_reset.scss */
 .white_box h3 span {
   font-weight: 300;
   color: #7e7172;
 }
 
+/* line 512, H:/admin_project/hospital/scss/_reset.scss */
 .progress-bar {
   text-align: right;
   padding-right: 8px;
 }
 
+/* line 516, H:/admin_project/hospital/scss/_reset.scss */
 .white_box_p_30 {
   padding: 30px;
   background-color: #fff;
 }
 
 @media (max-width: 991px) {
+  /* line 516, H:/admin_project/hospital/scss/_reset.scss */
   .white_box_p_30 {
     padding: 25px 15px;
   }
 }
 
+/* line 525, H:/admin_project/hospital/scss/_reset.scss */
 .cu_dropdown .btn {
   border: 1px solid #f1f2f3;
   background-color: #fef1f2;
@@ -678,10 +790,12 @@ table.dataTable tbody td {
   padding: 5px 15px;
 }
 
+/* line 533, H:/admin_project/hospital/scss/_reset.scss */
 .cu_dropdown .btn_1 {
   padding: 11px 20px;
 }
 
+/* line 536, H:/admin_project/hospital/scss/_reset.scss */
 .cu_dropdown .dropdown-toggle::after {
   display: inline-block;
   margin-left: 10px;
@@ -692,6 +806,7 @@ table.dataTable tbody td {
   font-size: 10px;
 }
 
+/* line 545, H:/admin_project/hospital/scss/_reset.scss */
 .cu_dropdown .dropdown-menu {
   min-width: auto;
   background-color: #222222;
@@ -702,6 +817,7 @@ table.dataTable tbody td {
   padding: 17px 0;
 }
 
+/* line 553, H:/admin_project/hospital/scss/_reset.scss */
 .cu_dropdown .dropdown-menu .dropdown-item {
   font-size: 12px;
   font-weight: 300;
@@ -711,16 +827,19 @@ table.dataTable tbody td {
   color: #fff;
 }
 
+/* line 563, H:/admin_project/hospital/scss/_reset.scss */
 .cu_dropdown .left_arrow:hover {
   background-color: transparent;
   padding-left: 38px;
 }
 
+/* line 567, H:/admin_project/hospital/scss/_reset.scss */
 .cu_dropdown .left_arrow:after {
   left: 18px;
   top: 11px;
 }
 
+/* line 586, H:/admin_project/hospital/scss/_reset.scss */
 .switch {
   -webkit-appearance: none;
   background-color: gray;
@@ -732,6 +851,7 @@ table.dataTable tbody td {
   height: 30px;
 }
 
+/* line 595, H:/admin_project/hospital/scss/_reset.scss */
 .switch::after {
   top: 6px;
   left: 6px;
@@ -744,43 +864,52 @@ table.dataTable tbody td {
   transition: 1s;
 }
 
+/* line 606, H:/admin_project/hospital/scss/_reset.scss */
 .switch:checked {
   background-color: #2e4765 !important;
 }
 
+/* line 608, H:/admin_project/hospital/scss/_reset.scss */
 .switch:checked::after {
   background-color: #fff !important;
 }
 
+/* line 611, H:/admin_project/hospital/scss/_reset.scss */
 .switch:checked::after {
   transform: translateX(25px);
 }
 
+/* line 615, H:/admin_project/hospital/scss/_reset.scss */
 .switch:focus {
   outline-color: transparent;
 }
 
+/* line 619, H:/admin_project/hospital/scss/_reset.scss */
 .menu_bropdown {
   display: inline-block;
 }
 
+/* line 621, H:/admin_project/hospital/scss/_reset.scss */
 .menu_bropdown .dropdown-menu {
   min-width: 168px !important;
   right: 0;
 }
 
 @media (max-width: 991px) {
+  /* line 626, H:/admin_project/hospital/scss/_reset.scss */
   .sidebar_widget {
     margin-top: 30px;
   }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* line 626, H:/admin_project/hospital/scss/_reset.scss */
   .sidebar_widget {
     margin-top: 0;
   }
 }
 
+/* line 634, H:/admin_project/hospital/scss/_reset.scss */
 .text_underline {
   color: #222222;
   text-decoration: underline;
@@ -788,20 +917,24 @@ table.dataTable tbody td {
   transition: 0.5s;
 }
 
+/* line 638, H:/admin_project/hospital/scss/_reset.scss */
 .text_underline:hover {
   color: #222222;
   text-decoration: underline;
 }
 
+/* line 643, H:/admin_project/hospital/scss/_reset.scss */
 .check_box_item {
   margin-top: 11px;
 }
 
+/* line 645, H:/admin_project/hospital/scss/_reset.scss */
 .check_box_item .single_check_box {
   padding: 15px 0;
   border-bottom: 1px solid #e4e8ec;
 }
 
+/* line 648, H:/admin_project/hospital/scss/_reset.scss */
 .check_box_item .single_check_box .switch {
   -webkit-appearance: none;
   background-color: transparent;
@@ -810,21 +943,25 @@ table.dataTable tbody td {
   border: 1px solid #e4e8ec;
 }
 
+/* line 654, H:/admin_project/hospital/scss/_reset.scss */
 .check_box_item .single_check_box .switch:after {
   top: 4px;
   width: 20px;
   height: 20px;
 }
 
+/* line 660, H:/admin_project/hospital/scss/_reset.scss */
 .check_box_item .single_check_box .switch:checked::after {
   background-color: #7e7172 !important;
   left: 4px;
 }
 
+/* line 664, H:/admin_project/hospital/scss/_reset.scss */
 .check_box_item .single_check_box .switch:checked {
   background-color: transparent !important;
 }
 
+/* line 670, H:/admin_project/hospital/scss/_reset.scss */
 .list_header {
   display: flex;
   justify-content: space-between;
@@ -833,59 +970,70 @@ table.dataTable tbody td {
 }
 
 @media (max-width: 575.98px) {
+  /* line 670, H:/admin_project/hospital/scss/_reset.scss */
   .list_header {
     display: block;
   }
 }
 
+/* line 681, H:/admin_project/hospital/scss/_reset.scss */
 .list_header p {
   color: #222222;
   font-weight: 500;
 }
 
+/* line 685, H:/admin_project/hospital/scss/_reset.scss */
 .list_header .nice_Select {
   margin-left: 15px;
 }
 
 @media (max-width: 575.98px) {
+  /* line 685, H:/admin_project/hospital/scss/_reset.scss */
   .list_header .nice_Select {
     margin-left: 10px;
   }
 }
 
+/* line 691, H:/admin_project/hospital/scss/_reset.scss */
 .list_header .list_header_filter {
   display: flex;
   align-items: center;
 }
 
 @media (max-width: 575.98px) {
+  /* line 691, H:/admin_project/hospital/scss/_reset.scss */
   .list_header .list_header_filter {
     margin-top: 15px;
   }
 }
 
+/* line 697, H:/admin_project/hospital/scss/_reset.scss */
 .list_header .list_header_filter img {
   width: 17px;
   margin-right: 8px;
 }
 
+/* line 705, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-content {
   background-color: #fef1f2;
   padding: 0 30px;
 }
 
 @media (max-width: 575.98px) {
+  /* line 705, H:/admin_project/hospital/scss/_reset.scss */
   .cs_modal .modal-content {
     padding: 0 20px;
   }
 }
 
+/* line 712, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-header {
   padding: 34px 0 30px 0px;
   align-items: center;
   border-bottom: 0px solid transparent;
 }
 
+/* line 716, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-header h5 {
   margin-bottom: 0;
   font-size: 18px;
@@ -893,17 +1041,20 @@ table.dataTable tbody td {
   line-height: 25px;
 }
 
+/* line 722, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-header .close {
   padding: 0;
   margin: 0;
   opacity: 1;
 }
 
+/* line 726, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-header .close i {
   font-size: 14px;
   color: #707070;
 }
 
+/* line 733, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body {
   padding: 35px 30px !important;
   background: #fff;
@@ -911,11 +1062,13 @@ table.dataTable tbody td {
 }
 
 @media (max-width: 575.98px) {
+  /* line 733, H:/admin_project/hospital/scss/_reset.scss */
   .cs_modal .modal-body {
     padding: 25px 20px !important;
   }
 }
 
+/* line 740, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body .chose_thumb_title {
   font-size: 12px;
   font-weight: 300;
@@ -927,6 +1080,7 @@ table.dataTable tbody td {
   margin-bottom: 8px;
 }
 
+/* line 751, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body .input_wrap label {
   font-size: 12px;
   font-weight: 300;
@@ -938,6 +1092,7 @@ table.dataTable tbody td {
   margin-bottom: 8px;
 }
 
+/* line 761, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body .input_wrap textarea {
   height: 100px;
   padding: 0;
@@ -945,6 +1100,7 @@ table.dataTable tbody td {
   padding: 13px 25px;
 }
 
+/* line 768, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body .nice_Select,
 .cs_modal .modal-body input,
 .cs_modal .modal-body textarea {
@@ -963,6 +1119,7 @@ table.dataTable tbody td {
   border-radius: 3px;
 }
 
+/* line 782, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body .nice_Select::placeholder,
 .cs_modal .modal-body input::placeholder,
 .cs_modal .modal-body textarea::placeholder {
@@ -971,41 +1128,49 @@ table.dataTable tbody td {
   opacity: 1;
 }
 
+/* line 788, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body .nice_Select {
   line-height: 30px;
 }
 
+/* line 790, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body .nice_Select :after {
   left: 22px;
 }
 
+/* line 794, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body ::placeholder {
   color: #222222;
 }
 
+/* line 798, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal_btn {
   display: flex;
   justify-content: start;
   align-items: center;
 }
 
+/* line 802, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal_btn .btn_1 {
   padding: 16px 26px !important;
   margin: 0 5px;
   text-align: center;
 }
 
+/* line 809, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-footer {
   border-top: 0px solid transparent;
   padding: 30px 0 40px 0;
 }
 
+/* line 815, H:/admin_project/hospital/scss/_reset.scss */
 .form_box .from_group {
   display: block;
   width: 100%;
   margin-bottom: 23px;
 }
 
+/* line 819, H:/admin_project/hospital/scss/_reset.scss */
 .form_box .from_group label {
   font-size: 14px;
   font-weight: 500;
@@ -1013,6 +1178,7 @@ table.dataTable tbody td {
   color: #707070;
 }
 
+/* line 825, H:/admin_project/hospital/scss/_reset.scss */
 .form_box .from_group .nice_Select,
 .form_box .from_group input,
 .form_box .from_group textarea {
@@ -1026,11 +1192,13 @@ table.dataTable tbody td {
   padding: 10px 20px;
 }
 
+/* line 835, H:/admin_project/hospital/scss/_reset.scss */
 .form_box .from_group textarea {
   height: 115px;
   line-height: 27px;
 }
 
+/* line 839, H:/admin_project/hospital/scss/_reset.scss */
 .form_box .from_group .bootstrap-tagsinput input {
   border: none !important;
   width: auto !important;
@@ -1038,10 +1206,12 @@ table.dataTable tbody td {
   background-color: transparent !important;
 }
 
+/* line 845, H:/admin_project/hospital/scss/_reset.scss */
 .form_box .from_group .bootstrap-tagsinput .badge [data-role="remove"]:after {
   background-color: transparent !important;
 }
 
+/* line 848, H:/admin_project/hospital/scss/_reset.scss */
 .form_box .from_group .bootstrap-tagsinput .badge {
   margin: 0 5px;
   padding: 9px 8px;
@@ -1050,71 +1220,86 @@ table.dataTable tbody td {
   font-size: 13px;
 }
 
+/* line 855, H:/admin_project/hospital/scss/_reset.scss */
 .form_box .from_group .badge-info {
   color: #fff;
   background-color: #2ec9b8;
 }
 
+/* line 859, H:/admin_project/hospital/scss/_reset.scss */
 .form_box .from_group .nice_Select {
   line-height: 30px;
 }
 
+/* line 864, H:/admin_project/hospital/scss/_reset.scss */
 .note-editable {
   background-color: #fef1f2;
 }
 
+/* line 868, H:/admin_project/hospital/scss/_reset.scss */
 .note-btn-group.note-style {
   display: none;
 }
 
+/* line 875, H:/admin_project/hospital/scss/_reset.scss */
 .plr_30 {
   padding: 0 30px !important;
 }
 
 @media (max-width: 767.98px) {
+  /* line 875, H:/admin_project/hospital/scss/_reset.scss */
   .plr_30 {
     padding: 0 15px !important;
   }
 }
 
+/* line 882, H:/admin_project/hospital/scss/_reset.scss */
 .mb_8 {
   margin-bottom: 8px !important;
 }
 
+/* line 885, H:/admin_project/hospital/scss/_reset.scss */
 .mb_7 {
   margin-bottom: 7px !important;
 }
 
+/* line 896, H:/admin_project/hospital/scss/_reset.scss */
 .ml-10 {
   margin-left: 10px;
 }
 
+/* line 899, H:/admin_project/hospital/scss/_reset.scss */
 .mb_30 {
   margin-bottom: 30px !important;
 }
 
 @media (max-width: 575.98px) {
+  /* line 902, H:/admin_project/hospital/scss/_reset.scss */
   .lms_block {
     display: block !important;
   }
 }
 
 @media (max-width: 575.98px) {
+  /* line 908, H:/admin_project/hospital/scss/_reset.scss */
   .add_button {
     margin-top: 15px;
     margin-left: 0;
   }
 }
 
+/* line 916, H:/admin_project/hospital/scss/_reset.scss */
 .lms_pagination_wrap {
   margin-top: 30px;
 }
 
+/* line 919, H:/admin_project/hospital/scss/_reset.scss */
 .lms_pagination_wrap ul li {
   display: inline-block;
   margin: 0 .8px;
 }
 
+/* line 922, H:/admin_project/hospital/scss/_reset.scss */
 .lms_pagination_wrap ul li a {
   width: 40px;
   height: 40px;
@@ -1127,34 +1312,40 @@ table.dataTable tbody td {
   font-size: 14px;
 }
 
+/* line 932, H:/admin_project/hospital/scss/_reset.scss */
 .lms_pagination_wrap ul li a.active {
   background: #fe1724;
   color: #fff;
 }
 
+/* line 936, H:/admin_project/hospital/scss/_reset.scss */
 .lms_pagination_wrap ul li a:hover {
   background: #fe1724;
   color: #fff;
 }
 
 @media (min-width: 768px) {
+  /* line 949, H:/admin_project/hospital/scss/_reset.scss */
   .modal-dialog.custom-modal-dialog {
     max-width: 650px;
   }
 }
 
 @media (min-width: 992px) {
+  /* line 954, H:/admin_project/hospital/scss/_reset.scss */
   .modal-dialog.custom-modal-dialog {
     max-width: 950px;
   }
 }
 
 @media (min-width: 1200px) {
+  /* line 959, H:/admin_project/hospital/scss/_reset.scss */
   .modal-dialog.custom-modal-dialog {
     max-width: 1050px;
   }
 }
 
+/* line 965, H:/admin_project/hospital/scss/_reset.scss */
 .file_upload {
   border: 1px solid #eee1e2 !important;
   padding: 9px 24px;
@@ -1162,15 +1353,18 @@ table.dataTable tbody td {
   /* input file style */
 }
 
+/* line 969, H:/admin_project/hospital/scss/_reset.scss */
 .file_upload label {
   margin-bottom: 0 !important;
 }
 
+/* line 972, H:/admin_project/hospital/scss/_reset.scss */
 .file_upload .form-group {
   padding: 0;
   margin-bottom: 0;
 }
 
+/* line 976, H:/admin_project/hospital/scss/_reset.scss */
 .file_upload .btn_file_upload {
   color: #fff;
   padding: 0;
@@ -1180,12 +1374,14 @@ table.dataTable tbody td {
   display: inline-block;
 }
 
+/* line 983, H:/admin_project/hospital/scss/_reset.scss */
 .file_upload .btn_file_upload:hover,
 .file_upload .btn_file_upload:focus {
   color: #888888;
   border-color: #888888;
 }
 
+/* line 992, H:/admin_project/hospital/scss/_reset.scss */
 .file_upload .input-file,
 .file_upload .input-file2 {
   width: 0.1px;
@@ -1196,6 +1392,7 @@ table.dataTable tbody td {
   z-index: -1;
 }
 
+/* line 999, H:/admin_project/hospital/scss/_reset.scss */
 .file_upload .input-file + .js-labelFile,
 .file_upload .input-file + .js-labelFile2,
 .file_upload .input-file2 + .js-labelFile,
@@ -1207,6 +1404,7 @@ table.dataTable tbody td {
   cursor: pointer;
 }
 
+/* line 1007, H:/admin_project/hospital/scss/_reset.scss */
 .file_upload .btn {
   padding: 0px 16px !important;
   border-radius: 5px;
@@ -1219,12 +1417,14 @@ table.dataTable tbody td {
   margin-bottom: 0;
 }
 
+/* line 1017, H:/admin_project/hospital/scss/_reset.scss */
 .file_upload .btn:hover {
   background-color: #2e4765;
   color: #fff;
   border: 0;
 }
 
+/* line 1023, H:/admin_project/hospital/scss/_reset.scss */
 .file_upload .form-group {
   background-color: #fff;
   width: 100%;
@@ -1232,19 +1432,23 @@ table.dataTable tbody td {
   border-radius: 5px;
 }
 
+/* line 1030, H:/admin_project/hospital/scss/_reset.scss */
 td:focus,
 th:focus {
   outline: none !important;
 }
 
+/* line 1033, H:/admin_project/hospital/scss/_reset.scss */
 .mb_20 {
   margin-bottom: 20px;
 }
 
+/* line 1036, H:/admin_project/hospital/scss/_reset.scss */
 .mr_10 {
   margin-right: 10px !important;
 }
 
+/* line 1041, H:/admin_project/hospital/scss/_reset.scss */
 .checkbox_wrap p {
   font-size: 13px;
   font-weight: 300;
@@ -1252,6 +1456,7 @@ th:focus {
   margin-bottom: 0;
 }
 
+/* line 1048, H:/admin_project/hospital/scss/_reset.scss */
 .lms_checkbox_1 {
   display: inline-block;
   height: 30px;
@@ -1261,10 +1466,12 @@ th:focus {
   margin-right: 15px;
 }
 
+/* line 1055, H:/admin_project/hospital/scss/_reset.scss */
 .lms_checkbox_1 input {
   display: none !important;
 }
 
+/* line 1058, H:/admin_project/hospital/scss/_reset.scss */
 .lms_checkbox_1 .slider-check {
   background-color: #7e7172;
   bottom: 0;
@@ -1276,10 +1483,12 @@ th:focus {
   transition: .4s;
 }
 
+/* line 1067, H:/admin_project/hospital/scss/_reset.scss */
 .lms_checkbox_1 .slider-check.round {
   border-radius: 34px;
 }
 
+/* line 1070, H:/admin_project/hospital/scss/_reset.scss */
 .lms_checkbox_1 .slider-check::before {
   background-color: #222222;
   bottom: 5px;
@@ -1291,21 +1500,25 @@ th:focus {
   width: 20px;
 }
 
+/* line 1080, H:/admin_project/hospital/scss/_reset.scss */
 .lms_checkbox_1 .slider-check.round:before {
   border-radius: 50%;
 }
 
+/* line 1084, H:/admin_project/hospital/scss/_reset.scss */
 .lms_checkbox_1 input:checked + .slider-check {
   background-color: #fef1f2;
   color: #fff;
   content: "oui";
 }
 
+/* line 1089, H:/admin_project/hospital/scss/_reset.scss */
 .lms_checkbox_1 input:checked + .slider-check:before {
   transform: translateX(20px);
   background: #fe1724;
 }
 
+/* line 1099, H:/admin_project/hospital/scss/_reset.scss */
 .input_wrap label {
   font-size: 12px;
   font-weight: 300;
@@ -1318,11 +1531,13 @@ th:focus {
 }
 
 @media (min-width: 991px) {
+  /* line 1114, H:/admin_project/hospital/scss/_reset.scss */
   .medium_modal_width .modal-dialog {
     max-width: 780px;
   }
 }
 
+/* line 1122, H:/admin_project/hospital/scss/_reset.scss */
 .list_header_btn_wrapper {
   display: -webkit-box;
   display: -moz-box;
@@ -1343,6 +1558,7 @@ th:focus {
 }
 
 @media (max-width: 575.98px) {
+  /* line 1122, H:/admin_project/hospital/scss/_reset.scss */
   .list_header_btn_wrapper {
     display: block;
     margin-bottom: 15px;
@@ -1351,6 +1567,7 @@ th:focus {
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
+  /* line 1122, H:/admin_project/hospital/scss/_reset.scss */
   .list_header_btn_wrapper {
     margin-right: 0;
     margin-bottom: 15px;
@@ -1358,6 +1575,7 @@ th:focus {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* line 1122, H:/admin_project/hospital/scss/_reset.scss */
   .list_header_btn_wrapper {
     margin-right: 0;
     display: block;
@@ -1365,6 +1583,7 @@ th:focus {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 1122, H:/admin_project/hospital/scss/_reset.scss */
   .list_header_btn_wrapper {
     margin-right: 0;
     display: block;
@@ -1372,41 +1591,48 @@ th:focus {
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1439px) {
+  /* line 1122, H:/admin_project/hospital/scss/_reset.scss */
   .list_header_btn_wrapper {
     margin-right: 30px;
   }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
+  /* line 1150, H:/admin_project/hospital/scss/_reset.scss */
   .list_header_block {
     display: block;
   }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 1154, H:/admin_project/hospital/scss/_reset.scss */
   .list_header_block .success_faild_btn {
     margin-top: 15px;
   }
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1439px) {
+  /* line 1159, H:/admin_project/hospital/scss/_reset.scss */
   .list_header_block .serach_field_2 {
     width: 300px;
   }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
+  /* line 1159, H:/admin_project/hospital/scss/_reset.scss */
   .list_header_block .serach_field_2 {
     width: 380%;
   }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
+  /* line 1167, H:/admin_project/hospital/scss/_reset.scss */
   .list_header_block .box_right {
     justify-content: space-between;
   }
 }
 
+/* line 1175, H:/admin_project/hospital/scss/_reset.scss */
 .gj-datepicker .fa-calendar-alt {
   position: absolute;
   top: 50%;
@@ -1419,76 +1645,93 @@ th:focus {
   right: 25px;
 }
 
+/* line 1185, H:/admin_project/hospital/scss/_reset.scss */
 .white_box_border {
   border: 1px solid rgba(202, 206, 213, 0.7);
 }
 
+/* line 1189, H:/admin_project/hospital/scss/_reset.scss */
 .nowrap {
   white-space: nowrap;
 }
 
+/* line 1193, H:/admin_project/hospital/scss/_reset.scss */
 .mb-25 {
   margin-bottom: 25px;
 }
 
+/* line 1196, H:/admin_project/hospital/scss/_reset.scss */
 .mb_15 {
   margin-bottom: 15px;
 }
 
+/* line 1199, H:/admin_project/hospital/scss/_reset.scss */
 .mr-10 {
   margin-right: 10px;
 }
 
+/* line 1202, H:/admin_project/hospital/scss/_reset.scss */
 .mr_5 {
   margin-right: 5px;
 }
 
+/* line 1205, H:/admin_project/hospital/scss/_reset.scss */
 .mb_30 {
   margin-bottom: 30px;
 }
 
+/* line 1208, H:/admin_project/hospital/scss/_reset.scss */
 .mt_10px {
   margin-top: 10px;
 }
 
+/* line 1211, H:/admin_project/hospital/scss/_reset.scss */
 .pt_30 {
   padding-top: 30px !important;
 }
 
+/* line 1218, H:/admin_project/hospital/scss/_reset.scss */
 .wrapper .progress {
   margin-bottom: 15px;
 }
 
+/* line 1232, H:/admin_project/hospital/scss/_reset.scss */
 .apexcharts-datalabels-group {
   position: relative;
   top: -13px !important;
 }
 
+/* line 1236, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal {
   background-color: #fef1f2;
 }
 
+/* line 1238, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-header {
   background-color: #f7faff;
   padding: 23px 30px;
   border-bottom: 0px solid transparent;
 }
 
+/* line 1242, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-header h5 {
   font-size: 22px;
   font-weight: 600;
 }
 
+/* line 1246, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-header span {
   font-size: 14px;
   color: #707070;
   opacity: 1;
 }
 
+/* line 1252, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body {
   padding: 35px 30px;
 }
 
+/* line 1254, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body input,
 .cs_modal .modal-body .nice_Select {
   height: 50px;
@@ -1502,22 +1745,27 @@ th:focus {
   width: 100%;
 }
 
+/* line 1265, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body .nice_Select {
   line-height: 29px;
 }
 
+/* line 1267, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body .nice_Select:after {
   right: 22px;
 }
 
+/* line 1270, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body .nice_Select .list {
   width: 100%;
 }
 
+/* line 1274, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body .form-group {
   margin-bottom: 12px;
 }
 
+/* line 1277, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body textarea {
   height: 168px;
   padding: 15px 20px;
@@ -1527,6 +1775,7 @@ th:focus {
   font-weight: 500;
 }
 
+/* line 1285, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body p {
   font-size: 16px;
   font-weight: 500;
@@ -1535,16 +1784,19 @@ th:focus {
   text-align: center;
 }
 
+/* line 1291, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body p a {
   color: #2e4765;
 }
 
+/* line 1296, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body .btn_1 {
   width: 100%;
   display: block;
   margin-top: 20px;
 }
 
+/* line 1302, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body .social_login_btn .btn_1 {
   color: #fff;
   background-color: #3b5998;
@@ -1552,19 +1804,23 @@ th:focus {
   margin-top: 0;
 }
 
+/* line 1307, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body .social_login_btn .btn_1:hover {
   color: #fff !important;
 }
 
+/* line 1310, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body .social_login_btn .btn_1 i {
   margin-right: 10px;
 }
 
+/* line 1316, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body .social_login_btn .form-group:last-child .btn_1 {
   background-color: #4285f4;
   border: 1px solid #4285f4;
 }
 
+/* line 1323, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body .pass_forget_btn {
   color: #707070;
   margin-top: 20px;
@@ -1574,10 +1830,12 @@ th:focus {
   display: inline-block;
 }
 
+/* line 1330, H:/admin_project/hospital/scss/_reset.scss */
 .cs_modal .modal-body .pass_forget_btn:hover {
   color: #2e4765;
 }
 
+/* line 1338, H:/admin_project/hospital/scss/_reset.scss */
 .border_style {
   width: 100%;
   display: block;
@@ -1587,6 +1845,7 @@ th:focus {
   z-index: 1;
 }
 
+/* line 1345, H:/admin_project/hospital/scss/_reset.scss */
 .border_style span {
   padding: 0 25px;
   text-align: center;
@@ -1594,6 +1853,7 @@ th:focus {
   background-color: #fff;
 }
 
+/* line 1351, H:/admin_project/hospital/scss/_reset.scss */
 .border_style:after {
   position: absolute;
   content: "";
@@ -1605,19 +1865,23 @@ th:focus {
   z-index: -1;
 }
 
+/* line 1363, H:/admin_project/hospital/scss/_reset.scss */
 p a {
   color: #7e7172;
 }
 
+/* line 1365, H:/admin_project/hospital/scss/_reset.scss */
 p a:hover {
   color: #2e4765;
 }
 
+/* line 1371, H:/admin_project/hospital/scss/_reset.scss */
 .cs_check_box {
   display: flex;
   margin-top: 20px;
 }
 
+/* line 1374, H:/admin_project/hospital/scss/_reset.scss */
 .cs_check_box input,
 .cs_check_box label {
   line-height: 20px !important;
@@ -1626,22 +1890,26 @@ p a:hover {
   max-width: auto;
 }
 
+/* line 1380, H:/admin_project/hospital/scss/_reset.scss */
 .cs_check_box .common_checkbox {
   display: none;
 }
 
+/* line 1383, H:/admin_project/hospital/scss/_reset.scss */
 .cs_check_box label {
   position: relative;
   padding-left: 34px;
   margin-bottom: 0;
 }
 
+/* line 1388, H:/admin_project/hospital/scss/_reset.scss */
 .cs_check_box .common_checkbox + label {
   display: block;
   cursor: pointer;
   color: #7e7172;
 }
 
+/* line 1393, H:/admin_project/hospital/scss/_reset.scss */
 .cs_check_box .common_checkbox + label:after {
   position: absolute;
   left: 0;
@@ -1653,6 +1921,7 @@ p a:hover {
   content: "";
 }
 
+/* line 1403, H:/admin_project/hospital/scss/_reset.scss */
 .cs_check_box .common_checkbox:checked + label:after {
   content: "\f00c";
   font-family: "Font Awesome\ 5 Free";
@@ -1663,10 +1932,12 @@ p a:hover {
   text-align: center;
 }
 
+/* line 1413, H:/admin_project/hospital/scss/_reset.scss */
 .cs_check_box .common_checkbox {
   display: none !important;
 }
 
+/* line 1417, H:/admin_project/hospital/scss/_reset.scss */
 .hide_pils.dropdown-toggle::after {
   display: inline-block;
   margin-left: .255em;
@@ -1679,16 +1950,19 @@ p a:hover {
   border: 0 !important;
 }
 
+/* line 1428, H:/admin_project/hospital/scss/_reset.scss */
 .mr_20 {
   margin-right: 20px;
 }
 
 @media (max-width: 575.98px) {
+  /* line 1431, H:/admin_project/hospital/scss/_reset.scss */
   .mb-sm-15 {
     margin-bottom: 15px;
   }
 }
 
+/* line 1437, H:/admin_project/hospital/scss/_reset.scss */
 .heading_6 {
   font-size: 14px;
   font-weight: 600;
@@ -1697,41 +1971,49 @@ p a:hover {
   margin-bottom: 0;
 }
 
+/* line 1445, H:/admin_project/hospital/scss/_reset.scss */
 .card_height_100 {
   height: calc(100% - 30px);
 }
 
+/* line 1448, H:/admin_project/hospital/scss/_reset.scss */
 .card_height_50 {
   height: calc(50% - 30px);
 }
 
+/* line 1452, H:/admin_project/hospital/scss/_reset.scss */
 .page-item.active .page-link {
   background-color: #2daab8;
   border-color: #2daab8;
 }
 
+/* line 1455, H:/admin_project/hospital/scss/_reset.scss */
 .page-item.active .page-link:hover {
   color: #fff;
   background-color: #16bbe5;
   border-color: #16bbe5;
 }
 
+/* line 1461, H:/admin_project/hospital/scss/_reset.scss */
 .page-link {
   color: #2daab8;
 }
 
+/* line 1463, H:/admin_project/hospital/scss/_reset.scss */
 .page-link:hover {
   color: #fff;
   background-color: #16bbe5;
   border-color: #16bbe5;
 }
 
+/* line 1469, H:/admin_project/hospital/scss/_reset.scss */
 .btn-primary {
   color: #fff;
   background-color: #2daab8;
   border-color: #2daab8;
 }
 
+/* line 1474, H:/admin_project/hospital/scss/_reset.scss */
 .btn-primary:hover {
   color: #fff;
   background-color: #16bbe5;

@@ -33,6 +33,10 @@ Flight::route('/', static function () {
   Container::getInstance()->get(LandingController::class)->showLanding();
 });
 
+Flight::route('/design-system', static function (): void {
+  Flight::render('pages/design-system');
+});
+
 Flight::group('', static function (): void {
   Flight::route('/salir', [SessionController::class, 'logOut']);
 
