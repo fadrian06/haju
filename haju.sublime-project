@@ -27,6 +27,7 @@
         },
       },
     },
+    "SublimeLinter.linters.stylelint.disable": true,
     "SublimeLinter.linters.php.disable": false,
     "SublimeLinter.linters.phpstan.disable": false,
     "SublimeLinter.linters.phpcs.disable": false,
