@@ -15,8 +15,8 @@
     "sweetalert2": "^11.19.1"
   },
   "scripts": {
-    "build": "esbuild resources/src/*.ts --outdir=resources/dist --bundle --minify --sourcemap --loader:.woff2=copy --loader:.woff=copy --loader:.ttf=copy --loader:.eot=copy --loader:.svg=dataurl --loader:.jpg=dataurl --loader:.png=dataurl",
-    "dev": "esbuild resources/src/*.ts --outdir=resources/dist --bundle --watch --sourcemap --loader:.woff2=copy --loader:.woff=copy --loader:.ttf=copy --loader:.eot=copy --loader:.svg=dataurl --loader:.jpg=dataurl --loader:.png=dataurl",
+    "build": "esbuild resources/src/*.ts --format=esm --outdir=resources/dist --bundle --minify --sourcemap --loader:.woff2=copy --loader:.woff=copy --loader:.ttf=copy --loader:.eot=copy --loader:.svg=dataurl --loader:.jpg=dataurl --loader:.png=dataurl",
+    "dev": "esbuild resources/src/*.ts --format=esm --outdir=resources/dist --bundle --watch --sourcemap --loader:.woff2=copy --loader:.woff=copy --loader:.ttf=copy --loader:.eot=copy --loader:.svg=dataurl --loader:.jpg=dataurl --loader:.png=dataurl",
     "prepare": "husky",
     "ci": "biome ci ./ --colors=off",
     "format": "biome format ./ --write"
