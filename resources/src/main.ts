@@ -9,9 +9,11 @@ import "./customizations.css";
 // import "./theme/index.css";
 
 import "alpinejs/dist/cdn.min";
-import { Modal, Toast, Tooltip } from "bootstrap";
+import { Modal } from "bootstrap";
 import { MetisMenu } from "metismenujs";
 import Swal from "sweetalert2";
+import "./setups/bootstrap-toasts";
+import "./setups/bootstrap-tooltips";
 
 globalThis.customSwal = Swal.mixin({
   showCloseButton: true,
@@ -21,16 +23,6 @@ globalThis.customSwal = Swal.mixin({
   },
   buttonsStyling: false,
 });
-
-for (const element of document.querySelectorAll('[data-bs-toggle="tooltip"]')) {
-  new Tooltip(element);
-}
-
-for (const element of document.querySelectorAll(".toast")) {
-  const toast = new Toast(element);
-
-  toast.show();
-}
 
 if (location.href.endsWith("#registrar")) {
   new Modal("#registrar").show();

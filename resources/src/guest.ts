@@ -6,8 +6,9 @@ import "sweetalert2/dist/sweetalert2.min.css";
 import "./customizations.css";
 
 import "alpinejs/dist/cdn.min";
-import { Toast, Tooltip } from "bootstrap";
 import Swal from "sweetalert2";
+import "./setups/bootstrap-tooltips";
+import "./setups/bootstrap-toasts";
 
 globalThis.customSwal = Swal.mixin({
   showCloseButton: true,
@@ -19,13 +20,3 @@ globalThis.customSwal = Swal.mixin({
   },
   buttonsStyling: false,
 });
-
-for (const element of document.querySelectorAll('[data-bs-toggle="tooltip"]')) {
-  new Tooltip(element);
-}
-
-for (const element of document.querySelectorAll(".toast")) {
-  const toast = new Toast(element);
-
-  toast.show();
-}
