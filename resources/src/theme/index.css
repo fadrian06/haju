@@ -6,7 +6,7 @@
 @import "extends.css";
 
 /**************** common css start ****************/
-/*@import "reset.css";*/
+@import "reset.css";
 
 /******** base color css ********/
 /*@import "button.css";*/
@@ -45,3 +45,91 @@
 /*@import "chart_box.css";*/
 /*@import "faq.css";*/
 /*@import "mailbox.css";*/
+
+[data-bs-theme="dark"] {
+  body {
+    background: #100e08;
+  }
+
+  .body_white_bg {
+    background: black;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #7c7c7c;
+  }
+
+  p {
+    color: #919bc7;
+  }
+
+  .section_bg {
+    background: #010e0d;
+  }
+
+  .cs_checkbox .checkmark {
+    border-color: #e4e8ec;
+  }
+
+  .nice_Select {
+    background-color: black;
+    color: #758eff;
+
+    .list {
+      background-color: black;
+    }
+
+    &.open .list li:first-child {
+      color: white;
+    }
+
+    .option:hover,
+    .option.focus,
+    .option.selected.focus {
+      background-color: #090909;
+    }
+  }
+
+  .nice_Select2 {
+    color: #7f96ff;
+
+    .list {
+      background-color: black;
+    }
+
+    &.open .list li:first-child {
+      color: white;
+    }
+
+    .option:hover,
+    .option.focus,
+    .option.selected.focus {
+      background-color: #090909;
+    }
+  }
+
+  .white_box {
+    background-color: black;
+
+    h3 span {
+      color: #a39293;
+    }
+  }
+
+  .white_box_p_30 {
+    background-color: black;
+  }
+
+  .cu_dropdown {
+    .btn {
+      border-color: #0e0d0c;
+      background-color: #010e0d;
+      color: #a99899;
+    }
+  }
+}

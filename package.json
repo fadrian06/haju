@@ -4,12 +4,12 @@
     "@fontsource/poppins": "^5.2.5",
     "@fontsource/rajdhani": "^5.2.5",
     "@fortawesome/fontawesome-free": "^6.7.2",
+    "@icon/themify-icons": "^1.0.1-alpha.3",
     "@types/bootstrap": "^5.2.10",
     "alpinejs": "^3.14.9",
     "bootstrap": "^5.3.5",
     "chart.js": "^4.4.9",
     "esbuild": "0.21.5",
-    "husky": "^9.1.7",
     "metismenujs": "^1.4.0",
     "pure-css-loader": "^3.3.3",
     "sweetalert2": "^11.19.1"
@@ -20,5 +20,9 @@
     "prepare": "husky",
     "ci": "biome ci ./ --colors=off",
     "format": "biome format ./ --write"
+  },
+  "dependencies": {
+    "husky": "^9.1.7",
+    "jquery-nice-select": "^1.1.0"
   }
 }
