@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace HAJU\Enums;
 
+/** @deprecated */
 enum InstructionLevel: string
 {
   use BackedEnum;
