@@ -17,7 +17,7 @@
   },
   "autoload": {
     "psr-4": {
-      "HAJU\\": "app"
+      "HAJU\\": ["app", "src"]
     },
     "files": ["app/helpers.php"]
   },

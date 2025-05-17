@@ -12,7 +12,8 @@
     "esbuild": "0.21.5",
     "metismenujs": "^1.4.0",
     "pure-css-loader": "^3.3.3",
-    "sweetalert2": "^11.19.1"
+    "sweetalert2": "^11.19.1",
+    "zxcvbn": "^4.4.2"
   },
   "scripts": {
     "build": "esbuild resources/src/*.ts --format=esm --outdir=resources/dist --bundle --minify --sourcemap --loader:.woff2=copy --loader:.woff=copy --loader:.ttf=copy --loader:.eot=copy --loader:.svg=dataurl --loader:.jpg=dataurl --loader:.png=dataurl",
