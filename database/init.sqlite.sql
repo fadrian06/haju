@@ -167,7 +167,8 @@ INSERT INTO instruction_levels (id, name, abbreviation) VALUES
 (1, 'Doctor/a', 'Dr'),
 (2, 'Ingeniero/a', 'Ing'),
 (3, 'Técnico Superior Universitario', 'TSU'),
-(4, 'Licenciado/a', 'Licdo');
+(4, 'Licenciado/a', 'Licdo'),
+(5, 'Bachiller', 'Bachiller');
 
 INSERT INTO departments (id, name, belongs_to_external_consultation, icon_file_path)
 VALUES (22, 'Estadística', false, 'assets/img/departments/web01-obs_turismo-SIT.svg'),
