@@ -28,9 +28,15 @@ $alpineType = $typeHasOneWord
   ? $type
   : "typeof {$type} !== 'undefined' ? {$type} : '{$type}'";
 
+$validJsValueIdentifier = str_replace('-', '_', $value);
+
+$validJsValueIdentifier = preg_match('/^[a-zA-Z\$\_]/', $validJsValueIdentifier)
+  ? $validJsValueIdentifier
+  : "_{$validJsValueIdentifier}";
+
 $alpineValue = $valueHasOneWord
   ? $value
-  : "typeof {$value} !== 'undefined' ? {$value} : '{$value}'";
+  : "typeof {$validJsValueIdentifier} !== 'undefined' ? {$validJsValueIdentifier} : '{$value}'";
 
 ?>
 

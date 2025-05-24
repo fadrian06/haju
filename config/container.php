@@ -18,6 +18,9 @@ use HAJU\Repositories\Infraestructure\PDO\PDODoctorRepository;
 use HAJU\Repositories\Infraestructure\PDO\PDOPatientRepository;
 use HAJU\Repositories\Infraestructure\PDO\PDOUserRepository;
 use flight\Container;
+use HAJU\InstructionLevels\Application\InstructionLevelSearcher;
+use HAJU\InstructionLevels\Domain\InstructionLevelRepository;
+use HAJU\InstructionLevels\Infrastructure\SqliteInstructionLevelRepository;
 
 $container = Container::getInstance();
 
@@ -28,6 +31,15 @@ $container->singleton(PDO::class, static fn(): PDO => new PDO(
   $_ENV['DB_USERNAME'],
   $_ENV['DB_PASSWORD'],
 ));
+
+$container->singleton(SQLite3::class, static fn(): SQLite3 => new SQLite3(
+  $_ENV['DB_DATABASE'],
+));
+
+$container->singleton(
+  InstructionLevelRepository::class,
+  SqliteInstructionLevelRepository::class
+);
 
 $container->singleton(
   DepartmentRepository::class,
@@ -42,7 +54,8 @@ $container->singleton(
   static fn(): UserRepository => new PDOUserRepository(
     $container->get(PDO::class),
     BASE_URL,
-    $container->get(DepartmentRepository::class)
+    $container->get(DepartmentRepository::class),
+    $container->get(InstructionLevelSearcher::class),
   )
 );
 

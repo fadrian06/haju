@@ -15,7 +15,7 @@ use HAJU\Repositories\Exceptions\DuplicatedProfileImagesException;
 use HAJU\ValueObjects\AdultBirthDate;
 use HAJU\Enums\Appointment;
 use HAJU\Enums\Gender;
-use HAJU\Enums\InstructionLevel;
+use HAJU\InstructionLevels\Application\InstructionLevelSearcher;
 use HAJU\ValueObjects\Phone;
 use PDO;
 use PDOException;
@@ -28,8 +28,8 @@ final class PDOUserRepository extends PDORepository implements UserRepository
   users.id as id, first_name as firstName, second_name as secondName,
   first_last_name as firstLastName, second_last_name as secondLastName,
   birth_date as birthDateTimestamp, gender, appointments.name as appointment,
-  instruction_levels.abbreviation as instructionAbbreviation, id_card as idCard,
-  password, phone, email, address, profile_image_path as profileImagePath,
+  instruction_level_id, id_card as idCard, password, phone, email, address,
+  profile_image_path as profileImagePath,
   users.registered_date as registeredDateTime, is_active as isActive,
   registered_by_id as registeredById
   sql;
@@ -44,6 +44,7 @@ final class PDOUserRepository extends PDORepository implements UserRepository
     PDO $pdo,
     string $baseUrl,
     private readonly DepartmentRepository $departmentRepository,
+    private readonly InstructionLevelSearcher $instructionLevelSearcher,
   ) {
     parent::__construct($pdo, $baseUrl);
   }
@@ -132,7 +133,7 @@ final class PDOUserRepository extends PDORepository implements UserRepository
           $user->birthDate->timestamp,
           $user->gender->value,
           $user->appointment->getId(),
-          $user->instructionLevel->getId(),
+          $user->instructionLevel->id,
           $user->idCard,
           $user->password,
           $user->phone,
@@ -165,7 +166,9 @@ final class PDOUserRepository extends PDORepository implements UserRepository
       }
 
       if (str_contains($exception->getMessage(), 'UNIQUE constraint failed: users.avatar')) {
-        throw new DuplicatedProfileImagesException("Foto de perfil \"{$user->profileImagePath->asString()}\" ya existe");
+        throw new DuplicatedProfileImagesException(
+          "Foto de perfil \"{$user->profileImagePath->asString()}\" ya existe"
+        );
       }
 
       throw $exception;
@@ -269,7 +272,7 @@ final class PDOUserRepository extends PDORepository implements UserRepository
     int $birthDateTimestamp,
     string $gender,
     string $appointment,
-    string $instructionAbbreviation,
+    string $instructionLevelId,
     int $idCard,
     string $password,
     string $phone,
@@ -288,7 +291,7 @@ final class PDOUserRepository extends PDORepository implements UserRepository
       AdultBirthDate::fromTimestamp($birthDateTimestamp),
       Gender::from($gender),
       Appointment::from($appointment),
-      InstructionLevel::from($instructionAbbreviation),
+      $this->instructionLevelSearcher->getById($instructionLevelId),
       $idCard,
       $password,
       new Phone($phone),

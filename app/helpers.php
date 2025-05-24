@@ -40,9 +40,8 @@ function renderPage(
   string $layout = 'guest'
 ): void {
   $params['title'] = $title;
-  $view = Flight::view();
-  $params['content'] = $view->fetch("pages/{$page}", $params);
-  $view->render("layouts/{$layout}", $params);
+  Flight::render("pages/{$page}", $params, 'content');
+  Flight::render("layouts/{$layout}", $params);
 }
 
 function isActive(string ...$urls): bool

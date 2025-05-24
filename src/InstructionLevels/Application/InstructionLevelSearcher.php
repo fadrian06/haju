@@ -19,4 +19,9 @@ final readonly class InstructionLevelSearcher
   {
     return $this->repository->getAll();
   }
+
+  public function getById(string $id): ?InstructionLevel
+  {
+    return $this->repository->getById($id);
+  }
 }

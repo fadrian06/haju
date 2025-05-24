@@ -21,12 +21,16 @@ final class InstructionLevel extends Entity
 
   public function getName(): string
   {
-    return mb_convert_case($this->name, MB_CASE_TITLE);
+    return str_replace('/A', '/a', mb_convert_case($this->name, MB_CASE_TITLE));
   }
 
   public function getAbbreviation(): string
   {
-    return mb_convert_case($this->abbreviation, MB_CASE_TITLE);
+    return str_replace(
+      '/A',
+      '/a',
+      mb_convert_case($this->abbreviation, MB_CASE_TITLE),
+    );
   }
 
   public function update(string $name, string $abbreviation): void

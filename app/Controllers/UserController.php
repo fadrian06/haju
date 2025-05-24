@@ -14,10 +14,10 @@ use HAJU\ValueObjects\Date;
 use HAJU\ValueObjects\Exceptions\InvalidDateException;
 use HAJU\ValueObjects\Exceptions\InvalidPhoneException;
 use HAJU\Enums\Gender;
-use HAJU\Enums\InstructionLevel;
 use HAJU\ValueObjects\Phone;
 use Error;
 use Flight;
+use HAJU\InstructionLevels\Application\InstructionLevelSearcher;
 use Leaf\Http\Session;
 use PharIo\Manifest\Email;
 use PharIo\Manifest\InvalidEmailException;
@@ -32,13 +32,16 @@ final readonly class UserController extends Controller
     private DepartmentRepository $departmentRepository,
     private UserRepository $userRepository,
     private Zxcvbn $passwordValidator,
+    private InstructionLevelSearcher $instructionLevelSearcher,
   ) {
     parent::__construct();
   }
 
   public function showRegister(): void
   {
-    renderPage('register', 'Regístrate');
+    renderPage('register', 'Regístrate', [
+      'instructionLevels' => $this->instructionLevelSearcher->getAll(),
+    ]);
   }
 
   public function handleRegister(): void
@@ -75,11 +78,12 @@ final readonly class UserController extends Controller
         ));
       }
 
-      if (!in_array($this->data['instruction_level'], InstructionLevel::values(), true)) {
-        throw new Error(sprintf(
-          'El nivel de instrucción es requerido y válido (%s)',
-          implode(', ', InstructionLevel::values()),
-        ));
+      $instructionLevel = $this
+        ->instructionLevelSearcher
+        ->getById($this->data['instruction_level_id']);
+
+      if (!$instructionLevel) {
+        throw new Error('El nivel de instrucción es requerido');
       }
 
       if ($this->loggedUser && $this->loggedUser->appointment->isDirector() && $this->data['departments'] === []) {
@@ -102,7 +106,7 @@ final readonly class UserController extends Controller
         AdultBirthDate::from($this->data['birth_date'], '-'),
         Gender::from($this->data['gender']),
         $appointment,
-        InstructionLevel::from($this->data['instruction_level']),
+        $instructionLevel,
         (int) $this->data['id_card'],
         $this->data['password'],
         new Phone($this->data['phone']),

@@ -17,7 +17,7 @@ final readonly class SqliteInstructionLevelRepository implements InstructionLeve
     $this->sqlite3->enableExceptions(true);
 
     $this->sqlite3->exec('
-      CREATE TABLE IF NOT EXISTS instruction_levels_v3 (
+      CREATE TABLE IF NOT EXISTS instruction_levels (
         id VARCHAR(255) PRIMARY KEY,
         created_at DATETIME NOT NULL,
         name VARCHAR(255) NOT NULL UNIQUE,
@@ -30,7 +30,7 @@ final readonly class SqliteInstructionLevelRepository implements InstructionLeve
   {
     $result = $this
       ->sqlite3
-      ->query('SELECT * FROM instruction_levels_v3 ORDER BY name');
+      ->query('SELECT * FROM instruction_levels ORDER BY name');
 
     $instructionLevels = [];
 
@@ -49,7 +49,7 @@ final readonly class SqliteInstructionLevelRepository implements InstructionLeve
   public function getById(string $id): ?InstructionLevel
   {
     $stmt = $this->sqlite3->prepare('
-      SELECT * FROM instruction_levels_v3
+      SELECT * FROM instruction_levels
       WHERE id = ?
     ');
 
@@ -72,7 +72,7 @@ final readonly class SqliteInstructionLevelRepository implements InstructionLeve
   public function save(InstructionLevel $instructionLevel): void
   {
     $stmt = $this->sqlite3->prepare('
-      INSERT INTO instruction_levels_v3
+      INSERT INTO instruction_levels
       VALUES (:id, :createdAt, :name, :abbreviation)
       ON CONFLICT(id) DO UPDATE SET
         name = excluded.name,
@@ -114,7 +114,7 @@ final readonly class SqliteInstructionLevelRepository implements InstructionLeve
   {
     $stmt = $this
       ->sqlite3
-      ->prepare('DELETE FROM instruction_levels_v3 WHERE id = ?');
+      ->prepare('DELETE FROM instruction_levels WHERE id = ?');
 
     $stmt->bindValue(1, $instructionLevel->id);
     $stmt->execute();

@@ -10,10 +10,10 @@ CREATE TABLE appointments (
 
 DROP TABLE IF EXISTS instruction_levels;
 CREATE TABLE instruction_levels (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  id VARCHAR(255) PRIMARY KEY,
+  created_at DATETIME NOT NULL,
   name VARCHAR(20) NOT NULL UNIQUE,
-  abbreviation VARCHAR(5) NOT NULL UNIQUE,
-  registered_date DATETIME DEFAULT CURRENT_TIMESTAMP
+  abbreviation VARCHAR(5) NOT NULL UNIQUE
 );
 
 DROP TABLE IF EXISTS departments;
@@ -55,7 +55,7 @@ CREATE TABLE users (
   is_active BOOL DEFAULT true,
   registered_date DATETIME DEFAULT CURRENT_TIMESTAMP,
   appointment_id INTEGER NOT NULL,
-  instruction_level_id INTEGER NOT NULL,
+  instruction_level_id VARCHAR(255) NOT NULL,
   registered_by_id INTEGER,
 
   UNIQUE (first_name, second_name, first_last_name, second_last_name),
@@ -163,12 +163,12 @@ CREATE TABLE hospitalizations (
 INSERT INTO appointments (id, name) VALUES
 (1, 'Director/a'), (2, 'Coordinador/a'), (3, 'Secretario/a');
 
-INSERT INTO instruction_levels (id, name, abbreviation) VALUES
-(1, 'Doctor/a', 'Dr'),
-(2, 'Ingeniero/a', 'Ing'),
-(3, 'Técnico Superior Universitario', 'TSU'),
-(4, 'Licenciado/a', 'Licdo'),
-(5, 'Bachiller', 'Bachiller');
+INSERT INTO instruction_levels (id, created_at, name, abbreviation) VALUES
+('1', '2025-05-24 02:43:00', 'Doctor/a', 'Dr'),
+('2', '2025-05-24 02:43:00', 'Ingeniero/a', 'Ing'),
+('3', '2025-05-24 02:43:00', 'Técnico Superior Universitario', 'TSU'),
+('4', '2025-05-24 02:43:00', 'Licenciado/a', 'Licdo'),
+('5', '2025-05-24 02:43:00', 'Bachiller', 'Bachiller');
 
 INSERT INTO departments (id, name, belongs_to_external_consultation, icon_file_path)
 VALUES (22, 'Estadística', false, 'assets/img/departments/web01-obs_turismo-SIT.svg'),
