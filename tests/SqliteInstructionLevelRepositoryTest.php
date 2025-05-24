@@ -18,7 +18,9 @@ final class SqliteInstructionLevelRepositoryTest extends TestCase
 
   protected function setUp(): void
   {
-    $this->repository = new SqliteInstructionLevelRepository(new SQLite3(':memory:'));
+    $this->repository = new SqliteInstructionLevelRepository(
+      new SQLite3(':memory:'),
+    );
   }
 
   #[Test]
@@ -69,7 +71,10 @@ final class SqliteInstructionLevelRepositoryTest extends TestCase
     );
 
     self::expectException(Exception::class);
-    self::expectExceptionMessage('Ya existe un nivel de instrucción de nombre "Name 1"');
+
+    self::expectExceptionMessage(
+      'Ya existe un nivel de instrucción de nombre "Name 1"'
+    );
 
     $this->repository->save($validInstructionLevel);
 

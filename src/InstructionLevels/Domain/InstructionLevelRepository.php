@@ -11,6 +11,8 @@ interface InstructionLevelRepository
   /** @return InstructionLevel[] */
   public function getAll(): array;
 
+  public function getById(string $id): ?InstructionLevel;
+
   /** @throws Throwable */
   public function save(InstructionLevel $instructionLevel): void;
 

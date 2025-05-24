@@ -46,6 +46,29 @@ final readonly class SqliteInstructionLevelRepository implements InstructionLeve
     return $instructionLevels;
   }
 
+  public function getById(string $id): ?InstructionLevel
+  {
+    $stmt = $this->sqlite3->prepare('
+      SELECT * FROM instruction_levels_v3
+      WHERE id = ?
+    ');
+
+    $stmt->bindValue(1, $id);
+    $result = $stmt->execute();
+    $row = $result->fetchArray(SQLITE3_ASSOC);
+
+    if (!$row) {
+      return null;
+    }
+
+    return $this->mapper(
+      $row['id'],
+      $row['created_at'],
+      $row['name'],
+      $row['abbreviation'],
+    );
+  }
+
   public function save(InstructionLevel $instructionLevel): void
   {
     $stmt = $this->sqlite3->prepare('
