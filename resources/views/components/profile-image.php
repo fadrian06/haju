@@ -32,7 +32,7 @@ $links = [
   <div class="dropdown-menu dropdown-menu-end pb-0 text-end">
     <small class="d-block fw-light dropdown-header"><?= $user->getParsedAppointment() ?></small>
     <strong class="d-block small px-3">
-      <?= $user->instructionLevel->value ?>. <?= $user->getFullName() ?>
+      <?= $user->instructionLevel->getName() ?>. <?= $user->getFullName() ?>
     </strong>
     <hr class="mb-0" />
     <menu class="p-0 m-0">
