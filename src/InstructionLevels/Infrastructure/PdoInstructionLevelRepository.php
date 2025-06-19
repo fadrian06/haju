@@ -26,7 +26,12 @@ final readonly class PdoInstructionLevelRepository implements InstructionLevelRe
 
   public function getAll(): array
   {
-    $stmt = $this->pdo->query('SELECT * FROM instruction_levels ORDER BY name');
+    $stmt = $this->pdo->query('
+      SELECT id, created_at as createdAt, name, abbreviation
+      FROM instruction_levels
+      ORDER BY name
+    ');
+
     $instructionLevels = $stmt->fetchAll(PDO::FETCH_FUNC, $this->mapper(...));
 
     return $instructionLevels;

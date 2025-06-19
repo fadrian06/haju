@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS instruction_levels;
 CREATE TABLE instruction_levels (
   id VARCHAR(255) PRIMARY KEY,
   created_at DATETIME NOT NULL,
-  name VARCHAR(20) NOT NULL UNIQUE,
+  name VARCHAR(255) NOT NULL UNIQUE,
   abbreviation VARCHAR(5) NOT NULL UNIQUE
 );
 
