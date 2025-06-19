@@ -213,9 +213,11 @@ final readonly class UserController extends Controller
       }
 
       $this->loggedUser->setIdCard(intval($this->data['id_card']));
+
       $this->loggedUser->instructionLevel = $this
         ->instructionLevelSearcher
         ->getById($this->data['instruction_level_id']);
+
       $this->loggedUser->setFirstName($this->data['first_name']);
       $this->loggedUser->setSecondName($this->data['second_name']);
       $this->loggedUser->setFirstLastName($this->data['first_last_name']);
@@ -267,7 +269,11 @@ final readonly class UserController extends Controller
     renderPage(
       'users',
       "Usuarios ({$usersNumber})",
-      ['users' => $filteredUsers, ...compact('departments')],
+      [
+        'users' => $filteredUsers,
+        'instructionLevels' => $this->instructionLevelSearcher->getAll(),
+        ...compact('departments')
+      ],
       'main'
     );
   }

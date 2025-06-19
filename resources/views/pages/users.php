@@ -6,12 +6,13 @@ use flight\util\Collection;
 use HAJU\Models\User;
 use HAJU\Enums\Appointment;
 use HAJU\Enums\Gender;
-use HAJU\Enums\InstructionLevel;
+use HAJU\InstructionLevels\Domain\InstructionLevel;
 
 /**
  * @var array<int, User> $users
  * @var User $user
  * @var Collection $lastData
+ * @var InstructionLevel[] $instructionLevels
  */
 
 ?>
@@ -157,20 +158,20 @@ use HAJU\Enums\InstructionLevel;
             ]) ?>
           </div>
 
-          <div class="col-md-6">
-            <?php Flight::render('components/inputs/select', [
-              'name' => 'instruction_level',
-              'label' => 'Nivel de instrucción',
-              'options' => array_map(
-                static fn(InstructionLevel $instruction): array => [
-                  'value' => $instruction->value,
-                  'slot' => $instruction->getLongValue(),
-                  'selected' => ($lastData['instruction_level'] ?? '') === $instruction->value,
-                ],
-                InstructionLevel::cases(),
-              ),
-            ]) ?>
-          </div>
+          <?php Flight::render('components/input-group', [
+            'type' => 'select',
+            'name' => 'instruction_level_id',
+            'placeholder' => 'Nivel de instrucción',
+            'options' => array_map(
+              static fn(InstructionLevel $level): array => [
+                'value' => $level->id,
+                'text' => $level->getName(),
+                'selected' => $level->id === $lastData['instruction_level_id'] || $level->id === $user->instructionLevel->id,
+              ],
+              $instructionLevels,
+            ),
+            'cols' => 6,
+          ]) ?>
         </fieldset>
         <fieldset class="row row-gap-3 mb-3">
           <summary class="fs-6 mb-2">Credenciales</summary>

@@ -24,8 +24,10 @@ globalThis.customSwal = Swal.mixin({
   buttonsStyling: false,
 });
 
-if (location.href.endsWith("#registrar")) {
-  new Modal("#registrar").show();
-}
+document.addEventListener("DOMContentLoaded", () => {
+  if (location.href.endsWith("#registrar")) {
+    new Modal("#registrar").show();
+  }
 
-new MetisMenu("#sidebar-navigation");
+  new MetisMenu("#sidebar-navigation");
+});
