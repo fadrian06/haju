@@ -36,7 +36,7 @@ final readonly class SqliteInstructionLevelRepository implements InstructionLeve
 
     while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
       $instructionLevels[] = $this->mapper(
-        $row['id'],
+        strval($row['id']),
         $row['created_at'],
         $row['name'],
         $row['abbreviation'],
@@ -62,7 +62,7 @@ final readonly class SqliteInstructionLevelRepository implements InstructionLeve
     }
 
     return $this->mapper(
-      $row['id'],
+      strval($row['id']),
       $row['created_at'],
       $row['name'],
       $row['abbreviation'],
