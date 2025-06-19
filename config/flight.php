@@ -43,7 +43,11 @@ Flight::view()->set(
 );
 
 Flight::view()->set('lastData', new Collection(Session::get('lastData', [])));
-Flight::view()->set('error', Session::retrieve('error', null, true));
-Flight::view()->set('message', Session::retrieve('message', null, true));
-Flight::view()->set('scriptPath', Session::get('scriptPath', null, true));
-Flight::view()->set('mustChangePassword', Session::get('mustChangePassword', false));
+Flight::view()->set('error', Session::retrieve('error'));
+Flight::view()->set('message', Session::retrieve('message'));
+Flight::view()->set('scriptPath', Session::get('scriptPath'));
+
+Flight::view()->set(
+  'mustChangePassword',
+  Session::get('mustChangePassword', false)
+);

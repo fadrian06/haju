@@ -22,9 +22,9 @@ use HAJU\InstructionLevels\Application\InstructionLevelSearcher;
 use HAJU\InstructionLevels\Domain\InstructionLevelRepository;
 use HAJU\InstructionLevels\Infrastructure\SqliteInstructionLevelRepository;
 
-$container = Container::getInstance();
-
 assert($_ENV['DB_CONNECTION'] instanceof DBDriver);
+
+$container = Container::getInstance();
 
 $container->singleton(PDO::class, static fn(): PDO => new PDO(
   $_ENV['DB_CONNECTION']->getPdoDsn(),

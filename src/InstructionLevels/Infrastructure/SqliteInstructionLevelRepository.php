@@ -94,13 +94,13 @@ final readonly class SqliteInstructionLevelRepository implements InstructionLeve
     } catch (Exception $exception) {
       $message = $exception->getMessage();
 
-      if (str_contains($message, 'instruction_levels_v3.name')) {
+      if (str_contains($message, 'instruction_levels.name')) {
         throw new Exception(
           "Ya existe un nivel de instrucción de nombre \"{$instructionLevel->getName()}\""
         );
       }
 
-      if (str_contains($message, 'instruction_levels_v3.abbreviation')) {
+      if (str_contains($message, 'instruction_levels.abbreviation')) {
         throw new Exception(
           "Ya existe un nivel de instrucción con la abreviatura \"{$instructionLevel->getAbbreviation()}\""
         );
