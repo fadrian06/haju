@@ -13,7 +13,7 @@
     "jenssegers/date": "^4.0",
     "leafs/session": "^4.0",
     "phar-io/manifest": "^2.0",
-    "symfony/polyfill-php84": "^1.31"
+    "symfony/polyfill-php84": "^1.32"
   },
   "autoload": {
     "psr-4": {
@@ -61,9 +61,9 @@
     "phpunit/phpunit": "^11.5",
     "rector/rector": "^2.0",
     "spaze/phpstan-disallowed-calls": "^4.5",
-    "squizlabs/php_codesniffer": "^3.12",
+    "squizlabs/php_codesniffer": "^3.13",
     "staabm/phpstan-todo-by": "^0.2.0",
-    "symfony/var-dumper": "^7.2"
+    "symfony/var-dumper": "^7.3"
   },
   "config": {
     "sort-packages": true,
