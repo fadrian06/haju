@@ -77,7 +77,7 @@ use HAJU\Enums\DepartureStatus;
       'options' => array_map(fn(AdmissionDepartment $department): array => [
         'value' => $department->value,
         'text' => $department->value
-      ], AdmissionDepartment::cases()),
+      ], AdmissionDepartment::sortedCases()),
       'placeholder' => 'Departamento de ingreso',
       'cols' => 6,
       'name' => 'admission_department',

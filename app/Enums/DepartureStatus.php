@@ -10,5 +10,6 @@ enum DepartureStatus: string
   case Recovery = 'Mejoría';
   case Death = 'Muerte';
   case Autopsy = 'Autopsia';
-  case Others = 'Otras causas';
+  case Leak = 'COM - Fuga';
+  case Referred = 'COM - Referido';
 }

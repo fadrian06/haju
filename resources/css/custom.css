@@ -2,11 +2,6 @@ body {
   padding-right: 0 !important;
 }
 
-body.modal-open {
-  overflow: auto !important;
-  overflow-x: scroll !important;
-}
-
 a {
   text-decoration: none;
 }

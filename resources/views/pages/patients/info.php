@@ -133,7 +133,8 @@ $patientAvatar = @file_get_contents($avatarUrl)
     <div class="row mx-0">
       <article class="col-md px-0 pe-md-2">
         <div class="card card-body">
-          <h3>Visitas médicas <sub>(de la más reciente a la más antigua)</sub></h3>
+          <h3>Visitas médicas</h3>
+          <h4>(de la más reciente a la más antigua)</h4>
           <ul class="timeline mt-4">
             <?php if (!$patient->hasConsultations()) : ?>
               No hay consultas registradas
