@@ -46,7 +46,7 @@ declare(strict_types=1);
               <path d="M17.5 17.5m-2.5 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0" />
               <path d="M19.5 19.5l2.5 2.5" />
             </svg>
-            <!-- <img class="img-fluid" src="./assets/img/icons/cap.svg" style="height: 75px; object-fit: contain;" /> -->
+            <!-- <img class="img-fluid" src="./resouces/images/icons/cap.svg" style="height: 75px; object-fit: contain;" /> -->
           </picture>
           <h4 data-bs-toggle="tooltip" title="Sistema de Información para la Salud ~ Epidemiología">SIS-3 ~ EPI-11</h4>
           <small class="text-muted">

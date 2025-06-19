@@ -60,8 +60,8 @@ abstract readonly class Controller
       $image = file_get_contents($url);
 
       $filePath = [
-        'rel' => "assets/img/{$destinationFolder}/{$fileName}",
-        'abs' => ROOT_PATH . "/assets/img/{$destinationFolder}/{$fileName}",
+        'rel' => "resources/images/{$destinationFolder}/{$fileName}",
+        'abs' => ROOT_PATH . "/resources/images/{$destinationFolder}/{$fileName}",
       ];
 
       file_put_contents($filePath['abs'], $image);
@@ -76,8 +76,8 @@ abstract readonly class Controller
     $temporalFileAbsPath = $files[$fileParam]['tmp_name'];
 
     $filePath = [
-      'rel' => "assets/img/{$destinationFolder}/{$fileName}",
-      'abs' => ROOT_PATH . "/assets/img/{$destinationFolder}/{$fileName}",
+      'rel' => "resources/images/{$destinationFolder}/{$fileName}",
+      'abs' => ROOT_PATH . "/resources/images/{$destinationFolder}/{$fileName}",
     ];
 
     copy($temporalFileAbsPath, $filePath['abs']);

@@ -82,8 +82,8 @@ $monthName = [
 ?>
 
 <div class="row justify-content-between align-items-center">
-  <img src="./assets/img/gob.png" class="col-md-5 img-fluid" />
-  <img src="./assets/img/sis.png" class="col-md-2 img-fluid" />
+  <img src="./resouces/images/gob.png" class="col-md-5 img-fluid" />
+  <img src="./resouces/images/sis.png" class="col-md-2 img-fluid" />
   <h2 class="col-md-5 text-end">SIS-04/EPI-15</h2>
   <div class="col-md-6 fw-bold">
     Viceministerio de Redes de Salud Colectiva<br />

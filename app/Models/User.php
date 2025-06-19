@@ -116,7 +116,7 @@ final class User extends Person implements Activable
   public function getProfileImageRelPath(): string
   {
     return $this->profileImagePath instanceof Url
-      ? mb_substr($this->profileImagePath->asString(), strpos($this->profileImagePath->asString(), 'assets'))
+      ? mb_substr($this->profileImagePath->asString(), strpos($this->profileImagePath->asString(), 'resources'))
       : $this->profileImagePath;
   }
 

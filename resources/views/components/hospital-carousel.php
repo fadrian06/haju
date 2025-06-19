@@ -6,17 +6,17 @@ $id = uniqid();
 
 $hospitalImages = [
   [
-    'src' => './assets/img/hospital-exterior-1.jpg',
+    'src' => './resources/images/hospital-exterior-1.jpg',
     'title' => '',
     'description' => '',
   ],
   [
-    'src' => './assets/img/hospital-exterior-2.jpg',
+    'src' => './resources/images/hospital-exterior-2.jpg',
     'title' => '',
     'description' => '',
   ],
   [
-    'src' => './assets/img/hospital-exterior-3.jpg',
+    'src' => './resources/images/hospital-exterior-3.jpg',
     'title' => '',
     'description' => '',
   ],

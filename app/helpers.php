@@ -63,7 +63,7 @@ function getDepartmentIconUrl(Department $department): string
 {
   return $department->hasIcon()
     ? urldecode($department->iconFilePath->asString())
-    : './assets/img/department.png';
+    : './resources/images/department.png';
 }
 
 function getUserAvatarUrl(User $user): string

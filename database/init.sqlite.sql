@@ -171,9 +171,9 @@ INSERT INTO instruction_levels (id, created_at, name, abbreviation) VALUES
 ('5', '2025-05-24 02:43:00', 'Bachiller', 'Bachiller');
 
 INSERT INTO departments (id, name, belongs_to_external_consultation, icon_file_path)
-VALUES (22, 'Estadística', false, 'assets/img/departments/web01-obs_turismo-SIT.svg'),
-/*(1, 'Pediatría', true, 'assets/img/departments/pediatria.jpg'),
-(2, 'Ginecología', true, 'assets/img/departments/GINECOLOGIAA.jpg'),
+VALUES (22, 'Estadística', false, 'resources/images/departments/web01-obs_turismo-SIT.svg'),
+/*(1, 'Pediatría', true, 'resources/images/departments/pediatria.jpg'),
+(2, 'Ginecología', true, 'resources/images/departments/GINECOLOGIAA.jpg'),
 (3, 'Alto Riesgo', true),
 (4, 'Cirugía General', true),
 (5, 'Nutrición Dietética', true),
@@ -192,8 +192,8 @@ VALUES (22, 'Estadística', false, 'assets/img/departments/web01-obs_turismo-SIT
 (18, 'Quirófano', false),
 (19, 'Rayos X', false),
 (20, 'Banco de Sangre', false),*/
-(21, 'Emergencia', true, 'assets/img/departments/emergency-department-1.png'),
-(23, 'Hospitalización', false, 'assets/img/departments/doctor-visiting-patient-hospital-female-260nw-2477344121.png');
+(21, 'Emergencia', true, 'resources/images/departments/emergency-department-1.png'),
+(23, 'Hospitalización', false, 'resources/images/departments/doctor-visiting-patient-hospital-female-260nw-2477344121.png');
 
 INSERT INTO consultation_cause_categories (id, short_name, extended_name, top_category_id) VALUES
 (1, 'Enfermedades infecciosas y parasitarias', null, null),

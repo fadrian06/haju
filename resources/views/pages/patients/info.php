@@ -24,7 +24,7 @@ $avatarUrl = "https://unavatar.io/github/$patient->firstName";
 
 $patientAvatar = @file_get_contents($avatarUrl)
   ? $avatarUrl
-  : './assets/img/user.jpg';
+  : './resources/images/user.jpg';
 
 ?>
 

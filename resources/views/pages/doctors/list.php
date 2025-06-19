@@ -46,7 +46,7 @@ assert($loggedUser instanceof User);
           <picture class="p-3">
             <img
               class="img-fluid rounded-circle"
-              src="./assets/img/client_img.png"
+              src="./resources/images/client_img.png"
               style="height: 130px"
               title="<?= $doctor->getFullName() ?>" />
           </picture>

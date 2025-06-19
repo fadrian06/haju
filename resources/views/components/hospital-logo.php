@@ -10,8 +10,8 @@ $class ??= '';
 
 <img
   loading="eager"
-  src="./assets/img/logo@<?= Session::get('theme', 'light') ?>.png"
-  :src="`./assets/img/logo@${theme}.png`"
+  src="./resources/images/logo@<?= Session::get('theme', 'light') ?>.png"
+  :src="`./resources/images/logo@${theme}.png`"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
   height="50"

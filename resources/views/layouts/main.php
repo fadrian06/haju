@@ -92,19 +92,19 @@ foreach ($consultations as $consultation) {
   <base href="<?= str_replace('index.php', '', $_SERVER['SCRIPT_NAME']) ?>" />
   <link rel="icon" href="./resources/images/favicon.svg" />
   <link rel="stylesheet" href="./resources/dist/main.css" />
-  <link rel="stylesheet" href="./assets/vendors/themefy_icon/themify-icons.css" />
-  <link rel="stylesheet" href="./assets/css/components/btn.css" />
-  <link rel="stylesheet" href="./assets/css/components/sidebar.css" />
-  <link rel="stylesheet" href="./assets/css/components/main.css" />
-  <link rel="stylesheet" href="./assets/css/components/header.css" />
-  <link rel="stylesheet" href="./assets/css/components/sidebar.css" />
-  <link rel="stylesheet" href="./assets/css/components/profile.css" />
-  <link rel="stylesheet" href="./assets/css/components/footer.css" />
-  <link rel="stylesheet" href="./assets/css/components/single-element.css" />
-  <link rel="stylesheet" href="./assets/css/components/box.css" />
-  <link rel="stylesheet" href="./assets/css/components/section.css" />
-  <link rel="stylesheet" href="./assets/css/components/search-field.css" />
-  <link rel="stylesheet" href="./assets/css/custom.css" />
+  <link rel="stylesheet" href="./resources/vendors/themefy_icon/themify-icons.css" />
+  <link rel="stylesheet" href="./resources/css/components/btn.css" />
+  <link rel="stylesheet" href="./resources/css/components/sidebar.css" />
+  <link rel="stylesheet" href="./resources/css/components/main.css" />
+  <link rel="stylesheet" href="./resources/css/components/header.css" />
+  <link rel="stylesheet" href="./resources/css/components/sidebar.css" />
+  <link rel="stylesheet" href="./resources/css/components/profile.css" />
+  <link rel="stylesheet" href="./resources/css/components/footer.css" />
+  <link rel="stylesheet" href="./resources/css/components/single-element.css" />
+  <link rel="stylesheet" href="./resources/css/components/box.css" />
+  <link rel="stylesheet" href="./resources/css/components/section.css" />
+  <link rel="stylesheet" href="./resources/css/components/search-field.css" />
+  <link rel="stylesheet" href="./resources/css/custom.css" />
 </head>
 
 <body class="bg-secondary-subtle">
@@ -130,10 +130,10 @@ foreach ($consultations as $consultation) {
       'denyText' => false
     ]) ?>
   <?php endif ?>
-  <script src="./assets/vendors/jquery/jquery.min.js"></script>
-  <script src="./assets/vendors/chart.js"></script>
+  <script src="./resources/vendors/jquery/jquery.min.js"></script>
+  <script src="./resources/vendors/chart.js"></script>
   <script src="./resources/dist/main.js" defer></script>
-  <script src="./assets/js/custom.js" defer></script>
+  <script src="./resources/js/custom.js" defer></script>
 
   <script>
     <?php if ($error) : ?>

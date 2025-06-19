@@ -29,13 +29,13 @@ use HAJU\Models\User;
   <div class="row row-gap-4 justify-content-between align-items-center">
     <div class="col-md-6">
       <figure class="d-grid align-items-center m-0 gap-3" style="grid-template-columns: auto auto">
-        <img src="./assets/img/logo@light.png" class="img-fluid" />
+        <img src="./resources/images/logo@light.png" class="img-fluid" />
         <figcaption>
           <h4 class="m-0">Hospital "Antonio José Uzcátegui"</h4>
         </figcaption>
       </figure>
     </div>
-    <img src="./assets/img/gob.png" class="col-md-6 img-fluid" />
+    <img src="./resources/images/gob.png" class="col-md-6 img-fluid" />
     <div class="col-md-12">
       <h4>
         Fecha de emisión: <u><?= date('d/m/Y H:i:sa') ?></u>
