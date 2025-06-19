@@ -20,7 +20,7 @@ use HAJU\Repositories\Infraestructure\PDO\PDOUserRepository;
 use flight\Container;
 use HAJU\InstructionLevels\Application\InstructionLevelSearcher;
 use HAJU\InstructionLevels\Domain\InstructionLevelRepository;
-use HAJU\InstructionLevels\Infrastructure\SqliteInstructionLevelRepository;
+use HAJU\InstructionLevels\Infrastructure\PdoInstructionLevelRepository;
 
 assert($_ENV['DB_CONNECTION'] instanceof DBDriver);
 
@@ -38,7 +38,7 @@ $container->singleton(SQLite3::class, static fn(): SQLite3 => new SQLite3(
 
 $container->singleton(
   InstructionLevelRepository::class,
-  SqliteInstructionLevelRepository::class
+  PdoInstructionLevelRepository::class
 );
 
 $container->singleton(

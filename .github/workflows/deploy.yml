@@ -100,6 +100,7 @@ jobs:
             **/resources/src/**
             **/tests/**
             .editorconfig
+            .env.php
             .phpunit.result.cache
             biome.json
             composer.json
