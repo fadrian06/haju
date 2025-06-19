@@ -54,6 +54,14 @@ final class PDOUserRepository extends PDORepository implements UserRepository
     return 'users';
   }
 
+  public function thereAreUsers(): bool
+  {
+    $stmt = $this->ensureIsConnected()
+      ->query(sprintf('SELECT COUNT(*) FROM %s', self::getTable()));
+
+    return (bool) $stmt->fetchColumn();
+  }
+
   public function getAll(User ...$exclude): array
   {
     $ids = array_map(fn(User $user): int => $user->id, $exclude);

@@ -20,6 +20,8 @@ interface UserRepository extends Repository
   /** @throws RepositoryException */
   public function getByIdCard(int $idCard): ?User;
 
+  public function thereAreUsers(): bool;
+
   /**
    * @throws RepositoryException
    * @throws DuplicatedIdCardException

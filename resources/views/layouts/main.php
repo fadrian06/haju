@@ -105,6 +105,7 @@ foreach ($consultations as $consultation) {
   <link rel="stylesheet" href="./resources/css/components/section.css" />
   <link rel="stylesheet" href="./resources/css/components/search-field.css" />
   <link rel="stylesheet" href="./resources/css/custom.css" />
+  <script src="./resources/dist/main.js"></script>
 </head>
 
 <body class="bg-secondary-subtle">
@@ -132,7 +133,6 @@ foreach ($consultations as $consultation) {
   <?php endif ?>
   <script src="./resources/vendors/jquery/jquery.min.js"></script>
   <script src="./resources/vendors/chart.js"></script>
-  <script src="./resources/dist/main.js" defer></script>
   <script src="./resources/js/custom.js" defer></script>
 
   <script>

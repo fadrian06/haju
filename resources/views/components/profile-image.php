@@ -15,6 +15,11 @@ $links = [
     'href' => './perfil',
     'iconClass' => 'fa fa-user',
   ],
+  [
+    'title' => 'Editar perfil',
+    'href' => './perfil/editar',
+    'iconClass' => 'fa fa-edit',
+  ],
 ];
 
 ?>

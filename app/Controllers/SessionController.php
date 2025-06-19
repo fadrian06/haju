@@ -43,12 +43,17 @@ final readonly class SessionController extends Controller
 
   public function handleLogin(): void
   {
-    $user = $this->userRepository->getByIdCard((int) $this->data['id_card']);
+    $user = $this->userRepository->getByIdCard(intval($this->data['id_card']));
 
     try {
+      if (!$this->userRepository->thereAreUsers()) {
+        throw new Error('No hay usuarios registrados. Por favor, regístrate primero.');
+      }
+
       if ($this->data['id_card'] === null) {
         throw new Error('La cédula es requerida');
       }
+
       if ($this->data['password'] === null) {
         throw new Error('La contraseña es requerida');
       }

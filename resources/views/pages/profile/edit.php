@@ -2,14 +2,17 @@
 
 declare(strict_types=1);
 
+use flight\util\Collection;
 use HAJU\Models\User;
 use HAJU\Enums\Gender;
-use HAJU\Enums\InstructionLevel;
+use HAJU\InstructionLevels\Domain\InstructionLevel;
 
 /**
  * @var User $user
  * @var ?string $error
  * @var ?string $message
+ * @var InstructionLevel[] $instructionLevels
+ * @var Collection $lastData
  */
 
 ?>
@@ -31,20 +34,20 @@ use HAJU\Enums\InstructionLevel;
         Flight::render('components/input-group', [
           'type' => 'number',
           'name' => 'id_card',
-          'value' => $user->idCard,
+          'value' => $lastData['id_card'] ?: $user->idCard,
           'placeholder' => 'Cédula',
           'cols' => 6,
         ]);
 
         Flight::render('components/input-group', [
-          'value' => $user->firstName,
+          'value' => $lastData['first_name'] ?: $user->firstName,
           'name' => 'first_name',
           'placeholder' => 'Primer nombre',
           'cols' => 6,
         ]);
 
         Flight::render('components/input-group', [
-          'value' => $user->secondName,
+          'value' => $lastData['second_name'] ?: $user->secondName,
           'name' => 'second_name',
           'placeholder' => 'Segundo nombre',
           'required' => false,
@@ -52,14 +55,14 @@ use HAJU\Enums\InstructionLevel;
         ]);
 
         Flight::render('components/input-group', [
-          'value' => $user->firstLastName,
+          'value' => $lastData['first_last_name'] ?: $user->firstLastName,
           'name' => 'first_last_name',
           'placeholder' => 'Primer apellido',
           'cols' => 6,
         ]);
 
         Flight::render('components/input-group', [
-          'value' => $user->secondLastName,
+          'value' => $lastData['second_last_name'] ?: $user->secondLastName,
           'name' => 'second_last_name',
           'placeholder' => 'Segundo apellido',
           'required' => false,
@@ -67,7 +70,7 @@ use HAJU\Enums\InstructionLevel;
         ]);
 
         Flight::render('components/input-group', [
-          'value' => $user->birthDate->getWithDashes(),
+          'value' => $lastData['birth_date'] ?: $user->birthDate->getWithDashes(),
           'name' => 'birth_date',
           'placeholder' => 'Fecha de nacimiento',
           'type' => 'date',
@@ -81,20 +84,23 @@ use HAJU\Enums\InstructionLevel;
           'options' => array_map(fn(Gender $gender): array => [
             'value' => $gender->value,
             'text' => $gender->value,
-            'selected' => $gender === $user->gender
+            'selected' => $gender->value === $lastData['gender'] || $gender === $user->gender,
           ], Gender::cases()),
           'cols' => 6,
         ]);
 
         Flight::render('components/input-group', [
           'type' => 'select',
-          'name' => 'instruction_level',
+          'name' => 'instruction_level_id',
           'placeholder' => 'Nivel de instrucción',
-          'options' => array_map(fn(InstructionLevel $instruction): array => [
-            'value' => $instruction->value,
-            'text' => $instruction->getLongValue(),
-            'selected' => $instruction === $user->instructionLevel
-          ], InstructionLevel::cases()),
+          'options' => array_map(
+            fn(InstructionLevel $level): array => [
+              'value' => $level->id,
+              'text' => $level->getName(),
+              'selected' => $level->id === $lastData['instruction_level_id'] || $level->id === $user->instructionLevel->id,
+            ],
+            $instructionLevels
+          ),
           'cols' => 6,
         ]);
 
@@ -102,7 +108,7 @@ use HAJU\Enums\InstructionLevel;
           'type' => 'file',
           'name' => 'profile_image',
           'placeholder' => 'Imagen de perfil',
-          'required' => false
+          'required' => false,
         ]);
 
         ?>
@@ -118,13 +124,13 @@ use HAJU\Enums\InstructionLevel;
         'type' => 'textarea',
         'name' => 'address',
         'placeholder' => 'Dirección',
-        'value' => $user->address,
+        'value' => $lastData['address'] ?: $user->address,
       ]);
 
       Flight::render('components/input-group', [
         'type' => 'tel',
         'name' => 'phone',
-        'value' => $user->phone,
+        'value' => $lastData['phone'] ?: $user->phone,
         'placeholder' => 'Teléfono',
         'cols' => 6,
       ]);
@@ -132,7 +138,7 @@ use HAJU\Enums\InstructionLevel;
       Flight::render('components/input-group', [
         'type' => 'email',
         'name' => 'email',
-        'value' => $user->email->asString(),
+        'value' => $lastData['email'] ?: $user->email->asString(),
         'placeholder' => 'Correo',
         'cols' => 6,
       ]);

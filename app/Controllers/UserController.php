@@ -185,14 +185,16 @@ final readonly class UserController extends Controller
 
   public function showProfile(): void
   {
-    renderPage('profile', 'Mi perfil', [
+    renderPage('profile/info', 'Mi perfil', [
       'showPasswordChangeModal' => false
     ], 'main');
   }
 
   public function showEditProfile(): void
   {
-    renderPage('edit-profile', 'Editar perfil', [], 'main');
+    renderPage('profile/edit', 'Editar perfil', [
+      'instructionLevels' => $this->instructionLevelSearcher->getAll(),
+    ], 'main');
   }
 
   public function handleEditProfile(): void
@@ -211,7 +213,9 @@ final readonly class UserController extends Controller
       }
 
       $this->loggedUser->setIdCard(intval($this->data['id_card']));
-      $this->loggedUser->instructionLevel = InstructionLevel::from($this->data['instruction_level']);
+      $this->loggedUser->instructionLevel = $this
+        ->instructionLevelSearcher
+        ->getById($this->data['instruction_level_id']);
       $this->loggedUser->setFirstName($this->data['first_name']);
       $this->loggedUser->setSecondName($this->data['second_name']);
       $this->loggedUser->setFirstLastName($this->data['first_last_name']);
