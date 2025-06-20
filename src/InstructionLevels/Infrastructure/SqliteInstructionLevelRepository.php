@@ -83,7 +83,7 @@ final readonly class SqliteInstructionLevelRepository implements InstructionLeve
 
     $stmt->bindValue(
       'createdAt',
-      $instructionLevel->createdAt->format('Y-m-d H:i:s')
+      $instructionLevel->getCreatedAt()->format('Y-m-d H:i:s')
     );
 
     $stmt->bindValue('name', $instructionLevel->getName());

@@ -9,12 +9,15 @@ use DateTimeInterface;
 
 abstract class Entity
 {
-  public readonly DateTimeInterface $createdAt;
-
   public function __construct(
     public readonly string $id,
-    DateTimeImmutable $createdAt
+    private readonly DateTimeImmutable $createdAt
   ) {
-    $this->createdAt = $createdAt;
+    // ...
+  }
+
+  public function getCreatedAt(): DateTimeInterface
+  {
+    return $this->createdAt;
   }
 }
