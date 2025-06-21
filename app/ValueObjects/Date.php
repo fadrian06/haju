@@ -74,6 +74,17 @@ readonly class Date implements Stringable
     return new static((int) $day, (int) $month, (int) $year);
   }
 
+  public static function fromString(string $date): static
+  {
+    $datetime = new DateTimeImmutable($date);
+
+    return new static(
+      (int) $datetime->format('d'),
+      (int) $datetime->format('m'),
+      (int) $datetime->format('Y')
+    );
+  }
+
   public function __toString(): string
   {
     return "{$this->day}/{$this->month}/{$this->year}";

@@ -32,6 +32,7 @@ $value ??= '';
 
   <?php if (!$isEdgeBrowser) : ?>
     <button
+      tabindex="-1"
       style="right: .5em"
       type="button"
       @click="toggled = !toggled"
