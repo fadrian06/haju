@@ -20,4 +20,4 @@ use HAJU\InstructionLevels\Domain\InstructionLevel;
     'selected' => $instructionLevel->id === ($lastData['instruction_level_id'] ?? ''),
   ], $instructionLevels),
   'label' => 'Nivel de instrucción',
-]) ?>
+]);
