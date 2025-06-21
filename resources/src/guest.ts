@@ -9,6 +9,7 @@ import "alpinejs/dist/cdn.min";
 import Swal from "sweetalert2";
 import "./setups/bootstrap-tooltips";
 import "./setups/bootstrap-toasts";
+import "./setups/bootstrap-popovers";
 
 globalThis.customSwal = Swal.mixin({
   showCloseButton: true,

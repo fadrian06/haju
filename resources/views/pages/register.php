@@ -76,14 +76,8 @@ use HAJU\InstructionLevels\Domain\InstructionLevel;
               ]) ?>
             </div>
             <div class="col-md-6">
-              <?php Flight::render('components/inputs/select', [
-                'name' => 'instruction_level_id',
-                'options' => array_map(static fn(InstructionLevel $instructionLevel): array => [
-                  'slot' => $instructionLevel->getName(),
-                  'value' => $instructionLevel->id,
-                  'selected' => $instructionLevel->id === ($lastData['instruction_level_id'] ?? ''),
-                ], $instructionLevels),
-                'label' => 'Nivel de instrucción',
+              <?php Flight::render('components/inputs/instruction-level-selector', [
+                'instructionLevels' => $instructionLevels,
               ]) ?>
             </div>
             <div class="col-md-6 text-start">
