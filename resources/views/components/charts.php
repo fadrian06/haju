@@ -12,7 +12,7 @@ $currentDate = date('Y-m-d') . ' 23:59:59';
 $range = DateRange::tryFrom($_GET['rango'] ?? '');
 $pdo = Container::getInstance()->get(PDO::class);
 
-$stmt = $pdo->query(<<<sql
+$stmt = $pdo->prepare(<<<sql
   SELECT consultations.cause_id, consultation_causes.short_name,
   consultation_causes.variant, consultation_causes.extended_name,
   COUNT(patient_id) as consultations
@@ -72,19 +72,17 @@ foreach ($patientsByCause as $cause => &$causePatients) {
   usort($causePatients, static fn(Patient $a, Patient $b): int => strnatcmp($a->getFullName(), $b->getFullName()));
 }
 
-$stmt = $pdo->query(<<<sql
-  SELECT short_name, extended_name, variant, registered_date,
-  COUNT(short_name) as consultations
-  FROM (
-    SELECT consultation_causes.short_name, consultation_causes.extended_name,
-    consultation_causes.variant, date(consultations.registered_date) as registered_date
-    FROM consultations
-    JOIN consultation_causes
-    ON consultations.cause_id = consultation_causes.id
-    WHERE cause_id = :cause_id AND registered_date BETWEEN :start_date AND :end_date
-    GROUP BY registered_date
-    ORDER BY registered_date
-  ) GROUP BY registered_date
+$stmt = $pdo->prepare(<<<sql
+  SELECT short_name, extended_name, variant,
+  DATE(registered_date) AS registered_date,
+  COUNT(*) AS consultations
+  FROM consultations
+  JOIN consultation_causes
+  ON consultations.cause_id = consultation_causes.id
+  WHERE cause_id = :cause_id
+  AND registered_date BETWEEN :start_date AND :end_date
+  GROUP BY short_name, extended_name, variant, DATE(registered_date)
+  ORDER BY DATE(registered_date)
 sql);
 
 $params = [
