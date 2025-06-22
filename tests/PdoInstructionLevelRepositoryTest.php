@@ -7,19 +7,19 @@ namespace HAJU\Tests;
 use DateTimeImmutable;
 use Exception;
 use HAJU\InstructionLevels\Domain\InstructionLevel;
-use HAJU\InstructionLevels\Infrastructure\SqliteInstructionLevelRepository;
+use HAJU\InstructionLevels\Infrastructure\PdoInstructionLevelRepository;
+use PDO;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
-use SQLite3;
 
-final class SqliteInstructionLevelRepositoryTest extends TestCase
+final class PdoInstructionLevelRepositoryTest extends TestCase
 {
-  private readonly SqliteInstructionLevelRepository $repository;
+  private readonly PdoInstructionLevelRepository $repository;
 
   protected function setUp(): void
   {
-    $this->repository = new SqliteInstructionLevelRepository(
-      new SQLite3(':memory:'),
+    $this->repository = new PdoInstructionLevelRepository(
+      new PDO('sqlite::memory:'),
     );
   }
 
@@ -70,13 +70,13 @@ final class SqliteInstructionLevelRepositoryTest extends TestCase
       'Abbreviation 1'
     );
 
+    $this->repository->save($validInstructionLevel);
+
     self::expectException(Exception::class);
 
     self::expectExceptionMessage(
       'Ya existe un nivel de instrucción de nombre "Name 1"'
     );
-
-    $this->repository->save($validInstructionLevel);
 
     $this->repository->save(
       new InstructionLevel(
@@ -98,12 +98,13 @@ final class SqliteInstructionLevelRepositoryTest extends TestCase
       'Abbreviation 1'
     );
 
+    $this->repository->save($validInstructionLevel);
+
     self::expectException(Exception::class);
+
     self::expectExceptionMessage(
       'Ya existe un nivel de instrucción con la abreviatura "Abbreviation 1"'
     );
-
-    $this->repository->save($validInstructionLevel);
 
     $this->repository->save(
       new InstructionLevel(
@@ -223,5 +224,68 @@ final class SqliteInstructionLevelRepositoryTest extends TestCase
     );
 
     $this->repository->save($firstInstructionLevel);
+  }
+
+  #[Test]
+  public function itFormatsNameAndAbbreviation(): void
+  {
+    $validInstructionLevel = new InstructionLevel(
+      uniqid(),
+      new DateTimeImmutable(),
+      'name 1',
+      'abbreviation 1'
+    );
+
+    $this->repository->save($validInstructionLevel);
+
+    $savedInstructionLevels = $this->repository->getAll();
+
+    self::assertCount(1, $savedInstructionLevels);
+
+    self::assertSame(
+      'Name 1',
+      $savedInstructionLevels[0]->getName()
+    );
+
+    self::assertSame(
+      'Abbreviation 1',
+      $savedInstructionLevels[0]->getAbbreviation()
+    );
+  }
+
+  #[Test]
+  public function itValidatesName(): void
+  {
+    $validInstructionLevel = new InstructionLevel(
+      uniqid(),
+      new DateTimeImmutable(),
+      'Name 1',
+      'Abbreviation 1'
+    );
+
+    self::expectException(Exception::class);
+    self::expectExceptionMessage('El nombre no puede estar vacío');
+
+    $this->repository->save($validInstructionLevel);
+    $validInstructionLevel->update('', 'Abbreviation 1');
+    $this->repository->save($validInstructionLevel);
+  }
+
+  #[Test]
+  public function itValidatesAbbreviation(): void
+  {
+    $validInstructionLevel = new InstructionLevel(
+      uniqid(),
+      new DateTimeImmutable(),
+      'Name 1',
+      'Abbreviation 1'
+    );
+
+    self::expectException(Exception::class);
+    self::expectExceptionMessage('La abreviatura no puede estar vacía');
+
+    $this->repository->save($validInstructionLevel);
+    $validInstructionLevel->update('Name 1', '');
+    $this->repository->save($validInstructionLevel);
   }
 }
