@@ -47,9 +47,9 @@ final readonly class PdoInstructionLevelRepository implements InstructionLevelRe
 
     $stmt->bindValue(1, $id);
     $stmt->execute();
-    $row = $stmt->fetch(SQLITE3_ASSOC);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if (!$stmt->rowCount()) {
+    if (!is_array($row)) {
       return null;
     }
 
