@@ -192,7 +192,7 @@ final readonly class PatientController extends Controller
         $this->data['second_last_name'],
         Date::from($this->data['birth_date'], '-'),
         Gender::from($this->data['gender']),
-        $this->data['id_card'],
+        intval($this->data['id_card']),
         $this->loggedUser
       );
 
