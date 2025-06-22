@@ -100,7 +100,7 @@ final class PDODoctorRepository extends PDORepository implements DoctorRepositor
           $doctor->secondName,
           $doctor->firstLastName,
           $doctor->secondLastName,
-          $doctor->birthDate->timestamp,
+          $doctor->birthDate->getWithDashes(),
           $doctor->gender->value,
           $doctor->idCard,
           $datetime,
@@ -138,7 +138,7 @@ final class PDODoctorRepository extends PDORepository implements DoctorRepositor
         $doctor->secondName,
         $doctor->firstLastName,
         $doctor->secondLastName,
-        $doctor->birthDate->timestamp,
+        $doctor->birthDate->getWithDashes(),
         $doctor->idCard,
         $doctor->id
       ]);
@@ -152,7 +152,7 @@ final class PDODoctorRepository extends PDORepository implements DoctorRepositor
     ?string $secondName,
     string $firstLastName,
     ?string $secondLastName,
-    int $birthDate,
+    string $birthDate,
     string $gender,
     int $idCard,
     string $registeredDate,
@@ -163,7 +163,7 @@ final class PDODoctorRepository extends PDORepository implements DoctorRepositor
       $secondName,
       $firstLastName,
       $secondLastName,
-      Date::fromTimestamp($birthDate),
+      Date::fromString($birthDate),
       Gender::from($gender),
       $idCard,
       $this->userRepository->getById($registeredById)
