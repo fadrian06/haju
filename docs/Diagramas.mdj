@@ -74748,6 +74748,24 @@
 					]
 				}
 			]
+		},
+		{
+			"_type": "ERDDataModel",
+			"_id": "AAAAAAGXoxKRtQ4+2MQ=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "Modelo Relacional",
+			"ownedElements": [
+				{
+					"_type": "ERDDiagram",
+					"_id": "AAAAAAGXoxKRtg4/P4A=",
+					"_parent": {
+						"$ref": "AAAAAAGXoxKRtQ4+2MQ="
+					},
+					"name": "Diagrama Entidad Relación"
+				}
+			]
 		}
 	]
 }
