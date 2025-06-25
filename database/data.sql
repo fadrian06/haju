@@ -1,16 +1,16 @@
 INSERT INTO users VALUES
-(1, 'Franyer', 'Adrián', 'Sánchez', 'Guillén', 1002326400, 'Masculino', 28072391, '$2y$10$ducfSFjbtfKP7DvjHLSDauvMvk2U4xUvsW.W93qXa0YtBwQURQDha', '+58 416-5335826', 'franyeradriansanchez@gmail.com', 'El Pinar', 'resources/images/avatars/28072391.jpg', true, '2025-02-14 13:02:14', 1, 3, null),
-(2, 'Jenifer', null, 'Lázaro', null, 938995200, 'Femenino', 29794519, '$2y$10$ducfSFjbtfKP7DvjHLSDauvMvk2U4xUvsW.W93qXa0YtBwQURQDha', '+58 424-7435104', 'jeniner_99@gmail.com', 'El Pinar', 'resources/images/avatars/29794519.jpg', true, '2025-02-14 13:02:15', 2, 3, 1),
-(3, 'Daniel', null, 'Mancilla', null, 975110400, 'Masculino', 27668711, '$2y$10$ducfSFjbtfKP7DvjHLSDauvMvk2U4xUvsW.W93qXa0YtBwQURQDha', '+58 424-7532164', 'daniel@gmail.com', 'Río Frío', 'resources/images/avatars/27711944.jpg', true, '2025-02-14 13:02:16', 3, 3, 2);
+(1, 'Franyer', 'Adrián', 'Sánchez', 'Guillén', '2001-10-06', 'Masculino', 28072391, '$2y$10$ducfSFjbtfKP7DvjHLSDauvMvk2U4xUvsW.W93qXa0YtBwQURQDha', '+58 416-5335826', 'franyeradriansanchez@gmail.com', 'El Pinar', 'resources/images/avatars/28072391.jpg', true, '2025-02-14 13:02:14', 1, 3, null),
+(2, 'Jenifer', null, 'Lázaro', null, '1999-10-01', 'Femenino', 29794519, '$2y$10$ducfSFjbtfKP7DvjHLSDauvMvk2U4xUvsW.W93qXa0YtBwQURQDha', '+58 424-7435104', 'jeniner_99@gmail.com', 'El Pinar', 'resources/images/avatars/29794519.jpg', true, '2025-02-14 13:02:15', 2, 3, 1),
+(3, 'Daniel', null, 'Mancilla', null, '2000-12-01', 'Masculino', 27668711, '$2y$10$ducfSFjbtfKP7DvjHLSDauvMvk2U4xUvsW.W93qXa0YtBwQURQDha', '+58 424-7532164', 'daniel@gmail.com', 'Río Frío', 'resources/images/avatars/27711944.jpg', true, '2025-02-14 13:02:16', 3, 3, 2);
 
 INSERT INTO patients VALUES
-(1, 'Juan', null, 'Arias', null, 923184000, 'Masculino', 31514346, '2025-02-14 13:14:59', 2),
-(2, 'Andreína', null, 'Sánchez', null, 968889600, 'Femenino', 26345006, '2025-02-14 13:14:57', 3),
-(3, 'Carlos', null, 'Contreras', null, 1026691200, 'Masculino', 29304506, '2025-02-14 13:14:56', 3),
-(4, 'Eliliana', null, 'Salas', null, 1286668800, 'Femenino', 33453364, '2025-02-14 13:14:55', 3),
-(5, 'Yenni', null, 'Sánchez', null, 977702400, 'Femenino', 28543550, '2025-02-14 13:14:54', 2),
-(6, 'María', null, 'Hernández', null, 1052908800, 'Femenino', 30234506, '2025-02-14 13:14:53', 3),
-(7, 'José', null, 'González', null, 1125456000, 'Masculino', 31234506, '2025-02-14 13:14:52', 3);
+(1, 'Juan', null, 'Arias', null, '1999-04-14', 'Masculino', 31514346, '2025-02-14 13:14:59', 2),
+(2, 'Andreína', null, 'Sánchez', null, '2000-09-14', 'Femenino', 26345006, '2025-02-14 13:14:57', 3),
+(3, 'Carlos', null, 'Contreras', null, '2002-07-15', 'Masculino', 29304506, '2025-02-14 13:14:56', 3),
+(4, 'Eliliana', null, 'Salas', null, '2010-10-10', 'Femenino', 33453364, '2025-02-14 13:14:55', 3),
+(5, 'Yenni', null, 'Sánchez', null, '2000-12-25', 'Femenino', 28543550, '2025-02-14 13:14:54', 2),
+(6, 'María', null, 'Hernández', null, '2003-05-15', 'Femenino', 30234506, '2025-02-14 13:14:53', 3),
+(7, 'José', null, 'González', null, '2005-08-31', 'Masculino', 31234506, '2025-02-14 13:14:52', 3);
 
 INSERT INTO doctors VALUES
 (1, 'Marley', null, 'Mesa', 'Lázaro', 172886400, 'Femenino', 19345063, '2025-02-14 13:14:53', 2),
