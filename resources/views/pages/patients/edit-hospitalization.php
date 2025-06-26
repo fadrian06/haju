@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+
 
 use flight\util\Collection;
 use HAJU\Models\Doctor;

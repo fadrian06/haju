@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+
 
 use HAJU\Enums\AdmissionDepartment;
 use HAJU\Models\Doctor;

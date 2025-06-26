@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+
 
 use HAJU\Controllers\DepartmentController;
 use HAJU\Controllers\DoctorController;

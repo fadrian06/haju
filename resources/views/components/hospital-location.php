@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+
 
 // phpcs:ignore Generic.Files.LineLength.MaxExceeded
 $iframeSrc = 'https://www.openstreetmap.org/export/embed.html?bbox=-71.28103494644166%2C8.965167775885362%2C-71.27273082733156%2C8.969883750535764&amp;layer=mapnik&amp;marker=8.967525770867361%2C-71.2768828868866';
