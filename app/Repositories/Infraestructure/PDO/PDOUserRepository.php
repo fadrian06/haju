@@ -227,7 +227,7 @@ final class PDOUserRepository extends PDORepository implements UserRepository
         $user->secondName,
         $user->firstLastName,
         $user->secondLastName,
-        $user->birthDate->timestamp,
+        $user->birthDate->getWithDashes(),
         $user->gender->value,
         $user->phone,
         $user->email->asString(),
