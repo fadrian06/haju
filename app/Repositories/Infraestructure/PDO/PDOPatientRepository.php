@@ -357,7 +357,7 @@ final class PDOPatientRepository extends PDORepository implements PatientReposit
         $patient->secondName,
         $patient->firstLastName,
         $patient->secondLastName,
-        $patient->birthDate->timestamp,
+        $patient->birthDate->getWithDashes(),
         $patient->idCard,
         $patient->id
       ]);
