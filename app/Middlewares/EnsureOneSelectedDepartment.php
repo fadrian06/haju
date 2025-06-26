@@ -26,9 +26,10 @@ final readonly class EnsureOneSelectedDepartment
 
     if ($departmentId !== null) {
       $department = $this->departmentRepository->getById((int) $departmentId);
+
+      Flight::view()->set('department', $department);
     }
 
     Flight::view()->set('canChangeDepartment', count($departments) !== 1);
-    Flight::view()->set('department', $department);
   }
 }

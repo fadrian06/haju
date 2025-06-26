@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 use HAJU\Models\Hospitalization;
 use HAJU\Enums\DateRange;
+use HAJU\Models\Department;
 
 /**
  * @var Hospitalization[] $hospitalizations
+ * @var Department $department
  */
 
 ?>

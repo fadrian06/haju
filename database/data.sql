@@ -13,11 +13,11 @@ INSERT INTO patients VALUES
 (7, 'José', null, 'González', null, '2005-08-31', 'Masculino', 31234506, '2025-02-14 13:14:52', 3);
 
 INSERT INTO doctors VALUES
-(1, 'Marley', null, 'Mesa', 'Lázaro', 172886400, 'Femenino', 19345063, '2025-02-14 13:14:53', 2),
-(2, 'Maro', null, 'Velazques', null, 640137600, 'Masculino', 18202068, '2025-02-14 13:14:52', 3),
-(3, 'José', null, 'Hernández', null, 475632000, 'Masculino', 17503783, '2025-02-14 13:14:51', 2),
-(4, 'María', null, 'González', null, 1026691200, 'Femenino', 29304506, '2025-02-14 13:14:50', 3),
-(5, 'Luis', null, 'Hernández', null, 1286668800, 'Masculino', 33453364, '2025-02-14 13:14:49', 3);
+(1, 'Marley', null, 'Mesa', 'Lázaro', '1975-06-14', 'Femenino', 19345063, '2025-02-14 13:14:53', 2),
+(2, 'Maro', null, 'Velazques', null, '1990-04-14', 'Masculino', 18202068, '2025-02-14 13:14:52', 3),
+(3, 'José', null, 'Hernández', null, '1985-02-14', 'Masculino', 17503783, '2025-02-14 13:14:51', 2),
+(4, 'María', null, 'González', null, '2002-07-15', 'Femenino', 29304506, '2025-02-14 13:14:50', 3),
+(5, 'Luis', null, 'Hernández', null, '2010-10-10', 'Masculino', 33453364, '2025-02-14 13:14:49', 3);
 
 INSERT INTO department_assignments VALUES
 (1, '2025-02-14 13:14:51', 2, 22),

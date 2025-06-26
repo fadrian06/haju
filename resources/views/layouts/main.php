@@ -12,6 +12,8 @@ use Leaf\Http\Session;
  * @var string $content
  * @var User $user
  * @var bool $mustChangePassword
+ * @var ?string $error
+ * @var ?string $message
  */
 
 $showPasswordChangeModal ??= $mustChangePassword;

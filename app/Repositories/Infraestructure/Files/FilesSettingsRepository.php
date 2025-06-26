@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace HAJU\Repositories\Infraestructure\Files;
 
+use Error;
 use HAJU\Enums\DBDriver;
 use HAJU\Models\Hospital;
 use HAJU\Repositories\Domain\SettingsRepository;
@@ -147,6 +148,8 @@ final readonly class FilesSettingsRepository implements SettingsRepository
           $allValues[] = "({$valuesList})";
         }
       }
+
+      $columnsList ??= throw new Error('Columns list cannot be empty');
 
       if ($allValues !== []) {
         $sqlScript .= "INSERT INTO `{$table}` ({$columnsList}) VALUES " . implode(', ', $allValues) . ";\n";

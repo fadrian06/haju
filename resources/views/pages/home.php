@@ -12,6 +12,7 @@ use HAJU\Enums\Appointment;
  * @var int $patientsNumber
  * @var int $departmentsNumber
  * @var int $consultationsNumber
+ * @var int $doctorsNumber
  * @var Department $department
  */
 

@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+/**
+ * @var string $name
+ */
+
 $required ??= true;
 
 $isEdgeBrowser = str_contains(

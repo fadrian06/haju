@@ -8,6 +8,7 @@ use HAJU\Models\User;
 /**
  * @var Department $department
  * @var User $user
+ * @var int $consultationsTotal
  */
 
 ?>

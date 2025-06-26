@@ -5,7 +5,7 @@ declare(strict_types=1);
 use HAJU\Models\Department;
 
 /**
- * @var Department $deprtament
+ * @var Department $department
  */
 
 ?>

@@ -5,7 +5,7 @@ declare(strict_types=1);
 use HAJU\Enums\NotificationType;
 
 $text = isset($type) ? strval($type) : throw new Error('Text not set');
-$type = isset($type) && is_string($type) ? NotificationType::from(strval($type)) : throw new Error('Type not set');
+$type = is_string($type) ? NotificationType::from(strval($type)) : throw new Error('Type not set');
 
 ?>
 

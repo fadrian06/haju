@@ -9,9 +9,10 @@ use HAJU\Models\Patient;
 use HAJU\Enums\ConsultationType;
 
 /**
- * @var array<int, Patient> $patients
- * @var array<int, ConsultationCauseCategory> $consultationCauseCategories
- * @var array<int, Department> $departments
+ * @var Patient[] $patients
+ * @var ConsultationCauseCategory[] $consultationCauseCategories
+ * @var Department[] $departments
+ * @var Doctor[] $doctors
  */
 
 ?>
@@ -26,10 +27,12 @@ use HAJU\Enums\ConsultationType;
     x-data='{
       selected_id: null,
       search: "",
-      patients: JSON.parse(`<?= json_encode(array_map(fn(Patient $patient): array => [
-                              'value' => $patient->id,
-                              'text' => "v-{$patient->idCard} ~ {$patient->getFullName()}"
-                            ], $patients)) ?>`),
+      patients: JSON.parse(`
+        <?= json_encode(array_map(fn(Patient $patient): array => [
+          'value' => $patient->id,
+          'text' => "v-{$patient->idCard} ~ {$patient->getFullName()}"
+        ], $patients)) ?>
+      `),
 
       filteredPatients: []
     }'
@@ -140,17 +143,6 @@ use HAJU\Enums\ConsultationType;
     ]);
 
     ?>
-
-    <!-- <div class="nice-select default_sel mb_30 w-100" tabindex="0"><span class="current">Select</span>
-      <div class="nice-select-search-box"><input class="nice-select-search" placeholder="Search..." type="text"></div>
-      <ul class="list">
-        <li data-value="Nothing" data-display="Select" class="option selected focus">Nothing</li>
-        <li data-value="1" class="option">Some option</li>
-        <li data-value="2" class="option">Another option</li>
-        <li data-value="3" class="option disabled">A disabled option</li>
-        <li data-value="4" class="option">Potato</li>
-      </ul>
-    </div> -->
   </fieldset>
   <button id="register-btn" class="btn btn-primary d-none btn-lg mt-4 px-5 rounded-pill">Registrar</button>
 </form>

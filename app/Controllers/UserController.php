@@ -280,9 +280,9 @@ final readonly class UserController extends Controller
 
   public function handleToggleStatus(int $id): void
   {
-    try {
-      $user = $this->userRepository->getById($id);
+    $user = $this->userRepository->getById($id);
 
+    try {
       if (!$user->appointment->isDirector()) {
         throw new Error('Acceso denegado');
       }
@@ -294,7 +294,7 @@ final readonly class UserController extends Controller
       self::setError($error);
     }
 
-    Flight::redirect($user->appointment === Appointment::Director ? '/salir' : '/usuarios');
+    Flight::redirect($user->appointment->isDirector() ? '/salir' : '/usuarios');
   }
 
   public function handlePasswordChange(): void

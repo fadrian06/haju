@@ -10,6 +10,7 @@ use HAJU\Models\ConsultationCauseCategory;
 /**
  * @var Consultation[] $consultations
  * @var Department $department
+ * @var ConsultationCauseCategory[] $consultationCauseCategories
  */
 
 ?>

@@ -22,24 +22,22 @@ $causes = $data;
 /** @var array<int, ConsultationCauseCategory> */
 $categories = [];
 
-$monthYear = $_GET['fecha'] ?? null;
+$monthYear = $_GET['fecha'] ?? throw new Error('Fecha no proporcionada');
 
 ob_start();
 
-if ($monthYear !== null) {
-  [$year, $month] = explode('-', (string) $monthYear);
+[$year, $month] = explode('-', (string) $monthYear);
 
-  $daysOfMonth = match ($month) {
-    '01', '03', '05', '07', '08', '10', '12' => 31,
-    '04', '06', '09', '11' => 30,
-    '02' => $year % 4 === 0 && ($year % 100 !== 0 || $year % 400 === 0)
-      ? 29
-      : 28
-  };
+$daysOfMonth = match ($month) {
+  '01', '03', '05', '07', '08', '10', '12' => 31,
+  '04', '06', '09', '11' => 30,
+  '02' => $year % 4 === 0 && ($year % 100 !== 0 || $year % 400 === 0)
+    ? 29
+    : 28
+};
 
-  $startDate = (new View())->e("{$monthYear}-01");
-  $endDate = (new View())->e("{$monthYear}-{$daysOfMonth}");
-}
+$startDate = (new View())->e("{$monthYear}-01");
+$endDate = (new View())->e("{$monthYear}-{$daysOfMonth}");
 
 ob_end_clean();
 

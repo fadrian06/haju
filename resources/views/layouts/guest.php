@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 use Leaf\Http\Session;
 
+/**
+ * @var string $title
+ * @var string $content
+ */
+
 $error = isset($error) ? strval($error) : null;
 $message = isset($message) ? strval($message) : null;
 

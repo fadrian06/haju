@@ -82,7 +82,7 @@ $model ??= '';
     </label>
   </div>
 <?php else : ?>
-  <div class="col-md-<?= $cols ?? 6 ?> <?= $hidden ? 'd-none' : '' ?> form-floating mb-<?= $margin ?>">
+  <div class="col-md-<?= $cols ?> <?= $hidden ? 'd-none' : '' ?> form-floating mb-<?= $margin ?>">
     <?php if ($type === InputGroupType::TEXTAREA) : ?>
       <textarea
         class="form-control"

@@ -6,9 +6,10 @@ use HAJU\Models\Doctor;
 use HAJU\Models\User;
 use HAJU\Enums\Gender;
 
-$doctors = array_map(fn(Doctor $doctor) => $doctor, $doctors);
-$loggedUser = $user;
-assert($loggedUser instanceof User);
+/**
+ * @var Doctor[] $doctors
+ * @var User $user
+ */
 
 ?>
 
@@ -31,7 +32,7 @@ assert($loggedUser instanceof User);
   <ul class="list-unstyled row row-cols-sm-2 row-cols-md-3">
     <?php foreach ($doctors as $doctor) : ?>
       <li class="mb-4 d-flex align-items-stretch">
-        <article class="card card-body text-center <?= $doctor->canBeEditedBy($loggedUser) ?: 'pe-none opacity-50 user-select-none' ?>">
+        <article class="card card-body text-center <?= $doctor->canBeEditedBy($user) ?: 'pe-none opacity-50 user-select-none' ?>">
           <div class="dropdown position-relative">
             <button class="end-0 bg-transparent border-0 position-absolute" data-bs-toggle="dropdown">
               <i class="ti-more"></i>
