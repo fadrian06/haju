@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace HAJU\Middlewares;
 
 use HAJU\Models\Department;

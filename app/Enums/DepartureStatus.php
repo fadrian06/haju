@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace HAJU\Enums;
 
 enum DepartureStatus: string

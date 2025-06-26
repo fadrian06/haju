@@ -1,7 +1,5 @@
 <?php
 
-
-
 ?>
 
 <section class="px-0 modal modal-content cs_modal w-auto">

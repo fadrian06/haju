@@ -1,7 +1,5 @@
 <?php
 
-
-
 ?>
 
 <div class="dropdown cu_dropdown">

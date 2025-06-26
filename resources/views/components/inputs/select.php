@@ -1,7 +1,5 @@
 <?php
 
-
-
 use Leaf\Http\Session;
 
 $id = uniqid();

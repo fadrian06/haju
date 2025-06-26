@@ -1,7 +1,5 @@
 <?php
 
-
-
 use HAJU\Controllers\DepartmentController;
 use HAJU\Controllers\DoctorController;
 use HAJU\Controllers\HomeController;

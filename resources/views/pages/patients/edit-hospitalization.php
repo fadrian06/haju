@@ -1,7 +1,5 @@
 <?php
 
-
-
 use flight\util\Collection;
 use HAJU\Models\Doctor;
 use HAJU\Models\Hospitalization;

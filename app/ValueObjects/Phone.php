@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace HAJU\ValueObjects;
 
 use HAJU\ValueObjects\Exceptions\InvalidPhoneException;

@@ -1,7 +1,5 @@
 <?php
 
-
-
 ?>
 
 <li class="dropdown" data-bs-toggle="tooltip" title="Cambiar tema" data-bs-placement="left">

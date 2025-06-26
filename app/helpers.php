@@ -1,7 +1,5 @@
 <?php
 
-
-
 use HAJU\Models\Consultation;
 use HAJU\Models\ConsultationCause;
 use HAJU\Models\ConsultationCauseCategory;

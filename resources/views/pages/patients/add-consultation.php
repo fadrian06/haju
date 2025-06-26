@@ -1,7 +1,5 @@
 <?php
 
-
-
 use HAJU\Models\ConsultationCauseCategory;
 use HAJU\Models\Department;
 use HAJU\Models\Doctor;

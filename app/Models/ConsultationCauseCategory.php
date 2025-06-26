@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace HAJU\Models;
 
 use HAJU\Models\Contracts\Model;

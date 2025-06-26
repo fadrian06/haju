@@ -1,7 +1,5 @@
 <?php
 
-
-
 ?>
 
 <footer class="text-center py-5 px-2" :class="`text-bg-${theme}`">

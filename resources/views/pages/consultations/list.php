@@ -1,7 +1,5 @@
 <?php
 
-
-
 use HAJU\Models\Consultation;
 use HAJU\Models\Department;
 use HAJU\Enums\DateRange;

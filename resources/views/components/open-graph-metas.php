@@ -1,7 +1,5 @@
 <?php
 
-
-
 ?>
 
 <!-- HTML Meta Tags -->

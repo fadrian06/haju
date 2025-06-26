@@ -1,7 +1,5 @@
 <?php
 
-
-
 use flight\util\Collection;
 use HAJU\Enums\Gender;
 use HAJU\InstructionLevels\Domain\InstructionLevel;

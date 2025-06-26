@@ -1,7 +1,5 @@
 <?php
 
-
-
 use HAJU\Models\ConsultationCauseCategory;
 use HAJU\Repositories\Domain\ConsultationCauseRepository;
 use flight\Container;

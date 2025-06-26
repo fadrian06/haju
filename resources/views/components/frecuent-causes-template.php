@@ -1,7 +1,5 @@
 <?php
 
-
-
 use HAJU\Models\Department;
 use HAJU\Models\User;
 

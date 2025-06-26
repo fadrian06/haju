@@ -1,7 +1,5 @@
 <?php
 
-
-
 use HAJU\Enums\AdmissionDepartment;
 use HAJU\Models\Doctor;
 use HAJU\Models\Patient;

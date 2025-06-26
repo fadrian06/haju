@@ -1,7 +1,5 @@
 <?php
 
-
-
 use HAJU\Models\User;
 use HAJU\Repositories\Domain\PatientRepository;
 use flight\Container;

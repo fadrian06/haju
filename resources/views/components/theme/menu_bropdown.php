@@ -1,7 +1,5 @@
 <?php
 
-
-
 ?>
 
 <div class="dropdown menu_bropdown">

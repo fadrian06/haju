@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace HAJU\Controllers;
 
 final class ReportsController

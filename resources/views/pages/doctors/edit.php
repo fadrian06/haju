@@ -1,7 +1,5 @@
 <?php
 
-
-
 use HAJU\Models\Doctor;
 use HAJU\Enums\Gender;
 

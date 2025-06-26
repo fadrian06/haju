@@ -1,7 +1,5 @@
 <?php
 
-
-
 use HAJU\Enums\Gender;
 
 $id ??= 'registrar';

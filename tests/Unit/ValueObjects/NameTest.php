@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace HAJU\Tests\Unit\ValueObjects;
 
 use HAJU\ValueObjects\Name;

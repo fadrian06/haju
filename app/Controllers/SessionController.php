@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace HAJU\Controllers;
 
 use HAJU\Repositories\Domain\UserRepository;

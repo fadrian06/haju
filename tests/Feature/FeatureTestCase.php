@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace HAJU\Tests\Feature;
 
 use GuzzleHttp\Client;

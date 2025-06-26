@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace HAJU\Middlewares;
 
 use HAJU\Repositories\Domain\UserRepository;

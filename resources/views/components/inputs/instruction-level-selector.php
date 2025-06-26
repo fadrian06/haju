@@ -1,7 +1,5 @@
 <?php
 
-
-
 use flight\util\Collection;
 use HAJU\InstructionLevels\Domain\InstructionLevel;
 

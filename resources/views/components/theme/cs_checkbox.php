@@ -1,7 +1,5 @@
 <?php
 
-
-
 ?>
 
 <label class="cs_checkbox">

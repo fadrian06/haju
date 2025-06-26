@@ -1,7 +1,5 @@
 <?php
 
-
-
 ?>
 
 <div class="dropdown d-inline-block CRM_dropdown">

@@ -1,7 +1,5 @@
 <?php
 
-
-
 use HAJU\Enums\NotificationType;
 
 $text = isset($type) ? strval($type) : throw new Error('Text not set');

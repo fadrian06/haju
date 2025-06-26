@@ -1,7 +1,5 @@
 <?php
 
-
-
 use HAJU\Models\Patient;
 
 /** @var array{cause: array{short_name: string}, patient: Patient} $epidemic */

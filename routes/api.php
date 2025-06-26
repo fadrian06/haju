@@ -1,7 +1,5 @@
 <?php
 
-
-
 use HAJU\Repositories\Domain\ConsultationCauseCategoryRepository;
 use HAJU\Repositories\Domain\ConsultationCauseRepository;
 use HAJU\Repositories\Domain\PatientRepository;

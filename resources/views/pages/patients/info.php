@@ -1,7 +1,5 @@
 <?php
 
-
-
 use HAJU\Models\Patient;
 use HAJU\Models\User;
 

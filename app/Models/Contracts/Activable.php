@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace HAJU\Models\Contracts;
 
 interface Activable

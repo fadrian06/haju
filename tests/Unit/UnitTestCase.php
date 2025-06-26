@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace HAJU\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;

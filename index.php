@@ -1,7 +1,5 @@
 <?php
 
-
-
 use Jenssegers\Date\Date;
 
 error_reporting(E_ALL);

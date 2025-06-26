@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace HAJU\Tests\Feature;
 
 use PHPUnit\Framework\Attributes\Test;

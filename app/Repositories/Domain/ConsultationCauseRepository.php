@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace HAJU\Repositories\Domain;
 
 use HAJU\Models\ConsultationCause;

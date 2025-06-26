@@ -1,7 +1,5 @@
 <?php
 
-
-
 use HAJU\Enums\Appointment;
 use HAJU\Models\Department;
 use HAJU\Models\User;

@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace HAJU\Repositories\Infraestructure\Files;
 
 use Error;

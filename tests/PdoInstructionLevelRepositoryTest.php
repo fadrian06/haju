@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace HAJU\Tests;
 
 use DateTimeImmutable;

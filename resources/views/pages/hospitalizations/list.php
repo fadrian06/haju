@@ -1,7 +1,5 @@
 <?php
 
-
-
 use HAJU\Models\Hospitalization;
 use HAJU\Enums\DateRange;
 use HAJU\Models\Department;

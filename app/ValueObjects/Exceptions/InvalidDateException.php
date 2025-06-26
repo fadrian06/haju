@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace HAJU\ValueObjects\Exceptions;
 
 use InvalidArgumentException;
